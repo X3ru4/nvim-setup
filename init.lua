@@ -2,18 +2,6 @@
 require("config.lazy")
 local icons = require("config.icon")
 
--- Cmp highlight
-vim.api.nvim_set_hl(0, "menu_sl", {
-  bold = true,
-  italic = true,
-})
-vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", {
-  bold = true
-})
-vim.api.nvim_set_hl(0, "CmpItemAbbrMatchFuzzy", {
-  bold = true
-})
-
 vim.diagnostic.config {
   signs = {
     text = {

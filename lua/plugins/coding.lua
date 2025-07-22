@@ -4,46 +4,50 @@ return {
 
   -- hrsh7th/nvim-cmp
   {
+    enabled = false,
     "hrsh7th/nvim-cmp",
-    dependencies = { "onsails/lspkind-nvim" },
-    opts = function(_, opts)
-      local cmp = require("cmp")
-      opts.performance = {
-        debounce = 0,
-        throttle = 0,
-      }
-      opts.window = {
-        completion = cmp.config.window.bordered {
-          border = icons.square,
-          winhighlight = "Normal:menu,FloatBorder:FloatBorder,CursorLine:menu_sl",
-        },
-        documentation = cmp.config.window.bordered {
-          border = icons.square,
-          winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
-        },
-      }
-      local lspkind = require('lspkind')
-      opts.formatting = {
-        fields = { "kind", "abbr", "menu" },
-        format = lspkind.cmp_format {
-          mode = 'symbol',
-          maxwidth = {
-            menu = 20,
-            abbr = 20,
-          },
-          ellipsis_char = '~',
-          show_labelDetails = true,
-          before = function (entry, vim_item)
-            return vim_item
-          end
-        }
-      }
-    end,
-    config = function(_, opts)
-      require("cmp").setup(opts)
-    end,
   },
 
+  -- blink.cmp
+  {
+    'saghen/blink.cmp',
+    dependencies = 'rafamadriz/friendly-snippets',
+    version = '1.*',
+    opts = {
+      keymap = {
+        preset = 'default',
+        ['<C-y>'] = false,
+        ['<CR>']  = { 'select_and_accept', 'fallback' }
+      },
+
+      appearance = {
+        nerd_font_variant = 'mono'
+      },
+      signature = { enabled = false },
+      completion = {
+        documentation = {
+          auto_show = true,
+          window = {
+            min_width = 5,
+            max_width = 20,
+            max_height = 8,
+            winblend = 10,
+            border = icons.square,
+            winhighlight = "Normal:Normal,FloatBorder:myFloatBorder,CursorLine:myCursorline",
+          }
+        },
+        menu = {
+          min_width = 5,
+          max_height = 8,
+          winblend = 10,
+          border = icons.square,
+          winhighlight = "Normal:Normal,FloatBorder:myFloatBorder",
+        },
+      },
+    },
+  },
+
+  -- jake-stewart/multicursor.nvim
   {
     "jake-stewart/multicursor.nvim",
     branch = "1.0",
