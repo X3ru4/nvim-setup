@@ -1,3 +1,5 @@
+local icons = require("config.icon")
+
 return {
 
   -- nvim-lualine/lualine.nvim
@@ -40,12 +42,11 @@ return {
             {
               'diagnostics',
               symbols = {
-                error = ' ',
-                warn =  ' ',
-                info =  ' ',
-                hint =  ' '
+                error = icons.diagnostic_icons.errr .. ' ',
+                warn =  icons.diagnostic_icons.warn .. ' ',
+                info =  icons.diagnostic_icons.info .. ' ',
+                hint =  icons.diagnostic_icons.hint .. ' '
               },
-              update_in_insert = true,
             },
             { 'searchcount' },
             { 'selectioncount' },
@@ -80,10 +81,8 @@ return {
 
   -- akinsho/bufferline.nvim
   {
-    -- enabled = false,
+    enabled = false,
     "akinsho/bufferline.nvim",
-    version = "*",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("bufferline").setup({
         options = {
@@ -138,31 +137,29 @@ return {
   },
 
   {
-    enabled = false,
+    -- enabled = false,
     'romgrk/barbar.nvim',
     dependencies = {
       'lewis6991/gitsigns.nvim',
       'nvim-tree/nvim-web-devicons',
     },
     init = function() vim.g.barbar_auto_setup = false end,
-    opts = {},
-    config = function ()
-      require('barbar').setup {
-        icons = {
-          button = icons.close,
-          modified = { button = icons.modified },
-          pinned = { button = icons.pinned, filename = false },
-          diagnostics = {
-            [vim.diagnostic.severity.ERROR] = {enabled = true,  icon = diagnostic_icons.errr},
-            [vim.diagnostic.severity.WARN]  = {enabled = false, icon = diagnostic_icons.warn},
-            [vim.diagnostic.severity.INFO]  = {enabled = false, icon = diagnostic_icons.info},
-            [vim.diagnostic.severity.HINT]  = {enabled = true,  icon = diagnostic_icons.hint},
-          },
-          preset = 'default',
-          inactive = { button = '' }
-        }
-      }
-    end,
+    opts = {
+      icons = {
+        button = icons.icons.close,
+        modified = { button = icons.icons.modified },
+        pinned = { button = icons.icons.pinned, filename = false },
+        diagnostics = {
+          [vim.diagnostic.severity.ERROR] = {enabled = true, icon = icons.diagnostic_icons.errr .. ' '},
+          [vim.diagnostic.severity.INFO]  = {enabled = false, icon = icons.diagnostic_icons.info .. ' '},
+          [vim.diagnostic.severity.WARN]  = {enabled = false, icon = icons.diagnostic_icons.warn .. ' '},
+          [vim.diagnostic.severity.HINT]  = {enabled = true, icon = icons.diagnostic_icons.hint .. ' '},
+        },
+        preset = 'default',
+        inactive = { button = '' }
+      },
+      auto_hide = true,
+    },
     version = '^1.0.0',
   },
 
@@ -194,7 +191,7 @@ return {
       hint_prefix = " ",
       floating_window = false,
       handler_opts = {
-        border = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
+        border = square
       }
     },
   },
@@ -234,6 +231,17 @@ return {
         { action = 'edit ~/.config/nvim',                            desc = " Config",          icon = " ", key = "c" },
         { action = function() vim.api.nvim_input("<cmd>qa<cr>") end, desc = " Quit",            icon = " ", key = "q" },
       }
+    end
+  },
+
+  -- rachartier/tiny-inline-diagnostic.nvim
+  {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy", -- Or `LspAttach`
+    priority = 1000,
+    config = function()
+      require('tiny-inline-diagnostic').setup()
+      vim.diagnostic.config({ virtual_text = false }) -- Only if needed in your configuration, if you already have native LSP diagnostics
     end
   },
 }

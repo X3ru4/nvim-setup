@@ -37,16 +37,5 @@ keymap('n', '<leader>nr', ':IncRename<leader>', {
   desc = 'IncRename'
 })
 
-keymap("n", "<leader><CR>", "<cmd>call append(line('.') -1, '')<CR>", { desc="Append line up"})
-keymap("n", "<leader><BS>", "<cmd>call append(line('.'), '')<CR>", { desc="Append line down"})
-
-keymap("n", "<leader>ll", function ()
-  vim.ui.input(
-    { prompt = "Input" },
-    function (input)
-      if input then
-        vim.api.nvim_buf_set_lines(0, vim.fn.line('.'), vim.fn.line('.'), false, { input })
-      end
-    end
-  )
-end, { desc="Append line" })
+keymap("n", "<C-<CR>>", "<cmd>call append(line('.') -1, '')<CR>", { desc="Append line up"})
+keymap("n", "<C-<BS>>", "<cmd>call append(line('.'), '')<CR>", { desc="Append line down"})

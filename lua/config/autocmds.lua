@@ -11,8 +11,8 @@
 local autocmd = vim.api.nvim_create_autocmd
 
 -- Show diagnostic on CursorHold
-autocmd("CursorHold", {
-  callback = function()
-    vim.diagnostic.open_float(nil, { focusable = false })
-  end,
-})
+-- autocmd("CursorHold", {
+--   callback = function()
+--     vim.diagnostic.open_float(nil, { focusable = false })
+--   end,
+-- })
