@@ -5,128 +5,86 @@ return {
   -- nvim-lualine/lualine.nvim
   {
     "nvim-lualine/lualine.nvim",
-    lazy = true,
-    config = function()
-      require("lualine").setup({
-        options = {
-          theme = "auto",
-          component_separators = {
-            left = "\\",
-            right = "/",
-          },
-          section_separators = {
-            left = "",
-            right = "",
+    opts = {
+      options = {
+        theme = "auto",
+        component_separators = {
+          left = "\\",
+          right = "/",
+        },
+        section_separators = {
+          left = "",
+          right = "",
+        },
+      },
+      sections = {
+        lualine_a = {
+          {
+            "mode",
+            separator = { left = "" },
           },
         },
-        sections = {
-          lualine_a = { "mode" },
-          lualine_b = {
-            {
-              "filetype",
-              icon_only = true,
-            },
-            {
-              "filename",
-              symbols = {
-                modified = icons.icons.modified,
-                readonly = "",
-                unnamed = "[No Name]",
-                newfile = "[New]",
-              },
-            },
+        lualine_b = {
+          {
+            "filetype",
+            icon_only = true,
           },
-          lualine_c = {},
-          lualine_x = {},
-          lualine_y = {
-            {
-              "diagnostics",
-              symbols = {
-                error = icons.diagnostic_icons.errr .. " ",
-                warn = icons.diagnostic_icons.warn .. " ",
-                info = icons.diagnostic_icons.info .. " ",
-                hint = icons.diagnostic_icons.hint .. " ",
-              },
-            },
-            { "searchcount" },
-            { "selectioncount" },
-            {
-              function()
-                return " "
-              end,
-            },
-          },
-          lualine_z = {
-            {
-              function()
-                return "󰥔 " .. os.date("%R")
-              end,
+          {
+            "filename",
+            symbols = {
+              modified = icons.icons.modified,
+              readonly = "",
+              unnamed = "[No Name]",
+              newfile = "[New]",
             },
           },
         },
-        inactive_sections = {
-          lualine_a = { "filename" },
-          lualine_b = {},
-          lualine_c = {},
-          lualine_x = {},
-          lualine_y = {},
-          lualine_z = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {
+          {
+            "diagnostics",
+            symbols = {
+              error = icons.diagnostic_icons.errr .. " ",
+              warn = icons.diagnostic_icons.warn .. " ",
+              info = icons.diagnostic_icons.info .. " ",
+              hint = icons.diagnostic_icons.hint .. " ",
+            },
+          },
+          { "searchcount" },
+          { "selectioncount" },
+          {
+            function()
+              return " "
+            end,
+          },
         },
-        tabline = {},
-        winbar = {},
-        extensions = {},
-      })
-    end,
+        lualine_z = {
+          {
+            function()
+              return "󰥔 " .. os.date("%R")
+            end,
+            separator = { right = "" },
+          },
+        },
+      },
+    },
   },
 
   -- akinsho/bufferline.nvim
-  { enabled = false, "akinsho/bufferline.nvim" },
-
   {
     -- enabled = false,
-    "romgrk/barbar.nvim",
-    dependencies = {
-      "lewis6991/gitsigns.nvim",
-      "nvim-tree/nvim-web-devicons",
-    },
-    init = function()
-      vim.g.barbar_auto_setup = false
-    end,
+    "akinsho/bufferline.nvim",
     opts = {
-      icons = {
-        button = icons.icons.close,
-        modified = { button = icons.icons.modified },
-        pinned = { button = icons.icons.pinned, filename = false },
-        diagnostics = {
-          [vim.diagnostic.severity.ERROR] = { enabled = true, icon = icons.diagnostic_icons.errr .. " " },
-          [vim.diagnostic.severity.INFO] = { enabled = false, icon = icons.diagnostic_icons.info .. " " },
-          [vim.diagnostic.severity.WARN] = { enabled = false, icon = icons.diagnostic_icons.warn .. " " },
-          [vim.diagnostic.severity.HINT] = { enabled = true, icon = icons.diagnostic_icons.hint .. " " },
-        },
-        preset = "default",
-        inactive = { button = "" },
+      options = {
+        buffer_close_icon = icons.icons.close .. " ",
+        modified_icon = icons.icons.modified .. " ",
+        close_icon = " ",
+        left_trunc_marker = " ",
+        right_trunc_marker = " ",
+        diagnostics = "nvim_lsp",
+        hover = { enabled = false },
       },
-      auto_hide = true,
-    },
-    version = "^1.0.0",
-  },
-
-  -- kevinhwang91/nvim-ufo
-  {
-    "kevinhwang91/nvim-ufo",
-    dependencies = { "kevinhwang91/promise-async" },
-    opts = {},
-  },
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      capabilities = function(capabilities)
-        capabilities.textDocument.foldingRange = {
-          dynamicRegistration = false,
-          lineFoldingOnly = true,
-        }
-        return capabilities
-      end,
     },
   },
 
@@ -139,7 +97,7 @@ return {
       hint_prefix = " ",
       floating_window = false,
       handler_opts = {
-        border = icons.square,
+        border = _G.border,
       },
     },
   },
@@ -171,7 +129,7 @@ return {
          ░    ░  ░    ░ ░        ░   ░         ░   
                                 ░                  
       ]]
-      logo = string.rep("\n", 4) .. logo .. "\n"
+      logo = string.rep("\n", 8) .. logo .. "\n"
       opts.config.header = vim.split(logo, "\n")
       opts.config.center = {
         {
@@ -201,6 +159,11 @@ return {
           key = "q",
         },
       }
+      opts.config.footer = function()
+        local stats = require("lazy").stats()
+        local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+        return { "󱐋 Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
+      end
     end,
   },
 

@@ -1,5 +1,8 @@
 local icons = require("config.icon")
 
+_G.transparent = true
+_G.border = icons.round
+
 vim.o.updatetime = 200
 vim.g.snacks_animate = false
 

@@ -61,7 +61,6 @@ return {
         "clang-format",
         "cpplint",
         "luacheck",
-        "luaformatter",
         "markdown-toc",
         "markdownlint",
         "markdownlint-cli2",

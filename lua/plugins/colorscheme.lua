@@ -4,8 +4,8 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin"
-    }
+      colorscheme = "catppuccin",
+    },
   },
 
   -- add cyberdream
@@ -13,12 +13,12 @@ return {
     "scottmckendry/cyberdream.nvim",
     lazy = false,
     priority = 1000,
-    config = function ()
-      require("cyberdream").setup {
+    config = function()
+      require("cyberdream").setup({
         cache = true,
-        transparent = true
-      }
-    end
+        transparent = _G.transparent,
+      })
+    end,
   },
 
   -- add capuccin
@@ -26,35 +26,33 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
-    config = function ()
+    config = function()
       require("catppuccin").setup({
         flavour = "auto",
         background = {
-            light = "latte",
-            dark = "mocha",
+          light = "latte",
+          dark = "mocha",
         },
-        transparent_background = true,
+        transparent_background = _G.transparent,
         styles = {
-            comments = { "italic" },
-            conditionals = { "italic" },
-            loops = {},
-            functions = {},
-            keywords = {},
-            strings = {},
-            variables = {},
-            numbers = {},
-            booleans = {},
-            properties = {},
-            types = {},
-            operators = {},
+          comments = { "italic" },
+          conditionals = { "italic" },
+          loops = {},
+          functions = {},
+          keywords = {},
+          strings = {},
+          variables = {},
+          numbers = {},
+          booleans = {},
+          properties = {},
+          types = {},
+          operators = {},
         },
         default_integrations = true,
         integrations = {
-            notify = true,
+          notify = true,
         },
-    })
-    end
-  }
+      })
+    end,
+  },
 }
-
-
