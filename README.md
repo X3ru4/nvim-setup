@@ -1,14 +1,15 @@
 # Usage
 
-## •Run this command
+*•Run this command*
 
+If you has my ssh =))
 ```bash
 git clone git@github.com:X3ru4/n30vim.git .config/nvim
 ```
-## Or
 
+For you
 ```bash
-
+git clone https://github.com/X3ru4/n30vim.git .config/nvim
 ```
 
-## _X3ru4_
+_X3ru4_
