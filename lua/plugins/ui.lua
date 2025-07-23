@@ -7,65 +7,65 @@ return {
     "nvim-lualine/lualine.nvim",
     lazy = true,
     config = function()
-      require('lualine').setup {
+      require("lualine").setup({
         options = {
-          theme = 'auto',
+          theme = "auto",
           component_separators = {
-            left = '\\',
-            right = '/'
+            left = "\\",
+            right = "/",
           },
           section_separators = {
-            left = '',
-            right = ''
+            left = "",
+            right = "",
           },
         },
         sections = {
-          lualine_a = { 'mode' },
+          lualine_a = { "mode" },
           lualine_b = {
             {
-              'filetype',
+              "filetype",
               icon_only = true,
             },
             {
-              'filename',
+              "filename",
               symbols = {
-                modified = '󱇨',
-                readonly = '',
-                unnamed = '[No Name]',
-                newfile = '[New]',
+                modified = icons.icons.modified,
+                readonly = "",
+                unnamed = "[No Name]",
+                newfile = "[New]",
               },
-            }
+            },
           },
           lualine_c = {},
           lualine_x = {},
           lualine_y = {
             {
-              'diagnostics',
+              "diagnostics",
               symbols = {
-                error = icons.diagnostic_icons.errr .. ' ',
-                warn =  icons.diagnostic_icons.warn .. ' ',
-                info =  icons.diagnostic_icons.info .. ' ',
-                hint =  icons.diagnostic_icons.hint .. ' '
+                error = icons.diagnostic_icons.errr .. " ",
+                warn = icons.diagnostic_icons.warn .. " ",
+                info = icons.diagnostic_icons.info .. " ",
+                hint = icons.diagnostic_icons.hint .. " ",
               },
             },
-            { 'searchcount' },
-            { 'selectioncount' },
+            { "searchcount" },
+            { "selectioncount" },
             {
-              function ()
-                return ' '
-              end
-            }
+              function()
+                return " "
+              end,
+            },
           },
           lualine_z = {
             {
-              function ()
-                return '󰥔 ' .. os.date('%R')
-              end
-            }
+              function()
+                return "󰥔 " .. os.date("%R")
+              end,
+            },
           },
         },
         inactive_sections = {
-          lualine_a = { 'filename' },
+          lualine_a = { "filename" },
           lualine_b = {},
           lualine_c = {},
           lualine_x = {},
@@ -74,39 +74,41 @@ return {
         },
         tabline = {},
         winbar = {},
-        extensions = {}
-      }
+        extensions = {},
+      })
     end,
   },
 
   -- akinsho/bufferline.nvim
-  { enabled = false, "akinsho/bufferline.nvim", },
+  { enabled = false, "akinsho/bufferline.nvim" },
 
   {
     -- enabled = false,
-    'romgrk/barbar.nvim',
+    "romgrk/barbar.nvim",
     dependencies = {
-      'lewis6991/gitsigns.nvim',
-      'nvim-tree/nvim-web-devicons',
+      "lewis6991/gitsigns.nvim",
+      "nvim-tree/nvim-web-devicons",
     },
-    init = function() vim.g.barbar_auto_setup = false end,
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
     opts = {
       icons = {
         button = icons.icons.close,
         modified = { button = icons.icons.modified },
         pinned = { button = icons.icons.pinned, filename = false },
         diagnostics = {
-          [vim.diagnostic.severity.ERROR] = {enabled = true, icon = icons.diagnostic_icons.errr .. ' '},
-          [vim.diagnostic.severity.INFO]  = {enabled = false, icon = icons.diagnostic_icons.info .. ' '},
-          [vim.diagnostic.severity.WARN]  = {enabled = false, icon = icons.diagnostic_icons.warn .. ' '},
-          [vim.diagnostic.severity.HINT]  = {enabled = true, icon = icons.diagnostic_icons.hint .. ' '},
+          [vim.diagnostic.severity.ERROR] = { enabled = true, icon = icons.diagnostic_icons.errr .. " " },
+          [vim.diagnostic.severity.INFO] = { enabled = false, icon = icons.diagnostic_icons.info .. " " },
+          [vim.diagnostic.severity.WARN] = { enabled = false, icon = icons.diagnostic_icons.warn .. " " },
+          [vim.diagnostic.severity.HINT] = { enabled = true, icon = icons.diagnostic_icons.hint .. " " },
         },
-        preset = 'default',
-        inactive = { button = '' }
+        preset = "default",
+        inactive = { button = "" },
       },
       auto_hide = true,
     },
-    version = '^1.0.0',
+    version = "^1.0.0",
   },
 
   -- kevinhwang91/nvim-ufo
@@ -137,8 +139,8 @@ return {
       hint_prefix = " ",
       floating_window = false,
       handler_opts = {
-        border = icons.square
-      }
+        border = icons.square,
+      },
     },
   },
 
@@ -147,16 +149,16 @@ return {
     "folke/noice.nvim",
     opts = function(_, opts)
       opts.lsp.signature = {
-        enabled = false
+        enabled = false,
       }
     end,
   },
 
   -- nvimdev/dashboard-nvim
   {
-    'nvimdev/dashboard-nvim',
-    event = 'VimEnter',
-    opts = function (_, opts)
+    "nvimdev/dashboard-nvim",
+    event = "VimEnter",
+    opts = function(_, opts)
       local logo = [[
  ███▄    █ ▓█████  ▒█████   ██▒   █▓ ██▓ ███▄ ▄███▓
  ██ ▀█   █ ▓█   ▀ ▒██▒  ██▒▓██░   █▒▓██▒▓██▒▀█▀ ██▒
@@ -169,15 +171,37 @@ return {
          ░    ░  ░    ░ ░        ░   ░         ░   
                                 ░                  
       ]]
-      logo = string.rep('\n', 4) .. logo .. '\n'
-      opts.config.header = vim.split(logo, '\n')
+      logo = string.rep("\n", 4) .. logo .. "\n"
+      opts.config.header = vim.split(logo, "\n")
       opts.config.center = {
-        { action = "ene | startinsert",                              desc = " New File",        icon = " ", key = "n" },
-        { action = 'lua LazyVim.pick("projects")()',                 desc = " Recent Files",    icon = " ", key = "p" },
-        { action = 'edit ~/.config/nvim',                            desc = " Config",          icon = " ", key = "c" },
-        { action = function() vim.api.nvim_input("<cmd>qa<cr>") end, desc = " Quit",            icon = " ", key = "q" },
+        {
+          action = "ene | startinsert",
+          desc = " New File",
+          icon = " ",
+          key = "n",
+        },
+        {
+          action = 'lua LazyVim.pick("projects")()',
+          desc = " Recent Files",
+          icon = " ",
+          key = "p",
+        },
+        {
+          action = "edit ~/.config/nvim",
+          desc = " Config",
+          icon = " ",
+          key = "c",
+        },
+        {
+          action = function()
+            vim.api.nvim_input("<cmd>qa<cr>")
+          end,
+          desc = " Quit",
+          icon = " ",
+          key = "q",
+        },
       }
-    end
+    end,
   },
 
   -- rachartier/tiny-inline-diagnostic.nvim
@@ -186,9 +210,8 @@ return {
     event = "VeryLazy", -- Or `LspAttach`
     priority = 1000,
     config = function()
-      require('tiny-inline-diagnostic').setup()
+      require("tiny-inline-diagnostic").setup()
       vim.diagnostic.config({ virtual_text = false }) -- Only if needed in your configuration, if you already have native LSP diagnostics
-    end
+    end,
   },
 }
-

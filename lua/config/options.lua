@@ -1,6 +1,21 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
+local icons = require("config.icon")
 
 vim.o.updatetime = 200
 vim.g.snacks_animate = false
+
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = icons.diagnostic_icons.errr,
+      [vim.diagnostic.severity.WARN] = icons.diagnostic_icons.warn,
+      [vim.diagnostic.severity.INFO] = icons.diagnostic_icons.info,
+      [vim.diagnostic.severity.HINT] = icons.diagnostic_icons.hint,
+    },
+    linehl = {
+      [vim.diagnostic.severity.ERROR] = "ErrorMsg",
+    },
+    numhl = {
+      [vim.diagnostic.severity.WARN] = "WarningMsg",
+    },
+  },
+})
