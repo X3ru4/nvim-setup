@@ -102,6 +102,15 @@ return {
     },
   },
 
+  {
+    "folke/noice.nvim",
+    opts = function(_, opts)
+      opts.lsp.signature = {
+        enabled = false,
+      }
+    end,
+  },
+
   -- nvimdev/dashboard-nvim
   {
     "nvimdev/dashboard-nvim",
@@ -130,7 +139,7 @@ return {
         },
         {
           action = 'lua LazyVim.pick("projects")()',
-          desc = " Recent Files",
+          desc = " Projects",
           icon = " ",
           key = "p",
         },
