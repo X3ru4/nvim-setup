@@ -102,16 +102,6 @@ return {
     },
   },
 
-  -- folke/noice.nvim
-  {
-    "folke/noice.nvim",
-    opts = function(_, opts)
-      opts.lsp.signature = {
-        enabled = false,
-      }
-    end,
-  },
-
   -- nvimdev/dashboard-nvim
   {
     "nvimdev/dashboard-nvim",
@@ -129,7 +119,7 @@ return {
          ░    ░  ░    ░ ░        ░   ░         ░   
                                 ░                  
       ]]
-      logo = string.rep("\n", 8) .. logo .. "\n"
+      logo = string.rep("\n", 6) .. logo .. "\n"
       opts.config.header = vim.split(logo, "\n")
       opts.config.center = {
         {
