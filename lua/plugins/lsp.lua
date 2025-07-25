@@ -1,5 +1,3 @@
--- if true then return {} end
-
 return {
 
   -- neovim/nvim-lspconfig
@@ -8,7 +6,6 @@ return {
     dependencies = { "saghen/blink.cmp" },
     config = function()
       local lspconfig = require("lspconfig")
-      -- require("cmp_nvim_lsp").default_capabilities()
       local capabilities = require("blink.cmp").get_lsp_capabilities()
       -- C++
       lspconfig.clangd.setup({

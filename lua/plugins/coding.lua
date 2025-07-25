@@ -14,7 +14,9 @@ return {
         ["<C-y>"] = false,
         ["<CR>"] = { "select_and_accept", "fallback" },
       },
-
+      cmdline = {
+        enabled = true,
+      },
       appearance = {
         nerd_font_variant = "mono",
       },
@@ -25,18 +27,25 @@ return {
           window = {
             min_width = 5,
             max_width = 20,
-            max_height = 8,
-            winblend = 10,
+            max_height = 10,
+            winblend = _G.blend,
             border = _G.border,
-            winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:myCursorline",
+            winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
           },
         },
         menu = {
           min_width = 5,
           max_height = 8,
-          winblend = 10,
+          winblend = _G.blend,
           border = _G.border,
-          winhighlight = "Normal:Normal,FloatBorder:FloatBorder",
+          winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
+          draw = {
+            components = {
+              label = {
+                width = { fill = true, max = 20 },
+              },
+            },
+          },
         },
       },
     },

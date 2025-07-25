@@ -4,7 +4,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin",
+      colorscheme = _G.colorscheme,
     },
   },
 
@@ -21,7 +21,7 @@ return {
     end,
   },
 
-  -- add capuccin
+  -- add catppuccin
   {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -31,7 +31,7 @@ return {
         flavour = "auto",
         background = {
           light = "latte",
-          dark = "mocha",
+          dark = "frappe",
         },
         transparent_background = _G.transparent,
         styles = {
@@ -39,7 +39,7 @@ return {
           conditionals = { "italic" },
           loops = {},
           functions = {},
-          keywords = {},
+          keywords = { "italic" },
           strings = {},
           variables = {},
           numbers = {},
@@ -54,5 +54,17 @@ return {
         },
       })
     end,
+  },
+
+  -- add tokyonight
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      cache = true,
+      style = "night",
+      transparent = _G.transparent,
+    },
   },
 }

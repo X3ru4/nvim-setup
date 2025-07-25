@@ -104,11 +104,16 @@ return {
 
   {
     "folke/noice.nvim",
-    opts = function(_, opts)
-      opts.lsp.signature = {
-        enabled = false,
-      }
-    end,
+    opts = {
+      cmdline = {
+        view = "cmdline",
+      },
+      lsp = {
+        signature = {
+          enabled = false,
+        },
+      },
+    },
   },
 
   -- nvimdev/dashboard-nvim
