@@ -3,7 +3,7 @@ local icons = require("config.icon")
 _G.transparent = true
 _G.border = icons.round
 _G.blend = 20
-_G.colorscheme = "catppuccin"
+_G.colorscheme = "dracula"
 
 vim.o.updatetime = 200
 vim.g.snacks_animate = false

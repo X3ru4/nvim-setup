@@ -19,33 +19,6 @@ return {
     end,
   },
 
-  -- nvimdev/lspsaga.nvim
-  {
-    "nvimdev/lspsaga.nvim",
-    opts = {
-      ui = {
-        border = "rounded",
-        devicon = true,
-        code_action = " ",
-        actionfix = " ",
-      },
-      symbol_in_winbar = {
-        enable = true,
-        separator = "  ",
-        hide_keyword = false,
-        ignore_patterns = nil,
-        show_file = true,
-        folder_level = 1,
-        color_mode = true,
-        delay = 20,
-      },
-    },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
-  },
-
   -- williamboman/mason.nvim
   {
     "williamboman/mason.nvim",
