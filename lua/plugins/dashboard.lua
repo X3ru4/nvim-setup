@@ -12,7 +12,6 @@ return {
 ░ ░░   ░ ▒░ ░ ░  ░  ░ ▒ ▒░    ░ ░░   ▒ ░░  ░      ░
    ░   ░ ░    ░   ░ ░ ░ ▒       ░░   ▒ ░░      ░   
          ░    ░  ░    ░ ░        ░   ░         ░   
-                                ░                  
       ]]
     logo = string.rep("\n", 6) .. logo .. "\n"
     opts.config.header = vim.split(logo, "\n")
