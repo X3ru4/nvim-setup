@@ -1,4 +1,10 @@
 local icons = require("config.icon")
+function disable(plugin)
+  return {
+    enabled = false,
+    plugin,
+  }
+end
 
 _G.transparent = true
 _G.border = icons.round
