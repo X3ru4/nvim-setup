@@ -11,11 +11,6 @@ return {
     },
     cmdline = {
       enabled = true,
-      keymap = {
-        preset = "inherit",
-        ["<C-y>"] = false,
-        ["<CR>"] = { "select_and_accept", "fallback" },
-      },
       completion = { menu = { auto_show = true } },
     },
     appearance = {
