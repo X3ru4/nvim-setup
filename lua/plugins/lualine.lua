@@ -41,6 +41,7 @@ return {
       lualine_y = {
         {
           "diagnostics",
+          update_in_insert = true,
           symbols = {
             error = icons.diagnostic_icons.errr .. " ",
             warn = icons.diagnostic_icons.warn .. " ",

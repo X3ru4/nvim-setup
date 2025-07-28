@@ -15,6 +15,7 @@ vim.o.updatetime = 200
 vim.g.snacks_animate = false
 
 vim.diagnostic.config({
+  update_in_insert = true,
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = icons.diagnostic_icons.errr,
