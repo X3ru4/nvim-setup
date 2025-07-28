@@ -3,5 +3,6 @@ return {
   opts = {
     ---@usage 'background'|'foreground'|'virtual'
     render = "background",
+    virtual_symbol = "",
   },
 }

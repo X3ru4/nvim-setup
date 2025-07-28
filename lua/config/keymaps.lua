@@ -2,6 +2,8 @@ local keymap = vim.keymap.set
 
 keymap("!", "<F11>", "<Nop>")
 
+keymap("v", "go", "y<cmd>e ~/storage/downloads/out.md<CR>ggjVGkp")
+
 -- Terminal
 keymap("n", "gb", "<cmd>terminal<CR>i", { desc = "Terminal" })
 
