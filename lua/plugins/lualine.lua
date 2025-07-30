@@ -41,7 +41,7 @@ return {
       lualine_y = {
         {
           "diagnostics",
-          update_in_insert = true,
+          update_in_insert = vim.g.update_in_insert,
           symbols = {
             error = icons.diagnostic_icons.errr .. " ",
             warn = icons.diagnostic_icons.warn .. " ",

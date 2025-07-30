@@ -24,16 +24,16 @@ return {
           min_width = 5,
           max_width = 20,
           max_height = 10,
-          winblend = _G.blend,
-          border = _G.border,
+          winblend = vim.g.blend,
+          border = vim.g.border,
           winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
         },
       },
       menu = {
         min_width = 5,
         max_height = 8,
-        winblend = _G.blend,
-        border = _G.border,
+        winblend = vim.g.blend,
+        border = vim.g.border,
         winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
         draw = {
           columns = {

@@ -1,11 +1,4 @@
 local map = vim.keymap.set
-local flag = vim.fn.stdpath("data") .. "/restore.flag"
-if vim.fn.filereadable(flag) == 1 then
-  vim.notify("Load session")
-  require("persistence").load({ last = true })
-  vim.notify("Done!")
-  os.remove(flag)
-end
 
 map("!", "<F11>", "<Nop>")
 
@@ -13,7 +6,7 @@ map("!", "<F11>", "<Nop>")
 map("n", "gof", function()
   local file = vim.fn.expand("%:p")
   Snacks.bufdelete()
-  vim.cmd("e " .. file)
+  vim.cmd("edit " .. file)
 end, { desc = "" })
 
 -- Save session and quit auto restore
@@ -32,13 +25,13 @@ map("n", "gog", function()
 end, { desc = "Source current" })
 
 -- Terminal
-map("n", "gb", "<cmd>terminal<CR>i", { desc = "Terminal" })
+map("n", "gb", "<cmd>terminal<cr>i", { desc = "Terminal" })
 
 -- Quick matching
 map("i", "<C-a>", "<Esc>%i")
 
 -- Yank all to clipboard
-map("n", "<leader>ya", "<cmd>%y+<CR>", { desc = "Yank all to clipboard" })
+map("n", "<leader>ya", "<cmd>%y+<cr>", { desc = "Yank all to clipboard" })
 
 -- Select all
 map("n", "<leader>v", "gg0vG$", {

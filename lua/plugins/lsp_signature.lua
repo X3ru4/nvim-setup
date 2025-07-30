@@ -6,7 +6,7 @@ return {
     hint_prefix = " ",
     floating_window = false,
     handler_opts = {
-      border = _G.border,
+      border = vim.g.border,
     },
   },
 }

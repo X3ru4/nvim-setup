@@ -13,4 +13,5 @@ return disable({
   "flash.nvim",
   "grug-far.nvim",
   "trouble.nvim",
+  "todo-comments.nvim",
 })

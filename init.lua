@@ -1,6 +1,14 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
+local flag = vim.fn.stdpath("data") .. "/restore.flag"
+if vim.fn.filereadable(flag) == 1 then
+  vim.notify("Load session")
+  require("persistence").load({ last = true })
+  vim.notify("Done!")
+  os.remove(flag)
+end
+
 -- Highlight
 local get_hl = vim.api.nvim_get_hl
 local set_hl = vim.api.nvim_set_hl
