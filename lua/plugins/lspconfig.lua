@@ -2,40 +2,34 @@ return {
   "neovim/nvim-lspconfig",
   dependencies = { "saghen/blink.cmp" },
   config = function()
-    local lsp = require("lspconfig")
     local capabilities = require("blink.cmp").get_lsp_capabilities()
     local function on_attach(client, bufnr)
       local bufopts = { noremap = true, silent = true, buffer = bufnr }
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
     end
-    -- Lua
-    lsp.lua_ls.setup({
+    local root_dir = require("lspconfig.util").root_pattern(".git", "package.json", ".")
+    local enabled = vim.lsp.enable
+    local config = vim.lsp.config
+
+    enabled("lua_ls")
+    enabled("html")
+    enabled("cssls")
+    enabled("tsserver")
+
+    config("lua_ls", {
       capabilities = capabilities,
       on_attach = on_attach(),
     })
-    -- HTML
-    lsp.html.setup({
+    config("html", {
       capabilities = capabilities,
       on_attach = on_attach(),
-      settings = {
-        html = {
-          format = {
-            enable = true,
-          },
-        },
-        embeddedLanguages = {
-          css = true,
-          javascript = true,
-        },
-      },
+      cmd = { "html-languageserver", "--stdio" },
     })
-    -- CSS
-    lsp.cssls.setup({
+    config("cssls", {
       capabilities = capabilities,
       on_attach = on_attach(),
     })
-    -- TypeScript & JavaScript
-    lsp.tsserver.setup({
+    config("tsserver", {
       capabilities = capabilities,
       on_attach = on_attach(),
     })

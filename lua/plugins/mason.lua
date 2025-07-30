@@ -8,11 +8,10 @@ return {
       "markdownlint-cli2",
       "marksman",
       "html-lsp",
-      "htmlhint",
+      "markuplint",
       "css-lsp",
       "stylelint",
-      "biome",
-      "prettierd",
+      "prettier",
     },
   },
 }

@@ -1,21 +1,14 @@
 local icons = require("config.icon")
-function disable(plugin)
-  return {
-    enabled = false,
-    plugin,
-  }
-end
 
-_G.transparent = true
+_G.update_in_insert = true
 _G.border = icons.round
 _G.blend = 20
-_G.colorscheme = "dracula"
 
 vim.o.updatetime = 200
 vim.g.snacks_animate = false
 
 vim.diagnostic.config({
-  update_in_insert = true,
+  update_in_insert = _G.update_in_insert,
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = icons.diagnostic_icons.errr,

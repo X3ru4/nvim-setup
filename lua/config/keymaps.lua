@@ -1,39 +1,63 @@
-local keymap = vim.keymap.set
+local map = vim.keymap.set
+local flag = vim.fn.stdpath("data") .. "/restore.flag"
+if vim.fn.filereadable(flag) == 1 then
+  vim.notify("Load session")
+  require("persistence").load({ last = true })
+  vim.notify("Done!")
+  os.remove(flag)
+end
 
-keymap("!", "<F11>", "<Nop>")
+map("!", "<F11>", "<Nop>")
 
-keymap("v", "go", "y<cmd>e ~/storage/downloads/out.md<CR>ggjVGkp")
+-- Restart file
+map("n", "gof", function()
+  local file = vim.fn.expand("%:p")
+  Snacks.bufdelete()
+  vim.cmd("e " .. file)
+end, { desc = "" })
+
+-- Save session and quit auto restore
+map("n", "gos", function()
+  vim.fn.writefile({ "Hello" }, vim.fn.stdpath("data") .. "/restore.flag")
+  vim.cmd("qa")
+end, { desc = "Quit auto restore" })
+
+map("n", "goo", function()
+  vim.notify("Source " .. vim.fn.fnamemodify(vim.env.MYVIMRC, ":t"))
+  vim.cmd("so $MYVIMRC")
+end, { desc = "Source init.lua" })
+map("n", "gog", function()
+  vim.notify("Source " .. vim.fn.expand("%:t"))
+  vim.cmd("so %")
+end, { desc = "Source current" })
 
 -- Terminal
-keymap("n", "gb", "<cmd>terminal<CR>i", { desc = "Terminal" })
+map("n", "gb", "<cmd>terminal<CR>i", { desc = "Terminal" })
 
 -- Quick matching
-keymap("i", "<C-a>", "<Esc>%i")
+map("i", "<C-a>", "<Esc>%i")
 
 -- Yank all to clipboard
-keymap("n", "<leader>ya", "<cmd>%y+<CR>", { desc = "Yank all to clipboard" })
+map("n", "<leader>ya", "<cmd>%y+<CR>", { desc = "Yank all to clipboard" })
 
 -- Select all
-keymap("n", "<leader>v", "gg0vG$", {
+map("n", "<leader>v", "gg0vG$", {
   desc = "Select all",
 })
 
 -- Select all line
-keymap("n", "<leader>V", "ggVG$", {
+map("n", "<leader>V", "ggVG$", {
   desc = "Select all line",
 })
 
-keymap({ "n" }, "<C-k>", function()
+map({ "n" }, "<C-k>", function()
   require("lsp_signature").toggle_float_win()
 end, { silent = true, noremap = true, desc = "toggle signature" })
 
-keymap({ "n" }, "<Leader>k", function()
+map({ "n" }, "<Leader>k", function()
   vim.lsp.buf.signature_help()
 end, { silent = true, noremap = true, desc = "toggle signature" })
 
-keymap("n", "<leader>nr", ":IncRename<leader>", {
+map("n", "<leader>nr", ":IncRename<leader>", {
   desc = "IncRename",
 })
-
-keymap("n", "<C-<CR>>", "<cmd>call append(line('.') -1, '')<CR>", { desc = "Append line up" })
-keymap("n", "<C-<BS>>", "<cmd>call append(line('.'), '')<CR>", { desc = "Append line down" })

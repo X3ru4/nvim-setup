@@ -5,20 +5,20 @@ require("config.lazy")
 local get_hl = vim.api.nvim_get_hl
 local set_hl = vim.api.nvim_set_hl
 
+local LabelMatch = get_hl(0, { name = "BlinkCmpLabelMatch" })
+local Label = get_hl(0, { name = "BlinkCmpLabel" })
+local Kind = get_hl(0, { name = "BlinkCmpKind" })
 set_hl(0, "BlinkCmpMenuSelection", {
-  bg = get_hl(0, { name = "PmenuSel" }).bg,
+  bg = "#313a50",
   italic = true,
 })
-local LabelMatch = get_hl(0, { name = "BlinkCmpLabelMatch" })
 set_hl(0, "BlinkCmpLabelMatch", {
-  bold = true,
   fg = LabelMatch.fg,
+  bold = true,
 })
-local Label = get_hl(0, { name = "BlinkCmpLabel" })
 set_hl(0, "BlinkCmpLabel", {
   fg = Label.fg,
 })
-local Kind = get_hl(0, { name = "BlinkCmpKind" })
 set_hl(0, "BlinkCmpKind", {
   fg = Kind.fg,
 })

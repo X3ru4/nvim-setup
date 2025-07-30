@@ -4,17 +4,17 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = _G.colorscheme,
+      colorscheme = "onedark",
     },
   },
-
-  -- add dracula
   {
-    "Mofiqul/dracula.nvim",
-    lazy = false,
+    "navarasu/onedark.nvim",
     priority = 1000,
-    opts = {
-      transparent_bg = _G.transparent,
-    },
+    config = function()
+      require("onedark").setup({
+        style = "darker",
+        ending_tildes = true,
+      })
+    end,
   },
 }
