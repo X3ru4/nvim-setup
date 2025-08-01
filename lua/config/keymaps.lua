@@ -51,6 +51,6 @@ map({ "n" }, "<Leader>k", function()
   vim.lsp.buf.signature_help()
 end, { silent = true, noremap = true, desc = "toggle signature" })
 
-map("n", "<leader>nr", ":IncRename<leader>", {
+map("n", "<leader>nr", ":IncRename ", {
   desc = "IncRename",
 })

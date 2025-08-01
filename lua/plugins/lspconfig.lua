@@ -7,7 +7,6 @@ return {
       local bufopts = { noremap = true, silent = true, buffer = bufnr }
       vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
     end
-    local root_dir = require("lspconfig.util").root_pattern(".git", "package.json", ".")
     local enabled = vim.lsp.enable
     local config = vim.lsp.config
 

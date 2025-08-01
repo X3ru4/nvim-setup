@@ -3,9 +3,9 @@ local icons = require("config.icon")
 vim.g.update_in_insert = true
 vim.g.border = icons.round
 vim.g.blend = 20
+vim.g.snacks_animate = false
 
 vim.o.updatetime = 200
-vim.g.snacks_animate = false
 
 vim.diagnostic.config({
   update_in_insert = vim.g.update_in_insert,
