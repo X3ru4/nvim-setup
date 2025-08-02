@@ -16,6 +16,11 @@ local set_hl = vim.api.nvim_set_hl
 local LabelMatch = get_hl(0, { name = "BlinkCmpLabelMatch" })
 local Label = get_hl(0, { name = "BlinkCmpLabel" })
 local Kind = get_hl(0, { name = "BlinkCmpKind" })
+
+set_hl(0, "Visual", {
+  bg = "#104289",
+})
+
 set_hl(0, "BlinkCmpMenuSelection", {
   bg = "#313a50",
 })

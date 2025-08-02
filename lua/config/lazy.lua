@@ -23,6 +23,12 @@ require("lazy").setup({
     lazy = false,
     version = false,
   },
+  ui = {
+    border = "double",
+  },
+  change_detection = {
+    enabled = false,
+  },
   checker = {
     enabled = true,
     notify = false,

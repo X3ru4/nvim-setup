@@ -1,19 +1,19 @@
 local M = {}
 
-M.diagnostic_icons= {
-  errr =  '',
-  warn  = '',
-  info  = '󰋼',
-  hint  = '',
+M.diagnostic_icons = {
+  errr = "",
+  warn = "",
+  info = "󰋼",
+  hint = "",
 }
 
 M.icons = {
-  modified = '',
-  close    = '',
-  pinned   = ''
+  modified = "",
+  close = "",
+  pinned = "",
 }
 
-M.round  = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
+M.round = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 M.square = { "┌", "─", "┐", "│", "┘", "─", "└", "│" }
 
 return M
