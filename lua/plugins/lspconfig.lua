@@ -22,7 +22,6 @@ return {
     config("html", {
       capabilities = capabilities,
       on_attach = on_attach(),
-      cmd = { "html-languageserver", "--stdio" },
     })
     config("cssls", {
       capabilities = capabilities,

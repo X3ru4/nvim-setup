@@ -18,16 +18,21 @@ local Label = get_hl(0, { name = "BlinkCmpLabel" })
 local Kind = get_hl(0, { name = "BlinkCmpKind" })
 set_hl(0, "BlinkCmpMenuSelection", {
   bg = "#313a50",
-  italic = true,
 })
 set_hl(0, "BlinkCmpLabelMatch", {
   fg = LabelMatch.fg,
-  bold = true,
+  bg = nil,
 })
 set_hl(0, "BlinkCmpLabel", {
   fg = Label.fg,
+  bg = nil,
 })
 set_hl(0, "BlinkCmpKind", {
   fg = Kind.fg,
+  bg = nil,
+})
+set_hl(0, "myFloatBorder", {
+  fg = get_hl(0, { name = "FloatBorder" }).fg,
+  bg = nil,
 })
 -- End --

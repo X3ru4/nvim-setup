@@ -22,11 +22,11 @@ return {
         auto_show = true,
         window = {
           min_width = 5,
-          max_width = 20,
+          max_width = 30,
           max_height = 10,
           winblend = vim.g.blend,
           border = vim.g.border,
-          winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
+          winhighlight = "Normal:Normal,FloatBorder:myFloatBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
         },
       },
       menu = {
@@ -34,7 +34,7 @@ return {
         max_height = 8,
         winblend = vim.g.blend,
         border = vim.g.border,
-        winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
+        winhighlight = "Normal:Normal,FloatBorder:myFloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
         draw = {
           columns = {
             { "kind_icon", "label", "label_description", gap = 1 },
@@ -42,7 +42,7 @@ return {
           },
           components = {
             label = {
-              width = { fill = true, max = 25 },
+              width = { fill = true, max = 30 },
             },
             kind_icon = {
               text = function(ctx)
