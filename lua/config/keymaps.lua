@@ -2,11 +2,15 @@ local map = vim.keymap.set
 
 map("!", "<F11>", "<Nop>")
 
+map({ "n", "x" }, "<leader>ca", function()
+  require("tiny-code-action").code_action()
+end, { noremap = true, silent = true })
+
 -- Restart file
 map("n", "gof", function()
   local file = vim.fn.expand("%:p")
-  Snacks.bufdelete()
   vim.cmd("edit " .. file)
+  vim.cmd("BufferLineCloseLeft")
 end, { desc = "" })
 
 -- Save session and quit auto restore

@@ -12,6 +12,7 @@ return {
       "css-lsp",
       "stylelint",
       "prettier",
+      "emmet-language-server",
     },
   },
 }
