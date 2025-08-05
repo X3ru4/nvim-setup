@@ -31,6 +31,11 @@ return {
       },
       -- Emmet html
       emmet_language_server = { capabilities = capabilities },
+      -- C++
+      clangd = {
+        capabilities = capabilities,
+        on_attach = on_attach,
+      },
     }
 
     for name, opts in pairs(server) do

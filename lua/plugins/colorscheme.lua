@@ -4,10 +4,11 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "onedark",
+      colorscheme = "rose-pine-moon",
     },
   },
   {
+    enabled = false,
     "navarasu/onedark.nvim",
     priority = 1000,
     config = function()
@@ -24,5 +25,10 @@ return {
         },
       })
     end,
+  },
+  -- lua/plugins/rose-pine.lua
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
   },
 }

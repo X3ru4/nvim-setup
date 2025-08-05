@@ -1,7 +1,7 @@
-local icons = require("config.icon")
+local diagnostic = require("config.icons").diagnostic
 
 vim.g.update_in_insert = true
-vim.g.border = icons.round
+vim.g.border = "rounded"
 vim.g.blend = 20
 vim.g.snacks_animate = false
 
@@ -11,10 +11,10 @@ vim.diagnostic.config({
   update_in_insert = vim.g.update_in_insert,
   signs = {
     text = {
-      [vim.diagnostic.severity.ERROR] = icons.diagnostic_icons.errr,
-      [vim.diagnostic.severity.WARN] = icons.diagnostic_icons.warn,
-      [vim.diagnostic.severity.INFO] = icons.diagnostic_icons.info,
-      [vim.diagnostic.severity.HINT] = icons.diagnostic_icons.hint,
+      [vim.diagnostic.severity.ERROR] = diagnostic.errr,
+      [vim.diagnostic.severity.WARN] = diagnostic.warn,
+      [vim.diagnostic.severity.INFO] = diagnostic.info,
+      [vim.diagnostic.severity.HINT] = diagnostic.hint,
     },
     linehl = {
       [vim.diagnostic.severity.ERROR] = "ErrorMsg",

@@ -14,5 +14,6 @@ return {
       "prettier",
       "emmet-language-server",
     },
+    ui = { border = vim.g.border },
   },
 }

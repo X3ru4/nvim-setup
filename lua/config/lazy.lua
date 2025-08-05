@@ -23,11 +23,11 @@ require("lazy").setup({
     lazy = false,
     version = false,
   },
-  ui = {
-    border = "double",
-  },
   change_detection = {
     enabled = false,
+  },
+  ui = {
+    border = "rounded",
   },
   checker = {
     enabled = true,
@@ -48,3 +48,11 @@ require("lazy").setup({
     },
   },
 })
+
+local flag = vim.fn.stdpath("data") .. "/restore.flag"
+if vim.fn.filereadable(flag) == 1 then
+  vim.notify("Load session")
+  require("persistence").load({ last = true })
+  vim.notify("Done!")
+  os.remove(flag)
+end
