@@ -1,6 +1,6 @@
 local diagnostic = require("config.icons").diagnostic
 
-vim.g.update_in_insert = true
+vim.g.update_in_insert = false
 vim.g.border = "rounded"
 vim.g.blend = 20
 vim.g.snacks_animate = false
