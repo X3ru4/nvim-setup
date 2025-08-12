@@ -1,12 +1,17 @@
 local map = vim.keymap.set
 
+map("n", "grd", vim.lsp.buf.definition, { desc = "Definition" })
+map("n", "gra", vim.lsp.buf.code_action, { desc = "Code action" })
+map("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation" })
+map("n", "grr", vim.lsp.buf.references, { desc = "References" })
+map("n", "grt", vim.lsp.buf.type_definition, { desc = "Type definition" })
+
 map("!", "<F11>", "<Nop>")
 
 map("t", "<C-b>", "<cmd>e #<cr>")
 
-map({ "n", "x" }, "<leader>ca", function()
-  require("tiny-code-action").code_action()
-end, { noremap = true, silent = true, desc = "Codd action" })
+-- Run code
+map("n", "<leader>cr", "<cmd>terminal ./run.sh<cr>")
 
 -- Restart file
 map("n", "gof", function()
@@ -17,6 +22,7 @@ end, { desc = "" })
 
 -- Save session and quit auto restore
 map("n", "gos", function()
+  vim.cmd("w")
   vim.fn.writefile({ "Hello" }, vim.fn.stdpath("data") .. "/restore.flag")
   vim.cmd("qa")
 end, { desc = "Quit auto restore" })
@@ -47,16 +53,4 @@ map("n", "<leader>v", "gg0vG$", {
 -- Select all line
 map("n", "<leader>V", "ggVG$", {
   desc = "Select all line",
-})
-
-map({ "n" }, "<C-k>", function()
-  require("lsp_signature").toggle_float_win()
-end, { silent = true, noremap = true, desc = "toggle signature" })
-
-map({ "n" }, "<Leader>k", function()
-  vim.lsp.buf.signature_help()
-end, { silent = true, noremap = true, desc = "toggle signature" })
-
-map("n", "<leader>nr", ":IncRename ", {
-  desc = "IncRename",
 })

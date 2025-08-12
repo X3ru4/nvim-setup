@@ -1,32 +1,28 @@
 -- Highlight
 
-local get_hl = vim.api.nvim_get_hl
-
-local LabelMatch = get_hl(0, { name = "BlinkCmpLabelMatch" })
-local Label = get_hl(0, { name = "BlinkCmpLabel" })
-local Kind = get_hl(0, { name = "BlinkCmpKind" })
+local get = vim.api.nvim_get_hl
+local function qget(name, opts)
+  return get(0, { name = name, opts })
+end
 
 local Highlight = {
-  Visual = {
-    bg = "#0f4c81",
-  },
   BlinkCmpMenuSelection = {
-    bg = vim.api.nvim_get_hl(0, { name = "PmenuSel" }).bg,
+    link = "PmenuSel",
   },
   BlinkCmpLabelMatch = {
-    fg = LabelMatch.fg,
+    fg = qget("BlinkCmpLabelMatch").fg,
     bg = nil,
   },
   BlinkCmpLabel = {
-    fg = Label.fg,
+    fg = qget("BlinkCmpLabel").fg,
     bg = nil,
   },
   BlinkCmpKind = {
-    fg = Kind.fg,
+    fg = qget("BlinkCmpKind").fg,
     bg = nil,
   },
   myFloatBorder = {
-    fg = get_hl(0, { name = "FloatBorder" }).fg,
+    fg = qget("FloatBorder").fg,
     bg = nil,
   },
 }

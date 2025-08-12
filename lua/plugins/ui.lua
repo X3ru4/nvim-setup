@@ -11,29 +11,47 @@ return {
     opts = {
       options = {
         theme = "auto",
+        disabled_filetypes = {
+          statusline = { "dashboard", "alpha", "ministarter", "snacks_dashboard" },
+        },
         component_separators = {
-          left = "\\",
-          right = "/",
+          left = "",
+          right = "|",
         },
         section_separators = {
-          left = "",
-          right = "",
+          left = " ",
+          right = " ",
+        },
+        always_show_tabline = false,
+        refresh = {
+          tabline = nil,
+          winbar = nil,
         },
       },
       sections = {
         lualine_a = {
           {
             "mode",
-            separator = { left = "" },
+            separator = { left = "", right = "" },
+            padding = { left = 1, right = 0 },
+            -- fmt = function(str)
+            --   return str:sub(1, 1)
+            -- end,
           },
         },
         lualine_b = {
           {
             "filetype",
-            icon_only = true,
+            padding = { left = 1, right = 1 },
+            fmt = function()
+              return ""
+            end,
+            icon_only = false,
           },
           {
             "filename",
+            padding = { left = 0, right = 1 },
+            shorting_target = 10,
             symbols = {
               modified = require("config.icons").icons.modified,
               readonly = "",
@@ -55,23 +73,18 @@ return {
               hint = diagnostic.hint .. " ",
             },
           },
-          { "searchcount" },
-          { "selectioncount" },
-          {
-            function()
-              return " "
-            end,
-          },
         },
         lualine_z = {
           {
-            function()
-              return "󰥔 " .. os.date("%R")
-            end,
-            separator = { right = "" },
+            "location",
+            separator = { left = " ", right = "" },
           },
         },
       },
+      tabline = {},
+      winbar = {},
+      inactive_winbar = {},
+      extensions = {},
     },
   },
 

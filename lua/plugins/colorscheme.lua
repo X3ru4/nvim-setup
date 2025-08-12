@@ -4,16 +4,15 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "rose-pine-moon",
+      colorscheme = "onedark",
     },
   },
   {
-    enabled = false,
     "navarasu/onedark.nvim",
     priority = 1000,
     config = function()
       require("onedark").setup({
-        style = "deep",
+        style = "darker",
         ending_tildes = true,
 
         code_style = {
