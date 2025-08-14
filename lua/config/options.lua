@@ -5,9 +5,11 @@ vim.g.border = nil
 vim.g.blend = 0
 vim.g.snacks_animate = false
 
-vim.o.updatetime = 200
+vim.o.updatetime = 250
 
 vim.diagnostic.config({
+  virtual_text = false,
+  border = vim.g.border,
   update_in_insert = vim.g.update_in_insert,
   signs = {
     text = {

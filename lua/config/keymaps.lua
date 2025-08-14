@@ -42,8 +42,8 @@ map("n", "gb", "<cmd>terminal<cr>i", { desc = "Terminal" })
 -- Quick matching
 map("i", "<C-a>", "<Esc>%i")
 
--- Yank all to clipboard
-map("n", "<leader>ya", "<cmd>%y+<cr>", { desc = "Yank all to clipboard" })
+-- Yank all
+map("n", "<leader>ya", "<cmd>%y+<cr>", { desc = "Yank all" })
 
 -- Select all
 map("n", "<leader>v", "gg0vG$", {

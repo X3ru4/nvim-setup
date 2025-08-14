@@ -32,7 +32,7 @@ return {
             max_height = 10,
             winblend = vim.g.blend,
             border = vim.g.border,
-            winhighlight = "Normal:Normal,FloatBorder:myFloatBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
+            winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
           },
         },
         menu = {
@@ -40,7 +40,7 @@ return {
           max_height = 8,
           winblend = vim.g.blend,
           border = vim.g.border,
-          winhighlight = "Normal:Normal,FloatBorder:myFloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
+          winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
           draw = {
             columns = {
               { "kind_icon", "label", "label_description", gap = 1 },
@@ -49,22 +49,6 @@ return {
             components = {
               label = {
                 width = { fill = true, max = 30 },
-              },
-              kind_icon = {
-                text = function(ctx)
-                  local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
-                  return kind_icon
-                end,
-                highlight = function(ctx)
-                  local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-                  return hl
-                end,
-              },
-              kind = {
-                highlight = function(ctx)
-                  local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-                  return hl
-                end,
               },
             },
           },
