@@ -1,6 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
-  event = "VeryLazy",
+  event = "BufReadPre",
   dependencies = "saghen/blink.cmp",
   config = function()
     vim.lsp.config("*", {
@@ -42,7 +42,7 @@ return {
       -- Css
       cssls = {},
       -- TypeScript/JavaScript
-      tsserver = {},
+      ts_ls = {},
       -- Emmet html
       emmet_language_server = {},
       -- C/C++
