@@ -1,6 +1,10 @@
 return {
   'stevearc/oil.nvim',
-  dependencies = { { "echasnovski/mini.icons", opts = {} } },
+  dependencies = {
+    { "echasnovski/mini.icons",         opts = {} },
+    { "benomahony/oil-git.nvim" },
+    { "JezerM/oil-lsp-diagnostics.nvim" }
+  },
   lazy = false,
   opts = {
     keymaps = {

@@ -7,36 +7,12 @@ return {
       capabilities = vim.tbl_deep_extend(
         "force",
         vim.lsp.protocol.make_client_capabilities(),
-        require("blink.cmp").get_lsp_capabilities())
+        require("blink.cmp").get_lsp_capabilities()
+      )
     })
     local server = {
       -- Lua
-      lua_ls = {
-        settings = {
-          Lua = {
-            workspace = {
-              checkThirdParty = false,
-            },
-            codeLens = {
-              enable = true,
-            },
-            completion = {
-              callSnippet = "Replace",
-            },
-            doc = {
-              privateName = { "^_" },
-            },
-            hint = {
-              enable = true,
-              setType = false,
-              paramType = true,
-              paramName = "Disable",
-              semicolon = "Disable",
-              arrayIndex = "Disable",
-            },
-          },
-        },
-      },
+      lua_ls = {},
       -- Html
       html = {},
       -- Css

@@ -5,9 +5,7 @@ return {
   version = "1.*",
   opts = {
     keymap = {
-      preset = "default",
-      ["<C-y>"] = false,
-      ["<CR>"] = { "select_and_accept", "fallback" },
+      preset = "enter",
     },
     cmdline = {
       enabled = true,

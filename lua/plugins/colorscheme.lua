@@ -1,6 +1,5 @@
 return {
   "navarasu/onedark.nvim",
-  event = "VimEnter",
   lazy = false,
   priority = 1000,
   config = function()
