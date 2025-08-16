@@ -1,3 +1,4 @@
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -14,9 +15,13 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+-- Setup lazy.nvim
 require("lazy").setup({
+  {"nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate"},
   spec = {
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     { import = "plugins" },
   },
   defaults = {
@@ -30,7 +35,7 @@ require("lazy").setup({
     border = "rounded",
   },
   checker = {
-    enabled = true,
+    enabled = false,
     notify = false,
   },
   performance = {
@@ -49,10 +54,3 @@ require("lazy").setup({
   },
 })
 
-local flag = vim.fn.stdpath("data") .. "/restore.flag"
-if vim.fn.filereadable(flag) == 1 then
-  vim.notify("Load session")
-  require("persistence").load({ last = true })
-  vim.notify("Done!")
-  os.remove(flag)
-end
