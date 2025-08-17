@@ -10,6 +10,7 @@ return {
         require("blink.cmp").get_lsp_capabilities()
       )
     })
+
     local server = {
       -- Lua
       lua_ls = {},

@@ -1,16 +1,16 @@
 local M = {}
 
 M.diagnostic = {
-  errr = "",
-  warn = "",
-  info = "󰋼",
+  errr = "𝜠",
+  warn = "W",
+  info = "I",
   hint = "",
 }
 
 M.icons = {
-  modified = "",
-  close = "",
-  pinned = "",
+  modified = "󰺖",
+  close = "󱎘",
+  pinned = "𝕻",
 }
 
 return M

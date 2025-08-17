@@ -3,6 +3,10 @@ vim.g.border = nil
 vim.g.blend = 0
 vim.g.update_in_insert = false
 
+-- Set colorscheme
+vim.api.nvim_command("colorscheme onedark")
+-- Color palette used for other plugins
+vim.g.color_palette = require("onedark.palette").darker
 
 -- Neovim
 local diagnostic = require("config.icons").diagnostic
@@ -85,4 +89,3 @@ opt.virtualedit = "block"
 opt.wildmode = "longest:full,full"
 opt.winminwidth = 5
 opt.wrap = false
-
