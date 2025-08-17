@@ -1,6 +1,13 @@
 local map = vim.keymap.set
 
+-- Yank buf
 map("n", "<leader>ya", "ggVGy", { desc = "Yank all" })
+
+-- Better switch window
+map("n", "<leader>wh", "<c-w>h", { desc = "Win left" })
+map("n", "<leader>wj", "<c-w>j", { desc = "Win down" })
+map("n", "<leader>wk", "<c-w>k", { desc = "Win up" })
+map("n", "<leader>wl", "<c-w>l", { desc = "Win right" })
 
 -- Quick select
 map("n", "<leader>v", "gg0vG$", { desc = "Select all", })
@@ -8,8 +15,6 @@ map("n", "<leader>V", "ggVG$", { desc = "Select all line", })
 
 -- Go Prev buff in term
 map("t", "<C-b>", "<cmd>e #<cr>")
--- Open term
-map("n", "g<leader>t", "<cmd>terminal<cr>", { desc = "Open terminal" })
 -- Run code
 map("n", "<leader>cr", "<cmd>terminal ./run.sh<cr>")
 -- Save file
@@ -26,6 +31,8 @@ map("n", "<leader>m", "<cmd>Mason<cr>", { desc = "Mason" })
 
 -- Source
 map("n", "g<leader>g", "<cmd>source %<cr>", { desc = "Source" })
+-- Open term
+map("n", "g<leader>t", "<cmd>terminal<cr>", { desc = "Open terminal" })
 
 -- Lsp
 map("n", "grd", vim.lsp.buf.definition, { desc = "Definition" })

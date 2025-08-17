@@ -7,6 +7,11 @@ local highlight = {
     fg = vim.g.color_palette.yellow,
     bg = vim.g.color_palette.bg2,
     bold = true
+  },
+  WinBarNC = {
+    fg = vim.g.color_palette.yellow,
+    bg = vim.g.color_palette.bg2,
+    bold = true
   }
 }
 

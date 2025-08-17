@@ -13,7 +13,7 @@ return {
       silent = true,
       desc = "Yank icon"
     })
-    vim.keymap.set("i", "<C-s>", "<cmd>IconPickerInsert<cr>", {
+    vim.keymap.set("i", "<C-a>", "<cmd>IconPickerInsert<cr>", {
       noremap = true,
       silent = true
     })

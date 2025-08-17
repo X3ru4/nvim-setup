@@ -17,7 +17,17 @@ return {
         }
       end
     },
-    { "JezerM/oil-lsp-diagnostics.nvim", opts = {} }
+    {
+      "JezerM/oil-lsp-diagnostics.nvim",
+      opts = {
+      diagnostic_symbols = {
+          error = require("config.icons").diagnostic.errr,
+          warn = require("config.icons").diagnostic.warn,
+          info = require("config.icons").diagnostic.info,
+          hint = require("config.icons").diagnostic.hint,
+        }
+      }
+    }
   },
   config = function ()
     function _G.get_oil_winbar()
@@ -30,14 +40,27 @@ return {
       end
     end
 
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "oil",
+      callback = function ()
+        local dir = require("oil").get_current_dir(0)
+        vim.keymap.set("n", "<leader>ff", "<cmd>FZF " .. dir .. "<cr>", {
+          desc = "Find file"
+        })
+      end
+    })
+
     require("oil").setup({
       win_options = {
         winbar = "%!v:lua.get_oil_winbar()",
       },
       keymaps = {
+        ["<C-s>"] = nil,
+        ["<C-h>"] = nil,
+        ["g."] = nil,
+        ["-"] = nil,
         ["<bs>"] = { "actions.parent", mode = "n" },
-        ["<C-s>"] = { nil },
-        ["<C-h>"] = { nil },
+        [".."] = { "actions.toggle_hidden", mode = "n" },
         ["q"] = { "actions.close", mode = "n" },
         ["<esc>"] = { "actions.close", mode = "n" }
       },
