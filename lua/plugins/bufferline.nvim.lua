@@ -3,7 +3,6 @@ local errorfg = vim.api.nvim_get_hl(0, { name = "ErrorMsg", link = false }).fg
 
 return {
   "akinsho/bufferline.nvim",
-  dependencies = 'nvim-tree/nvim-web-devicons',
   event = "VeryLazy",
   opts = {
     options = {

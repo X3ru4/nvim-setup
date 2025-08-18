@@ -1,16 +1,13 @@
 return {
   "ibhagwan/fzf-lua",
   event = "VeryLazy",
-  dependencies = { "echasnovski/mini.icons" },
   config = function ()
     require("fzf-lua").setup()
   end,
   keys = {
     { "<leader>ff", function ()
-      require("fzf-lua").files({ cwd = vim.fn.expand("%:p:h") })
+      vim.api.nvim_command("FZF " .. vim.fn.expand("%:h:p"))
     end, desc = "Find file" },
-    { "<leader>fc", function ()
-      require("fzf-lua").files()
-    end, desc = "Find file CWD" }
+    { "<leader>fc", "<cmd>FZF<cr>", desc = "Find file CWD" }
   }
 }

@@ -1,11 +1,12 @@
 return {
   'stevearc/oil.nvim',
+  lazy = false,
   dependencies = {
-    { "echasnovski/mini.icons", opts = {} },
     {
       "benomahony/oil-git.nvim",
-      opts = function ()
-        return {
+      config = function ()
+        require("config.options")
+        require("oil-git").setup({
           highlights = {
             OilGitAdded     = { fg = vim.g.color_palette.green  },
             OilGitModified  = { fg = vim.g.color_palette.orange },
@@ -14,7 +15,7 @@ return {
             OilGitUntracked = { fg = vim.g.color_palette.blue   },
             OilGitIgnored   = { fg = vim.g.color_palette.bg3    },
           }
-        }
+        })
       end
     },
     {
@@ -40,16 +41,6 @@ return {
       end
     end
 
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = "oil",
-      callback = function ()
-        local dir = require("oil").get_current_dir(0)
-        vim.keymap.set("n", "<leader>ff", "<cmd>FZF " .. dir .. "<cr>", {
-          desc = "Find file"
-        })
-      end
-    })
-
     require("oil").setup({
       win_options = {
         winbar = "%!v:lua.get_oil_winbar()",
@@ -59,6 +50,9 @@ return {
         ["<C-h>"] = nil,
         ["g."] = nil,
         ["-"] = nil,
+        ["<leader>ff"] = { function ()
+          vim.cmd("FZF " .. require("oil").get_current_dir(0))
+        end, mode = "n" },
         ["<bs>"] = { "actions.parent", mode = "n" },
         [".."] = { "actions.toggle_hidden", mode = "n" },
         ["q"] = { "actions.close", mode = "n" },

@@ -2,7 +2,6 @@ local diagnostic = require("config.icons").diagnostic
 
 return {
   "nvim-lualine/lualine.nvim",
-  dependencies = 'nvim-tree/nvim-web-devicons',
   event = "VeryLazy",
   opts = {
     options = {
