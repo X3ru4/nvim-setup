@@ -22,8 +22,6 @@ map({ "n", "i", "x", "s" }, "<C-s>", "<cmd>silent! w<cr><esc>", { desc = "Save f
 -- Quit
 map("n", "<leader>qa", "<cmd>q!<cr>", { desc = "Quit all" })
 map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
--- Find file
-map("n", "<leader>ff", "<cmd>FZF<cr>", { desc = "Find file" })
 -- Lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 -- Mason
