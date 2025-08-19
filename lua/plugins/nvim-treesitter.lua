@@ -4,6 +4,10 @@ return {
     version = false,
     build = ":TSUpdate",
     event = "VeryLazy",
+    keys = {
+      { "<c-space>", desc = "Increment Selection" },
+      { "<bs>", desc = "Decrement Selection", mode = "x" },
+    },
     config = function ()
       require'nvim-treesitter.configs'.setup {
         ensure_installed = {
@@ -20,7 +24,7 @@ return {
         ignore_install = { "javascript" },
         highlight = {
           enable = true,
-          disable = { "c", "rust" },
+          -- disable = { "c", "rust" },
           disable = function(lang, buf)
               local max_filesize = 100 * 1024 -- 100 KB
               local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
@@ -29,6 +33,15 @@ return {
               end
           end,
           additional_vim_regex_highlighting = false,
+        },
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "<C-space>",
+            node_incremental = "<C-space>",
+            scope_incremental = false,
+            node_decremental = "<bs>",
+          },
         },
       }
     end

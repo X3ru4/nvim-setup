@@ -14,7 +14,7 @@ return {
       hover = { enabled = false },
       -- show_buffer_close_icons = false,
       indicator = { style = "none" },
-      separator_style = "thin",
+      separator_style = "slant",
     },
     highlights = {
       tab_close = {

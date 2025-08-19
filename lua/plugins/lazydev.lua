@@ -1,5 +1,6 @@
 return {
   {
+    -- enabled = false,
     "folke/lazydev.nvim",
     ft = "lua",
     opts = {

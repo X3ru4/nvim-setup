@@ -13,12 +13,6 @@ local highlight = {
     bg = vim.g.color_palette.bg2,
     bold = true
   },
-  BufferLineModified = {
-    fg = vim.g.color_palette.fg
-  },
-  BufferLineModifiedSelected = {
-    fg = vim.g.color_palette.fg
-  }
 }
 
 -- apply highlight
