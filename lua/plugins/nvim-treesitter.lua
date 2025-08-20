@@ -10,16 +10,6 @@ return {
     },
     config = function ()
       require'nvim-treesitter.configs'.setup {
-        textobjects = {
-          select = {
-            enable = true,
-            keymaps = {
-              ["ia"] = { query = "@parameter.inner", desc = "Parameter" },
-              ["aa"] = { query = "@parameter.outer", desc = "Parameter" },
-              ["id"] = { query = "@number.inner", desc = "Number" },
-            }
-          }
-        },
         ensure_installed = {
           "c",
           "lua",
@@ -55,10 +45,5 @@ return {
         },
       }
     end
-  },
-  {
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    event = "VeryLazy",
   }
 }

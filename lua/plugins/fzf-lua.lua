@@ -22,12 +22,15 @@ return {
     end, desc = "Find config files" },
     { "<leader>fb", function ()
       require("fzf-lua").buffers()
-    end, desc = "Find buffers"},
+    end, desc = "Find buffers" },
     { "<leader>fh", function ()
       require("fzf-lua").highlights()
-    end, desc = "Find highlights"},
+    end, desc = "Find highlights" },
     { "<leader>fd", function ()
       require("fzf-lua").diagnostics_document()
-    end, desc = "Find diagnostics"}
+    end, desc = "Find diagnostics" },
+    { "<leader>fo", function ()
+      require("fzf-lua").oldfiles()
+    end, desc = "Find old files" }
   }
 }

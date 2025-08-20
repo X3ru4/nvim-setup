@@ -46,7 +46,7 @@ return {
         winbar = "%!v:lua.get_oil_winbar()",
       },
       keymaps = {
-        ["<C-s>"] = nil,
+        ["<C-s>"] = {},
         ["<C-h>"] = nil,
         ["g."] = nil,
         ["-"] = nil,
