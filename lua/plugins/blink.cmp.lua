@@ -1,7 +1,10 @@
 return {
   "saghen/blink.cmp",
   event = "InsertEnter",
-  dependencies = { "rafamadriz/friendly-snippets", "onsails/lspkind.nvim" },
+  dependencies = {
+    { "rafamadriz/friendly-snippets", },
+    { "onsails/lspkind.nvim" }
+  },
   version = "1.*",
   opts = {
     keymap = {

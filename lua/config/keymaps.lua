@@ -33,11 +33,23 @@ map("n", "g<leader>g", "<cmd>source %<cr>", { desc = "Source" })
 map("n", "g<leader>t", "<cmd>terminal<cr>", { desc = "Open terminal" })
 
 -- Lsp
-map("n", "grd", vim.lsp.buf.definition, { desc = "Definition" })
-map("n", "gra", vim.lsp.buf.code_action, { desc = "Code action" })
-map("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation" })
-map("n", "grr", vim.lsp.buf.references, { desc = "References" })
-map("n", "grt", vim.lsp.buf.type_definition, { desc = "Type definition" })
+-- Code action
+map("n", "graa", function ()
+  vim.lsp.buf.code_action({ range = { start = { 0, 0 }, ['end'] = { -1, -1 } } })
+end, { desc = "Code action in buf" })
+map("n", "gral", vim.lsp.buf.code_action,     { desc = "Code action inline" })
+
+map("n", "grd",  vim.lsp.buf.definition,      { desc = "Definition" })
+map("n", "gri",  vim.lsp.buf.implementation,  { desc = "Implementation" })
+map("n", "grr",  vim.lsp.buf.references,      { desc = "References" })
+map("n", "grt",  vim.lsp.buf.type_definition, { desc = "Type definition" })
+
+-- Signature help
+map("i", "<c-k>", function ()
+  vim.lsp.buf.signature_help({
+    border = "rounded",
+  })
+end)
 
 -- Reopen file
 map("n", "g<leader>f", function()

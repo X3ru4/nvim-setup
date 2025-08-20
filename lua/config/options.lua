@@ -3,9 +3,6 @@ vim.g.border = nil
 vim.g.blend = 0
 vim.g.update_in_insert = false
 
-
-
-
 -- Set colorscheme
 vim.api.nvim_command("colorscheme onedark")
 -- Color palette used for other plugins
