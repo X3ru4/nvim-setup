@@ -13,37 +13,37 @@ return {
   keys = function ()
     local fzf = require("fzf-lua")
     return {
- 
+
       { "<leader>ff", function ()
-        require("fzf-lua").files()
+        fzf.files()
       end, desc = "Find file CWD" },
 
       { "<leader>fF", function ()
-        require("fzf-lua").files({ cwd = vim.fn.expand("%:h:p" )})
+        fzf.files({ cwd = vim.fn.expand("%:h:p" )})
       end, desc = "Find file" },
 
       { "<leader>fc", function ()
-        require("fzf-lua").files({ cwd = "~/.config/nvim" })
+        fzf.files({ cwd = "~/.config/nvim" })
       end, desc = "Find config files" },
 
       { "<leader>fb", function ()
-        require("fzf-lua").buffers()
+        fzf.buffers({ filename_only = true, })
       end, desc = "Find buffers" },
 
       { "<leader>fh", function ()
-        require("fzf-lua").highlights()
+        fzf.highlights()
       end, desc = "Find highlights" },
 
       { "<leader>fd", function ()
-        require("fzf-lua").diagnostics_document()
+        fzf.diagnostics_document()
       end, desc = "Find diagnostics" },
 
       { "<leader>fo", function ()
-        require("fzf-lua").oldfiles()
+        fzf.oldfiles()
       end, desc = "Find old files" },
 
       { "<leader>fC", function ()
-        require("fzf-lua").colorschemes()
+        fzf.colorschemes()
       end, desc = "Find colorschemes" }
     }
   end

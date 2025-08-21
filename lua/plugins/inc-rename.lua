@@ -1,7 +1,7 @@
 return {
-  "smjonas/inc-rename.nvim",
-  opts = {},
-  keys = {
-    { "grn", ":IncRename ", desc = "Rename" },
-  },
+	"smjonas/inc-rename.nvim",
+	opts = {},
+	keys = {
+		{ "grn", ":IncRename ", desc = "Rename" },
+	},
 }

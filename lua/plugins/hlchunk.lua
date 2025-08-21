@@ -20,8 +20,8 @@ return {
         },
         error_sign = true,
         -- animation related
-        duration = 300,
-        delay = 200,
+        duration = 0,
+        delay = 0,
       },
       indent = {
         enable = true,

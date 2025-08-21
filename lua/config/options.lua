@@ -3,32 +3,27 @@ vim.g.border = nil
 vim.g.blend = 0
 vim.g.update_in_insert = false
 
--- Set colorscheme
-vim.api.nvim_command("colorscheme onedark")
--- Color palette used for other plugins
-vim.g.color_palette = require("onedark.palette").darker
-
 -- Neovim
 local diagnostic = require("config.icons").diagnostic
 
 vim.diagnostic.config({
-  virtual_text = false,
-  float = { border = nil, header = "", },
-  update_in_insert = vim.g.update_in_insert,
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = diagnostic.errr,
-      [vim.diagnostic.severity.WARN] = diagnostic.warn,
-      [vim.diagnostic.severity.INFO] = diagnostic.info,
-      [vim.diagnostic.severity.HINT] = diagnostic.hint,
-    },
-    linehl = {
-      [vim.diagnostic.severity.ERROR] = "ErrorMsg",
-    },
-    numhl = {
-      [vim.diagnostic.severity.WARN] = "WarningMsg",
-    },
-  },
+	virtual_text = false,
+	float = { border = nil, header = "" },
+	update_in_insert = vim.g.update_in_insert,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = diagnostic.errr,
+			[vim.diagnostic.severity.WARN] = diagnostic.warn,
+			[vim.diagnostic.severity.INFO] = diagnostic.info,
+			[vim.diagnostic.severity.HINT] = diagnostic.hint,
+		},
+		linehl = {
+			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
+		},
+		numhl = {
+			[vim.diagnostic.severity.WARN] = "WarningMsg",
+		},
+	},
 })
 
 vim.o.number = true
@@ -43,12 +38,12 @@ opt.confirm = true
 opt.cursorline = true
 opt.expandtab = true
 opt.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
-  eob = " ",
+	foldopen = "",
+	foldclose = "",
+	fold = " ",
+	foldsep = " ",
+	diff = "╱",
+	eob = " ",
 }
 opt.foldlevel = 99
 opt.formatoptions = "jcroqlnt"

@@ -44,6 +44,12 @@ map("n", "gri",  vim.lsp.buf.implementation,  { desc = "Implementation" })
 map("n", "grr",  vim.lsp.buf.references,      { desc = "References" })
 map("n", "grt",  vim.lsp.buf.type_definition, { desc = "Type definition" })
 
+map("n", "K", function ()
+  vim.lsp.buf.hover({
+    border = "rounded"
+  })
+end, { desc = "Lsp hover" })
+
 -- Signature help
 map("i", "<c-k>", function ()
   vim.lsp.buf.signature_help({

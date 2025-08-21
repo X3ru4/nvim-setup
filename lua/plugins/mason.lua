@@ -4,7 +4,7 @@ return {
     cmd = "Mason",
     dependencies = {
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      config = function ()
+      config = function()
         require("mason-tool-installer").setup({
           ensure_installed = {
             "luacheck",
@@ -12,12 +12,12 @@ return {
             "markdownlint",
             "markdownlint-cli2",
             "marksman",
-            "html-lsp",
-            "markuplint",
-            "css-lsp",
-            "stylelint",
-            "prettier",
-            "emmet-language-server",
+            -- "html-lsp",
+            -- "markuplint",
+            -- "css-lsp",
+            -- "stylelint",
+            -- "prettier",
+            -- "emmet-language-server",
           },
         })
         require("mason-tool-installer").run_on_start()
