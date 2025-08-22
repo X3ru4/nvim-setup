@@ -7,25 +7,11 @@ return {
 		{
 			"folke/lazydev.nvim",
 			ft = "lua",
-			config = function()
-				require("lazydev").setup({
-					library = {
-						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-					},
-				})
-				require("blink-cmp").setup({
-					sources = {
-						default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-						providers = {
-							lazydev = {
-								name = "LazyDev",
-								module = "lazydev.integrations.blink",
-								score_offset = 100,
-							},
-						},
-					},
-				})
-			end,
+			opts = {
+				library = {
+					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				},
+			},
 		},
 	},
 	version = "1.*",
@@ -53,7 +39,7 @@ return {
 					max_height = 10,
 					winblend = vim.g.blend,
 					border = vim.g.border,
-					winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
+					winhighlight = "CursorLine:BlinkCmpDocCursorLine,Search:None",
 				},
 			},
 			menu = {
@@ -61,7 +47,7 @@ return {
 				max_height = 8,
 				winblend = vim.g.blend,
 				border = vim.g.border,
-				winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
+				winhighlight = "CursorLine:BlinkCmpMenuSelection,Search:None",
 				draw = {
 					columns = {
 						{ "kind_icon", "label", "label_description", gap = 1 },
@@ -99,6 +85,16 @@ return {
 						},
 					},
 					treesitter = { "lsp" },
+				},
+			},
+		},
+		sources = {
+			default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+			providers = {
+				lazydev = {
+					name = "LazyDev",
+					module = "lazydev.integrations.blink",
+					score_offset = 100,
 				},
 			},
 		},
