@@ -1,14 +1,13 @@
 return {
 	"stevearc/oil.nvim",
-	lazy = false,
+	event = "VeryLazy",
 	dependencies = {
 		{
 			"benomahony/oil-git.nvim",
 			config = function()
-				require("config.options")
-				local function get(name)
-					return vim.api.nvim_get_hl(0, { name = name })
-				end
+				-- local function get(name)
+				-- 	return vim.api.nvim_get_hl(0, { name = name })
+				-- end
 				require("oil-git").setup({})
 			end,
 		},

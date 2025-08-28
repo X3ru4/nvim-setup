@@ -1,7 +1,6 @@
 return {
 	"shellRaining/hlchunk.nvim",
-	-- enabled = false,
-	event = "BufReadPre",
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		require("hlchunk").setup({
 			chunk = {
@@ -10,11 +9,11 @@ return {
 				style = {
 					{
 						fg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextHint" }).fg,
-						bg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextHint" }).bg,
+						-- bg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextHint" }).bg,
 					},
 					{
 						fg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextError" }).fg,
-						bg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextError" }).bg,
+						-- bg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextError" }).bg,
 					},
 				},
 				use_treesitter = true,

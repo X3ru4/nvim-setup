@@ -1,11 +1,34 @@
 return {
-	{ "echasnovski/mini.surround", lazy = true, event = "BufReadPost", version = "*", opts = {} },
-	{ "echasnovski/mini.align", lazy = true, event = "BufReadPost", version = "*", opts = {} },
-	{ "echasnovski/mini.move", lazy = true, event = "BufReadPost", version = "*", opts = {} },
+	{
+		"echasnovski/mini.surround",
+		event = "VeryLazy",
+		version = false,
+		opts = {},
+	},
+	{
+		"echasnovski/mini.align",
+		event = "VeryLazy",
+		version = false,
+		opts = {},
+	},
+	{
+		"echasnovski/mini.move",
+		event = "VeryLazy",
+		version = false,
+		opts = {},
+	},
+	{
+		"echasnovski/mini.cursorword",
+		event = "VeryLazy",
+		version = false,
+		opts = {
+			delay = 50,
+		},
+	},
 	{
 		"echasnovski/mini.pairs",
 		event = "InsertEnter",
-		version = "*",
+		version = false,
 		opts = {
 			modes = { insert = true, command = true, terminal = false },
 		},
@@ -13,7 +36,7 @@ return {
 	{
 		"echasnovski/mini.ai",
 		event = "BufReadPost",
-		version = "*",
+		version = false,
 		opts = function()
 			local ai = require("mini.ai")
 			return {
