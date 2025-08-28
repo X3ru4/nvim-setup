@@ -1,5 +1,6 @@
 return {
 	"shellRaining/hlchunk.nvim",
+	-- enabled = false,
 	event = "BufReadPre",
 	config = function()
 		require("hlchunk").setup({
@@ -10,12 +11,10 @@ return {
 					{
 						fg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextHint" }).fg,
 						bg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextHint" }).bg,
-						bold = true,
 					},
 					{
 						fg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextError" }).fg,
 						bg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextError" }).bg,
-						bold = true,
 					},
 				},
 				use_treesitter = true,
@@ -33,6 +32,7 @@ return {
 			},
 			indent = {
 				enable = true,
+				use_treesitter = true,
 				chars = {
 					"│",
 					"¦",

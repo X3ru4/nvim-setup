@@ -10,8 +10,8 @@ map("n", "<leader>wk", "<c-w>k", { desc = "Win up" })
 map("n", "<leader>wl", "<c-w>l", { desc = "Win right" })
 
 -- Quick select
-map("n", "<leader>v", "gg0vG$", { desc = "Select all", })
-map("n", "<leader>V", "ggVG$", { desc = "Select all line", })
+map("n", "<leader>v", "gg0vG$", { desc = "Select all" })
+map("n", "<leader>V", "ggVG$", { desc = "Select all line" })
 
 -- Go Prev buff in term
 map("t", "<C-b>", "<cmd>e #<cr>")
@@ -34,34 +34,31 @@ map("n", "g<leader>t", "<cmd>terminal<cr>", { desc = "Open terminal" })
 
 -- Lsp
 -- Code action
-map("n", "graa", function ()
-  vim.lsp.buf.code_action({ range = { start = { 0, 0 }, ['end'] = { -1, -1 } } })
-end, { desc = "Code action in buf" })
-map("n", "gral", vim.lsp.buf.code_action,     { desc = "Code action inline" })
+map("n", "gra", vim.lsp.buf.code_action, { desc = "Code action" })
 
-map("n", "grd",  vim.lsp.buf.definition,      { desc = "Definition" })
-map("n", "gri",  vim.lsp.buf.implementation,  { desc = "Implementation" })
-map("n", "grr",  vim.lsp.buf.references,      { desc = "References" })
-map("n", "grt",  vim.lsp.buf.type_definition, { desc = "Type definition" })
+map("n", "grd", vim.lsp.buf.definition, { desc = "Definition" })
+map("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation" })
+map("n", "grr", vim.lsp.buf.references, { desc = "References" })
+map("n", "grt", vim.lsp.buf.type_definition, { desc = "Type definition" })
 
-map("n", "K", function ()
-  vim.lsp.buf.hover({
-    border = "rounded"
-  })
+map("n", "K", function()
+	vim.lsp.buf.hover({
+		border = "rounded",
+	})
 end, { desc = "Lsp hover" })
 
 -- Signature help
-map("i", "<c-k>", function ()
-  vim.lsp.buf.signature_help({
-    border = "rounded",
-  })
+map("i", "<c-k>", function()
+	vim.lsp.buf.signature_help({
+		border = "rounded",
+	})
 end)
 
 -- Reopen file
 map("n", "g<leader>f", function()
-  local file = vim.fn.expand("%:p")
-  vim.cmd("edit " .. file)
-  vim.cmd("BufferLineCloseLeft")
+	local file = vim.fn.expand("%:p")
+	vim.cmd("edit " .. file)
+	vim.cmd("BufferLineCloseLeft")
 end, { desc = "Reopen" })
 
 -- LazyVim
@@ -100,22 +97,22 @@ map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Commen
 
 -- diagnostic
 local diag_jump = function(count, severity)
-  return function()
-    vim.diagnostic.jump({
-      count = count,
-      severity = vim.diagnostic.severity[severity]
-    })
-  end
+	return function()
+		vim.diagnostic.jump({
+			count = count,
+			severity = vim.diagnostic.severity[severity],
+		})
+	end
 end
-map("n", "]d", diag_jump( 1),            { desc = "Next Diagnostic" })
-map("n", "[d", diag_jump(-1),            { desc = "Prev Diagnostic" })
-map("n", "]e", diag_jump( 1, "ERROR"),   { desc = "Next Error" })
-map("n", "[e", diag_jump(-1, "ERROR"),   { desc = "Prev Error" })
-map("n", "]w", diag_jump( 1, "WARN"),    { desc = "Next Warning" })
-map("n", "[w", diag_jump(-1, "WARN"),    { desc = "Prev Warning" })
+map("n", "]d", diag_jump(1), { desc = "Next Diagnostic" })
+map("n", "[d", diag_jump(-1), { desc = "Prev Diagnostic" })
+map("n", "]e", diag_jump(1, "ERROR"), { desc = "Next Error" })
+map("n", "[e", diag_jump(-1, "ERROR"), { desc = "Prev Error" })
+map("n", "]w", diag_jump(1, "WARN"), { desc = "Next Warning" })
+map("n", "[w", diag_jump(-1, "WARN"), { desc = "Prev Warning" })
 
 -- Clear search
 map({ "i", "n", "s" }, "<esc>", function()
-  vim.cmd("noh")
-  return "<esc>"
+	vim.cmd("noh")
+	return "<esc>"
 end, { expr = true, desc = "Escape and Clear hlsearch" })

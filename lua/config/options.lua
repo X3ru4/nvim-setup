@@ -29,7 +29,6 @@ vim.diagnostic.config({
 vim.o.number = true
 
 local opt = vim.opt
-
 opt.autowrite = true
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 opt.completeopt = "menu,menuone,noselect"
@@ -84,3 +83,13 @@ opt.virtualedit = "block"
 opt.wildmode = "longest:full,full"
 opt.winminwidth = 5
 opt.wrap = false
+opt.list = true
+opt.listchars = {
+	eol = "↴",
+	tab = "→ ",
+	space = "·",
+	trail = "•",
+	extends = "⟩",
+	precedes = "⟨",
+	nbsp = "⍽",
+}

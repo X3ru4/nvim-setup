@@ -19,4 +19,7 @@ return {
 			silent = true,
 		})
 	end,
+	keys = {
+		{ "<leader>fi", "<cmd>" },
+	},
 }
