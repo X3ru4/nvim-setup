@@ -85,11 +85,11 @@ opt.winminwidth = 5
 opt.wrap = false
 opt.list = true
 opt.listchars = {
-	eol = "↴",
+	eol = "",
 	tab = "  ",
 	space = "·",
 	trail = "•",
 	extends = "⟩",
 	precedes = "⟨",
-	nbsp = "⍽",
+	nbsp = "ɲ",
 }

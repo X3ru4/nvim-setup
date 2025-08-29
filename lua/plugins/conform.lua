@@ -5,13 +5,13 @@ return {
 	opts = {
 		formatters_by_ft = {
 			lua = { "stylua" },
-			cpp = { "clang-format" },
-			hpp = { "clang-format" },
-			c = { "clang-format" },
-			h = { "clang-format" },
+			cpp = { "" },
+			hpp = { "" },
+			c = { "" },
+			h = { "" },
 		},
 		default_format_opts = {
-			lsp_format = "fallback",
+			lsp_format = "",
 		},
 		format_on_save = { timeout_ms = 500 },
 		formatters = {
