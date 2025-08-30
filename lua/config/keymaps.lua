@@ -47,6 +47,10 @@ map("n", "K", function()
 	})
 end, { desc = "Lsp hover" })
 
+map({ "i", "n" }, "<c-l>", function()
+	vim.diagnostic.open_float(nil, { focus = false, close_events = { "BufWinLeave", "CursorMoved", "InsertEnter" } })
+end, { desc = "Open diagnostic float" })
+
 -- Signature help
 map("i", "<c-k>", function()
 	vim.lsp.buf.signature_help({
@@ -58,7 +62,6 @@ end)
 map("n", "g<leader>f", function()
 	local file = vim.fn.expand("%:p")
 	vim.cmd("edit " .. file)
-	vim.cmd("BufferLineCloseLeft")
 end, { desc = "Reopen" })
 
 -- LazyVim

@@ -61,16 +61,16 @@ return {
 						min_width = 5,
 						max_width = 30,
 						max_height = 10,
-						winblend = vim.g.blend,
-						border = vim.g.border,
+						winblend = 0,
+						border = nil,
 						winhighlight = "CursorLine:BlinkCmpDocCursorLine,Search:None",
 					},
 				},
 				menu = {
 					min_width = 5,
 					max_height = 8,
-					winblend = vim.g.blend,
-					border = vim.g.border,
+					winblend = 0,
+					border = nil,
 					winhighlight = "CursorLine:BlinkCmpMenuSelection,Search:None",
 					draw = {
 						columns = {

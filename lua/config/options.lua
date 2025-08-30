@@ -1,27 +1,20 @@
--- My options
 vim.g.border = nil
 vim.g.blend = 0
-vim.g.update_in_insert = false
 
 -- Neovim
 local diagnostic = require("config.icons").diagnostic
 
 vim.diagnostic.config({
 	virtual_text = false,
-	float = { border = nil, header = "" },
-	update_in_insert = vim.g.update_in_insert,
+	virtual_lines = { current_line = true },
+	float = { border = nil, header = "", source = "if_many" },
+	update_in_insert = true,
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = diagnostic.errr,
 			[vim.diagnostic.severity.WARN] = diagnostic.warn,
 			[vim.diagnostic.severity.INFO] = diagnostic.info,
 			[vim.diagnostic.severity.HINT] = diagnostic.hint,
-		},
-		linehl = {
-			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
-		},
-		numhl = {
-			[vim.diagnostic.severity.WARN] = "WarningMsg",
 		},
 	},
 })
@@ -39,10 +32,10 @@ opt.expandtab = true
 opt.fillchars = {
 	foldopen = "",
 	foldclose = "",
-	fold = " ",
+	fold = "",
 	foldsep = " ",
 	diff = "╱",
-	eob = " ",
+	eob = "~",
 }
 opt.foldlevel = 99
 opt.formatoptions = "jcroqlnt"
