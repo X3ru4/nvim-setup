@@ -2,28 +2,8 @@ return {
 	{
 		"mason-org/mason.nvim",
 		cmd = "Mason",
-		dependencies = {
-			{
-				"WhoIsSethDaniel/mason-tool-installer.nvim",
-				config = function()
-					require("mason-tool-installer").setup({
-						ensure_installed = {
-							"luacheck",
-							"markdown-toc",
-							"markdownlint",
-							"markdownlint-cli2",
-							"marksman",
-							-- "html-lsp",
-							-- "css-lsp",
-							-- "stylelint",
-							-- "prettier",
-							-- "emmet-language-server",
-						},
-					})
-					require("mason-tool-installer").run_on_start()
-				end,
-			},
-		},
+		keys = { { "<leader>m", "<cmd>Mason<cr>", desc = "Mason" } },
+		build = ":MasonUpdate",
 		opts = {
 			ui = { border = "rounded" },
 		},

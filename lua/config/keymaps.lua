@@ -24,13 +24,21 @@ map("n", "<leader>qa", "<cmd>q!<cr>", { desc = "Quit all" })
 map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
 -- Lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
--- Mason
-map("n", "<leader>m", "<cmd>Mason<cr>", { desc = "Mason" })
 
 -- Source
 map("n", "g<leader>g", "<cmd>source %<cr>", { desc = "Source" })
 -- Open term
 map("n", "g<leader>t", "<cmd>terminal<cr>", { desc = "Open terminal" })
+-- Search & Replace
+map("n", "g<leader>r", function()
+	vim.ui.input({ prompt = "Search" }, function(input)
+		if input ~= "" then
+			vim.ui.input({ prompt = "Replace " .. input .. " with" }, function(input_)
+				vim.cmd("%s/" .. input .. "/" .. input_ .. "/g")
+			end)
+		end
+	end)
+end, { desc = "Search & Replace" })
 
 -- Lsp
 -- Code action

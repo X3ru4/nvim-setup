@@ -1,8 +1,7 @@
 return {
 	"saghen/blink.cmp",
-	event = "InsertEnter",
+	event = { "InsertEnter", "CmdLineEnter" },
 	dependencies = {
-		{ "onsails/lspkind.nvim" },
 		{
 			"L3MON4D3/LuaSnip",
 			version = "v2.*",

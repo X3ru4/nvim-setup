@@ -6,7 +6,7 @@ return {
 	opts = function()
 		local diag_ = {
 			"diagnostics",
-			update_in_insert = vim.g.update_in_insert,
+			update_in_insert = false,
 			symbols = {
 				error = diagnostic.errr .. " ",
 				warn = diagnostic.warn .. " ",

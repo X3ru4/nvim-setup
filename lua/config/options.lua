@@ -1,14 +1,10 @@
-vim.g.border = nil
-vim.g.blend = 0
-
--- Neovim
 local diagnostic = require("config.icons").diagnostic
 
 vim.diagnostic.config({
 	virtual_text = false,
 	virtual_lines = { current_line = true },
 	float = { border = nil, header = "", source = "if_many" },
-	update_in_insert = true,
+	update_in_insert = false,
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = diagnostic.errr,

@@ -4,14 +4,12 @@ end
 
 local highlight = {
 	WinBar = {
-		fg = get("WarningMsg").fg,
+		fg = get("Pmenu").fg,
 		bg = get("Pmenu").bg,
-		bold = true,
 	},
 	WinBarNC = {
-		fg = get("WarningMsg").fg,
+		fg = get("Pmenu").fg,
 		bg = get("Pmenu").bg,
-		bold = true,
 	},
 	Visual = {
 		bg = "#112e80",

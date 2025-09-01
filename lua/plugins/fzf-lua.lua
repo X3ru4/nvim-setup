@@ -1,14 +1,12 @@
 return {
 	"ibhagwan/fzf-lua",
-	config = function()
-		require("fzf-lua").setup({
-			winopts = {
-				preview = {
-					hidden = "hidden",
-				},
+	opts = {
+		winopts = {
+			preview = {
+				hidden = "hidden",
 			},
-		})
-	end,
+		},
+	},
 	keys = function()
 		local fzf = require("fzf-lua")
 		return {
@@ -75,6 +73,14 @@ return {
 					fzf.colorschemes()
 				end,
 				desc = "Find colorschemes",
+			},
+
+			{
+				"<leader>ft",
+				function()
+					fzf.filetypes()
+				end,
+				desc = "Find filetypes",
 			},
 		}
 	end,
