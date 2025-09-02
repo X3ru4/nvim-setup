@@ -33,11 +33,6 @@ return {
 			modes = { insert = true, command = true, terminal = false },
 		},
 	},
-	-- {
-	-- 	"nvim-mini/mini.statusline",
-	-- 	version = false,
-	-- 	opts = {},
-	-- },
 	{
 		"echasnovski/mini.ai",
 		event = "BufReadPost",
