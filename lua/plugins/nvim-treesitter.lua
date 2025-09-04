@@ -4,10 +4,6 @@ return {
 		version = false,
 		build = ":TSUpdate",
 		event = "VeryLazy",
-		keys = {
-			{ "<c-space>", desc = "Increment Selection" },
-			{ "<bs>", desc = "Decrement Selection", mode = "x" },
-		},
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {

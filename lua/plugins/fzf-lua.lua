@@ -1,10 +1,13 @@
 return {
 	"ibhagwan/fzf-lua",
+	event = "VeryLazy",
 	opts = {
 		winopts = {
 			preview = {
 				hidden = "hidden",
 			},
+			row = 0.4,
+			backdrop = 100,
 		},
 	},
 	keys = function()

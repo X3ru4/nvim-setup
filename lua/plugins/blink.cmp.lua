@@ -1,6 +1,6 @@
 return {
 	"saghen/blink.cmp",
-	event = { "InsertEnter", "CmdLineEnter" },
+	event = { "InsertEnter", "CmdlineEnter" },
 	dependencies = {
 		{
 			"L3MON4D3/LuaSnip",
@@ -54,6 +54,11 @@ return {
 			},
 			signature = { enabled = false },
 			completion = {
+				accept = {
+					auto_brackets = {
+						enabled = true,
+					},
+				},
 				documentation = {
 					auto_show = true,
 					window = {

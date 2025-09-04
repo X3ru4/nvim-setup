@@ -1,9 +1,9 @@
-local diagnostic = require("config.icons").diagnostic
-
 return {
+	enabled = false,
 	"nvim-lualine/lualine.nvim",
 	event = "VeryLazy",
 	opts = function()
+		local diagnostic = require("config.icons").diagnostic
 		local diag_ = {
 			"diagnostics",
 			update_in_insert = false,

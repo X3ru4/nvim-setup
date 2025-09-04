@@ -1,5 +1,9 @@
 return {
 	"stevearc/dressing.nvim",
 	event = "VeryLazy",
-	opts = {},
+	opts = {
+		select = {
+			backend = "fzf_lua",
+		},
+	},
 }

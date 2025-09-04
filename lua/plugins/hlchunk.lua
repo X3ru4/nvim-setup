@@ -16,7 +16,7 @@ return {
 						bg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextError" }).bg,
 					},
 				},
-				use_treesitter = true,
+				use_treesitter = false,
 				chars = {
 					horizontal_line = "─",
 					vertical_line = "│",
@@ -31,7 +31,7 @@ return {
 			},
 			indent = {
 				enable = true,
-				use_treesitter = true,
+				use_treesitter = false,
 				chars = {
 					"│",
 					"¦",

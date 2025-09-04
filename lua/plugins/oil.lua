@@ -1,6 +1,5 @@
 return {
 	"stevearc/oil.nvim",
-	event = "VeryLazy",
 	dependencies = {
 		{
 			"benomahony/oil-git.nvim",

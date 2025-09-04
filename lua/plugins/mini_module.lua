@@ -1,22 +1,26 @@
 return {
+
 	{
 		"echasnovski/mini.surround",
 		event = "VeryLazy",
 		version = false,
 		opts = {},
 	},
+
 	{
 		"echasnovski/mini.align",
 		event = "VeryLazy",
 		version = false,
 		opts = {},
 	},
+
 	{
 		"echasnovski/mini.move",
 		event = "VeryLazy",
 		version = false,
 		opts = {},
 	},
+
 	{
 		"echasnovski/mini.cursorword",
 		event = "VeryLazy",
@@ -25,14 +29,57 @@ return {
 			delay = 50,
 		},
 	},
+
 	{
-		"echasnovski/mini.pairs",
-		event = "InsertEnter",
+		"nvim-mini/mini.statusline",
+		event = "VeryLazy",
 		version = false,
-		opts = {
-			modes = { insert = true, command = true, terminal = false },
-		},
+		config = function()
+			require("mini.statusline").setup({
+				content = {
+					active = function()
+						local sl = require("mini.statusline")
+						local mode, mode_hl = sl.section_mode({ trunc_width = 120 })
+
+						return sl.combine_groups({
+							{
+								hl = mode_hl,
+								strings = { mode },
+							},
+							"%<",
+							{
+								hl = "MiniStatuslineDevinfo",
+								strings = {
+									sl.section_fileinfo({ trunc_width = 100 }),
+									" 𝙓𝝐𝖗𝖚𝜶",
+									"%m%r",
+								},
+							},
+							"%=",
+							{
+								hl = "MiniStatuslineDevinfo",
+								strings = {
+									sl.section_diagnostics({
+										signs = {
+											ERROR = require("../config/icons").diagnostic.errr .. " ",
+											WARN = require("../config/icons").diagnostic.warn .. " ",
+											INFO = require("../config/icons").diagnostic.info .. " ",
+											HINT = require("../config/icons").diagnostic.hint .. " ",
+										},
+									}),
+								},
+							},
+							{
+								hl = mode_hl,
+								strings = { sl.section_location({ trunc_width = 100 }) },
+							},
+						})
+					end,
+				},
+			})
+		end,
 	},
+
 	{
 		"echasnovski/mini.ai",
 		event = "BufReadPost",

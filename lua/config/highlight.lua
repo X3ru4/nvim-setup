@@ -11,9 +11,9 @@ local highlight = {
 		fg = get("Pmenu").fg,
 		bg = get("Pmenu").bg,
 	},
-	Visual = {
-		bg = "#112e80",
-	},
+	-- Visual = {
+	-- 	bg = "#2d3f76",
+	-- },
 }
 
 -- apply highlight
