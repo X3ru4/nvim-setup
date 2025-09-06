@@ -16,8 +16,7 @@ vim.diagnostic.config({
 
 vim.o.number = true
 vim.o.relativenumber = true
-vim.o.foldcolumn = "1"
-vim.o.statuscolumn = "%C%s%{v:relnum ? v:relnum : v:lnum}"
+vim.o.foldcolumn = "0"
 vim.o.foldmethod = "expr"
 
 local opt = vim.opt
