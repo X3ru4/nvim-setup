@@ -9,11 +9,13 @@ return {
 				style = {
 					{
 						fg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextHint" }).fg,
-						bg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextHint" }).bg,
+						-- bg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextHint" }).bg,
+						bold = true,
 					},
 					{
 						fg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextError" }).fg,
-						bg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextError" }).bg,
+						-- bg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextError" }).bg,
+						bold = true,
 					},
 				},
 				use_treesitter = false,

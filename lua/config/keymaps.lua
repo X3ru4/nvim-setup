@@ -49,22 +49,35 @@ map("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation" })
 map("n", "grr", vim.lsp.buf.references, { desc = "References" })
 map("n", "grt", vim.lsp.buf.type_definition, { desc = "Type definition" })
 
+local winopts = {
+	border = "rounded",
+	focus = false,
+	close_events = { "BufWinLeave", "CursorMoved" },
+}
+
 map("n", "K", function()
 	vim.lsp.buf.hover({
 		border = "rounded",
+		focus = false,
+		close_events = { "BufWinLeave", "CursorMoved" },
 	})
 end, { desc = "Lsp hover" })
 
-map({ "i", "n" }, "<c-l>", function()
-	vim.diagnostic.open_float(nil, { focus = false, close_events = { "BufWinLeave", "CursorMoved", "InsertEnter" } })
-end, { desc = "Open diagnostic float" })
-
--- Signature help
 map("i", "<c-k>", function()
 	vim.lsp.buf.signature_help({
 		border = "rounded",
+		focus = false,
+		close_events = { "BufWinLeave", "CursorMoved" },
 	})
 end)
+
+map({ "i", "n" }, "<c-l>", function()
+	vim.diagnostic.open_float(nil, {
+		border = "rounded",
+		focus = false,
+		close_events = { "BufWinLeave", "CursorMoved", "CursorMovedI", "ModeChanged" },
+	})
+end, { desc = "Open diagnostic float" })
 
 -- Reopen file
 map("n", "g<leader>f", function()

@@ -2,9 +2,8 @@ local diagnostic = require("config.icons").diagnostic
 
 vim.diagnostic.config({
 	virtual_text = false,
-	virtual_lines = { current_line = true },
 	float = { border = nil, header = "", source = "if_many" },
-	update_in_insert = false,
+	update_in_insert = true,
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = diagnostic.errr,
@@ -16,6 +15,10 @@ vim.diagnostic.config({
 })
 
 vim.o.number = true
+vim.o.relativenumber = true
+vim.o.foldcolumn = "1"
+vim.o.statuscolumn = "%C%s%{v:relnum ? v:relnum : v:lnum}"
+vim.o.foldmethod = "expr"
 
 local opt = vim.opt
 opt.autowrite = true
@@ -26,9 +29,9 @@ opt.confirm = true
 opt.cursorline = true
 opt.expandtab = true
 opt.fillchars = {
-	foldopen = "",
-	foldclose = "",
-	fold = "",
+	foldopen = "",
+	foldclose = "",
+	fold = "^",
 	foldsep = " ",
 	diff = "╱",
 	eob = "~",
@@ -47,7 +50,6 @@ opt.mouse = "a"
 opt.number = true
 opt.pumblend = 10
 opt.pumheight = 10
-opt.relativenumber = true
 opt.ruler = false
 opt.scrolloff = 4
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
@@ -72,7 +74,7 @@ opt.virtualedit = "block"
 opt.wildmode = "longest:full,full"
 opt.winminwidth = 5
 opt.wrap = false
-opt.list = false
+opt.list = true
 opt.listchars = {
 	eol = "",
 	tab = "  ",
