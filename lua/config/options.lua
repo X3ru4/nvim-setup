@@ -1,9 +1,12 @@
 local diagnostic = require("config.icons").diagnostic
 
 vim.diagnostic.config({
-	virtual_text = false,
+	virtual_text = {
+		prefix = "",
+	},
+	underline = false,
 	float = { border = nil, header = "", source = "if_many" },
-	update_in_insert = true,
+	update_in_insert = false,
 	signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = diagnostic.errr,
@@ -14,15 +17,21 @@ vim.diagnostic.config({
 	},
 })
 
-vim.o.number = true
-vim.o.relativenumber = true
-vim.o.foldcolumn = "0"
-vim.o.foldmethod = "expr"
+vim.o.foldenable = true
+
+function _G.newfoldtext()
+	local line = vim.fn.getline(vim.v.foldstart)
+	local count = vim.v.foldend - vim.v.foldstart + 1
+	return "  " .. line .. " ↙" .. count
+end
 
 local opt = vim.opt
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldtext = "v:lua.newfoldtext()"
+opt.number = true
 opt.autowrite = true
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
-opt.completeopt = "menu,menuone,noselect"
 opt.conceallevel = 2
 opt.confirm = true
 opt.cursorline = true
@@ -30,7 +39,7 @@ opt.expandtab = true
 opt.fillchars = {
 	foldopen = "",
 	foldclose = "",
-	fold = "^",
+	fold = " ",
 	foldsep = " ",
 	diff = "╱",
 	eob = "~",
@@ -46,9 +55,8 @@ opt.laststatus = 3
 opt.linebreak = true
 opt.list = true
 opt.mouse = "a"
-opt.number = true
-opt.pumblend = 10
-opt.pumheight = 10
+opt.pumblend = 20
+opt.pumheight = 20
 opt.ruler = false
 opt.scrolloff = 4
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
@@ -73,7 +81,7 @@ opt.virtualedit = "block"
 opt.wildmode = "longest:full,full"
 opt.winminwidth = 5
 opt.wrap = false
-opt.list = true
+opt.list = false
 opt.listchars = {
 	eol = "",
 	tab = "  ",

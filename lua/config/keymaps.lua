@@ -16,7 +16,10 @@ map("n", "<leader>V", "ggVG$", { desc = "Select all line" })
 -- Go Prev buff in term
 map("t", "<C-b>", "<cmd>e #<cr>")
 -- Run code
-map("n", "<leader>cr", "<cmd>terminal ./run.sh<cr>")
+map("n", "<leader>cr", function()
+	vim.cmd("silent! w")
+	vim.cmd("terminal ./run.sh")
+end)
 -- Save file
 map({ "n", "i", "x", "s" }, "<C-s>", "<cmd>silent! w<cr><esc>", { desc = "Save file" })
 -- Quit
@@ -26,7 +29,10 @@ map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- Source
-map("n", "g<leader>g", "<cmd>source %<cr>", { desc = "Source" })
+map("n", "g<leader>g", function()
+	vim.cmd("silent! w")
+	vim.cmd("source %")
+end, { desc = "Source" })
 -- Open term
 map("n", "g<leader>t", "<cmd>terminal<cr>", { desc = "Open terminal" })
 -- Search & Replace
@@ -48,12 +54,6 @@ map("n", "grd", vim.lsp.buf.definition, { desc = "Definition" })
 map("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation" })
 map("n", "grr", vim.lsp.buf.references, { desc = "References" })
 map("n", "grt", vim.lsp.buf.type_definition, { desc = "Type definition" })
-
-local winopts = {
-	border = "rounded",
-	focus = false,
-	close_events = { "BufWinLeave", "CursorMoved" },
-}
 
 map("n", "K", function()
 	vim.lsp.buf.hover({

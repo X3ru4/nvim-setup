@@ -1,4 +1,5 @@
 return {
+	enabled = false,
 	"kevinhwang91/nvim-ufo",
 	event = "BufReadPost",
 	dependencies = "kevinhwang91/promise-async",
@@ -28,6 +29,8 @@ return {
 				curWidth = curWidth + chunkWidth
 			end
 			table.insert(newVirtText, { suffix, "MoreMsg" })
+			vim.o.foldenable = true
+			vim.o.foldcolumn = "1"
 			return newVirtText
 		end,
 	},

@@ -18,7 +18,7 @@ return {
 						bold = true,
 					},
 				},
-				use_treesitter = false,
+				use_treesitter = true,
 				chars = {
 					horizontal_line = "─",
 					vertical_line = "│",
@@ -28,18 +28,20 @@ return {
 				},
 				error_sign = true,
 				-- animation related
-				duration = 0,
-				delay = 0,
+				duration = 200,
+				delay = 100,
 			},
 			indent = {
 				enable = true,
-				use_treesitter = false,
+				priority = 10,
+				use_treesitter = true,
 				chars = {
 					"│",
 					"¦",
 					"┆",
 					"┊",
 				},
+				delay = 100,
 			},
 		})
 	end,

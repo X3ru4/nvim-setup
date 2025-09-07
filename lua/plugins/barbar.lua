@@ -38,11 +38,13 @@ return {
 			-- Close buffer
 			{ "<leader>bd", "<Cmd>BufferClose<CR>" },
 
+			-- Move last
+			{ "<leader>bb", "<Cmd>buffer #<CR>" },
+
 			-- Magic buffer-picking mode
 			{ "<C-p>", "<Cmd>BufferPick<CR>" },
 
 			-- Sort automatically by...
-			{ "<Space>bb", "<Cmd>BufferOrderByBufferNumber<CR>" },
 			{ "<Space>bn", "<Cmd>BufferOrderByName<CR>" },
 			{ "<Space>bD", "<Cmd>BufferOrderByDirectory<CR>" },
 			{ "<Space>bl", "<Cmd>BufferOrderByLanguage<CR>" },
