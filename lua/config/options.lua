@@ -18,6 +18,7 @@ vim.diagnostic.config({
 })
 
 vim.o.foldenable = true
+vim.o.timeoutlen = 200
 
 function _G.newfoldtext()
 	local line = vim.fn.getline(vim.v.foldstart)
