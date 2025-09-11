@@ -4,16 +4,13 @@ end
 
 local highlight = {
 	WinBar = {
-		fg = get("Pmenu").fg,
-		bg = get("Pmenu").bg,
+		fg = get("StatusLine").fg,
+		bg = get("StatusLineNC").bg,
 	},
 	WinBarNC = {
-		fg = get("Pmenu").fg,
-		bg = get("Pmenu").bg,
+		fg = get("StatusLine").fg,
+		bg = get("StatusLineNC").bg,
 	},
-	-- Visual = {
-	-- 	bg = "#2d3f76",
-	-- },
 }
 
 -- apply highlight

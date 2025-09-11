@@ -25,6 +25,8 @@ function _G.newfoldtext()
 	return "  " .. line .. " ↙" .. count
 end
 
+vim.o.relativenumber = true
+
 local opt = vim.opt
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"

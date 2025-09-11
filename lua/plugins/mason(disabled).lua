@@ -1,5 +1,6 @@
 return {
 	{
+		enabled = false,
 		"mason-org/mason.nvim",
 		cmd = "Mason",
 		keys = { { "<leader>m", "<cmd>Mason<cr>", desc = "Mason" } },
@@ -9,6 +10,7 @@ return {
 		},
 	},
 	{
+		enabled = false,
 		"mason-org/mason-lspconfig.nvim",
 		event = "BufReadPre",
 		opts = {},

@@ -5,14 +5,6 @@ return {
 		local server = {
 			-- Lua
 			lua_ls = {},
-			-- Html
-			html = {},
-			-- Css
-			cssls = {},
-			-- TypeScript/JavaScript
-			ts_ls = {},
-			-- Emmet html
-			emmet_language_server = {},
 			-- C/C++
 			clangd = {},
 		}

@@ -2,20 +2,26 @@ local icons = require("config.icons").icons
 
 return {
 	{
+		enabled = false,
 		"romgrk/barbar.nvim",
 		event = "VeryLazy",
 		init = function()
-			vim.g.barbar_auto_setup = false
+			vim.g.barbar_auto_setup = true
 		end,
 		opts = {
+			focus_on_close = "right",
+			clickable = false,
+			auto_hide = true,
 			icons = {
+				button = "",
 				diagnostics = {
 					[vim.diagnostic.severity.ERROR] = { enabled = true },
 					[vim.diagnostic.severity.WARN] = { enabled = false },
 					[vim.diagnostic.severity.INFO] = { enabled = false },
 					[vim.diagnostic.severity.HINT] = { enabled = true },
 				},
-				preset = "default",
+				separator = { left = "", right = "" },
+				separator_at_end = true,
 				pinned = { button = icons.pinned, filename = false },
 				modified = { button = icons.modified },
 			},

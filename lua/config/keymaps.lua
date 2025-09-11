@@ -9,6 +9,11 @@ map("n", "<leader>wj", "<c-w>j", { desc = "Win down" })
 map("n", "<leader>wk", "<c-w>k", { desc = "Win up" })
 map("n", "<leader>wl", "<c-w>l", { desc = "Win right" })
 
+-- Buffer
+map("n", "<s-h>", "<cmd>bprevious<cr>")
+map("n", "<s-l>", "<cmd>bnext<cr>")
+map("n", "<leader>bd", "<cmd>bdelete<cr>")
+
 -- Quick select
 map("n", "<leader>v", "gg0vG$", { desc = "Select all" })
 map("n", "<leader>V", "ggVG$", { desc = "Select all line" })
