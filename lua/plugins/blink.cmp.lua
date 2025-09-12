@@ -13,13 +13,23 @@ return {
 				require("luasnip").setup()
 				require("luasnip.loaders.from_vscode").lazy_load()
 
-				local ls = require("luasnip")
-				vim.keymap.set({ "i", "s" }, "<tab>", function()
-					ls.jump(1)
-				end, { silent = true })
-				vim.keymap.set({ "i", "s" }, "<c-l>", function()
-					ls.jump(-1)
-				end, { silent = true })
+				local luasnip = require("luasnip")
+
+				vim.keymap.set({ "i", "s" }, "<Tab>", function()
+					if luasnip.expand_or_jumpable() then
+						return "<Plug>luasnip-expand-or-jump"
+					else
+						return "<Tab>"
+					end
+				end, { expr = true, silent = true })
+
+				vim.keymap.set({ "i", "s" }, "<C-h>", function()
+					if luasnip.jumpable(-1) then
+						return "<Plug>luasnip-jump-prev"
+					else
+						return "<C-h>"
+					end
+				end, { expr = true, silent = true })
 			end,
 		},
 		{

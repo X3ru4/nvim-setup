@@ -84,13 +84,11 @@ opt.virtualedit = "block"
 opt.wildmode = "longest:full,full"
 opt.winminwidth = 5
 opt.wrap = false
-opt.list = false
+opt.list = true
 opt.listchars = {
 	eol = "",
-	tab = "  ",
+	tab = "··",
 	space = "·",
 	trail = "•",
-	extends = "⟩",
-	precedes = "⟨",
 	nbsp = "ɲ",
 }

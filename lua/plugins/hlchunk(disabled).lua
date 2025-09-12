@@ -1,4 +1,5 @@
 return {
+	enabled = false,
 	"shellRaining/hlchunk.nvim",
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
@@ -32,7 +33,7 @@ return {
 				delay = 100,
 			},
 			indent = {
-				enable = true,
+				enable = false,
 				priority = 10,
 				use_treesitter = true,
 				chars = {

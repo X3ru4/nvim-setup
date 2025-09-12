@@ -55,7 +55,7 @@ return {
 			},
 			columns = {
 				-- "permissions",
-				"size",
+				-- "size",
 				"icon",
 				-- "mtime",
 			},

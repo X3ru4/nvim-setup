@@ -16,6 +16,35 @@ module("tabline", {
 		end,
 	},
 })
+module("indentscope", {
+	event = "BufReadPre",
+	version = false,
+	opts = function()
+		-- vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", {
+		-- 	fg = "#65bcff",
+		-- 	bold = true,
+		-- })
+		return {
+			draw = {
+				delay = 100,
+				priority = 2,
+			},
+			mappings = {
+				object_scope = "ii",
+				object_scope_with_border = "ai",
+				goto_top = "[i",
+				goto_bottom = "]i",
+			},
+			options = {
+				border = "both",
+				indent_at_cursor = true,
+				n_lines = 10000,
+				try_as_border = false,
+			},
+			symbol = "│",
+		}
+	end,
+})
 module("surround", {
 	event = "VeryLazy",
 	version = false,
