@@ -2,15 +2,14 @@ return {
 	"stevearc/oil.nvim",
 	dependencies = {
 		{
+			enabled = false,
 			"benomahony/oil-git.nvim",
 			config = function()
-				-- local function get(name)
-				-- 	return vim.api.nvim_get_hl(0, { name = name })
-				-- end
 				require("oil-git").setup({})
 			end,
 		},
 		{
+			enabled = false,
 			"JezerM/oil-lsp-diagnostics.nvim",
 			opts = {
 				diagnostic_symbols = {

@@ -8,9 +8,9 @@ M.diagnostic = {
 }
 
 M.icons = {
-	modified = "[+]",
+	modified = "˙",
 	close = "󱎘",
-	pinned = "",
+	pin = "",
 }
 
 return M

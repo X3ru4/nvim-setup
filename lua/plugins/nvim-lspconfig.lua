@@ -2,6 +2,7 @@ return {
 	"neovim/nvim-lspconfig",
 	event = "BufReadPre",
 	config = function()
+		vim.lsp.inlay_hint.enable(true)
 		local server = {
 			-- Lua
 			lua_ls = {},
@@ -13,5 +14,5 @@ return {
 			vim.lsp.config(name, opts)
 			vim.lsp.enable(name)
 		end
-	end,
+	end
 }

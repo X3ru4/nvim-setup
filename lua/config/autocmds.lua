@@ -2,6 +2,6 @@ local cmd = vim.api.nvim_create_autocmd
 
 cmd("TextYankPost", {
 	callback = function()
-		vim.hl.on_yank()
+		vim.hl.on_yank({ higroup = "IncSearch", timeout = 150 })
 	end,
 })

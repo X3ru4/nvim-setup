@@ -4,6 +4,11 @@ local function module(name, opts)
 	table.insert(plugins, vim.tbl_deep_extend("force", { "nvim-mini/mini." .. name }, opts))
 end
 
+module("diff", {
+	event = "BufReadPre",
+	version = false,
+	opts = {},
+})
 module("tabline", {
 	event = "VeryLazy",
 	version = false,
@@ -11,7 +16,7 @@ module("tabline", {
 		always_show = false,
 		tabpage_section = "left",
 		format = function(buf_id, label)
-			local suffix = vim.bo[buf_id].modified and "+ " or ""
+			local suffix = vim.bo[buf_id].modified and "󰐕 " or ""
 			return MiniTabline.default_format(buf_id, label) .. suffix
 		end,
 	},
@@ -19,31 +24,25 @@ module("tabline", {
 module("indentscope", {
 	event = "BufReadPre",
 	version = false,
-	opts = function()
-		-- vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", {
-		-- 	fg = "#65bcff",
-		-- 	bold = true,
-		-- })
-		return {
-			draw = {
-				delay = 100,
-				priority = 2,
-			},
-			mappings = {
-				object_scope = "ii",
-				object_scope_with_border = "ai",
-				goto_top = "[i",
-				goto_bottom = "]i",
-			},
-			options = {
-				border = "both",
-				indent_at_cursor = true,
-				n_lines = 10000,
-				try_as_border = false,
-			},
-			symbol = "│",
-		}
-	end,
+	opts = {
+		draw = {
+			delay = 50,
+			priority = 2,
+		},
+		mappings = {
+			object_scope = "ii",
+			object_scope_with_border = "ai",
+			goto_top = "[i",
+			goto_bottom = "]i",
+		},
+		options = {
+			border = "both",
+			indent_at_cursor = true,
+			n_lines = 10000,
+			try_as_border = false,
+		},
+		symbol = "│",
+	},
 })
 module("surround", {
 	event = "VeryLazy",
@@ -75,23 +74,44 @@ module("statusline", {
 					local sl = require("mini.statusline")
 					local mode, mode_hl = sl.section_mode({ trunc_width = 120 })
 
+					local mmode = function()
+						local modes = {
+							n = "Normal",
+							i = "Insert",
+							v = "Visual",
+							V = "Visual Line",
+							["\22"] = "Visual Block", -- CTRL+V
+							c = "Command",
+							R = "Replace",
+							t = "Terminal",
+							s = "Select",
+							S = "Select Line",
+							["\19"] = "Select Block", -- CTRL+S
+						}
+
+						local current_mode = vim.api.nvim_get_mode().mode
+						return modes[current_mode] or "Normal"
+					end
+
+					local function modified()
+						return vim.bo.modified and require("config.icons").icons.modified or ""
+					end
+
 					return sl.combine_groups({
 						{
 							hl = mode_hl,
-							strings = { mode },
+							strings = { mmode() },
 						},
 						"%<",
 						{
-							hl = "MiniStatuslineDevinfo",
+							hl = "PmenuExtra",
 							strings = {
-								sl.section_fileinfo({ trunc_width = 100 }),
-								" 𝙓𝝐𝖗𝖚𝜶",
-								"%m%r",
+								"%t" .. modified(),
 							},
 						},
 						"%=",
 						{
-							hl = "MiniStatuslineDevinfo",
+							hl = "PmenuMatch",
 							strings = {
 								sl.section_diagnostics({
 									signs = {

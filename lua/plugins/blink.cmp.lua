@@ -33,6 +33,7 @@ return {
 			end,
 		},
 		{
+			enabled = false,
 			"folke/lazydev.nvim",
 			ft = "lua",
 			opts = {
@@ -67,6 +68,9 @@ return {
 			},
 			signature = { enabled = false },
 			completion = {
+				ghost_text = {
+					enabled = true,
+				},
 				accept = {
 					auto_brackets = {
 						enabled = true,
@@ -75,23 +79,25 @@ return {
 				documentation = {
 					auto_show = true,
 					window = {
+						scrollbar = false,
 						min_width = 5,
 						max_width = 30,
 						max_height = 10,
-						winblend = 0,
-						border = nil,
+						winblend = 20,
+						border = "rounded",
 						winhighlight = "CursorLine:BlinkCmpDocCursorLine,Search:None",
 					},
 				},
 				menu = {
+					scrollbar = false,
 					min_width = 5,
 					max_height = 8,
-					winblend = 0,
-					border = nil,
+					winblend = 20,
+					border = "rounded",
 					winhighlight = "CursorLine:BlinkCmpMenuSelection,Search:None",
 					draw = {
 						columns = {
-							{ "kind_icon", "label", "label_description", gap = 1 },
+							{ "label", "label_description", gap = 1 },
 							{ "kind" },
 						},
 						components = {
@@ -113,7 +119,7 @@ return {
 											mode = "symbol",
 										})
 									end
-									return icon .. ctx.icon_gap .. " "
+									return icon .. ctx.icon_gap
 								end,
 							},
 						},
@@ -124,16 +130,16 @@ return {
 			snippets = {
 				preset = "luasnip",
 			},
-			sources = {
-				default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-				providers = {
-					lazydev = {
-						name = "LazyDev",
-						module = "lazydev.integrations.blink",
-						score_offset = 100,
-					},
-				},
-			},
+			-- sources = {
+			-- 	default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+			-- 	providers = {
+			-- 		lazydev = {
+			-- 			name = "LazyDev",
+			-- 			module = "lazydev.integrations.blink",
+			-- 			score_offset = 100,
+			-- 		},
+			-- 	},
+			-- },
 		})
 	end,
 }

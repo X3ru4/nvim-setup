@@ -7,12 +7,20 @@ return {
 				hidden = "hidden",
 			},
 			row = 0.4,
-			backdrop = 100,
+			backdrop = 60,
 		},
 	},
 	keys = function()
 		local fzf = require("fzf-lua")
 		return {
+
+			{
+				"<leader>fr",
+				function()
+					fzf.registers()
+				end,
+				desc = "Find register",
+			},
 
 			{
 				"<leader>ff",
@@ -84,6 +92,14 @@ return {
 					fzf.filetypes()
 				end,
 				desc = "Find filetypes",
+			},
+
+			{
+				"<leader>fg",
+				function()
+					fzf.live_grep()
+				end,
+				desc = "Live grep",
 			},
 		}
 	end,

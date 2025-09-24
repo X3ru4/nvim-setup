@@ -22,7 +22,7 @@ return {
 				},
 				separator = { left = "", right = "" },
 				separator_at_end = true,
-				pinned = { button = icons.pinned, filename = false },
+				pinned = { button = icons.pin, filename = false },
 				modified = { button = icons.modified },
 			},
 			maximum_length = 20,

@@ -5,10 +5,10 @@ return {
 	opts = {
 		formatters_by_ft = {
 			lua = { "stylua" },
-			cpp = { "" },
-			hpp = { "" },
-			c = { "" },
-			h = { "" },
+			cpp = { "clang-format" },
+			hpp = { "clang-format" },
+			c = { "clang-format" },
+			h = { "clang-format" },
 		},
 		default_format_opts = {
 			lsp_format = "",

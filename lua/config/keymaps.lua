@@ -1,5 +1,11 @@
 local map = vim.keymap.set
 
+-- Paste to cmdline
+map("c", "<C-p>", function()
+	local reg = vim.fn.getreg('"')
+	return reg:gsub("\n", "")
+end, { expr = true })
+
 -- Yank buf
 map("n", "<leader>ya", "ggVGy", { desc = "Yank all" })
 
@@ -33,28 +39,45 @@ map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
 -- Lazy
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
+-- <leader>g
 -- Source
-map("n", "g<leader>g", function()
+map("n", "<leader>gg", function()
 	vim.cmd("silent! w")
 	vim.cmd("source %")
 end, { desc = "Source" })
 -- Open term
-map("n", "g<leader>t", "<cmd>terminal<cr>", { desc = "Open terminal" })
--- Search & Replace
-map("n", "g<leader>r", function()
-	vim.ui.input({ prompt = "Search" }, function(input)
-		if input ~= "" then
-			vim.ui.input({ prompt = "Replace " .. input .. " with" }, function(input_)
-				vim.cmd("%s/" .. input .. "/" .. input_ .. "/g")
-			end)
+map("n", "<leader>gt", "<cmd>terminal<cr>", { desc = "Open terminal" })
+-- Replace select
+map("x", "<leader>gr", function()
+	local save_reg = vim.fn.getreg('"')
+	local save_regtype = vim.fn.getregtype('"')
+	vim.cmd('normal! "vy')
+	local selection = vim.fn.getreg('"')
+	vim.fn.setreg('"', save_reg, save_regtype)
+
+	vim.ui.input({ prompt = "Replace " .. selection .. " with" }, function(input)
+		if type(input) == "string" then
+			vim.cmd("%s/" .. selection .. "/" .. input .. "/g")
 		end
 	end)
-end, { desc = "Search & Replace" })
+end, { desc = "Replace" })
+-- Search
+map("n", "<leader>gs", function()
+	vim.ui.input({ prompt = "Search" }, function(input)
+		if type(input) == "string" then
+			vim.cmd("?" .. input)
+		end
+	end)
+end, { desc = "Search" })
+-- Reopen file
+map("n", "<leader>gf", function()
+	local file = vim.fn.expand("%:p")
+	vim.cmd("edit " .. file)
+end, { desc = "Reopen" })
 
 -- Lsp
 -- Code action
 map("n", "gra", vim.lsp.buf.code_action, { desc = "Code action" })
-
 map("n", "grd", vim.lsp.buf.definition, { desc = "Definition" })
 map("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation" })
 map("n", "grr", vim.lsp.buf.references, { desc = "References" })
@@ -83,12 +106,6 @@ map({ "i", "n" }, "<c-l>", function()
 		close_events = { "BufWinLeave", "CursorMoved", "CursorMovedI", "ModeChanged" },
 	})
 end, { desc = "Open diagnostic float" })
-
--- Reopen file
-map("n", "g<leader>f", function()
-	local file = vim.fn.expand("%:p")
-	vim.cmd("edit " .. file)
-end, { desc = "Reopen" })
 
 -- LazyVim
 -- Better up/down

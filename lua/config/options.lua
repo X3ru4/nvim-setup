@@ -18,7 +18,7 @@ vim.diagnostic.config({
 })
 
 vim.o.foldenable = true
-vim.o.timeoutlen = 200
+vim.o.timeoutlen = 300
 
 function _G.newfoldtext()
 	local line = vim.fn.getline(vim.v.foldstart)
@@ -26,7 +26,7 @@ function _G.newfoldtext()
 	return "  " .. line .. " ↙" .. count
 end
 
-vim.o.relativenumber = true
+vim.o.relativenumber = false
 
 local opt = vim.opt
 opt.foldmethod = "expr"
@@ -34,10 +34,14 @@ opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldtext = "v:lua.newfoldtext()"
 opt.number = true
 opt.autowrite = true
+
+opt.winblend = 20
+
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
-opt.conceallevel = 2
+-- opt.conceallevel = 2
 opt.confirm = true
 opt.cursorline = true
+opt.cursorcolumn = false
 opt.expandtab = true
 opt.fillchars = {
 	foldopen = "",
@@ -86,7 +90,7 @@ opt.winminwidth = 5
 opt.wrap = false
 opt.list = true
 opt.listchars = {
-	eol = "",
+	eol = "↴",
 	tab = "··",
 	space = "·",
 	trail = "•",
