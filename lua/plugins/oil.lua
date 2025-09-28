@@ -50,11 +50,10 @@ return {
 				["<bs>"] = { "actions.parent", mode = "n" },
 				[".."] = { "actions.toggle_hidden", mode = "n" },
 				["q"] = { "actions.close", mode = "n" },
-				["<esc>"] = { "actions.close", mode = "n" },
 			},
 			columns = {
 				-- "permissions",
-				-- "size",
+				"size",
 				"icon",
 				-- "mtime",
 			},

@@ -12,7 +12,8 @@ return {
 				-- { "tic", "tac", "toe" },
 			},
 			allow_caps_additions = {
-				-- { "enable", "disable" },
+				{ "enable", "enable" },
+				{ "disable", "disable" },
 				{ "true", "false" },
 			},
 		})

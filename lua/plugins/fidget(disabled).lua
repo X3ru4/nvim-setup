@@ -1,4 +1,5 @@
 return {
+	enabled = false,
 	"j-hui/fidget.nvim",
 	event = "VeryLazy",
 	config = function()

@@ -26,7 +26,7 @@ function _G.newfoldtext()
 	return "  " .. line .. " ↙" .. count
 end
 
-vim.o.relativenumber = false
+vim.o.relativenumber = true
 
 local opt = vim.opt
 opt.foldmethod = "expr"
@@ -60,7 +60,6 @@ opt.inccommand = "nosplit"
 opt.jumpoptions = "view"
 opt.laststatus = 3
 opt.linebreak = true
-opt.list = true
 opt.mouse = "a"
 opt.pumblend = 20
 opt.pumheight = 20
@@ -90,7 +89,7 @@ opt.winminwidth = 5
 opt.wrap = false
 opt.list = true
 opt.listchars = {
-	eol = "↴",
+	eol = "󱞣",
 	tab = "··",
 	space = "·",
 	trail = "•",

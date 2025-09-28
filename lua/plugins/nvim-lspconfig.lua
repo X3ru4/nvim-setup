@@ -1,6 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
-	event = "BufReadPre",
+	event = "VeryLazy",
 	config = function()
 		vim.lsp.inlay_hint.enable(true)
 		local server = {
@@ -8,11 +8,20 @@ return {
 			lua_ls = {},
 			-- C/C++
 			clangd = {},
+			-- Json
+			jsonls = {
+				settings = {
+					json = {
+						schemas = require("schemastore").json.schemas(),
+						validate = { enable = true },
+					},
+				},
+			},
 		}
 
 		for name, opts in pairs(server) do
 			vim.lsp.config(name, opts)
 			vim.lsp.enable(name)
 		end
-	end
+	end,
 }

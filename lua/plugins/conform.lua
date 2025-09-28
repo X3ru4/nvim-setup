@@ -1,6 +1,6 @@
 return {
 	"stevearc/conform.nvim",
-	event = "LspAttach",
+	event = "BufWritePre",
 	cmd = { "ConformInfo" },
 	opts = {
 		formatters_by_ft = {
@@ -9,15 +9,27 @@ return {
 			hpp = { "clang-format" },
 			c = { "clang-format" },
 			h = { "clang-format" },
+			json = { "biome" },
+			python = { "pyink", "isort" },
 		},
 		default_format_opts = {
-			lsp_format = "",
+			lsp_format = "fallback",
 		},
-		format_on_save = { timeout_ms = 500 },
+		-- format_on_save = { timeout_ms = 2000 },
+		format_on_save = false,
 		formatters = {
 			shfmt = {
 				append_args = { "-i", "2" },
 			},
+		},
+	},
+	keys = {
+		{
+			"grf",
+			function()
+				require("conform").format()
+				vim.cmd("silent! w")
+			end,
 		},
 	},
 	init = function()
