@@ -3,7 +3,11 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		version = false,
 		build = ":TSUpdate",
-		event = "VeryLazy",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			"yioneko/nvim-yati",
+			version = "*",
+		},
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
@@ -18,6 +22,12 @@ return {
 				sync_install = false,
 				auto_install = true,
 				ignore_install = { "javascript" },
+				indent = { enable = false },
+				yati = {
+					enable = true,
+					default_lazy = true,
+					default_fallback = "auto",
+				},
 				highlight = {
 					enable = true,
 					-- disable = { "c", "rust" },

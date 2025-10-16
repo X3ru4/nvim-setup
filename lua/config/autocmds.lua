@@ -5,3 +5,9 @@ cmd("TextYankPost", {
 		vim.hl.on_yank({ higroup = "IncSearch", timeout = 150 })
 	end,
 })
+
+cmd({ "CmdlineEnter", "CmdlineLeave" }, {
+  callback = function(event)
+    vim.o.cmdheight = (event.event == "CmdlineEnter") and 1 or 0
+  end,
+})

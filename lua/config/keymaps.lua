@@ -6,6 +6,11 @@ map("c", "<C-p>", function()
 	return reg:gsub("\n", "")
 end, { expr = true })
 
+-- Better insert
+map("i", "<c-j>", "<c-o>o")
+map("i", "<c-c>", "<c-o>S")
+map("i", "<c-a>", "<c-o>I")
+
 -- Yank buf
 map("n", "<leader>ya", "ggVGy", { desc = "Yank all" })
 
@@ -19,6 +24,7 @@ map("n", "<leader>wl", "<c-w>l", { desc = "Win right" })
 map("n", "<s-h>", "<cmd>bprevious<cr>")
 map("n", "<s-l>", "<cmd>bnext<cr>")
 map("n", "<leader>bd", "<cmd>bdelete<cr>")
+map("n", "<leader>bb", "<cmd>buffer #<cr>")
 
 -- Quick select
 map("n", "<leader>v", "gg0vG$", { desc = "Select all" })
@@ -76,7 +82,6 @@ map("n", "<leader>gf", function()
 end, { desc = "Reopen" })
 
 -- Lsp
--- Code action
 map("n", "gra", vim.lsp.buf.code_action, { desc = "Code action" })
 map("n", "grd", vim.lsp.buf.definition, { desc = "Definition" })
 map("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation" })

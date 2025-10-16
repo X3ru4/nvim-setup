@@ -8,7 +8,7 @@ M.diagnostic = {
 }
 
 M.icons = {
-	modified = "˙",
+	modified = " [+]",
 	close = "󱎘",
 	pin = "",
 }

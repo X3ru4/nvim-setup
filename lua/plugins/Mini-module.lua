@@ -5,67 +5,92 @@ local function module(name, opts)
 end
 
 module("diff", {
-	event = "BufReadPre",
+	event = { "BufReadPre", "BufNewFile" },
 	version = false,
 	opts = {},
 })
 module("tabline", {
-	event = "VeryLazy",
+	event = { "BufReadPre", "BufNewFile" },
+	enabled = true,
 	version = false,
 	opts = {
 		always_show = false,
 		tabpage_section = "left",
 		format = function(buf_id, label)
-			local suffix = vim.bo[buf_id].modified and "󰐕 " or ""
+			local suffix = vim.bo[buf_id].modified and "+ " or ""
 			return MiniTabline.default_format(buf_id, label) .. suffix
 		end,
 	},
 })
 module("indentscope", {
-	event = "BufReadPre",
+	enabled = true,
+	event = { "BufReadPre", "BufNewFile" },
 	version = false,
-	opts = {
-		draw = {
-			delay = 50,
-			priority = 2,
-		},
-		mappings = {
-			object_scope = "ii",
-			object_scope_with_border = "ai",
-			goto_top = "[i",
-			goto_bottom = "]i",
-		},
-		options = {
-			border = "both",
-			indent_at_cursor = true,
-			n_lines = 10000,
-			try_as_border = false,
-		},
-		symbol = "│",
-	},
+	opts = function()
+		local indentscope = require("mini.indentscope")
+		return {
+			draw = {
+				delay = 100,
+				animation = function(s, n)
+					return 15
+				end,
+				priority = 2,
+			},
+			mappings = {
+				object_scope = "ii",
+				object_scope_with_border = "ai",
+				goto_top = "[i",
+				goto_bottom = "]i",
+			},
+			options = {
+				border = "both",
+				indent_at_cursor = true,
+				n_lines = 100,
+				try_as_border = true,
+			},
+			symbol = "│",
+		}
+	end,
+	init = function()
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = {
+				"fzf",
+				"help",
+				"lazy",
+				"mason",
+				"oil",
+			},
+			callback = function()
+				vim.b.miniindentscope_disable = true
+			end,
+		})
+	end,
 })
 module("surround", {
-	event = "VeryLazy",
+	event = { "BufReadPre", "BufNewFile" },
 	version = false,
 	opts = {},
 })
 module("align", {
-	event = "VeryLazy",
+	event = { "BufReadPre", "BufNewFile" },
 	version = false,
 	opts = {},
 })
 module("move", {
-	event = "VeryLazy",
+	event = { "BufReadPre", "BufNewFile" },
 	version = false,
 	opts = {},
 })
 module("cursorword", {
-	event = "VeryLazy",
+	event = { "BufReadPre", "BufNewFile" },
 	version = false,
-	opts = {},
+	opts = {
+		delay = 100,
+	},
 })
 module("statusline", {
-	event = "VeryLazy",
+	enabled = true,
+	event = "VimEnter",
 	version = false,
 	config = function()
 		require("mini.statusline").setup({
@@ -74,19 +99,19 @@ module("statusline", {
 					local sl = require("mini.statusline")
 					local mode, mode_hl = sl.section_mode({ trunc_width = 120 })
 
-					local mmode = function()
+					local mode_str = function()
 						local modes = {
 							n = "Normal",
 							i = "Insert",
 							v = "Visual",
-							V = "Visual Line",
-							["\22"] = "Visual Block", -- CTRL+V
+							V = "V-Line",
+							["\22"] = "V-Block", -- CTRL+V
 							c = "Command",
 							R = "Replace",
 							t = "Terminal",
 							s = "Select",
-							S = "Select Line",
-							["\19"] = "Select Block", -- CTRL+S
+							S = "S-Line",
+							["\19"] = "S-Block", -- CTRL+S
 						}
 
 						local current_mode = vim.api.nvim_get_mode().mode
@@ -100,7 +125,7 @@ module("statusline", {
 					return sl.combine_groups({
 						{
 							hl = mode_hl,
-							strings = { mmode() },
+							strings = { mode_str() },
 						},
 						"%<",
 						{
@@ -111,14 +136,14 @@ module("statusline", {
 						},
 						"%=",
 						{
-							hl = "PmenuMatch",
+							hl = "PmenuSbar",
 							strings = {
 								sl.section_diagnostics({
 									signs = {
-										ERROR = require("config/icons").diagnostic.errr .. " ",
-										WARN = require("config/icons").diagnostic.warn .. " ",
-										INFO = require("config/icons").diagnostic.info .. " ",
-										HINT = require("config/icons").diagnostic.hint .. " ",
+										ERROR = require("config.icons").diagnostic.errr .. " ",
+										WARN = require("config.icons").diagnostic.warn .. " ",
+										INFO = require("config.icons").diagnostic.info .. " ",
+										HINT = require("config.icons").diagnostic.hint .. " ",
 									},
 								}),
 							},
@@ -134,7 +159,7 @@ module("statusline", {
 	end,
 })
 module("ai", {
-	event = "BufReadPost",
+	event = { "BufReadPre", "BufNewFile" },
 	version = false,
 	opts = function()
 		local ai = require("mini.ai")

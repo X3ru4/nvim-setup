@@ -5,10 +5,14 @@ return {
 		keys = { { "<leader>m", "<cmd>Mason<cr>", desc = "Mason" } },
 		build = ":MasonUpdate",
 		opts = {
-			ui = { border = "rounded" },
+			ui = {
+        height = 0.85,
+				border = "rounded",
+			},
 		},
 	},
 	{
+    enabled = false,
 		"mason-org/mason-lspconfig.nvim",
 		event = "BufReadPre",
 		opts = {},

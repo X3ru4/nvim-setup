@@ -1,18 +1,22 @@
-local diagnostic = require("config.icons").diagnostic
+local diag = require("config.icons").diagnostic
+
+vim.g.enable_plugin = {
+	lazydev_nvim = true,
+}
 
 vim.diagnostic.config({
 	virtual_text = {
 		prefix = "",
 	},
-	underline = false,
+	underline = true,
 	float = { border = nil, header = "", source = "if_many" },
 	update_in_insert = false,
 	signs = {
 		text = {
-			[vim.diagnostic.severity.ERROR] = diagnostic.errr,
-			[vim.diagnostic.severity.WARN] = diagnostic.warn,
-			[vim.diagnostic.severity.INFO] = diagnostic.info,
-			[vim.diagnostic.severity.HINT] = diagnostic.hint,
+			[vim.diagnostic.severity.ERROR] = diag.errr,
+			[vim.diagnostic.severity.WARN] = diag.warn,
+			[vim.diagnostic.severity.INFO] = diag.info,
+			[vim.diagnostic.severity.HINT] = diag.hint,
 		},
 	},
 })
@@ -26,7 +30,9 @@ function _G.newfoldtext()
 	return "  " .. line .. " ↙" .. count
 end
 
-vim.o.relativenumber = true
+local o = vim.o
+o.relativenumber = true
+o.cmdheight = 0
 
 local opt = vim.opt
 opt.foldmethod = "expr"
@@ -35,7 +41,9 @@ opt.foldtext = "v:lua.newfoldtext()"
 opt.number = true
 opt.autowrite = true
 
-opt.winblend = 20
+-- opt.winblend = 20
+-- opt.pumblend = 20
+-- opt.winborder = "single"
 
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 -- opt.conceallevel = 2
@@ -61,7 +69,6 @@ opt.jumpoptions = "view"
 opt.laststatus = 3
 opt.linebreak = true
 opt.mouse = "a"
-opt.pumblend = 20
 opt.pumheight = 20
 opt.ruler = false
 opt.scrolloff = 4
@@ -89,7 +96,7 @@ opt.winminwidth = 5
 opt.wrap = false
 opt.list = true
 opt.listchars = {
-	eol = "󱞣",
+	eol = "⏎",
 	tab = "··",
 	space = "·",
 	trail = "•",

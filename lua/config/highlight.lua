@@ -1,28 +1,42 @@
-local function get(name)
-	return vim.api.nvim_get_hl(0, { name = name })
-end
+local api = require("config.highlight_module")
 
-local highlights = {
-	-- WinBar = function()
-	-- 	return { link = "StatusLine" }
-	-- end,
-	-- WinBarNc = function()
-	-- 	return { link = "StatusLineNC" }
-	-- end,
-
-	-- Other
-
-	-- MiniTablineCurrent = {
-	-- 	link = "TabLineSel",
-	-- },
+api.highlights = {
+	DropBarMenuHoverEntry = {
+		link = "Visual",
+	},
+	DropBarMenuHoverIcon = {},
+	MiniCursorword = {
+		underline = true,
+	},
+	MiniCursorwordCurrent = {
+		link = "MiniCursorword",
+	},
+	MiniIndentscopeSymbol = {
+		fg = api.get("DiagnosticVirtualTextHint").fg,
+		bold = true,
+	},
 }
 
--- apply highlight
-for name, opts in pairs(highlights) do
-	if type(opts) == "function" then
-		opts = opts()
-	end
-	if opts ~= nil then
-		vim.api.nvim_set_hl(0, name, opts)
-	end
-end
+api.workIf("onedark", {
+	WinBar = {
+		link = "Pmenu",
+	},
+	WinBarNc = {
+		link = "Pmenu",
+	},
+	MiniTablineCurrent = {
+		fg = api.get("PmenuSel").bg,
+    bold = true
+	},
+})
+
+api.workIf("nord", {
+	WinBar = {
+		link = "StatusLine",
+	},
+	WinBarNc = {
+		link = "StatusLineNC",
+	},
+})
+
+api.aplly_highlight()
