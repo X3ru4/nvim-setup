@@ -4,6 +4,11 @@ local function module(name, opts)
 	table.insert(plugins, vim.tbl_deep_extend("force", { "nvim-mini/mini." .. name }, opts))
 end
 
+-- module("icons", {
+--   event = "VeryLazy",
+-- 	version = false,
+--   opts = {}
+-- })
 module("diff", {
 	event = { "BufReadPre", "BufNewFile" },
 	version = false,
@@ -18,7 +23,15 @@ module("tabline", {
 		tabpage_section = "left",
 		format = function(buf_id, label)
 			local suffix = vim.bo[buf_id].modified and "+ " or ""
-			return MiniTabline.default_format(buf_id, label) .. suffix
+			-- local current_buf = vim.api.nvim_get_current_buf() == buf_id
+			local strings = {
+				-- vim.g.colors_name == "onedark" and (current_buf and "⌞" or "⌜") or "",
+				require("mini.tabline").default_format(buf_id, label),
+				suffix,
+				-- vim.g.colors_name == "onedark" and (current_buf and "⌝" or "⌟") or "",
+				" ",
+			}
+			return table.concat(strings)
 		end,
 	},
 })
@@ -27,7 +40,6 @@ module("indentscope", {
 	event = { "BufReadPre", "BufNewFile" },
 	version = false,
 	opts = function()
-		local indentscope = require("mini.indentscope")
 		return {
 			draw = {
 				delay = 100,
@@ -59,6 +71,8 @@ module("indentscope", {
 				"lazy",
 				"mason",
 				"oil",
+        "oil_preview",
+				"dropbar_menu",
 			},
 			callback = function()
 				vim.b.miniindentscope_disable = true
@@ -82,6 +96,7 @@ module("move", {
 	opts = {},
 })
 module("cursorword", {
+	enabled = false,
 	event = { "BufReadPre", "BufNewFile" },
 	version = false,
 	opts = {
@@ -90,14 +105,14 @@ module("cursorword", {
 })
 module("statusline", {
 	enabled = true,
-	event = "VimEnter",
+	event = "VeryLazy",
 	version = false,
 	config = function()
 		require("mini.statusline").setup({
 			content = {
 				active = function()
 					local sl = require("mini.statusline")
-					local mode, mode_hl = sl.section_mode({ trunc_width = 120 })
+					local _, mode_hl = sl.section_mode({ trunc_width = 120 })
 
 					local mode_str = function()
 						local modes = {
@@ -118,8 +133,19 @@ module("statusline", {
 						return modes[current_mode] or "Normal"
 					end
 
-					local function modified()
-						return vim.bo.modified and require("config.icons").icons.modified or ""
+					local function file_icon(init)
+						local filetype = vim.fn.expand("%:e")
+						local icons = require("nvim-web-devicons").get_icon(filetype, nil, { default = true })
+						filetype = filetype:sub(1, 1):upper() .. filetype:sub(2)
+						local strings = {
+							"%#DevIcon",
+							filetype,
+							"#",
+							init,
+							icons,
+							"%#Nop#",
+						}
+						return table.concat(strings)
 					end
 
 					return sl.combine_groups({
@@ -129,28 +155,38 @@ module("statusline", {
 						},
 						"%<",
 						{
-							hl = "PmenuExtra",
+							hl = "Nop",
 							strings = {
-								"%t" .. modified(),
+								table.concat({
+									file_icon(vim.bo.filetype .. " "),
+									--          "tabs:",
+									-- vim.bo.tabstop,
+									(vim.bo.modified and "Modified" or ""),
+								}, " "),
 							},
 						},
 						"%=",
 						{
-							hl = "PmenuSbar",
+							hl = "Nop",
 							strings = {
 								sl.section_diagnostics({
+                  icon = "",
 									signs = {
-										ERROR = require("config.icons").diagnostic.errr .. " ",
-										WARN = require("config.icons").diagnostic.warn .. " ",
-										INFO = require("config.icons").diagnostic.info .. " ",
-										HINT = require("config.icons").diagnostic.hint .. " ",
+										ERROR = "%#DiagnosticError#"
+											.. require("config.icons").diagnostic.errr
+											.. "%#Nop# ",
+										WARN = "%#DiagnosticWarn#"
+											.. require("config.icons").diagnostic.warn
+											.. "%#Nop# ",
+										INFO = "%#DiagnosticInfo#"
+											.. require("config.icons").diagnostic.info
+											.. "%#Nop# ",
+										HINT = "%#DiagnosticHint#"
+											.. require("config.icons").diagnostic.hint
+											.. "%#Nop# ",
 									},
 								}),
 							},
-						},
-						{
-							hl = mode_hl,
-							strings = { sl.section_location({ trunc_width = 100 }) },
 						},
 					})
 				end,

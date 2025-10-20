@@ -1,4 +1,5 @@
 return {
+
 	{
 		"mason-org/mason.nvim",
 		cmd = "Mason",
@@ -6,15 +7,9 @@ return {
 		build = ":MasonUpdate",
 		opts = {
 			ui = {
-        height = 0.85,
+				height = 0.85,
 				border = "rounded",
 			},
 		},
-	},
-	{
-    enabled = false,
-		"mason-org/mason-lspconfig.nvim",
-		event = "BufReadPre",
-		opts = {},
 	},
 }

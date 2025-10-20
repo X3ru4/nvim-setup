@@ -20,7 +20,7 @@ local colorschemes = {
 		priority = 1000,
 		config = function()
 			require("onedark").setup({
-				style = "darker",
+				style = "dark",
 				ending_tildes = true,
 			})
 			require("onedark").load()
@@ -95,4 +95,4 @@ local colorschemes = {
 	},
 }
 
-return colorschemes.onedark
+return colorschemes.catppuccin

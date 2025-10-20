@@ -41,8 +41,8 @@ opt.foldtext = "v:lua.newfoldtext()"
 opt.number = true
 opt.autowrite = true
 
--- opt.winblend = 20
--- opt.pumblend = 20
+opt.winblend = 20
+opt.pumblend = 20
 -- opt.winborder = "single"
 
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
@@ -94,9 +94,10 @@ opt.virtualedit = "block"
 opt.wildmode = "longest:full,full"
 opt.winminwidth = 5
 opt.wrap = false
+o.showbreak = "↪"
 opt.list = true
 opt.listchars = {
-	eol = "⏎",
+	eol = "↩",
 	tab = "··",
 	space = "·",
 	trail = "•",

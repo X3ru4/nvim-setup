@@ -1,5 +1,5 @@
 return {
-	-- Completion
+
 	{
 		"saghen/blink.cmp",
 		event = { "InsertEnter", "CmdlineEnter" },
@@ -29,7 +29,7 @@ return {
 						if luasnip.jumpable(-1) then
 							return "<Plug>luasnip-jump-prev"
 						else
-							return "<C-j>"
+							return "<C-b>"
 						end
 					end, { expr = true, silent = true })
 				end,
@@ -85,7 +85,7 @@ return {
 							min_width = 10,
 							max_width = 30,
 							max_height = 10,
-							winblend = 0,
+							winblend = 20,
 							border = "rounded",
 							winhighlight = "CursorLine:BlinkCmpDocCursorLine,Search:None",
 						},
@@ -94,7 +94,7 @@ return {
 						scrollbar = false,
 						min_width = 1,
 						max_height = 8,
-						winblend = 0,
+						winblend = 20,
 						border = "rounded",
 						winhighlight = "CursorLine:BlinkCmpMenuSelection,Search:None",
 						draw = {
@@ -144,48 +144,5 @@ return {
 				} or {},
 			})
 		end,
-	},
-
-	{
-    enabled = false,
-		"ray-x/lsp_signature.nvim",
-		event = "InsertEnter",
-		opts = {
-			bind = true,
-			floating_window = false,
-			handler_opts = {
-				border = "rounded",
-			},
-			hint_prefix = "🧠",
-		},
-	},
-
-	{
-    enabled = false,
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		opts = {
-			check_ts = true,
-			fast_wrap = {
-				map = "<M-e>",
-				chars = { "{", "[", "(", '"', "'" },
-				pattern = [=[[%'%"%>%]%)%}%,]]=],
-				end_key = "$",
-				before_key = "h",
-				after_key = "l",
-				cursor_pos_before = true,
-				keys = "qwertyuiopzxcvbnmasdfghjkl",
-				manual_position = true,
-				highlight = "Search",
-				highlight_grey = "Comment",
-			},
-		},
-	},
-
-	{
-    enabled = true,
-		"m4xshen/autoclose.nvim",
-		event = "InsertEnter",
-		opts = {},
 	},
 }

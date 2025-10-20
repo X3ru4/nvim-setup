@@ -4,33 +4,47 @@ api.highlights = {
 	DropBarMenuHoverEntry = {
 		link = "Visual",
 	},
-	DropBarMenuHoverIcon = {},
-	MiniCursorword = {
-		underline = true,
-	},
-	MiniCursorwordCurrent = {
-		link = "MiniCursorword",
-	},
-	MiniIndentscopeSymbol = {
-		fg = api.get("DiagnosticVirtualTextHint").fg,
-		bold = true,
+	DropBarMenuHoverIcon = {
+		link = "Nop",
 	},
 }
 
-api.workIf("onedark", {
+api.modify("MiniIndentscopeSymbol", {
+	bold = true,
+})
+
+api.work_if("onedark", {
 	WinBar = {
-		link = "Pmenu",
+		bg = "#242830",
 	},
 	WinBarNc = {
-		link = "Pmenu",
+		link = "Normal",
 	},
 	MiniTablineCurrent = {
-		fg = api.get("PmenuSel").bg,
-    bold = true
+		link = "TabLine",
+	},
+	MiniTablineHidden = {
+		link = "TabLineFill",
+	},
+	MiniTablineVisible = {
+		link = "TabLine",
+	},
+	-- Minicursorword = {
+	-- 	bg = "#323641",
+	-- },
+	-- Minicursorwordcurrent = {
+	-- 	link = "Minicursorword",
+	-- },
+	IncSearch = {
+		bg = "#424951",
+		bold = true,
+	},
+	DropBarMenuCurrentContext = {
+		link = "Visual",
 	},
 })
 
-api.workIf("nord", {
+api.work_if("nord", {
 	WinBar = {
 		link = "StatusLine",
 	},
@@ -39,4 +53,4 @@ api.workIf("nord", {
 	},
 })
 
-api.aplly_highlight()
+api.apply_highlight()

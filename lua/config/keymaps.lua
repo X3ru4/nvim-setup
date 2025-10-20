@@ -1,10 +1,6 @@
 local map = vim.keymap.set
 
--- Paste to cmdline
-map("c", "<C-p>", function()
-	local reg = vim.fn.getreg('"')
-	return reg:gsub("\n", "")
-end, { expr = true })
+map("n", "<leader>rm", "<cmd>!rm ~/.local/state/nvim/swap -rf<cr>", { desc = "Remove swap folder" })
 
 -- Better insert
 map("i", "<c-j>", "<c-o>o")
@@ -32,11 +28,6 @@ map("n", "<leader>V", "ggVG$", { desc = "Select all line" })
 
 -- Go Prev buff in term
 map("t", "<C-b>", "<cmd>e #<cr>")
--- Run code
-map("n", "<leader>cr", function()
-	vim.cmd("silent! w")
-	vim.cmd("terminal ./run.sh")
-end)
 -- Save file
 map({ "n", "i", "x", "s" }, "<C-s>", "<cmd>silent! w<cr><esc>", { desc = "Save file" })
 -- Quit
@@ -81,8 +72,16 @@ map("n", "<leader>gf", function()
 	vim.cmd("edit " .. file)
 end, { desc = "Reopen" })
 
+--
+
+-- Code
+map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+map("n", "<leader>cr", function()
+	vim.cmd("silent! w")
+	vim.cmd("terminal ./run.sh")
+end)
+
 -- Lsp
-map("n", "gra", vim.lsp.buf.code_action, { desc = "Code action" })
 map("n", "grd", vim.lsp.buf.definition, { desc = "Definition" })
 map("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation" })
 map("n", "grr", vim.lsp.buf.references, { desc = "References" })
@@ -112,7 +111,7 @@ map({ "i", "n" }, "<c-l>", function()
 	})
 end, { desc = "Open diagnostic float" })
 
--- LazyVim
+-- ©LazyVim
 -- Better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
