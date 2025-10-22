@@ -1,9 +1,15 @@
-local api = require("config.highlight_module")
-
+local api = require("config.highlight_api")
 api.highlights = {
 	DropBarMenuHoverEntry = {
 		link = "Visual",
 	},
+  MiniCursorword = {
+    bg = "#494d64",
+    default = false,
+  },
+  MiniCursorwordCurrent = {
+    link = "MiniCursorword"
+  },
 	DropBarMenuHoverIcon = {
 		link = "Nop",
 	},
@@ -11,6 +17,16 @@ api.highlights = {
 
 api.modify("MiniIndentscopeSymbol", {
 	bold = true,
+})
+
+api.work_if("catppuccin-macchiato", {
+  MiniTablineCurrent = api.modify("MiniTablineCurrent", {
+    italic = false,
+    underline = false,
+  }),
+  MiniTablineModifiedCurrent = api.modify("MiniTablineModifiedCurrent", {
+    italic = false,
+  })
 })
 
 api.work_if("onedark", {
@@ -29,12 +45,12 @@ api.work_if("onedark", {
 	MiniTablineVisible = {
 		link = "TabLine",
 	},
-	-- Minicursorword = {
-	-- 	bg = "#323641",
-	-- },
-	-- Minicursorwordcurrent = {
-	-- 	link = "Minicursorword",
-	-- },
+	Minicursorword = {
+		bg = "#323641",
+	},
+	Minicursorwordcurrent = {
+		link = "Minicursorword",
+	},
 	IncSearch = {
 		bg = "#424951",
 		bold = true,

@@ -34,8 +34,8 @@ return {
 				end
 			end
 
-      local current_dir = require("oil").get_current_dir
-      local fzf = require("fzf-lua")
+			local current_dir = require("oil").get_current_dir
+			local fzf = require("fzf-lua")
 
 			require("oil").setup({
 				win_options = {
@@ -59,17 +59,22 @@ return {
 					["-"] = nil,
 					["<leader>ff"] = {
 						function()
-              fzf.files({
-                cwd = current_dir(0)
-              })
+							fzf.files({
+								cwd = current_dir(0),
+							})
 						end,
 						mode = "n",
 					},
 					["<leader>fg"] = {
 						function()
-              fzf.live_grep({
-                cwd = current_dir(0)
-              })
+							fzf.live_grep({
+								cwd = current_dir(0),
+								winopts = {
+									preview = {
+										hidden = false,
+									},
+								},
+							})
 						end,
 						mode = "n",
 					},

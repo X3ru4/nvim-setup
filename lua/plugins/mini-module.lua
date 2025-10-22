@@ -23,13 +23,14 @@ module("tabline", {
 		tabpage_section = "left",
 		format = function(buf_id, label)
 			local suffix = vim.bo[buf_id].modified and "+ " or ""
-			-- local current_buf = vim.api.nvim_get_current_buf() == buf_id
+			local current_buf = vim.api.nvim_get_current_buf() == buf_id
 			local strings = {
+        current_buf and "|" or "",
 				-- vim.g.colors_name == "onedark" and (current_buf and "⌞" or "⌜") or "",
 				require("mini.tabline").default_format(buf_id, label),
 				suffix,
 				-- vim.g.colors_name == "onedark" and (current_buf and "⌝" or "⌟") or "",
-				" ",
+				"",
 			}
 			return table.concat(strings)
 		end,
@@ -96,11 +97,11 @@ module("move", {
 	opts = {},
 })
 module("cursorword", {
-	enabled = false,
+	enabled = true,
 	event = { "BufReadPre", "BufNewFile" },
 	version = false,
 	opts = {
-		delay = 100,
+		delay = 30,
 	},
 })
 module("statusline", {

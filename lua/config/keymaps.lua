@@ -26,10 +26,12 @@ map("n", "<leader>bb", "<cmd>buffer #<cr>")
 map("n", "<leader>v", "gg0vG$", { desc = "Select all" })
 map("n", "<leader>V", "ggVG$", { desc = "Select all line" })
 
--- Go Prev buff in term
+-- Go to the prev buffer in terminal
 map("t", "<C-b>", "<cmd>e #<cr>")
+-- Return normal mode
+map("t", "<C-e>", "<cmd>stopinsert<cr>")
 -- Save file
-map({ "n", "i", "x", "s" }, "<C-s>", "<cmd>silent! w<cr><esc>", { desc = "Save file" })
+map({ "n", "i", "x", "s" }, "<C-s>", "<cmd>silent!w<cr><esc>", { desc = "Save file" })
 -- Quit
 map("n", "<leader>qa", "<cmd>q!<cr>", { desc = "Quit all" })
 map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
@@ -71,8 +73,6 @@ map("n", "<leader>gf", function()
 	local file = vim.fn.expand("%:p")
 	vim.cmd("edit " .. file)
 end, { desc = "Reopen" })
-
---
 
 -- Code
 map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
