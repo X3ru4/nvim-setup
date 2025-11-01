@@ -48,16 +48,31 @@ local colorschemes = {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			use("nord")
+			vim.g.nord_contrast = true
+			require("nord").set()
 		end,
+	},
+	nordic = {
+		"AlexvZyl/nordic.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("nordic").load()
+		end,
+	},
+	norden = {
+		"fcancelinha/nordern.nvim",
+		branch = "master",
+		priority = 1000,
+    config = function ()
+      use("nordern")
+    end
 	},
 	kanagawa = {
 		"rebelot/kanagawa.nvim",
 		lazy = false,
 		priority = 1000,
-		config = function()
-			use("kanagawa")
-		end,
+		config = function() end,
 	},
 	sonokai = {
 		"sainnhe/sonokai",
@@ -95,4 +110,4 @@ local colorschemes = {
 	},
 }
 
-return colorschemes.onedark
+return colorschemes.norden

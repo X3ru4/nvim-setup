@@ -33,7 +33,7 @@ require("lazy").setup({
 		enabled = false,
 	},
 	ui = {
-		border = "single",
+		border = "rounded",
 	},
 	performance = {
 		rtp = {

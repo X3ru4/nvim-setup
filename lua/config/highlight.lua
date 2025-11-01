@@ -73,4 +73,37 @@ api.work_if("nord", {
 	},
 })
 
+api.work_if("nordic", {
+	MiniIndentscopeSymbol = api.modify("MiniIndentscopeSymbol", {
+		italic = false,
+	}),
+})
+
+api.work_if("nordern", {
+	TabLine = {
+		link = "Normal",
+	},
+	TabLineSel = {
+		link = "Normal",
+	},
+	MiniTablineCurrent = {
+		link = "Normal",
+	},
+	MiniTablineModifiedCurrent = {
+		link = "Normal",
+	},
+	MiniTablineModifiedVisible = {
+		link = "Normal",
+	},
+	MiniTablineModifiedHidden = {
+		link = "Normal",
+	},
+	MiniStatuslineModeNormal = {
+		link = "NoiceVirtualText",
+	},
+	MiniStatuslineModeCommand = {
+		link = "LspDiagnosticsVirtualTextWarning",
+	},
+})
+
 api.apply_highlight()

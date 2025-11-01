@@ -57,7 +57,6 @@ return {
 			require("blink-cmp").setup({
 				keymap = {
 					preset = "enter",
-					["<C-b>"] = { "show_documentation", "fallback" },
 					["<C-x>"] = { "hide_documentation", "fallback" },
 				},
 				cmdline = {
@@ -88,7 +87,7 @@ return {
 							max_width = 30,
 							max_height = 10,
 							winblend = 0,
-							border = "none",
+							border = "rounded",
 							winhighlight = "CursorLine:BlinkCmpDocCursorLine,Search:None",
 						},
 					},
@@ -97,7 +96,7 @@ return {
 						min_width = 1,
 						max_height = 8,
 						winblend = 0,
-						border = "none",
+						border = "rounded",
 						winhighlight = "CursorLine:BlinkCmpMenuSelection,Search:None",
 						draw = {
 							columns = {
