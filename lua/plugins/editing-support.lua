@@ -42,15 +42,38 @@ return {
 	},
 
 	{
-		enabled = true,
 		"m4xshen/autoclose.nvim",
+    enabled = false,
 		event = "InsertEnter",
-		opts = {},
+		opts = {
+			keys = {
+				["("] = { escape = false, close = true, pair = "()" },
+				["["] = { escape = false, close = true, pair = "[]" },
+				["{"] = { escape = false, close = true, pair = "{}" },
+
+				[">"] = { escape = true, close = false, pair = "<>" },
+				[")"] = { escape = true, close = false, pair = "()" },
+				["]"] = { escape = true, close = false, pair = "[]" },
+				["}"] = { escape = true, close = false, pair = "{}" },
+
+				['"'] = { escape = true, close = true, pair = '""' },
+				["'"] = { escape = true, close = true, pair = "''" },
+				["`"] = { escape = true, close = true, pair = "``" },
+			},
+			options = {
+				disabled_filetypes = { "text" },
+				disable_when_touch = true,
+				touch_regex = "[%w(%[{]",
+        pair_spaces = false,
+				auto_indent = true,
+				disable_command_mode = false,
+			},
+		},
 	},
 
 	{
-		enabled = false,
 		"windwp/nvim-autopairs",
+    enabled = true,
 		event = "InsertEnter",
 		opts = {
 			check_ts = true,
@@ -73,7 +96,10 @@ return {
 	{
 		"nat-418/boole.nvim",
 		enabled = true,
-		event = { "BufReadPre", "BufNewFile" },
+    keys = {
+      { "<C-a>" },
+      { "<C-x>" },
+    },
 		config = function()
 			require("boole").setup({
 				mappings = {
@@ -143,7 +169,7 @@ return {
 	{
 		"jake-stewart/multicursor.nvim",
 		branch = "1.0",
-    event = { "BufReadPre", "BufNewFile" },
+		event = "VeryLazy",
 		keys = function()
 			local mc = require("multicursor-nvim")
 			return {

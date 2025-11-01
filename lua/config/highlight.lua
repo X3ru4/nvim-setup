@@ -3,33 +3,38 @@ api.highlights = {
 	DropBarMenuHoverEntry = {
 		link = "Visual",
 	},
-  MiniCursorword = {
-    bg = "#494d64",
-    default = false,
-  },
-  MiniCursorwordCurrent = {
-    link = "MiniCursorword"
-  },
+	MiniCursorword = {
+		bg = "#494d64",
+		default = false,
+	},
+	MiniCursorwordCurrent = {
+		link = "MiniCursorword",
+	},
 	DropBarMenuHoverIcon = {
 		link = "Nop",
 	},
+	Cursor = {
+		bg = "#cfcfcf",
+	},
 }
 
-api.modify("MiniIndentscopeSymbol", {
-	bold = true,
-})
-
-api.work_if("catppuccin-macchiato", {
-  MiniTablineCurrent = api.modify("MiniTablineCurrent", {
-    italic = false,
-    underline = false,
-  }),
-  MiniTablineModifiedCurrent = api.modify("MiniTablineModifiedCurrent", {
-    italic = false,
-  })
+api.work_if("catppuccin", {
+	MiniTablineCurrent = api.modify("MiniTablineCurrent", {
+		italic = false,
+		underline = false,
+	}),
+	MiniTablineModifiedCurrent = api.modify("MiniTablineModifiedCurrent", {
+		italic = false,
+	}),
+	Visual = api.modify("Visual", {
+		bold = false,
+	}),
 })
 
 api.work_if("onedark", {
+	Cursor = {
+		bg = 15230577,
+	},
 	WinBar = {
 		bg = "#242830",
 	},
@@ -37,13 +42,12 @@ api.work_if("onedark", {
 		link = "Normal",
 	},
 	MiniTablineCurrent = {
-		link = "TabLine",
+		bold = true,
+		bg = 2632756,
+		fg = 11252415,
 	},
 	MiniTablineHidden = {
-		link = "TabLineFill",
-	},
-	MiniTablineVisible = {
-		link = "TabLine",
+		link = "WinBar",
 	},
 	Minicursorword = {
 		bg = "#323641",

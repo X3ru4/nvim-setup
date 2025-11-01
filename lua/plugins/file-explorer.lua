@@ -54,9 +54,9 @@ return {
 				},
 				keymaps = {
 					["<C-s>"] = {},
-					["<C-h>"] = nil,
-					["g."] = nil,
-					["-"] = nil,
+					["<C-h>"] = false,
+					["g."] = false,
+					["-"] = false,
 					["<leader>ff"] = {
 						function()
 							fzf.files({

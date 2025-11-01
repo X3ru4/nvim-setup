@@ -2,7 +2,6 @@ return {
 
 	{
 		"Bekaboo/dropbar.nvim",
-		event = "BufReadPre",
 		config = function()
 			vim.api.nvim_create_autocmd("FileType", {
 				once = true,

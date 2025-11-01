@@ -2,7 +2,6 @@ return {
 
 	{
 		"ibhagwan/fzf-lua",
-		event = "VeryLazy",
 		opts = {
 			winopts = {
 				preview = {

@@ -1,21 +1,22 @@
 return {
 
 	{
-		enabled = false,
 		"folke/flash.nvim",
+		enabled = false,
 		opts = {},
 		keys = {
 			{
-				"gs",
+				"s",
 				mode = { "n", "x", "o" },
 				function()
 					require("flash").jump()
 				end,
 				desc = "Flash",
 				nowait = true,
+				remap = true,
 			},
 			{
-				"gS",
+				"S",
 				mode = { "n", "x", "o" },
 				function()
 					require("flash").treesitter()
@@ -39,18 +40,82 @@ return {
 		"ggandor/leap.nvim",
 		enabled = true,
 		keys = {
-			{ "s", mode = { "n", "x", "o" }, desc = "Leap Forward to" },
-			{ "S", mode = { "n", "x", "o" }, desc = "Leap Backward to" },
-			{ "gs", mode = { "n", "x", "o" }, desc = "Leap from Windows" },
+			{
+				"s",
+				"<Plug>(leap)",
+				mode = { "n", "x", "o" },
+				nowait = true,
+				remap = true,
+			},
+			{
+				"S",
+				"<Plug>(leap-from-window)",
+				mode = "n",
+        nowait = true,
+			},
+			{
+				"R",
+				function()
+					require("leap.treesitter").select({
+						opts = require("leap.user").with_traversal_keys("R", "r"),
+					})
+				end,
+				mode = { "x", "o" },
+			},
 		},
 		config = function(_, opts)
 			local leap = require("leap")
 			for k, v in pairs(opts) do
 				leap.opts[k] = v
 			end
-			leap.add_default_mappings(true)
+
+			leap.opts.preview = function(ch0, ch1, ch2)
+				return not (ch1:match("%s") or (ch0:match("%a") and ch1:match("%a") and ch2:match("%a")))
+			end
+
+			leap.opts.equivalence_classes = {
+				" \t\r\n",
+				"([{",
+				")]}",
+				"'\"`",
+			}
+
+			require("leap.user").set_repeat_keys("<enter>", "<backspace>")
+
 			vim.keymap.del({ "x", "o" }, "x")
 			vim.keymap.del({ "x", "o" }, "X")
+		end,
+	},
+
+	{
+		"smoka7/hop.nvim",
+		enabled = false,
+		keys = {
+			{ "f" },
+			{ "F" },
+			{ "t" },
+			{ "T" },
+		},
+		version = "*",
+		config = function()
+			-- place this in one of your configuration file(s)
+			local hop = require("hop")
+			hop.setup({
+				keys = "etovxqpdygfblzhckisuran",
+			})
+			local directions = require("hop.hint").HintDirection
+			vim.keymap.set("", "f", function()
+				hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = false })
+			end, { remap = true })
+			vim.keymap.set("", "F", function()
+				hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = false })
+			end, { remap = true })
+			vim.keymap.set("", "t", function()
+				hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = false, hint_offset = -1 })
+			end, { remap = true })
+			vim.keymap.set("", "T", function()
+				hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = false, hint_offset = 1 })
+			end, { remap = true })
 		end,
 	},
 }

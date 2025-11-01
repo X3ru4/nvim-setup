@@ -57,6 +57,8 @@ return {
 			require("blink-cmp").setup({
 				keymap = {
 					preset = "enter",
+					["<C-b>"] = { "show_documentation", "fallback" },
+					["<C-x>"] = { "hide_documentation", "fallback" },
 				},
 				cmdline = {
 					enabled = true,
@@ -71,7 +73,7 @@ return {
 				signature = { enabled = false },
 				completion = {
 					ghost_text = {
-						enabled = true,
+						enabled = false,
 					},
 					accept = {
 						auto_brackets = {
@@ -79,14 +81,14 @@ return {
 						},
 					},
 					documentation = {
-						auto_show = true,
+						auto_show = false,
 						window = {
 							scrollbar = false,
-							min_width = 10,
+							min_width = 15,
 							max_width = 30,
 							max_height = 10,
-							winblend = 20,
-							border = "rounded",
+							winblend = 0,
+							border = "none",
 							winhighlight = "CursorLine:BlinkCmpDocCursorLine,Search:None",
 						},
 					},
@@ -94,12 +96,17 @@ return {
 						scrollbar = false,
 						min_width = 1,
 						max_height = 8,
-						winblend = 20,
-						border = "rounded",
+						winblend = 0,
+						border = "none",
 						winhighlight = "CursorLine:BlinkCmpMenuSelection,Search:None",
 						draw = {
 							columns = {
-								{ "kind_icon", "label", "label_description", gap = 1 },
+								{
+									"kind_icon",
+									"label",
+									-- "label_description",
+									gap = 1,
+								},
 								{ "kind" },
 							},
 							components = {

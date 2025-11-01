@@ -3,7 +3,6 @@ local map = vim.keymap.set
 map("n", "<leader>rm", "<cmd>!rm ~/.local/state/nvim/swap -rf<cr>", { desc = "Remove swap folder" })
 
 -- Better insert
-map("i", "<c-j>", "<c-o>o")
 map("i", "<c-c>", "<c-o>S")
 map("i", "<c-a>", "<c-o>I")
 
@@ -45,7 +44,7 @@ map("n", "<leader>gg", function()
 	vim.cmd("source %")
 end, { desc = "Source" })
 -- Open term
-map("n", "<leader>gt", "<cmd>terminal<cr>", { desc = "Open terminal" })
+map("n", "<leader>gt", "<cmd>terminal<cr><cmd>startinsert<cr>", { desc = "Open terminal" })
 -- Replace select
 map("x", "<leader>gr", function()
 	local save_reg = vim.fn.getreg('"')
@@ -78,7 +77,11 @@ end, { desc = "Reopen" })
 map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
 map("n", "<leader>cr", function()
 	vim.cmd("silent! w")
-	vim.cmd("terminal ./run.sh")
+  if vim.g.run_method == "make" then
+    vim.cmd("terminal make run")
+  elseif vim.g.run_method == "sh" then
+    vim.cmd("terminal ./run.sh")
+  end
 end)
 
 -- Lsp
@@ -110,6 +113,10 @@ map({ "i", "n" }, "<c-l>", function()
 		close_events = { "BufWinLeave", "CursorMoved", "CursorMovedI", "ModeChanged" },
 	})
 end, { desc = "Open diagnostic float" })
+
+map({ "i", "n" }, "<C-j>", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end)
 
 -- ©LazyVim
 -- Better up/down

@@ -25,7 +25,7 @@ module("tabline", {
 			local suffix = vim.bo[buf_id].modified and "+ " or ""
 			local current_buf = vim.api.nvim_get_current_buf() == buf_id
 			local strings = {
-        current_buf and "|" or "",
+				current_buf and "|" or "",
 				-- vim.g.colors_name == "onedark" and (current_buf and "⌞" or "⌜") or "",
 				require("mini.tabline").default_format(buf_id, label),
 				suffix,
@@ -42,11 +42,16 @@ module("indentscope", {
 	version = false,
 	opts = function()
 		return {
+			-- draw = {
+			-- 	delay = 100,
+			-- 	animation = function(s, n)
+			-- 		return 15
+			-- 	end,
+			-- 	priority = 2,
+			-- },
 			draw = {
-				delay = 100,
-				animation = function(s, n)
-					return 15
-				end,
+				delay = 20,
+				animation = require("mini.indentscope").gen_animation.none(),
 				priority = 2,
 			},
 			mappings = {
@@ -72,7 +77,7 @@ module("indentscope", {
 				"lazy",
 				"mason",
 				"oil",
-        "oil_preview",
+				"oil_preview",
 				"dropbar_menu",
 			},
 			callback = function()
@@ -82,22 +87,49 @@ module("indentscope", {
 	end,
 })
 module("surround", {
-	event = { "BufReadPre", "BufNewFile" },
+	keys = {
+		{ "gsa", mode = { "n", "x", "v" } },
+		{ "gsd", mode = { "n", "x", "v" } },
+		{ "gsr", mode = { "n", "x", "v" } },
+		{ "gsf", mode = { "n", "x", "v" } },
+		{ "gsF", mode = { "n", "x", "v" } },
+	},
 	version = false,
-	opts = {},
+	opts = {
+		mappings = {
+			add = "gsa", -- Add surrounding in Normal and Visual modes
+			delete = "gsd", -- Delete surrounding
+			find = "gsf", -- Find surrounding (to the right)
+			find_left = "gsF", -- Find surrounding (to the left)
+			highlight = "gsh", -- Highlight surrounding
+			replace = "gsr", -- Replace surrounding
+
+			suffix_last = "l", -- Suffix to search with "prev" method
+			suffix_next = "n", -- Suffix to search with "next" method
+		},
+		silent = true,
+	},
 })
 module("align", {
+	enabled = false,
 	event = { "BufReadPre", "BufNewFile" },
 	version = false,
-	opts = {},
+	opts = {
+		silent = true,
+	},
 })
 module("move", {
-	event = { "BufReadPre", "BufNewFile" },
+	keys = {
+		{ "<A-h>", mode = { "n", "v", "x" } },
+		{ "<A-l>", mode = { "n", "v", "x" } },
+		{ "<A-j>", mode = { "n", "v", "x" } },
+		{ "<A-k>", mode = { "n", "v", "x" } },
+	},
 	version = false,
 	opts = {},
 })
 module("cursorword", {
-	enabled = true,
+	enabled = false,
 	event = { "BufReadPre", "BufNewFile" },
 	version = false,
 	opts = {
@@ -144,7 +176,7 @@ module("statusline", {
 							"#",
 							init,
 							icons,
-							"%#Nop#",
+							"%#StatusLine#",
 						}
 						return table.concat(strings)
 					end
@@ -156,7 +188,7 @@ module("statusline", {
 						},
 						"%<",
 						{
-							hl = "Nop",
+							hl = "StatusLine",
 							strings = {
 								table.concat({
 									file_icon(vim.bo.filetype .. " "),
@@ -168,23 +200,23 @@ module("statusline", {
 						},
 						"%=",
 						{
-							hl = "Nop",
+							hl = "StatusLine",
 							strings = {
 								sl.section_diagnostics({
-                  icon = "",
+									icon = "",
 									signs = {
 										ERROR = "%#DiagnosticError#"
 											.. require("config.icons").diagnostic.errr
-											.. "%#Nop# ",
+											.. "%#StatusLine# ",
 										WARN = "%#DiagnosticWarn#"
 											.. require("config.icons").diagnostic.warn
-											.. "%#Nop# ",
+											.. "%#StatusLine# ",
 										INFO = "%#DiagnosticInfo#"
 											.. require("config.icons").diagnostic.info
-											.. "%#Nop# ",
+											.. "%#StatusLine# ",
 										HINT = "%#DiagnosticHint#"
 											.. require("config.icons").diagnostic.hint
-											.. "%#Nop# ",
+											.. "%#StatusLine# ",
 									},
 								}),
 							},

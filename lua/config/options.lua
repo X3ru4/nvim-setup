@@ -1,25 +1,7 @@
-local diag = require("config.icons").diagnostic
 
 vim.g.enable_plugin = {
 	lazydev_nvim = true,
 }
-
-vim.diagnostic.config({
-	virtual_text = {
-		prefix = "",
-	},
-	underline = true,
-	float = { border = nil, header = "", source = "if_many" },
-	update_in_insert = false,
-	signs = {
-		text = {
-			[vim.diagnostic.severity.ERROR] = diag.errr,
-			[vim.diagnostic.severity.WARN] = diag.warn,
-			[vim.diagnostic.severity.INFO] = diag.info,
-			[vim.diagnostic.severity.HINT] = diag.hint,
-		},
-	},
-})
 
 vim.o.foldenable = true
 vim.o.timeoutlen = 300
@@ -29,6 +11,8 @@ function _G.newfoldtext()
 	local count = vim.v.foldend - vim.v.foldstart + 1
 	return "  " .. line .. " ↙" .. count
 end
+
+vim.g.run_method = "make"
 
 local o = vim.o
 o.relativenumber = true
@@ -93,13 +77,26 @@ opt.updatetime = 200
 opt.virtualedit = "block"
 opt.wildmode = "longest:full,full"
 opt.winminwidth = 5
-opt.wrap = false
-o.showbreak = "↪"
+o.showbreak = "󱞩"
 opt.list = true
 opt.listchars = {
-	eol = "↩",
-	tab = "··",
-	space = "·",
-	trail = "•",
-	nbsp = "ɲ",
+	eol = " ",
+	tab = "  ",
+	space = " ",
+	trail = "·",
+	nbsp = " ",
 }
+opt.guicursor = {
+  "n-c:block-Cursor",
+  "v:hor20-Cursor",
+  "i-ci-ve:ver25-Cursor",
+  "r-cr:hor20-Cursor",
+  "o:hor50-Cursor",
+}
+-- opt.listchars = {
+-- 	eol = "↩",
+-- 	tab = "··",
+-- 	space = "·",
+-- 	trail = "•",
+-- 	nbsp = "ɲ",
+-- }

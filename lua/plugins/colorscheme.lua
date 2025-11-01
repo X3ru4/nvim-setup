@@ -11,7 +11,7 @@ local colorschemes = {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			use("tokyonight-storm")
+			use("tokyonight-moon")
 		end,
 	},
 	onedark = {
@@ -33,7 +33,7 @@ local colorschemes = {
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
-				flavour = "macchiato",
+				flavour = "frappe",
 				transparent_background = false, -- disables setting the background color.
 				float = {
 					transparent = false, -- enable transparent floating windows
@@ -95,4 +95,4 @@ local colorschemes = {
 	},
 }
 
-return colorschemes.catppuccin
+return colorschemes.onedark

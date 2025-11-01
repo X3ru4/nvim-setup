@@ -4,12 +4,12 @@ return {
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
-			vim.lsp.inlay_hint.enable(true)
+			vim.lsp.inlay_hint.enable(false)
 			local server = {
 				-- Lua
 				lua_ls = {},
 				-- -- C/C++
-				-- clangd = {},
+				clangd = {},
 				-- Python
 				basedpyright = {},
 			}
@@ -18,6 +18,24 @@ return {
 				vim.lsp.config(name, opts)
 				vim.lsp.enable(name)
 			end
+
+			local diag = require("config.icons").diagnostic
+			vim.diagnostic.config({
+				virtual_text = {
+					prefix = "⬗",
+				},
+				underline = false,
+				float = { border = nil, header = "", source = "if_many" },
+				update_in_insert = false,
+				signs = {
+					text = {
+						[vim.diagnostic.severity.ERROR] = diag.errr,
+						[vim.diagnostic.severity.WARN] = diag.warn,
+						[vim.diagnostic.severity.INFO] = diag.info,
+						[vim.diagnostic.severity.HINT] = diag.hint,
+					},
+				},
+			})
 		end,
 	},
 
@@ -67,10 +85,25 @@ return {
 	{
 		"smjonas/inc-rename.nvim",
 		opts = {
-			input_buffer_type = "dressing",
+			-- input_buffer_type = "dressing",
 		},
 		keys = {
 			{ "grn", ":IncRename ", desc = "Rename" },
 		},
+	},
+
+	{
+		"rachartier/tiny-inline-diagnostic.nvim",
+		enabled = false,
+		event = "VeryLazy",
+		config = function()
+			require("tiny-inline-diagnostic").setup()
+		end,
+	},
+
+	{
+		"b0o/schemastore.nvim",
+    enabled = false,
+		ft = { "json" },
 	},
 }

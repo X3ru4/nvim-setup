@@ -1,6 +1,123 @@
 return {
 
 	{
+		"mcauley-penney/visual-whitespace.nvim",
+    enabled = false,
+		event = "ModeChanged *:[vV\22]",
+		opts = {
+			enabled = true,
+			highlight = { link = "Visual", default = true },
+			match_types = {
+				space = true,
+				tab = false,
+				nbsp = true,
+				lead = false,
+				trail = false,
+			},
+			list_chars = {
+				space = "·",
+				tab = ">",
+				nbsp = "␣",
+				lead = "‹",
+				trail = "›",
+			},
+			fileformat_chars = {
+				unix = "󱞥",
+				mac = "←",
+				dos = "↙",
+			},
+		},
+	},
+
+	{
+		"folke/noice.nvim",
+		enabled = false,
+		event = "VeryLazy",
+		opts = {
+			cmdline = {
+				enabled = true,
+				view = "cmdline_popup",
+				format = {
+					cmdline = { pattern = "^:", icon = "", lang = "vim" },
+					search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
+					search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
+					filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
+					lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
+					help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
+					input = { view = "cmdline_input", icon = "󰥻 " }, -- Used by input()
+				},
+			},
+			messages = {
+				enabled = true,
+				view = "notify",
+				view_error = "notify",
+				view_warn = "notify",
+				view_history = "messages",
+				view_search = "virtualtext",
+			},
+			popupmenu = {
+				enabled = false,
+			},
+			commands = {},
+			notify = {
+				enabled = true,
+			},
+			lsp = {
+				progress = {
+					enabled = false,
+					format = "lsp_progress",
+					view = "mini",
+				},
+				override = {
+					["vim.lsp.util.convert_input_to_markdown_lines"] = false,
+					["vim.lsp.util.stylize_markdown"] = false,
+					["cmp.entry.get_documentation"] = false,
+				},
+				hover = {
+					enabled = false,
+				},
+				signature = {
+					enabled = false,
+					auto_open = {
+						enabled = false,
+						trigger = false,
+						luasnip = false,
+					},
+				},
+				message = {
+					enabled = true,
+					view = "mini",
+					opts = {},
+				},
+				documentation = {
+					view = "hover",
+					opts = {
+						lang = "markdown",
+						replace = true,
+						render = "plain",
+						format = { "{message}" },
+						win_options = { concealcursor = "n", conceallevel = 3 },
+					},
+				},
+			},
+			health = {
+				checker = false, -- Disable if you don't want health checks to run
+			},
+			presets = {
+				bottom_search = true,
+				command_palette = true,
+				long_message_to_split = false,
+				inc_rename = true,
+				lsp_doc_border = false,
+			},
+		},
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
+		},
+	},
+
+	{
 		enabled = false,
 		"NStefan002/screenkey.nvim",
 		event = "VeryLazy",

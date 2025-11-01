@@ -52,4 +52,34 @@ return {
 			})
 		end,
 	},
+
+	{
+		"andymass/vim-matchup",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			vim.g.matchup_matchparen_offscreen = { method = "popup" }
+			vim.g.matchup_matchparen_enabled = 1
+			vim.g.matchup_motion_enabled = 0
+			vim.g.matchup_text_obj_enabled = 0
+			require("match-up").setup({
+				treesitter = {
+					stopline = 500,
+				},
+			})
+		end,
+	},
+
+	{
+		"utilyre/sentiment.nvim",
+    enabled = false,
+		version = "*",
+		event = "VeryLazy",
+		opts = {
+			pairs = {
+				{ "(", ")" },
+				{ "{", "}" },
+				{ "[", "]" },
+			},
+		},
+	},
 }
