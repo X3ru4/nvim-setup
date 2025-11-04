@@ -14,17 +14,25 @@ end
 
 vim.g.run_method = "make"
 
-local o = vim.o
-o.relativenumber = true
-o.cmdheight = 0
-
 local opt = vim.opt
+
+opt.relativenumber = true
+opt.cmdheight = 0
+
+-- Fold
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldtext = "v:lua.newfoldtext()"
+
+-- Wrap
+opt.wrap = true
+opt.breakindent = true
+opt.linebreak = true
+
 opt.number = true
 opt.autowrite = true
 
+-- Windown
 opt.winblend = 20
 opt.pumblend = 20
 -- opt.winborder = "single"
@@ -51,7 +59,6 @@ opt.ignorecase = true
 opt.inccommand = "nosplit"
 opt.jumpoptions = "view"
 opt.laststatus = 3
-opt.linebreak = true
 opt.mouse = "a"
 opt.pumheight = 20
 opt.ruler = false
@@ -77,7 +84,6 @@ opt.updatetime = 200
 opt.virtualedit = "block"
 opt.wildmode = "longest:full,full"
 opt.winminwidth = 5
-o.showbreak = "󱞩"
 opt.list = true
 opt.listchars = {
 	eol = " ",

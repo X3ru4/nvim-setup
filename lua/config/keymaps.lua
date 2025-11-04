@@ -73,16 +73,30 @@ map("n", "<leader>gf", function()
 	vim.cmd("edit " .. file)
 end, { desc = "Reopen" })
 
+-- Editor
+-- No need more than one cursor
+-- map("n", "<leader>n", "*Nciw", { desc = "Search & Replace" })
+
 -- Code
 map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+map("n", "<leader>ch", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Inlay hint" })
+map("n", "<leader>cw", function()
+	if not vim.o.wrap then
+		vim.opt.wrap = true
+	else
+		vim.opt.wrap = false
+	end
+end, { desc = "Wrap" })
 map("n", "<leader>cr", function()
 	vim.cmd("silent! w")
-  if vim.g.run_method == "make" then
-    vim.cmd("terminal make run")
-  elseif vim.g.run_method == "sh" then
-    vim.cmd("terminal ./run.sh")
-  end
-end)
+	if vim.g.run_method == "make" then
+		vim.cmd("terminal make run")
+	elseif vim.g.run_method == "sh" then
+		vim.cmd("terminal ./run.sh")
+	end
+end, { desc = "Run code" })
 
 -- Lsp
 map("n", "grd", vim.lsp.buf.definition, { desc = "Definition" })
@@ -113,10 +127,6 @@ map({ "i", "n" }, "<c-l>", function()
 		close_events = { "BufWinLeave", "CursorMoved", "CursorMovedI", "ModeChanged" },
 	})
 end, { desc = "Open diagnostic float" })
-
-map({ "i", "n" }, "<C-j>", function()
-	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-end)
 
 -- ©LazyVim
 -- Better up/down

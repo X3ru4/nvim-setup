@@ -12,6 +12,7 @@ return {
 				clangd = {},
 				-- Python
 				basedpyright = {},
+
 			}
 
 			for name, opts in pairs(server) do
@@ -40,8 +41,8 @@ return {
 	},
 
 	{
-		enabled = false,
 		"j-hui/fidget.nvim",
+    enabled = false,
 		event = "VeryLazy",
 		config = function()
 			require("fidget").setup({})

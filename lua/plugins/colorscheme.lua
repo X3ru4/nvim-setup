@@ -11,7 +11,9 @@ local colorschemes = {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			use("tokyonight-moon")
+			require("tokyonight").load({
+				style = "moon",
+			})
 		end,
 	},
 	onedark = {
@@ -33,8 +35,9 @@ local colorschemes = {
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
-				flavour = "frappe",
+				flavour = "mocha",
 				transparent_background = false, -- disables setting the background color.
+        no_italic = true,
 				float = {
 					transparent = false, -- enable transparent floating windows
 					solid = false, -- use solid styling for floating windows, see |winborder|
@@ -60,13 +63,16 @@ local colorschemes = {
 			require("nordic").load()
 		end,
 	},
-	norden = {
+	nordern = {
 		"fcancelinha/nordern.nvim",
 		branch = "master",
 		priority = 1000,
-    config = function ()
+		config = function()
+			require("nordern").setup({
+				brighter_constants = false,
+			})
       use("nordern")
-    end
+		end,
 	},
 	kanagawa = {
 		"rebelot/kanagawa.nvim",
@@ -110,4 +116,4 @@ local colorschemes = {
 	},
 }
 
-return colorschemes.norden
+return colorschemes.catppuccin

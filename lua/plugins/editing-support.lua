@@ -43,7 +43,7 @@ return {
 
 	{
 		"m4xshen/autoclose.nvim",
-    enabled = false,
+		enabled = false,
 		event = "InsertEnter",
 		opts = {
 			keys = {
@@ -64,7 +64,7 @@ return {
 				disabled_filetypes = { "text" },
 				disable_when_touch = true,
 				touch_regex = "[%w(%[{]",
-        pair_spaces = false,
+				pair_spaces = false,
 				auto_indent = true,
 				disable_command_mode = false,
 			},
@@ -73,7 +73,7 @@ return {
 
 	{
 		"windwp/nvim-autopairs",
-    enabled = true,
+		enabled = true,
 		event = "InsertEnter",
 		opts = {
 			check_ts = true,
@@ -96,10 +96,10 @@ return {
 	{
 		"nat-418/boole.nvim",
 		enabled = true,
-    keys = {
-      { "<C-a>" },
-      { "<C-x>" },
-    },
+		keys = {
+			{ "<C-a>" },
+			{ "<C-x>" },
+		},
 		config = function()
 			require("boole").setup({
 				mappings = {
@@ -168,6 +168,7 @@ return {
 
 	{
 		"jake-stewart/multicursor.nvim",
+		enabled = true,
 		branch = "1.0",
 		event = "VeryLazy",
 		keys = function()
@@ -229,13 +230,6 @@ return {
 					"<leader>S",
 					function()
 						mc.matchSkipCursor(-1)
-					end,
-				},
-				{
-					mode = { "n", "x" },
-					"<C-q>",
-					function()
-						mc.toggleCursor()
 					end,
 				},
 			}

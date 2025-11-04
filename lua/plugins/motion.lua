@@ -51,7 +51,7 @@ return {
 				"S",
 				"<Plug>(leap-from-window)",
 				mode = "n",
-        nowait = true,
+				nowait = true,
 			},
 			{
 				"R",

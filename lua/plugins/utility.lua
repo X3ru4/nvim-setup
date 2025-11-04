@@ -16,13 +16,13 @@ return {
 			},
 			list_chars = {
 				space = "·",
-				tab = ">",
+				tab = "··",
 				nbsp = "␣",
 				lead = "‹",
 				trail = "›",
 			},
 			fileformat_chars = {
-				unix = "󱞥",
+				unix = "↴",
 				mac = "←",
 				dos = "↙",
 			},
