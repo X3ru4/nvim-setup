@@ -32,6 +32,9 @@ return {
 					duration = 300,
 					delay = 100,
 				},
+        indent = {
+          enable = true
+        }
 			})
 		end,
 	},
