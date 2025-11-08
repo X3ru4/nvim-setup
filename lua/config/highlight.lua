@@ -19,14 +19,14 @@ api.highlights = {
 }
 
 api.work_if("catppuccin", {
-	MiniTablineCurrent = api.modify("MiniTablineCurrent", {
+	api.modify("MiniTablineCurrent", {
 		italic = false,
 		underline = false,
 	}),
-	MiniTablineModifiedCurrent = api.modify("MiniTablineModifiedCurrent", {
+	api.modify("MiniTablineModifiedCurrent", {
 		italic = false,
 	}),
-	Visual = api.modify("Visual", {
+	api.modify("Visual", {
 		bold = false,
 	}),
 })
@@ -74,7 +74,7 @@ api.work_if("nord", {
 })
 
 api.work_if("nordic", {
-	MiniIndentscopeSymbol = api.modify("MiniIndentscopeSymbol", {
+	api.modify("MiniIndentscopeSymbol", {
 		italic = false,
 	}),
 })
@@ -87,11 +87,11 @@ api.work_if("nordern", {
 		link = "Normal",
 	},
 	MiniTablineCurrent = {
-		link = "Normal",
-	},
+    link = "Normal"
+  },
 	MiniTablineModifiedCurrent = {
-		link = "Normal",
-	},
+    link = "Normal"
+  },
 	MiniTablineModifiedVisible = {
 		link = "Normal",
 	},

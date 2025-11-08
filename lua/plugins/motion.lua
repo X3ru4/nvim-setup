@@ -39,6 +39,7 @@ return {
 	{
 		"ggandor/leap.nvim",
 		enabled = true,
+    event = "VeryLazy",
 		keys = {
 			{
 				"s",
@@ -82,8 +83,8 @@ return {
 
 			require("leap.user").set_repeat_keys("<enter>", "<backspace>")
 
-			vim.keymap.del({ "x", "o" }, "x")
-			vim.keymap.del({ "x", "o" }, "X")
+			-- vim.keymap.del({ "x", "o" }, "x")
+			-- vim.keymap.del({ "x", "o" }, "X")
 		end,
 	},
 

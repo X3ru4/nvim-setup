@@ -20,7 +20,6 @@ return {
 					current_buf and "|" or "",
 					require("mini.tabline").default_format(buf_id, label),
 					suffix,
-					"",
 				}
 				return table.concat(strings)
 			end,

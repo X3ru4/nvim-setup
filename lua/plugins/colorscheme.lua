@@ -116,4 +116,4 @@ local colorschemes = {
 	},
 }
 
-return colorschemes.catppuccin
+return colorschemes.nordern
