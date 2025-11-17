@@ -18,8 +18,8 @@ map("n", "<leader>wl", "<c-w>l", { desc = "Win right" })
 -- Buffer
 map("n", "<s-h>", "<cmd>bprevious<cr>")
 map("n", "<s-l>", "<cmd>bnext<cr>")
-map("n", "<leader>bd", "<cmd>bdelete<cr>")
-map("n", "<leader>bb", "<cmd>buffer #<cr>")
+map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
+map("n", "<leader>bb", "<cmd>buffer #<cr>", { desc = "Previous buffer" })
 
 -- Quick select
 map("n", "<leader>v", "gg0vG$", { desc = "Select all" })
@@ -54,7 +54,7 @@ map("x", "<leader>gr", function()
 	vim.fn.setreg('"', save_reg, save_regtype)
 
 	vim.ui.input({ prompt = "Replace " .. selection .. " with" }, function(input)
-		if type(input) == "string" then
+		if input then
 			vim.cmd("%s/" .. selection .. "/" .. input .. "/g")
 		end
 	end)

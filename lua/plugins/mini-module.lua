@@ -1,4 +1,213 @@
 return {
+
+	{
+		"nvim-mini/mini.notify",
+    enabled = false,
+    event = "VeryLazy",
+		version = false,
+		-- No need to copy this inside `setup()`. Will be used automatically.
+		opts = {
+			-- Content management
+			content = {
+				-- Function which formats the notification message
+				-- By default prepends message with notification time
+				format = function(notif)
+					if notif.data.source == "lsp_progress" then
+						return notif.msg
+					end
+					return require("mini.notify").default_format(notif)
+				end,
+
+				-- Function which orders notification array from most to least important
+				-- By default orders first by level and then by update timestamp
+				sort = nil,
+			},
+
+			-- Notifications about LSP progress
+			lsp_progress = {
+				-- Whether to enable showing
+				enable = true,
+				-- Notification level
+				level = "INFO",
+
+				-- Duration (in ms) of how long last message should be shown
+				duration_last = 1000,
+			},
+
+			-- Window options
+			window = {
+				-- Floating window config
+				config = {
+					border = "rounded",
+          anchor = "SE",
+          row = 99
+				},
+
+				-- Maximum window width as share (between 0 and 1) of available columns
+				max_width_share = 0.382,
+				winblend = 20,
+			},
+		},
+	},
+
+	{
+		"nvim-mini/mini.hipatterns",
+		enabled = false,
+    event = "VeryLazy",
+		version = false,
+		opts = {
+			highlighters = {
+				-- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
+				fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
+				hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
+				todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
+				note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
+
+				-- Highlight hex color strings (`#rrggbb`) using that color
+			},
+		},
+	},
+
+	{
+		"nvim-mini/mini.sessions",
+		-- Used folke/persistence.nvim
+		enabled = false,
+		version = false,
+		config = function()
+			require("mini.sessions").setup({
+				silent = true,
+			})
+			vim.g.save_session = true
+			vim.api.nvim_create_autocmd("VimLeave", {
+				callback = function()
+					if vim.g.save_session then
+						require("mini.sessions").write(require("mini.sessions").get_latest())
+					end
+				end,
+			})
+		end,
+		keys = function()
+			local lastest = require("mini.sessions").get_latest()
+			local MiniSessions = require("mini.sessions")
+			return {
+				{
+					"<leader>qs",
+					function()
+						MiniSessions.read(lastest)
+					end,
+					desc = "Restore Session",
+				},
+				{
+					"<leader>qw",
+					function()
+						vim.ui.input({ prompt = "Name" }, function(input)
+							if input then
+								MiniSessions.write(input)
+							end
+						end)
+					end,
+					desc = "Write new session",
+				},
+				{
+					"<leader>qr",
+					function()
+						MiniSessions.select()
+					end,
+					desc = "Read Sessions",
+				},
+				{
+					"<leader>qd",
+					function()
+						MiniSessions.select("delete", {
+							force = true,
+						})
+					end,
+					desc = "Delete Sessions",
+				},
+				{
+					"<leader>qt",
+					function()
+						vim.g.save_session = not vim.g.save_session
+						print(vim.g.save_session)
+					end,
+					desc = "Don't Save Session",
+				},
+			}
+		end,
+	},
+
+	{
+		"nvim-mini/mini.clue",
+		event = "VeryLazy",
+		version = false,
+		config = function()
+			require("mini.clue").setup({
+				triggers = {
+					-- Leader triggers
+					{ mode = "n", keys = "<Leader>" },
+					{ mode = "x", keys = "<Leader>" },
+
+					-- Built-in completion
+					{ mode = "i", keys = "<C-x>" },
+
+					-- `g` key
+					{ mode = "n", keys = "g" },
+					{ mode = "x", keys = "g" },
+
+					-- Marks
+					{ mode = "n", keys = "'" },
+					{ mode = "n", keys = "`" },
+					{ mode = "x", keys = "'" },
+					{ mode = "x", keys = "`" },
+
+					-- Registers
+					{ mode = "n", keys = '"' },
+					{ mode = "x", keys = '"' },
+					{ mode = "i", keys = "<C-r>" },
+					{ mode = "c", keys = "<C-r>" },
+
+					-- Window commands
+					{ mode = "n", keys = "<C-w>" },
+
+					-- `z` key
+					{ mode = "n", keys = "z" },
+					{ mode = "x", keys = "z" },
+
+					-- [ and ]
+					{ mode = "n", keys = "[" },
+					{ mode = "x", keys = "[" },
+					{ mode = "n", keys = "]" },
+					{ mode = "x", keys = "]" },
+				},
+
+				clues = {
+					-- Enhance this by adding descriptions for <Leader> mapping groups
+					require("mini.clue").gen_clues.builtin_completion(),
+					require("mini.clue").gen_clues.g(),
+					require("mini.clue").gen_clues.marks(),
+					require("mini.clue").gen_clues.registers(),
+					require("mini.clue").gen_clues.windows(),
+					require("mini.clue").gen_clues.z(),
+				},
+
+				-- Clue window settings
+				window = {
+					-- Floating window config
+					config = {
+						border = "rounded",
+					},
+
+					-- Delay before showing clue window
+					delay = 200,
+
+					-- Keys to scroll inside the clue window
+					scroll_down = "<C-d>",
+					scroll_up = "<C-u>",
+				},
+			})
+		end,
+	},
+
 	{
 		"nvim-mini/mini.diff",
 		version = false,
@@ -17,7 +226,7 @@ return {
 				local suffix = vim.bo[buf_id].modified and "+ " or ""
 				local current_buf = vim.api.nvim_get_current_buf() == buf_id
 				local strings = {
-					current_buf and "|" or "",
+					current_buf and "⟩" or "",
 					require("mini.tabline").default_format(buf_id, label),
 					suffix,
 				}
@@ -111,6 +320,8 @@ return {
 		"nvim-mini/mini.statusline",
 		version = false,
 		event = "VeryLazy",
+    -- true if you want lazy load
+    lazy = false,
 		config = function()
 			require("mini.statusline").setup({
 				content = {
@@ -188,6 +399,13 @@ return {
 									}),
 								},
 							},
+							{
+								hl = mode_hl,
+								strings = {
+									-- sl.section_location({trunc_width = 100})
+									"X3ru4",
+								},
+							},
 						})
 					end,
 				},
@@ -224,6 +442,7 @@ return {
 					u = ai.gen_spec.function_call(),
 					U = ai.gen_spec.function_call({ name_pattern = "[%w_]" }),
 				},
+				silent = true,
 			}
 		end,
 	},

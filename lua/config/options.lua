@@ -1,4 +1,3 @@
-
 vim.g.enable_plugin = {
 	lazydev_nvim = true,
 }
@@ -12,6 +11,7 @@ function _G.newfoldtext()
 	return "  " .. line .. " ↙" .. count
 end
 
+-- make or sh
 vim.g.run_method = "make"
 
 local opt = vim.opt
@@ -33,8 +33,8 @@ opt.number = true
 opt.autowrite = true
 
 -- Windown
-opt.winblend = 20
-opt.pumblend = 20
+opt.winblend = 0
+opt.pumblend = 0
 -- opt.winborder = "single"
 
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
@@ -93,11 +93,11 @@ opt.listchars = {
 	nbsp = " ",
 }
 opt.guicursor = {
-  "n-c:block-Cursor",
-  "v:hor20-Cursor",
-  "i-ci-ve:ver25-Cursor",
-  "r-cr:hor20-Cursor",
-  "o:hor50-Cursor",
+	"n-c:block-Cursor",
+	"v:hor20-Cursor",
+	"i-ci-ve:ver25-Cursor",
+	"r-cr:hor20-Cursor",
+	"o:hor50-Cursor",
 }
 -- opt.listchars = {
 -- 	eol = "↩",

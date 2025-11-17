@@ -22,7 +22,7 @@ local colorschemes = {
 		priority = 1000,
 		config = function()
 			require("onedark").setup({
-				style = "dark",
+				style = "darker",
 				ending_tildes = true,
 			})
 			require("onedark").load()
@@ -35,9 +35,9 @@ local colorschemes = {
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
-				flavour = "mocha",
+				flavour = "macchiato",
 				transparent_background = false, -- disables setting the background color.
-        no_italic = true,
+				no_italic = true,
 				float = {
 					transparent = false, -- enable transparent floating windows
 					solid = false, -- use solid styling for floating windows, see |winborder|
@@ -71,7 +71,7 @@ local colorschemes = {
 			require("nordern").setup({
 				brighter_constants = false,
 			})
-      use("nordern")
+			use("nordern")
 		end,
 	},
 	kanagawa = {
@@ -112,6 +112,83 @@ local colorschemes = {
 		priority = 1000,
 		config = function()
 			use("cyberdream")
+		end,
+	},
+	base46 = {
+		"jayden-chan/base46.nvim",
+		lazy = false,
+		config = function()
+			require("base46").load_theme({
+				base = "base46",
+				-- Available theme in _base46_theme.txt
+				theme = "onedark",
+				transparency = false,
+			})
+			local set_hl = vim.api.nvim_set_hl
+			local api = require("../config/highlight_api")
+			api.highlights = {
+				WinBar = {
+					link = "Normal",
+				},
+				WinBarNC = {
+					link = "Normal",
+				},
+        MatchParenCur = {
+          link = "MatchParen"
+        },
+        MatchWordCur = {
+          link = "MatchParen"
+        },
+				DropBarIconUISeparator = {
+					fg = api.get("Comment").fg,
+				},
+				DropBarIconUISeparatorNC = {
+					link = "DropBarIconUISeparator",
+				},
+				DropBarIconUISeparatorMenu = {
+					link = "DropBarIconUISeparator",
+				},
+				MiniStatuslineModeInsert = api.modify("Feline_InsertMode", {
+					reverse = true,
+					bold = true,
+				}, true),
+				MiniStatuslineModeNormal = api.modify("Feline_NormalMode", {
+					reverse = true,
+					bold = true,
+				}, true),
+				MiniStatuslineModeVisual = api.modify("Feline_VisualMode", {
+					reverse = true,
+					bold = true,
+				}, true),
+				MiniStatuslineModeCommand = api.modify("Feline_CommandMode", {
+					reverse = true,
+					bold = true,
+				}, true),
+				MiniStatuslineModeReplace = api.modify("Feline_ReplaceMode", {
+					reverse = true,
+					bold = true,
+				}, true),
+				MiniStatuslineModeOther = api.modify("Feline_ConfirmMode", {
+					reverse = true,
+					bold = true,
+				}, true),
+				MiniDiffSignAdd = {
+					link = "GitSignsAdd",
+				},
+				MiniDiffSignChange = {
+					link = "GitSignsChange",
+				},
+				MiniDiffSignDelete = {
+					link = "GitSignsDelete",
+				},
+        MiniTablineModifiedCurrent = api.modify("TabLineSel", {
+          fg = api.get("ErrorMsg").fg
+        }, true),
+        MiniTablineModifiedHidden = {
+          link = "MiniTablineModifiedCurrent"
+        }
+			}
+			api.apply_highlight()
 		end,
 	},
 }
