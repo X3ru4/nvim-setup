@@ -78,7 +78,9 @@ local colorschemes = {
 		"rebelot/kanagawa.nvim",
 		lazy = false,
 		priority = 1000,
-		config = function() end,
+		config = function()
+      require("kanagawa").load()
+    end,
 	},
 	sonokai = {
 		"sainnhe/sonokai",
@@ -121,7 +123,7 @@ local colorschemes = {
 			require("base46").load_theme({
 				base = "base46",
 				-- Available theme in _base46_theme.txt
-				theme = "onedark",
+				theme = "doomchad",
 				transparency = false,
 			})
 			local set_hl = vim.api.nvim_set_hl
@@ -133,12 +135,12 @@ local colorschemes = {
 				WinBarNC = {
 					link = "Normal",
 				},
-        MatchParenCur = {
-          link = "MatchParen"
-        },
-        MatchWordCur = {
-          link = "MatchParen"
-        },
+				MatchParenCur = {
+					link = "MatchParen",
+				},
+				MatchWordCur = {
+					link = "MatchParen",
+				},
 				DropBarIconUISeparator = {
 					fg = api.get("Comment").fg,
 				},
@@ -181,12 +183,12 @@ local colorschemes = {
 				MiniDiffSignDelete = {
 					link = "GitSignsDelete",
 				},
-        MiniTablineModifiedCurrent = api.modify("TabLineSel", {
-          fg = api.get("ErrorMsg").fg
-        }, true),
-        MiniTablineModifiedHidden = {
-          link = "MiniTablineModifiedCurrent"
-        }
+				MiniTablineModifiedCurrent = api.modify("TabLineSel", {
+					fg = api.get("ErrorMsg").fg,
+				}, true),
+				MiniTablineModifiedHidden = {
+					link = "MiniTablineModifiedCurrent",
+				},
 			}
 			api.apply_highlight()
 		end,

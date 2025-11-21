@@ -18,15 +18,15 @@ return {
 					priority = 15,
 					style = {
 						{
-							fg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextHint" }).fg,
+							fg = vim.api.nvim_get_hl(0, { name = "DiagnosticHint" }).fg,
 							bold = false,
 						},
 						{
-							fg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextError" }).fg,
+							fg = vim.api.nvim_get_hl(0, { name = "DiagnosticError" }).fg,
 							bold = false,
 						},
 					},
-					use_treesitter = false,
+					use_treesitter = true,
 					chars = {
 						horizontal_line = "─",
 						vertical_line = "│",
