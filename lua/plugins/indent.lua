@@ -1,8 +1,15 @@
 return {
 
+  {
+    "nvimdev/indentmini.nvim",
+    enabled = false,
+		event = { "BufReadPre", "BufNewFile" },
+    opts = {}
+  },
+
 	{
-		enabled = false,
 		"shellRaining/hlchunk.nvim",
+    enabled = true,
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("hlchunk").setup({
@@ -12,30 +19,45 @@ return {
 					style = {
 						{
 							fg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextHint" }).fg,
-							bold = true,
+							bold = false,
 						},
 						{
 							fg = vim.api.nvim_get_hl(0, { name = "DiagnosticVirtualTextError" }).fg,
-							bold = true,
+							bold = false,
 						},
 					},
-					use_treesitter = true,
+					use_treesitter = false,
 					chars = {
 						horizontal_line = "─",
 						vertical_line = "│",
 						left_top = "╭",
 						left_bottom = "╰",
-						right_arrow = "",
+						right_arrow = ">",
 					},
 					error_sign = true,
 					-- animation related
-					duration = 300,
-					delay = 100,
+					duration = 0,
+					delay = 20,
 				},
-        indent = {
-          enable = true
-        }
+				indent = {
+          enable = true,
+					use_treesitter = false,
+					style = {
+            {
+              bold = false
+            }
+          },
+				},
 			})
 		end,
+	},
+
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		enabled = false,
+		main = "ibl",
+		---@module "ibl"
+		---@type ibl.config
+		opts = {},
 	},
 }

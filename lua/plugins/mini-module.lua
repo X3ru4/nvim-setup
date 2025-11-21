@@ -2,8 +2,8 @@ return {
 
 	{
 		"nvim-mini/mini.notify",
-    enabled = false,
-    event = "VeryLazy",
+		enabled = false,
+		event = "VeryLazy",
 		version = false,
 		-- No need to copy this inside `setup()`. Will be used automatically.
 		opts = {
@@ -39,8 +39,8 @@ return {
 				-- Floating window config
 				config = {
 					border = "rounded",
-          anchor = "SE",
-          row = 99
+					anchor = "SE",
+					row = 99,
 				},
 
 				-- Maximum window width as share (between 0 and 1) of available columns
@@ -53,7 +53,7 @@ return {
 	{
 		"nvim-mini/mini.hipatterns",
 		enabled = false,
-    event = "VeryLazy",
+		event = "VeryLazy",
 		version = false,
 		opts = {
 			highlighters = {
@@ -237,6 +237,7 @@ return {
 
 	{
 		"nvim-mini/mini.indentscope",
+		enabled = false,
 		version = false,
 		event = { "BufReadPre", "BufNewFile" },
 		opts = function()
@@ -318,10 +319,11 @@ return {
 
 	{
 		"nvim-mini/mini.statusline",
+		enabled = true,
 		version = false,
 		event = "VeryLazy",
-    -- true if you want lazy load
-    lazy = false,
+		-- true if you want lazy load
+		lazy = false,
 		config = function()
 			require("mini.statusline").setup({
 				content = {
@@ -347,9 +349,27 @@ return {
 							return modes[current_mode] or "Normal"
 						end
 
+						-- local function file_size()
+						-- 	local ok, stats = pcall((vim.uv or vim.loop).fs_stat, vim.api.nvim_buf_get_name(0))
+						-- 	if ok and stats then
+						-- 		local i = 0
+						-- 		local sizes = { "B", "KB", "MB", "GB" }
+						-- 		while stats.size >= 1024 and i < #sizes - 1 do
+						-- 			stats.size = stats.size / 1024
+						-- 			i = i + 1
+						-- 		end
+						-- 		return string.format("%.1f%s", stats.size, sizes[i + 1])
+						-- 	else
+						-- 		return ""
+						-- 	end
+						-- end
+
 						local function file_icon(init)
 							local filetype = vim.fn.expand("%:e")
-							local icons = require("nvim-web-devicons").get_icon(filetype, nil, { default = true })
+							local icons = ""
+							if filetype ~= "" then
+								icons = require("nvim-web-devicons").get_icon(filetype, nil, { default = true })
+							end
 							filetype = filetype:sub(1, 1):upper() .. filetype:sub(2)
 							return table.concat({
 								"%#DevIcon",
@@ -402,7 +422,6 @@ return {
 							{
 								hl = mode_hl,
 								strings = {
-									-- sl.section_location({trunc_width = 100})
 									"X3ru4",
 								},
 							},
@@ -427,6 +446,10 @@ return {
 						i = { "@block.inner", "@conditional.inner", "@loop.inner" },
 					}),
 					f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
+					i = ai.gen_spec.treesitter({
+						a = "@indent.outer",
+						i = "@indent.inner",
+					}),
 					c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }),
 					t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
 					d = { "%f[%d]%d+" },

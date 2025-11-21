@@ -10,10 +10,11 @@ M.default = {}
 function M.get(name, link)
   if type(name) ~= "string" then
     vim.notify("[highlight_module] Invalid name (must be string)", vim.log.levels.ERROR)
-    return nil
   end
   return vim.api.nvim_get_hl(0, { name = name, link = link or false })
 end
+
+
 
 ---Store default highlight values.
 ---@param name string Highlight name.

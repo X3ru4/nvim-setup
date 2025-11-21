@@ -87,11 +87,11 @@ api.work_if("nordern", {
 		link = "Normal",
 	},
 	MiniTablineCurrent = {
-    link = "Normal"
-  },
+		link = "Normal",
+	},
 	MiniTablineModifiedCurrent = {
-    link = "Normal"
-  },
+		link = "Normal",
+	},
 	MiniTablineModifiedVisible = {
 		link = "Normal",
 	},
@@ -105,5 +105,4 @@ api.work_if("nordern", {
 		link = "LspDiagnosticsVirtualTextWarning",
 	},
 })
-
 api.apply_highlight()

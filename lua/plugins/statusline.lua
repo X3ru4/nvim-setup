@@ -1,8 +1,8 @@
 return {
 
 	{
-		enabled = false,
 		"nvim-lualine/lualine.nvim",
+		enabled = false,
 		event = "VeryLazy",
 		opts = function()
 			local diagnostic = require("config.icons").diagnostic
@@ -30,7 +30,7 @@ return {
 						left = "",
 						right = "",
 					},
-					always_show_tabline = true,
+					always_show_tabline = false,
 					refresh = {
 						tabline = nil,
 						winbar = nil,
@@ -82,28 +82,7 @@ return {
 					},
 				},
 				inactive_sections = {},
-				tabline = {
-					lualine_b = {
-						{
-							"buffers",
-							padding = { left = 0, right = 0 },
-							separator = { left = "", right = "" },
-							max_length = vim.opt.columns:get(),
-							show_filename_only = true,
-							hide_filename_extension = true,
-							mode = 0,
-							fmt = function(str)
-								return "" .. str
-							end,
-							use_mode_colors = true,
-							symbols = {
-								modified = " ●", -- Text to show when the buffer is modified
-								alternate_file = "#", -- Text to show to identify the alternate file
-								directory = "", -- Text to show when the buffer is a directory
-							},
-						},
-					},
-				},
+				tabline = {},
 				winbar = {},
 				inactive_winbar = {},
 				extensions = {},

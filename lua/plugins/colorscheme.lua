@@ -35,7 +35,7 @@ local colorschemes = {
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
-				flavour = "macchiato",
+				flavour = "mocha",
 				transparent_background = false, -- disables setting the background color.
 				no_italic = true,
 				float = {
@@ -193,4 +193,4 @@ local colorschemes = {
 	},
 }
 
-return colorschemes.nordern
+return colorschemes.catppuccin

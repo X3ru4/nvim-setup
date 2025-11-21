@@ -1,8 +1,8 @@
 return {
 
 	{
-		enabled = false,
 		"gbprod/yanky.nvim",
+		enabled = false,
 		opts = {
 			ring = { storage = "shada" },
 			picker = {
@@ -212,7 +212,7 @@ return {
 				},
 				{
 					mode = { "n", "x" },
-					"<leader>s",
+					"<leader>x",
 					function()
 						mc.matchSkipCursor(1)
 					end,
@@ -226,9 +226,16 @@ return {
 				},
 				{
 					mode = { "n", "x" },
-					"<leader>S",
+					"<leader>X",
 					function()
 						mc.matchSkipCursor(-1)
+					end,
+				},
+				{
+					mode = { "n", "x" },
+					"<leader>a",
+					function()
+						mc.matchAllAddCursors()
 					end,
 				},
 			}
@@ -243,7 +250,7 @@ return {
 				layerSet({ "n", "x" }, "<right>", mc.nextCursor)
 
 				-- Delete the main cursor.
-				layerSet({ "n", "x" }, "<leader>x", mc.deleteCursor)
+				layerSet({ "n", "x" }, "<leader>d", mc.deleteCursor)
 
 				-- Enable and clear cursors using escape.
 				layerSet("n", "<esc>", function()
@@ -257,13 +264,13 @@ return {
 
 			-- Customize how cursors look.
 			local hl = vim.api.nvim_set_hl
-			hl(0, "MultiCursorCursor", { reverse = true })
-			hl(0, "MultiCursorVisual", { link = "Visual" })
-			hl(0, "MultiCursorSign", { link = "SignColumn" })
-			hl(0, "MultiCursorMatchPreview", { link = "Search" })
-			hl(0, "MultiCursorDisabledCursor", { reverse = true })
-			hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
-			hl(0, "MultiCursorDisabledSign", { link = "SignColumn" })
+      hl(0, "MultiCursorCursor", { link = "CursorIM" })
+      hl(0, "MultiCursorVisual", { link = "Visual" })
+      hl(0, "MultiCursorSign", { link = "SignColumn" })
+      hl(0, "MultiCursorMatchPreview", { link = "Search" })
+      hl(0, "MultiCursorDisabledCursor", { reverse = true })
+      hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
+      hl(0, "MultiCursorDisabledSign", { link = "SignColumn" })
 		end,
 	},
 }
