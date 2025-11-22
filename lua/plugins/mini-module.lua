@@ -217,16 +217,17 @@ return {
 
 	{
 		"nvim-mini/mini.tabline",
+    enabled = true,
 		version = false,
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {
 			always_show = false,
 			tabpage_section = "left",
 			format = function(buf_id, label)
-				local suffix = vim.bo[buf_id].modified and "+ " or ""
 				local current_buf = vim.api.nvim_get_current_buf() == buf_id
+        local suffix = vim.bo[buf_id].modified and (current_buf and "◈" or "◇") or ""
 				local strings = {
-					current_buf and "⟩" or "",
+					current_buf and "┃" or "",
 					require("mini.tabline").default_format(buf_id, label),
 					suffix,
 				}

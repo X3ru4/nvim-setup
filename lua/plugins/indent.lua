@@ -1,15 +1,77 @@
 return {
 
-  {
-    "nvimdev/indentmini.nvim",
-    enabled = false,
+	{
+		"saghen/blink.indent",
+		enabled = true,
 		event = { "BufReadPre", "BufNewFile" },
-    opts = {}
-  },
+		--- @module 'blink.indent'
+		--- @type blink.indent.Config
+		keys = {
+			{
+				"<leader>ci",
+				function()
+					require("blink.indent").enable(not require("blink.indent").is_enabled())
+				end,
+				desc = "Toggle indent guides",
+			},
+		},
+		opts = {
+			blocked = {
+				-- default: 'terminal', 'quickfix', 'nofile', 'prompt'
+				buftypes = { include_defaults = true },
+				-- default: 'lspinfo', 'packer', 'checkhealth', 'help', 'man', 'gitcommit', 'dashboard', ''
+				filetypes = { include_defaults = true },
+			},
+			mappings = {
+				-- which lines around the scope are included for 'ai': 'top', 'bottom', 'both', or 'none'
+				border = "both",
+				-- set to '' to disable
+				-- textobjects (e.g. `y2ii` to yank current and outer scope)
+				object_scope = "ii",
+				object_scope_with_border = "ai",
+				-- motions
+				goto_top = "[i",
+				goto_bottom = "]i",
+			},
+			static = {
+				enabled = true,
+				char = "▏",
+				whitespace_char = nil, -- inherits from `vim.opt.listchars:get().space` when `nil` (see `:h listchars`)
+				priority = 1,
+				highlights = { "BlinkIndent" },
+			},
+			scope = {
+				enabled = true,
+				char = "▏",
+				priority = 1000,
+				highlights = {
+					"BlinkIndentRed",
+					"BlinkIndentOrange",
+					"BlinkIndentYellow",
+					"BlinkIndentGreen",
+					"BlinkIndentCyan",
+					"BlinkIndentBlue",
+					"BlinkIndentViolet",
+				},
+				underline = {
+					enabled = false,
+					highlights = {
+						"BlinkIndentRedUnderline",
+						"BlinkIndentOrangeUnderline",
+						"BlinkIndentYellowUnderline",
+						"BlinkIndentGreenUnderline",
+						"BlinkIndentCyanUnderline",
+						"BlinkIndentBlueUnderline",
+						"BlinkIndentVioletUnderline",
+					},
+				},
+			},
+		},
+	},
 
 	{
 		"shellRaining/hlchunk.nvim",
-    enabled = true,
+		enabled = false,
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("hlchunk").setup({
@@ -40,13 +102,13 @@ return {
 					delay = 20,
 				},
 				indent = {
-          enable = true,
+					enable = true,
 					use_treesitter = false,
 					style = {
-            {
-              bold = false
-            }
-          },
+						{
+							bold = false,
+						},
+					},
 				},
 			})
 		end,

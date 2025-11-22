@@ -1,6 +1,7 @@
 return {
 
 	{
+    -- Used mini.clue
 		"folke/which-key.nvim",
     enabled = false,
 		event = "VeryLazy",
