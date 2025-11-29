@@ -1,6 +1,38 @@
 return {
 
 	{
+		"nvim-treesitter/nvim-treesitter-context",
+    enabled = false,
+    event = { "BufReadPre", "BufNewFile" },
+    keys = {
+      {
+        "[c",
+        function ()
+          require("treesitter-context").go_to_context(vim.v.count1)
+        end,
+        silent = true
+      }
+    },
+		config = function()
+			require("treesitter-context").setup({
+				enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+				multiwindow = false, -- Enable multiwindow support.
+				max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+				min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+				line_numbers = true,
+				multiline_threshold = 20, -- Maximum number of lines to show for a single context
+				trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+				mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
+				-- Separator between context and content. Should be a single character string, like '-'.
+				-- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+				separator = nil,
+				zindex = 20, -- The Z-index of the context window
+				on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+			})
+		end,
+	},
+
+	{
 		"gbprod/yanky.nvim",
 		enabled = false,
 		opts = {
@@ -74,7 +106,7 @@ return {
 	{
 		"saghen/blink.pairs",
 		enabled = true,
-    event = { "BufReadPre", "BufNewFile" },
+		event = { "BufReadPre", "BufNewFile" },
 		version = "*", -- (recommended) only required with prebuilt binaries
 
 		-- download prebuilt binaries from github releases
@@ -101,29 +133,29 @@ return {
 			-- 	-- https://github.com/Saghen/blink.pairs/blob/main/lua/blink/pairs/config/mappings.lua#L14
 			-- 	pairs = {},
 			-- },
-			-- highlights = {
-			-- 	enabled = true,
-			-- 	-- requires require('vim._extui').enable({}), otherwise has no effect
-			-- 	cmdline = true,
-			-- 	groups = {
-			-- 		"BlinkPairsOrange",
-			-- 		"BlinkPairsPurple",
-			-- 		"BlinkPairsBlue",
-			-- 	},
-			-- 	unmatched_group = "BlinkPairsUnmatched",
-			--
-			-- 	-- highlights matching pairs under the cursor
-			-- 	matchparen = {
-			-- 		enabled = true,
-			-- 		-- known issue where typing won't update matchparen highlight, disabled by default
-			-- 		cmdline = false,
-			-- 		-- also include pairs not on top of the cursor, but surrounding the cursor
-			-- 		include_surrounding = false,
-			-- 		group = "BlinkPairsMatchParen",
-			-- 		priority = 250,
-			-- 	},
-			-- },
-			-- debug = false,
+			highlights = {
+				-- enabled = true,
+				-- -- requires require('vim._extui').enable({}), otherwise has no effect
+				-- cmdline = true,
+				groups = {
+					"BlinkIndentRed",
+					"BlinkIndentOrange",
+					"BlinkIndentYellow",
+				},
+				-- unmatched_group = "BlinkPairsUnmatched",
+
+				-- highlights matching pairs under the cursor
+				-- matchparen = {
+				-- 	enabled = true,
+				-- 	-- known issue where typing won't update matchparen highlight, disabled by default
+				-- 	cmdline = false,
+				-- 	-- also include pairs not on top of the cursor, but surrounding the cursor
+				-- 	include_surrounding = false,
+				-- 	group = "BlinkPairsMatchParen",
+				-- 	priority = 250,
+				-- },
+			},
+			debug = false,
 		},
 	},
 
@@ -320,7 +352,7 @@ return {
 
 			-- Customize how cursors look.
 			local hl = vim.api.nvim_set_hl
-			hl(0, "MultiCursorCursor", { link = "CursorIM" })
+			hl(0, "MultiCursorCursor", { fg = vim.api.nvim_get_hl(0, { name = "Cursor" }).bg, reverse = true })
 			hl(0, "MultiCursorVisual", { link = "Visual" })
 			hl(0, "MultiCursorSign", { link = "SignColumn" })
 			hl(0, "MultiCursorMatchPreview", { link = "Search" })

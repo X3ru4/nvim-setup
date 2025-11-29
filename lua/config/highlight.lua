@@ -1,4 +1,5 @@
 local api = require("config.highlight_api")
+-- MooM
 api.highlights = {
 	DropBarMenuHoverEntry = {
 		link = "Visual",
@@ -13,21 +14,31 @@ api.highlights = {
 	DropBarMenuHoverIcon = {
 		link = "Nop",
 	},
-	Cursor = {
-		bg = "#cfcfcf",
+	SpellBad = {
+		strikethrough = true,
+	},
+	SpellCap = {
+		strikethrough = true,
+	},
+	SpellRare = {
+		strikethrough = true,
+	},
+	SpellLocal = {
+		strikethrough = true,
 	},
 }
 
 api.work_if("catppuccin", {
 	api.modify("MiniTablineCurrent", {
 		italic = false,
-		underline = false,
+		underline = true,
 	}),
 	api.modify("MiniTablineModifiedCurrent", {
 		italic = false,
+		underline = true,
 	}),
 	api.modify("Visual", {
-		bold = false,
+		bold = true,
 	}),
 })
 
@@ -105,4 +116,17 @@ api.work_if("nordern", {
 		link = "LspDiagnosticsVirtualTextWarning",
 	},
 })
+
+api.work_if("kanagawa", {
+	MiniTablineModifiedCurrent = {
+		link = "MiniTablineCurrent",
+	},
+	MiniTablineModifiedHidden = {
+		link = "MiniTablineCurrentHidden",
+	},
+	MiniTablineModifiedVisible = {
+		link = "MiniTablineCurrentVisible",
+	},
+})
+
 api.apply_highlight()

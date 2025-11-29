@@ -6,7 +6,7 @@ map("n", "<leader>rm", "<cmd>!rm ~/.local/state/nvim/swap -rf<cr>", { desc = "Re
 map("i", "<c-c>", "<c-o>S")
 map("i", "<c-a>", "<c-o>I")
 
--- Yank buf
+-- Yank buffer
 map("n", "<leader>ya", "ggVGy", { desc = "Yank all" })
 
 -- Better switch window
@@ -24,6 +24,7 @@ map("n", "<leader>bb", "<cmd>buffer #<cr>", { desc = "Previous buffer" })
 -- Quick select
 map("n", "<leader>v", "gg0vG$", { desc = "Select all" })
 map("n", "<leader>V", "ggVG$", { desc = "Select all line" })
+map("x", "<leader>v", "gg0G$", { desc = "Select all" })
 
 -- Go to the prev buffer in terminal
 map("t", "<C-b>", "<cmd>e #<cr>")

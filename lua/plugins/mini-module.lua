@@ -217,7 +217,7 @@ return {
 
 	{
 		"nvim-mini/mini.tabline",
-    enabled = true,
+		enabled = true,
 		version = false,
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {
@@ -225,9 +225,9 @@ return {
 			tabpage_section = "left",
 			format = function(buf_id, label)
 				local current_buf = vim.api.nvim_get_current_buf() == buf_id
-        local suffix = vim.bo[buf_id].modified and (current_buf and "◈" or "◇") or ""
+				local suffix = vim.bo[buf_id].modified and (current_buf and "◈ " or "◇ ") or ""
 				local strings = {
-					current_buf and "┃" or "",
+					-- current_buf and "▎" or "",
 					require("mini.tabline").default_format(buf_id, label),
 					suffix,
 				}
@@ -260,7 +260,7 @@ return {
 					n_lines = 100,
 					try_as_border = true,
 				},
-				symbol = "│",
+				symbol = "▏",
 			}
 		end,
 		init = function()
@@ -369,7 +369,7 @@ return {
 							local filetype = vim.fn.expand("%:e")
 							local icons = ""
 							if filetype ~= "" then
-								icons = require("nvim-web-devicons").get_icon(filetype, nil, { default = true })
+								icons = require("nvim-web-devicons").get_icon(filetype, nil, { default = true }) .. " "
 							end
 							filetype = filetype:sub(1, 1):upper() .. filetype:sub(2)
 							return table.concat({
@@ -405,25 +405,19 @@ return {
 										icon = "",
 										signs = {
 											ERROR = "%#DiagnosticError#"
-												.. require("config.icons").diagnostic.errr
+												.. require("config.icons").diagnostic.padding.errr
 												.. "%#StatusLine# ",
 											WARN = "%#DiagnosticWarn#"
-												.. require("config.icons").diagnostic.warn
+												.. require("config.icons").diagnostic.padding.warn
 												.. "%#StatusLine# ",
 											INFO = "%#DiagnosticInfo#"
-												.. require("config.icons").diagnostic.info
+												.. require("config.icons").diagnostic.padding.info
 												.. "%#StatusLine# ",
 											HINT = "%#DiagnosticHint#"
-												.. require("config.icons").diagnostic.hint
+												.. require("config.icons").diagnostic.padding.hint
 												.. "%#StatusLine# ",
 										},
-									}),
-								},
-							},
-							{
-								hl = mode_hl,
-								strings = {
-									"X3ru4",
+									}):gsub("%s+(%d+)", "%1"),
 								},
 							},
 						})
@@ -447,10 +441,6 @@ return {
 						i = { "@block.inner", "@conditional.inner", "@loop.inner" },
 					}),
 					f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
-					i = ai.gen_spec.treesitter({
-						a = "@indent.outer",
-						i = "@indent.inner",
-					}),
 					c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }),
 					t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
 					d = { "%f[%d]%d+" },

@@ -1,9 +1,6 @@
-local function use(name)
-	vim.cmd.colorscheme(name)
-end
+local use = vim.cmd.colorscheme
 
 -- Add colorscheme here
-
 local colorschemes = {
 
 	tokyonight = {
@@ -35,9 +32,23 @@ local colorschemes = {
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
-				flavour = "mocha",
+				flavour = "frappe",
 				transparent_background = false, -- disables setting the background color.
-				no_italic = true,
+				no_italic = false,
+				styles = {
+					comments = { "italic" },
+					conditionals = { "italic" },
+					loops = { "italic" },
+					functions = { "bold" },
+					keywords = { "italic" },
+					strings = {},
+					variables = {},
+					numbers = {},
+					booleans = {},
+					properties = {},
+					types = { "bold" },
+					operators = {},
+				},
 				float = {
 					transparent = false, -- enable transparent floating windows
 					solid = false, -- use solid styling for floating windows, see |winborder|
@@ -74,13 +85,45 @@ local colorschemes = {
 			use("nordern")
 		end,
 	},
+	rose_pine = {
+		"rose-pine/neovim",
+		name = "rose-pine",
+		config = function()
+			vim.cmd("colorscheme rose-pine")
+		end,
+	},
+	gruvbox = {
+		"ellisonleao/gruvbox.nvim",
+		priority = 1000,
+		config = function()
+			require("gruvbox").setup({})
+			use("gruvbox")
+		end,
+	},
 	kanagawa = {
 		"rebelot/kanagawa.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
-      require("kanagawa").load()
-    end,
+			require("kanagawa").setup({
+				undercurl = false,
+				commentStyle = { italic = false, bold = true },
+				functionStyle = { underline = true },
+				keywordStyle = { bold = true, italic = false },
+			})
+			require("kanagawa").load()
+		end,
+	},
+	kanagawa_paper = {
+		"thesimonho/kanagawa-paper.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("kanagawa-paper").setup({
+				cache = true,
+			})
+			require("kanagawa-paper").load()
+		end,
 	},
 	sonokai = {
 		"sainnhe/sonokai",
@@ -123,7 +166,7 @@ local colorschemes = {
 			require("base46").load_theme({
 				base = "base46",
 				-- Available theme in _base46_theme.txt
-				theme = "doomchad",
+				theme = "onedark",
 				transparency = false,
 			})
 			local set_hl = vim.api.nvim_set_hl
@@ -195,4 +238,39 @@ local colorschemes = {
 	},
 }
 
-return colorschemes.catppuccin
+local function install(list, setup)
+	local t = {}
+
+	local function push(name, opts)
+		if name ~= setup then
+			local item = { opts[1] }
+			if opts.name then
+				item.name = opts.name
+			end
+			table.insert(t, item)
+		else
+			table.insert(t, opts)
+		end
+	end
+
+	if type(list) == "table" then
+		for _, name in ipairs(list) do
+			local opts = colorschemes[name]
+			if opts then
+				push(name, opts)
+			end
+		end
+	elseif list == "all" then
+		for name, opts in pairs(colorschemes) do
+			push(name, opts)
+		end
+	end
+
+	return t
+end
+
+return install({
+	"catppuccin",
+	"kanagawa",
+	"onedark",
+}, "catppuccin")

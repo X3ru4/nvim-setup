@@ -96,18 +96,19 @@ return {
 						min_width = 1,
 						max_height = 8,
 						winblend = 0,
-						border = "rounded",
+						border = "none",
 						winhighlight = "CursorLine:BlinkCmpMenuSelection,Search:None",
 						draw = {
 							columns = {
 								{
-									"kind_icon",
+									-- "kind_icon",
 									"label",
+									"kind",
 									-- "label_description",
 									gap = 1,
 								},
-								{ "kind" },
 							},
+							padding = { 1, 1 },
 							components = {
 								label = {
 									width = { fill = true, max = 30 },
@@ -128,6 +129,7 @@ return {
 											})
 										end
 										return icon .. ctx.icon_gap
+                    ..  " "
 									end,
 								},
 							},

@@ -6,7 +6,7 @@ M.default = {}
 ---Get available highlight group info.
 ---@param name string Name of highlight group to get.
 ---@param link boolean|nil Whether to return the link target instead of resolved values.
----@return table|nil hl_info Highlight information or nil if not found.
+---@return vim.api.keyset.highlight|nil hl_info Highlight information or nil if not found.
 function M.get(name, link)
   if type(name) ~= "string" then
     vim.notify("[highlight_module] Invalid name (must be string)", vim.log.levels.ERROR)

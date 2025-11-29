@@ -61,6 +61,8 @@ return {
 			vim.g.matchup_matchparen_enabled = 1
 			vim.g.matchup_motion_enabled = 0
 			vim.g.matchup_text_obj_enabled = 0
+			vim.g.matchup_treesitter_disable_virtual_text = true
+			vim.g.matchup_matchparen_offscreen = { method = "" }
 			require("match-up").setup({
 				treesitter = {
 					stopline = 500,
@@ -71,7 +73,7 @@ return {
 
 	{
 		"utilyre/sentiment.nvim",
-    enabled = false,
+		enabled = false,
 		version = "*",
 		event = "VeryLazy",
 		opts = {

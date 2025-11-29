@@ -2,7 +2,12 @@ vim.g.enable_plugin = {
 	lazydev_nvim = true,
 }
 
+vim.g.user = {
+	font_family = nil,
+}
+
 vim.o.foldenable = true
+vim.o.foldcolumn = "0"
 vim.o.timeoutlen = 300
 
 function _G.newfoldtext()
@@ -23,16 +28,17 @@ opt.cmdheight = 0
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldtext = "v:lua.newfoldtext()"
+opt.foldlevel = 99
 
 -- Wrap
-opt.wrap = true
-opt.breakindent = true
-opt.linebreak = true
+opt.wrap = false
+opt.breakindent = false
+opt.linebreak = false
 
 opt.number = true
 opt.autowrite = true
 
--- Windown
+-- Window
 opt.winblend = 0
 opt.pumblend = 0
 -- opt.winborder = "single"
@@ -51,7 +57,6 @@ opt.fillchars = {
 	diff = "╱",
 	eob = "~",
 }
-opt.foldlevel = 99
 opt.formatoptions = "jcroqlnt"
 opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
@@ -73,6 +78,7 @@ opt.signcolumn = "yes"
 opt.smartcase = true
 opt.smartindent = true
 opt.spelllang = { "en" }
+opt.spell = true
 opt.splitbelow = true
 opt.splitkeep = "screen"
 opt.splitright = true

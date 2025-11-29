@@ -5,6 +5,12 @@ M.diagnostic = {
 	warn = "",
 	info = "",
 	hint = "",
+	padding = {
+		errr = " ",
+		warn = " ",
+		info = " ",
+		hint = " ",
+	},
 }
 
 M.icons = {

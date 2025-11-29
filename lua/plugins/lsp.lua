@@ -1,6 +1,28 @@
 return {
 
 	{
+		"kosayoda/nvim-lightbulb",
+    enabled = false,
+		event = "LspAttach",
+		config = function()
+			require("nvim-lightbulb").setup({
+				autocmd = {
+					enabled = true,
+					updatetime = 200,
+          -- events = { "CursorMoved", "CursorMovedI" }
+				},
+				sign = {
+					enabled = false,
+				},
+				float = {
+          text = "💡",
+					enabled = true,
+				},
+			})
+		end,
+	},
+
+	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
@@ -12,7 +34,6 @@ return {
 				clangd = {},
 				-- Python
 				basedpyright = {},
-
 			}
 
 			for name, opts in pairs(server) do
@@ -23,7 +44,7 @@ return {
 			local diag = require("config.icons").diagnostic
 			vim.diagnostic.config({
 				virtual_text = {
-					prefix = "⬗",
+					prefix = "󰋗",
 				},
 				underline = false,
 				float = { border = nil, header = "", source = "if_many" },
@@ -42,7 +63,7 @@ return {
 
 	{
 		"j-hui/fidget.nvim",
-    enabled = false,
+		enabled = false,
 		event = "VeryLazy",
 		config = function()
 			require("fidget").setup({})
@@ -104,7 +125,7 @@ return {
 
 	{
 		"b0o/schemastore.nvim",
-    enabled = false,
+		enabled = false,
 		ft = { "json" },
 	},
 }

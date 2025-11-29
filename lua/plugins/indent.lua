@@ -116,10 +116,29 @@ return {
 
 	{
 		"lukas-reineke/indent-blankline.nvim",
+    event = { "BufReadPre", "BufNewFile" },
 		enabled = false,
 		main = "ibl",
 		---@module "ibl"
 		---@type ibl.config
-		opts = {},
+		opts = {
+			scope = {
+				enabled = false,
+				show_start = false,
+				show_end = false,
+			},
+			indent = {
+				char = "▏",
+				highlight = {
+					"RainbowRed",
+					"RainbowYellow",
+					"RainbowBlue",
+					"RainbowOrange",
+					"RainbowGreen",
+					"RainbowViolet",
+					"RainbowCyan",
+				},
+			},
+		},
 	},
 }

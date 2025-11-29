@@ -2,22 +2,50 @@ return {
 
 	{
 		"ibhagwan/fzf-lua",
-		opts = {
+    event = "VeryLazy",
+    config = function ()
+      require("fzf-lua").setup({
+			file_icon_padding = " ",
 			winopts = {
 				preview = {
 					hidden = "hidden",
 				},
 				row = 0.4,
 				backdrop = 60,
-        treesitter = {
-          enabled = false
-        },
-        fullscreen = true
+				treesitter = {
+					enabled = false,
+				},
+				fullscreen = true,
 			},
-		},
+			fzf_colors = {
+				["fg"] = { "fg", { "Comment" } },
+				["hl"] = { "fg", { "Normal" } },
+				["fg+"] = { "fg", { "PmenuSel" } },
+				["bg+"] = { "bg", { "PmenuSel" } },
+				-- ["gutter"] = "-1",
+				["hl+"] = { "fg", { "PmenuSel" }, "bold" },
+				["query"] = { "fg", { "CursorLine" } },
+				["info"] = { "fg", { "Comment" } },
+				["border"] = { "fg", { "Normal" } },
+				["separator"] = { "fg", { "Comment" } },
+				["prompt"] = { "fg", { "Normal" } },
+				["pointer"] = { "fg", { "Normal" } },
+				["marker"] = { "fg", { "Pmenu" } },
+				["header"] = { "fg", { "Normal" } },
+			},
+		})
+    end,
 		keys = function()
 			local fzf = require("fzf-lua")
 			return {
+
+				{
+					"<leader>fs",
+					function()
+						fzf.spell_suggest()
+					end,
+					desc = "spell_suggest",
+				},
 
 				{
 					"<leader>fr",
