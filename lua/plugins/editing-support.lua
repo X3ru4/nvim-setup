@@ -1,18 +1,27 @@
 return {
 
 	{
+		"nacro90/numb.nvim",
+		enabled = false,
+		event = "VeryLazy",
+		config = function()
+			require("numb").setup()
+		end,
+	},
+
+	{
 		"nvim-treesitter/nvim-treesitter-context",
-    enabled = false,
-    event = { "BufReadPre", "BufNewFile" },
-    keys = {
-      {
-        "[c",
-        function ()
-          require("treesitter-context").go_to_context(vim.v.count1)
-        end,
-        silent = true
-      }
-    },
+		enabled = false,
+		event = { "BufReadPre", "BufNewFile" },
+		keys = {
+			{
+				"[c",
+				function()
+					require("treesitter-context").go_to_context(vim.v.count1)
+				end,
+				silent = true,
+			},
+		},
 		config = function()
 			require("treesitter-context").setup({
 				enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)

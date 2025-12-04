@@ -4,12 +4,12 @@ M.diagnostic = {
 	errr = "",
 	warn = "",
 	info = "",
-	hint = "",
+	hint = "",
 	padding = {
 		errr = " ",
 		warn = " ",
 		info = " ",
-		hint = " ",
+		hint = " ",
 	},
 }
 

@@ -1,6 +1,7 @@
 local map = vim.keymap.set
 
 map("n", "<leader>rm", "<cmd>!rm ~/.local/state/nvim/swap -rf<cr>", { desc = "Remove swap folder" })
+map("!", "<F11>", "<Nop>")
 
 -- Better insert
 map("i", "<c-c>", "<c-o>S")

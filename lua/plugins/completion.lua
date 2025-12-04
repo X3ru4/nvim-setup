@@ -72,7 +72,7 @@ return {
 				signature = { enabled = false },
 				completion = {
 					ghost_text = {
-						enabled = false,
+						enabled = true,
 					},
 					accept = {
 						auto_brackets = {
@@ -101,7 +101,6 @@ return {
 						draw = {
 							columns = {
 								{
-									-- "kind_icon",
 									"label",
 									"kind",
 									-- "label_description",

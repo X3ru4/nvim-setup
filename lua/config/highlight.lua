@@ -1,5 +1,5 @@
 local api = require("config.highlight_api")
--- MooM
+
 api.highlights = {
 	DropBarMenuHoverEntry = {
 		link = "Visual",
@@ -38,7 +38,7 @@ api.work_if("catppuccin", {
 		underline = true,
 	}),
 	api.modify("Visual", {
-		bold = true,
+		bold = false,
 	}),
 })
 

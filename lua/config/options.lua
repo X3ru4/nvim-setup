@@ -6,10 +6,6 @@ vim.g.user = {
 	font_family = nil,
 }
 
-vim.o.foldenable = true
-vim.o.foldcolumn = "0"
-vim.o.timeoutlen = 300
-
 function _G.newfoldtext()
 	local line = vim.fn.getline(vim.v.foldstart)
 	local count = vim.v.foldend - vim.v.foldstart + 1
@@ -21,14 +17,23 @@ vim.g.run_method = "make"
 
 local opt = vim.opt
 
+-- Performance
+opt.updatetime = 100
+opt.lazyredraw = true
+opt.timeoutlen = 300
+opt.ttimeoutlen = 10
+opt.synmaxcol = 200
+
 opt.relativenumber = true
 opt.cmdheight = 0
 
 -- Fold
+opt.foldenable = true
+opt.foldlevel = 99
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldtext = "v:lua.newfoldtext()"
-opt.foldlevel = 99
+opt.foldcolumn = "0"
 
 -- Wrap
 opt.wrap = false
@@ -86,7 +91,6 @@ opt.tabstop = 2
 opt.termguicolors = true
 opt.undofile = true
 opt.undolevels = 10000
-opt.updatetime = 200
 opt.virtualedit = "block"
 opt.wildmode = "longest:full,full"
 opt.winminwidth = 5
@@ -112,3 +116,6 @@ opt.guicursor = {
 -- 	trail = "•",
 -- 	nbsp = "ɲ",
 -- }
+
+vim.cmd("hi! link StatusLine Normal")
+vim.cmd("hi! link StatusLineNC Normal")

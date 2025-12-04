@@ -20,6 +20,13 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Reload highlight.lua when colorscheme changed.
+cmd("Colorscheme", {
+  callback = function ()
+    require("config.highlight")
+  end
+})
+
 -- Auto show diagnostic when CursorMoved and CursorMovedI
 -- cmd({ "CursorMovedI", "CursorMoved" }, {
 -- 	callback = function()
