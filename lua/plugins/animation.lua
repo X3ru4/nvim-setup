@@ -2,7 +2,7 @@ return {
 	{
 		"y3owk1n/undo-glow.nvim",
 		event = { "VeryLazy" },
-    enabled = false,
+		enabled = false,
 		---@type UndoGlow.Config
 		opts = {
 			animation = {
@@ -143,12 +143,10 @@ return {
 	},
 
 	{
-		enabled = false,
 		"sphamba/smear-cursor.nvim",
+		enabled = false,
 		event = "VeryLazy",
 		opts = {
-			cursor_color = "#d8dee9",
-			smear_insert_mode = true,
 			stiffness = 0.5,
 			trailing_stiffness = 0.5,
 			matrix_pixel_threshold = 0.5,

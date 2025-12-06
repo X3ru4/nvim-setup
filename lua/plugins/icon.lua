@@ -2,6 +2,7 @@ return {
 
 	{
 		"nvim-tree/nvim-web-devicons",
+    enabled = false,
 		event = "VeryLazy",
 		opts = {},
 	},

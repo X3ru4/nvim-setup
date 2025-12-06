@@ -18,9 +18,9 @@ return {
 		opts = {
 			blocked = {
 				-- default: 'terminal', 'quickfix', 'nofile', 'prompt'
-				buftypes = { include_defaults = true },
+				buftypes = { include_defaults = true, "qf" },
 				-- default: 'lspinfo', 'packer', 'checkhealth', 'help', 'man', 'gitcommit', 'dashboard', ''
-				filetypes = { include_defaults = true },
+				filetypes = { include_defaults = true, "qf" },
 			},
 			mappings = {
 				-- which lines around the scope are included for 'ai': 'top', 'bottom', 'both', or 'none'

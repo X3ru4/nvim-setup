@@ -13,18 +13,18 @@ cmd({ "CmdlineEnter", "CmdlineLeave" }, {
 })
 
 -- set wrap when FileType is json
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "*",
-  callback = function(args)
-    vim.o.wrap = (args.match == "json")
-  end,
+cmd("FileType", {
+	pattern = "*",
+	callback = function(args)
+		vim.o.wrap = (args.match == "json")
+	end,
 })
 
 -- Reload highlight.lua when colorscheme changed.
 cmd("Colorscheme", {
-  callback = function ()
-    require("config.highlight")
-  end
+	callback = function()
+		require("config.highlight")
+	end,
 })
 
 -- Auto show diagnostic when CursorMoved and CursorMovedI

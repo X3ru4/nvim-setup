@@ -4,6 +4,7 @@ return {
 		"nvim-lualine/lualine.nvim",
 		enabled = false,
 		event = "VeryLazy",
+		lazy = false,
 		opts = function()
 			local diagnostic = require("config.icons").diagnostic
 			local diag_ = {
@@ -15,6 +16,7 @@ return {
 					info = diagnostic.info .. " ",
 					hint = diagnostic.hint .. " ",
 				},
+				separator = { left = "", right = "" },
 			}
 			return {
 				options = {
@@ -57,16 +59,24 @@ return {
 							icon_only = false,
 						},
 						{
-							"filename",
-							padding = { left = 1, right = 1 },
-							shorting_target = 10,
-							symbols = {
-								modified = require("config.icons").icons.modified,
-								readonly = "",
-								unnamed = "[No Name]",
-								newfile = "[New]",
-							},
+							function()
+								return table.concat({
+									vim.bo.filetype,
+									vim.bo.modified and " 󰧞" or "",
+								})
+							end,
 						},
+						-- {
+						-- 	"filename",
+						-- 	padding = { left = 1, right = 1 },
+						-- 	shorting_target = 10,
+						-- 	symbols = {
+						-- 		modified = require("config.icons").icons.modified,
+						-- 		readonly = "",
+						-- 		unnamed = "[No Name]",
+						-- 		newfile = "[New]",
+						-- 	},
+						-- },
 					},
 					lualine_c = {},
 					lualine_x = {},
@@ -74,11 +84,11 @@ return {
 						diag_,
 					},
 					lualine_z = {
-						{
-							"location",
-							padding = { left = 0, right = 0 },
-							separator = { left = "", right = "" },
-						},
+						-- {
+						-- 	"location",
+						-- 	padding = { left = 0, right = 0 },
+						-- 	separator = { left = "", right = "" },
+						-- },
 					},
 				},
 				inactive_sections = {},

@@ -2,10 +2,6 @@ vim.g.enable_plugin = {
 	lazydev_nvim = true,
 }
 
-vim.g.user = {
-	font_family = nil,
-}
-
 function _G.newfoldtext()
 	local line = vim.fn.getline(vim.v.foldstart)
 	local count = vim.v.foldend - vim.v.foldstart + 1
@@ -24,8 +20,9 @@ opt.timeoutlen = 300
 opt.ttimeoutlen = 10
 opt.synmaxcol = 200
 
-opt.relativenumber = true
+opt.relativenumber = false
 opt.cmdheight = 0
+opt.signcolumn = "auto:1"
 
 -- Fold
 opt.foldenable = true
@@ -79,11 +76,11 @@ opt.shiftwidth = 2
 opt.shortmess:append({ W = true, I = true, c = true, C = true })
 opt.showmode = false
 opt.sidescrolloff = 8
-opt.signcolumn = "yes"
+-- opt.signcolumn = "yes"
 opt.smartcase = true
 opt.smartindent = true
 opt.spelllang = { "en" }
-opt.spell = true
+opt.spell = false
 opt.splitbelow = true
 opt.splitkeep = "screen"
 opt.splitright = true
@@ -116,6 +113,3 @@ opt.guicursor = {
 -- 	trail = "•",
 -- 	nbsp = "ɲ",
 -- }
-
-vim.cmd("hi! link StatusLine Normal")
-vim.cmd("hi! link StatusLineNC Normal")

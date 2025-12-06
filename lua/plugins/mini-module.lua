@@ -1,6 +1,12 @@
 return {
 
 	{
+		"nvim-mini/mini.icons",
+		event = "VeryLazy",
+		opts = {},
+	},
+
+	{
 		"nvim-mini/mini.notify",
 		enabled = false,
 		event = "VeryLazy",
@@ -323,8 +329,7 @@ return {
 		enabled = true,
 		version = false,
 		event = "VeryLazy",
-		-- true if you want lazy load
-		lazy = false,
+		lazy = true,
 		config = function()
 			require("mini.statusline").setup({
 				content = {
@@ -366,18 +371,18 @@ return {
 						-- end
 
 						local function file_icon(init)
-							local filetype = vim.fn.expand("%:e")
-							local icons = ""
-							if filetype ~= "" then
-								icons = require("nvim-web-devicons").get_icon(filetype, nil, { default = true }) .. " "
+							local icons, hl = ""
+							icons, hl, _ = require("mini.icons").get("file", vim.fn.expand("%:t"))
+							if vim.bo.filetype == "" then
+								icons = "X3ru4"
 							end
-							filetype = filetype:sub(1, 1):upper() .. filetype:sub(2)
 							return table.concat({
-								"%#DevIcon",
-								filetype,
+								"%#",
+                hl,
 								"#",
 								init,
 								icons,
+                " ",
 								"%#StatusLine#",
 							})
 						end

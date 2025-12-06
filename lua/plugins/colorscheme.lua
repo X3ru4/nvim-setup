@@ -274,4 +274,4 @@ return install({
 	"kanagawa",
 	"onedark",
 	"gruvbox",
-}, "catppuccin")
+}, "onedark")

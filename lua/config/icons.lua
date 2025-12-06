@@ -1,15 +1,15 @@
 local M = {}
 
 M.diagnostic = {
-	errr = "",
-	warn = "",
-	info = "",
-	hint = "",
+	errr = "E",
+	warn = "W",
+	info = "I",
+	hint = "H",
 	padding = {
-		errr = " ",
-		warn = " ",
-		info = " ",
-		hint = " ",
+		errr = "E ",
+		warn = "W ",
+		info = "I ",
+		hint = "H ",
 	},
 }
 

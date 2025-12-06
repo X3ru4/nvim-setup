@@ -1,6 +1,9 @@
 local api = require("config.highlight_api")
 
 api.highlights = {
+	StatusLine = {
+		link = "Normal",
+	},
 	DropBarMenuHoverEntry = {
 		link = "Visual",
 	},
@@ -28,18 +31,20 @@ api.highlights = {
 	},
 }
 
-api.work_if("catppuccin", {
-	api.modify("MiniTablineCurrent", {
-		italic = false,
-		underline = true,
-	}),
-	api.modify("MiniTablineModifiedCurrent", {
-		italic = false,
-		underline = true,
-	}),
-	api.modify("Visual", {
-		bold = false,
-	}),
+api.work_if("catppuccin-frappe", {
+	callback = function()
+		api.modify("MiniTablineCurrent", {
+			italic = false,
+			underline = true,
+		})
+		api.modify("MiniTablineModifiedCurrent", {
+			italic = false,
+			underline = true,
+		})
+		api.modify("Visual", {
+			bold = false,
+		})
+	end,
 })
 
 api.work_if("onedark", {
@@ -126,6 +131,15 @@ api.work_if("kanagawa", {
 	},
 	MiniTablineModifiedVisible = {
 		link = "MiniTablineCurrentVisible",
+	},
+})
+
+api.work_if("gruvbox", {
+	SignColumn = {
+		link = "Normal",
+	},
+	CursorLineSign = {
+		link = "CursorLine",
 	},
 })
 

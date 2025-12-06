@@ -2,39 +2,40 @@ return {
 
 	{
 		"ibhagwan/fzf-lua",
-    event = "VeryLazy",
-    config = function ()
-      require("fzf-lua").setup({
-			file_icon_padding = " ",
-			winopts = {
-				preview = {
-					hidden = "hidden",
+		event = "VeryLazy",
+		config = function()
+			require("fzf-lua").setup({
+				file_icon_padding = " ",
+				winopts = {
+					preview = {
+						hidden = "hidden",
+					},
+					row = 0.4,
+					backdrop = 60,
+					treesitter = {
+						enabled = false,
+					},
+					fullscreen = true,
 				},
-				row = 0.4,
-				backdrop = 60,
-				treesitter = {
-					enabled = false,
+				fzf_colors = {
+					true, -- inherit fzf colors that aren't specified below from
+					-- the auto-generated theme similar to `fzf_colors=true`
+					["fg"] = { "fg", "CursorLine" },
+					["bg"] = { "bg", "Normal" },
+					["hl"] = { "fg", "Comment" },
+					["fg+"] = { "fg", "Normal" },
+					["bg+"] = { "bg", { "CursorLine", "Normal" } },
+					["hl+"] = { "fg", "Statement" },
+					["info"] = { "fg", "PreProc" },
+					["prompt"] = { "fg", "Conditional" },
+					["pointer"] = { "fg", "Exception" },
+					["marker"] = { "fg", "Keyword" },
+					["spinner"] = { "fg", "Label" },
+					["header"] = { "fg", "Comment" },
+					-- ["gutter"] = "-1",
 				},
-				fullscreen = true,
-			},
-			fzf_colors = {
-				["fg"] = { "fg", { "Comment" } },
-				["hl"] = { "fg", { "Normal" } },
-				["fg+"] = { "fg", { "PmenuSel" } },
-				["bg+"] = { "bg", { "PmenuSel" } },
-				-- ["gutter"] = "-1",
-				["hl+"] = { "fg", { "PmenuSel" }, "bold" },
-				["query"] = { "fg", { "CursorLine" } },
-				["info"] = { "fg", { "Comment" } },
-				["border"] = { "fg", { "Normal" } },
-				["separator"] = { "fg", { "Comment" } },
-				["prompt"] = { "fg", { "Normal" } },
-				["pointer"] = { "fg", { "Normal" } },
-				["marker"] = { "fg", { "Pmenu" } },
-				["header"] = { "fg", { "Normal" } },
-			},
-		})
-    end,
+			})
+		end,
 		keys = function()
 			local fzf = require("fzf-lua")
 			return {
@@ -42,7 +43,9 @@ return {
 				{
 					"<leader>fs",
 					function()
-						fzf.spell_suggest()
+						fzf.spell_suggest({
+							prompt = "› ",
+						})
 					end,
 					desc = "spell_suggest",
 				},
@@ -50,7 +53,9 @@ return {
 				{
 					"<leader>fr",
 					function()
-						fzf.registers()
+						fzf.registers({
+							prompt = " ",
+						})
 					end,
 					desc = "Find register",
 				},
@@ -66,7 +71,7 @@ return {
 				{
 					"<leader>fF",
 					function()
-						fzf.files({ cwd = vim.fn.expand("%:h:p") })
+						fzf.files()
 					end,
 					desc = "Find file",
 				},
@@ -74,7 +79,9 @@ return {
 				{
 					"<leader>fc",
 					function()
-						fzf.files({ cwd = "~/.config/nvim" })
+						fzf.files({
+							cwd = "~/.config/nvim",
+						})
 					end,
 					desc = "Find config files",
 				},
@@ -82,7 +89,10 @@ return {
 				{
 					"<leader>fb",
 					function()
-						fzf.buffers({ filename_only = true })
+						fzf.buffers({
+							prompt = "› ",
+							filename_only = true,
+						})
 					end,
 					desc = "Find buffers",
 				},
@@ -91,6 +101,7 @@ return {
 					"<leader>fh",
 					function()
 						fzf.highlights({
+							prompt = "› ",
 							winopts = {
 								preview = {
 									hidden = false,
@@ -105,6 +116,7 @@ return {
 					"<leader>fd",
 					function()
 						fzf.diagnostics_document({
+							prompt = "› ",
 							winopts = {
 								preview = {
 									hidden = false,
@@ -118,7 +130,9 @@ return {
 				{
 					"<leader>fo",
 					function()
-						fzf.oldfiles()
+						fzf.oldfiles({
+							prompt = "› ",
+						})
 					end,
 					desc = "Find old files",
 				},
@@ -126,7 +140,9 @@ return {
 				{
 					"<leader>fC",
 					function()
-						fzf.colorschemes()
+						fzf.colorschemes({
+							prompt = " ",
+						})
 					end,
 					desc = "Find colorschemes",
 				},

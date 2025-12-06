@@ -17,7 +17,7 @@ end
 local icons = require("config.icons").diagnostic
 vim.diagnostic.config({
 	virtual_text = {
-		prefix = "󰋗",
+		prefix = "",
 	},
 	underline = false,
 	float = { border = nil, header = "", source = "if_many" },
