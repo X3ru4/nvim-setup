@@ -20,7 +20,7 @@ return {
 				-- default: 'terminal', 'quickfix', 'nofile', 'prompt'
 				buftypes = { include_defaults = true, "qf" },
 				-- default: 'lspinfo', 'packer', 'checkhealth', 'help', 'man', 'gitcommit', 'dashboard', ''
-				filetypes = { include_defaults = true, "qf" },
+				filetypes = { "lspinfo", "packer", "checkhealth", "help", "man", "gitcommit", "dashboard", "qf" },
 			},
 			mappings = {
 				-- which lines around the scope are included for 'ai': 'top', 'bottom', 'both', or 'none'
@@ -116,7 +116,7 @@ return {
 
 	{
 		"lukas-reineke/indent-blankline.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+		event = { "BufReadPre", "BufNewFile" },
 		enabled = false,
 		main = "ibl",
 		---@module "ibl"

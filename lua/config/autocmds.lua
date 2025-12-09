@@ -21,17 +21,17 @@ cmd("FileType", {
 })
 
 -- Reload highlight.lua when colorscheme changed.
-cmd("Colorscheme", {
+cmd("ColorScheme", {
 	callback = function()
-		require("config.highlight")
+		require("config.highlight").setup()
 	end,
 })
 
--- Auto show diagnostic when CursorMoved and CursorMovedI
--- cmd({ "CursorMovedI", "CursorMoved" }, {
+-- -- Auto show diagnostic when CursorMoved and CursorMovedI
+-- cmd("CursorHold", {
 -- 	callback = function()
 -- 		vim.diagnostic.open_float(nil, {
--- 			border = "single",
+-- 			border = "rounded",
 -- 			focus = false,
 -- 			close_events = { "BufWinLeave", "CursorMoved", "CursorMovedI", "ModeChanged" },
 -- 		})

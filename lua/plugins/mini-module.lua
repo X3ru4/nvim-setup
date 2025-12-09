@@ -327,9 +327,8 @@ return {
 	{
 		"nvim-mini/mini.statusline",
 		enabled = true,
-		version = false,
-		event = "VeryLazy",
-		lazy = true,
+		event = "VimEnter",
+    version = false,
 		config = function()
 			require("mini.statusline").setup({
 				content = {
@@ -371,11 +370,20 @@ return {
 						-- end
 
 						local function file_icon(init)
-							local icons, hl = ""
-							icons, hl, _ = require("mini.icons").get("file", vim.fn.expand("%:t"))
-							if vim.bo.filetype == "" then
-								icons = "X3ru4"
-							end
+							local icons, hl
+							icons, hl = require("mini.icons").get("file", vim.fn.expand("%:t"))
+              local modify_icon = function (filetype, icon)
+                if vim.bo.filetype == filetype then
+                  icons = icon
+                end
+              end
+
+              modify_icon("", "X3ru4")
+              modify_icon("alpha", "α")
+              modify_icon("oil", "󰏇")
+              modify_icon("lazy", "💤")
+              modify_icon("mason", " ")
+
 							return table.concat({
 								"%#",
                 hl,
