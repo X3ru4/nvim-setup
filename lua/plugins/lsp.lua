@@ -58,7 +58,7 @@ return {
 
 	{
 		"ray-x/lsp_signature.nvim",
-    enabled = true,
+    enabled = false,
 		event = "InsertEnter",
 		opts = {
 			bind = true,
@@ -66,7 +66,7 @@ return {
 			handler_opts = {
 				border = "rounded",
 			},
-			hint_prefix = "🧠",
+			hint_prefix = "󰅟  ",
 		},
 	},
 

@@ -3,6 +3,9 @@ return {
 		"goolord/alpha-nvim",
 		event = "VimEnter",
 		enabled = true,
+    dependencies = {
+      "folke/persistence.nvim"
+    },
 		config = function()
 			local config = require("alpha.themes.startify")
 			config.section.header.val = "n30vim"

@@ -22,7 +22,6 @@ opt.synmaxcol = 200
 
 opt.relativenumber = false
 opt.cmdheight = 0
-opt.signcolumn = "auto:1"
 
 -- Fold
 opt.foldenable = true
@@ -39,6 +38,11 @@ opt.linebreak = false
 
 opt.number = true
 opt.autowrite = true
+
+-- Status column
+opt.laststatus = 3
+opt.signcolumn = "auto:1"
+-- opt.signcolumn = "yes"
 
 -- Window
 opt.winblend = 0
@@ -65,7 +69,6 @@ opt.grepprg = "rg --vimgrep"
 opt.ignorecase = true
 opt.inccommand = "nosplit"
 opt.jumpoptions = "view"
-opt.laststatus = 3
 opt.mouse = "a"
 opt.pumheight = 20
 opt.ruler = false
@@ -76,7 +79,6 @@ opt.shiftwidth = 2
 opt.shortmess:append({ W = true, I = true, c = true, C = true })
 opt.showmode = false
 opt.sidescrolloff = 8
--- opt.signcolumn = "yes"
 opt.smartcase = true
 opt.smartindent = true
 opt.spelllang = { "en" }

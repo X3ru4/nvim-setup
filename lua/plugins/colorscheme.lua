@@ -32,7 +32,7 @@ local colorschemes = {
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
-				flavour = "frappe",
+				flavour = "mocha",
 				transparent_background = false, -- disables setting the background color.
 				no_italic = false,
 				styles = {
@@ -52,6 +52,15 @@ local colorschemes = {
 				float = {
 					transparent = false, -- enable transparent floating windows
 					solid = false, -- use solid styling for floating windows, see |winborder|
+				},
+				integrations = {
+					blink_cmp = true,
+          leap = true,
+          mason = true,
+					dropbar = {
+						enabled = true,
+						color_mode = false, -- enable color for kind's texts, not just kind's icons
+					},
 				},
 			})
 			use("catppuccin")
@@ -270,10 +279,11 @@ local function install(list, setup)
 end
 
 return install({
+  "tokyonight",
 	"catppuccin",
 	"kanagawa",
 	"onedark",
 	"gruvbox",
-  "nordern",
-  "nord",
-}, "onedark")
+	"nordern",
+	"nord",
+}, "tokyonight")

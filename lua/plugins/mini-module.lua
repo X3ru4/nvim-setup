@@ -11,7 +11,6 @@ return {
 		enabled = false,
 		event = "VeryLazy",
 		version = false,
-		-- No need to copy this inside `setup()`. Will be used automatically.
 		opts = {
 			-- Content management
 			content = {
@@ -328,7 +327,7 @@ return {
 		"nvim-mini/mini.statusline",
 		enabled = true,
 		event = "VimEnter",
-    version = false,
+		version = false,
 		config = function()
 			require("mini.statusline").setup({
 				content = {
@@ -372,25 +371,25 @@ return {
 						local function file_icon(init)
 							local icons, hl
 							icons, hl = require("mini.icons").get("file", vim.fn.expand("%:t"))
-              local modify_icon = function (filetype, icon)
-                if vim.bo.filetype == filetype then
-                  icons = icon
-                end
-              end
+							local modify_icon = function(filetype, icon)
+								if vim.bo.filetype == filetype then
+									icons = icon
+								end
+							end
 
-              modify_icon("", "X3ru4")
-              modify_icon("alpha", "α")
-              modify_icon("oil", "󰏇")
-              modify_icon("lazy", "💤")
-              modify_icon("mason", " ")
+							modify_icon("", "X3ru4")
+							modify_icon("alpha", "α")
+							modify_icon("oil", "󰏇")
+							modify_icon("lazy", "💤")
+							modify_icon("mason", " ")
 
 							return table.concat({
 								"%#",
-                hl,
+								hl,
 								"#",
 								init,
 								icons,
-                " ",
+								" ",
 								"%#StatusLine#",
 							})
 						end
@@ -417,18 +416,30 @@ return {
 									sl.section_diagnostics({
 										icon = "",
 										signs = {
-											ERROR = "%#DiagnosticError#"
-												.. require("config.icons").diagnostic.padding.errr
-												.. "%#StatusLine# ",
-											WARN = "%#DiagnosticWarn#"
-												.. require("config.icons").diagnostic.padding.warn
-												.. "%#StatusLine# ",
-											INFO = "%#DiagnosticInfo#"
-												.. require("config.icons").diagnostic.padding.info
-												.. "%#StatusLine# ",
-											HINT = "%#DiagnosticHint#"
-												.. require("config.icons").diagnostic.padding.hint
-												.. "%#StatusLine# ",
+											ERROR = table.concat({
+												"%#DiagnosticError#",
+												require("config.icons").diagnostic.errr,
+												" ",
+												"%#StatusLine# ",
+											}),
+											WARN = table.concat({
+												"%#DiagnosticWarn#",
+												require("config.icons").diagnostic.warn,
+												" ",
+												"%#StatusLine# ",
+											}),
+											INFO = table.concat({
+												"%#DiagnosticInfo#",
+												require("config.icons").diagnostic.info,
+												" ",
+												"%#StatusLine# ",
+											}),
+											HINT = table.concat({
+												"%#DiagnosticHint#",
+												require("config.icons").diagnostic.hint,
+												" ",
+												"%#StatusLine# ",
+											}),
 										},
 									}):gsub("%s+(%d+)", "%1"),
 								},

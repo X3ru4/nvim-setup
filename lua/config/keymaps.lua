@@ -29,8 +29,6 @@ map("x", "<leader>v", "gg0G$", { desc = "Select all" })
 
 -- Go to the prev buffer in terminal
 map("t", "<C-b>", "<cmd>e #<cr>")
--- Return normal mode
-map("t", "<C-e>", "<cmd>stopinsert<cr>")
 -- Save file
 map({ "n", "i", "x", "s" }, "<C-s>", "<cmd>silent!w<cr><esc>", { desc = "Save file" })
 -- Quit

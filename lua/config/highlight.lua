@@ -33,26 +33,38 @@ M.setup = function()
 		},
 	}
 
-	api.work_if("catppuccin-frappe", {
+	api.work_if({
+		"tokyonight",
+		"tokyonight-day",
+		"tokyonight-moon",
+		"tokyonight-night",
+		"tokyonight-storm",
+	}, {
+		nil and nil, -- =))
+	})
+
+	api.work_if({
+		"catppuccin-frappe",
+		"catppuccin-mocha",
+		"catppuccin-macchiato",
+		"catppuccin-latte",
+	}, {
 		callback = function()
 			api.modify("MiniTablineCurrent", {
-				italic = false,
+				italic = true,
 				underline = true,
 			})
 			api.modify("MiniTablineModifiedCurrent", {
-				italic = false,
+				italic = true,
 				underline = true,
 			})
 			api.modify("Visual", {
-				bold = false,
+				bold = true,
 			})
 		end,
 	})
 
 	api.work_if("onedark", {
-		Cursor = {
-			bg = 15230577,
-		},
 		WinBar = {
 			bg = "#242830",
 		},

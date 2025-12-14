@@ -35,14 +35,15 @@ return {
 			},
 			static = {
 				enabled = true,
-				char = "▏",
+				-- thin: '▏', thick: '▎'
+				char = "▎",
 				whitespace_char = nil, -- inherits from `vim.opt.listchars:get().space` when `nil` (see `:h listchars`)
 				priority = 1,
 				highlights = { "BlinkIndent" },
 			},
 			scope = {
 				enabled = true,
-				char = "▏",
+				char = "▎",
 				priority = 1000,
 				highlights = {
 					"BlinkIndentRed",

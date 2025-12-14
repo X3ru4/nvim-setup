@@ -99,7 +99,14 @@ return {
 						TypeParameter = "",
 					},
 				},
-				signature = { enabled = false },
+				signature = {
+					enabled = false,
+					window = {
+						scrollbar = false,
+						winblend = 0,
+						border = "rounded",
+					},
+				},
 				completion = {
 					ghost_text = {
 						enabled = true,
@@ -118,7 +125,7 @@ return {
 							max_height = 10,
 							winblend = 0,
 							border = "rounded",
-							winhighlight = "CursorLine:BlinkCmpDocCursorLine,Search:None",
+							winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,EndOfBuffer:BlinkCmpDoc",
 						},
 					},
 					menu = {
@@ -127,7 +134,7 @@ return {
 						max_height = 8,
 						winblend = 0,
 						border = "none",
-						winhighlight = "CursorLine:BlinkCmpMenuSelection,Search:None",
+						winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
 						draw = {
 							columns = {
 								{
