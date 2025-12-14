@@ -3,6 +3,7 @@ return {
 	{
 		"stevearc/oil.nvim",
 		enabled = true,
+    cmd = "Oil",
 		dependencies = {
 			{
 				enabled = false,

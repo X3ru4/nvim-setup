@@ -18,7 +18,8 @@ return {
 			config.section.mru.val = {}
 			config.section.mru_cwd.val = {}
 			config.section.top_buttons.val = {
-				config.button("e", "New file", "<cmd>ene <CR>"),
+				config.button("n", "New file", "<cmd>ene <CR>"),
+				config.button("e", "Explore", "<cmd>Oil <CR>"),
 				config.button("f", "Find files", [[<cmd>lua require('fzf-lua').files()<cr>]]),
 				config.button("o", "Old files", [[<cmd>lua require('fzf-lua').oldfiles({ prompt = "› ", })<cr>]]),
 				config.button("c", "Config", [[<cmd>lua require('fzf-lua').files({ cwd = "~/.config/nvim", })<cr>]]),

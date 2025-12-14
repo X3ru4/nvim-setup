@@ -9,6 +9,11 @@ return {
 			ui = {
 				height = 0.85,
 				border = "rounded",
+				icons = {
+					package_installed = "󰱒 ",
+					package_pending = "󰄱 ",
+					package_uninstalled = "󰅘 ",
+				},
 			},
 		},
 	},
