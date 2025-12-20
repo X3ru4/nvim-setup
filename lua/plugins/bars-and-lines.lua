@@ -2,7 +2,7 @@ return {
 
 	{
 		"luukvbaal/statuscol.nvim",
-    enabled = false,
+		enabled = false,
 		event = "VeryLazy",
 		config = function()
 			local builtin = require("statuscol.builtin")

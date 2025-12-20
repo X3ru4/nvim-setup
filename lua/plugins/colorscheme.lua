@@ -25,6 +25,42 @@ local colorschemes = {
 			require("onedark").load()
 		end,
 	},
+	onedark2 = {
+		"olimorris/onedarkpro.nvim",
+		priority = 1000,
+		config = function()
+			require("onedarkpro").setup({
+				options = {
+					cursorline = true, -- Use cursorline highlighting?
+					transparency = false, -- Use a transparent background?
+					terminal_colors = true, -- Use the theme's colors for Neovim's :terminal?
+					lualine_transparency = false, -- Center bar transparency?
+					highlight_inactive_windows = false, -- When the window is out of focus, change the normal background?
+				},
+				styles = { -- For example, to apply bold and italic, use "bold,italic"
+					types = "bold", -- Style that is applied to types
+					methods = "bold", -- Style that is applied to methods
+					numbers = "NONE", -- Style that is applied to numbers
+					strings = "NONE", -- Style that is applied to strings
+					comments = "italic", -- Style that is applied to comments
+					keywords = "italic", -- Style that is applied to keywords
+					constants = "NONE", -- Style that is applied to constants
+					functions = "bold", -- Style that is applied to functions
+					operators = "NONE", -- Style that is applied to operators
+					variables = "NONE", -- Style that is applied to variables
+					parameters = "NONE", -- Style that is applied to parameters
+					conditionals = "NONE", -- Style that is applied to conditionals
+					virtual_text = "NONE", -- Style that is applied to virtual text
+				},
+			})
+			-- onedark
+			-- onelight
+			-- onedark_vivid
+			-- onedark_dark
+			-- vaporwave
+			use("onedark")
+		end,
+	},
 	catppuccin = {
 		"catppuccin/nvim",
 		name = "catppuccin",
@@ -55,8 +91,8 @@ local colorschemes = {
 				},
 				integrations = {
 					blink_cmp = true,
-          leap = true,
-          mason = true,
+					leap = true,
+					mason = true,
 					dropbar = {
 						enabled = true,
 						color_mode = false, -- enable color for kind's texts, not just kind's icons
@@ -115,10 +151,10 @@ local colorschemes = {
 		priority = 1000,
 		config = function()
 			require("kanagawa").setup({
-				undercurl = false,
-				commentStyle = { italic = false, bold = true },
-				functionStyle = { underline = true },
-				keywordStyle = { bold = true, italic = false },
+				undercurl = true,
+				commentStyle = { italic = true, bold = false },
+				functionStyle = { bold = true },
+				keywordStyle = { italic = true },
 			})
 			require("kanagawa").load()
 		end,
@@ -278,12 +314,11 @@ local function install(list, setup)
 	return t
 end
 
+-- All the name of colorschemes are the key name in the colorschemes table
 return install({
-  "tokyonight",
+	"tokyonight",
 	"catppuccin",
 	"kanagawa",
-	"onedark",
+	"onedark2",
 	"gruvbox",
-	"nordern",
-	"nord",
-}, "tokyonight")
+}, "kanagawa")
