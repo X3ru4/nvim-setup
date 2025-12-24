@@ -1,32 +1,41 @@
 local autocmd = vim.api.nvim_create_autocmd
 
+-- Highlight on yank.
 autocmd("TextYankPost", {
 	callback = function()
 		vim.hl.on_yank({ higroup = "IncSearch", timeout = 150 })
 	end,
 })
 
+-- Alway show statusline when in in command mode.
 autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
 	callback = function(event)
 		vim.o.cmdheight = (event.event == "CmdlineEnter") and 1 or 0
 	end,
 })
 
--- set wrap when FileType is json
+-- Set wrap when FileType is json
 autocmd("FileType", {
 	pattern = "*",
 	callback = function(args)
-		vim.o.wrap = (args.match == "json")
+		vim.o.wrap = (vim.bo[args.buf].filetype == "json")
 	end,
 })
 
--- Reload highlight.lua when colorscheme changed.
+-- Reload config.highlight when colorscheme changed.
 autocmd("ColorScheme", {
 	callback = function()
 		require("config.highlight").setup()
 	end,
 })
 
+-- Apply config.highlight
+autocmd("VimEnter", {
+	once = true,
+	callback = function()
+		require("config.highlight").setup()
+	end,
+})
 
 -- -- Auto show diagnostic when CursorMoved and CursorMovedI
 -- autocmd("CursorHold", {

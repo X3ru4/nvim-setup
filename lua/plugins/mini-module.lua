@@ -7,6 +7,30 @@ return {
 	},
 
 	{
+		"nvim-mini/mini.cursorword",
+		event = "BufReadPre",
+		opts = {
+      delay = 100
+    },
+		init = function()
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = {
+					"fzf",
+					"help",
+					"lazy",
+					"mason",
+					-- "oil",
+					-- "oil_preview",
+					"dropbar_menu",
+				},
+				callback = function()
+					vim.b.minicursorword_disable = true
+				end,
+			})
+		end,
+	},
+
+	{
 		"nvim-mini/mini.notify",
 		enabled = false,
 		event = "VeryLazy",
@@ -230,9 +254,9 @@ return {
 			tabpage_section = "left",
 			format = function(buf_id, label)
 				local current_buf = vim.api.nvim_get_current_buf() == buf_id
-				local suffix = vim.bo[buf_id].modified and (current_buf and "◈ " or "◇ ") or ""
+				local suffix = vim.bo[buf_id].modified and (current_buf and " " or " ") or ""
 				local strings = {
-					-- current_buf and "▎" or "",
+					current_buf and "▎" or "",
 					require("mini.tabline").default_format(buf_id, label),
 					suffix,
 				}
@@ -382,6 +406,7 @@ return {
 							modify_icon("oil", "󰏇")
 							modify_icon("lazy", "💤")
 							modify_icon("mason", " ")
+							modify_icon("checkhealth", "󰩂 ")
 
 							return table.concat({
 								"%#",

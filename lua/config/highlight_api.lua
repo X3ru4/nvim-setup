@@ -64,9 +64,9 @@ function M.work_if(name, opts, link)
 		if link then
 			opts = vim.tbl_deep_extend("force", link, opts)
 		end
-    if type(opts.callback) == "function" then
-      opts.callback()
-    end
+		if type(opts.callback) == "function" then
+			opts.callback()
+		end
 		M.highlights = vim.tbl_deep_extend("force", M.highlights, opts)
 	end
 

@@ -321,4 +321,5 @@ return install({
 	"kanagawa",
 	"onedark2",
 	"gruvbox",
+  "kanagawa_paper",
 }, "kanagawa")

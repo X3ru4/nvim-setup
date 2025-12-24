@@ -13,9 +13,6 @@ M.setup = function()
 			bg = "#494d64",
 			default = false,
 		},
-		MiniCursorwordCurrent = {
-			link = "MiniCursorword",
-		},
 		DropBarMenuHoverIcon = {
 			link = "Nop",
 		},
@@ -136,7 +133,11 @@ M.setup = function()
 		},
 	})
 
-	api.work_if("kanagawa", {
+	api.work_if({
+		"kanagawa",
+		"kanagawa-paper-ink",
+		"kanagawa-paper-canvas",
+	}, {
 		MiniTablineModifiedCurrent = {
 			link = "MiniTablineCurrent",
 		},
@@ -146,6 +147,18 @@ M.setup = function()
 		MiniTablineModifiedVisible = {
 			link = "MiniTablineCurrentVisible",
 		},
+		MiniCursorwordCurrent = vim.empty_dict(),
+		callback = function()
+			api.modify("DropBarIconUISeparator", {
+				italic = false,
+			})
+			api.modify("DropBarIconUISeparatorNC", {
+				italic = false,
+			})
+			api.modify("DropBarIconUISeparatorMenu", {
+				italic = false,
+			})
+		end,
 	})
 
 	api.work_if("gruvbox", {
@@ -160,5 +173,4 @@ M.setup = function()
 	api.apply_highlight()
 end
 
-M.setup()
 return M

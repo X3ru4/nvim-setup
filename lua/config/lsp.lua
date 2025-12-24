@@ -7,6 +7,7 @@ local servers = {
 	clangd = {},
 	-- Python
 	basedpyright = {},
+	pyright = {},
 }
 
 for name, config in pairs(servers) do

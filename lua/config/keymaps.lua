@@ -107,6 +107,7 @@ map("n", "grt", vim.lsp.buf.type_definition, { desc = "Type definition" })
 map("n", "K", function()
 	vim.lsp.buf.hover({
 		border = "rounded",
+    wrap_at = 1,
 		focus = false,
 		close_events = { "BufWinLeave", "CursorMoved" },
 	})
@@ -157,7 +158,7 @@ map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Commen
 map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
 -- diagnostic
-local diag_jump = function(count, severity)
+local jump_to = function(count, severity)
 	return function()
 		vim.diagnostic.jump({
 			count = count,
@@ -165,12 +166,12 @@ local diag_jump = function(count, severity)
 		})
 	end
 end
-map("n", "]d", diag_jump(1), { desc = "Next Diagnostic" })
-map("n", "[d", diag_jump(-1), { desc = "Prev Diagnostic" })
-map("n", "]e", diag_jump(1, "ERROR"), { desc = "Next Error" })
-map("n", "[e", diag_jump(-1, "ERROR"), { desc = "Prev Error" })
-map("n", "]w", diag_jump(1, "WARN"), { desc = "Next Warning" })
-map("n", "[w", diag_jump(-1, "WARN"), { desc = "Prev Warning" })
+map("n", "]d", jump_to(1), { desc = "Next Diagnostic" })
+map("n", "[d", jump_to(-1), { desc = "Prev Diagnostic" })
+map("n", "]e", jump_to(1, "ERROR"), { desc = "Next Error" })
+map("n", "[e", jump_to(-1, "ERROR"), { desc = "Prev Error" })
+map("n", "]w", jump_to(1, "WARN"), { desc = "Next Warning" })
+map("n", "[w", jump_to(-1, "WARN"), { desc = "Prev Warning" })
 
 -- Clear search
 map({ "i", "n", "s" }, "<esc>", function()
