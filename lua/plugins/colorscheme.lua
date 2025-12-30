@@ -319,7 +319,7 @@ return install({
 	"tokyonight",
 	"catppuccin",
 	"kanagawa",
-	"onedark2",
+	"onedark",
 	"gruvbox",
   "kanagawa_paper",
-}, "kanagawa")
+}, "gruvbox")

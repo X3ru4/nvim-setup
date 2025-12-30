@@ -26,6 +26,7 @@ autocmd("FileType", {
 autocmd("ColorScheme", {
 	callback = function()
 		require("config.highlight").setup()
+    require("config.heirline").clear()
 	end,
 })
 

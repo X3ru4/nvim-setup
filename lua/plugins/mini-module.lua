@@ -10,8 +10,8 @@ return {
 		"nvim-mini/mini.cursorword",
 		event = "BufReadPre",
 		opts = {
-      delay = 100
-    },
+			delay = 100,
+		},
 		init = function()
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = {
@@ -349,9 +349,9 @@ return {
 
 	{
 		"nvim-mini/mini.statusline",
-		enabled = true,
+		enabled = false,
 		event = "VimEnter",
-		version = false,
+		version = true,
 		config = function()
 			require("mini.statusline").setup({
 				content = {

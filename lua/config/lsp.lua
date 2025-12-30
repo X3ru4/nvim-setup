@@ -25,10 +25,10 @@ vim.diagnostic.config({
 	update_in_insert = false,
 	signs = {
 		text = {
-			[vim.diagnostic.severity.ERROR] = icons.errr,
-			[vim.diagnostic.severity.WARN] = icons.warn,
-			[vim.diagnostic.severity.INFO] = icons.info,
-			[vim.diagnostic.severity.HINT] = icons.hint,
+			[vim.diagnostic.severity.ERROR] = icons.Error,
+			[vim.diagnostic.severity.WARN] = icons.Warn,
+			[vim.diagnostic.severity.INFO] = icons.Info,
+			[vim.diagnostic.severity.HINT] = icons.Hint,
 		},
 	},
 })

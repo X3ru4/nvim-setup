@@ -1,7 +1,6 @@
 local M = {}
 
 M.highlights = {}
-M.default = {}
 
 ---Get available highlight group info.
 ---@param name string Name of highlight group to get.
@@ -12,16 +11,6 @@ function M.get(name, link)
 		vim.notify("[highlight_module] Invalid name (must be string)", vim.log.levels.ERROR)
 	end
 	return vim.api.nvim_get_hl(0, { name = name, link = link or false })
-end
-
----Store default highlight values.
----@param name string Highlight name.
----@param link boolean|nil Whether to include link info.
-function M.add_default(name, link)
-	local hl = M.get(name, link)
-	if hl then
-		M.default[name] = hl
-	end
 end
 
 ---Modify highlight info (merge existing + new opts).
