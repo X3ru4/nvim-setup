@@ -283,4 +283,4 @@ return install({
 	"onedark",
 	"gruvbox",
 	"kanagawa_paper",
-}, "kanagawa")
+}, "catppuccin")

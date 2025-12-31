@@ -48,11 +48,11 @@ M.setup = function()
 	}, {
 		callback = function()
 			api.modify("MiniTablineCurrent", {
-				italic = true,
+				italic = false,
 				underline = true,
 			})
 			api.modify("MiniTablineModifiedCurrent", {
-				italic = true,
+				italic = false,
 				underline = true,
 			})
 			api.modify("Visual", {

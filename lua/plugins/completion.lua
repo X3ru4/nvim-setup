@@ -124,7 +124,7 @@ return {
 							max_width = 30,
 							max_height = 10,
 							winblend = 0,
-							border = "rounded",
+							border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
 							winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,EndOfBuffer:BlinkCmpDoc",
 						},
 					},
@@ -133,7 +133,7 @@ return {
 						min_width = 1,
 						max_height = 8,
 						winblend = 0,
-						border = "none",
+						border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
 						winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
 						draw = {
 							columns = {
