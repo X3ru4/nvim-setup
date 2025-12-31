@@ -348,6 +348,7 @@ return {
 	},
 
 	{
+    -- Using heirline.nvim
 		"nvim-mini/mini.statusline",
 		enabled = false,
 		event = "VimEnter",

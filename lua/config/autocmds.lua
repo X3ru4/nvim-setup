@@ -31,7 +31,7 @@ autocmd("ColorScheme", {
 })
 
 -- Apply config.highlight
-autocmd("VimEnter", {
+autocmd("UiEnter", {
 	once = true,
 	callback = function()
 		require("config.highlight").setup()

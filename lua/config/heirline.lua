@@ -171,7 +171,7 @@ local mode = {
 					},
 					bg = {
 						list = {
-							true_ = "TabLineSel",
+							true_ = "TabLine",
 							false_ = "Nop",
 						},
 						use = tostring(vim.bo.modified) .. "_",
@@ -206,13 +206,14 @@ local modified = {
 			string = {
 				value = " Modified ",
 				hl = {
-					bg = "TabLineSel",
+          fg = "WarningMsg",
+					bg = "TabLine",
 					style = { italic = true },
 				},
 			},
 			right = {
 				value = "",
-				hl = { fg = { name = "TabLineSel", type = "bg" } },
+				hl = { fg = { name = "TabLine", type = "bg" } },
 			},
 		})
 	end,
@@ -264,13 +265,13 @@ local custom = {
 			id = "Custom",
 			left = {
 				value = "",
-				hl = { fg = { name = "TabLineSel", type = "bg" } },
+				hl = { fg = { name = "TabLine", type = "bg" } },
 			},
 			string = {
 				value = " 𝑋3𝑟𝑢4 ",
 				hl = {
 					fg = { name = "String" },
-					bg = { name = "TabLineSel", type = "bg" },
+					bg = { name = "TabLine", type = "bg" },
           style = { bold = false }
 				},
 			},

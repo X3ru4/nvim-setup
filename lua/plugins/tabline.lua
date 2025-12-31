@@ -81,7 +81,7 @@ return {
 	{
 		"romgrk/barbar.nvim",
 		enabled = false,
-		event = "VeryLazy",
+		event = "UiEnter",
 		init = function()
 			vim.g.barbar_auto_setup = true
 		end,
@@ -101,6 +101,7 @@ return {
 				separator_at_end = true,
 				pinned = { button = require("config.icons").icons.pin, filename = false },
 				modified = { button = require("config.icons").icons.modified },
+				filetype = { enabled = true },
 			},
 			maximum_length = 20,
 		},

@@ -1,6 +1,3 @@
-local use = vim.cmd.colorscheme
-
--- Add colorscheme here
 local colorschemes = {
 
 	tokyonight = {
@@ -23,42 +20,6 @@ local colorschemes = {
 				ending_tildes = true,
 			})
 			require("onedark").load()
-		end,
-	},
-	onedark2 = {
-		"olimorris/onedarkpro.nvim",
-		priority = 1000,
-		config = function()
-			require("onedarkpro").setup({
-				options = {
-					cursorline = true, -- Use cursorline highlighting?
-					transparency = false, -- Use a transparent background?
-					terminal_colors = true, -- Use the theme's colors for Neovim's :terminal?
-					lualine_transparency = false, -- Center bar transparency?
-					highlight_inactive_windows = false, -- When the window is out of focus, change the normal background?
-				},
-				styles = { -- For example, to apply bold and italic, use "bold,italic"
-					types = "bold", -- Style that is applied to types
-					methods = "bold", -- Style that is applied to methods
-					numbers = "NONE", -- Style that is applied to numbers
-					strings = "NONE", -- Style that is applied to strings
-					comments = "italic", -- Style that is applied to comments
-					keywords = "italic", -- Style that is applied to keywords
-					constants = "NONE", -- Style that is applied to constants
-					functions = "bold", -- Style that is applied to functions
-					operators = "NONE", -- Style that is applied to operators
-					variables = "NONE", -- Style that is applied to variables
-					parameters = "NONE", -- Style that is applied to parameters
-					conditionals = "NONE", -- Style that is applied to conditionals
-					virtual_text = "NONE", -- Style that is applied to virtual text
-				},
-			})
-			-- onedark
-			-- onelight
-			-- onedark_vivid
-			-- onedark_dark
-			-- vaporwave
-			use("onedark")
 		end,
 	},
 	catppuccin = {
@@ -99,7 +60,7 @@ local colorschemes = {
 					},
 				},
 			})
-			use("catppuccin")
+			vim.cmd.colorscheme("catppuccin")
 		end,
 	},
 	nord = {
@@ -127,7 +88,7 @@ local colorschemes = {
 			require("nordern").setup({
 				brighter_constants = false,
 			})
-			use("nordern")
+			vim.cmd.colorscheme("nordern")
 		end,
 	},
 	rose_pine = {
@@ -142,7 +103,7 @@ local colorschemes = {
 		priority = 1000,
 		config = function()
 			require("gruvbox").setup({})
-			use("gruvbox")
+			vim.cmd.colorscheme("gruvbox")
 		end,
 	},
 	kanagawa = {
@@ -177,7 +138,7 @@ local colorschemes = {
 		config = function()
 			vim.g.sonokai_style = "atlantis"
 			vim.g.sonokai_enable_italic = true
-			use("sonokai")
+			vim.cmd.colorscheme("sonokai")
 		end,
 	},
 	nightfox = {
@@ -185,7 +146,7 @@ local colorschemes = {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			use("nightfox")
+			vim.cmd.colorscheme("nightfox")
 		end,
 	},
 	material = {
@@ -193,7 +154,7 @@ local colorschemes = {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			use("material-deep-ocean")
+			vim.cmd.colorscheme("material-deep-ocean")
 		end,
 	},
 	cyberdream = {
@@ -201,7 +162,7 @@ local colorschemes = {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			use("cyberdream")
+			vim.cmd.colorscheme("cyberdream")
 		end,
 	},
 	base46 = {
@@ -321,5 +282,5 @@ return install({
 	"kanagawa",
 	"onedark",
 	"gruvbox",
-  "kanagawa_paper",
-}, "gruvbox")
+	"kanagawa_paper",
+}, "kanagawa")
