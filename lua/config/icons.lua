@@ -4,12 +4,12 @@ M.diagnostic = {
 	Error = "",
 	Warn = "",
 	Info = "",
-	Hint = "",
+	Hint = "",
 }
 
 M.icons = {
-	modified = "",
-	close = "󱎘",
+	modified = "",
+	close = "",
 	pin = "",
 }
 

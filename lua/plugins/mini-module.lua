@@ -252,13 +252,17 @@ return {
 		opts = {
 			always_show = false,
 			tabpage_section = "left",
+
 			format = function(buf_id, label)
 				local current_buf = vim.api.nvim_get_current_buf() == buf_id
-				local suffix = vim.bo[buf_id].modified and (current_buf and " " or " ") or ""
+        local icon = require("config.icons").icons.modified
+				local suffix = vim.bo[buf_id].modified and (current_buf and icon or icon .. " ") or ""
+
 				local strings = {
-					current_buf and "▎" or "",
+					current_buf and "▏" or "",
 					require("mini.tabline").default_format(buf_id, label),
 					suffix,
+					current_buf and "▕" or "",
 				}
 				return table.concat(strings)
 			end,
@@ -348,7 +352,7 @@ return {
 	},
 
 	{
-    -- Using heirline.nvim
+		-- Using heirline.nvim
 		"nvim-mini/mini.statusline",
 		enabled = false,
 		event = "VimEnter",

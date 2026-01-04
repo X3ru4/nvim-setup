@@ -1,9 +1,27 @@
 local M = {}
-local api = require("config.highlight_api")
+local hl_api = require("util.hl_api")
 
 M.setup = function()
-	api.highlights = {
+	hl_api.highlights = {
 		StatusLine = {
+			link = "Normal",
+		},
+		WinBar = {
+			link = "Normal",
+		},
+		MiniTablineCurrent = {
+			link = "Normal",
+		},
+		MiniTablineModifiedCurrent = {
+			link = "Normal",
+		},
+		MiniTablineHidden = {
+			link = "StatusLineNC",
+		},
+		MiniTablineModifiedHidden = {
+			link = "MiniTablineHidden",
+		},
+		MiniTablineFill = {
 			link = "Normal",
 		},
 		DropBarMenuHoverEntry = {
@@ -13,9 +31,7 @@ M.setup = function()
 			bg = "#494d64",
 			default = false,
 		},
-		DropBarMenuHoverIcon = {
-			link = "Nop",
-		},
+		DropBarMenuHoverIcon = vim.empty_dict(),
 		SpellBad = {
 			strikethrough = true,
 		},
@@ -28,59 +44,45 @@ M.setup = function()
 		SpellLocal = {
 			strikethrough = true,
 		},
+		hl_api.modify("DropBarIconUISeparator", {
+			italic = false,
+		}),
+		hl_api.modify("DropBarIconUISeparatorNC", {
+			italic = false,
+		}),
+		hl_api.modify("DropBarIconUISeparatorMenu", {
+			italic = false,
+		}),
 	}
 
-	api.work_if({
-		"tokyonight",
-		"tokyonight-day",
-		"tokyonight-moon",
-		"tokyonight-night",
-		"tokyonight-storm",
-	}, {
-		nil and nil, -- =))
-	})
-
-	api.work_if({
+	hl_api.work_if({
 		"catppuccin-frappe",
 		"catppuccin-mocha",
 		"catppuccin-macchiato",
 		"catppuccin-latte",
 	}, {
-		callback = function()
-			api.modify("MiniTablineCurrent", {
-				italic = false,
-				underline = true,
-			})
-			api.modify("MiniTablineModifiedCurrent", {
-				italic = false,
-				underline = true,
-			})
-			api.modify("Visual", {
-				bold = true,
-			})
-		end,
+		hl_api.modify("MiniCursorwordCurrent", {
+      link = "MiniCursorword"
+		}),
+		hl_api.modify("MiniTablineCurrent", {
+			italic = false,
+			underline = false,
+		}),
+		hl_api.modify("MiniTablineModifiedCurrent", {
+			italic = false,
+			underline = false,
+		}),
+		hl_api.modify("Visual", {
+			bold = true,
+		}),
 	})
 
-	api.work_if("onedark", {
+	hl_api.work_if("onedark", {
 		WinBar = {
 			bg = "#242830",
 		},
 		WinBarNc = {
 			link = "Normal",
-		},
-		MiniTablineCurrent = {
-			bold = true,
-			bg = 2632756,
-			fg = 11252415,
-		},
-		MiniTablineHidden = {
-			link = "WinBar",
-		},
-		Minicursorword = {
-			bg = "#323641",
-		},
-		Minicursorwordcurrent = {
-			link = "Minicursorword",
 		},
 		IncSearch = {
 			bg = "#424951",
@@ -91,49 +93,7 @@ M.setup = function()
 		},
 	})
 
-	api.work_if("nord", {
-		WinBar = {
-			link = "StatusLine",
-		},
-		WinBarNc = {
-			link = "StatusLineNC",
-		},
-	})
-
-	api.work_if("nordic", {
-		api.modify("MiniIndentscopeSymbol", {
-			italic = false,
-		}),
-	})
-
-	api.work_if("nordern", {
-		TabLine = {
-			link = "Normal",
-		},
-		TabLineSel = {
-			link = "Normal",
-		},
-		MiniTablineCurrent = {
-			link = "Normal",
-		},
-		MiniTablineModifiedCurrent = {
-			link = "Normal",
-		},
-		MiniTablineModifiedVisible = {
-			link = "Normal",
-		},
-		MiniTablineModifiedHidden = {
-			link = "Normal",
-		},
-		MiniStatuslineModeNormal = {
-			link = "NoiceVirtualText",
-		},
-		MiniStatuslineModeCommand = {
-			link = "LspDiagnosticsVirtualTextWarning",
-		},
-	})
-
-	api.work_if({
+	hl_api.work_if({
 		"kanagawa",
 		"kanagawa-paper-ink",
 		"kanagawa-paper-canvas",
@@ -148,20 +108,18 @@ M.setup = function()
 			link = "MiniTablineCurrentVisible",
 		},
 		MiniCursorwordCurrent = vim.empty_dict(),
-		callback = function()
-			api.modify("DropBarIconUISeparator", {
-				italic = false,
-			})
-			api.modify("DropBarIconUISeparatorNC", {
-				italic = false,
-			})
-			api.modify("DropBarIconUISeparatorMenu", {
-				italic = false,
-			})
-		end,
+		hl_api.modify("DropBarIconUISeparator", {
+			italic = false,
+		}),
+		hl_api.modify("DropBarIconUISeparatorNC", {
+			italic = false,
+		}),
+		hl_api.modify("DropBarIconUISeparatorMenu", {
+			italic = false,
+		}),
 	})
 
-	api.work_if("gruvbox", {
+	hl_api.work_if("gruvbox", {
 		SignColumn = {
 			link = "Normal",
 		},
@@ -170,7 +128,7 @@ M.setup = function()
 		},
 	})
 
-	api.apply_highlight()
+	hl_api.apply()
 end
 
 return M

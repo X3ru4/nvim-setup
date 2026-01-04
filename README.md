@@ -17,6 +17,6 @@ git clone https://github.com/X3ru4/n30vim.git ~/.config/nvim
 ```
 
 # Lastest version
->  v29
+>  v30
 
 [_X3ru4_](https://github.com/X3ru4)

@@ -18,10 +18,14 @@ end
 local icons = require("config.icons").diagnostic
 vim.diagnostic.config({
 	virtual_text = {
-		prefix = "",
+		prefix = "",
 	},
-	underline = false,
-	float = { border = nil, header = "", source = "if_many" },
+	underline = true,
+	float = {
+		border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
+		header = "",
+		source = "if_many",
+	},
 	update_in_insert = false,
 	signs = {
 		text = {

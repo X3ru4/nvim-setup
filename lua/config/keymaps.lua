@@ -1,5 +1,12 @@
 local map = vim.keymap.set
 
+-- Paste in insert mode.
+map("i", "<c-p>", "<c-o>p")
+
+-- Swap the search keymap.
+map({ "n", "x", "v" }, "?", "/")
+map({ "n", "x", "v" }, "/", "?")
+
 map("n", "<leader>rm", "<cmd>!rm ~/.local/state/nvim/swap -rf<cr>", { desc = "Remove swap folder" })
 map("!", "<F11>", "<Nop>")
 
@@ -106,8 +113,7 @@ map("n", "grt", vim.lsp.buf.type_definition, { desc = "Type definition" })
 
 map("n", "K", function()
 	vim.lsp.buf.hover({
-		border = "rounded",
-    wrap_at = 1,
+		border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
 		focus = false,
 		close_events = { "BufWinLeave", "CursorMoved" },
 	})
@@ -115,7 +121,7 @@ end, { desc = "Lsp hover" })
 
 map("i", "<c-k>", function()
 	vim.lsp.buf.signature_help({
-		border = "rounded",
+		border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
 		focus = false,
 		close_events = { "BufWinLeave", "CursorMoved" },
 	})
@@ -123,7 +129,7 @@ end)
 
 map({ "i", "n" }, "<c-l>", function()
 	vim.diagnostic.open_float(nil, {
-		border = "rounded",
+		border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
 		focus = false,
 		close_events = { "BufWinLeave", "CursorMoved", "CursorMovedI", "ModeChanged" },
 	})

@@ -29,7 +29,7 @@ local colorschemes = {
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
-				flavour = "mocha",
+				flavour = "macchiato",
 				transparent_background = false, -- disables setting the background color.
 				no_italic = false,
 				styles = {
@@ -176,7 +176,7 @@ local colorschemes = {
 				transparency = false,
 			})
 			local set_hl = vim.api.nvim_set_hl
-			local api = require("../config/highlight_api")
+			local api = require("util.hl_api")
 			api.highlights = {
 				WinBar = {
 					link = "Normal",
@@ -239,7 +239,7 @@ local colorschemes = {
 					link = "MiniTablineModifiedCurrent",
 				},
 			}
-			api.apply_highlight()
+			api.apply()
 		end,
 	},
 }

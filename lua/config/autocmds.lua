@@ -26,11 +26,11 @@ autocmd("FileType", {
 autocmd("ColorScheme", {
 	callback = function()
 		require("config.highlight").setup()
-    require("config.heirline").clear()
+    require("util.hl_api").clear_cache()
 	end,
 })
 
--- Apply config.highlight
+-- Setup config.highlight
 autocmd("UiEnter", {
 	once = true,
 	callback = function()
