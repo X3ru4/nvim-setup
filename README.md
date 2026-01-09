@@ -8,9 +8,7 @@
 
 ## ♦ [Usage](https://github.com/X3ru4/n30vim.git)
 
-<div>
-Helloo
-</div>
+<Hello>
 
 ```bash
 git clone git@github.com:X3ru4/n30vim.git ~/.config/nvim
