@@ -25,7 +25,7 @@ M.highlights = {}
 ---@return vim.api.keyset.highlight
 function M.get(name)
 	if not M.hl_link_cache[name] then
-		M.hl_link_cache[name] = M.vget_hl(0, { name = name })
+		M.hl_link_cache[name] = M.vget_hl(0, { name = name, link = false })
 		return M.hl_link_cache[name]
 	end
 	return M.hl_link_cache[name]

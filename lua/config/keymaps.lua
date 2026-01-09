@@ -111,19 +111,12 @@ map("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation" })
 map("n", "grr", vim.lsp.buf.references, { desc = "References" })
 map("n", "grt", vim.lsp.buf.type_definition, { desc = "Type definition" })
 
-map("n", "K", function()
-	vim.lsp.buf.hover({
-		border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
-		focus = false,
-		close_events = { "BufWinLeave", "CursorMoved" },
-	})
-end, { desc = "Lsp hover" })
 
-map("i", "<c-k>", function()
+map({ "n", "i" }, "<c-k>", function()
 	vim.lsp.buf.signature_help({
 		border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
 		focus = false,
-		close_events = { "BufWinLeave", "CursorMoved" },
+		close_events = { "BufWinLeave", "CursorMoved", "CursorMovedI", "ModeChanged" },
 	})
 end)
 
@@ -172,12 +165,12 @@ local jump_to = function(count, severity)
 		})
 	end
 end
-map("n", "]d", jump_to(1), { desc = "Next Diagnostic" })
-map("n", "[d", jump_to(-1), { desc = "Prev Diagnostic" })
-map("n", "]e", jump_to(1, "ERROR"), { desc = "Next Error" })
-map("n", "[e", jump_to(-1, "ERROR"), { desc = "Prev Error" })
-map("n", "]w", jump_to(1, "WARN"), { desc = "Next Warning" })
-map("n", "[w", jump_to(-1, "WARN"), { desc = "Prev Warning" })
+map({ "n", "x", "v" }, "]d", jump_to(1), { desc = "Next Diagnostic" })
+map({ "n", "x", "v" }, "[d", jump_to(-1), { desc = "Prev Diagnostic" })
+map({ "n", "x", "v" }, "]e", jump_to(1, "ERROR"), { desc = "Next Error" })
+map({ "n", "x", "v" }, "[e", jump_to(-1, "ERROR"), { desc = "Prev Error" })
+map({ "n", "x", "v" }, "]w", jump_to(1, "WARN"), { desc = "Next Warning" })
+map({ "n", "x", "v" }, "[w", jump_to(-1, "WARN"), { desc = "Prev Warning" })
 
 -- Clear search
 map({ "i", "n", "s" }, "<esc>", function()

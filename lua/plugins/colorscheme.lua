@@ -275,9 +275,8 @@ local function install(list, setup)
 	return t
 end
 
--- All the name of colorschemes are the key name in the colorschemes table
 return install({
-	"tokyonight",
+	"tokyonight", -- Unsupport statusline
 	"catppuccin",
 	"kanagawa",
 	"onedark",

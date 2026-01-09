@@ -241,7 +241,58 @@ return {
 		"nvim-mini/mini.diff",
 		version = false,
 		event = { "BufReadPre", "BufNewFile" },
-		opts = {},
+		opts = {
+			view = {
+				-- Visualization style. Possible values are 'sign' and 'number'.
+        style = "number",
+
+				-- Signs used for hunks with 'sign' view
+				signs = { add = "", change = "", delete = "" },
+				-- Priority of used visualization extmarks
+				priority = 199,
+			},
+			source = nil,
+
+			-- Delays (in ms) defining asynchronous processes
+			delay = {
+				-- How much to wait before update following every text change
+				text_change = 200,
+			},
+
+			-- Module mappings. Use `''` (empty string) to disable one.
+			mappings = {
+				-- Apply hunks inside a visual/operator region
+				apply = "gh",
+
+				-- Reset hunks inside a visual/operator region
+				reset = "gH",
+
+				-- Hunk range textobject to be used inside operator
+				-- Works also in Visual mode if mapping differs from apply and reset
+				textobject = "gh",
+
+				-- Go to hunk range in corresponding direction
+				goto_first = "[H",
+				goto_prev = "[h",
+				goto_next = "]h",
+				goto_last = "]H",
+			},
+
+			-- Various options
+			options = {
+				-- Diff algorithm. See `:h vim.diff()`.
+				algorithm = "histogram",
+
+				-- Whether to use "indent heuristic". See `:h vim.diff()`.
+				indent_heuristic = true,
+
+				-- The amount of second-stage diff to align lines
+				linematch = 60,
+
+				-- Whether to wrap around edges during hunk navigation
+				wrap_goto = false,
+			},
+		},
 	},
 
 	{
@@ -255,7 +306,7 @@ return {
 
 			format = function(buf_id, label)
 				local current_buf = vim.api.nvim_get_current_buf() == buf_id
-        local icon = require("config.icons").icons.modified
+				local icon = require("config.icons").icons.modified
 				local suffix = vim.bo[buf_id].modified and (current_buf and icon or icon .. " ") or ""
 
 				local strings = {

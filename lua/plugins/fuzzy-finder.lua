@@ -168,6 +168,34 @@ return {
 					end,
 					desc = "Live grep",
 				},
+
+				{
+					"<leader>cgh",
+					function()
+						fzf.git_hunks({
+							winopts = {
+								preview = {
+									hidden = false,
+								},
+							},
+						})
+					end,
+					desc = "Git hunks",
+				},
+
+				{
+					"<leader>cgd",
+					function()
+						fzf.git_diff({
+							winopts = {
+								preview = {
+									hidden = false,
+								},
+							},
+						})
+					end,
+					desc = "Git diff",
+				},
 			}
 		end,
 	},

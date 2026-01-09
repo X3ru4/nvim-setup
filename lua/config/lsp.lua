@@ -22,9 +22,9 @@ vim.diagnostic.config({
 	},
 	underline = true,
 	float = {
-		border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
 		header = "",
 		source = "if_many",
+		wrap = true,
 	},
 	update_in_insert = false,
 	signs = {

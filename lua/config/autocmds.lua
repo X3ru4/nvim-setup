@@ -26,7 +26,7 @@ autocmd("FileType", {
 autocmd("ColorScheme", {
 	callback = function()
 		require("config.highlight").setup()
-    require("util.hl_api").clear_cache()
+		require("util.hl_api").clear_cache()
 	end,
 })
 
