@@ -8,11 +8,6 @@
 
 ## ♦ [Usage](https://github.com/X3ru4/n30vim.git)
 
-<<<<<<< HEAD
-<Hello>
-
-=======
->>>>>>> a1a59e3 (v30.4)
 ```bash
 git clone git@github.com:X3ru4/n30vim.git ~/.config/nvim
 ```
