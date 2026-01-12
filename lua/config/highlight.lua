@@ -62,7 +62,7 @@ M.setup = function()
 		"catppuccin-latte",
 	}, {
 		hl_api.modify("MiniCursorwordCurrent", {
-      link = "MiniCursorword"
+			link = "MiniCursorword",
 		}),
 		hl_api.modify("MiniTablineCurrent", {
 			italic = false,
@@ -73,6 +73,9 @@ M.setup = function()
 			underline = false,
 		}),
 		hl_api.modify("Visual", {
+			bold = true,
+		}),
+		hl_api.modify("IncSearch", {
 			bold = true,
 		}),
 	})

@@ -3,7 +3,7 @@ local autocmd = vim.api.nvim_create_autocmd
 -- Highlight on yank.
 autocmd("TextYankPost", {
 	callback = function()
-		vim.hl.on_yank({ higroup = "IncSearch", timeout = 150 })
+		vim.hl.on_yank({ higroup = "Visual", timeout = 150 })
 	end,
 })
 

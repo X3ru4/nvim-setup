@@ -25,7 +25,7 @@ M.highlights = {}
 ---@return vim.api.keyset.highlight
 function M.get(name)
 	if not M.hl_link_cache[name] then
-		M.hl_link_cache[name] = M.vget_hl(0, { name = name, link = false })
+		M.hl_link_cache[name] = M.vget_hl(0, { name = name, link = true })
 		return M.hl_link_cache[name]
 	end
 	return M.hl_link_cache[name]
@@ -119,10 +119,10 @@ function M.mix_hl(ns, spec)
 			return M.get(arg.name)[arg.type or fallback_key]
 		end
 		if arg.list then
-			for _, v in pairs(arg.list) do
+			for k, v in pairs(arg.list) do
 				M.get(v)
 			end
-			return M.hl_link_cache[arg.list[arg.use] or spec.default_hl][arg.type or fallback_key]
+			return M.hl_link_cache[arg.list[arg.key] or arg.list[arg.default_key] or spec.default_hl][arg.type or fallback_key]
 		end
 		if type(arg) == "string" then
 			return M.get(arg)[fallback_key]
@@ -131,7 +131,7 @@ function M.mix_hl(ns, spec)
 	local function create_key(arg)
 		if arg then
 			if arg.list then
-				return arg.list[arg.use] or ""
+				return arg.list[arg.key] or ""
 			end
 		end
 		return ""

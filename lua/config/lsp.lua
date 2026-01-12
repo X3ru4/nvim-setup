@@ -20,7 +20,7 @@ vim.diagnostic.config({
 	virtual_text = {
 		prefix = "",
 	},
-	underline = true,
+	underline = false,
 	float = {
 		header = "",
 		source = "if_many",

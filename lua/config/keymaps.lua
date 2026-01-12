@@ -1,18 +1,20 @@
 local map = vim.keymap.set
+local util = require("util.lazy")
+local m1 = { "n", "x" }
 
 -- Paste in insert mode.
 map("i", "<c-p>", "<c-o>p")
-
--- Swap the search keymap.
-map({ "n", "x", "v" }, "?", "/")
-map({ "n", "x", "v" }, "/", "?")
 
 map("n", "<leader>rm", "<cmd>!rm ~/.local/state/nvim/swap -rf<cr>", { desc = "Remove swap folder" })
 map("!", "<F11>", "<Nop>")
 
 -- Better insert
-map("i", "<c-c>", "<c-o>S")
 map("i", "<c-a>", "<c-o>I")
+
+if not util.is_loaded("cinnamon.nvim") then
+  vim.keymap.set(m1, "zh", "zH", { desc = "Horizontal scroll" })
+  vim.keymap.set(m1, "zl", "zL", { desc = "Horizontal scroll" })
+end
 
 -- Yank buffer
 map("n", "<leader>ya", "ggVGy", { desc = "Yank all" })
@@ -34,14 +36,14 @@ map("n", "<leader>v", "gg0vG$", { desc = "Select all" })
 map("n", "<leader>V", "ggVG$", { desc = "Select all line" })
 map("x", "<leader>v", "gg0G$", { desc = "Select all" })
 
--- Go to the prev buffer in terminal
-map("t", "<C-b>", "<cmd>e #<cr>")
+-- Return Normal mode
+map("t", "<C-b>", "<cmd>e #<cr><cmd>e #<cr>")
 -- Save file
 map({ "n", "i", "x", "s" }, "<C-s>", "<cmd>silent!w<cr><esc>", { desc = "Save file" })
 -- Quit
 map("n", "<leader>qa", "<cmd>q!<cr>", { desc = "Quit all" })
 map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
--- Lazy
+-- lazy.nvim
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- <leader>g
@@ -60,13 +62,22 @@ map("x", "<leader>gr", function()
 	local selection = vim.fn.getreg('"')
 	vim.fn.setreg('"', save_reg, save_regtype)
 
-	vim.ui.input({ prompt = "Replace " .. selection .. " with" }, function(input)
+	vim.ui.input({ prompt = 'Replace "' .. selection .. '" with' }, function(input)
 		if input then
-			vim.cmd("%s/" .. selection .. "/" .. input .. "/g")
+			vim.ui.input({ prompt = 'Flag Ex: "gc"' }, function(flag)
+				vim.cmd(table.concat({
+					"%s/",
+					selection,
+					"/",
+					input,
+					"/",
+					flag or "g",
+				}))
+			end)
 		end
 	end)
 end, { desc = "Replace" })
--- Search
+-- Popup search
 map("n", "<leader>gs", function()
 	vim.ui.input({ prompt = "Search" }, function(input)
 		if type(input) == "string" then
@@ -85,7 +96,7 @@ end, { desc = "Reopen" })
 -- map("n", "<leader>n", "*Nciw", { desc = "Search & Replace" })
 
 -- Code
-map({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+map(m1, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
 map("n", "<leader>ch", function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "Inlay hint" })
@@ -97,10 +108,11 @@ map("n", "<leader>cw", function()
 	end
 end, { desc = "Wrap" })
 map("n", "<leader>cr", function()
+	local method = "make"
 	vim.cmd("silent! w")
-	if vim.g.run_method == "make" then
+	if method == "make" then
 		vim.cmd("terminal make run")
-	elseif vim.g.run_method == "sh" then
+	elseif method == "shell" then
 		vim.cmd("terminal ./run.sh")
 	end
 end, { desc = "Run code" })
@@ -110,7 +122,6 @@ map("n", "grd", vim.lsp.buf.definition, { desc = "Definition" })
 map("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation" })
 map("n", "grr", vim.lsp.buf.references, { desc = "References" })
 map("n", "grt", vim.lsp.buf.type_definition, { desc = "Type definition" })
-
 
 map({ "n", "i" }, "<c-k>", function()
 	vim.lsp.buf.signature_help({
@@ -130,10 +141,10 @@ end, { desc = "Open diagnostic float" })
 
 -- ©LazyVim
 -- Better up/down
-map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
-map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+map(m1, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map(m1, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map(m1, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+map(m1, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
@@ -165,12 +176,12 @@ local jump_to = function(count, severity)
 		})
 	end
 end
-map({ "n", "x", "v" }, "]d", jump_to(1), { desc = "Next Diagnostic" })
-map({ "n", "x", "v" }, "[d", jump_to(-1), { desc = "Prev Diagnostic" })
-map({ "n", "x", "v" }, "]e", jump_to(1, "ERROR"), { desc = "Next Error" })
-map({ "n", "x", "v" }, "[e", jump_to(-1, "ERROR"), { desc = "Prev Error" })
-map({ "n", "x", "v" }, "]w", jump_to(1, "WARN"), { desc = "Next Warning" })
-map({ "n", "x", "v" }, "[w", jump_to(-1, "WARN"), { desc = "Prev Warning" })
+map(m1, "]d", jump_to(1), { desc = "Next Diagnostic" })
+map(m1, "[d", jump_to(-1), { desc = "Prev Diagnostic" })
+map(m1, "]e", jump_to(1, "ERROR"), { desc = "Next Error" })
+map(m1, "[e", jump_to(-1, "ERROR"), { desc = "Prev Error" })
+map(m1, "]w", jump_to(1, "WARN"), { desc = "Next Warning" })
+map(m1, "[w", jump_to(-1, "WARN"), { desc = "Prev Warning" })
 
 -- Clear search
 map({ "i", "n", "s" }, "<esc>", function()

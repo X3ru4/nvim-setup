@@ -63,16 +63,18 @@ local mode = {
 				hl = {
 					bg = {
 						list = mode_color,
-						use = self.mode,
+            default_key = "n",
+						key = self.mode,
 					},
 				},
 			},
 			right = {
-				value = vim.o.cmdheight == 0 and "" or "",
+				value = "",
 				hl = {
 					fg = {
 						list = mode_color,
-						use = self.mode,
+            default_key = "n",
+						key = self.mode,
 						type = "bg",
 					},
 					bg = {
@@ -80,17 +82,18 @@ local mode = {
 							true_ = "TabLine",
 							false_ = "Nop",
 						},
-						use = tostring(vim.bo.modified) .. "_",
+						key = tostring(vim.bo.modified) .. "_",
 					},
 				},
 			},
 			string = {
-				value = self.mode_name[self.mode] .. " ",
+				value = (self.mode_name[self.mode] or self.mode) .. " ",
 				hl = {
 					fg = mode_color.i,
 					bg = {
 						list = mode_color,
-						use = self.mode,
+            default_key = "n",
+						key = self.mode,
 					},
 					style = { bold = true },
 				},
@@ -167,6 +170,10 @@ local diagnostic = {
 	end,
 }
 local custom = {
+	update = {
+		"ModeChanged",
+		"BufModifiedSet",
+	},
 	provider = function()
 		return line.separator({
 			id = "Custom",
@@ -179,7 +186,8 @@ local custom = {
 				hl = {
 					fg = {
 						list = mode_color,
-						use = vim.fn.mode(1):gsub(1, 1),
+            default_key = "n",
+						key = vim.fn.mode(1):gsub(1, 1),
 						type = "bg",
 					},
 					bg = "TabLine",

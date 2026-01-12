@@ -8,9 +8,6 @@ function _G.newfoldtext()
 	return "  " .. line .. " ↙" .. count
 end
 
--- make or sh
-vim.g.run_method = "make"
-
 local opt = vim.opt
 
 -- Performance

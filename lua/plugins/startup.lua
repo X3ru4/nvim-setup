@@ -3,9 +3,9 @@ return {
 		"goolord/alpha-nvim",
 		event = "VimEnter",
 		enabled = true,
-    dependencies = {
-      "folke/persistence.nvim"
-    },
+		dependencies = {
+			"folke/persistence.nvim",
+		},
 		config = function()
 			local config = require("alpha.themes.startify")
 			config.section.header.val = "n30vim"
@@ -13,8 +13,8 @@ return {
 				hl = "Type",
 				shrink_margin = false,
 			}
-      config.section.footer.type = "text"
-      config.section.footer.val = "\nX3ru4  "
+			config.section.footer.type = "text"
+			config.section.footer.val = ""
 			config.section.mru.val = {}
 			config.section.mru_cwd.val = {}
 			config.section.top_buttons.val = {

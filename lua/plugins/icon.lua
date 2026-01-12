@@ -14,8 +14,7 @@ return {
 		},
 		keys = {
 			{ "<Leader>fi", "<cmd>IconPickerNormal<cr>", noremap = true, silent = true, desc = "Pick icon" },
-			{ "<Leader>fiy", "<cmd>IconPickerYank<cr>", noremap = true, silent = true, desc = "Yank icon" },
-			{ mode = "i", "<C-z>", "<cmd>IconPickerInsert<cr>", noremap = true, silent = true },
+			{ "<Leader>fy", "<cmd>IconPickerYank<cr>", noremap = true, silent = true, desc = "Yank icon" },
 		},
 	},
 }

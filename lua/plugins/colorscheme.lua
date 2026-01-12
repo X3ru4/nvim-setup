@@ -277,9 +277,10 @@ end
 
 return install({
 	"tokyonight", -- Unsupport statusline
-	"catppuccin",
+	"catppuccin", -- Full support
 	"kanagawa",
 	"onedark",
 	"gruvbox",
 	"kanagawa_paper",
-}, "catppuccin")
+  "base46",
+}, "kanagawa")

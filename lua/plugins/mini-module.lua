@@ -8,6 +8,7 @@ return {
 
 	{
 		"nvim-mini/mini.cursorword",
+    enabled = false,
 		event = "BufReadPre",
 		opts = {
 			delay = 100,

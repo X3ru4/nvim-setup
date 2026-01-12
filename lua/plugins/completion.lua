@@ -32,8 +32,8 @@ return {
 				end,
 			},
 			{
-				enabled = vim.g.enable_plugin.lazydev_nvim,
 				"folke/lazydev.nvim",
+				enabled = vim.g.enable_plugin.lazydev_nvim,
 				ft = "lua",
 				opts = {
 					library = {
@@ -133,7 +133,8 @@ return {
 						min_width = 1,
 						max_height = 8,
 						winblend = 0,
-						border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
+						-- border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
+						border = "none",
 						winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
 						draw = {
 							columns = {
