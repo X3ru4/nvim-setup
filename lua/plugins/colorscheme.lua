@@ -1,3 +1,4 @@
+-- If you want add more colorschemes you must add the name to the @alias ColorSchemeList
 local colorschemes = {
 
 	tokyonight = {
@@ -175,7 +176,6 @@ local colorschemes = {
 				theme = "onedark",
 				transparency = false,
 			})
-			local set_hl = vim.api.nvim_set_hl
 			local api = require("util.hl_api")
 			api.highlights = {
 				WinBar = {
@@ -244,31 +244,56 @@ local colorschemes = {
 	},
 }
 
-local function install(list, setup)
+---@alias ColorSchemeList
+---|"tokyonight"
+---|"onedark"
+---|"catppuccin"
+---|"nord"
+---|"nordic"
+---|"nordern"
+---|"rose_pine"
+---|"gruvbox"
+---|"kanagawa"
+---|"kanagawa_paper"
+---|"sonokai"
+---|"nightfox"
+---|"material"
+---|"cyberdream"
+---|"base46"
+
+---@param name string|"all"|ColorSchemeList[]
+---@param setup ColorSchemeList|nil
+---@return table
+local function install(name, setup)
 	local t = {}
 
-	local function push(name, opts)
-		if name ~= setup then
-			local item = { opts[1] }
-			if opts.name then
-				item.name = opts.name
-			end
+	local function push(arg, opts)
+		if arg ~= setup then
+			local item = {
+				opts[1],
+				name = opts.name or nil,
+				dependencies = opts.dependencies or nil,
+			}
 			table.insert(t, item)
 		else
 			table.insert(t, opts)
 		end
 	end
 
-	if type(list) == "table" then
-		for _, name in ipairs(list) do
-			local opts = colorschemes[name]
+	if type(name) == "table" then
+		for _, cn in ipairs(name) do
+			local opts = colorschemes[cn]
 			if opts then
-				push(name, opts)
+				push(cn, opts)
 			end
 		end
-	elseif list == "all" then
-		for name, opts in pairs(colorschemes) do
-			push(name, opts)
+	elseif type(name) == "string" then
+		if string.lower(name) == "all" then
+			for cn, opts in pairs(colorschemes) do
+				push(cn, opts)
+			end
+		else
+      push(name, colorschemes[name])
 		end
 	end
 
@@ -282,5 +307,5 @@ return install({
 	"onedark",
 	"gruvbox",
 	"kanagawa_paper",
-  "base46",
+	"base46",
 }, "kanagawa")

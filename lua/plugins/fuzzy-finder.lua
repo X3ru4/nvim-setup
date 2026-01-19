@@ -4,7 +4,7 @@ return {
 		"ibhagwan/fzf-lua",
 		event = "VeryLazy",
 		config = function()
-      local default_prompt = "› "
+			local default_prompt = "› "
 			require("fzf-lua").setup({
 				file_icon_padding = " ",
 				keymap = {
@@ -99,48 +99,29 @@ return {
 				},
 				highlights = {
 					prompt = default_prompt,
-					winopts = {
-						preview = {
-							hidden = false,
-						},
-					},
+					winopts = { preview = { hidden = false } },
 				},
 				diagnostics = {
 					prompt = default_prompt,
-					winopts = {
-						preview = {
-							hidden = false,
-						},
-					},
+					winopts = { preview = { hidden = false } },
 				},
 				oldfiles = {
 					prompt = default_prompt,
 					cwd_only = true,
 				},
 				grep = {
-					winopts = {
-						preview = {
-							hidden = false,
-						},
-					},
+					winopts = { preview = { hidden = false } },
 				},
 				git = {
-					winopts = {
-						preview = {
-							hidden = false,
-						},
-					},
+					winopts = { preview = { hidden = false } },
 				},
-        quickfix = {
-          winopts = {
-            preview = {
-              hidden = false
-            }
-          },
-        },
-        lsp = {
-          prompt = default_prompt,
-        }
+				quickfix = {
+					winopts = { preview = { hidden = false } },
+				},
+				lsp = {
+					prompt = default_prompt,
+					winopts = { preview = { hidden = false } },
+				},
 			})
 		end,
 		keys = function()
