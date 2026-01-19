@@ -10,6 +10,9 @@ local servers = {
 	pyright = {},
 }
 
+vim.lsp.config("*", {
+})
+
 for name, config in pairs(servers) do
 	vim.lsp.config(name, config)
 	vim.lsp.enable(name)

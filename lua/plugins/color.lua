@@ -8,13 +8,13 @@ return {
 			buftypes = {}, -- Buftype options.  Accepts table like `user_default_options`
 			-- Boolean | List of usercommands to enable.  See User commands section.
 			user_commands = true, -- Enable all or some usercommands
-			lazy_load = false, -- Lazily schedule buffer highlighting setup function
+			lazy_load = true, -- Lazily schedule buffer highlighting setup function
 			user_default_options = {
 				names = true, -- "Name" codes like Blue or red.  Added from `vim.api.nvim_get_color_map()`
 				names_opts = { -- options for mutating/filtering names.
 					lowercase = true, -- name:lower(), highlight `blue` and `red`
 					camelcase = true, -- name, highlight `Blue` and `Red`
-					uppercase = false, -- name:upper(), highlight `BLUE` and `RED`
+					uppercase = true, -- name:upper(), highlight `BLUE` and `RED`
 					strip_digits = false, -- ignore names with digits,
 					-- highlight `blue` and `red`, but not `blue3` and `red4`
 				},
@@ -29,9 +29,9 @@ return {
 				AARRGGBB = false, -- 0xAARRGGBB hex codes
 				rgb_fn = false, -- CSS rgb() and rgba() functions
 				hsl_fn = false, -- CSS hsl() and hsla() functions
-				css = false, -- Enable all CSS *features*:
+				css = true, -- Enable all CSS *features*:
 				-- names, RGB, RGBA, RRGGBB, RRGGBBAA, AARRGGBB, rgb_fn, hsl_fn
-				css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+				css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
 				-- Tailwind colors.  boolean|'normal'|'lsp'|'both'.  True sets to 'normal'
 				tailwind = false, -- Enable tailwind colors
 				tailwind_opts = { -- Options for highlighting tailwind names
@@ -43,7 +43,7 @@ return {
 				-- Highlighting mode.  'background'|'foreground'|'virtualtext'
 				mode = "background", -- Set the display mode
 				-- Virtualtext character to use
-				virtualtext = "█",
+				virtualtext = " ",
 				-- Display virtualtext inline with color.  boolean|'before'|'after'.  True sets to 'after'
 				virtualtext_inline = true,
 				-- Virtualtext highlight mode: 'background'|'foreground'

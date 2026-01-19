@@ -3,7 +3,7 @@ local autocmd = vim.api.nvim_create_autocmd
 -- Highlight on yank.
 autocmd("TextYankPost", {
 	callback = function()
-		vim.hl.on_yank({ higroup = "Visual", timeout = 150 })
+		vim.hl.on_yank({ higroup = "Yank", timeout = 200, priority = 1000 })
 	end,
 })
 
@@ -25,8 +25,8 @@ autocmd("FileType", {
 -- Reload config.highlight when colorscheme changed.
 autocmd("ColorScheme", {
 	callback = function()
+		package.loaded["config.highlight"] = nil
 		require("config.highlight").setup()
-		require("util.hl_api").clear_cache()
 	end,
 })
 
@@ -34,6 +34,7 @@ autocmd("ColorScheme", {
 autocmd("UiEnter", {
 	once = true,
 	callback = function()
+		package.loaded["config.highlight"] = nil
 		require("config.highlight").setup()
 	end,
 })

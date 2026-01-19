@@ -2,20 +2,20 @@ return {
 
 	{
 		"kosayoda/nvim-lightbulb",
-    enabled = false,
+		enabled = false,
 		event = "LspAttach",
 		config = function()
 			require("nvim-lightbulb").setup({
 				autocmd = {
 					enabled = true,
 					updatetime = 200,
-          -- events = { "CursorMoved", "CursorMovedI" }
+					-- events = { "CursorMoved", "CursorMovedI" }
 				},
 				sign = {
 					enabled = false,
 				},
 				float = {
-          text = "💡",
+					text = "💡",
 					enabled = true,
 				},
 			})
@@ -58,7 +58,7 @@ return {
 
 	{
 		"ray-x/lsp_signature.nvim",
-    enabled = false,
+		enabled = false,
 		event = "InsertEnter",
 		opts = {
 			bind = true,

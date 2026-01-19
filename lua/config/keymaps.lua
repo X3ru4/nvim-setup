@@ -1,33 +1,38 @@
 local map = vim.keymap.set
 local util = require("util.lazy")
-local m1 = { "n", "x" }
+
+local nx = { "n", "x" }
+local ni = { "n", "i" }
 
 -- Paste in insert mode.
-map("i", "<c-p>", "<c-o>p")
+map("i", "<C-p>", "<C-o>p")
 
 map("n", "<leader>rm", "<cmd>!rm ~/.local/state/nvim/swap -rf<cr>", { desc = "Remove swap folder" })
 map("!", "<F11>", "<Nop>")
+map("n", "K", "<Nop>")
 
 -- Better insert
-map("i", "<c-a>", "<c-o>I")
+map("i", "<C-a>", "<C-o>I")
 
+-- Not use this keymap if use cinnamon.nvim
 if not util.is_loaded("cinnamon.nvim") then
-  vim.keymap.set(m1, "zh", "zH", { desc = "Horizontal scroll" })
-  vim.keymap.set(m1, "zl", "zL", { desc = "Horizontal scroll" })
+	map(nx, "zh", "zH", { desc = "Horizontal scroll like \"zH\"" })
+	map(nx, "zl", "zL", { desc = "Horizontal scroll like \"zL\"" })
 end
 
 -- Yank buffer
 map("n", "<leader>ya", "ggVGy", { desc = "Yank all" })
 
--- Better switch window
-map("n", "<leader>wh", "<c-w>h", { desc = "Win left" })
-map("n", "<leader>wj", "<c-w>j", { desc = "Win down" })
-map("n", "<leader>wk", "<c-w>k", { desc = "Win up" })
-map("n", "<leader>wl", "<c-w>l", { desc = "Win right" })
+-- Better window
+map("n", "<leader>wh", "<C-w>h", { desc = "Win left" })
+map("n", "<leader>wj", "<C-w>j", { desc = "Win down" })
+map("n", "<leader>wk", "<C-w>k", { desc = "Win up" })
+map("n", "<leader>wl", "<C-w>l", { desc = "Win right" })
+map("n", "<leader>wo", "<C-w>o", { desc = "Win full" })
 
 -- Buffer
-map("n", "<s-h>", "<cmd>bprevious<cr>")
-map("n", "<s-l>", "<cmd>bnext<cr>")
+map("n", "<S-h>", "<cmd>bprevious<cr>")
+map("n", "<S-l>", "<cmd>bnext<cr>")
 map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
 map("n", "<leader>bb", "<cmd>buffer #<cr>", { desc = "Previous buffer" })
 
@@ -39,7 +44,7 @@ map("x", "<leader>v", "gg0G$", { desc = "Select all" })
 -- Return Normal mode
 map("t", "<C-b>", "<cmd>e #<cr><cmd>e #<cr>")
 -- Save file
-map({ "n", "i", "x", "s" }, "<C-s>", "<cmd>silent!w<cr><esc>", { desc = "Save file" })
+map({ "n", "x", "i" }, "<C-s>", "<cmd>silent!w<cr><esc>", { desc = "Save file", silent = true })
 -- Quit
 map("n", "<leader>qa", "<cmd>q!<cr>", { desc = "Quit all" })
 map("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
@@ -86,17 +91,14 @@ map("n", "<leader>gs", function()
 	end)
 end, { desc = "Search" })
 -- Reopen file
-map("n", "<leader>gf", function()
-	local file = vim.fn.expand("%:p")
-	vim.cmd("edit " .. file)
-end, { desc = "Reopen" })
+map("n", "<leader>gf", "<cmd>e!<cr>", { desc = "Reopen" })
 
 -- Editor
 -- No need more than one cursor
 -- map("n", "<leader>n", "*Nciw", { desc = "Search & Replace" })
 
 -- Code
-map(m1, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+map(nx, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
 map("n", "<leader>ch", function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "Inlay hint" })
@@ -118,12 +120,21 @@ map("n", "<leader>cr", function()
 end, { desc = "Run code" })
 
 -- Lsp
-map("n", "grd", vim.lsp.buf.definition, { desc = "Definition" })
-map("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation" })
-map("n", "grr", vim.lsp.buf.references, { desc = "References" })
-map("n", "grt", vim.lsp.buf.type_definition, { desc = "Type definition" })
+-- If not use the fzf-lua swith to use the default
+if not util.is_loaded("fzf-lua") then
+  map("n", "grd", vim.lsp.buf.definition, { desc = "Definition" })
+  map("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation" })
+  map("n", "grr", vim.lsp.buf.references, { desc = "References" })
+  map("n", "grt", vim.lsp.buf.type_definition, { desc = "Type definition" })
+else
+  local fzf = require("fzf-lua")
+  map("n", "grd", fzf.lsp_definitions, { desc = "Definition" })
+  map("n", "gri", fzf.lsp_implementations, { desc = "Implementation" })
+  map("n", "grr", fzf.lsp_references, { desc = "References" })
+  map("n", "grt", fzf.lsp_typedefs, { desc = "Type definition" })
+end
 
-map({ "n", "i" }, "<c-k>", function()
+map(ni, "<C-k>", function()
 	vim.lsp.buf.signature_help({
 		border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
 		focus = false,
@@ -131,7 +142,7 @@ map({ "n", "i" }, "<c-k>", function()
 	})
 end)
 
-map({ "i", "n" }, "<c-l>", function()
+map(ni, "<C-l>", function()
 	vim.diagnostic.open_float(nil, {
 		border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
 		focus = false,
@@ -141,10 +152,10 @@ end, { desc = "Open diagnostic float" })
 
 -- ©LazyVim
 -- Better up/down
-map(m1, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-map(m1, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-map(m1, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
-map(m1, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+map(nx, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map(nx, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map(nx, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
+map(nx, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
@@ -155,9 +166,9 @@ map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result
 map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 
 -- Add undo break-points
-map("i", ",", ",<c-g>u")
-map("i", ".", ".<c-g>u")
-map("i", ";", ";<c-g>u")
+map("i", ",", ",<C-g>u")
+map("i", ".", ".<C-g>u")
+map("i", ";", ";<C-g>u")
 
 -- Better indents
 map("v", "<", "<gv")
@@ -176,12 +187,12 @@ local jump_to = function(count, severity)
 		})
 	end
 end
-map(m1, "]d", jump_to(1), { desc = "Next Diagnostic" })
-map(m1, "[d", jump_to(-1), { desc = "Prev Diagnostic" })
-map(m1, "]e", jump_to(1, "ERROR"), { desc = "Next Error" })
-map(m1, "[e", jump_to(-1, "ERROR"), { desc = "Prev Error" })
-map(m1, "]w", jump_to(1, "WARN"), { desc = "Next Warning" })
-map(m1, "[w", jump_to(-1, "WARN"), { desc = "Prev Warning" })
+map(nx, "]d", jump_to(1), { desc = "Next Diagnostic" })
+map(nx, "[d", jump_to(-1), { desc = "Prev Diagnostic" })
+map(nx, "]e", jump_to(1, "ERROR"), { desc = "Next Error" })
+map(nx, "[e", jump_to(-1, "ERROR"), { desc = "Prev Error" })
+map(nx, "]w", jump_to(1, "WARN"), { desc = "Next Warning" })
+map(nx, "[w", jump_to(-1, "WARN"), { desc = "Prev Warning" })
 
 -- Clear search
 map({ "i", "n", "s" }, "<esc>", function()

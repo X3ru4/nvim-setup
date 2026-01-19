@@ -1,7 +1,11 @@
 local M = {}
 
 function M.is_loaded(name)
-  return require("lazy.core.config").plugins[name]._.loaded
+  local ok, cfg = pcall(require, "lazy.core.config")
+  if not ok or not cfg.plugins then
+    return false
+  end
+  return cfg.plugins[name] ~= nil
 end
 
 return M

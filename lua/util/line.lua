@@ -22,13 +22,27 @@ end
 ---@param r integer|nil
 ---@return string
 function M.padding(s, l, r)
-  return table.concat({
-    string.rep(" ", l or 1),
-    s or "",
-    string.rep(" ", r or 1)
-  })
+	return table.concat({
+		string.rep(" ", l or 1),
+		s or "",
+		string.rep(" ", r or 1),
+	})
 end
 
+---@alias line.SepPart {
+---  value:string,
+---  hl:hl_api.HlSpec|nil,
+---}
+
+---Overpower!
+---@param spec {
+---  id:string,
+---  default_hl:string,
+---  left:line.SepPart,
+---  right:line.SepPart,
+---  string:line.SepPart,
+---}
+---@return string
 function M.separator(spec)
 	local self = {}
 	spec.default_hl = spec.default_hl or "Normal"
@@ -36,7 +50,7 @@ function M.separator(spec)
 		vim.notify("separator({ id = ? })")
 	end
 	local function section_fmt(section, id)
-		local hl_ns = table.concat({ "ULine", (spec.id or "nil"), id })
+		local hl_ns = table.concat({ "CustomHl", (spec.id or "nil"), id })
 		local function value()
 			if type(section.value) == "function" then
 				return section.value(self)

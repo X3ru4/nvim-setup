@@ -2,6 +2,7 @@ return {
 
 	{
 		"declancm/cinnamon.nvim",
+    enabled = false,
 		version = "*", -- use latest release
 		event = "VeryLazy",
 		config = function()

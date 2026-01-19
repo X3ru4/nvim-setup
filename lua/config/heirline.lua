@@ -63,7 +63,7 @@ local mode = {
 				hl = {
 					bg = {
 						list = mode_color,
-            default_key = "n",
+						default_key = "n",
 						key = self.mode,
 					},
 				},
@@ -73,7 +73,7 @@ local mode = {
 				hl = {
 					fg = {
 						list = mode_color,
-            default_key = "n",
+						default_key = "n",
 						key = self.mode,
 						type = "bg",
 					},
@@ -92,7 +92,7 @@ local mode = {
 					fg = mode_color.i,
 					bg = {
 						list = mode_color,
-            default_key = "n",
+						default_key = "n",
 						key = self.mode,
 					},
 					style = { bold = true },
@@ -118,7 +118,6 @@ local modified = {
 				hl = {
 					fg = "WarningMsg",
 					bg = "TabLine",
-					style = { italic = true },
 				},
 			},
 			right = {
@@ -169,34 +168,6 @@ local diagnostic = {
 		})
 	end,
 }
-local custom = {
-	update = {
-		"ModeChanged",
-		"BufModifiedSet",
-	},
-	provider = function()
-		return line.separator({
-			id = "Custom",
-			left = {
-				value = "",
-				hl = { fg = { name = "TabLine", type = "bg" } },
-			},
-			string = {
-				value = " 𝗫𝟯𝗥𝗨𝟰 ",
-				hl = {
-					fg = {
-						list = mode_color,
-            default_key = "n",
-						key = vim.fn.mode(1):gsub(1, 1),
-						type = "bg",
-					},
-					bg = "TabLine",
-					style = { bold = true },
-				},
-			},
-		})
-	end,
-}
 
 M.config = {
 	statusline = {
@@ -206,7 +177,6 @@ M.config = {
 		hlsearch,
 		macro,
 		diagnostic,
-		custom,
 	},
 }
 return M

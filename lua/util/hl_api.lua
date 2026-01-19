@@ -25,7 +25,7 @@ M.highlights = {}
 ---@return vim.api.keyset.highlight
 function M.get(name)
 	if not M.hl_link_cache[name] then
-		M.hl_link_cache[name] = M.vget_hl(0, { name = name, link = true })
+		M.hl_link_cache[name] = M.vget_hl(0, { name = name, link = false })
 		return M.hl_link_cache[name]
 	end
 	return M.hl_link_cache[name]
@@ -33,7 +33,7 @@ end
 
 ---Like vim.api.nvim_set_hl() but with the cache.
 ---Please use this function with M.get() to the best performance.
----@param name string The name of highlight.
+---@param name string Name of highlight.
 ---@param opts vim.api.keyset.highlight Options
 function M.set(name, opts)
 	if not M.hl_def_cache[name] then
@@ -44,21 +44,23 @@ function M.set(name, opts)
 end
 
 ---Modify highlight.
----@param name string Highlight name
----@param opts table Highlight options
----@param return_ boolean|nil If true the function will return a table.
+---@param name string The highlight name
+---@param opts vim.api.keyset.highlight
+---@param fallback boolean|nil If true the function will return a table.
 ---@return vim.api.keyset.highlight|nil
-function M.modify(name, opts, return_)
+function M.modify(name, opts, fallback)
 	local base = M.get(name) or {}
 	local merged = vim.tbl_deep_extend("force", base, opts or {})
 
-	if return_ then
+	if fallback then
 		return merged
 	else
 		M.highlights[name] = merged
 	end
 end
 
+---@param name string|table
+---@param opts table
 function M.work_if(name, opts)
 	vim.api.nvim_create_autocmd("ColorScheme", {
 		pattern = name,
@@ -73,6 +75,7 @@ end
 
 ---Apply all the highlights in M.highlights
 function M.apply()
+	M.clear_cache()
 	for name, opts in pairs(M.highlights) do
 		if type(opts) == "function" then
 			opts = opts()
@@ -84,30 +87,23 @@ function M.apply()
 	end
 end
 
----A powerful function.
----Ex: M.mix_hl("Statusline", {
----   default_hl = nil|string,
----   Here is a simple foreground.
----  fg = {
----    name = "WinBar",
----    type = "fg"|"bg"|nil Default is "fg"
----  },
----  or
----  fg = {
----    list = {
----      key = "Highlight name",
----      other = "Other highlight name",
----      any_name = "Pmenu"
----    },
----    -- Field fg.use is the name of the key in fg.list.
----    use = "key"|"other"
----  },
----  or fg can be a string with the value is the name of highlight and nil.
----  bg = smillar fg,
----  style = vim.api.keyset.highlight|nil
----})
+---@alias hl_api.TextStyle {
+---  name:string,
+---  type:"fg"|"bg"|nil,
+---}|{
+---  list:table,
+---  key:string,
+---  type:"fg"|"bg"|nil,
+---}
+---@alias hl_api.HlSpec {
+---  fg:hl_api.TextStyle|string|nil,
+---  bg:hl_api.TextStyle|string|nil,
+---  style:vim.api.keyset.highlight|nil,
+---}
+
+---Overpower!
 ---@param ns string Namespace
----@param spec table Spection
+---@param spec hl_api.HlSpec Spection
 ---@return string
 function M.mix_hl(ns, spec)
 	spec.default_hl = spec.default_hl or "Normal"

@@ -1,8 +1,12 @@
 local M = {}
-local hl_api = require("util.hl_api")
 
 M.setup = function()
+	local hl_api = require("util.hl_api")
 	hl_api.highlights = {
+		Yank = {
+			fg = "White",
+			bg = "gray",
+		},
 		StatusLine = {
 			link = "Normal",
 		},

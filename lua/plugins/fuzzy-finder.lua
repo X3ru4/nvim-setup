@@ -4,10 +4,57 @@ return {
 		"ibhagwan/fzf-lua",
 		event = "VeryLazy",
 		config = function()
+      local default_prompt = "› "
 			require("fzf-lua").setup({
 				file_icon_padding = " ",
+				keymap = {
+					-- Below are the default binds, setting any value in these tables will override
+					-- the defaults, to inherit from the defaults change [1] from `false` to `true`
+					builtin = {
+						-- neovim `:tmap` mappings for the fzf win
+						-- true,        -- uncomment to inherit all the below in your custom config
+						["<M-Esc>"] = "hide", -- hide fzf-lua, `:FzfLua resume` to continue
+						["<F1>"] = "toggle-help",
+						["<F2>"] = "toggle-fullscreen",
+						-- Only valid with the 'builtin' previewer
+						["<C-w>"] = "toggle-preview-wrap",
+						["<C-p>"] = "toggle-preview",
+						-- Rotate preview clockwise/counter-clockwise
+						["<F5>"] = "toggle-preview-cw",
+						-- Preview toggle behavior default/extend
+						["<F6>"] = "toggle-preview-behavior",
+						-- `ts-ctx` binds require `nvim-treesitter-context`
+						["<F7>"] = "toggle-preview-ts-ctx",
+						["<F8>"] = "preview-ts-ctx-dec",
+						["<F9>"] = "preview-ts-ctx-inc",
+						["<S-Left>"] = "preview-reset",
+						["<S-down>"] = "preview-page-down",
+						["<S-up>"] = "preview-page-up",
+						["<M-C-down>"] = "preview-down",
+						["<M-C-up>"] = "preview-up",
+					},
+					fzf = {
+						-- fzf '--bind=' options
+						-- true,        -- uncomment to inherit all the below in your custom config
+						["ctrl-z"] = "abort",
+						["ctrl-u"] = "unix-line-discard",
+						["ctrl-f"] = "half-page-down",
+						["ctrl-b"] = "half-page-up",
+						["ctrl-a"] = "beginning-of-line",
+						["ctrl-e"] = "end-of-line",
+						["alt-a"] = "toggle-all",
+						["alt-g"] = "first",
+						["alt-G"] = "last",
+						-- Only valid with fzf previewers (bat/cat/git/etc)
+						["f3"] = "toggle-preview-wrap",
+						["f4"] = "toggle-preview",
+						["shift-down"] = "preview-page-down",
+						["shift-up"] = "preview-page-up",
+					},
+				},
 				winopts = {
 					preview = {
+						wrap = true,
 						hidden = "hidden",
 					},
 					row = 0.4,
@@ -34,44 +81,130 @@ return {
 					["header"] = { "fg", "Comment" },
 					-- ["gutter"] = "-1",
 				},
+				colorschemes = {
+					prompt = " ",
+				},
+				awesome_colorschemes = {
+					prompt = " ",
+				},
+				spell_suggest = {
+					prompt = default_prompt,
+				},
+				registers = {
+					prompt = " ",
+				},
+				buffers = {
+					prompt = default_prompt,
+					filename_only = true,
+				},
+				highlights = {
+					prompt = default_prompt,
+					winopts = {
+						preview = {
+							hidden = false,
+						},
+					},
+				},
+				diagnostics = {
+					prompt = default_prompt,
+					winopts = {
+						preview = {
+							hidden = false,
+						},
+					},
+				},
+				oldfiles = {
+					prompt = default_prompt,
+					cwd_only = true,
+				},
+				grep = {
+					winopts = {
+						preview = {
+							hidden = false,
+						},
+					},
+				},
+				git = {
+					winopts = {
+						preview = {
+							hidden = false,
+						},
+					},
+				},
+        quickfix = {
+          winopts = {
+            preview = {
+              hidden = false
+            }
+          },
+        },
+        lsp = {
+          prompt = default_prompt,
+        }
 			})
 		end,
 		keys = function()
 			local fzf = require("fzf-lua")
 			return {
 
+				-- <leader>c group
+
 				{
-					"<leader>fs",
-					function()
-						fzf.spell_suggest({
-							prompt = "› ",
-						})
-					end,
-					desc = "spell_suggest",
+					"<leader>cs",
+					fzf.spell_suggest,
+					desc = "Spell suggest",
 				},
 
 				{
+					"<leader>cq",
+					fzf.quickfix,
+					desc = "Quickfix",
+				},
+
+				{
+					"<leader>cd",
+					fzf.awesome_colorschemes,
+					desc = "Download colorschemes",
+				},
+
+				{
+					"<leader>cc",
+					fzf.colorschemes,
+					desc = "Change colorscheme",
+				},
+
+				{
+					"<leader>cgh",
+					fzf.git_hunks,
+					desc = "Git hunks",
+				},
+
+				{
+					"<leader>cgd",
+					fzf.git_diff,
+					desc = "Git diff",
+				},
+
+				-- <leader>f group
+
+				{
 					"<leader>fr",
-					function()
-						fzf.registers({
-							prompt = " ",
-						})
-					end,
+					fzf.registers,
 					desc = "Find register",
 				},
 
 				{
 					"<leader>ff",
-					function()
-						fzf.files()
-					end,
+					fzf.files,
 					desc = "Find file CWD",
 				},
 
 				{
 					"<leader>fF",
 					function()
-						fzf.files()
+						fzf.files({
+							cwd = vim.fn.expand("%:h"),
+						})
 					end,
 					desc = "Find file",
 				},
@@ -88,113 +221,38 @@ return {
 
 				{
 					"<leader>fb",
-					function()
-						fzf.buffers({
-							prompt = "› ",
-							filename_only = true,
-						})
-					end,
+					fzf.buffers,
 					desc = "Find buffers",
 				},
 
 				{
 					"<leader>fh",
-					function()
-						fzf.highlights({
-							prompt = "› ",
-							winopts = {
-								preview = {
-									hidden = false,
-								},
-							},
-						})
-					end,
+					fzf.highlights,
 					desc = "Find highlights",
 				},
 
 				{
 					"<leader>fd",
-					function()
-						fzf.diagnostics_document({
-							prompt = "› ",
-							winopts = {
-								preview = {
-									hidden = false,
-								},
-							},
-						})
-					end,
+					fzf.diagnostics_document,
 					desc = "Find diagnostics",
 				},
 
 				{
 					"<leader>fo",
-					function()
-						fzf.oldfiles({
-							prompt = "› ",
-						})
-					end,
+					fzf.oldfiles,
 					desc = "Find old files",
 				},
 
 				{
-					"<leader>fC",
-					function()
-						fzf.colorschemes({
-							prompt = " ",
-						})
-					end,
-					desc = "Find colorschemes",
-				},
-
-				{
 					"<leader>ft",
-					function()
-						fzf.filetypes()
-					end,
+					fzf.filetypes,
 					desc = "Find filetypes",
 				},
 
 				{
 					"<leader>fg",
-					function()
-						fzf.live_grep({
-							winopts = {
-								preview = {
-									hidden = false,
-								},
-							},
-						})
-					end,
+					fzf.live_grep,
 					desc = "Live grep",
-				},
-
-				{
-					"<leader>cgh",
-					function()
-						fzf.git_hunks({
-							winopts = {
-								preview = {
-									hidden = false,
-								},
-							},
-						})
-					end,
-					desc = "Git hunks",
-				},
-
-				{
-					"<leader>cgd",
-					function()
-						fzf.git_diff({
-							winopts = {
-								preview = {
-									hidden = false,
-								},
-							},
-						})
-					end,
-					desc = "Git diff",
 				},
 			}
 		end,
