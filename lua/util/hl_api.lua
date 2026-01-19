@@ -87,15 +87,19 @@ function M.apply()
 	end
 end
 
----@alias hl_api.TextStyle {
+---@alias hl_api.TextStyle
+---|{
 ---  name:string,
 ---  type:"fg"|"bg"|nil,
----}|{
+---}
+---|{
 ---  list:table,
 ---  key:string,
 ---  type:"fg"|"bg"|nil,
 ---}
----@alias hl_api.HlSpec {
+---@alias hl_api.HlSpec
+---|{
+---  default_hl:string,
 ---  fg:hl_api.TextStyle|string|nil,
 ---  bg:hl_api.TextStyle|string|nil,
 ---  style:vim.api.keyset.highlight|nil,

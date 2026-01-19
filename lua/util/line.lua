@@ -29,13 +29,15 @@ function M.padding(s, l, r)
 	})
 end
 
----@alias line.SepPart {
+---@alias line.SepPart
+---|{
 ---  value:string,
 ---  hl:hl_api.HlSpec|nil,
 ---}
 
 ---Overpower!
----@param spec {
+---@param spec
+---|{
 ---  id:string,
 ---  default_hl:string,
 ---  left:line.SepPart,
