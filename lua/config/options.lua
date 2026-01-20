@@ -12,7 +12,7 @@ local opt = vim.opt
 
 -- Performance
 opt.updatetime = 100
-opt.lazyredraw = true
+-- opt.lazyredraw = true
 opt.timeoutlen = 300
 opt.ttimeoutlen = 10
 opt.synmaxcol = 200
