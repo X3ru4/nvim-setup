@@ -63,6 +63,9 @@ return {
 							win_configs = {
 								border = "rounded",
 							},
+              keymaps = {
+                ["<BS>"] = "<C-w>q"
+              }
 						},
 					})
 				end,

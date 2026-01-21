@@ -1,8 +1,9 @@
 local M = {}
 
 M.setup = function()
-	local hl_api = require("util.hl_api")
-	hl_api.highlights = {
+	local hl = require("util.hl_api")
+
+	hl.highlights = {
 		Yank = {
 			fg = "White",
 			bg = "gray",
@@ -48,43 +49,43 @@ M.setup = function()
 		SpellLocal = {
 			strikethrough = true,
 		},
-		hl_api.modify("DropBarIconUISeparator", {
+		hl.modify("DropBarIconUISeparator", {
 			italic = false,
 		}),
-		hl_api.modify("DropBarIconUISeparatorNC", {
+		hl.modify("DropBarIconUISeparatorNC", {
 			italic = false,
 		}),
-		hl_api.modify("DropBarIconUISeparatorMenu", {
+		hl.modify("DropBarIconUISeparatorMenu", {
 			italic = false,
 		}),
 	}
 
-	hl_api.work_if({
+	hl.work_if({
 		"catppuccin-frappe",
 		"catppuccin-mocha",
 		"catppuccin-macchiato",
 		"catppuccin-latte",
-	}, {
-		hl_api.modify("MiniCursorwordCurrent", {
+	}, function ()
+		hl.modify("MiniCursorwordCurrent", {
 			link = "MiniCursorword",
-		}),
-		hl_api.modify("MiniTablineCurrent", {
+		})
+		hl.modify("MiniTablineCurrent", {
 			italic = false,
 			underline = false,
-		}),
-		hl_api.modify("MiniTablineModifiedCurrent", {
+		})
+		hl.modify("MiniTablineModifiedCurrent", {
 			italic = false,
 			underline = false,
-		}),
-		hl_api.modify("Visual", {
+		})
+		hl.modify("Visual", {
 			bold = true,
-		}),
-		hl_api.modify("IncSearch", {
+		})
+		hl.modify("IncSearch", {
 			bold = true,
-		}),
-	})
+		})
+  end)
 
-	hl_api.work_if("onedark", {
+	hl.work_if("onedark", {
 		WinBar = {
 			bg = "#242830",
 		},
@@ -100,7 +101,7 @@ M.setup = function()
 		},
 	})
 
-	hl_api.work_if({
+	hl.work_if({
 		"kanagawa",
 		"kanagawa-paper-ink",
 		"kanagawa-paper-canvas",
@@ -115,18 +116,18 @@ M.setup = function()
 			link = "MiniTablineCurrentVisible",
 		},
 		MiniCursorwordCurrent = vim.empty_dict(),
-		hl_api.modify("DropBarIconUISeparator", {
+		hl.modify("DropBarIconUISeparator", {
 			italic = false,
 		}),
-		hl_api.modify("DropBarIconUISeparatorNC", {
+		hl.modify("DropBarIconUISeparatorNC", {
 			italic = false,
 		}),
-		hl_api.modify("DropBarIconUISeparatorMenu", {
+		hl.modify("DropBarIconUISeparatorMenu", {
 			italic = false,
 		}),
 	})
 
-	hl_api.work_if("gruvbox", {
+	hl.work_if("gruvbox", {
 		SignColumn = {
 			link = "Normal",
 		},
@@ -135,7 +136,7 @@ M.setup = function()
 		},
 	})
 
-	hl_api.apply()
+	hl.apply()
 end
 
 return M

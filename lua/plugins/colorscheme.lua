@@ -166,80 +166,80 @@ local colorschemes = {
 			vim.cmd.colorscheme("cyberdream")
 		end,
 	},
-	base46 = {
-		"jayden-chan/base46.nvim",
+	{
+		{
+			{
+				{
+					{
+						{
+							{
+								{},
+							},
+						},
+					},
+				},
+			},
+		},
+	},
+	vscode = {
+		"Mofiqul/vscode.nvim",
 		lazy = false,
+		priority = 1000,
 		config = function()
-			require("base46").load_theme({
-				base = "base46",
-				-- Available theme in _base46_theme.txt
-				theme = "onedark",
-				transparency = false,
+			require("vscode").load("dark")
+			local colors = require("vscode.colors").get_colors()
+			local hl = require("util.hl_api")
+
+			-- BlinkPair
+			hl.set("BlinkPairsUnmatched", {
+				fg = colors.vscRed,
+				strikethrough = true,
 			})
-			local api = require("util.hl_api")
-			api.highlights = {
-				WinBar = {
-					link = "Normal",
-				},
-				WinBarNC = {
-					link = "Normal",
-				},
-				MatchParenCur = {
-					link = "MatchParen",
-				},
-				MatchWordCur = {
-					link = "MatchParen",
-				},
-				DropBarIconUISeparator = {
-					fg = api.get("Comment").fg,
-				},
-				DropBarIconUISeparatorNC = {
-					link = "DropBarIconUISeparator",
-				},
-				DropBarIconUISeparatorMenu = {
-					link = "DropBarIconUISeparator",
-				},
-				MiniStatuslineModeInsert = api.modify("Feline_InsertMode", {
-					reverse = true,
-					bold = true,
-				}, true),
-				MiniStatuslineModeNormal = api.modify("Feline_NormalMode", {
-					reverse = true,
-					bold = true,
-				}, true),
-				MiniStatuslineModeVisual = api.modify("Feline_VisualMode", {
-					reverse = true,
-					bold = true,
-				}, true),
-				MiniStatuslineModeCommand = api.modify("Feline_CommandMode", {
-					reverse = true,
-					bold = true,
-				}, true),
-				MiniStatuslineModeReplace = api.modify("Feline_ReplaceMode", {
-					reverse = true,
-					bold = true,
-				}, true),
-				MiniStatuslineModeOther = api.modify("Feline_ConfirmMode", {
-					reverse = true,
-					bold = true,
-				}, true),
-				MiniDiffSignAdd = {
-					link = "GitSignsAdd",
-				},
-				MiniDiffSignChange = {
-					link = "GitSignsChange",
-				},
-				MiniDiffSignDelete = {
-					link = "GitSignsDelete",
-				},
-				MiniTablineModifiedCurrent = api.modify("TabLineSel", {
-					fg = api.get("ErrorMsg").fg,
-				}, true),
-				MiniTablineModifiedHidden = {
-					link = "MiniTablineModifiedCurrent",
-				},
-			}
-			api.apply()
+			hl.set("BlinkPairsBlue", {
+				link = "RainbowDelimiterBlue",
+			})
+			hl.set("BlinkPairsOrange", {
+				link = "RainbowDelimiterOrange",
+			})
+			hl.set("BlinkPairsPurple", {
+				link = "RainbowDelimiterPurple",
+			})
+
+			-- BlinkIndent
+			hl.set("BlinkIndentRed", {
+				link = "RainbowDelimiterRed",
+			})
+			hl.set("BlinkIndentCyan", {
+				link = "RainbowDelimiterCyan",
+			})
+			hl.set("BlinkIndentBlue", {
+				link = "RainbowDelimiterBlue",
+			})
+			hl.set("BlinkIndentGreen", {
+				link = "RainbowDelimiterGreen",
+			})
+			hl.set("BlinkIndentYellow", {
+				link = "RainbowDelimiterYellow",
+			})
+			hl.set("BlinkIndentViolet", {
+				link = "RainbowDelimiterViolet",
+			})
+			hl.set("BlinkIndentOrange", {
+				link = "RainbowDelimiterOrange",
+			})
+		end,
+	},
+	github = {
+		"projekt0n/github-nvim-theme",
+		name = "github-theme",
+		lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		priority = 1000, -- make sure to load this before all the other start plugins
+		config = function()
+			require("github-theme").setup({
+				-- ...
+			})
+
+			vim.cmd("colorscheme github_dark")
 		end,
 	},
 }
@@ -259,7 +259,8 @@ local colorschemes = {
 ---|"nightfox"
 ---|"material"
 ---|"cyberdream"
----|"base46"
+---|"vscode"
+---|"github"
 
 ---@param name string|"all"|ColorSchemeList[]
 ---@param setup ColorSchemeList|nil
@@ -293,7 +294,7 @@ local function install(name, setup)
 				push(cn, opts)
 			end
 		else
-      push(name, colorschemes[name])
+			push(name, colorschemes[name])
 		end
 	end
 
@@ -302,10 +303,11 @@ end
 
 return install({
 	"tokyonight", -- Unsupport statusline
-	"catppuccin", -- Full support
-	"kanagawa",
+	"catppuccin", -- Recomment!
+	"kanagawa",   -- Recomment!
 	"onedark",
-	"gruvbox",
+	"gruvbox",    -- Recomment!
 	"kanagawa_paper",
-	"base46",
-}, "kanagawa")
+	"vscode",     -- Recomment!
+  "github",
+}, "vscode")

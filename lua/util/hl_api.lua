@@ -60,30 +60,53 @@ function M.modify(name, opts, fallback)
 end
 
 ---@param name string|table
----@param opts table
-function M.work_if(name, opts)
+---@param opts table|function|{ fn:function }
+---@param apply boolean|nil
+function M.work_if(name, opts, apply)
 	vim.api.nvim_create_autocmd("ColorScheme", {
 		pattern = name,
 		callback = function()
-			if type(opts.callback) == "function" then
-				opts.callback()
+			if type(opts) == "function" then
+				M.highlights = vim.tbl_deep_extend("force", M.highlights, opts() or {})
+			else
+				if type(opts.callback) == "function" then
+					opts = vim.tbl_deep_extend("force", M.highlights, opts.fn() or {})
+				end
+				M.highlights = vim.tbl_deep_extend("force", M.highlights, opts or {})
 			end
-			M.highlights = vim.tbl_deep_extend("force", M.highlights, opts or {})
+			if apply then
+				M.apply()
+			end
+			print(name)
 		end,
 	})
 end
 
 ---Apply all the highlights in M.highlights
-function M.apply()
+---@param other table|function
+function M.apply(other)
 	M.clear_cache()
-	for name, opts in pairs(M.highlights) do
-		if type(opts) == "function" then
-			opts = opts()
-		end
 
-		if opts and type(opts) == "table" then
-			M.set(name, opts)
+	local function p(t)
+    if type(t) == "function" then
+      t = t()
+    end
+
+		for name, opts in pairs(t) do
+			if type(opts) == "function" then
+				opts = opts()
+			end
+
+			if opts and type(opts) == "table" then
+				M.set(name, opts)
+			end
 		end
+	end
+
+	if other then
+		p(other)
+	elseif not other then
+		p(M.highlights)
 	end
 end
 
@@ -105,7 +128,7 @@ end
 ---  style:vim.api.keyset.highlight|nil,
 ---}
 
----Overpower!
+---Create your highlight!
 ---@param ns string Namespace
 ---@param spec hl_api.HlSpec Spection
 ---@return string
