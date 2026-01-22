@@ -1,7 +1,3 @@
-vim.g.enable_plugin = {
-	lazydev_nvim = true,
-}
-
 function _G.newfoldtext()
 	local line = vim.fn.getline(vim.v.foldstart)
 	local count = vim.v.foldend - vim.v.foldstart + 1
@@ -90,6 +86,7 @@ opt.undolevels = 10000
 opt.virtualedit = "block"
 opt.wildmode = "longest:full,full"
 opt.winminwidth = 5
+
 opt.list = true
 opt.listchars = {
 	eol = " ",
@@ -98,6 +95,7 @@ opt.listchars = {
 	trail = "·",
 	nbsp = " ",
 }
+
 opt.guicursor = {
 	"n-c:block-Cursor",
 	"v:hor20-Cursor",
@@ -105,10 +103,3 @@ opt.guicursor = {
 	"r-cr:hor20-Cursor",
 	"o:hor50-Cursor",
 }
--- opt.listchars = {
--- 	eol = "↩",
--- 	tab = "··",
--- 	space = "·",
--- 	trail = "•",
--- 	nbsp = "ɲ",
--- }

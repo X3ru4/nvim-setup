@@ -4,8 +4,6 @@ return {
 		"saghen/blink.indent",
 		enabled = true,
 		event = { "BufReadPre", "BufNewFile" },
-		--- @module 'blink.indent'
-		--- @type blink.indent.Config
 		keys = {
 			{
 				"<leader>ci",
@@ -15,6 +13,8 @@ return {
 				desc = "Toggle indent guides",
 			},
 		},
+		--- @module 'blink.indent'
+		--- @type blink.indent.Config
 		opts = {
 			blocked = {
 				-- default: 'terminal', 'quickfix', 'nofile', 'prompt'
@@ -34,7 +34,7 @@ return {
 				goto_bottom = "]i",
 			},
 			static = {
-				enabled = true,
+				enabled = false,
 				-- thin: '▏', thick: '▎'
 				char = "▏",
 				whitespace_char = nil, -- inherits from `vim.opt.listchars:get().space` when `nil` (see `:h listchars`)

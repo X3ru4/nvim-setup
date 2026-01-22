@@ -33,7 +33,7 @@ return {
 			},
 			{
 				"folke/lazydev.nvim",
-				enabled = vim.g.enable_plugin.lazydev_nvim,
+				enabled = true,
 				ft = "lua",
 				opts = {
 					library = {
@@ -109,7 +109,7 @@ return {
 				},
 				completion = {
 					ghost_text = {
-						enabled = true,
+						enabled = false,
 					},
 					accept = {
 						auto_brackets = {
@@ -134,7 +134,7 @@ return {
 						max_height = 8,
 						winblend = 0,
 						-- border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
-						border = "none",
+						border = "rounded",
 						winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
 						draw = {
 							columns = {
@@ -159,7 +159,7 @@ return {
 				snippets = {
 					preset = "luasnip",
 				},
-				sources = vim.g.enable_plugin.lazydev_nvim and {
+				sources = require("util.lazy").is_loaded("lazydev.nvim") and {
 					default = { "lazydev", "lsp", "path", "snippets", "buffer" },
 					providers = {
 						lazydev = {
