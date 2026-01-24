@@ -4,6 +4,18 @@ function _G.newfoldtext()
 	return "  " .. line .. " ↙" .. count
 end
 
+vim.g.statusline_style = {
+  style = nil, -- You can set with "minimal" or "normal"
+  diagnostic = true,
+  coordinate = true,
+  file_name = true,
+  read_only = true,
+  modify = true,
+  percent = true,
+  hlsearch = true,
+  macro = true,
+}
+
 local opt = vim.opt
 
 -- Performance

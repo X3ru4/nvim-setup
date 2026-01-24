@@ -34,7 +34,7 @@ return {
 				goto_bottom = "]i",
 			},
 			static = {
-				enabled = false,
+				enabled = true,
 				-- thin: '▏', thick: '▎'
 				char = "▏",
 				whitespace_char = nil, -- inherits from `vim.opt.listchars:get().space` when `nil` (see `:h listchars`)

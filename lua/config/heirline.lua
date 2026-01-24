@@ -137,15 +137,26 @@ local diagnostic = {
 	end,
 }
 
+local stl = vim.g.statusline_style
+
 M.config = {
 	statusline = {
 		mode,
 		{
-			provider = " %t%m%r %=%l | %c %p%% %=",
+			provider = table.concat({
+				" ",
+				stl.file_name and "%t " or "",
+				stl.modify and "%m " or "",
+				stl.read_only and "%r " or "",
+				"%=",
+				stl.coordinate and "%l | %c " or "",
+				stl.percent and "%p%% " or "",
+				"%=",
+			}),
 		},
-		hlsearch,
-		macro,
-		diagnostic,
+		stl.hlsearch and hlsearch,
+		stl.macro and macro,
+		stl.diagnostic and diagnostic,
 	},
 }
 return M

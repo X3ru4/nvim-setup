@@ -60,7 +60,7 @@ return {
 					count_only = false,
 
 					-- Delay between each movement step (in ms)
-					delay = 10,
+					delay = 9.396,
 
 					max_delta = {
 						-- Maximum distance for line movements before scroll

@@ -7,8 +7,45 @@ return {
 	},
 
 	{
+		"nvim-mini/mini.align",
+		version = false,
+    event = "VeryLazy",
+		-- Module mappings. Use `''` (empty string) to disable one.
+		opts = {
+			mappings = {
+				start = "ga",
+				start_with_preview = "gA",
+			},
+
+			-- Modifiers changing alignment steps and/or options
+
+			-- Default options controlling alignment process
+			options = {
+				split_pattern = "",
+				justify_side = "left",
+				merge_delimiter = "",
+			},
+
+			-- Default steps performing alignment (if `nil`, default is used)
+			steps = {
+				pre_split = {},
+				split = nil,
+				pre_justify = {},
+				justify = nil,
+				pre_merge = {},
+				merge = nil,
+			},
+
+			-- Whether to disable showing non-error feedback
+			-- This also affects (purely informational) helper messages shown after
+			-- idle time if user input is required.
+			silent = true,
+		},
+	},
+
+	{
 		"nvim-mini/mini.cursorword",
-    enabled = false,
+		enabled = false,
 		event = "BufReadPre",
 		opts = {
 			delay = 100,
@@ -245,7 +282,7 @@ return {
 		opts = {
 			view = {
 				-- Visualization style. Possible values are 'sign' and 'number'.
-        style = "number",
+				style = "number",
 
 				-- Signs used for hunks with 'sign' view
 				signs = { add = "", change = "", delete = "" },
@@ -542,12 +579,6 @@ return {
 			return {
 				n_lines = 500,
 				custom_textobjects = {
-					o = ai.gen_spec.treesitter({
-						a = { "@block.outer", "@conditional.outer", "@loop.outer" },
-						i = { "@block.inner", "@conditional.inner", "@loop.inner" },
-					}),
-					f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
-					c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }),
 					t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
 					d = { "%f[%d]%d+" },
 					e = {
