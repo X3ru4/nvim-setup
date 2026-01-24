@@ -16,8 +16,8 @@ map("i", "<C-a>", "<C-o>I")
 
 -- Not use this keymap if use cinnamon.nvim
 if not util.is_loaded("cinnamon.nvim") then
-	map(nx, "zh", "zH", { desc = "Horizontal scroll like \"zH\"" })
-	map(nx, "zl", "zL", { desc = "Horizontal scroll like \"zL\"" })
+	map(nx, "zh", "zH", { desc = 'Horizontal scroll like "zH"' })
+	map(nx, "zl", "zL", { desc = 'Horizontal scroll like "zL"' })
 end
 
 -- Yank buffer
@@ -84,7 +84,7 @@ map("x", "<leader>gr", function()
 end, { desc = "Replace" })
 -- Popup search
 map("n", "<leader>gs", function()
-	vim.ui.input({ prompt = "Search" }, function(input)
+	vim.ui.input({ prompt = "Search  " }, function(input)
 		if type(input) == "string" then
 			vim.cmd("?" .. input)
 		end
@@ -122,16 +122,16 @@ end, { desc = "Run code" })
 -- Lsp
 -- If not use the fzf-lua swith to use the default
 if not util.is_loaded("fzf-lua") then
-  map("n", "grd", vim.lsp.buf.definition, { desc = "Definition" })
-  map("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation" })
-  map("n", "grr", vim.lsp.buf.references, { desc = "References" })
-  map("n", "grt", vim.lsp.buf.type_definition, { desc = "Type definition" })
+	map("n", "grd", vim.lsp.buf.definition, { desc = "Definition" })
+	map("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation" })
+	map("n", "grr", vim.lsp.buf.references, { desc = "References" })
+	map("n", "grt", vim.lsp.buf.type_definition, { desc = "Type definition" })
 else
-  local fzf = require("fzf-lua")
-  map("n", "grd", fzf.lsp_definitions, { desc = "Definition" })
-  map("n", "gri", fzf.lsp_implementations, { desc = "Implementation" })
-  map("n", "grr", fzf.lsp_references, { desc = "References" })
-  map("n", "grt", fzf.lsp_typedefs, { desc = "Type definition" })
+	local fzf = require("fzf-lua")
+	map("n", "grd", fzf.lsp_definitions, { desc = "Definition" })
+	map("n", "gri", fzf.lsp_implementations, { desc = "Implementation" })
+	map("n", "grr", fzf.lsp_references, { desc = "References" })
+	map("n", "grt", fzf.lsp_typedefs, { desc = "Type definition" })
 end
 
 map(ni, "<C-k>", function()

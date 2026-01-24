@@ -3,12 +3,6 @@ local line = require("util.line")
 local hl_api = require("util.hl_api")
 local utils = require("heirline.utils")
 
-M.debug = function()
-	for key, value in pairs(line.util.hl_def_cache) do
-		print(key, value, "\n")
-	end
-end
-
 local mode_color = {
 	n = "MiniStatuslineModeNormal",
 	i = "MiniStatuslineModeInsert",
@@ -77,13 +71,6 @@ local mode = {
 						key = self.mode,
 						type = "bg",
 					},
-					bg = {
-						list = {
-							true_ = "TabLine",
-							false_ = "Nop",
-						},
-						key = tostring(vim.bo.modified) .. "_",
-					},
 				},
 			},
 			string = {
@@ -105,28 +92,6 @@ local mode = {
 		"BufModifiedSet",
 	},
 }
-local modified = {
-	condition = function()
-		return vim.bo.modified
-	end,
-	provider = function()
-		return line.separator({
-			id = "Modified",
-			default_hl = "StatusLine",
-			string = {
-				value = " Modified ",
-				hl = {
-					fg = "WarningMsg",
-					bg = "TabLine",
-				},
-			},
-			right = {
-				value = "",
-				hl = { fg = { name = "TabLine", type = "bg" } },
-			},
-		})
-	end,
-}
 local macro = {
 	condition = function()
 		return vim.fn.reg_recording() ~= ""
@@ -145,18 +110,21 @@ local diagnostic = {
 		self.info = count[vim.diagnostic.severity.INFO] or 0
 	end,
 	update = "DiagnosticChanged",
+	on_click = {
+		name = "Diag",
+		callback = require("fzf-lua").diagnostics_document,
+	},
 	provider = function(self)
 		local icons = require("config.icons").diagnostic
 		local check = function(c, s)
 			return c > 0
 					and table.concat({
-						"%#Diagnostic",
+						c,
+						" %#Diagnostic",
 						s,
 						"#",
 						icons[s],
 						" %#StatusLine#",
-						c,
-						" ",
 					})
 				or ""
 		end
@@ -172,8 +140,9 @@ local diagnostic = {
 M.config = {
 	statusline = {
 		mode,
-		modified,
-		{ provider = "%=" },
+		{
+			provider = " %t%m%r %=%l | %c %p%% %=",
+		},
 		hlsearch,
 		macro,
 		diagnostic,

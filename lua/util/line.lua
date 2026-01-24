@@ -1,6 +1,8 @@
 local M = {}
 local hl_api = require("util.hl_api")
 
+M.separator_data = {}
+
 ---Jdjdjd
 ---@param hl_name string
 ---@param str string|nil
@@ -31,7 +33,7 @@ end
 
 ---@alias line.SepPart
 ---|{
----  value:string,
+---  value:string|function,
 ---  hl:hl_api.HlSpec|nil,
 ---}
 
@@ -48,11 +50,14 @@ end
 function M.separator(spec)
 	local self = {}
 	spec.default_hl = spec.default_hl or "Normal"
+
 	if not spec.id then
 		vim.notify("separator({ id = ? })")
 	end
+
 	local function section_fmt(section, id)
 		local hl_ns = table.concat({ "CustomHl", (spec.id or "nil"), id })
+
 		local function value()
 			if type(section.value) == "function" then
 				return section.value(self)
@@ -60,17 +65,22 @@ function M.separator(spec)
 				return section.value
 			end
 		end
+
 		if type(section) == "table" then
 			if type(section.hl) == "string" then
 				return M.hl_fmt(section.hl) .. value()
 			elseif section.hl == nil then
 				return M.hl_fmt(spec.default_hl) .. value()
 			end
+
 			self.hl = hl_api.mix_hl(hl_ns, section.hl)
+
 			return M.hl_fmt(self.hl) .. value()
 		end
+
 		return ""
 	end
+
 	return table.concat({
 		section_fmt(spec.left, "0"),
 		section_fmt(spec.string, "1"),

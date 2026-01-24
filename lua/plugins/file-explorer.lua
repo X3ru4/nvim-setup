@@ -3,13 +3,13 @@ return {
 	{
 		"stevearc/oil.nvim",
 		enabled = true,
-    cmd = "Oil",
+		cmd = "Oil",
 		dependencies = {
 			{
 				enabled = false,
 				"benomahony/oil-git.nvim",
 				config = function()
-					require("oil-git").setup({})
+					require("oil-git").setup()
 				end,
 			},
 			{
@@ -45,21 +45,17 @@ return {
 				},
 				preview_win = {
 					win_options = {
-						border = "soil",
+						border = "rounded",
 					},
 				},
 				confirmation = {
 					border = "rounded",
-					win_options = {
-						winblend = 20,
-					},
+					win_options = {},
 				},
-        progress = {
-          border = "rounded",
-          win_options = {
-            winblend = 20
-          }
-        },
+				progress = {
+					border = "rounded",
+					win_options = {},
+				},
 				keymaps = {
 					["<C-s>"] = false,
 					["<C-h>"] = false,
@@ -89,6 +85,16 @@ return {
 					["<bs>"] = { "actions.parent", mode = "n" },
 					["."] = { "actions.toggle_hidden", mode = "n" },
 					["q"] = { "actions.close", mode = "n" },
+					["gs"] = {
+						function()
+							vim.ui.input({ prompt = "Search  ", }, function(input)
+								if input then
+									vim.cmd("Oil " .. input)
+								end
+							end)
+						end,
+						mode = "n",
+					},
 				},
 				columns = {
 					-- "permissions",
@@ -104,11 +110,10 @@ return {
 		},
 	},
 
-	---@type LazySpec
 	{
-    -- oil.nvim better than
+		-- oil.nvim better than
 		"mikavilpas/yazi.nvim",
-    enabled = false,
+		enabled = false,
 		version = "*", -- use the latest stable version
 		dependencies = {
 			{ "nvim-lua/plenary.nvim", lazy = true },
