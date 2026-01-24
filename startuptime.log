@@ -4,23 +4,23 @@ times in msec
  clock   self+sourced   self:  sourced script
  clock   elapsed:              other lines
 
-000.001  000.001: --- NVIM STARTING ---
-000.117  000.116: event init
-000.251  000.134: early init
-000.261  000.010: locale set
-000.331  000.071: init first window
-001.004  000.672: inits 1
-001.023  000.019: window checked
-001.027  000.004: parsing arguments
-002.548  000.801  000.801: require('vim.shared')
-003.918  000.341  000.341: require('vim.inspect')
-004.566  000.629  000.629: require('vim._options')
-004.572  002.018  001.048: require('vim._editor')
-004.575  002.959  000.141: require('vim._init_packages')
-004.579  000.593: init lua interpreter
-007.916  003.337: nvim_ui_attach
-008.312  000.396: nvim_set_client_info
-008.316  000.004: --- NVIM STARTED ---
+000.005  000.005: --- NVIM STARTING ---
+000.141  000.136: event init
+000.275  000.134: early init
+000.281  000.006: locale set
+000.337  000.056: init first window
+000.887  000.550: inits 1
+000.906  000.019: window checked
+000.909  000.004: parsing arguments
+002.530  000.839  000.839: require('vim.shared')
+003.928  000.343  000.343: require('vim.inspect')
+004.517  000.559  000.559: require('vim._options')
+004.522  001.983  001.081: require('vim._editor')
+004.524  002.969  000.147: require('vim._init_packages')
+004.528  000.650: init lua interpreter
+007.968  003.441: nvim_ui_attach
+008.396  000.428: nvim_set_client_info
+008.399  000.003: --- NVIM STARTED ---
 
 --- Startup times for process: Embedded ---
 
@@ -28,212 +28,229 @@ times in msec
  clock   self+sourced   self:  sourced script
  clock   elapsed:              other lines
 
-000.005  000.005: --- NVIM STARTING ---
-000.109  000.104: event init
-000.213  000.104: early init
-000.220  000.006: locale set
-000.284  000.064: init first window
-000.909  000.625: inits 1
-000.941  000.033: window checked
-000.948  000.006: parsing arguments
-002.502  000.802  000.802: require('vim.shared')
-003.852  000.340  000.340: require('vim.inspect')
-004.425  000.555  000.555: require('vim._options')
-004.430  001.921  001.026: require('vim._editor')
-004.433  002.862  000.139: require('vim._init_packages')
-004.438  000.628: init lua interpreter
-004.814  000.376: expanding arguments
-004.854  000.040: inits 2
-005.195  000.341: init highlight
-005.197  000.002: waiting for UI
-005.341  000.144: done waiting for UI
-005.346  000.005: clear screen
-006.389  000.078  000.078: require('vim.keymap')
-007.400  000.184  000.184: sourcing nvim_exec2()
-007.630  002.276  002.014: require('vim._defaults')
-007.634  000.012: init default mappings & autocommands
-008.284  000.088  000.088: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/ftplugin.vim
-008.377  000.039  000.039: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/indent.vim
-008.454  000.025  000.025: sourcing $VIM/sysinit.vim
-009.673  000.573  000.573: require('vim.fs')
-009.927  000.243  000.243: require('vim.uri')
-009.975  001.385  000.569: require('vim.loader')
-012.258  001.827  001.827: require('config.options')
-012.914  000.651  000.651: require('lazy')
-012.958  000.019  000.019: require('ffi')
-013.094  000.127  000.127: require('lazy.stats')
-013.374  000.237  000.237: require('lazy.core.util')
-013.636  000.255  000.255: require('lazy.core.config')
-013.932  000.101  000.101: require('lazy.core.handler')
-014.480  000.158  000.158: require('lazy.pkg')
-014.490  000.303  000.145: require('lazy.core.meta')
-014.498  000.562  000.259: require('lazy.core.plugin')
-014.508  000.868  000.205: require('lazy.core.loader')
-015.639  000.190  000.190: require('lazy.core.fragments')
-018.466  000.095  000.095: require('config.icons')
-020.812  000.194  000.194: require('vim.F')
-020.889  000.610  000.416: require('vim.diagnostic')
-023.360  000.215  000.215: require('lazy.core.handler.event')
-023.697  000.327  000.327: require('lazy.core.handler.cmd')
-023.955  000.251  000.251: require('lazy.core.handler.keys')
-024.113  000.146  000.146: require('lazy.core.handler.ft')
-025.042  000.021  000.021: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-025.102  000.004  000.004: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-026.970  000.089  000.089: require('vim.func')
-027.117  000.088  000.088: require('vim.func._memoize')
-027.130  000.616  000.439: require('fzf-lua.utils')
-027.470  000.158  000.158: require('fzf-lua.lib.base64')
-027.742  000.266  000.266: require('fzf-lua.lib.serpent')
-027.751  000.619  000.195: require('fzf-lua.libuv')
-027.765  001.544  000.309: require('fzf-lua.path')
-028.324  000.317  000.317: require('fzf-lua.actions')
-028.599  000.101  000.101: require('fzf-lua.class')
-028.625  000.295  000.195: require('fzf-lua.devicons')
-029.444  000.358  000.358: require('fzf-lua.previewer')
-030.445  001.815  001.457: require('fzf-lua.defaults')
-030.466  002.698  000.272: require('fzf-lua.config')
-030.741  000.040  000.040: sourcing /data/data/com.termux/files/home/.local/share/nvim/lazy/fzf-lua/autoload/fzf_lua.vim
-030.748  000.140  000.101: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-032.268  000.631  000.631: require('fzf-lua.win')
-033.829  000.506  000.506: require('fzf-lua.fzf')
-034.013  000.176  000.176: require('fzf-lua.shell')
-034.032  001.756  001.074: require('fzf-lua.core')
-034.231  000.188  000.188: require('fzf-lua.make_entry')
-034.242  009.027  002.069: require('fzf-lua')
-035.697  000.112  000.112: require('dropbar.utils')
-035.706  000.461  000.349: require('dropbar.api')
-039.158  000.146  000.146: require('multicursor-nvim.feedkeys-manager')
-039.885  000.116  000.116: require('multicursor-nvim.term-codes')
-039.988  000.096  000.096: require('multicursor-nvim.tbl')
-040.083  000.092  000.092: require('multicursor-nvim.util')
-040.172  000.084  000.084: require('multicursor-nvim.langmap')
-040.230  001.061  000.674: require('multicursor-nvim.cursor-manager')
-040.599  000.156  000.156: require('multicursor-nvim.keymap-manager')
-040.775  000.172  000.172: require('multicursor-nvim.snippet-manager')
-040.805  000.572  000.244: require('multicursor-nvim.input-manager')
-040.812  001.958  000.179: require('multicursor-nvim.core')
-041.147  000.084  000.084: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-041.170  000.357  000.272: require('multicursor-nvim.examples')
-041.228  004.689  002.374: require('multicursor-nvim')
-042.511  000.084  000.084: sourcing nvim_exec2() called at /data/data/com.termux/files/usr/share/nvim/runtime/filetype.lua:0
-042.519  000.205  000.121: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/filetype.lua
-042.526  000.318  000.113: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-042.755  000.011  000.011: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-042.773  000.002  000.002: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-043.238  000.459  000.459: require('kanagawa')
-043.476  000.111  000.111: require('kanagawa.utils')
-043.638  000.138  000.138: require('kanagawa.colors')
-044.027  000.107  000.107: require('kanagawa.lib.hsluv')
-044.034  000.198  000.091: require('kanagawa.lib.color')
-044.038  000.348  000.150: require('kanagawa.themes')
-044.189  000.130  000.130: require('kanagawa.highlights')
-044.374  000.180  000.180: require('kanagawa.highlights.editor')
-044.548  000.099  000.099: require('kanagawa.highlights.syntax')
-044.781  000.201  000.201: require('kanagawa.highlights.treesitter')
-044.954  000.152  000.152: require('kanagawa.highlights.lsp')
-045.260  000.294  000.294: require('kanagawa.highlights.plugins')
-046.698  000.018  000.018: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-046.723  000.004  000.004: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-047.034  000.009  000.009: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-047.055  000.003  000.003: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-047.643  000.008  000.008: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-047.666  000.002  000.002: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-048.800  000.462  000.462: require('vim.lsp.log')
-049.803  000.992  000.992: require('vim.lsp.protocol')
-050.365  000.554  000.554: require('vim.lsp.util')
-050.963  000.322  000.322: require('vim.lsp.sync')
-050.982  000.608  000.286: require('vim.lsp._changetracking')
-051.423  000.240  000.240: require('vim.lsp._transport')
-051.523  000.537  000.296: require('vim.lsp.rpc')
-051.635  003.675  000.523: require('vim.lsp')
-052.156  000.516  000.516: require('vim.lsp._snippet_grammar')
-052.198  004.466  000.275: require('vim.snippet')
-052.666  000.017  000.017: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-052.693  000.003  000.003: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-053.161  000.013  000.013: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-053.189  000.003  000.003: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-054.029  000.111  000.111: sourcing /data/data/com.termux/files/home/.local/share/nvim/lazy/dropbar.nvim/plugin/dropbar.lua
-054.040  000.205  000.093: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-054.056  000.005  000.005: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-054.136  000.004  000.004: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-054.427  000.006  000.006: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-054.451  000.003  000.003: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-055.752  000.273  000.273: sourcing /data/data/com.termux/files/home/.local/share/nvim/lazy/fzf-lua/plugin/fzf-lua.lua
-055.764  000.376  000.102: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-055.779  000.005  000.005: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-055.839  000.004  000.004: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-059.129  000.016  000.016: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-059.165  000.003  000.003: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-059.792  000.255  000.255: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/plugin/editorconfig.lua
-059.803  000.340  000.085: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-060.805  000.919  000.919: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/plugin/fzf.vim
-060.813  000.983  000.064: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-061.112  000.218  000.218: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/plugin/man.lua
-061.122  000.291  000.072: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-061.390  000.199  000.199: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/plugin/osc52.lua
-061.400  000.257  000.058: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-061.585  000.098  000.098: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/plugin/shada.vim
-061.592  000.152  000.054: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-061.716  000.031  000.031: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/plugin/spellfile.vim
-061.722  000.101  000.069: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
-061.911  051.895  022.135: require('config.lazy')
-062.067  000.151  000.151: require('config.autocmds')
-062.159  000.089  000.089: require('config.user_cmds')
-062.416  000.171  000.171: require('vim.lsp.inlay_hint')
-062.617  000.454  000.283: require('config.lsp')
-062.854  000.075  000.075: require('util.lazy')
-063.451  000.229  000.229: require('vim.lsp.buf')
-063.866  001.245  000.940: require('config.keymaps')
-063.871  055.377  000.159: sourcing /data/data/com.termux/files/home/.config/nvim/init.lua
-063.890  000.726: sourcing vimrc file(s)
-064.405  000.074  000.074: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/filetype.lua
-064.805  000.163  000.163: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/syntax/synload.vim
-064.924  000.431  000.268: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/syntax/syntax.vim
-064.945  000.549: inits 3
-068.451  003.506: reading ShaDa
-068.506  000.055: opening buffers
-068.577  000.071: BufEnter autocommands
-068.580  000.004: editing files in windows
-069.349  000.014  000.014: sourcing nvim_exec2() called at VimEnter Autocommands for "*":0
-069.414  000.004  000.004: sourcing nvim_exec2() called at VimEnter Autocommands for "*":0
-070.058  000.110  000.110: require('persistence.config')
-070.068  000.601  000.491: require('persistence')
-070.146  000.008  000.008: sourcing nvim_exec2() called at VimEnter Autocommands for "*":0
-070.195  000.004  000.004: sourcing nvim_exec2() called at VimEnter Autocommands for "*":0
-071.565  000.007  000.007: sourcing nvim_exec2() called at VimEnter Autocommands for "*":0
-071.587  000.003  000.003: sourcing nvim_exec2() called at VimEnter Autocommands for "*":0
-073.041  001.431  001.431: require('mini.icons')
-073.132  001.933  000.493: require('mini.icons')
-073.137  002.774  000.841: require('alpha.utils')
-073.158  002.942  000.168: require('alpha.themes.startify')
-073.363  000.189  000.189: require('alpha')
-075.726  000.198  000.198: require('dropbar.hlgroups')
-076.088  000.212  000.212: require('dropbar.configs')
-076.102  000.368  000.156: require('dropbar.bar')
-076.108  000.719  000.153: require('dropbar')
-076.910  000.202  000.202: require('dropbar.utils.bar')
-077.558  000.117  000.117: require('vim.treesitter.language')
-077.616  000.334  000.218: require('vim.treesitter.query')
-077.719  000.100  000.100: require('vim.treesitter._range')
-077.739  000.657  000.223: require('vim.treesitter.languagetree')
-077.749  000.795  000.138: require('vim.treesitter')
-081.877  007.820: VimEnter autocommands
-082.124  000.009  000.009: sourcing nvim_exec2() called at UIEnter Autocommands for "*":0
-082.147  000.003  000.003: sourcing nvim_exec2() called at UIEnter Autocommands for "*":0
-082.910  000.123  000.123: require('heirline.utils')
-083.027  000.111  000.111: require('heirline.highlights')
-083.035  000.383  000.149: require('heirline.statusline')
-083.041  000.871  000.488: require('heirline')
-083.363  000.081  000.081: require('util.hl_api')
-083.368  000.172  000.091: require('util.line')
-083.373  000.330  000.158: require('config.heirline')
-083.638  000.113  000.113: require('vim.termcap')
-083.851  000.157  000.157: require('vim.text')
-084.024  000.122  000.122: require('config.highlight')
-084.385  000.903: UIEnter autocommands
-085.177  000.588  000.588: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/autoload/provider/clipboard.vim
-085.191  000.218: before starting main loop
-085.982  000.792: first screen update
-085.986  000.004: --- NVIM STARTED ---
+000.004  000.004: --- NVIM STARTING ---
+000.124  000.120: event init
+000.254  000.130: early init
+000.261  000.007: locale set
+000.328  000.067: init first window
+000.869  000.542: inits 1
+000.902  000.033: window checked
+000.910  000.008: parsing arguments
+002.497  000.818  000.818: require('vim.shared')
+003.927  000.351  000.351: require('vim.inspect')
+004.512  000.565  000.565: require('vim._options')
+004.517  002.010  001.093: require('vim._editor')
+004.519  002.974  000.146: require('vim._init_packages')
+004.524  000.640: init lua interpreter
+004.905  000.381: expanding arguments
+004.948  000.044: inits 2
+005.298  000.350: init highlight
+005.301  000.002: waiting for UI
+005.464  000.163: done waiting for UI
+005.470  000.006: clear screen
+006.522  000.078  000.078: require('vim.keymap')
+007.718  000.189  000.189: sourcing nvim_exec2()
+008.027  002.546  002.279: require('vim._defaults')
+008.031  000.015: init default mappings & autocommands
+008.727  000.094  000.094: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/ftplugin.vim
+008.828  000.041  000.041: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/indent.vim
+008.910  000.027  000.027: sourcing $VIM/sysinit.vim
+010.029  000.571  000.571: require('vim.fs')
+010.277  000.239  000.239: require('vim.uri')
+010.315  001.314  000.503: require('vim.loader')
+012.712  001.799  001.799: require('config.options')
+013.132  000.415  000.415: require('lazy')
+013.181  000.018  000.018: require('ffi')
+013.285  000.096  000.096: require('lazy.stats')
+013.655  000.331  000.331: require('lazy.core.util')
+013.880  000.220  000.220: require('lazy.core.config')
+014.131  000.094  000.094: require('lazy.core.handler')
+014.475  000.106  000.106: require('lazy.pkg')
+014.483  000.239  000.133: require('lazy.core.meta')
+014.493  000.357  000.118: require('lazy.core.plugin')
+014.503  000.618  000.167: require('lazy.core.loader')
+015.541  000.132  000.132: require('lazy.core.fragments')
+018.361  000.082  000.082: require('config.icons')
+020.927  000.186  000.186: require('vim.F')
+021.048  000.587  000.401: require('vim.diagnostic')
+025.382  000.349  000.349: require('lazy.core.handler.keys')
+025.643  000.250  000.250: require('lazy.core.handler.cmd')
+025.828  000.170  000.170: require('lazy.core.handler.event')
+025.947  000.113  000.113: require('lazy.core.handler.ft')
+028.212  000.077  000.077: require('vim.func')
+028.348  000.078  000.078: require('vim.func._memoize')
+028.359  000.506  000.350: require('fzf-lua.utils')
+028.697  000.138  000.138: require('fzf-lua.lib.base64')
+028.975  000.274  000.274: require('fzf-lua.lib.serpent')
+028.985  000.623  000.212: require('fzf-lua.libuv')
+028.998  001.312  000.183: require('fzf-lua.path')
+029.631  000.357  000.357: require('fzf-lua.actions')
+030.039  000.200  000.200: require('fzf-lua.class')
+030.066  000.430  000.230: require('fzf-lua.devicons')
+031.015  000.519  000.519: require('fzf-lua.previewer')
+031.993  001.923  001.403: require('fzf-lua.defaults')
+032.013  003.012  000.302: require('fzf-lua.config')
+032.261  000.041  000.041: sourcing /data/data/com.termux/files/home/.local/share/nvim/lazy/fzf-lua/autoload/fzf_lua.vim
+032.269  000.139  000.098: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+033.888  000.712  000.712: require('fzf-lua.win')
+035.453  000.577  000.577: require('fzf-lua.fzf')
+035.667  000.206  000.206: require('fzf-lua.shell')
+035.691  001.794  001.010: require('fzf-lua.core')
+035.891  000.190  000.190: require('fzf-lua.make_entry')
+035.902  009.069  001.911: require('fzf-lua')
+038.629  000.129  000.129: require('multicursor-nvim.feedkeys-manager')
+039.200  000.194  000.194: require('multicursor-nvim.term-codes')
+039.312  000.107  000.107: require('multicursor-nvim.tbl')
+039.783  000.467  000.467: require('multicursor-nvim.util')
+039.894  000.105  000.105: require('multicursor-nvim.langmap')
+039.955  001.320  000.448: require('multicursor-nvim.cursor-manager')
+040.233  000.142  000.142: require('multicursor-nvim.keymap-manager')
+040.336  000.098  000.098: require('multicursor-nvim.snippet-manager')
+040.360  000.398  000.158: require('multicursor-nvim.input-manager')
+040.367  002.010  000.162: require('multicursor-nvim.core')
+040.605  000.063  000.063: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+040.624  000.254  000.191: require('multicursor-nvim.examples')
+040.696  004.155  001.891: require('multicursor-nvim')
+042.672  000.157  000.157: require('dropbar.utils')
+042.680  000.545  000.388: require('dropbar.api')
+043.277  000.019  000.019: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+043.312  000.003  000.003: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+043.621  000.076  000.076: sourcing nvim_exec2() called at /data/data/com.termux/files/usr/share/nvim/runtime/filetype.lua:0
+043.627  000.187  000.111: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/filetype.lua
+043.633  000.282  000.095: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+043.794  000.006  000.006: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+043.812  000.002  000.002: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+044.368  000.213  000.213: require('vscode.config')
+044.925  000.552  000.552: require('vscode.theme')
+045.015  000.086  000.086: require('vscode.utils')
+045.019  001.198  000.348: require('vscode')
+045.321  000.296  000.296: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+045.500  000.162  000.162: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+045.701  000.185  000.185: require('vscode.colors')
+047.294  000.209  000.209: require('util.hl_api')
+047.767  000.044  000.044: sourcing /data/data/com.termux/files/home/.local/share/nvim/lazy/plenary.nvim/plugin/plenary.vim
+047.775  000.136  000.092: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+047.790  000.004  000.004: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+047.818  000.003  000.003: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+047.838  000.003  000.003: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+047.853  000.002  000.002: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+048.683  000.094  000.094: require('harpoon.utils')
+048.693  000.244  000.149: require('harpoon.logger')
+049.048  000.136  000.136: require('harpoon.autocmd')
+049.055  000.261  000.125: require('harpoon.buffer')
+049.241  000.183  000.183: require('harpoon.extensions')
+049.253  000.558  000.113: require('harpoon.ui')
+049.853  000.246  000.246: require('plenary.bit')
+050.027  000.170  000.170: require('plenary.functional')
+050.100  000.695  000.278: require('plenary.path')
+050.128  000.873  000.178: require('harpoon.data')
+050.260  000.129  000.129: require('harpoon.config')
+050.487  000.224  000.224: require('harpoon.list')
+054.995  007.133  005.106: require('harpoon')
+055.495  000.020  000.020: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+055.519  000.004  000.004: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+055.939  000.008  000.008: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+055.976  000.003  000.003: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+056.618  000.121  000.121: sourcing /data/data/com.termux/files/home/.local/share/nvim/lazy/dropbar.nvim/plugin/dropbar.lua
+056.628  000.192  000.070: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+056.641  000.005  000.005: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+056.722  000.004  000.004: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+057.282  000.161  000.161: sourcing /data/data/com.termux/files/home/.local/share/nvim/lazy/github-theme/plugin/github_theme.lua
+057.292  000.222  000.061: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+057.319  000.005  000.005: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+057.350  000.003  000.003: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+057.672  000.006  000.006: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+057.696  000.002  000.002: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+058.633  000.007  000.007: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+058.658  000.003  000.003: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+059.923  000.404  000.404: require('vim.lsp.log')
+061.060  001.124  001.124: require('vim.lsp.protocol')
+061.612  000.544  000.544: require('vim.lsp.util')
+062.472  000.591  000.591: require('vim.lsp.sync')
+062.567  000.947  000.356: require('vim.lsp._changetracking')
+063.839  000.869  000.869: require('vim.lsp._transport')
+063.999  001.427  000.558: require('vim.lsp.rpc')
+064.213  005.139  000.693: require('vim.lsp')
+065.238  001.017  001.017: require('vim.lsp._snippet_grammar')
+065.268  006.519  000.362: require('vim.snippet')
+065.876  000.020  000.020: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+065.897  000.003  000.003: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+066.709  000.134  000.134: sourcing /data/data/com.termux/files/home/.local/share/nvim/lazy/fzf-lua/plugin/fzf-lua.lua
+066.719  000.217  000.083: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+066.733  000.005  000.005: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+066.757  000.003  000.003: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+068.478  000.009  000.009: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+068.518  000.003  000.003: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+068.882  000.006  000.006: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+068.905  000.003  000.003: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+069.340  000.103  000.103: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/plugin/editorconfig.lua
+069.349  000.177  000.073: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+070.307  000.880  000.880: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/plugin/fzf.vim
+070.314  000.953  000.073: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+070.482  000.100  000.100: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/plugin/man.lua
+070.492  000.159  000.059: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+070.646  000.096  000.096: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/plugin/osc52.lua
+070.654  000.152  000.056: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+070.788  000.077  000.077: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/plugin/shada.vim
+070.794  000.128  000.051: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+070.882  000.027  000.027: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/plugin/spellfile.vim
+070.909  000.102  000.075: sourcing nvim_exec2() called at /data/data/com.termux/files/home/.config/nvim/init.lua:0
+071.223  060.820  023.287: require('config.lazy')
+071.389  000.160  000.160: require('config.autocmds')
+071.519  000.127  000.127: require('config.user_cmds')
+071.817  000.161  000.161: require('vim.lsp.inlay_hint')
+071.998  000.474  000.313: require('config.lsp')
+072.239  000.076  000.076: require('util.lazy')
+072.893  000.243  000.243: require('vim.lsp.buf')
+073.408  001.407  001.087: require('config.keymaps')
+073.413  064.452  000.151: sourcing /data/data/com.termux/files/home/.config/nvim/init.lua
+073.431  000.785: sourcing vimrc file(s)
+074.034  000.097  000.097: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/filetype.lua
+074.459  000.139  000.139: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/syntax/synload.vim
+074.569  000.431  000.292: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/syntax/syntax.vim
+074.588  000.629: inits 3
+078.077  003.489: reading ShaDa
+078.133  000.056: opening buffers
+078.227  000.093: BufEnter autocommands
+078.231  000.004: editing files in windows
+079.312  000.017  000.017: sourcing nvim_exec2() called at VimEnter Autocommands for "*":0
+079.339  000.003  000.003: sourcing nvim_exec2() called at VimEnter Autocommands for "*":0
+080.761  000.119  000.119: require('persistence.config')
+080.771  001.299  001.180: require('persistence')
+080.928  000.013  000.013: sourcing nvim_exec2() called at VimEnter Autocommands for "*":0
+080.999  000.004  000.004: sourcing nvim_exec2() called at VimEnter Autocommands for "*":0
+082.786  000.007  000.007: sourcing nvim_exec2() called at VimEnter Autocommands for "*":0
+082.807  000.003  000.003: sourcing nvim_exec2() called at VimEnter Autocommands for "*":0
+084.385  001.539  001.539: require('mini.icons')
+084.559  002.058  000.510: require('mini.icons')
+084.566  003.398  001.340: require('alpha.utils')
+084.591  003.570  000.171: require('alpha.themes.startify')
+084.837  000.228  000.228: require('alpha')
+087.513  000.215  000.215: require('dropbar.hlgroups')
+087.939  000.256  000.256: require('dropbar.configs')
+087.953  000.434  000.178: require('dropbar.bar')
+087.960  000.809  000.160: require('dropbar')
+088.585  000.170  000.170: require('dropbar.utils.bar')
+089.214  000.090  000.090: require('vim.treesitter.language')
+089.275  000.321  000.231: require('vim.treesitter.query')
+089.483  000.205  000.205: require('vim.treesitter._range')
+089.508  000.746  000.220: require('vim.treesitter.languagetree')
+089.519  000.889  000.143: require('vim.treesitter')
+094.043  008.810: VimEnter autocommands
+094.361  000.011  000.011: sourcing nvim_exec2() called at UIEnter Autocommands for "*":0
+094.394  000.003  000.003: sourcing nvim_exec2() called at UIEnter Autocommands for "*":0
+095.313  000.133  000.133: require('heirline.utils')
+095.425  000.106  000.106: require('heirline.highlights')
+095.435  000.443  000.203: require('heirline.statusline')
+095.440  001.027  000.584: require('heirline')
+095.757  000.166  000.166: require('util.line')
+095.765  000.322  000.156: require('config.heirline')
+096.066  000.108  000.108: require('vim.termcap')
+096.261  000.172  000.172: require('vim.text')
+096.444  000.129  000.129: require('config.highlight')
+096.658  000.843: UIEnter autocommands
+097.354  000.475  000.475: sourcing /data/data/com.termux/files/usr/share/nvim/runtime/autoload/provider/clipboard.vim
+097.366  000.232: before starting main loop
+098.082  000.716: first screen update
+098.086  000.004: --- NVIM STARTED ---
 
-Very Fast!
