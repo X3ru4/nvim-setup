@@ -4,17 +4,17 @@ M.setup = function()
 	local hl = require("util.hl_api")
 
 	hl.highlights = {
-		Yank = {
-			fg = "White",
-			bg = "gray",
+    Yank = {
+      fg = hl.get("Normal").fg,
+      bg = hl.get("visual").bg
+    },
+		statusline = {
+			link = "normal",
 		},
-		StatusLine = {
-			link = "Normal",
+		winbar = {
+			link = "normal",
 		},
-		WinBar = {
-			link = "Normal",
-		},
-		MiniTablineCurrent = {
+		minitablinecurrent = {
 			link = "Normal",
 		},
 		MiniTablineModifiedCurrent = {
@@ -31,10 +31,6 @@ M.setup = function()
 		},
 		DropBarMenuHoverEntry = {
 			link = "Visual",
-		},
-		MiniCursorword = {
-			bg = "#494d64",
-			default = false,
 		},
 		DropBarMenuHoverIcon = vim.empty_dict(),
 		SpellBad = {
@@ -87,7 +83,7 @@ M.setup = function()
 
 	hl.work_if("onedark", {
 		WinBar = {
-			bg = "#242830",
+			link = "Normal",
 		},
 		WinBarNc = {
 			link = "Normal",

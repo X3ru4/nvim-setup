@@ -83,6 +83,12 @@ return {
 				},
 				colorschemes = {
 					prompt = " ",
+					actions = {
+						["enter"] = function(selected, opts)
+							require("fzf-lua.actions").colorscheme(selected, opts)
+							vim.cmd("Reloadhl")
+						end,
+					},
 				},
 				awesome_colorschemes = {
 					prompt = " ",

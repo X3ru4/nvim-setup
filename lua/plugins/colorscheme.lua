@@ -1,4 +1,6 @@
 -- If you want add more colorschemes you must add the name to the @alias ColorSchemeList
+local hl = require("util.hl_api")
+
 local colorschemes = {
 
 	tokyonight = {
@@ -8,6 +10,34 @@ local colorschemes = {
 		config = function()
 			require("tokyonight").load({
 				style = "moon",
+			})
+
+			local colors = require("tokyonight.colors").setup()
+			local fg = colors.black
+
+			hl.set("MiniStatuslineModeNormal", {
+				fg = fg,
+				bg = colors.blue,
+			})
+			hl.set("MiniStatuslineModeInsert", {
+				fg = fg,
+				bg = colors.green,
+			})
+			hl.set("MiniStatuslineModeVisual", {
+				fg = fg,
+				bg = colors.purple,
+			})
+			hl.set("MiniStatuslineModeCommand", {
+				fg = fg,
+				bg = colors.orange,
+			})
+			hl.set("MiniStatuslineModeOther", {
+				fg = fg,
+				bg = colors.green1,
+			})
+			hl.set("MiniStatuslineModeReplace", {
+				fg = fg,
+				bg = colors.orange,
 			})
 		end,
 	},
@@ -71,6 +101,7 @@ local colorschemes = {
 		config = function()
 			vim.g.nord_contrast = true
 			require("nord").set()
+      hl.set("WinBarNC", { link = "WinBar" })
 		end,
 	},
 	nordic = {
@@ -166,21 +197,6 @@ local colorschemes = {
 			vim.cmd.colorscheme("cyberdream")
 		end,
 	},
-	{
-		{
-			{
-				{
-					{
-						{
-							{
-								{},
-							},
-						},
-					},
-				},
-			},
-		},
-	},
 	vscode = {
 		"Mofiqul/vscode.nvim",
 		lazy = false,
@@ -188,7 +204,17 @@ local colorschemes = {
 		config = function()
 			require("vscode").load("dark")
 			local colors = require("vscode.colors").get_colors()
-			local hl = require("util.hl_api")
+
+      -- Mini.Diff
+      hl.set("MiniDiffSignAdd", {
+        fg = colors.vscGreen
+      })
+      hl.set("MiniDiffSignDelete", {
+        fg = colors.vscRed
+      })
+      hl.set("MiniDiffSignChange", {
+        fg = colors.vscYellowOrange
+      })
 
 			-- BlinkPair
 			hl.set("BlinkPairsUnmatched", {
@@ -239,7 +265,7 @@ local colorschemes = {
 				-- ...
 			})
 
-			vim.cmd("colorscheme github_dark")
+			vim.cmd.colorscheme("github_dark_dimmed")
 		end,
 	},
 }
@@ -268,12 +294,13 @@ local colorschemes = {
 local function install(name, setup)
 	local t = {}
 
-	local function push(arg, opts)
-		if arg ~= setup then
+	local function push(cn, opts)
+		if cn ~= setup then
 			local item = {
 				opts[1],
 				name = opts.name or nil,
 				dependencies = opts.dependencies or nil,
+        event = "VeryLazy",
 			}
 			table.insert(t, item)
 		else
@@ -302,12 +329,16 @@ local function install(name, setup)
 end
 
 return install({
-	"tokyonight", -- Unsupport statusline
-	"catppuccin", -- Recomment!
-	"kanagawa",   -- Recomment!
-	"onedark",
-	"gruvbox",    -- Recomment!
-	"kanagawa_paper",
-	"vscode",     -- Recomment!
-  "github",
+  "catppuccin",     -- Best choice!
+  "kanagawa",       -- Recomment!
+  "gruvbox",        -- Recomment!
+  "kanagawa_paper", -- Recomment!
+  "vscode",         -- Recomment!
+  "cyberdream",     -- Recomment!
+  "nord",           -- Recomment!
+  "rose_pine",      -- Recomment!
+	"tokyonight",     -- Hmmmmm!
+	"onedark",        -- Hmmmmm!
+	"github",         -- Hmmmmm!
+  "nightfox",       -- Hmmmmm!
 }, "vscode")

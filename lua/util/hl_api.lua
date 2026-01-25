@@ -63,9 +63,7 @@ end
 ---@param opts table|function|{ fn:function }
 ---@param apply boolean|nil
 function M.work_if(name, opts, apply)
-	vim.api.nvim_create_autocmd("ColorScheme", {
-		pattern = name,
-		callback = function()
+  if name == vim.g.colors_name then
 			if type(opts) == "function" then
 				M.highlights = vim.tbl_deep_extend("force", M.highlights, opts() or {})
 			else
@@ -78,19 +76,18 @@ function M.work_if(name, opts, apply)
 				M.apply()
 			end
 			print(name)
-		end,
-	})
+		end
 end
 
 ---Apply all the highlights in M.highlights
----@param other table|function
+---@param other table|function|nil
 function M.apply(other)
 	M.clear_cache()
 
 	local function p(t)
-    if type(t) == "function" then
-      t = t()
-    end
+		if type(t) == "function" then
+			t = t()
+		end
 
 		for name, opts in pairs(t) do
 			if type(opts) == "function" then
@@ -134,6 +131,7 @@ end
 ---@return string
 function M.mix_hl(ns, spec)
 	spec.default_hl = spec.default_hl or "Normal"
+
 	local function pick_hl(arg, fallback_key)
 		if arg == nil then
 			return M.get(spec.default_hl)[fallback_key]
@@ -142,15 +140,16 @@ function M.mix_hl(ns, spec)
 			return M.get(arg.name)[arg.type or fallback_key]
 		end
 		if arg.list then
-			for k, v in pairs(arg.list) do
+			for _, v in pairs(arg.list) do
 				M.get(v)
 			end
 			return M.hl_link_cache[arg.list[arg.key] or arg.list[arg.default_key] or spec.default_hl][arg.type or fallback_key]
 		end
 		if type(arg) == "string" then
-			return M.get(arg)[fallback_key]
+			return arg
 		end
 	end
+
 	local function create_key(arg)
 		if arg then
 			if arg.list then
@@ -159,6 +158,7 @@ function M.mix_hl(ns, spec)
 		end
 		return ""
 	end
+
 	ns = table.concat({
 		ns,
 		create_key(spec.fg),
@@ -172,6 +172,12 @@ function M.mix_hl(ns, spec)
 		}, spec.style or {})
 	)
 	return ns
+end
+
+---Insert
+---@param t table
+function M.insert(t)
+  vim.tbl_deep_extend("force", M.highlights, t)
 end
 
 return M

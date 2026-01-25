@@ -29,7 +29,7 @@ local hlsearch = {
 		local search = self.search
 		return string.format(" %d/%d ", search.current, math.min(search.total, search.maxcount))
 	end,
-	hl = "StatusLine",
+	hl = "Number",
 }
 local mode = {
 	init = function(self)
@@ -76,7 +76,7 @@ local mode = {
 			string = {
 				value = (self.mode_name[self.mode] or self.mode) .. " ",
 				hl = {
-					fg = mode_color.i,
+					fg = { name = mode_color.i },
 					bg = {
 						list = mode_color,
 						default_key = "n",
@@ -146,8 +146,8 @@ M.config = {
 			provider = table.concat({
 				" ",
 				stl.file_name and "%t " or "",
-				stl.modify and "%m " or "",
-				stl.read_only and "%r " or "",
+				line.hl_fmt("WarningMsg", stl.modify and "%m " or "", "%*"),
+				line.hl_fmt("ErrorMsg", stl.read_only and "%r " or "", "%*"),
 				"%=",
 				stl.coordinate and "%l | %c " or "",
 				stl.percent and "%p%% " or "",
@@ -159,4 +159,5 @@ M.config = {
 		stl.diagnostic and diagnostic,
 	},
 }
+
 return M

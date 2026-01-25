@@ -4,9 +4,6 @@ local util = require("util.lazy")
 local nx = { "n", "x" }
 local ni = { "n", "i" }
 
--- Paste in insert mode.
-map("i", "<C-p>", "<C-o>p")
-
 map("n", "<leader>rm", "<cmd>!rm ~/.local/state/nvim/swap -rf<cr>", { desc = "Remove swap folder" })
 map("!", "<F11>", "<Nop>")
 map("n", "K", "<Nop>")
@@ -20,10 +17,10 @@ if not util.is_loaded("cinnamon.nvim") then
 	map(nx, "zl", "zL", { desc = 'Horizontal scroll like "zL"' })
 end
 
--- Yank buffer
+-- Yank all
 map("n", "<leader>ya", "ggVGy", { desc = "Yank all" })
 
--- Better window
+-- Window
 map("n", "<leader>wh", "<C-w>h", { desc = "Win left" })
 map("n", "<leader>wj", "<C-w>j", { desc = "Win down" })
 map("n", "<leader>wk", "<C-w>k", { desc = "Win up" })
@@ -37,9 +34,8 @@ map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
 map("n", "<leader>bb", "<cmd>buffer #<cr>", { desc = "Previous buffer" })
 
 -- Quick select
-map("n", "<leader>v", "gg0vG$", { desc = "Select all" })
-map("n", "<leader>V", "ggVG$", { desc = "Select all line" })
-map("x", "<leader>v", "gg0G$", { desc = "Select all" })
+map(nx, "<leader>v", "gg0vG$", { desc = "Select all" })
+map(nx, "<leader>V", "ggVG$", { desc = "Select all line" })
 
 -- Return Normal mode
 map("t", "<C-b>", "<cmd>e #<cr><cmd>e #<cr>")
@@ -61,11 +57,11 @@ end, { desc = "Source" })
 map("n", "<leader>gt", "<cmd>terminal<cr><cmd>startinsert<cr>", { desc = "Open terminal" })
 -- Replace select
 map("x", "<leader>gr", function()
-	local save_reg = vim.fn.getreg('"')
-	local save_regtype = vim.fn.getregtype('"')
+	local reg = vim.fn.getreg('"')
+	local regtype = vim.fn.getregtype('"')
 	vim.cmd('normal! "vy')
 	local selection = vim.fn.getreg('"')
-	vim.fn.setreg('"', save_reg, save_regtype)
+	vim.fn.setreg('"', reg, regtype)
 
 	vim.ui.input({ prompt = 'Replace "' .. selection .. '" with' }, function(input)
 		if input then

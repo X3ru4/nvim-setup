@@ -6,15 +6,15 @@ M.separator_data = {}
 ---Jdjdjd
 ---@param hl_name string
 ---@param str string|nil
----@param fallback boolean|nil
+---@param endhl string|nil
 ---@return string
-function M.hl_fmt(hl_name, str, fallback)
+function M.hl_fmt(hl_name, str, endhl)
 	return table.concat({
 		"%#",
 		hl_name,
 		"#",
-		str and str or "",
-		fallback and "%*" or "",
+		str or "",
+    endhl or "",
 	})
 end
 

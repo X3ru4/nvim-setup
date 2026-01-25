@@ -7,6 +7,7 @@ return {
 			{
 				"L3MON4D3/LuaSnip",
 				version = "v2.*",
+        enabled = true,
 				dependencies = { "rafamadriz/friendly-snippets" },
 				config = function()
 					require("luasnip").setup()
@@ -26,7 +27,7 @@ return {
 						if luasnip.jumpable(-1) then
 							return "<Plug>luasnip-jump-prev"
 						else
-							return "<C-b>"
+							return "<C-h>"
 						end
 					end, { expr = true, silent = true })
 				end,
@@ -157,7 +158,7 @@ return {
 					},
 				},
 				snippets = {
-					preset = "luasnip",
+					-- preset = "luasnip",
 				},
 				sources = require("util.lazy").is_loaded("lazydev.nvim") and {
 					default = { "lazydev", "lsp", "path", "snippets", "buffer" },
