@@ -14,14 +14,6 @@ autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
 	end,
 })
 
--- Set wrap when FileType is json
-autocmd("FileType", {
-	pattern = "*",
-	callback = function(args)
-		vim.o.wrap = (vim.bo[args.buf].filetype == "json")
-	end,
-})
-
 -- Reload config.highlight when colorscheme changed.
 autocmd("ColorScheme", {
 	callback = function()

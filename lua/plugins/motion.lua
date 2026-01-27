@@ -37,9 +37,9 @@ return {
 	},
 
 	{
-		"ggandor/leap.nvim",
+		url = "https://codeberg.org/andyg/leap.nvim",
 		enabled = true,
-    event = "VeryLazy",
+		event = "VeryLazy",
 		keys = {
 			{
 				"s",

@@ -13,11 +13,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 		os.exit(1)
 	end
 end
-vim.opt.rtp:prepend(lazypath)
 
+vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
-require("config.options")
 
 -- Setup lazy.nvim
 require("lazy").setup({
@@ -87,7 +86,7 @@ require("lazy").setup({
 				"zipPlugin",
 				"tutor",
 				"rplugin",
-				"syntax",
+				-- "syntax",
 				"synmenu",
 				"optwin",
 				"compiler",
@@ -97,3 +96,9 @@ require("lazy").setup({
 		},
 	},
 })
+
+require("config.options")
+require("config.autocmds")
+require("config.usercmds")
+require("config.lsp")
+require("config.keymaps")

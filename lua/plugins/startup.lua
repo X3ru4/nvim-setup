@@ -7,24 +7,28 @@ return {
 			"folke/persistence.nvim",
 		},
 		config = function()
-			local config = require("alpha.themes.startify")
-			config.section.header.val = "n30vim"
-			config.section.footer.opts = {
-				hl = "Type",
-				shrink_margin = false,
+			local config = require("alpha.themes.dashboard")
+			local button = function(k, txt, cmd)
+				local btn = config.button(k, txt, cmd)
+				local tbl = vim.api.nvim_exec2("echo &columns", { output = true })
+				local width = tonumber(tbl.output) or 0
+				btn.opts.width = math.min(width - 4, 40)
+				return btn
+			end
+
+			config.section.header.val = "Hello!"
+			config.section.buttons.val = {
+				button("n", "  New file", "<cmd>ene <CR>"),
+				button("f", "  Find files", [[<cmd>lua require('fzf-lua').files()<cr>]]),
+				button("e", "  Explore", "<cmd>Oil <CR>"),
+				button("o", "  Frecency/MRU", [[<cmd>lua require('fzf-lua').oldfiles()<cr>]]),
+				button("g", "  Grep", [[<cmd>lua require('fzf-lua').live_grep()<cr>]]),
+				button("c", "  Configs", [[<cmd>lua require('fzf-lua').files({ cwd = "~/.config/nvim", })<cr>]]),
+				button("r", "  Open last session", "<cmd>lua require('persistence').load()<cr>"),
+				button("q", "󰩈  Quit", "<cmd>qa!<cr>"),
 			}
-			config.section.footer.type = "text"
-			config.section.footer.val = ""
-			config.section.mru.val = {}
-			config.section.mru_cwd.val = {}
-			config.section.top_buttons.val = {
-				config.button("n", "New file", "<cmd>ene <CR>"),
-				config.button("e", "Explore", "<cmd>Oil <CR>"),
-				config.button("f", "Find files", [[<cmd>lua require('fzf-lua').files()<cr>]]),
-				config.button("o", "Old files", [[<cmd>lua require('fzf-lua').oldfiles({ prompt = "› ", })<cr>]]),
-				config.button("c", "Config", [[<cmd>lua require('fzf-lua').files({ cwd = "~/.config/nvim", })<cr>]]),
-				config.button("r", "Restore session", "<cmd>lua require('persistence').load()<cr>"),
-			}
+			config.section.footer.val = "@X3ru4"
+
 			require("alpha").setup(config.config)
 		end,
 	},

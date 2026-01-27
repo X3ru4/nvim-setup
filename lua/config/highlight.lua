@@ -8,13 +8,13 @@ M.setup = function()
       fg = hl.get("Normal").fg,
       bg = hl.get("visual").bg
     },
-		statusline = {
+		StatusLine = {
 			link = "normal",
 		},
-		winbar = {
+		WinBar = {
 			link = "normal",
 		},
-		minitablinecurrent = {
+		MiniTablineCurrent = {
 			link = "Normal",
 		},
 		MiniTablineModifiedCurrent = {
