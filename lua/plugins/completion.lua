@@ -68,8 +68,8 @@ return {
 					-- mono or normal
 					nerd_font_variant = "normal",
 					kind_icons = {
-						Text = "",
-						Method = "󰊕",
+						Text = "",
+						Method = "",
 						Function = "󰊕",
 						Constructor = "󰢻",
 
@@ -135,7 +135,7 @@ return {
 						max_height = 8,
 						winblend = 0,
 						-- border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
-						border = "rounded",
+						border = vim.g.blink_border or "rounded",
 						winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
 						draw = {
 							columns = {

@@ -30,14 +30,3 @@ autocmd("UiEnter", {
 		require("config.highlight").setup()
 	end,
 })
-
--- -- Auto show diagnostic when CursorMoved and CursorMovedI
--- autocmd("CursorHold", {
--- 	callback = function()
--- 		vim.diagnostic.open_float(nil, {
--- 			border = "rounded",
--- 			focus = false,
--- 			close_events = { "BufWinLeave", "CursorMoved", "CursorMovedI", "ModeChanged" },
--- 		})
--- 	end,
--- })

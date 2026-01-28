@@ -100,6 +100,7 @@ local colorschemes = {
 		priority = 1000,
 		config = function()
 			vim.g.nord_contrast = true
+      vim.g.blink_border = "none"
 			require("nord").set()
       hl.set("WinBarNC", { link = "WinBar" })
 		end,
@@ -135,6 +136,7 @@ local colorschemes = {
 		priority = 1000,
 		config = function()
 			require("gruvbox").setup({})
+      vim.g.blink_border = "none"
 			vim.cmd.colorscheme("gruvbox")
 		end,
 	},
@@ -149,6 +151,7 @@ local colorschemes = {
 				functionStyle = { bold = true },
 				keywordStyle = { italic = true },
 			})
+      vim.g.blink_border = "none"
 			require("kanagawa").load()
 		end,
 	},
@@ -160,6 +163,7 @@ local colorschemes = {
 			require("kanagawa-paper").setup({
 				cache = true,
 			})
+      vim.g.blink_border = "none"
 			require("kanagawa-paper").load()
 		end,
 	},
@@ -178,6 +182,7 @@ local colorschemes = {
 		lazy = false,
 		priority = 1000,
 		config = function()
+      vim.g.blink_border = "none"
 			vim.cmd.colorscheme("nightfox")
 		end,
 	},

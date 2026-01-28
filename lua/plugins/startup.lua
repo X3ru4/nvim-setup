@@ -8,8 +8,8 @@ return {
 		},
 		config = function()
 			local config = require("alpha.themes.dashboard")
-			local button = function(k, txt, cmd)
-				local btn = config.button(k, txt, cmd)
+			local button = function(sc, txt, keybind, keybind_opts)
+				local btn = config.button(sc, txt, keybind, keybind_opts)
 				local tbl = vim.api.nvim_exec2("echo &columns", { output = true })
 				local width = tonumber(tbl.output) or 0
 				btn.opts.width = math.min(width - 4, 40)
