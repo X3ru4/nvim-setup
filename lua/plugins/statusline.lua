@@ -6,7 +6,6 @@ return {
 		-- to make sure all required plugins and colorschemes are loaded before setup
 		event = "UiEnter",
 		config = function()
-      -- Config in lua/config/heirline.lua
 			require("heirline").setup(require("config.heirline").config)
 		end,
 	},

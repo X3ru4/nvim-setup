@@ -100,9 +100,9 @@ local colorschemes = {
 		priority = 1000,
 		config = function()
 			vim.g.nord_contrast = true
-      vim.g.blink_border = "none"
+			vim.g.blink_border = "none"
 			require("nord").set()
-      hl.set("WinBarNC", { link = "WinBar" })
+			hl.set("WinBarNC", { link = "WinBar" })
 		end,
 	},
 	nordic = {
@@ -136,7 +136,7 @@ local colorschemes = {
 		priority = 1000,
 		config = function()
 			require("gruvbox").setup({})
-      vim.g.blink_border = "none"
+			vim.g.blink_border = "none"
 			vim.cmd.colorscheme("gruvbox")
 		end,
 	},
@@ -151,7 +151,7 @@ local colorschemes = {
 				functionStyle = { bold = true },
 				keywordStyle = { italic = true },
 			})
-      vim.g.blink_border = "none"
+			vim.g.blink_border = "none"
 			require("kanagawa").load()
 		end,
 	},
@@ -163,7 +163,7 @@ local colorschemes = {
 			require("kanagawa-paper").setup({
 				cache = true,
 			})
-      vim.g.blink_border = "none"
+			vim.g.blink_border = "none"
 			require("kanagawa-paper").load()
 		end,
 	},
@@ -182,7 +182,7 @@ local colorschemes = {
 		lazy = false,
 		priority = 1000,
 		config = function()
-      vim.g.blink_border = "none"
+			vim.g.blink_border = "none"
 			vim.cmd.colorscheme("nightfox")
 		end,
 	},
@@ -210,54 +210,89 @@ local colorschemes = {
 			require("vscode").load("dark")
 			local colors = require("vscode.colors").get_colors()
 
-      -- Mini.Diff
-      hl.set("MiniDiffSignAdd", {
-        fg = colors.vscGreen
-      })
-      hl.set("MiniDiffSignDelete", {
-        fg = colors.vscRed
-      })
-      hl.set("MiniDiffSignChange", {
-        fg = colors.vscYellowOrange
-      })
+			local fg = colors.vscBack
+			hl.highlights_extra = {
+				ModeOther = {
+					bg = colors.vscRed,
+					fg = fg,
+					bold = true,
+				},
+				ModeNormal = {
+					bg = colors.vscBlue,
+					fg = fg,
+					bold = true,
+          italic = true,
+				},
+				ModeInsert = {
+					bg = colors.vscGreen,
+					fg = fg,
+					bold = true,
+				},
+				ModeVisual = {
+					bg = colors.vscPink,
+					fg = fg,
+					bold = true,
+				},
+				ModeReplace = {
+					bg = colors.vscLightRed,
+					fg = fg,
+					bold = true,
+				},
+				ModeCommand = {
+					bg = colors.vscOrange,
+					fg = fg,
+					bold = true,
+				},
 
-			-- BlinkPair
-			hl.set("BlinkPairsUnmatched", {
-				fg = colors.vscRed,
-				strikethrough = true,
-			})
-			hl.set("BlinkPairsBlue", {
-				link = "RainbowDelimiterBlue",
-			})
-			hl.set("BlinkPairsOrange", {
-				link = "RainbowDelimiterOrange",
-			})
-			hl.set("BlinkPairsPurple", {
-				link = "RainbowDelimiterPurple",
-			})
+				-- Mini.Diff
+				MiniDiffSignAdd = {
+					fg = colors.vscGreen,
+				},
+				MiniDiffSignDelete = {
+					fg = colors.vscRed,
+				},
+				MiniDiffSignChange = {
+					fg = colors.vscYellowOrange,
+				},
 
-			-- BlinkIndent
-			hl.set("BlinkIndentRed", {
-				link = "RainbowDelimiterRed",
-			})
-			hl.set("BlinkIndentCyan", {
-				link = "RainbowDelimiterCyan",
-			})
-			hl.set("BlinkIndentBlue", {
-				link = "RainbowDelimiterBlue",
-			})
-			hl.set("BlinkIndentGreen", {
-				link = "RainbowDelimiterGreen",
-			})
-			hl.set("BlinkIndentYellow", {
-				link = "RainbowDelimiterYellow",
-			})
-			hl.set("BlinkIndentViolet", {
-				link = "RainbowDelimiterViolet",
-			})
-			hl.set("BlinkIndentOrange", {
-				link = "RainbowDelimiterOrange",
-			})
+				-- BlinkPair
+				BlinkPairsUnmatched = {
+					fg = colors.vscRed,
+					strikethrough = true,
+				},
+				BlinkPairsBlue = {
+					link = "RainbowDelimiterBlue",
+				},
+				BlinkPairsOrange = {
+					link = "RainbowDelimiterOrange",
+				},
+				BlinkPairsPurple = {
+					link = "RainbowDelimiterPurple",
+				},
+
+				-- BlinkIndent
+				BlinkIndentRed = {
+					link = "RainbowDelimiterRed",
+				},
+				BlinkIndentCyan = {
+					link = "RainbowDelimiterCyan",
+				},
+				BlinkIndentBlue = {
+					link = "RainbowDelimiterBlue",
+				},
+				BlinkIndentGreen = {
+					link = "RainbowDelimiterGreen",
+				},
+				BlinkIndentYellow = {
+					link = "RainbowDelimiterYellow",
+				},
+				BlinkIndentViolet = {
+					link = "RainbowDelimiterViolet",
+				},
+				BlinkIndentOrange = {
+					link = "RainbowDelimiterOrange",
+				},
+			}
 		end,
 	},
 	github = {
@@ -305,7 +340,7 @@ local function install(name, setup)
 				opts[1],
 				name = opts.name or nil,
 				dependencies = opts.dependencies or nil,
-        event = "VeryLazy",
+				event = "VeryLazy",
 			}
 			table.insert(t, item)
 		else
@@ -334,16 +369,16 @@ local function install(name, setup)
 end
 
 return install({
-  "catppuccin",     -- Best choice!
-  "kanagawa",       -- Recomment!
-  "gruvbox",        -- Recomment!
-  "kanagawa_paper", -- Recomment!
-  "vscode",         -- Recomment!
-  "cyberdream",     -- Recomment!
-  "nord",           -- Recomment!
-  "rose_pine",      -- Recomment!
-	"tokyonight",     -- Hmmmmm!
-	"onedark",        -- Hmmmmm!
-	"github",         -- Hmmmmm!
-  "nightfox",       -- Hmmmmm!
+	"catppuccin", -- Best choice!
+	"kanagawa", -- Recomment!
+	"gruvbox", -- Recomment!
+	"kanagawa_paper", -- Recomment!
+	"vscode", -- Recomment!
+	"cyberdream", -- Recomment!
+	"nord", -- Recomment!
+	"rose_pine", -- Recomment!
+	"tokyonight", -- Hmmmmm!
+	"onedark", -- Hmmmmm!
+	"github", -- Hmmmmm!
+	"nightfox", -- Hmmmmm!
 }, "vscode")

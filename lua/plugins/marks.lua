@@ -2,6 +2,7 @@ return {
 	{
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
+    event = "VeryLazy",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			local harpoon = require("harpoon")
@@ -35,7 +36,7 @@ return {
 				})
 			end
 
-			vim.keymap.set("n", "<C-e>", function()
+			vim.keymap.set("n", "<leader>hf", function()
 				fzf_harpoon(harpoon:list())
 			end, { desc = "Harpoon quick menu" })
 

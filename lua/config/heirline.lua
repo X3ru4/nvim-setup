@@ -4,15 +4,15 @@ local hl_api = require("util.hl_api")
 local utils = require("heirline.utils")
 
 local mode_color = {
-	n = "MiniStatuslineModeNormal",
-	i = "MiniStatuslineModeInsert",
-	v = "MiniStatuslineModeVisual",
-	V = "MiniStatuslineModeVisual",
-	["\22"] = "MiniStatuslineModeVisual",
-	c = "MiniStatuslineModeCommand",
-	t = "MiniStatuslineModeOther",
-	R = "MiniStatuslineModeReplace",
-	s = "MiniStatuslineModeVisual",
+	n       = "ModeNormal",
+	i       = "ModeInsert",
+	v       = "ModeVisual",
+	V       = "ModeVisual",
+	["\22"] = "ModeVisual",
+	c       = "ModeCommand",
+	t       = "ModeOther",
+	R       = "ModeReplace",
+	s       = "ModeVisual",
 }
 
 local hlsearch = {

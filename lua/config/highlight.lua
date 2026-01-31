@@ -4,10 +4,31 @@ M.setup = function()
 	local hl = require("util.hl_api")
 
 	hl.highlights = {
-    Yank = {
-      fg = hl.get("Normal").fg,
-      bg = hl.get("visual").bg
-    },
+		-- Custom
+		ModeOther = {
+			link = "MiniStatuslineModeOther",
+		},
+		ModeNormal = {
+			link = "MiniStatuslineModeNormal",
+		},
+		ModeInsert = {
+			link = "MiniStatuslineModeInsert",
+		},
+		ModeVisual = {
+			link = "MiniStatuslineModeVisual",
+		},
+		ModeReplace= {
+			link = "MiniStatuslineModeReplace",
+		},
+		ModeCommand = {
+			link = "MiniStatuslineModeCommand",
+		},
+		Yank = {
+			fg = hl.get("Normal").fg,
+			bg = hl.get("visual").bg,
+		},
+
+		-- Vanilla
 		StatusLine = {
 			link = "normal",
 		},
@@ -27,7 +48,7 @@ M.setup = function()
 			link = "MiniTablineHidden",
 		},
 		MiniTablineFill = {
-			link = "Normal",
+			link = "StatusLineNC",
 		},
 		DropBarMenuHoverEntry = {
 			link = "Visual",
@@ -61,7 +82,7 @@ M.setup = function()
 		"catppuccin-mocha",
 		"catppuccin-macchiato",
 		"catppuccin-latte",
-	}, function ()
+	}, function()
 		hl.modify("MiniCursorwordCurrent", {
 			link = "MiniCursorword",
 		})
@@ -79,7 +100,7 @@ M.setup = function()
 		hl.modify("IncSearch", {
 			bold = true,
 		})
-  end)
+	end)
 
 	hl.work_if("onedark", {
 		WinBar = {
