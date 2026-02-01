@@ -60,7 +60,7 @@
   "nord.nvim": { "branch": "master", "commit": "80c1e5321505aeb22b7a9f23eb82f1e193c12470" },
   "numb.nvim": { "branch": "master", "commit": "8164fd3d4d0c3ad2b1b111e9a63a59178981b743" },
   "nvim-autopairs": { "branch": "master", "commit": "7a2c97cccd60abc559344042fefb1d5a85b3e33b" },
-  "nvim-colorizer.lua": { "branch": "master", "commit": "81e676d3203c9eb6e4c0ccf1eba1679296ef923f" },
+  "nvim-colorizer.lua": { "branch": "master", "commit": "338409dd8a6ed74767bad3eb5269f1b903ffb3cf" },
   "nvim-hlslens": { "branch": "main", "commit": "425405475300d64de07dec3af60b1f1d31d49230" },
   "nvim-lightbulb": { "branch": "master", "commit": "aa3a8b0f4305b25cfe368f6c9be9923a7c9d0805" },
   "nvim-lint": { "branch": "master", "commit": "8c694e1a1ee2ac14df931679cd54e6b8d402c2c2" },
