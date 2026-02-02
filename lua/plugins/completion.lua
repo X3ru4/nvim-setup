@@ -135,7 +135,7 @@ return {
 						max_height = 8,
 						winblend = 0,
 						-- border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
-						border = vim.g.blink_border or "rounded",
+						border = vim.g.blinkcmp_border or "rounded",
 						winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
 						draw = {
 							columns = {
@@ -160,7 +160,7 @@ return {
 				snippets = {
 					-- preset = "luasnip",
 				},
-				sources = require("util.lazy").is_loaded("lazydev.nvim") and {
+				sources = require("utility.lazy").is_loaded("lazydev.nvim") and {
 					default = { "lazydev", "lsp", "path", "snippets", "buffer" },
 					providers = {
 						lazydev = {

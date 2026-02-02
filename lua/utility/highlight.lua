@@ -28,7 +28,7 @@ M.highlights_extra = {}
 ---Please use this function with M.set() to the best performance and no bug.
 ---@param name string Is the name of the highlight.
 ---@param cache boolean|nil Default is true
----@return vim.api.keyset.get_hl_info
+---@return table|vim.api.keyset.get_hl_info
 function M.get(name, cache)
 	cache = cache or true
 	if cache then
@@ -97,8 +97,10 @@ end
 
 ---Apply all highlights from M.highlights and other table.
 ---@param other table|function|nil
-function M.apply(other)
+---@param cache boolean|nil
+function M.apply(other, cache)
 	M.clear_cache()
+	cache = cache or true
 
 	local function pair(t)
 		if not t then
@@ -114,7 +116,7 @@ function M.apply(other)
 			end
 
 			if opts and type(opts) == "table" then
-				M.set(name, opts)
+				M.set(name, opts, cache)
 			end
 		end
 	end
@@ -149,8 +151,6 @@ end
 ---@param spec hl_api.HlSpec Spection
 ---@return string
 function M.mix_hl(ns, spec)
-	spec.default_hl = spec.default_hl or "Normal"
-
 	local function pick_hl(arg, fallback_key)
 		if arg == nil then
 			return M.get(spec.default_hl)[fallback_key]
@@ -177,6 +177,8 @@ function M.mix_hl(ns, spec)
 		end
 		return ""
 	end
+
+	spec.default_hl = spec.default_hl or "Normal"
 
 	ns = table.concat({
 		ns,

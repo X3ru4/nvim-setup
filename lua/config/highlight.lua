@@ -1,7 +1,7 @@
 local M = {}
 
 M.setup = function()
-	local hl = require("util.hl_api")
+	local hl = require("utility.highlight")
 
 	hl.highlights = {
 		-- Custom
@@ -24,14 +24,14 @@ M.setup = function()
 			link = "MiniStatuslineModeCommand",
 		},
 		Yank = {
-			fg = hl.get("Normal").fg,
+			fg = hl.get("Comment").fg,
 			bg = hl.get("visual").bg,
 		},
 
 		-- Vanilla
-		StatusLine = {
-			link = "normal",
-		},
+		-- StatusLine = {
+		-- 	link = "normal",
+		-- },
 		WinBar = {
 			link = "normal",
 		},

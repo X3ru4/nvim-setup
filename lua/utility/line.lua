@@ -1,9 +1,9 @@
 local M = {}
-local hl_api = require("util.hl_api")
+local hl_api = require("utility.highlight")
 
 M.separator_data = {}
 
----Jdjdjd
+---GamenhuCak
 ---@param hl_name string
 ---@param str string|nil
 ---@param endhl string|nil
@@ -14,7 +14,7 @@ function M.hl_fmt(hl_name, str, endhl)
 		hl_name,
 		"#",
 		str or "",
-    endhl or "",
+		endhl or "",
 	})
 end
 
@@ -49,7 +49,6 @@ end
 ---@return string
 function M.separator(spec)
 	local self = {}
-	spec.default_hl = spec.default_hl or "Normal"
 
 	if not spec.id then
 		vim.notify("separator({ id = ? })")
@@ -63,6 +62,8 @@ function M.separator(spec)
 				return section.value(self)
 			elseif type(section.value) == "string" then
 				return section.value
+      else
+        return ""
 			end
 		end
 
@@ -73,6 +74,7 @@ function M.separator(spec)
 				return M.hl_fmt(spec.default_hl) .. value()
 			end
 
+      section.hl.default_hl = spec.default_hl
 			self.hl = hl_api.mix_hl(hl_ns, section.hl)
 
 			return M.hl_fmt(self.hl) .. value()

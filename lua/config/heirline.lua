@@ -1,18 +1,18 @@
 local M = {}
-local line = require("util.line")
-local hl_api = require("util.hl_api")
+local line = require("utility.line")
+local hl_api = require("utility.highlight")
 local utils = require("heirline.utils")
 
 local mode_color = {
-	n       = "ModeNormal",
-	i       = "ModeInsert",
-	v       = "ModeVisual",
-	V       = "ModeVisual",
+	n = "ModeNormal",
+	i = "ModeInsert",
+	v = "ModeVisual",
+	V = "ModeVisual",
 	["\22"] = "ModeVisual",
-	c       = "ModeCommand",
-	t       = "ModeOther",
-	R       = "ModeReplace",
-	s       = "ModeVisual",
+	c = "ModeCommand",
+	t = "ModeOther",
+	R = "ModeReplace",
+	s = "ModeVisual",
 }
 
 local hlsearch = {
@@ -82,7 +82,7 @@ local mode = {
 						default_key = "n",
 						key = self.mode,
 					},
-					style = { bold = true },
+					style = { bold = true, italic = true },
 				},
 			},
 		})
@@ -137,27 +137,40 @@ local diagnostic = {
 	end,
 }
 
-local stl = vim.g.statusline_style
+M.config = function()
+	local stl = vim.g.statusline_style
 
-M.config = {
-	statusline = {
-		mode,
-		{
-			provider = table.concat({
-				" ",
-				stl.file_name and "%t " or "",
-				line.hl_fmt("WarningMsg", stl.modify and "%m " or "", "%*"),
-				line.hl_fmt("ErrorMsg", stl.read_only and "%r " or "", "%*"),
-				"%=",
-				stl.coordinate and "%l | %c " or "",
-				stl.percent and "%p%% " or "",
-				"%=",
-			}),
+	hl_api.mix_hl("FileInfoMod", {
+		default_hl = "StatusLine",
+		fg = { name = "WarningMsg" },
+		style = { bold = true },
+	})
+	hl_api.mix_hl("FileInfoRO", {
+		default_hl = "StatusLine",
+		fg = { name = "ErrorMsg" },
+		style = { bold = true },
+	})
+
+	return {
+		statusline = {
+			mode,
+			{
+				provider = table.concat({
+					" ",
+					stl.file_name and "%t " or "",
+					line.hl_fmt("FileInfoMod", stl.modify and "%m " or "", "%*"),
+					line.hl_fmt("FileInfoRO", stl.read_only and "%r " or "", "%*"),
+					"%=",
+					stl.coordinate and "%l | %c " or "",
+					stl.percent and "%p%% " or "",
+					"%=",
+				}),
+			},
+			stl.hlsearch and hlsearch,
+			stl.macro and macro,
+			stl.diagnostic and diagnostic,
 		},
-		stl.hlsearch and hlsearch,
-		stl.macro and macro,
-		stl.diagnostic and diagnostic,
-	},
-}
+	}
+end
 
 return M

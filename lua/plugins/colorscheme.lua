@@ -1,8 +1,7 @@
--- If you want add more colorschemes you must add the name to the @alias ColorSchemeList
-local hl = require("util.hl_api")
+local hl = require("utility.highlight")
+local c = {}
 
-local colorschemes = {
-
+c = {
 	tokyonight = {
 		"folke/tokyonight.nvim",
 		lazy = false,
@@ -100,7 +99,7 @@ local colorschemes = {
 		priority = 1000,
 		config = function()
 			vim.g.nord_contrast = true
-			vim.g.blink_border = "none"
+			vim.g.blinkcmp_border = "none"
 			require("nord").set()
 			hl.set("WinBarNC", { link = "WinBar" })
 		end,
@@ -131,12 +130,42 @@ local colorschemes = {
 			vim.cmd("colorscheme rose-pine")
 		end,
 	},
+	gruvbox_material = {
+		"sainnhe/gruvbox-material",
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("gruvbox-material")
+			vim.g.blinkcmp_border = "none"
+		end,
+	},
 	gruvbox = {
 		"ellisonleao/gruvbox.nvim",
 		priority = 1000,
 		config = function()
-			require("gruvbox").setup({})
-			vim.g.blink_border = "none"
+			require("gruvbox").setup({
+				terminal_colors = true, -- add neovim terminal colors
+				undercurl = true,
+				underline = true,
+				bold = true,
+				italic = {
+					strings = true,
+					emphasis = true,
+					comments = true,
+					operators = false,
+					folds = false,
+				},
+				strikethrough = true,
+				invert_selection = false,
+				invert_signs = false,
+				invert_tabline = false,
+				inverse = true, -- invert background for search, diffs, statuslines and errors
+				contrast = "hard", -- can be "hard", "soft" or empty string
+				palette_overrides = {},
+				overrides = {},
+				dim_inactive = false,
+				transparent_mode = false,
+			})
+			vim.g.blinkcmp_border = "none"
 			vim.cmd.colorscheme("gruvbox")
 		end,
 	},
@@ -151,7 +180,7 @@ local colorschemes = {
 				functionStyle = { bold = true },
 				keywordStyle = { italic = true },
 			})
-			vim.g.blink_border = "none"
+			vim.g.blinkcmp_border = "none"
 			require("kanagawa").load()
 		end,
 	},
@@ -163,7 +192,7 @@ local colorschemes = {
 			require("kanagawa-paper").setup({
 				cache = true,
 			})
-			vim.g.blink_border = "none"
+			vim.g.blinkcmp_border = "none"
 			require("kanagawa-paper").load()
 		end,
 	},
@@ -182,7 +211,7 @@ local colorschemes = {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.g.blink_border = "none"
+			vim.g.blinkcmp_border = "none"
 			vim.cmd.colorscheme("nightfox")
 		end,
 	},
@@ -221,7 +250,6 @@ local colorschemes = {
 					bg = colors.vscBlue,
 					fg = fg,
 					bold = true,
-          italic = true,
 				},
 				ModeInsert = {
 					bg = colors.vscGreen,
@@ -310,75 +338,23 @@ local colorschemes = {
 	},
 }
 
----@alias ColorSchemeList
----|"tokyonight"
----|"onedark"
----|"catppuccin"
----|"nord"
----|"nordic"
----|"nordern"
----|"rose_pine"
----|"gruvbox"
----|"kanagawa"
----|"kanagawa_paper"
----|"sonokai"
----|"nightfox"
----|"material"
----|"cyberdream"
----|"vscode"
----|"github"
+-- Super clean =))
+local cs = require("utility.colorscheme")
 
----@param name string|"all"|ColorSchemeList[]
----@param setup ColorSchemeList|nil
----@return table
-local function install(name, setup)
-	local t = {}
+cs.list = {
+	c.catppuccin, -- Recomment!
+	c.kanagawa, -- Recomment!
+	c.gruvbox, -- Recomment!
+	c.kanagawa_paper, -- Recomment!
+	c.vscode, -- Recomment!
+	c.cyberdream, -- Recomment!
+	c.nord, -- Recomment!
+	c.rose_pine, -- Recomment!
+	c.gruvbox_material, -- Recomment!
+	c.tokyonight, -- Hmmmmm!
+	c.onedark, -- Hmmmmm!
+	c.github, -- Hmmmmm!
+	c.nightfox, -- Hmmmmm!
+}
 
-	local function push(cn, opts)
-		if cn ~= setup then
-			local item = {
-				opts[1],
-				name = opts.name or nil,
-				dependencies = opts.dependencies or nil,
-				event = "VeryLazy",
-			}
-			table.insert(t, item)
-		else
-			table.insert(t, opts)
-		end
-	end
-
-	if type(name) == "table" then
-		for _, cn in ipairs(name) do
-			local opts = colorschemes[cn]
-			if opts then
-				push(cn, opts)
-			end
-		end
-	elseif type(name) == "string" then
-		if string.lower(name) == "all" then
-			for cn, opts in pairs(colorschemes) do
-				push(cn, opts)
-			end
-		else
-			push(name, colorschemes[name])
-		end
-	end
-
-	return t
-end
-
-return install({
-	"catppuccin", -- Best choice!
-	"kanagawa", -- Recomment!
-	"gruvbox", -- Recomment!
-	"kanagawa_paper", -- Recomment!
-	"vscode", -- Recomment!
-	"cyberdream", -- Recomment!
-	"nord", -- Recomment!
-	"rose_pine", -- Recomment!
-	"tokyonight", -- Hmmmmm!
-	"onedark", -- Hmmmmm!
-	"github", -- Hmmmmm!
-	"nightfox", -- Hmmmmm!
-}, "vscode")
+return cs.install_(c.gruvbox_material)
