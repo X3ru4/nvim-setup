@@ -24,16 +24,16 @@ M.setup = function()
 			link = "MiniStatuslineModeCommand",
 		},
 		Yank = {
-			fg = hl.get("Comment").fg,
-			bg = hl.get("visual").bg,
+			fg = hl.get("LineNr").fg,
+			bg = hl.get("Visual").bg,
 		},
 
 		-- Vanilla
 		-- StatusLine = {
-		-- 	link = "normal",
+		-- 	link = "Normal",
 		-- },
 		WinBar = {
-			link = "normal",
+			link = "Normal",
 		},
 		MiniTablineCurrent = {
 			link = "Normal",

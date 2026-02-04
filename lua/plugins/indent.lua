@@ -100,7 +100,7 @@ return {
 					},
 					error_sign = true,
 					-- animation related
-					duration = 0,
+					duration = 200,
 					delay = 20,
 				},
 				indent = {
@@ -132,13 +132,13 @@ return {
 			indent = {
 				char = "▏",
 				highlight = {
-					"RainbowRed",
-					"RainbowYellow",
-					"RainbowBlue",
-					"RainbowOrange",
-					"RainbowGreen",
-					"RainbowViolet",
-					"RainbowCyan",
+					"Red",
+					"Yellow",
+					"Blue",
+					"Orange",
+					"Green",
+					"Purple",
+					"Aqua",
 				},
 			},
 		},
