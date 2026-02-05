@@ -13,7 +13,7 @@ return {
 	{
 		"nvim-lualine/lualine.nvim",
 		enabled = false,
-		event = "VeryLazy",
+		event = "UiEnter",
 		lazy = false,
 		opts = function()
 			local diagnostic = require("config.icons").diagnostic

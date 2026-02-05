@@ -1,6 +1,6 @@
 local M = {}
 local line = require("utility.line")
-local hl_api = require("utility.highlight")
+local hl = require("utility.highlight")
 local utils = require("heirline.utils")
 
 local mode_color = {
@@ -140,12 +140,12 @@ local diagnostic = {
 M.config = function()
 	local stl = vim.g.statusline_style
 
-	hl_api.mix_hl("FileInfoMod", {
+	hl.mix_hl("FileInfoMod", {
 		default_hl = "StatusLine",
 		fg = { name = "WarningMsg" },
 		style = { bold = true },
 	})
-	hl_api.mix_hl("FileInfoRO", {
+	hl.mix_hl("FileInfoRO", {
 		default_hl = "StatusLine",
 		fg = { name = "ErrorMsg" },
 		style = { bold = true },

@@ -17,7 +17,7 @@ M.setup = function()
 		ModeVisual = {
 			link = "MiniStatuslineModeVisual",
 		},
-		ModeReplace= {
+		ModeReplace = {
 			link = "MiniStatuslineModeReplace",
 		},
 		ModeCommand = {
@@ -27,6 +27,16 @@ M.setup = function()
 			fg = hl.get("LineNr").fg,
 			bg = hl.get("Visual").bg,
 		},
+
+		-- Plugins
+    -- multicutsor.nvim
+		MultiCursorCursor = { reverse = true },
+		MultiCursorVisual = { link = "Visual" },
+		MultiCursorSign = { link = "SignColumn" },
+		MultiCursorMatchPreview = { link = "Search" },
+		MultiCursorDisabledCursor = { reverse = true },
+		MultiCursorDisabledVisual = { link = "Visual" },
+		MultiCursorDisabledSign = { link = "SignColumn" },
 
 		-- Vanilla
 		-- StatusLine = {
@@ -77,12 +87,152 @@ M.setup = function()
 		}),
 	}
 
-	hl.work_if({
-		"catppuccin-frappe",
-		"catppuccin-mocha",
-		"catppuccin-macchiato",
-		"catppuccin-latte",
-	}, function()
+	hl.set_match("gruvbox-material", {
+		DropBarMenuHoverEntry = {
+			link = "PmenuThumb",
+		},
+		LazyProp = {
+			link = "Keyword",
+		},
+
+		-- BlinkPair
+		BlinkPairsUnmatched = {
+			fg = hl.get("Red").fg,
+			reverse = true,
+			bold = true,
+		},
+		BlinkPairsBlue = {
+			link = "Blue",
+		},
+		BlinkPairsOrange = {
+			link = "Orange",
+		},
+		BlinkPairsPurple = {
+			link = "Purple",
+		},
+
+		-- BlinkIndent
+		BlinkIndentRed = {
+			link = "Red",
+		},
+		BlinkIndentCyan = {
+			link = "Aqua",
+		},
+		BlinkIndentBlue = {
+			link = "Blue",
+		},
+		BlinkIndentGreen = {
+			link = "Green",
+		},
+		BlinkIndentYellow = {
+			link = "Yellow",
+		},
+		BlinkIndentViolet = {
+			link = "Purple",
+		},
+		BlinkIndentOrange = {
+			link = "Orange",
+		},
+	})
+
+	hl.set_match("everforest", {
+		LazyProp = {
+			link = "Keyword",
+		},
+
+		-- BlinkPair
+		BlinkPairsUnmatched = {
+			fg = hl.get("Red").fg,
+			reverse = true,
+			bold = true,
+		},
+		BlinkPairsBlue = {
+			link = "Blue",
+		},
+		BlinkPairsOrange = {
+			link = "Orange",
+		},
+		BlinkPairsPurple = {
+			link = "Purple",
+		},
+
+		-- BlinkIndent
+		BlinkIndentRed = {
+			link = "Red",
+		},
+		BlinkIndentCyan = {
+			link = "Aqua",
+		},
+		BlinkIndentBlue = {
+			link = "Blue",
+		},
+		BlinkIndentGreen = {
+			link = "Green",
+		},
+		BlinkIndentYellow = {
+			link = "Yellow",
+		},
+		BlinkIndentViolet = {
+			link = "Purple",
+		},
+		BlinkIndentOrange = {
+			link = "Orange",
+		},
+	})
+
+	hl.set_match("edge", function()
+		local config = vim.fn["edge#get_configuration"]()
+		local palette = vim.fn["edge#get_palette"](config.style, config.dim_foreground, config.colors_override)
+		local set_hl = vim.fn["edge#highlight"]
+
+		return {
+			LazyProp = {
+				link = "Keyword",
+			},
+
+			-- BlinkPair
+			BlinkPairsUnmatched = {
+				fg = hl.get("red").fg,
+				reverse = true,
+				bold = true,
+			},
+			BlinkPairsBlue = {
+				link = "Blue",
+			},
+			BlinkPairsOrange = {
+				link = "Purple",
+			},
+			BlinkPairsPurple = {
+				link = "Purple",
+			},
+
+			-- BlinkIndent
+			BlinkIndentRed = {
+				link = "Red",
+			},
+			BlinkIndentCyan = {
+				link = "Cyan",
+			},
+			BlinkIndentBlue = {
+				link = "Blue",
+			},
+			BlinkIndentGreen = {
+				link = "Green",
+			},
+			BlinkIndentYellow = {
+				link = "Yellow",
+			},
+			BlinkIndentViolet = {
+				link = "Purple",
+			},
+			BlinkIndentOrange = {
+				link = "Purple",
+			},
+		}
+	end)
+
+	-- Use ! before the string can be match more variants
+	hl.set_match("catppuccin!", function()
 		hl.modify("MiniCursorwordCurrent", {
 			link = "MiniCursorword",
 		})
@@ -100,9 +250,11 @@ M.setup = function()
 		hl.modify("IncSearch", {
 			bold = true,
 		})
+
+		return {}
 	end)
 
-	hl.work_if("onedark", {
+	hl.set_match("onedark", {
 		WinBar = {
 			link = "Normal",
 		},
@@ -118,11 +270,7 @@ M.setup = function()
 		},
 	})
 
-	hl.work_if({
-		"kanagawa",
-		"kanagawa-paper-ink",
-		"kanagawa-paper-canvas",
-	}, {
+	hl.set_match("kanagawa!", {
 		MiniTablineModifiedCurrent = {
 			link = "MiniTablineCurrent",
 		},
@@ -144,7 +292,7 @@ M.setup = function()
 		}),
 	})
 
-	hl.work_if("gruvbox", {
+	hl.set_match("gruvbox", {
 		SignColumn = {
 			link = "Normal",
 		},
@@ -152,6 +300,94 @@ M.setup = function()
 			link = "CursorLine",
 		},
 	})
+
+	hl.set_match("vscode", function()
+		local colors = require("vscode.colors").get_colors()
+
+		local fg = colors.vscBack
+		return {
+			ModeOther = {
+				bg = colors.vscRed,
+				fg = fg,
+				bold = true,
+			},
+			ModeNormal = {
+				bg = colors.vscBlue,
+				fg = fg,
+				bold = true,
+			},
+			ModeInsert = {
+				bg = colors.vscGreen,
+				fg = fg,
+				bold = true,
+			},
+			ModeVisual = {
+				bg = colors.vscPink,
+				fg = fg,
+				bold = true,
+			},
+			ModeReplace = {
+				bg = colors.vscLightRed,
+				fg = fg,
+				bold = true,
+			},
+			ModeCommand = {
+				bg = colors.vscOrange,
+				fg = fg,
+				bold = true,
+			},
+
+			-- Mini.Diff
+			MiniDiffSignAdd = {
+				fg = colors.vscGreen,
+			},
+			MiniDiffSignDelete = {
+				fg = colors.vscRed,
+			},
+			MiniDiffSignChange = {
+				fg = colors.vscYellowOrange,
+			},
+
+			-- BlinkPair
+			BlinkPairsUnmatched = {
+				fg = colors.vscRed,
+				reverse = true,
+				bold = true,
+			},
+			BlinkPairsBlue = {
+				link = "RainbowDelimiterBlue",
+			},
+			BlinkPairsOrange = {
+				link = "RainbowDelimiterOrange",
+			},
+			BlinkPairsPurple = {
+				link = "RainbowDelimiterPurple",
+			},
+
+			-- BlinkIndent
+			BlinkIndentRed = {
+				link = "RainbowDelimiterRed",
+			},
+			BlinkIndentCyan = {
+				link = "RainbowDelimiterCyan",
+			},
+			BlinkIndentBlue = {
+				link = "RainbowDelimiterBlue",
+			},
+			BlinkIndentGreen = {
+				link = "RainbowDelimiterGreen",
+			},
+			BlinkIndentYellow = {
+				link = "RainbowDelimiterYellow",
+			},
+			BlinkIndentViolet = {
+				link = "RainbowDelimiterViolet",
+			},
+			BlinkIndentOrange = {
+				link = "RainbowDelimiterOrange",
+			},
+		}
+	end)
 
 	hl.apply()
 end

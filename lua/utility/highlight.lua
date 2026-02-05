@@ -5,18 +5,11 @@ M.vget_hl = vim.api.nvim_get_hl
 
 M.hl_def_cache = {}
 M.hl_link_cache = {}
-M.apply_cache = {}
 
 ---Clear caches
 function M.clear_cache()
-	local function tbl_clear(t)
-		for k, _ in pairs(t) do
-			t[k] = nil
-		end
-	end
-
-	tbl_clear(M.hl_def_cache)
-	tbl_clear(M.hl_link_cache)
+	M.hl_def_cache = {}
+	M.hl_link_cache = {}
 end
 
 ---This is the default table used to load highlights when M.apply() is called.
@@ -76,19 +69,44 @@ function M.modify(name, opts, fallback)
 	end
 end
 
----@param name string|table
----@param opts table|function|{ fn:function }
----@param apply boolean|nil
-function M.work_if(name, opts, apply)
-	if name == vim.g.colors_name then
-		if type(opts) == "function" then
-			M.highlights = vim.tbl_deep_extend("force", M.highlights, opts() or {})
-		else
-			if type(opts.callback) == "function" then
-				opts = vim.tbl_deep_extend("force", M.highlights, opts.fn() or {})
+---@param name string|table Name of colorscheme
+---@param opts table|function|{ fn: function }
+---@param apply boolean|nil Default is true
+function M.set_match(name, opts, apply)
+	apply = apply or false
+
+	local function match()
+		local color = vim.g.colors_name
+
+		local function check_str(s)
+			if s:match("!") == "!" then
+        s = s:match("(%w+)!")
+				return color:match(s) == s
 			end
-			M.highlights = vim.tbl_deep_extend("force", M.highlights, opts or {})
+			return s == color
 		end
+
+		if type(name) == "table" then
+			for _, c in ipairs(name) do
+        if check_str(c) then
+          return true
+        end
+			end
+      return false
+		end
+		return check_str(name)
+	end
+
+	if match() then
+		if type(opts) == "function" then
+      M.highlights = vim.tbl_extend("force", M.highlights, opts() or {})
+		elseif type(opts) == "table" then
+			if type(opts.fn) == "function" then
+				opts = vim.tbl_extend("force", M.highlights, opts.fn() or {})
+			end
+      M.highlights = vim.tbl_extend("force", M.highlights, opts or {})
+		end
+
 		if apply then
 			M.apply()
 		end
@@ -97,10 +115,8 @@ end
 
 ---Apply all highlights from M.highlights and other table.
 ---@param other table|function|nil
----@param cache boolean|nil
-function M.apply(other, cache)
+function M.apply(other)
 	M.clear_cache()
-	cache = cache or true
 
 	local function pair(t)
 		if not t then
@@ -115,9 +131,7 @@ function M.apply(other, cache)
 				opts = opts()
 			end
 
-			if opts and type(opts) == "table" then
-				M.set(name, opts, cache)
-			end
+			M.set(name, opts)
 		end
 	end
 

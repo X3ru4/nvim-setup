@@ -42,7 +42,7 @@ c = {
 	},
 	onedark = {
 		"navarasu/onedark.nvim",
-		lazy = false,
+    event = "VimEnter",
 		priority = 1000,
 		config = function()
 			require("onedark").setup({
@@ -55,7 +55,7 @@ c = {
 	catppuccin = {
 		"catppuccin/nvim",
 		name = "catppuccin",
-		lazy = false,
+    event = "VimEnter",
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
@@ -104,18 +104,9 @@ c = {
 			hl.set("WinBarNC", { link = "WinBar" })
 		end,
 	},
-	rose_pine = {
-		"rose-pine/neovim",
-		name = "rose-pine",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			vim.cmd("colorscheme rose-pine")
-		end,
-	},
 	edge = {
 		"sainnhe/edge",
-		event = "UiEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "none"
@@ -135,60 +126,11 @@ c = {
 			-- Can be set with "none"|"dimmed"
 			vim.g.edge_inlay_hints_background = "none"
 			vim.cmd.colorscheme("edge")
-
-			local config = vim.fn["edge#get_configuration"]()
-			local palette = vim.fn["edge#get_palette"](config.style, config.dim_foreground, config.colors_override)
-			local set_hl = vim.fn["edge#highlight"]
-
-			hl.highlights_extra = {
-				LazyProp = {
-					link = "Keyword",
-				},
-
-				-- BlinkPair
-				BlinkPairsUnmatched = {
-					fg = hl.get("Red").fg,
-					reverse = true,
-					bold = true,
-				},
-				BlinkPairsBlue = {
-					link = "Blue",
-				},
-				BlinkPairsOrange = {
-					link = "Purple",
-				},
-				BlinkPairsPurple = {
-					link = "Purple",
-				},
-
-				-- BlinkIndent
-				BlinkIndentRed = {
-					link = "Red",
-				},
-				BlinkIndentCyan = {
-					link = "Cyan",
-				},
-				BlinkIndentBlue = {
-					link = "Blue",
-				},
-				BlinkIndentGreen = {
-					link = "Green",
-				},
-				BlinkIndentYellow = {
-					link = "Yellow",
-				},
-				BlinkIndentViolet = {
-					link = "Purple",
-				},
-				BlinkIndentOrange = {
-					link = "Purple",
-				},
-			}
 		end,
 	},
 	everforest = {
 		"sainnhe/everforest",
-		event = "UiEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "none"
@@ -209,56 +151,11 @@ c = {
 			-- Can be set with "none"|"dimmed"
 			vim.g.everforest_inlay_hints_background = "none"
 			vim.cmd.colorscheme("everforest")
-
-			hl.highlights_extra = {
-				LazyProp = {
-					link = "Keyword",
-				},
-
-				-- BlinkPair
-				BlinkPairsUnmatched = {
-					fg = hl.get("Red").fg,
-					reverse = true,
-					bold = true,
-				},
-				BlinkPairsBlue = {
-					link = "Blue",
-				},
-				BlinkPairsOrange = {
-					link = "Orange",
-				},
-				BlinkPairsPurple = {
-					link = "Purple",
-				},
-
-				-- BlinkIndent
-				BlinkIndentRed = {
-					link = "Red",
-				},
-				BlinkIndentCyan = {
-					link = "Aqua",
-				},
-				BlinkIndentBlue = {
-					link = "Blue",
-				},
-				BlinkIndentGreen = {
-					link = "Green",
-				},
-				BlinkIndentYellow = {
-					link = "Yellow",
-				},
-				BlinkIndentViolet = {
-					link = "Purple",
-				},
-				BlinkIndentOrange = {
-					link = "Orange",
-				},
-			}
 		end,
 	},
 	gruvbox_material = {
 		"sainnhe/gruvbox-material",
-		event = "UiEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "none"
@@ -281,54 +178,6 @@ c = {
 			-- Can be set with "none"|"dimmed"
 			vim.g.gruvbox_material_inlay_hints_background = "none"
 			vim.cmd.colorscheme("gruvbox-material")
-
-			hl.highlights_extra = {
-				DropBarMenuHoverEntry = {
-					link = "PmenuThumb",
-				},
-				LazyProp = {
-					link = "Keyword",
-				},
-
-				-- BlinkPair
-				BlinkPairsUnmatched = {
-					fg = hl.get("Red").fg,
-					reverse = true,
-					bold = true,
-				},
-				BlinkPairsBlue = {
-					link = "Blue",
-				},
-				BlinkPairsOrange = {
-					link = "Orange",
-				},
-				BlinkPairsPurple = {
-					link = "Purple",
-				},
-
-				-- BlinkIndent
-				BlinkIndentRed = {
-					link = "Red",
-				},
-				BlinkIndentCyan = {
-					link = "Aqua",
-				},
-				BlinkIndentBlue = {
-					link = "Blue",
-				},
-				BlinkIndentGreen = {
-					link = "Green",
-				},
-				BlinkIndentYellow = {
-					link = "Yellow",
-				},
-				BlinkIndentViolet = {
-					link = "Purple",
-				},
-				BlinkIndentOrange = {
-					link = "Orange",
-				},
-			}
 		end,
 	},
 	gruvbox = {
@@ -359,7 +208,17 @@ c = {
 				dim_inactive = false,
 				transparent_mode = false,
 			})
-			vim.g.blinkcmp_border = "none"
+      local palette = require("gruvbox").palette
+
+      hl.set("Red",    { fg = palette.neutral_red    }, false)
+      hl.set("Orange", { fg = palette.neutral_orange }, false)
+      hl.set("Yellow", { fg = palette.neutral_yellow }, false)
+      hl.set("Green",  { fg = palette.neutral_green  }, false)
+      hl.set("Purple", { fg = palette.neutral_purple }, false)
+      hl.set("Blue",   { fg = palette.neutral_blue   }, false)
+      hl.set("Aqua",   { fg = palette.neutral_aqua   }, false)
+
+      vim.g.blinkcmp_border = "none"
 			vim.cmd.colorscheme("gruvbox")
 		end,
 	},
@@ -375,6 +234,15 @@ c = {
 				keywordStyle = { italic = true },
 			})
 			vim.g.blinkcmp_border = "none"
+      local palette = require("kanagawa.colors").setup().palette
+
+      hl.set("Red",    { fg = palette.canvasRed1    }, false)
+      hl.set("Orange", { fg = palette.canvasOrange1 }, false)
+      hl.set("Yellow", { fg = palette.canvasYellow1 }, false)
+      hl.set("Green",  { fg = palette.canvasGreen1  }, false)
+      hl.set("Purple", { fg = palette.canvasPink1   }, false)
+      hl.set("Blue",   { fg = palette.canvasBlue1   }, false)
+      hl.set("Aqua",   { fg = palette.canvasAqua1   }, false)
 			require("kanagawa").load()
 		end,
 	},
@@ -417,108 +285,10 @@ c = {
 	},
 	vscode = {
 		"Mofiqul/vscode.nvim",
-		lazy = false,
+    event = "VimEnter",
 		priority = 1000,
 		config = function()
 			require("vscode").load("dark")
-			local colors = require("vscode.colors").get_colors()
-
-			local fg = colors.vscBack
-			hl.highlights_extra = {
-				ModeOther = {
-					bg = colors.vscRed,
-					fg = fg,
-					bold = true,
-				},
-				ModeNormal = {
-					bg = colors.vscBlue,
-					fg = fg,
-					bold = true,
-				},
-				ModeInsert = {
-					bg = colors.vscGreen,
-					fg = fg,
-					bold = true,
-				},
-				ModeVisual = {
-					bg = colors.vscPink,
-					fg = fg,
-					bold = true,
-				},
-				ModeReplace = {
-					bg = colors.vscLightRed,
-					fg = fg,
-					bold = true,
-				},
-				ModeCommand = {
-					bg = colors.vscOrange,
-					fg = fg,
-					bold = true,
-				},
-
-				-- Mini.Diff
-				MiniDiffSignAdd = {
-					fg = colors.vscGreen,
-				},
-				MiniDiffSignDelete = {
-					fg = colors.vscRed,
-				},
-				MiniDiffSignChange = {
-					fg = colors.vscYellowOrange,
-				},
-
-				-- BlinkPair
-				BlinkPairsUnmatched = {
-					fg = colors.vscRed,
-					reverse = true,
-					bold = true,
-				},
-				BlinkPairsBlue = {
-					link = "RainbowDelimiterBlue",
-				},
-				BlinkPairsOrange = {
-					link = "RainbowDelimiterOrange",
-				},
-				BlinkPairsPurple = {
-					link = "RainbowDelimiterPurple",
-				},
-
-				-- BlinkIndent
-				BlinkIndentRed = {
-					link = "RainbowDelimiterRed",
-				},
-				BlinkIndentCyan = {
-					link = "RainbowDelimiterCyan",
-				},
-				BlinkIndentBlue = {
-					link = "RainbowDelimiterBlue",
-				},
-				BlinkIndentGreen = {
-					link = "RainbowDelimiterGreen",
-				},
-				BlinkIndentYellow = {
-					link = "RainbowDelimiterYellow",
-				},
-				BlinkIndentViolet = {
-					link = "RainbowDelimiterViolet",
-				},
-				BlinkIndentOrange = {
-					link = "RainbowDelimiterOrange",
-				},
-			}
-		end,
-	},
-	github = {
-		"projekt0n/github-nvim-theme",
-		name = "github-theme",
-		lazy = false, -- make sure we load this during startup if it is your main colorscheme
-		priority = 1000, -- make sure to load this before all the other start plugins
-		config = function()
-			require("github-theme").setup({
-				-- ...
-			})
-
-			vim.cmd.colorscheme("github_dark_dimmed")
 		end,
 	},
 }
@@ -538,10 +308,8 @@ cs.list = {
 	c.cyberdream,       -- Recomment!
 	c.kanagawa_paper,   -- Recomment!
 	c.nord,             -- Recomment!
-	c.rose_pine,        -- Recomment!
 	c.tokyonight,       -- Hmmmmm!
 	c.onedark,          -- Hmmmmm!
-	c.github,           -- Hmmmmm!
 	c.nightfox,         -- Hmmmmm!
 }
 
