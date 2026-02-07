@@ -114,16 +114,16 @@ c = {
 			vim.g.edge_transparent_background = 0
 			vim.g.edge_ui_contrast = "low" -- "low"|"high"
 			vim.g.edge_show_eob = 1
-			-- Can be set with "bright"|"dim"|"blend"
+			-- Available values "bright"|"dim"|"blend"
 			vim.g.edge_float_style = "blend"
 			-- Can ve set with "default"|"aura"|"neon"
 			vim.g.edge_style = "aura"
-			-- Can be set with "grey background"|"high contrast background"|"bold"|"underline"|"italic"
+			-- Available values "grey background"|"high contrast background"|"bold"|"underline"|"italic"
 			vim.g.edge_current_word = "grey background"
-			-- Can be set witd "grey"|"colored"|"highlighted"
-			vim.g.edge_diagnostic_virtual_text = "grey"
+			-- Available values "grey"|"colored"|"highlighted"
+			vim.g.edge_diagnostic_virtual_text = "highlighted"
 			vim.g.edge_better_performance = 1
-			-- Can be set with "none"|"dimmed"
+			-- Available values "none"|"dimmed"
 			vim.g.edge_inlay_hints_background = "none"
 			vim.cmd.colorscheme("edge")
 		end,
@@ -139,16 +139,16 @@ c = {
 			vim.g.everforest_transparent_background = 0
 			vim.g.everforest_ui_contrast = "low" -- "low"|"high"
 			vim.g.everforest_show_eob = 1
-			-- Can be set with "bright"|"dim"|"blend"
+			-- Available values "bright"|"dim"|"blend"
 			vim.g.everforest_float_style = "blend"
 			-- Can ve set with "hard"|"medium"|"soft"
 			vim.g.everforest_background = "hard"
-			-- Can be set with "grey background"|"high contrast background"|"bold"|"underline"|"italic"
+			-- Available values "grey background"|"high contrast background"|"bold"|"underline"|"italic"
 			vim.g.everforest_current_word = "grey background"
-			-- Can be set witd "grey"|"colored"|"highlighted"
-			vim.g.everforest_diagnostic_virtual_text = "grey"
+			-- Available values "grey"|"colored"|"highlighted"
+			vim.g.everforest_diagnostic_virtual_text = "highlighted"
 			vim.g.everforest_better_performance = 1
-			-- Can be set with "none"|"dimmed"
+			-- Available values "none"|"dimmed"
 			vim.g.everforest_inlay_hints_background = "none"
 			vim.cmd.colorscheme("everforest")
 		end,
@@ -162,20 +162,22 @@ c = {
 			vim.g.gruvbox_material_enable_bold = 1
 			vim.g.gruvbox_material_enable_italic = 0
 			vim.g.gruvbox_material_transparent_background = 0
-			-- Can be set with 'grey background'|"green background"|"blue background"|"red background"|"reverse"
-			vim.g.gruvbox_material_visual = "blue background"
-			-- Can be set with "material"|"mix"|"original"
-			vim.g.gruvbox_material_foreground = "mix"
+			-- Available values 'grey background'|"green background"|"blue background"|"red background"|"reverse"
+			vim.g.gruvbox_material_visual = "green background"
+			-- Available values "material"|"mix"|"original"
+			vim.g.gruvbox_material_foreground = "material"
+      -- Available values "hard"|"medium"|"soft"
+      vim.g.gruvbox_material_background = "medium"
 			vim.g.gruvbox_material_ui_contrast = "high" -- "low"|"high"
-			-- Can be set with "grey background"|"high contrast background"|"bold"|"underline"|"italic"
+			-- Available values "grey background"|"high contrast background"|"bold"|"underline"|"italic"
 			vim.g.gruvbox_material_current_word = "grey background"
 			vim.g.gruvbox_material_show_eob = 1
-			-- Can be set with "bright"|"dim"|"blend"
+			-- Available values "bright"|"dim"|"blend"
 			vim.g.gruvbox_material_float_style = "blend"
-			-- Can be set witd "grey"|"colored"|"highlighted"
-			vim.g.gruvbox_material_diagnostic_virtual_text = "grey"
+			-- Available values "grey"|"colored"|"highlighted"
+			vim.g.gruvbox_material_diagnostic_virtual_text = "highlighted"
 			vim.g.gruvbox_material_better_performance = 1
-			-- Can be set with "none"|"dimmed"
+			-- Available values "none"|"dimmed"
 			vim.g.gruvbox_material_inlay_hints_background = "none"
 			vim.cmd.colorscheme("gruvbox-material")
 		end,

@@ -57,15 +57,19 @@ return {
 		"andymass/vim-matchup",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
-			vim.g.matchup_matchparen_offscreen = { method = "popup" }
-			vim.g.matchup_matchparen_enabled = 1
-			vim.g.matchup_motion_enabled = 0
-			vim.g.matchup_text_obj_enabled = 0
-			vim.g.matchup_treesitter_disable_virtual_text = true
-			vim.g.matchup_matchparen_offscreen = { method = "" }
 			require("match-up").setup({
+				text_obj = { enabled = 0 },
+				motion = { enabled = 0 },
+				matchparen = {
+					enabled = 1,
+					offscreen = {
+						method = "popup",
+					},
+				},
 				treesitter = {
+					enabled = true,
 					stopline = 500,
+					disable_virtual_text = true,
 				},
 			})
 		end,

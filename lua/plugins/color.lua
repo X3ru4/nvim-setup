@@ -2,7 +2,10 @@ return {
 
 	{
 		"catgoose/nvim-colorizer.lua",
-		event = "VeryLazy",
+		event = "BufReadPost",
+    keys = {
+      { "<leader>cC", "<cmd>ColorizerToggle<cr>" }
+    },
 		opts = {
 			filetypes = { "*" }, -- Filetype options.  Accepts table like `user_default_options`
 			buftypes = {}, -- Buftype options.  Accepts table like `user_default_options`

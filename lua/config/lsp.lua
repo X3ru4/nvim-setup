@@ -13,7 +13,7 @@ local servers = {
 		settings = {
 			basedpyright = {
 				disableOrganizeImports = true, -- Using Ruff
-        useLibraryCodeForTypes = true,
+				useLibraryCodeForTypes = true,
 				typeCheckingMode = "standard",
 				diagnosticMode = "openFilesOnly",
 			},
@@ -58,7 +58,17 @@ end
 local icons = require("config.icons").diagnostic
 vim.diagnostic.config({
 	virtual_text = {
-		prefix = "",
+		prefix = "",
+		suffix = "",
+		format = function(diagnostic)
+      local severity = {
+        [vim.diagnostic.severity.ERROR] = string.format("E: %s", diagnostic.message),
+        [vim.diagnostic.severity.WARN] = string.format("W: %s", diagnostic.message),
+        [vim.diagnostic.severity.INFO] = string.format("I: %s", diagnostic.message),
+        [vim.diagnostic.severity.HINT] = string.format("H: %s", diagnostic.message),
+      }
+			return severity[diagnostic.severity]
+		end,
 	},
 	underline = false,
 	float = {

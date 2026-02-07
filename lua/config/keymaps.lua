@@ -63,7 +63,7 @@ setkeymap("x", "<leader>gr", function()
 
 	vim.ui.input({ prompt = 'Replace "' .. selection .. '" with' }, function(input)
 		if input then
-			vim.ui.input({ prompt = 'Flag Ex: "gc"' }, function(flag)
+			vim.ui.input({ prompt = 'Flag-Ex: "gc"' }, function(flag)
 				vim.cmd(table.concat({
 					"%s/",
 					selection,
@@ -92,6 +92,9 @@ setkeymap("n", "<leader>gf", "<cmd>e!<cr>", { desc = "Reopen" })
 -- map("n", "<leader>n", "*Nciw", { desc = "Search & Replace" })
 
 -- <leader>c
+setkeymap("n", "<leader>cb", function ()
+  vim.o.background = vim.o.background == "dark" and "light" or "dark"
+end, { desc = "Toggle background" })
 setkeymap("n", "<leader>cw", function()
 	if not vim.o.wrap then
 		vim.opt.wrap = true
@@ -108,6 +111,7 @@ setkeymap("n", "<leader>cr", function()
 		vim.cmd("terminal ./run.sh")
 	end
 end, { desc = "Run code" })
+
 function M.lsp(_, bufnr)
 	-- Code action
 	setkeymap("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action", buffer = bufnr })
@@ -115,7 +119,7 @@ function M.lsp(_, bufnr)
 	-- Inlay hint
 	setkeymap("n", "<leader>ch", function()
 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-	end, { desc = "Inlay hint", buffer = bufnr })
+	end, { desc = "Toggle inlay hint", buffer = bufnr })
 
 	-- If not use the fzf-lua swith to use the default
 	if not util.is_loaded("fzf-lua") then

@@ -24,7 +24,6 @@ M.setup = function()
 			link = "MiniStatuslineModeCommand",
 		},
 		Yank = {
-			fg = hl.get("LineNr").fg,
 			bg = hl.get("Visual").bg,
 		},
 
@@ -92,7 +91,7 @@ M.setup = function()
 			link = "PmenuThumb",
 		},
 		LazyProp = {
-			link = "Keyword",
+			link = "Operator",
 		},
 
 		-- BlinkPair
@@ -137,7 +136,7 @@ M.setup = function()
 
 	hl.set_match("everforest", {
 		LazyProp = {
-			link = "Keyword",
+			link = "Operator",
 		},
 
 		-- BlinkPair
@@ -231,7 +230,7 @@ M.setup = function()
 		}
 	end)
 
-	-- Use ! before the string can be match more variants
+  -- Using ! at the end of the string to match more variants
 	hl.set_match("catppuccin!", function()
 		hl.modify("MiniCursorwordCurrent", {
 			link = "MiniCursorword",
