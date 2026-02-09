@@ -132,6 +132,19 @@ M.setup = function()
 		BlinkIndentOrange = {
 			link = "Orange",
 		},
+
+    fn = function ()
+      -- Syntax
+      hl.modify("@keyword.return", {
+        italic = true
+      })
+      hl.modify("@keyword.exception", {
+        italic = true
+      })
+      hl.modify("@keyword.repeat", {
+        italic = true
+      })
+    end
 	})
 
 	hl.set_match("everforest", {

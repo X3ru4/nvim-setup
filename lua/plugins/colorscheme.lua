@@ -112,12 +112,12 @@ c = {
 			vim.g.blinkcmp_border = "none"
 			vim.g.edge_enable_italic = 0
 			vim.g.edge_transparent_background = 0
-			vim.g.edge_ui_contrast = "low" -- "low"|"high"
+			vim.g.edge_ui_contrast = "hight" -- "low"|"high"
 			vim.g.edge_show_eob = 1
 			-- Available values "bright"|"dim"|"blend"
 			vim.g.edge_float_style = "blend"
 			-- Can ve set with "default"|"aura"|"neon"
-			vim.g.edge_style = "aura"
+			vim.g.edge_style = "default"
 			-- Available values "grey background"|"high contrast background"|"bold"|"underline"|"italic"
 			vim.g.edge_current_word = "grey background"
 			-- Available values "grey"|"colored"|"highlighted"
@@ -137,7 +137,7 @@ c = {
 			vim.g.everforest_enable_bold = 1
 			vim.g.everforest_enable_italic = 0
 			vim.g.everforest_transparent_background = 0
-			vim.g.everforest_ui_contrast = "low" -- "low"|"high"
+			vim.g.everforest_ui_contrast = "high" -- "low"|"high"
 			vim.g.everforest_show_eob = 1
 			-- Available values "bright"|"dim"|"blend"
 			vim.g.everforest_float_style = "blend"
@@ -165,7 +165,7 @@ c = {
 			-- Available values 'grey background'|"green background"|"blue background"|"red background"|"reverse"
 			vim.g.gruvbox_material_visual = "green background"
 			-- Available values "material"|"mix"|"original"
-			vim.g.gruvbox_material_foreground = "material"
+			vim.g.gruvbox_material_foreground = "mix"
       -- Available values "hard"|"medium"|"soft"
       vim.g.gruvbox_material_background = "medium"
 			vim.g.gruvbox_material_ui_contrast = "high" -- "low"|"high"
