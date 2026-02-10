@@ -77,10 +77,13 @@ function M.set_match(name, opts, apply)
 
 	local function match()
 		local color = vim.g.colors_name
+		if color == nil then
+			return
+		end
 
 		local function check_str(s)
 			if s:match("!") == "!" then
-        s = s:match("(%w+)!")
+				s = s:match("(%w+)!")
 				return color:match(s) == s
 			end
 			return s == color
@@ -88,23 +91,28 @@ function M.set_match(name, opts, apply)
 
 		if type(name) == "table" then
 			for _, c in ipairs(name) do
-        if check_str(c) then
-          return true
-        end
+				if check_str(c) then
+					return true
+				end
 			end
-      return false
+			return false
 		end
 		return check_str(name)
 	end
 
 	if match() then
 		if type(opts) == "function" then
-      M.highlights = vim.tbl_extend("force", M.highlights, opts() or {})
+			M.highlights = vim.tbl_extend("force", M.highlights, opts() or {})
 		elseif type(opts) == "table" then
 			if type(opts.fn) == "function" then
-				opts = vim.tbl_extend("force", M.highlights, opts.fn() or {})
+				local fn = opts.fn()
+				opts.fn = nil
+				if type(fn) == "table" then
+					opts = vim.tbl_extend("force", opts, fn)
+				end
 			end
-      M.highlights = vim.tbl_extend("force", M.highlights, opts or {})
+
+			M.highlights = vim.tbl_extend("force", M.highlights, opts or {})
 		end
 
 		if apply then
@@ -207,6 +215,47 @@ function M.mix_hl(ns, spec)
 		}, spec.style or {})
 	)
 	return ns
+end
+
+-- Helper to convert hex string to RGB table {r, g, b}
+function M.hex_to_rgb(hex)
+	hex = hex:gsub("#", "")
+	return {
+		r = tonumber(hex:sub(1, 2), 16),
+		g = tonumber(hex:sub(3, 4), 16),
+		b = tonumber(hex:sub(5, 6), 16),
+	}
+end
+
+-- Helper to convert RGB table {r, g, b} to hex string
+function M.rgb_to_hex(rgb)
+	return string.format("#%02x%02x%02x", rgb.r, rgb.g, rgb.b)
+end
+
+function M.dec_to_hex(dec_color)
+	return string.format("#%06X", dec_color)
+end
+
+--- Blends colors with an alpha value
+--- @param hex1 string color in hex format (e.g., "#RRGGBB")
+--- @param hex2 string color in hex format (e.g., "#RRGGBB")
+--- @param alpha number alpha value between 0 (fully transparent) and 1 (fully opaque)
+--- @return string the resulting blended color in hex format
+M.blend = function(hex1, hex2, alpha)
+	local color1 = M.hex_to_rgb(hex1)
+	local color2 = M.hex_to_rgb(hex2)
+
+	-- Alpha blend formula: blended = alpha * fg + (1 - alpha) * bg
+	local r = math.floor(alpha * color1.r + (1 - alpha) * color2.r + 0.5)
+	local g = math.floor(alpha * color1.g + (1 - alpha) * color2.g + 0.5)
+	local b = math.floor(alpha * color1.b + (1 - alpha) * color2.b + 0.5)
+
+	-- Clamp values between 0 and 255
+	r = math.max(0, math.min(255, r))
+	g = math.max(0, math.min(255, g))
+	b = math.max(0, math.min(255, b))
+
+	return M.rgb_to_hex({ r = r, g = g, b = b })
 end
 
 return M

@@ -4,7 +4,7 @@ local c = {}
 c = {
 	tokyonight = {
 		"folke/tokyonight.nvim",
-		lazy = false,
+		event = "UiEnter",
 		priority = 1000,
 		config = function()
 			require("tokyonight").load({
@@ -42,7 +42,7 @@ c = {
 	},
 	onedark = {
 		"navarasu/onedark.nvim",
-    event = "VimEnter",
+		event = "UiEnter",
 		priority = 1000,
 		config = function()
 			require("onedark").setup({
@@ -55,7 +55,7 @@ c = {
 	catppuccin = {
 		"catppuccin/nvim",
 		name = "catppuccin",
-    event = "VimEnter",
+		event = "UiEnter",
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
@@ -95,7 +95,7 @@ c = {
 	},
 	nord = {
 		"shaunsingh/nord.nvim",
-		lazy = false,
+		event = "UiEnter",
 		priority = 1000,
 		config = function()
 			vim.g.nord_contrast = true
@@ -106,12 +106,12 @@ c = {
 	},
 	edge = {
 		"sainnhe/edge",
-		event = "VimEnter",
+		event = "UiEnter",
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "none"
-			vim.g.edge_enable_italic = 0
 			vim.g.edge_transparent_background = 0
+			vim.g.edge_enable_italic = 0
 			vim.g.edge_ui_contrast = "hight" -- "low"|"high"
 			vim.g.edge_show_eob = 1
 			-- Available values "bright"|"dim"|"blend"
@@ -130,15 +130,15 @@ c = {
 	},
 	everforest = {
 		"sainnhe/everforest",
-		event = "VimEnter",
+		event = "UiEnter",
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "none"
+			vim.g.everforest_transparent_background = 0
 			vim.g.everforest_enable_bold = 1
 			vim.g.everforest_enable_italic = 0
-			vim.g.everforest_transparent_background = 0
 			vim.g.everforest_ui_contrast = "high" -- "low"|"high"
-			vim.g.everforest_show_eob = 1
+			vim.g.everforest_show_eob = 2
 			-- Available values "bright"|"dim"|"blend"
 			vim.g.everforest_float_style = "blend"
 			-- Can ve set with "hard"|"medium"|"soft"
@@ -155,19 +155,19 @@ c = {
 	},
 	gruvbox_material = {
 		"sainnhe/gruvbox-material",
-		event = "VimEnter",
+		event = "UiEnter",
 		priority = 1000,
 		config = function()
-			vim.g.blinkcmp_border = "none"
+			vim.g.blinkcmp_border = "rounded"
+			vim.g.gruvbox_material_transparent_background = 1
 			vim.g.gruvbox_material_enable_bold = 1
-			vim.g.gruvbox_material_enable_italic = 0
-			vim.g.gruvbox_material_transparent_background = 0
+			vim.g.gruvbox_material_enable_italic = 1
 			-- Available values 'grey background'|"green background"|"blue background"|"red background"|"reverse"
 			vim.g.gruvbox_material_visual = "green background"
 			-- Available values "material"|"mix"|"original"
-			vim.g.gruvbox_material_foreground = "mix"
-      -- Available values "hard"|"medium"|"soft"
-      vim.g.gruvbox_material_background = "medium"
+			vim.g.gruvbox_material_foreground = "original"
+			-- Available values "hard"|"medium"|"soft"
+			vim.g.gruvbox_material_background = "medium"
 			vim.g.gruvbox_material_ui_contrast = "high" -- "low"|"high"
 			-- Available values "grey background"|"high contrast background"|"bold"|"underline"|"italic"
 			vim.g.gruvbox_material_current_word = "grey background"
@@ -184,7 +184,7 @@ c = {
 	},
 	gruvbox = {
 		"ellisonleao/gruvbox.nvim",
-		lazy = false,
+		event = "UiEnter",
 		priority = 1000,
 		config = function()
 			require("gruvbox").setup({
@@ -208,25 +208,25 @@ c = {
 				palette_overrides = {},
 				overrides = {},
 				dim_inactive = false,
-				transparent_mode = false,
+				transparent_mode = true,
 			})
-      local palette = require("gruvbox").palette
+			local palette = require("gruvbox").palette
 
-      hl.set("Red",    { fg = palette.neutral_red    }, false)
-      hl.set("Orange", { fg = palette.neutral_orange }, false)
-      hl.set("Yellow", { fg = palette.neutral_yellow }, false)
-      hl.set("Green",  { fg = palette.neutral_green  }, false)
-      hl.set("Purple", { fg = palette.neutral_purple }, false)
-      hl.set("Blue",   { fg = palette.neutral_blue   }, false)
-      hl.set("Aqua",   { fg = palette.neutral_aqua   }, false)
+			hl.set("Red", { fg = palette.neutral_red }, false)
+			hl.set("Orange", { fg = palette.neutral_orange }, false)
+			hl.set("Yellow", { fg = palette.neutral_yellow }, false)
+			hl.set("Green", { fg = palette.neutral_green }, false)
+			hl.set("Purple", { fg = palette.neutral_purple }, false)
+			hl.set("Blue", { fg = palette.neutral_blue }, false)
+			hl.set("Aqua", { fg = palette.neutral_aqua }, false)
 
-      vim.g.blinkcmp_border = "none"
+			vim.g.blinkcmp_border = "none"
 			vim.cmd.colorscheme("gruvbox")
 		end,
 	},
 	kanagawa = {
 		"rebelot/kanagawa.nvim",
-		lazy = false,
+		event = "UiEnter",
 		priority = 1000,
 		config = function()
 			require("kanagawa").setup({
@@ -236,21 +236,21 @@ c = {
 				keywordStyle = { italic = true },
 			})
 			vim.g.blinkcmp_border = "none"
-      local palette = require("kanagawa.colors").setup().palette
+			local palette = require("kanagawa.colors").setup().palette
 
-      hl.set("Red",    { fg = palette.canvasRed1    }, false)
-      hl.set("Orange", { fg = palette.canvasOrange1 }, false)
-      hl.set("Yellow", { fg = palette.canvasYellow1 }, false)
-      hl.set("Green",  { fg = palette.canvasGreen1  }, false)
-      hl.set("Purple", { fg = palette.canvasPink1   }, false)
-      hl.set("Blue",   { fg = palette.canvasBlue1   }, false)
-      hl.set("Aqua",   { fg = palette.canvasAqua1   }, false)
+			hl.set("Red", { fg = palette.canvasRed1 }, false)
+			hl.set("Orange", { fg = palette.canvasOrange1 }, false)
+			hl.set("Yellow", { fg = palette.canvasYellow1 }, false)
+			hl.set("Green", { fg = palette.canvasGreen1 }, false)
+			hl.set("Purple", { fg = palette.canvasPink1 }, false)
+			hl.set("Blue", { fg = palette.canvasBlue1 }, false)
+			hl.set("Aqua", { fg = palette.canvasAqua1 }, false)
 			require("kanagawa").load()
 		end,
 	},
 	kanagawa_paper = {
 		"thesimonho/kanagawa-paper.nvim",
-		lazy = false,
+		event = "UiEnter",
 		priority = 1000,
 		config = function()
 			require("kanagawa-paper").setup({
@@ -262,7 +262,7 @@ c = {
 	},
 	nightfox = {
 		"EdenEast/nightfox.nvim",
-		lazy = false,
+		event = "UiEnter",
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "none"
@@ -271,7 +271,7 @@ c = {
 	},
 	material = {
 		"marko-cerovac/material.nvim",
-		lazy = false,
+		event = "UiEnter",
 		priority = 1000,
 		config = function()
 			vim.cmd.colorscheme("material-deep-ocean")
@@ -279,7 +279,7 @@ c = {
 	},
 	cyberdream = {
 		"scottmckendry/cyberdream.nvim",
-		lazy = false,
+		event = "UiEnter",
 		priority = 1000,
 		config = function()
 			vim.cmd.colorscheme("cyberdream")
@@ -287,10 +287,46 @@ c = {
 	},
 	vscode = {
 		"Mofiqul/vscode.nvim",
-    event = "VimEnter",
+		event = "UiEnter",
 		priority = 1000,
 		config = function()
+			require("vscode").setup({
+				transparent = false,
+				italic_comments = false,
+				italic_inlayhints = true,
+				underline_links = true,
+				disable_nvimtree_bg = false,
+			})
 			require("vscode").load("dark")
+		end,
+	},
+	based46 = {
+		"jayden-chan/base46.nvim",
+		event = "VimEnter",
+		priority = 1000,
+		config = function()
+			-- exit if it can't be found
+			local present, base46 = pcall(require, "base46")
+			if not present then
+				return
+			end
+
+      -- Press gf to go the folder
+			-- All availables theme at ~/.local/share/nvim/lazy/base46.nvim/lua/base46/hl_themes/
+			local theme = "gruvchad"
+			local color_base = "base46"
+
+			local theme_opts = {
+				base = color_base,
+				theme = theme,
+				transparency = false, -- Unrecomment at now
+			}
+
+			local palette = base46.get_colors(color_base, theme)
+			vim.g.colors_name = "base46"
+			vim.g.base46_palette = palette
+
+			base46.load_theme(theme_opts)
 		end,
 	},
 }
@@ -300,19 +336,20 @@ local cs = require("utility.colorscheme")
 
 -- Recomment lever = index
 cs.list = {
-  c.gruvbox_material, -- Recomment!
-	c.edge,             -- Recomment! Better than onedark
-	c.everforest,       -- Recomment!
-	c.vscode,           -- Recomment!
-	c.catppuccin,       -- Recomment!
-	c.gruvbox,          -- Recomment!
-	c.kanagawa,         -- Recomment!
-	c.cyberdream,       -- Recomment!
-	c.kanagawa_paper,   -- Recomment!
-	c.nord,             -- Recomment!
-	c.tokyonight,       -- Hmmmmm!
-	c.onedark,          -- Hmmmmm!
-	c.nightfox,         -- Hmmmmm!
+	c.gruvbox_material, -- Recomment!
+	c.edge, -- Recomment! Better than onedark
+	c.everforest, -- Recomment!
+	c.vscode, -- Recomment!
+	c.catppuccin, -- Recomment!
+	c.gruvbox, -- Recomment!
+	c.kanagawa, -- Recomment!
+	c.cyberdream, -- Recomment!
+	c.kanagawa_paper, -- Recomment!
+	c.nord, -- Recomment!
+	c.tokyonight, -- Hmmmmm!
+	c.onedark, -- Hmmmmm!
+	c.nightfox, -- Hmmmmm!
+	c.based46, -- Hmmmmm!
 }
 
-return cs.install_(c.gruvbox_material)
+return cs.install_(c.based46)

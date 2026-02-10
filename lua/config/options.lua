@@ -5,15 +5,15 @@ function _G.newfoldtext()
 end
 
 vim.g.statusline_style = {
-  style = nil, -- You can set with "minimal" or "normal"
-  diagnostic = true,
-  coordinate = true,
-  file_name = false,
-  read_only = true,
-  modify = true,
-  percent = true,
-  hlsearch = true,
-  macro = true,
+	style = nil, -- You can set with "minimal" or "normal"
+	diagnostic = true,
+	coordinate = true,
+	file_name = false,
+	read_only = true,
+	modify = true,
+	percent = true,
+	hlsearch = true,
+	macro = true,
 }
 
 local opt = vim.opt
@@ -55,6 +55,7 @@ opt.pumblend = 0
 -- opt.winborder = "single"
 
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
+
 -- opt.conceallevel = 2
 opt.confirm = true
 opt.cursorline = true
@@ -103,9 +104,9 @@ opt.list = true
 opt.listchars = {
 	eol = " ",
 	tab = "  ",
-  leadmultispace = "  ",
-  extends = "",
-  precedes = "",
+	leadmultispace = "  ",
+	extends = "",
+	precedes = "",
 	space = " ",
 	trail = "·",
 	nbsp = " ",

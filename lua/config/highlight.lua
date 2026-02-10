@@ -28,7 +28,7 @@ M.setup = function()
 		},
 
 		-- Plugins
-    -- multicutsor.nvim
+		-- multicutsor.nvim
 		MultiCursorCursor = { reverse = true },
 		MultiCursorVisual = { link = "Visual" },
 		MultiCursorSign = { link = "SignColumn" },
@@ -133,18 +133,36 @@ M.setup = function()
 			link = "Orange",
 		},
 
-    fn = function ()
-      -- Syntax
-      hl.modify("@keyword.return", {
-        italic = true
-      })
-      hl.modify("@keyword.exception", {
-        italic = true
-      })
-      hl.modify("@keyword.repeat", {
-        italic = true
-      })
-    end
+		-- Blink.cmp
+		BlinkCmpMenu = {
+			link = "Normal",
+		},
+
+		fn = function()
+			-- Syntax
+			hl.modify("@keyword.return", {
+				italic = true,
+			})
+			hl.modify("@keyword.exception", {
+				italic = true,
+			})
+			hl.modify("@keyword.repeat", {
+				italic = true,
+			})
+			hl.modify("@string", {
+				italic = true,
+			})
+
+			-- Blink.cmp
+			if vim.g.blinkcmp_border == "rounded" then
+				hl.set("BlinkCmpMenu", {
+					link = "Normal",
+				})
+				hl.set("BlinkCmpMenuBorder", {
+					link = "FloatBorder",
+				})
+			end
+		end,
 	})
 
 	hl.set_match("everforest", {
@@ -190,6 +208,29 @@ M.setup = function()
 		BlinkIndentOrange = {
 			link = "Orange",
 		},
+
+		fn = function()
+			-- Syntax
+			hl.modify("@keyword.return", {
+				italic = true,
+			})
+			hl.modify("@keyword.exception", {
+				italic = true,
+			})
+			hl.modify("@keyword.repeat", {
+				italic = true,
+			})
+
+			-- Blink.cmp
+			if vim.g.blinkcmp_border == "rounded" then
+				hl.set("BlinkCmpMenu", {
+					link = "Normal",
+				})
+				hl.set("BlinkCmpMenuBorder", {
+					link = "FloatBorder",
+				})
+			end
+		end,
 	})
 
 	hl.set_match("edge", function()
@@ -240,10 +281,33 @@ M.setup = function()
 			BlinkIndentOrange = {
 				link = "Purple",
 			},
+
+			fn = function()
+				-- Syntax
+				hl.modify("@keyword.return", {
+					italic = true,
+				})
+				hl.modify("@keyword.exception", {
+					italic = true,
+				})
+				hl.modify("@keyword.repeat", {
+					italic = true,
+				})
+
+				-- Blink.cmp
+				if vim.g.blinkcmp_border == "rounded" then
+					hl.set("BlinkCmpMenu", {
+						link = "Normal",
+					})
+					hl.set("BlinkCmpMenuBorder", {
+						link = "FloatBorder",
+					})
+				end
+			end,
 		}
 	end)
 
-  -- Using ! at the end of the string to match more variants
+	-- Using ! at the end of the string to match more variants
 	hl.set_match("catppuccin!", function()
 		hl.modify("MiniCursorwordCurrent", {
 			link = "MiniCursorword",
@@ -397,6 +461,195 @@ M.setup = function()
 			},
 			BlinkIndentOrange = {
 				link = "RainbowDelimiterOrange",
+			},
+		}
+	end)
+
+	hl.set_match("base46", function()
+		local palette = vim.g.base46_palette
+		if palette == nil then
+			return {}
+		end
+		local vmode_fg = palette.black
+		local normal_bg = hl.dec_to_hex(hl.get("Normal").bg)
+
+		-- Syntax
+		hl.modify("@keyword.return", {
+			italic = true,
+		})
+		hl.modify("@keyword.exception", {
+			italic = true,
+		})
+		hl.modify("@keyword.repeat", {
+			italic = true,
+		})
+		hl.modify("@string", {
+			italic = true,
+		})
+
+		return {
+			-- Colors
+			Red = {
+				fg = palette.base08,
+			},
+			Orange = {
+				fg = palette.base09,
+			},
+			Yellow = {
+				fg = palette.base0A,
+			},
+			Green = {
+				fg = palette.base0B,
+			},
+			Lime = {
+				fg = palette.base0C,
+			},
+			Blue = {
+				fg = palette.blue,
+			},
+			Cyan = {
+				fg = palette.base0D,
+			},
+			Violet = {
+				fg = palette.base0E,
+			},
+			Gold = {
+				fg = palette.base0F,
+			},
+
+			-- Diagnostic
+			DiagnosticWarn = {
+				fg = palette.base0F,
+			},
+			DiagnosticInfo = {
+				fg = palette.cyan,
+			},
+			DiagnosticHint = {
+				fg = palette.purple,
+			},
+			DiagnosticError = {
+				fg = palette.red,
+			},
+			DiagnosticVirtualTextWarn = {
+				fg = palette.base0F,
+				bg = hl.blend(palette.base0F, normal_bg, 0.2),
+			},
+			DiagnosticVirtualTextInfo = {
+				fg = palette.cyan,
+				bg = hl.blend(palette.cyan, normal_bg, 0.2),
+			},
+			DiagnosticVirtualTextHint = {
+				fg = palette.purple,
+				bg = hl.blend(palette.purple, normal_bg, 0.2),
+			},
+			DiagnosticVirtualTextError = {
+				fg = palette.red,
+				bg = hl.blend(palette.red, normal_bg, 0.2),
+			},
+			DiagnosticVirtualLineWarn = {
+				link = "DiagnosticVirtualTextWarn",
+			},
+			DiagnosticVirtualLineInfo = {
+				link = "DiagnosticVirtualTextInfo",
+			},
+			DiagnosticVirtualLineHint = {
+				link = "DiagnosticVirtualTextHint",
+			},
+			DiagnosticVirtualLineError = {
+				link = "DiagnosticVirtualTextError",
+			},
+
+			-- Diff
+			Added = {
+				link = "Green",
+			},
+			Changed = {
+				link = "Yellow",
+			},
+			Removed = {
+				link = "Red",
+			},
+
+			WarningMsg = {
+				link = "Gold",
+			},
+			FileInfoMod = {
+				link = "Gold",
+			},
+
+			StatusLineNC = {
+				fg = palette.grey_fg,
+			},
+			StatusLine = {
+				bg = palette.black2,
+			},
+			WinBarNc = {
+				bg = palette.one_bg,
+			},
+
+			-- BlinkPair
+			BlinkPairsUnmatched = {
+				fg = palette.red,
+				reverse = true,
+				bold = true,
+			},
+			BlinkPairsBlue = {
+				link = "Blue",
+			},
+			BlinkPairsOrange = {
+				link = "Orange",
+			},
+			BlinkPairsPurple = {
+				link = "Violet",
+			},
+
+			-- BlinkIndent
+			BlinkIndentRed = {
+				link = "Red",
+			},
+			BlinkIndentCyan = {
+				link = "Cyan",
+			},
+			BlinkIndentBlue = {
+				link = "Blue",
+			},
+			BlinkIndentGreen = {
+				link = "Green",
+			},
+			BlinkIndentYellow = {
+				link = "Yellow",
+			},
+			BlinkIndentViolet = {
+				link = "Violet",
+			},
+			BlinkIndentOrange = {
+				link = "Orange",
+			},
+
+			-- Vim mode
+			ModeOther = {
+				fg = vmode_fg,
+				bg = palette.purple,
+			},
+			ModeNormal = {
+				fg = vmode_fg,
+				bg = palette.blue,
+			},
+			ModeInsert = {
+				fg = vmode_fg,
+				bg = palette.green,
+			},
+			ModeVisual = {
+				fg = vmode_fg,
+				bg = palette.baby_pink,
+			},
+			ModeReplace = {
+				fg = vmode_fg,
+				bg = palette.red,
+			},
+			ModeCommand = {
+				fg = vmode_fg,
+				bg = palette.orange,
 			},
 		}
 	end)

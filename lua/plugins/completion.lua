@@ -13,10 +13,10 @@ return {
 					require("luasnip").setup()
 					require("luasnip.loaders.from_vscode").lazy_load()
 
-					local luasnip = require("luasnip")
+					local ls = require("luasnip")
 
 					vim.keymap.set({ "i", "s" }, "<Tab>", function()
-						if luasnip.expand_or_jumpable() then
+						if ls.expand_or_jumpable() then
 							return "<Plug>luasnip-expand-or-jump"
 						else
 							return "<Tab>"
@@ -24,7 +24,7 @@ return {
 					end, { expr = true, silent = true })
 
 					vim.keymap.set({ "i", "s" }, "<C-h>", function()
-						if luasnip.jumpable(-1) then
+						if ls.jumpable(-1) then
 							return "<Plug>luasnip-jump-prev"
 						else
 							return "<C-h>"
@@ -158,7 +158,7 @@ return {
 					},
 				},
 				snippets = {
-					-- preset = "luasnip",
+					preset = "luasnip",
 				},
 				sources = require("utility.lazy").is_loaded("lazydev.nvim") and {
 					default = { "lazydev", "lsp", "path", "snippets", "buffer" },

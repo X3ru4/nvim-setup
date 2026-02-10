@@ -107,6 +107,7 @@ return {
 		keys = {
 			{ "<leader>e", "<cmd>Oil<cr>", desc = "Open oil" },
 			{ "<leader>E", "<cmd>Oil .<cr>", desc = "Open oil home" },
+      { "gf" },
 		},
 	},
 
