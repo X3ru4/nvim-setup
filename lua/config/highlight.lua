@@ -152,6 +152,9 @@ M.setup = function()
 			hl.modify("@string", {
 				italic = true,
 			})
+      hl.modify("TSKeyword", {
+        italic = true
+      })
 
 			-- Blink.cmp
 			if vim.g.blinkcmp_border == "rounded" then
@@ -379,8 +382,18 @@ M.setup = function()
 
 	hl.set_match("vscode", function()
 		local colors = require("vscode.colors").get_colors()
-
 		local fg = colors.vscBack
+
+		-- Syntax
+		hl.modify("@keyword.return", {
+			italic = true,
+		})
+		hl.modify("@keyword.exception", {
+			italic = true,
+		})
+		hl.modify("@keyword.repeat", {
+			italic = true,
+		})
 		return {
 			ModeOther = {
 				bg = colors.vscRed,

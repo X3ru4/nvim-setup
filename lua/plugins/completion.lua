@@ -1,6 +1,7 @@
 return {
 
 	{
+
 		"saghen/blink.cmp",
 		event = { "InsertEnter", "CmdlineEnter" },
 		dependencies = {
@@ -18,7 +19,8 @@ return {
 
 					vim.keymap.set({ "i", "s" }, "<Tab>", function()
 						if ls.expand_or_jumpable() then
-							return "<Plug>luasnip-expand-or-jump" else
+							return "<Plug>luasnip-expand-or-jump"
+						else
 							return "<Tab>"
 						end
 					end, { expr = true, silent = true })

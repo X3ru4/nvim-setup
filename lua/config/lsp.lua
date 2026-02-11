@@ -62,10 +62,10 @@ vim.diagnostic.config({
 		suffix = "",
 		format = function(diagnostic)
       local severity = {
-        [vim.diagnostic.severity.ERROR] = string.format("E: %s", diagnostic.message),
-        [vim.diagnostic.severity.WARN] = string.format("W: %s", diagnostic.message),
-        [vim.diagnostic.severity.INFO] = string.format("I: %s", diagnostic.message),
-        [vim.diagnostic.severity.HINT] = string.format("H: %s", diagnostic.message),
+        [vim.diagnostic.severity.ERROR] = string.format("%s : %s", icons.Error, diagnostic.message),
+        [vim.diagnostic.severity.WARN] = string.format("%s : %s", icons.Warn, diagnostic.message),
+        [vim.diagnostic.severity.INFO] = string.format("%s : %s", icons.Info, diagnostic.message),
+        [vim.diagnostic.severity.HINT] = string.format("%s : %s", icons.Hint, diagnostic.message),
       }
 			return severity[diagnostic.severity]
 		end,
@@ -73,6 +73,7 @@ vim.diagnostic.config({
 	underline = false,
 	float = {
 		header = "",
+    prefix = ">> ",
 		source = "if_many",
 		wrap = true,
 	},
