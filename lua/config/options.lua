@@ -31,8 +31,7 @@ opt.cmdheight = 0
 -- Fold
 opt.foldenable = true
 opt.foldlevel = 99
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldmethod = 'expr'
 opt.foldtext = "v:lua.newfoldtext()"
 opt.foldcolumn = "0"
 

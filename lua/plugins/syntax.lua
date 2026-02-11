@@ -1,12 +1,31 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
 		version = false,
 		build = ":TSUpdate",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			"yioneko/nvim-yati",
-			version = "*",
+			{
+				"yioneko/nvim-yati",
+				version = "*",
+			},
+			{
+				"MeanderingProgrammer/treesitter-modules.nvim",
+				---@module 'treesitter-modules'
+				---@type ts.mod.UserConfig
+				opts = {
+					incremental_selection = {
+						enable = true,
+						keymaps = {
+							init_selection = "<C-Space>", -- keymap to start the selection
+							node_incremental = "<C-Space>", -- keymap to increment the selection
+							scope_incremental = false, -- keymap to increment to the next scope
+							node_decremental = "<BS>", -- keymap to decrement the selection
+						},
+					},
+				},
+			},
 		},
 		config = function()
 			require("nvim-treesitter.config").setup({
@@ -40,14 +59,8 @@ return {
 					end,
 					additional_vim_regex_highlighting = false,
 				},
-				incremental_selection = {
+				folds = {
 					enable = true,
-					keymaps = {
-						init_selection = "<C-space>",
-						node_incremental = "<C-space>",
-						scope_incremental = false,
-						node_decremental = "<bs>",
-					},
 				},
 			})
 		end,

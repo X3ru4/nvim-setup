@@ -1,5 +1,6 @@
 return {
 
+
 	{
 		"saghen/blink.indent",
 		enabled = true,

@@ -24,7 +24,6 @@ require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
 	},
-	install = { colorscheme = { "nvchad" } },
 	checker = { enabled = true },
 	defaults = {
 		lazy = false,

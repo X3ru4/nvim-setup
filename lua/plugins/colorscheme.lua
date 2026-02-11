@@ -4,7 +4,7 @@ local c = {}
 c = {
 	tokyonight = {
 		"folke/tokyonight.nvim",
-		event = "UiEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			require("tokyonight").load({
@@ -42,7 +42,7 @@ c = {
 	},
 	onedark = {
 		"navarasu/onedark.nvim",
-		event = "UiEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			require("onedark").setup({
@@ -55,7 +55,7 @@ c = {
 	catppuccin = {
 		"catppuccin/nvim",
 		name = "catppuccin",
-		event = "UiEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
@@ -95,7 +95,7 @@ c = {
 	},
 	nord = {
 		"shaunsingh/nord.nvim",
-		event = "UiEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			vim.g.nord_contrast = true
@@ -106,7 +106,7 @@ c = {
 	},
 	edge = {
 		"sainnhe/edge",
-		event = "UiEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "none"
@@ -130,7 +130,7 @@ c = {
 	},
 	everforest = {
 		"sainnhe/everforest",
-		event = "UiEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "none"
@@ -155,17 +155,17 @@ c = {
 	},
 	gruvbox_material = {
 		"sainnhe/gruvbox-material",
-		event = "UiEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
-			vim.g.blinkcmp_border = "rounded"
-			vim.g.gruvbox_material_transparent_background = 1
+			vim.g.blinkcmp_border = "none"
+			vim.g.gruvbox_material_transparent_background = 0
 			vim.g.gruvbox_material_enable_bold = 1
 			vim.g.gruvbox_material_enable_italic = 1
 			-- Available values 'grey background'|"green background"|"blue background"|"red background"|"reverse"
 			vim.g.gruvbox_material_visual = "green background"
 			-- Available values "material"|"mix"|"original"
-			vim.g.gruvbox_material_foreground = "original"
+			vim.g.gruvbox_material_foreground = "mix"
 			-- Available values "hard"|"medium"|"soft"
 			vim.g.gruvbox_material_background = "medium"
 			vim.g.gruvbox_material_ui_contrast = "high" -- "low"|"high"
@@ -184,7 +184,7 @@ c = {
 	},
 	gruvbox = {
 		"ellisonleao/gruvbox.nvim",
-		event = "UiEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			require("gruvbox").setup({
@@ -226,7 +226,7 @@ c = {
 	},
 	kanagawa = {
 		"rebelot/kanagawa.nvim",
-		event = "UiEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			require("kanagawa").setup({
@@ -250,7 +250,7 @@ c = {
 	},
 	kanagawa_paper = {
 		"thesimonho/kanagawa-paper.nvim",
-		event = "UiEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			require("kanagawa-paper").setup({
@@ -262,7 +262,7 @@ c = {
 	},
 	nightfox = {
 		"EdenEast/nightfox.nvim",
-		event = "UiEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "none"
@@ -271,7 +271,7 @@ c = {
 	},
 	material = {
 		"marko-cerovac/material.nvim",
-		event = "UiEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			vim.cmd.colorscheme("material-deep-ocean")
@@ -279,7 +279,7 @@ c = {
 	},
 	cyberdream = {
 		"scottmckendry/cyberdream.nvim",
-		event = "UiEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			vim.cmd.colorscheme("cyberdream")
@@ -287,7 +287,7 @@ c = {
 	},
 	vscode = {
 		"Mofiqul/vscode.nvim",
-		event = "UiEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			require("vscode").setup({
@@ -311,7 +311,7 @@ c = {
 				return
 			end
 
-      -- Press gf to go the folder
+			-- Press gf to go the folder
 			-- All availables theme at ~/.local/share/nvim/lazy/base46.nvim/lua/base46/hl_themes/
 			local theme = "gruvchad"
 			local color_base = "base46"
@@ -349,7 +349,6 @@ cs.list = {
 	c.tokyonight, -- Hmmmmm!
 	c.onedark, -- Hmmmmm!
 	c.nightfox, -- Hmmmmm!
-	c.based46, -- Hmmmmm!
 }
 
-return cs.install_(c.based46)
+return cs.install_(c.gruvbox_material)

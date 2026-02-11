@@ -7,8 +7,9 @@ return {
 			{
 				"L3MON4D3/LuaSnip",
 				version = "v2.*",
-        enabled = true,
+				enabled = true,
 				dependencies = { "rafamadriz/friendly-snippets" },
+				build = "make install_jsregexp",
 				config = function()
 					require("luasnip").setup()
 					require("luasnip.loaders.from_vscode").lazy_load()
@@ -17,8 +18,7 @@ return {
 
 					vim.keymap.set({ "i", "s" }, "<Tab>", function()
 						if ls.expand_or_jumpable() then
-							return "<Plug>luasnip-expand-or-jump"
-						else
+							return "<Plug>luasnip-expand-or-jump" else
 							return "<Tab>"
 						end
 					end, { expr = true, silent = true })
@@ -34,7 +34,6 @@ return {
 			},
 			{
 				"folke/lazydev.nvim",
-				enabled = true,
 				ft = "lua",
 				opts = {
 					library = {
