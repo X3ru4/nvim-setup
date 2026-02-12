@@ -146,6 +146,9 @@ M.setup = function()
 			hl.modify("@keyword.exception", {
 				italic = true,
 			})
+			hl.modify("@keyword.conditional", {
+				italic = true,
+			})
 			hl.modify("@keyword.repeat", {
 				italic = true,
 			})

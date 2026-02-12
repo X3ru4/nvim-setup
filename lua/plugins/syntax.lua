@@ -7,10 +7,6 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			{
-				"yioneko/nvim-yati",
-				version = "*",
-			},
-			{
 				"MeanderingProgrammer/treesitter-modules.nvim",
 				---@module 'treesitter-modules'
 				---@type ts.mod.UserConfig
@@ -41,22 +37,10 @@ return {
 				sync_install = false,
 				auto_install = true,
 				ignore_install = { "javascript" },
-				indent = { enable = false },
-				yati = {
-					enable = true,
-					default_lazy = true,
-					default_fallback = "auto",
-				},
+				indent = { enable = true },
 				highlight = {
 					enable = true,
 					-- disable = { "c", "rust" },
-					disable = function(lang, buf)
-						local max_filesize = 100 * 1024 -- 100 KB
-						local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-						if ok and stats and stats.size > max_filesize then
-							return true
-						end
-					end,
 					additional_vim_regex_highlighting = false,
 				},
 				folds = {

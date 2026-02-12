@@ -34,7 +34,7 @@ end
 ---@alias line.SepPart
 ---|{
 ---  value:string|function,
----  hl:hl_api.HlSpec|nil,
+---  hl:hl_api.HlSpec|string|nil,
 ---}
 
 ---Overpower!

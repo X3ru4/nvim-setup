@@ -1,6 +1,0 @@
-{
-    "diagnostics.globals": [
-        "disable"
-    ],
-    "completion.autoRequire": false
-}

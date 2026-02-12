@@ -1,7 +1,6 @@
 local M = {}
 local line = require("utility.line")
 local hl = require("utility.highlight")
-local utils = require("heirline.utils")
 
 local mode_color = {
 	n = "ModeNormal",
@@ -63,7 +62,7 @@ local mode = {
 				},
 			},
 			right = {
-				value = "",
+				value = "",
 				hl = {
 					fg = {
 						list = mode_color,
@@ -102,38 +101,42 @@ local macro = {
 	hl = "Type",
 }
 local diagnostic = {
+	update = {
+		"BufEnter",
+		"BufModifiedSet",
+		"DiagnosticChanged",
+	},
+	on_click = {
+		name = "clickable_diagnostic",
+		callback = require("fzf-lua").diagnostics_document,
+	},
+  static = {
+		icons = require("config.icons").diagnostic
+  },
 	init = function(self)
 		local count = vim.diagnostic.count(0)
+
 		self.error = count[vim.diagnostic.severity.ERROR] or 0
 		self.warn = count[vim.diagnostic.severity.WARN] or 0
 		self.hint = count[vim.diagnostic.severity.HINT] or 0
 		self.info = count[vim.diagnostic.severity.INFO] or 0
+
+		self.diagnostic = {
+			{ count = self.error, icon = self.icons.Error, hl = "DiagnosticError" },
+			{ count = self.warn,  icon = self.icons.Warn,  hl = "DiagnosticWarn"  },
+			{ count = self.hint,  icon = self.icons.Hint,  hl = "DiagnosticHint"  },
+			{ count = self.info,  icon = self.icons.Info,  hl = "DiagnosticInfo"  },
+		}
 	end,
-	update = "DiagnosticChanged",
-	on_click = {
-		name = "Diag",
-		callback = require("fzf-lua").diagnostics_document,
-	},
 	provider = function(self)
-		local icons = require("config.icons").diagnostic
-		local check = function(c, s)
-			return c > 0
-					and table.concat({
-						c,
-						" %#Diagnostic",
-						s,
-						"#",
-						icons[s],
-						" %#StatusLine#",
-					})
-				or ""
+		local t = {}
+		for _, info in ipairs(self.diagnostic) do
+			if info.count > 0 then
+				t[#t + 1] = string.format("%s %%#%s#%s %%#StatusLine#", info.count, info.hl, info.icon)
+			end
 		end
-		return table.concat({
-			check(self.error, "Error"),
-			check(self.warn, "Warn"),
-			check(self.hint, "Hint"),
-			check(self.info, "Info"),
-		})
+
+		return table.concat(t)
 	end,
 }
 
