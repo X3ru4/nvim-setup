@@ -155,9 +155,9 @@ M.setup = function()
 			hl.modify("@string", {
 				italic = true,
 			})
-      hl.modify("TSKeyword", {
-        italic = true
-      })
+			hl.modify("TSKeyword", {
+				italic = true,
+			})
 
 			-- Blink.cmp
 			if vim.g.blinkcmp_border == "rounded" then
@@ -240,10 +240,26 @@ M.setup = function()
 	})
 
 	hl.set_match("edge", function()
-		local config = vim.fn["edge#get_configuration"]()
-		local palette = vim.fn["edge#get_palette"](config.style, config.dim_foreground, config.colors_override)
-		local set_hl = vim.fn["edge#highlight"]
+		-- Syntax
+		hl.modify("@keyword.return", {
+			italic = true,
+		})
+		hl.modify("@keyword.exception", {
+			italic = true,
+		})
+		hl.modify("@keyword.repeat", {
+			italic = true,
+		})
 
+		-- Blink.cmp
+		if vim.g.blinkcmp_border == "rounded" then
+			hl.set("BlinkCmpMenu", {
+				link = "Normal",
+			})
+			hl.set("BlinkCmpMenuBorder", {
+				link = "FloatBorder",
+			})
+		end
 		return {
 			LazyProp = {
 				link = "Keyword",
@@ -287,29 +303,6 @@ M.setup = function()
 			BlinkIndentOrange = {
 				link = "Purple",
 			},
-
-			fn = function()
-				-- Syntax
-				hl.modify("@keyword.return", {
-					italic = true,
-				})
-				hl.modify("@keyword.exception", {
-					italic = true,
-				})
-				hl.modify("@keyword.repeat", {
-					italic = true,
-				})
-
-				-- Blink.cmp
-				if vim.g.blinkcmp_border == "rounded" then
-					hl.set("BlinkCmpMenu", {
-						link = "Normal",
-					})
-					hl.set("BlinkCmpMenuBorder", {
-						link = "FloatBorder",
-					})
-				end
-			end,
 		}
 	end)
 
@@ -666,6 +659,60 @@ M.setup = function()
 			ModeCommand = {
 				fg = vmode_fg,
 				bg = palette.orange,
+			},
+		}
+	end)
+
+	hl.set_match("vague", function()
+		local colors = require("vague").get_palette()
+
+		hl.set("Red", { fg = colors.error })
+		hl.set("Orange", { fg = colors.number })
+		hl.set("Yellow", { fg = colors.warning })
+		hl.set("Green", { fg = colors.plus })
+		hl.set("Aqua", { fg = colors.type })
+		hl.set("Blue", { fg = colors.keyword })
+		hl.set("Purple", { fg = colors.hint })
+
+		return {
+
+			-- BlinkPair
+			BlinkPairsUnmatched = {
+				fg = hl.get"red".fg,
+				reverse = true,
+				bold = true,
+			},
+			BlinkPairsBlue = {
+				link = "Blue",
+			},
+			BlinkPairsOrange = {
+				link = "Orange",
+			},
+			BlinkPairsPurple = {
+				link = "Purple",
+			},
+
+			-- BlinkIndent
+			BlinkIndentRed = {
+				link = "Red",
+			},
+			BlinkIndentCyan = {
+				link = "Cyan",
+			},
+			BlinkIndentBlue = {
+				link = "Blue",
+			},
+			BlinkIndentGreen = {
+				link = "Green",
+			},
+			BlinkIndentYellow = {
+				link = "Yellow",
+			},
+			BlinkIndentViolet = {
+				link = "Purple",
+			},
+			BlinkIndentOrange = {
+				link = "Orange",
 			},
 		}
 	end)

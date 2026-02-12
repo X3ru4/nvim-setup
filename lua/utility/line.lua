@@ -6,16 +6,12 @@ M.separator_data = {}
 ---GamenhuCak
 ---@param hl_name string
 ---@param str string|nil
----@param endhl string|nil
+---@param last_str string|nil
 ---@return string
-function M.hl_fmt(hl_name, str, endhl)
-	return table.concat({
-		"%#",
-		hl_name,
-		"#",
-		str or "",
-		endhl or "",
-	})
+function M.hl_fmt(hl_name, str, last_str)
+	str = str or ""
+	last_str = last_str or ""
+	return string.format("%%#%s#%s%s", hl_name, str, last_str)
 end
 
 ---PADDING!
@@ -62,8 +58,8 @@ function M.separator(spec)
 				return section.value(self)
 			elseif type(section.value) == "string" then
 				return section.value
-      else
-        return ""
+			else
+				return ""
 			end
 		end
 
@@ -74,7 +70,7 @@ function M.separator(spec)
 				return M.hl_fmt(spec.default_hl) .. value()
 			end
 
-      section.hl.default_hl = spec.default_hl
+			section.hl.default_hl = spec.default_hl
 			self.hl = hl_api.mix_hl(hl_ns, section.hl)
 
 			return M.hl_fmt(self.hl) .. value()

@@ -86,7 +86,7 @@ return {
 					actions = {
 						["enter"] = function(selected, opts)
 							require("fzf-lua.actions").colorscheme(selected, opts)
-							vim.cmd("Reloadhl")
+							vim.cmd("SetupHl")
 						end,
 					},
 				},

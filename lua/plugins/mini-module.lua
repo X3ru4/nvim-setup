@@ -349,7 +349,6 @@ return {
 				local suffix = vim.bo[bufnr].modified and " " .. modify_icon .. "" or ""
 				local strings = {
 					current_buf and "▏" or " ",
-
 					string.format(" %s %s%s%s", file_icon, label, suffix, suffix ~= "" and "" or " "),
 					current_buf and "▕" or " ",
 				}

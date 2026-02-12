@@ -17,8 +17,7 @@ autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
 -- Reload config.highlight when colorscheme changed.
 autocmd("ColorScheme", {
 	callback = function()
-		package.loaded["config.highlight"] = nil
-		require("config.highlight").setup()
+		vim.cmd("SetupHl")
 	end,
 })
 
@@ -26,7 +25,6 @@ autocmd("ColorScheme", {
 autocmd("UiEnter", {
 	once = true,
 	callback = function()
-		package.loaded["config.highlight"] = nil
-		require("config.highlight").setup()
+		vim.cmd("SetupHl")
 	end,
 })

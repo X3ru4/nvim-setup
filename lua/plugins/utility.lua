@@ -1,8 +1,18 @@
 return {
 
 	{
-		"mcauley-penney/visual-whitespace.nvim",
+		"mvllow/modes.nvim",
     enabled = false,
+    event = "BufReadPost",
+		tag = "v0.2.1",
+		config = function()
+			require("modes").setup()
+		end,
+	},
+
+	{
+		"mcauley-penney/visual-whitespace.nvim",
+		enabled = false,
 		event = "ModeChanged *:[vV\22]",
 		opts = {
 			enabled = true,

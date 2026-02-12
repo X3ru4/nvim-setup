@@ -4,7 +4,8 @@ local c = {}
 c = {
 	tokyonight = {
 		"folke/tokyonight.nvim",
-		event = "VimEnter",
+		name = "tokyonight",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			require("tokyonight").load({
@@ -42,7 +43,8 @@ c = {
 	},
 	onedark = {
 		"navarasu/onedark.nvim",
-		event = "VimEnter",
+		name = "onedark",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			require("onedark").setup({
@@ -55,7 +57,7 @@ c = {
 	catppuccin = {
 		"catppuccin/nvim",
 		name = "catppuccin",
-		event = "VimEnter",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
@@ -95,7 +97,8 @@ c = {
 	},
 	nord = {
 		"shaunsingh/nord.nvim",
-		event = "VimEnter",
+		name = "nord",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			vim.g.nord_contrast = true
@@ -106,7 +109,8 @@ c = {
 	},
 	edge = {
 		"sainnhe/edge",
-		event = "VimEnter",
+		name = "edge",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "none"
@@ -130,7 +134,8 @@ c = {
 	},
 	everforest = {
 		"sainnhe/everforest",
-		event = "VimEnter",
+		name = "everforest",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "none"
@@ -155,10 +160,11 @@ c = {
 	},
 	gruvbox_material = {
 		"sainnhe/gruvbox-material",
-		event = "VimEnter",
+		name = "gruvbox-material",
+		lazy = false,
 		priority = 1000,
 		config = function()
-      vim.g.blinkcmp_border = "none"
+			vim.g.blinkcmp_border = "none"
 			vim.g.gruvbox_material_transparent_background = 0
 			vim.g.gruvbox_material_enable_bold = 1
 			vim.g.gruvbox_material_enable_italic = 1
@@ -184,7 +190,8 @@ c = {
 	},
 	gruvbox = {
 		"ellisonleao/gruvbox.nvim",
-		event = "VimEnter",
+		name = "gruvbox",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			require("gruvbox").setup({
@@ -226,7 +233,8 @@ c = {
 	},
 	kanagawa = {
 		"rebelot/kanagawa.nvim",
-		event = "VimEnter",
+		name = "kanagawa",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			require("kanagawa").setup({
@@ -250,7 +258,8 @@ c = {
 	},
 	kanagawa_paper = {
 		"thesimonho/kanagawa-paper.nvim",
-		event = "VimEnter",
+		name = "kanagawa-paper",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			require("kanagawa-paper").setup({
@@ -262,7 +271,8 @@ c = {
 	},
 	nightfox = {
 		"EdenEast/nightfox.nvim",
-		event = "VimEnter",
+		name = "nightfox",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "none"
@@ -271,7 +281,8 @@ c = {
 	},
 	material = {
 		"marko-cerovac/material.nvim",
-		event = "VimEnter",
+		name = "material",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			vim.cmd.colorscheme("material-deep-ocean")
@@ -279,7 +290,8 @@ c = {
 	},
 	cyberdream = {
 		"scottmckendry/cyberdream.nvim",
-		event = "VimEnter",
+		name = "cyberdream",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			vim.cmd.colorscheme("cyberdream")
@@ -287,7 +299,8 @@ c = {
 	},
 	vscode = {
 		"Mofiqul/vscode.nvim",
-		event = "VimEnter",
+		name = "vscode",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			require("vscode").setup({
@@ -302,7 +315,8 @@ c = {
 	},
 	based46 = {
 		"jayden-chan/base46.nvim",
-		event = "VimEnter",
+		name = "base46",
+		lazy = false,
 		priority = 1000,
 		config = function()
 			-- exit if it can't be found
@@ -329,6 +343,74 @@ c = {
 			base46.load_theme(theme_opts)
 		end,
 	},
+	vague = {
+		"vague-theme/vague.nvim",
+		name = "vague",
+		lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		priority = 1000, -- make sure to load this before all the other plugins
+		config = function()
+			-- NOTE: you do not need to call setup if you don't want to.
+			require("vague").setup({
+				transparent = false, -- don't set background
+				-- disable bold/italic globally in `style`
+				bold = true,
+				italic = true,
+				style = {
+					-- "none" is the same thing as default. But "italic" and "bold" are also valid options
+					boolean = "none",
+					number = "none",
+					float = "none",
+					error = "bold",
+					comments = "italic",
+					conditionals = "none",
+					functions = "none",
+					headings = "bold",
+					operators = "none",
+					strings = "italic",
+					variables = "none",
+
+					-- keywords
+					keywords = "none",
+					keyword_return = "italic",
+					keywords_loop = "none",
+					keywords_label = "none",
+					keywords_exception = "none",
+
+					-- builtin
+					builtin_constants = "bold",
+					builtin_functions = "none",
+					builtin_types = "bold",
+					builtin_variables = "none",
+				},
+				-- plugin styles where applicable
+				-- make an issue/pr if you'd like to see more styling options!
+				plugins = {
+					cmp = {
+						match = "bold",
+						match_fuzzy = "bold",
+					},
+					dashboard = {
+						footer = "italic",
+					},
+					lsp = {
+						diagnostic_error = "bold",
+						diagnostic_hint = "none",
+						diagnostic_info = "italic",
+						diagnostic_ok = "none",
+						diagnostic_warn = "bold",
+					},
+					neotest = {
+						focused = "bold",
+						adapter_name = "bold",
+					},
+					telescope = {
+						match = "bold",
+					},
+				},
+			})
+			vim.cmd("colorscheme vague")
+		end,
+	},
 }
 
 -- Super clean =))
@@ -337,13 +419,14 @@ local cs = require("utility.colorscheme")
 -- Recomment lever = index
 cs.list = {
 	c.gruvbox_material, -- Recomment!
-	c.edge, -- Recomment! Better than onedark
-	c.everforest, -- Recomment!
-	c.vscode, -- Recomment!
 	c.catppuccin, -- Recomment!
 	c.gruvbox, -- Recomment!
+	c.vague, -- Recomment! Like   vscode
+	c.vscode, -- Recomment!
 	c.kanagawa, -- Recomment!
 	c.cyberdream, -- Recomment!
+	c.edge, -- Recomment! Better than onedark
+	c.everforest, -- Recomment!
 	c.kanagawa_paper, -- Recomment!
 	c.nord, -- Recomment!
 	c.tokyonight, -- Hmmmmm!
@@ -351,4 +434,5 @@ cs.list = {
 	c.nightfox, -- Hmmmmm!
 }
 
-return cs.install_(c.gruvbox_material)
+-- NOTE: Goto ~/.config/nvim/lua/config/lazy.lua line 32
+return cs.install_(c.vague)

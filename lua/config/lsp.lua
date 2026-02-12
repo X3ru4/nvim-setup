@@ -1,11 +1,10 @@
-vim.lsp.inlay_hint.enable(false)
 local keymap = require("config.keymaps")
 
 local servers = {
 	-- Lua
 	lua_ls = {
 		on_init = function(client)
-			client.server_capabilities.semanticTokensProvider = nil
+			-- client.server_capabilities.semanticTokensProvider = nil
 		end,
 	},
 
@@ -46,6 +45,8 @@ local servers = {
 local on_attach = function(client, bufnr)
 	keymap.lsp(client, bufnr)
 end
+
+vim.lsp.inlay_hint.enable(false) -- Disable inlay_hint
 vim.lsp.config("*", {
 	on_attach = on_attach,
 })

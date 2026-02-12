@@ -245,7 +245,7 @@ M.blend = function(hex1, hex2, alpha)
 	local color1 = M.hex_to_rgb(hex1)
 	local color2 = M.hex_to_rgb(hex2)
 
-	-- Alpha blend formula: blended = alpha * fg + (1 - alpha) * bg
+	-- Alpha blend formula: blended = alpha * color1 + (1 - alpha) * color2
 	local r = math.floor(alpha * color1.r + (1 - alpha) * color2.r + 0.5)
 	local g = math.floor(alpha * color1.g + (1 - alpha) * color2.g + 0.5)
 	local b = math.floor(alpha * color1.b + (1 - alpha) * color2.b + 0.5)

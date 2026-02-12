@@ -31,6 +31,7 @@ local hlsearch = {
 	hl = "Number",
 }
 local mode = {
+	update = { "ModeChanged" },
 	init = function(self)
 		self.mode = vim.fn.mode(1):sub(1, 1)
 	end,
@@ -52,8 +53,9 @@ local mode = {
 			default_hl = "StatusLine",
 			id = "Mode",
 			left = {
-				value = " ",
+				value = "  ",
 				hl = {
+          fg = { name = "Normal", type = "bg" },
 					bg = {
 						list = mode_color,
 						default_key = "n",
@@ -62,7 +64,7 @@ local mode = {
 				},
 			},
 			right = {
-				value = "",
+				value = "",
 				hl = {
 					fg = {
 						list = mode_color,
@@ -86,10 +88,6 @@ local mode = {
 			},
 		})
 	end,
-	update = {
-		"ModeChanged",
-		"BufModifiedSet",
-	},
 }
 local macro = {
 	condition = function()
@@ -101,18 +99,10 @@ local macro = {
 	hl = "Type",
 }
 local diagnostic = {
-	update = {
-		"BufEnter",
-		"BufModifiedSet",
-		"DiagnosticChanged",
+	update = { "DiagnosticChanged" },
+	static = {
+		icons = require("config.icons").diagnostic,
 	},
-	on_click = {
-		name = "clickable_diagnostic",
-		callback = require("fzf-lua").diagnostics_document,
-	},
-  static = {
-		icons = require("config.icons").diagnostic
-  },
 	init = function(self)
 		local count = vim.diagnostic.count(0)
 
@@ -123,9 +113,9 @@ local diagnostic = {
 
 		self.diagnostic = {
 			{ count = self.error, icon = self.icons.Error, hl = "DiagnosticError" },
-			{ count = self.warn,  icon = self.icons.Warn,  hl = "DiagnosticWarn"  },
-			{ count = self.hint,  icon = self.icons.Hint,  hl = "DiagnosticHint"  },
-			{ count = self.info,  icon = self.icons.Info,  hl = "DiagnosticInfo"  },
+			{ count = self.warn, icon = self.icons.Warn, hl = "DiagnosticWarn" },
+			{ count = self.hint, icon = self.icons.Hint, hl = "DiagnosticHint" },
+			{ count = self.info, icon = self.icons.Info, hl = "DiagnosticInfo" },
 		}
 	end,
 	provider = function(self)

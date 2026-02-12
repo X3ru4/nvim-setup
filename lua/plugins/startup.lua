@@ -27,7 +27,7 @@ return {
 				button("r", "  Open last session", "<cmd>lua require('persistence').load()<cr>"),
 				button("q", "󰩈  Quit", "<cmd>qa!<cr>"),
 			}
-			config.section.footer.val = "@X3ru4"
+			config.section.footer.val = "@X3ru4 "
 
 			require("alpha").setup(config.config)
 		end,

@@ -24,6 +24,13 @@ require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
 	},
+
+	install = {
+		-- install missing plugins on startup. This doesn't increase startup time.
+		missing = true,
+		-- try to load one of these colorschemes when starting an installation during startup
+		colorscheme = { "vague" },
+	},
 	checker = { enabled = true },
 	defaults = {
 		lazy = false,
@@ -97,7 +104,7 @@ require("lazy").setup({
 	},
 })
 
-require("config.autocmds")
 require("config.usercmds")
+require("config.autocmds")
 require("config.lsp")
 require("config.keymaps")
