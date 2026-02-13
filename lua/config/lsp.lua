@@ -42,15 +42,8 @@ local servers = {
 	},
 }
 
-local on_attach = function(client, bufnr)
-	keymap.lsp(client, bufnr)
-end
-
 vim.lsp.inlay_hint.enable(false) -- Disable inlay_hint
-vim.lsp.config("*", {
-	on_attach = on_attach,
-})
-
+vim.lsp.config("*", {})
 for name, config in pairs(servers) do
 	-- Skip define lsp if config is false
 	if config == false then
@@ -77,7 +70,7 @@ vim.diagnostic.config({
 			return severity[diagnostic.severity]
 		end,
 	},
-	underline = false,
+	underline = true,
 	float = {
 		header = "",
 		prefix = ">> ",

@@ -44,9 +44,10 @@ return {
 		enabled = false,
 		event = "VeryLazy",
 		opts = {
+      -- I don't this cmdline
 			cmdline = {
 				enabled = true,
-				view = "cmdline_popup",
+				view = "cmdline",
 				format = {
 					cmdline = { pattern = "^:", icon = "", lang = "vim" },
 					search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
@@ -121,15 +122,11 @@ return {
 				lsp_doc_border = false,
 			},
 		},
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
-		},
 	},
 
 	{
-		enabled = false,
 		"NStefan002/screenkey.nvim",
+    enabled = false,
 		event = "VeryLazy",
 		version = "*",
 		opts = {},

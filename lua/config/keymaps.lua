@@ -112,7 +112,7 @@ keymap("n", "<leader>cr", function()
 	end
 end, { desc = "Run code" })
 
-function M.lsp(_, bufnr)
+function M.lsp(bufnr)
 	-- Code action
 	keymap("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action", buffer = bufnr })
 
@@ -189,12 +189,12 @@ local jump_to = function(count, severity)
 		})
 	end
 end
-keymap({ "n", "x" }, "]d", jump_to(1), { desc = "Next Diagnostic" })
-keymap({ "n", "x" }, "[d", jump_to(-1), { desc = "Prev Diagnostic" })
-keymap({ "n", "x" }, "]e", jump_to(1, "ERROR"), { desc = "Next Error" })
-keymap({ "n", "x" }, "[e", jump_to(-1, "ERROR"), { desc = "Prev Error" })
-keymap({ "n", "x" }, "]w", jump_to(1, "WARN"), { desc = "Next Warning" })
-keymap({ "n", "x" }, "[w", jump_to(-1, "WARN"), { desc = "Prev Warning" })
+keymap({ "n", "x" }, "+d", jump_to(1), { desc = "Next Diagnostic" })
+keymap({ "n", "x" }, "-d", jump_to(-1), { desc = "Prev Diagnostic" })
+keymap({ "n", "x" }, "+e", jump_to(1, "ERROR"), { desc = "Next Error" })
+keymap({ "n", "x" }, "-e", jump_to(-1, "ERROR"), { desc = "Prev Error" })
+keymap({ "n", "x" }, "+w", jump_to(1, "WARN"), { desc = "Next Warning" })
+keymap({ "n", "x" }, "-w", jump_to(-1, "WARN"), { desc = "Prev Warning" })
 
 -- Clear search
 keymap({ "i", "n", "s" }, "<esc>", function()

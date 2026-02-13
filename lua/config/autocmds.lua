@@ -28,3 +28,9 @@ autocmd("UiEnter", {
 		vim.cmd("SetupHl")
 	end,
 })
+
+autocmd("LspAttach", {
+  callback = function (ev)
+    require("config.keymaps").lsp(ev.buf)
+  end
+})

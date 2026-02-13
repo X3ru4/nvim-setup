@@ -61,7 +61,7 @@ c = {
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup({
-				flavour = "macchiato",
+				flavour = "mocha",
 				transparent_background = false, -- disables setting the background color.
 				no_italic = false,
 				styles = {
@@ -411,6 +411,21 @@ c = {
 			vim.cmd("colorscheme vague")
 		end,
 	},
+  cursor_dark = {
+    "ydkulks/cursor-dark.nvim",
+    name = "cursor-dark",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- vim.cmd.colorscheme("cursor-dark-midnight")
+      require("cursor-dark").setup({
+        -- For theme
+        style = "dark-midnight",
+        -- For a transparent background
+        transparent = false,
+      })
+    end,
+  },
 }
 
 -- Super clean =))
