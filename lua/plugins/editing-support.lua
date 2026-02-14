@@ -217,6 +217,7 @@ return {
 
 	{
 		"mizlan/iswap.nvim",
+		enabled = false,
 		opts = {
 			-- The keys that will be used as a selection, in order
 			-- ('asdfghjklqwertyuiopzxcvbnm' by default)
@@ -269,7 +270,7 @@ return {
 
 	{
 		"khoido2003/multiple-cursor.nvim",
-    enabled = false,
+		enabled = false,
 		keys = {
 			{ "<C-n>", "<cmd>MultipleCursorStart<cr>", desc = "Start Multiple Cursor" },
 		},
@@ -306,7 +307,7 @@ return {
 		"jake-stewart/multicursor.nvim",
 		branch = "1.0",
 		enabled = true,
-    event = "VeryLazy",
+		event = "VeryLazy",
 		keys = function()
 			local mc = require("multicursor-nvim")
 			return {
@@ -401,7 +402,7 @@ return {
 
 			-- Customize how cursors look.
 			local hl = vim.api.nvim_set_hl
-			hl(0, "MultiCursorCursor", {  reverse = true })
+			hl(0, "MultiCursorCursor", { reverse = true })
 			hl(0, "MultiCursorVisual", { link = "Visual" })
 			hl(0, "MultiCursorSign", { link = "SignColumn" })
 			hl(0, "MultiCursorMatchPreview", { link = "Search" })

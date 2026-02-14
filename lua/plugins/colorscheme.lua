@@ -218,7 +218,7 @@ c = {
 				transparent_mode = false,
 			})
 
-			vim.g.blinkcmp_border = "rounded"
+			vim.g.blinkcmp_border = "none"
 			vim.cmd.colorscheme("gruvbox")
 		end,
 	},
