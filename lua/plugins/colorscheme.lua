@@ -211,23 +211,14 @@ c = {
 				invert_signs = false,
 				invert_tabline = false,
 				inverse = true, -- invert background for search, diffs, statuslines and errors
-				contrast = "hard", -- can be "hard", "soft" or empty string
+				contrast = "soft", -- can be "hard", "soft" or empty string
 				palette_overrides = {},
 				overrides = {},
 				dim_inactive = false,
-				transparent_mode = true,
+				transparent_mode = false,
 			})
-			local palette = require("gruvbox").palette
 
-			hl.set("Red", { fg = palette.neutral_red }, false)
-			hl.set("Orange", { fg = palette.neutral_orange }, false)
-			hl.set("Yellow", { fg = palette.neutral_yellow }, false)
-			hl.set("Green", { fg = palette.neutral_green }, false)
-			hl.set("Purple", { fg = palette.neutral_purple }, false)
-			hl.set("Blue", { fg = palette.neutral_blue }, false)
-			hl.set("Aqua", { fg = palette.neutral_aqua }, false)
-
-			vim.g.blinkcmp_border = "none"
+			vim.g.blinkcmp_border = "rounded"
 			vim.cmd.colorscheme("gruvbox")
 		end,
 	},
@@ -450,4 +441,4 @@ cs.list = {
 }
 
 -- NOTE: Goto ~/.config/nvim/lua/config/lazy.lua line 32
-return cs.install_(c.vague)
+return cs.install_(c.gruvbox)

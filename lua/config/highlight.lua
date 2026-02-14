@@ -374,6 +374,69 @@ M.setup = function()
 		CursorLineSign = {
 			link = "CursorLine",
 		},
+    MatchWord = {
+      underline = true
+    },
+
+		-- BlinkPair
+		BlinkPairsUnmatched = {
+			fg = hl.get("red").fg,
+			reverse = true,
+			bold = true,
+		},
+		BlinkPairsBlue = {
+			link = "Blue",
+		},
+		BlinkPairsOrange = {
+			link = "Purple",
+		},
+		BlinkPairsPurple = {
+			link = "Purple",
+		},
+
+		-- BlinkIndent
+		BlinkIndentRed = {
+			link = "Red",
+		},
+		BlinkIndentCyan = {
+			link = "Cyan",
+		},
+		BlinkIndentBlue = {
+			link = "Blue",
+		},
+		BlinkIndentGreen = {
+			link = "Green",
+		},
+		BlinkIndentYellow = {
+			link = "Yellow",
+		},
+		BlinkIndentViolet = {
+			link = "Purple",
+		},
+		BlinkIndentOrange = {
+			link = "Purple",
+		},
+		fn = function()
+			local palette = require("gruvbox").palette
+
+			hl.set("Red", { fg = palette.neutral_red }, false)
+			hl.set("Orange", { fg = palette.neutral_orange }, false)
+			hl.set("Yellow", { fg = palette.neutral_yellow }, false)
+			hl.set("Green", { fg = palette.neutral_green }, false)
+			hl.set("Purple", { fg = palette.neutral_purple }, false)
+			hl.set("Blue", { fg = palette.neutral_blue }, false)
+			hl.set("Aqua", { fg = palette.neutral_aqua }, false)
+
+			-- Blink.cmp
+			if vim.g.blinkcmp_border == "rounded" then
+				hl.set("BlinkCmpMenu", {
+					link = "Normal",
+				})
+				hl.set("BlinkCmpMenuBorder", {
+					link = "Normal",
+				})
+			end
+		end,
 	})
 
 	hl.set_match("vscode", function()
@@ -678,7 +741,7 @@ M.setup = function()
 
 			-- BlinkPair
 			BlinkPairsUnmatched = {
-				fg = hl.get"red".fg,
+				fg = hl.get("red").fg,
 				reverse = true,
 				bold = true,
 			},
