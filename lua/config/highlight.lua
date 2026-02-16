@@ -393,29 +393,6 @@ M.setup = function()
 		BlinkPairsPurple = {
 			link = "Purple",
 		},
-
-		-- BlinkIndent
-		BlinkIndentRed = {
-			link = "Red",
-		},
-		BlinkIndentCyan = {
-			link = "Cyan",
-		},
-		BlinkIndentBlue = {
-			link = "Blue",
-		},
-		BlinkIndentGreen = {
-			link = "Green",
-		},
-		BlinkIndentYellow = {
-			link = "Yellow",
-		},
-		BlinkIndentViolet = {
-			link = "Purple",
-		},
-		BlinkIndentOrange = {
-			link = "Purple",
-		},
 		fn = function()
 			local palette = require("gruvbox").palette
 
