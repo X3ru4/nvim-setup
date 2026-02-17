@@ -31,9 +31,8 @@ keymap("n", "<S-l>", "<cmd>bnext<cr>")
 keymap("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
 keymap("n", "<leader>bb", "<cmd>buffer #<cr>", { desc = "Previous buffer" })
 
--- Quick select
+-- Select all
 keymap({ "n", "x" }, "<leader>v", "gg0vG$", { desc = "Select all" })
-keymap({ "n", "x" }, "<leader>V", "ggVG$", { desc = "Select all line" })
 
 -- Return Normal mode
 keymap("t", "<C-b>", "<cmd>e #<cr><cmd>e #<cr>")
@@ -84,8 +83,8 @@ keymap("n", "<leader>gs", function()
 		end
 	end)
 end, { desc = "Search" })
--- Reopen file
-keymap("n", "<leader>gf", "<cmd>e!<cr>", { desc = "Reopen" })
+-- Re-open file
+keymap("n", "<leader>gf", "<cmd>e!<cr>", { desc = "Re-open" })
 
 -- Editor
 -- No need more than one cursor

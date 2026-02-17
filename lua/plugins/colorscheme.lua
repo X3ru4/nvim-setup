@@ -110,7 +110,7 @@ c = {
 	edge = {
 		"sainnhe/edge",
 		name = "edge",
-		lazy = false,
+    event = "VimEnter",
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "none"
@@ -135,7 +135,7 @@ c = {
 	everforest = {
 		"sainnhe/everforest",
 		name = "everforest",
-		lazy = false,
+    event = "VimEnter",
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "none"
@@ -161,7 +161,7 @@ c = {
 	gruvbox_material = {
 		"sainnhe/gruvbox-material",
 		name = "gruvbox-material",
-		lazy = false,
+    event = "VimEnter",
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "none"
@@ -185,6 +185,7 @@ c = {
 			vim.g.gruvbox_material_better_performance = 1
 			-- Available values "none"|"dimmed"
 			vim.g.gruvbox_material_inlay_hints_background = "none"
+
 			vim.cmd.colorscheme("gruvbox-material")
 		end,
 	},
@@ -200,7 +201,7 @@ c = {
 				underline = true,
 				bold = true,
 				italic = {
-					strings = true,
+					strings = false,
 					emphasis = true,
 					comments = true,
 					operators = false,
@@ -235,15 +236,6 @@ c = {
 				keywordStyle = { italic = true },
 			})
 			vim.g.blinkcmp_border = "none"
-			local palette = require("kanagawa.colors").setup().palette
-
-			hl.set("Red", { fg = palette.canvasRed1 }, false)
-			hl.set("Orange", { fg = palette.canvasOrange1 }, false)
-			hl.set("Yellow", { fg = palette.canvasYellow1 }, false)
-			hl.set("Green", { fg = palette.canvasGreen1 }, false)
-			hl.set("Purple", { fg = palette.canvasPink1 }, false)
-			hl.set("Blue", { fg = palette.canvasBlue1 }, false)
-			hl.set("Aqua", { fg = palette.canvasAqua1 }, false)
 			require("kanagawa").load()
 		end,
 	},
@@ -317,8 +309,8 @@ c = {
 			end
 
 			-- Press gf to go the folder
-			-- All availables theme at ~/.local/share/nvim/lazy/base46.nvim/lua/base46/hl_themes/
-			local theme = "gruvchad"
+			-- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
+			local theme = "onedark"
 			local color_base = "base46"
 
 			local theme_opts = {
@@ -425,19 +417,21 @@ local cs = require("utility.colorscheme")
 -- Recomment lever = index
 cs.list = {
 	c.gruvbox_material, -- Recomment!
-	c.catppuccin, -- Recomment!
-	c.gruvbox, -- Recomment!
-	c.vague, -- Recomment! Like   vscode
-	c.vscode, -- Recomment!
-	c.kanagawa, -- Recomment!
-	c.cyberdream, -- Recomment!
-	c.edge, -- Recomment! Better than onedark
-	c.everforest, -- Recomment!
-	c.kanagawa_paper, -- Recomment!
-	c.nord, -- Recomment!
-	c.tokyonight, -- Hmmmmm!
-	c.onedark, -- Hmmmmm!
-	c.nightfox, -- Hmmmmm!
+	c.catppuccin,       -- Recomment!
+	c.gruvbox,          -- Recomment!
+  c.vscode,           -- Recomment!
+	c.vague,            -- Recomment! Like vscode
+	c.kanagawa,         -- Recomment!
+  c.kanagawa_paper,   -- Recomment!
+  c.based46,          -- Recomment! Like NvChad colorscheme
+  c.edge,             -- Recomment! Better than onedark
+  c.everforest,       -- Recomment!
+	c.cyberdream,       -- Recomment!
+	c.nord,             -- Hmmmmm!
+  c.cursor_dark,      -- Hmmmmm!
+	c.tokyonight,       -- Hmmmmm!
+	c.onedark,          -- Hmmmmm!
+	c.nightfox,         -- Hmmmmm!
 }
 
 -- NOTE: Goto ~/.config/nvim/lua/config/lazy.lua line 32

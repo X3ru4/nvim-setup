@@ -356,27 +356,80 @@ M.setup = function()
 			link = "MiniTablineCurrentVisible",
 		},
 		MiniCursorwordCurrent = vim.empty_dict(),
-		hl.modify("DropBarIconUISeparator", {
-			italic = false,
-		}),
-		hl.modify("DropBarIconUISeparatorNC", {
-			italic = false,
-		}),
-		hl.modify("DropBarIconUISeparatorMenu", {
-			italic = false,
-		}),
+		-- BlinkPair
+		BlinkPairsUnmatched = {
+			fg = hl.get("red").fg,
+			reverse = true,
+			bold = true,
+		},
+		BlinkPairsBlue = {
+			link = "Blue",
+		},
+		BlinkPairsOrange = {
+			link = "Orange",
+		},
+		BlinkPairsPurple = {
+			link = "Purple",
+		},
+
+		-- BlinkIndent
+		BlinkIndentRed = {
+			link = "Red",
+		},
+		BlinkIndentCyan = {
+			link = "Aqua",
+		},
+		BlinkIndentBlue = {
+			link = "Blue",
+		},
+		BlinkIndentGreen = {
+			link = "Green",
+		},
+		BlinkIndentYellow = {
+			link = "Yellow",
+		},
+		BlinkIndentViolet = {
+			link = "Purple",
+		},
+		BlinkIndentOrange = {
+			link = "Orange",
+		},
+		fn = function()
+			local palette = require("kanagawa.colors").setup().palette
+
+			hl.set("Red", { fg = palette.peachRed }, false)
+			hl.set("Orange", { fg = palette.roninYellow }, false)
+			hl.set("Yellow", { fg = palette.lotusYellow4 }, false)
+			hl.set("Green", { fg = palette.springGreen }, false)
+			hl.set("Purple", { fg = palette.oniViolet }, false)
+			hl.set("Blue", { fg = palette.crystalBlue }, false)
+			hl.set("Aqua", { fg = palette.springBlue }, false)
+
+			hl.modify("DropBarIconUISeparator", {
+				italic = false,
+			})
+			hl.modify("DropBarIconUISeparatorNC", {
+				italic = false,
+			})
+			hl.modify("DropBarIconUISeparatorMenu", {
+				italic = false,
+			})
+		end,
 	})
 
 	hl.set_match("gruvbox", {
+		Cursor = {
+			bg = hl.get("Normal").fg,
+		},
 		SignColumn = {
 			link = "Normal",
 		},
 		CursorLineSign = {
 			link = "CursorLine",
 		},
-    MatchWord = {
-      underline = true
-    },
+		MatchWord = {
+			underline = true,
+		},
 
 		-- BlinkPair
 		BlinkPairsUnmatched = {
@@ -396,13 +449,17 @@ M.setup = function()
 		fn = function()
 			local palette = require("gruvbox").palette
 
-			hl.set("Red", { fg = palette.neutral_red }, false)
-			hl.set("Orange", { fg = palette.neutral_orange }, false)
-			hl.set("Yellow", { fg = palette.neutral_yellow }, false)
-			hl.set("Green", { fg = palette.neutral_green }, false)
-			hl.set("Purple", { fg = palette.neutral_purple }, false)
-			hl.set("Blue", { fg = palette.neutral_blue }, false)
-			hl.set("Aqua", { fg = palette.neutral_aqua }, false)
+			hl.set("Red", { fg = palette.bright_red }, false)
+			hl.set("Orange", { fg = palette.bright_orange }, false)
+			hl.set("Yellow", { fg = palette.bright_yellow }, false)
+			hl.set("Green", { fg = palette.bright_green }, false)
+			hl.set("Purple", { fg = palette.bright_purple }, false)
+			hl.set("Blue", { fg = palette.bright_blue }, false)
+			hl.set("Aqua", { fg = palette.bright_aqua }, false)
+			hl.set("dark1", { fg = palette.dark1 }, false)
+			hl.set("dark2", { fg = palette.dark2 }, false)
+			hl.set("dark3", { fg = palette.dark3 }, false)
+			hl.set("dark4", { fg = palette.dark4 }, false)
 
 			-- Blink.cmp
 			if vim.g.blinkcmp_border == "rounded" then

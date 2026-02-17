@@ -49,44 +49,63 @@ local mode = {
 		},
 	},
 	provider = function(self)
-		return line.separator({
-			default_hl = "StatusLine",
-			id = "Mode",
-			left = {
-				value = "  ",
-				hl = {
-          fg = { name = "Normal", type = "bg" },
-					bg = {
-						list = mode_color,
-						default_key = "n",
-						key = self.mode,
-					},
-				},
-			},
-			right = {
-				value = "",
-				hl = {
-					fg = {
-						list = mode_color,
-						default_key = "n",
-						key = self.mode,
-						type = "bg",
-					},
-				},
-			},
-			string = {
-				value = (self.mode_name[self.mode] or self.mode) .. " ",
-				hl = {
-					fg = { name = mode_color.i },
-					bg = {
-						list = mode_color,
-						default_key = "n",
-						key = self.mode,
-					},
-					style = { bold = true, italic = true },
-				},
-			},
+    -- Classic sep: "" | "" | "" | "" | ""
+    -- Special sep: "" | "" | ""
+		local sep = ""
+		hl.set("ModeSep2", {
+			fg = hl.get("Visual").bg,
+			bg = hl.get("StatusLine").bg,
 		})
+		hl.set("ModeSep1", {
+			fg = hl.get("PmenuThumb").bg,
+			bg = hl.get("ModeSep2").fg,
+		})
+
+		local section = {
+			line.separator({
+				default_hl = "StatusLine",
+				id = "Mode",
+				left = {
+					value = "  ",
+					hl = {
+						fg = { name = "Normal", type = "bg" },
+						bg = {
+							list = mode_color,
+							default_key = "n",
+							key = self.mode,
+						},
+					},
+				},
+				right = {
+					value = sep,
+					hl = {
+						fg = {
+							list = mode_color,
+							default_key = "n",
+							key = self.mode,
+							type = "bg",
+						},
+						bg = { name = "ModeSep1", type = "fg" },
+					},
+				},
+				string = {
+					value = (self.mode_name[self.mode] or self.mode) .. " ",
+					hl = {
+						fg = { name = "Normal", type = "bg" },
+						bg = {
+							list = mode_color,
+							default_key = "n",
+							key = self.mode,
+						},
+						gui = { bold = true, italic = true },
+					},
+				},
+			}),
+			line.hl_fmt("ModeSep1", sep),
+			line.hl_fmt("ModeSep2", sep),
+		}
+
+		return table.concat(section)
 	end,
 }
 local macro = {
@@ -112,17 +131,17 @@ local diagnostic = {
 		self.info = count[vim.diagnostic.severity.INFO] or 0
 
 		self.diagnostic = {
-			{ count = self.error, icon = self.icons.Error, hl = "DiagnosticError" },
-			{ count = self.warn, icon = self.icons.Warn, hl = "DiagnosticWarn" },
-			{ count = self.hint, icon = self.icons.Hint, hl = "DiagnosticHint" },
-			{ count = self.info, icon = self.icons.Info, hl = "DiagnosticInfo" },
+			{ count = self.error, icon = self.icons.Error, icon_hl = "DiagnosticError" },
+			{ count = self.warn, icon = self.icons.Warn, icon_hl = "DiagnosticWarn" },
+			{ count = self.hint, icon = self.icons.Hint, icon_hl = "DiagnosticHint" },
+			{ count = self.info, icon = self.icons.Info, icon_hl = "DiagnosticInfo" },
 		}
 	end,
 	provider = function(self)
 		local t = {}
 		for _, info in ipairs(self.diagnostic) do
 			if info.count > 0 then
-				t[#t + 1] = string.format("%s %%#%s#%s %%#StatusLine#", info.count, info.hl, info.icon)
+				t[#t + 1] = string.format("%s %%#%s#%s %%#StatusLine#", info.count, info.icon_hl, info.icon)
 			end
 		end
 
@@ -131,17 +150,17 @@ local diagnostic = {
 }
 
 M.config = function()
+	-- Quick config. Go to lua/config/options.lua to see more.
 	local stl = vim.g.statusline_style
 
-	hl.mix_hl("FileInfoMod", {
-		default_hl = "StatusLine",
-		fg = { name = "WarningMsg" },
-		style = { bold = true },
+	-- Create new highlights for statusline
+	hl.set("FileInfoMod", {
+		fg = hl.get("WarningMsg").fg,
+		bg = hl.get("StatusLine").bg,
 	})
-	hl.mix_hl("FileInfoRO", {
-		default_hl = "StatusLine",
-		fg = { name = "ErrorMsg" },
-		style = { bold = true },
+	hl.set("FileInfoRO", {
+		fg = hl.get("ErrorMsg").fg,
+		bg = hl.get("StatusLine").bg,
 	})
 
 	return {
