@@ -49,8 +49,8 @@ local mode = {
 		},
 	},
 	provider = function(self)
-    -- Classic sep: "" | "" | "" | "" | ""
-    -- Special sep: "" | "" | ""
+		-- Classic sep: "" | "" | "" | "" | ""
+		-- Special sep: "" | "" | ""
 		local sep = ""
 		hl.set("ModeSep2", {
 			fg = hl.get("Visual").bg,
@@ -63,7 +63,6 @@ local mode = {
 
 		local section = {
 			line.separator({
-				default_hl = "StatusLine",
 				id = "Mode",
 				left = {
 					value = "  ",
@@ -157,10 +156,12 @@ M.config = function()
 	hl.set("FileInfoMod", {
 		fg = hl.get("WarningMsg").fg,
 		bg = hl.get("StatusLine").bg,
+		bold = true,
 	})
 	hl.set("FileInfoRO", {
 		fg = hl.get("ErrorMsg").fg,
 		bg = hl.get("StatusLine").bg,
+		bold = true,
 	})
 
 	return {
@@ -173,7 +174,7 @@ M.config = function()
 					line.hl_fmt("FileInfoMod", stl.modify and "%m " or "", "%*"),
 					line.hl_fmt("FileInfoRO", stl.read_only and "%r " or "", "%*"),
 					"%=",
-					stl.coordinate and "%l | %c " or "",
+					stl.coordinate and "%l|%c " or "",
 					stl.percent and "%p%% " or "",
 					"%=",
 				}),

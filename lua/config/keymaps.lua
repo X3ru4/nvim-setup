@@ -19,11 +19,7 @@ end
 keymap("n", "<leader>ya", "ggVGy", { desc = "Yank all" })
 
 -- Window
-keymap("n", "<leader>wh", "<C-w>h", { desc = "Win left" })
-keymap("n", "<leader>wj", "<C-w>j", { desc = "Win down" })
-keymap("n", "<leader>wk", "<C-w>k", { desc = "Win up" })
-keymap("n", "<leader>wl", "<C-w>l", { desc = "Win right" })
-keymap("n", "<leader>wo", "<C-w>o", { desc = "Win full" })
+keymap("n", "<leader>w", "<esc><C-w>", { desc = "Window" })
 
 -- Buffer
 keymap("n", "<S-h>", "<cmd>bprevious<cr>")

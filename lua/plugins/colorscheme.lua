@@ -115,7 +115,7 @@ c = {
 		config = function()
 			vim.g.blinkcmp_border = "none"
 			vim.g.edge_transparent_background = 0
-			vim.g.edge_enable_italic = 0
+			vim.g.edge_enable_italic = 1
 			vim.g.edge_ui_contrast = "hight" -- "low"|"high"
 			vim.g.edge_show_eob = 1
 			-- Available values "bright"|"dim"|"blend"
@@ -125,10 +125,10 @@ c = {
 			-- Available values "grey background"|"high contrast background"|"bold"|"underline"|"italic"
 			vim.g.edge_current_word = "grey background"
 			-- Available values "grey"|"colored"|"highlighted"
-			vim.g.edge_diagnostic_virtual_text = "highlighted"
+			vim.g.edge_diagnostic_virtual_text = "colored"
 			vim.g.edge_better_performance = 1
 			-- Available values "none"|"dimmed"
-			vim.g.edge_inlay_hints_background = "none"
+			vim.g.edge_inlay_hints_background = "dimmed"
 			vim.cmd.colorscheme("edge")
 		end,
 	},
@@ -154,7 +154,7 @@ c = {
 			vim.g.everforest_diagnostic_virtual_text = "highlighted"
 			vim.g.everforest_better_performance = 1
 			-- Available values "none"|"dimmed"
-			vim.g.everforest_inlay_hints_background = "none"
+			vim.g.everforest_inlay_hints_background = "dimmed"
 			vim.cmd.colorscheme("everforest")
 		end,
 	},
@@ -171,7 +171,7 @@ c = {
 			-- Available values 'grey background'|"green background"|"blue background"|"red background"|"reverse"
 			vim.g.gruvbox_material_visual = "green background"
 			-- Available values "material"|"mix"|"original"
-			vim.g.gruvbox_material_foreground = "mix"
+			vim.g.gruvbox_material_foreground = "material"
 			-- Available values "hard"|"medium"|"soft"
 			vim.g.gruvbox_material_background = "medium"
 			vim.g.gruvbox_material_ui_contrast = "high" -- "low"|"high"
@@ -184,7 +184,7 @@ c = {
 			vim.g.gruvbox_material_diagnostic_virtual_text = "highlighted"
 			vim.g.gruvbox_material_better_performance = 1
 			-- Available values "none"|"dimmed"
-			vim.g.gruvbox_material_inlay_hints_background = "none"
+			vim.g.gruvbox_material_inlay_hints_background = "dimmed"
 
 			vim.cmd.colorscheme("gruvbox-material")
 		end,
@@ -310,7 +310,7 @@ c = {
 
 			-- Press gf to go the folder
 			-- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
-			local theme = "onedark"
+			local theme = "gruvchad"
 			local color_base = "base46"
 
 			local theme_opts = {
@@ -322,6 +322,7 @@ c = {
 			local palette = base46.get_colors(color_base, theme)
 			vim.g.colors_name = "base46"
 			vim.g.base46_palette = palette
+      vim.g.blinkcmp_border = "none"
 
 			base46.load_theme(theme_opts)
 		end,
@@ -435,4 +436,4 @@ cs.list = {
 }
 
 -- NOTE: Goto ~/.config/nvim/lua/config/lazy.lua line 32
-return cs.install_(c.gruvbox)
+return cs.install_(c.edge)

@@ -21,7 +21,7 @@ autocmd("ColorScheme", {
 	end,
 })
 
--- Setup config.highlight
+-- Setup highlights
 autocmd("UiEnter", {
 	once = true,
 	callback = function()

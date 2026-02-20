@@ -41,17 +41,17 @@ end
 ---@param opts vim.api.keyset.highlight Options
 ---@param cache boolean|nil Default is true
 ---@param  id number|nil
-function M.set(name, opts, cache, id)
+function M.set(name, opts, id, cache)
 	cache = cache or true
-  id = id or 0
+	id = id or 0
 	if cache then
 		if not M.hl_def_cache[name] then
-			M.vset_hl(0, name, opts)
+			M.vset_hl(id, name, opts)
 			M.hl_get_cache[name] = nil
 			M.hl_def_cache[name] = true
 		end
 	else
-		M.vset_hl(id , name, opts)
+		M.vset_hl(id, name, opts)
 	end
 end
 
@@ -179,17 +179,16 @@ function M.mix_hl(ns, spec)
 		if arg == nil then
 			return M.get(spec.default_hl)[fallback_key]
 		end
-		if arg.name then
-			return M.get(arg.name)[arg.type or fallback_key]
-		end
-		if arg.list then
-			for _, v in pairs(arg.list) do
-				M.get(v)
-			end
-			return M.hl_get_cache[arg.list[arg.key] or arg.list[arg.default_key] or spec.default_hl][arg.type or fallback_key]
-		end
 		if type(arg) == "string" then
 			return arg
+		end
+
+		local type = arg.type or fallback_key
+		if arg.name then
+			return M.get(arg.name)[type]
+		end
+		if arg.list then
+			return M.get(arg.list[arg.key] or arg.list[arg.default_key] or spec.default_hl)[type]
 		end
 	end
 
@@ -264,7 +263,7 @@ end
 ---@param hl string
 ---@return boolean
 function M.hlexits(hl)
-  return vim.fn.hlexists(hl) == 1
+	return vim.fn.hlexists(hl) == 1
 end
 
 return M

@@ -70,49 +70,51 @@ return {
 
 	{
 		"nvim-mini/mini.notify",
-		enabled = false,
+		enabled = true,
 		event = "VeryLazy",
 		version = false,
+		keys = {
+			{
+				"<C-h>",
+				function()
+					require("mini.notify").show_history()
+				end,
+			},
+		},
 		opts = {
 			-- Content management
 			content = {
-				-- Function which formats the notification message
-				-- By default prepends message with notification time
-				format = function(notif)
-					if notif.data.source == "lsp_progress" then
-						return notif.msg
-					end
-					return require("mini.notify").default_format(notif)
+				format = function(notify)
+					local icons = require("config.icons").vim_log_level
+					return string.format("%s :%s ·%s", icons[notify.level], notify.msg, os.date("%H:%M"))
 				end,
-
-				-- Function which orders notification array from most to least important
-				-- By default orders first by level and then by update timestamp
-				sort = nil,
+				sort = function(notif_arr)
+					table.sort(notif_arr, function(a, b)
+						return a.ts_update > b.ts_update
+					end)
+					return notif_arr
+				end,
 			},
 
 			-- Notifications about LSP progress
-			lsp_progress = {
-				-- Whether to enable showing
-				enable = true,
-				-- Notification level
-				level = "INFO",
-
-				-- Duration (in ms) of how long last message should be shown
-				duration_last = 1000,
-			},
+			lsp_progress = { enable = false },
 
 			-- Window options
 			window = {
 				-- Floating window config
+				---@type vim.api.keyset.win_config
 				config = {
 					border = "rounded",
-					anchor = "SE",
-					row = 99,
+					anchor = "NW",
+					title = "󰂞 Notifications",
+					title_pos = "center",
+					footer = "-+-",
+					footer_pos = "center",
 				},
 
 				-- Maximum window width as share (between 0 and 1) of available columns
 				max_width_share = 0.382,
-				winblend = 20,
+				winblend = 0,
 			},
 		},
 	},
@@ -282,6 +284,7 @@ return {
 		opts = {
 			view = {
 				-- Visualization style. Possible values are 'sign' and 'number'.
+				---@type "sign"|"number"
 				style = "number",
 
 				-- Signs used for hunks with 'sign' view
