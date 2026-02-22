@@ -51,10 +51,9 @@ local mode = {
 	provider = function(self)
 		-- Classic sep: "" | "" | "" | "" | ""
 		-- Special sep: "" | "" | ""
-		local sep = ""
+		local sep = ""
 		hl.set("ModeSep2", {
 			fg = hl.get("Visual").bg,
-			bg = hl.get("StatusLine").bg,
 		})
 		hl.set("ModeSep1", {
 			fg = hl.get("PmenuThumb").bg,
@@ -152,33 +151,39 @@ M.config = function()
 	-- Quick config. Go to lua/config/options.lua to see more.
 	local stl = vim.g.statusline_style
 
-	-- Create new highlights for statusline
-	hl.set("FileInfoMod", {
-		fg = hl.get("WarningMsg").fg,
-		bg = hl.get("StatusLine").bg,
-		bold = true,
-	})
-	hl.set("FileInfoRO", {
-		fg = hl.get("ErrorMsg").fg,
-		bg = hl.get("StatusLine").bg,
-		bold = true,
-	})
-
 	return {
 		statusline = {
 			mode,
+			{ provider = " " },
+      -- File name
+			{ update = "BufWinEnter", provider = stl.file_name and "%t " or "" },
+      -- File modify
 			{
-				provider = table.concat({
-					" ",
-					stl.file_name and "%t " or "",
-					line.hl_fmt("FileInfoMod", stl.modify and "%m " or "", "%*"),
-					line.hl_fmt("FileInfoRO", stl.read_only and "%r " or "", "%*"),
-					"%=",
-					stl.coordinate and "%l|%c " or "",
-					stl.percent and "%p%% " or "",
-					"%=",
-				}),
+				update = "BufModifiedSet",
+				provider = function()
+					hl.set("FileInfoMod", {
+						fg = hl.get("WarningMsg").fg,
+						bold = true,
+					})
+					return line.hl_fmt("FileInfoMod", stl.modify and "%m " or "", "%*")
+				end,
 			},
+      -- Read only buffer
+			{
+				update = "BufWinEnter",
+				provider = function()
+					hl.set("FileInfoRO", {
+						fg = hl.get("ErrorMsg").fg,
+						bold = true,
+					})
+					return line.hl_fmt("FileInfoRO", stl.read_only and "%r " or "", "%*")
+				end,
+			},
+			{ provider = "%=" },
+      -- Cursor position row/col
+			{ update = { "CursorMoved", "CursorMovedI" }, provider = stl.coordinate and "%l|%c " or "" },
+			{ update = { "CursorMoved", "CursorMovedI" }, provider = stl.percent and "%p%% " or "" },
+			{ provider = "%=" },
 			stl.hlsearch and hlsearch,
 			stl.macro and macro,
 			stl.diagnostic and diagnostic,
