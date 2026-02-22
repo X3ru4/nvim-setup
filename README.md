@@ -8,6 +8,19 @@ Stop here!
 
 >  [Here](https://github.com/X3ru4/n30vim/tree/main/lua/plugins)
 
+## Requirements
++ clang
++ cmake
++ lua-language-serve
++ treesitter
++ rust
++ python
++ nodejs
++ luarocks
++ ripgrep
++ fzf
++ git
+
 ## ♦ [Usage](https://github.com/X3ru4/n30vim.git)
 
 ```bash
