@@ -1,5 +1,5 @@
 local M = {}
-local util = require("utility.lazy")
+local lazy = require("utility.lazy")
 local keymap = vim.keymap.set
 
 keymap("n", "<leader>rm", "<cmd>!rm ~/.local/state/nvim/swap -rf<cr>", { desc = "Remove swap folder" })
@@ -10,7 +10,7 @@ keymap("n", "K", "<Nop>")
 keymap("i", "<C-a>", "<C-o>I")
 
 -- Not use this keymap if use cinnamon.nvim
-if not util.is_loaded("cinnamon.nvim") then
+if not lazy.is_loaded("cinnamon.nvim") then
 	keymap({ "n", "x" }, "zh", "zH", { desc = 'Horizontal scroll like "zH"' })
 	keymap({ "n", "x" }, "zl", "zL", { desc = 'Horizontal scroll like "zL"' })
 end
@@ -19,7 +19,7 @@ end
 keymap("n", "<leader>ya", "ggVGy", { desc = "Yank all" })
 
 -- Window
-keymap("n", "<leader>w", "<esc><C-w>", { desc = "Window" })
+keymap("n", "<leader>w", "<C-w>", { desc = "Window" })
 
 -- Buffer
 keymap("n", "<S-h>", "<cmd>bprevious<cr>")
@@ -30,7 +30,7 @@ keymap("n", "<leader>bb", "<cmd>buffer #<cr>", { desc = "Previous buffer" })
 -- Select all
 keymap({ "n", "x" }, "<leader>v", "gg0vG$", { desc = "Select all" })
 
--- Return Normal mode
+-- Return Normal mode in terminal mode
 keymap("t", "<C-b>", "<cmd>e #<cr><cmd>e #<cr>")
 -- Save file
 keymap({ "n", "x", "i" }, "<C-s>", "<cmd>silent!w<cr><esc>", { desc = "Save file", silent = true })
@@ -117,7 +117,7 @@ function M.lsp(bufnr)
 	end, { desc = "Toggle inlay hint", buffer = bufnr })
 
 	-- If not use the fzf-lua swith to use the default
-	if not util.is_loaded("fzf-lua") then
+	if not lazy.is_loaded("fzf-lua") then
 		keymap("n", "grd", vim.lsp.buf.definition, { desc = "Definition", buffer = bufnr })
 		keymap("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation", buffer = bufnr })
 		keymap("n", "grr", vim.lsp.buf.references, { desc = "References", buffer = bufnr })
@@ -176,7 +176,7 @@ keymap("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Com
 keymap("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
 -- diagnostic
-local jump_to = function(count, severity)
+local diagnostic_jump = function(count, severity)
 	return function()
 		vim.diagnostic.jump({
 			count = count,
@@ -184,16 +184,16 @@ local jump_to = function(count, severity)
 		})
 	end
 end
-keymap({ "n", "x" }, "+d", jump_to(1), { desc = "Next Diagnostic" })
-keymap({ "n", "x" }, "-d", jump_to(-1), { desc = "Prev Diagnostic" })
-keymap({ "n", "x" }, "+e", jump_to(1, "ERROR"), { desc = "Next Error" })
-keymap({ "n", "x" }, "-e", jump_to(-1, "ERROR"), { desc = "Prev Error" })
-keymap({ "n", "x" }, "+w", jump_to(1, "WARN"), { desc = "Next Warning" })
-keymap({ "n", "x" }, "-w", jump_to(-1, "WARN"), { desc = "Prev Warning" })
+keymap({ "n", "x" }, "+d", diagnostic_jump(1), { desc = "Next Diagnostic" })
+keymap({ "n", "x" }, "-d", diagnostic_jump(-1), { desc = "Prev Diagnostic" })
+keymap({ "n", "x" }, "+e", diagnostic_jump(1, "ERROR"), { desc = "Next Error" })
+keymap({ "n", "x" }, "-e", diagnostic_jump(-1, "ERROR"), { desc = "Prev Error" })
+keymap({ "n", "x" }, "+w", diagnostic_jump(1, "WARN"), { desc = "Next Warning" })
+keymap({ "n", "x" }, "-w", diagnostic_jump(-1, "WARN"), { desc = "Prev Warning" })
 
 -- Clear search
 keymap({ "i", "n", "s" }, "<esc>", function()
-	vim.cmd("noh")
+  vim.cmd("noh")
 	return "<esc>"
 end, { expr = true, desc = "Escape and Clear hlsearch" })
 

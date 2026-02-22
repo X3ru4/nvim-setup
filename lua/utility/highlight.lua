@@ -75,17 +75,22 @@ end
 ---@param opts table|function|{ fn: function }
 ---@param apply boolean|nil Default is true
 function M.set_match(name, opts, apply)
+  local self = {}
+  self.theme = vim.g.colors_name
 	apply = apply or false
 
 	local function match()
-		local color = vim.g.colors_name
+		local color = self.theme
 		if color == nil then
 			return
 		end
 
 		local function check_str(s)
-			if s:match("!") == "!" then
-				s = s:match("(%w+)!")
+			if s:match("!$") == "!" then
+				s = s:match("(%w+)!$")
+				return color:match(s) == s
+			elseif s:match("^!") then
+				s = s:match("^!(%w+)")
 				return color:match(s) == s
 			end
 			return s == color
@@ -104,10 +109,10 @@ function M.set_match(name, opts, apply)
 
 	if match() then
 		if type(opts) == "function" then
-			M.highlights = vim.tbl_extend("force", M.highlights, opts() or {})
+			M.highlights = vim.tbl_extend("force", M.highlights, opts(self) or {})
 		elseif type(opts) == "table" then
 			if type(opts.fn) == "function" then
-				local fn = opts.fn()
+				local fn = opts.fn(self)
 				opts.fn = nil
 				if type(fn) == "table" then
 					opts = vim.tbl_extend("force", opts, fn)

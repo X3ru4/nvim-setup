@@ -27,7 +27,7 @@ M.setup = function()
 			bg = hl.get("Visual").bg,
 		},
 
-		-- Plugins
+		--- Plugins
 		-- multicutsor.nvim
 		MultiCursorCursor = { reverse = true },
 		MultiCursorVisual = { link = "Visual" },
@@ -810,6 +810,71 @@ M.setup = function()
 			},
 			BlinkIndentOrange = {
 				link = "Orange",
+			},
+		}
+	end)
+
+	hl.set_match("!fox", function(self)
+		local palette = require("nightfox.palette." .. self.theme).palette
+
+		-- Basic colors
+		hl.set("Red", { fg = palette.red.base })
+		hl.set("Orange", { fg = palette.orange.base })
+		hl.set("Yellow", { fg = palette.yellow.base })
+		hl.set("Green", { fg = palette.green.base })
+		hl.set("Aqua", { fg = palette.cyan.base })
+		hl.set("Blue", { fg = palette.blue.base })
+		hl.set("Purple", { fg = palette.magenta.base })
+
+		return {
+
+			-- BlinkPair
+			BlinkPairsUnmatched = {
+				fg = hl.get("Red").fg,
+				reverse = true,
+				bold = true,
+			},
+			BlinkPairsBlue = {
+				link = "Blue",
+			},
+			BlinkPairsOrange = {
+				link = "Orange",
+			},
+			BlinkPairsPurple = {
+				link = "Purple",
+			},
+
+			-- BlinkIndent
+			BlinkIndentRed = {
+				link = "Red",
+			},
+			BlinkIndentCyan = {
+				link = "Aqua",
+			},
+			BlinkIndentBlue = {
+				link = "Blue",
+			},
+			BlinkIndentGreen = {
+				link = "Green",
+			},
+			BlinkIndentYellow = {
+				link = "Yellow",
+			},
+			BlinkIndentViolet = {
+				link = "Purple",
+			},
+			BlinkIndentOrange = {
+				link = "Orange",
+			},
+
+			-- Blink.cmp
+			BlinkCmpKind = {
+				fg = hl.get("PmenuKind").fg,
+			},
+
+			-- Vanilla
+			NormalFloat = {
+				link = "Normal",
 			},
 		}
 	end)

@@ -2,8 +2,8 @@ return {
 
 	{
 		"mvllow/modes.nvim",
-    enabled = false,
-    event = "BufReadPost",
+		enabled = false,
+		event = "BufReadPost",
 		tag = "v0.2.1",
 		config = function()
 			require("modes").setup()
@@ -43,8 +43,20 @@ return {
 		"folke/noice.nvim",
 		enabled = false,
 		event = "VeryLazy",
+		dependencies = {
+			{ "MunifTanjim/nui.nvim" },
+			{
+				"rcarriga/nvim-notify",
+				opts = {
+          render = "minimal",
+          stages = "fade_in_slide_out",
+          max_height = 5,
+          max_width = 20,
+        },
+			},
+		},
 		opts = {
-      -- I don't this cmdline
+			-- I don't this cmdline
 			cmdline = {
 				enabled = true,
 				view = "cmdline",
@@ -54,25 +66,15 @@ return {
 					search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
 					filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
 					lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
-					help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
-					input = { view = "cmdline_input", icon = "󰥻 " }, -- Used by input()
+					help = { pattern = "^:%s*he?l?p?%s+", icon = "󰋖" },
 				},
 			},
 			messages = {
 				enabled = true,
-				view = "notify",
-				view_error = "notify",
-				view_warn = "notify",
-				view_history = "messages",
-				view_search = "virtualtext",
 			},
-			popupmenu = {
-				enabled = false,
-			},
+			popupmenu = { enabled = false },
 			commands = {},
-			notify = {
-				enabled = true,
-			},
+			notify = { enabled = true },
 			lsp = {
 				progress = {
 					enabled = false,
@@ -84,9 +86,7 @@ return {
 					["vim.lsp.util.stylize_markdown"] = false,
 					["cmp.entry.get_documentation"] = false,
 				},
-				hover = {
-					enabled = false,
-				},
+				hover = { enabled = false },
 				signature = {
 					enabled = false,
 					auto_open = {
@@ -94,11 +94,6 @@ return {
 						trigger = false,
 						luasnip = false,
 					},
-				},
-				message = {
-					enabled = true,
-					view = "mini",
-					opts = {},
 				},
 				documentation = {
 					view = "hover",
@@ -114,6 +109,10 @@ return {
 			health = {
 				checker = false, -- Disable if you don't want health checks to run
 			},
+			message = {
+				-- Messages shown by lsp servers
+				enabled = false,
+			},
 			presets = {
 				bottom_search = true,
 				command_palette = true,
@@ -126,7 +125,7 @@ return {
 
 	{
 		"NStefan002/screenkey.nvim",
-    enabled = false,
+		enabled = false,
 		event = "VeryLazy",
 		version = "*",
 		opts = {},

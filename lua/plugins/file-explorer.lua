@@ -44,9 +44,7 @@ return {
 					winbar = "%!v:lua.get_oil_winbar()",
 				},
 				preview_win = {
-					win_options = {
-						border = "rounded",
-					},
+					win_options = {},
 				},
 				confirmation = {
 					border = "rounded",

@@ -66,7 +66,7 @@ return {
 					completion = { menu = { auto_show = true } },
 				},
 				appearance = {
-					-- mono or normal
+          ---@type "mono"|"normal"
 					nerd_font_variant = "normal",
 					kind_icons = {
 						Text = "",
@@ -107,11 +107,12 @@ return {
 						scrollbar = false,
 						winblend = 0,
 						border = "rounded",
+            show_documentation = false,
 					},
 				},
 				completion = {
 					ghost_text = {
-						enabled = false,
+						enabled = true,
 					},
 					accept = {
 						auto_brackets = {

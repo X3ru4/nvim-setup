@@ -71,7 +71,7 @@ return {
 	{
 		"nvim-mini/mini.notify",
 		enabled = true,
-		event = "VeryLazy",
+		event = "VimEnter",
 		version = false,
 		keys = {
 			{
@@ -86,13 +86,13 @@ return {
 			content = {
 				format = function(notify)
 					local icons = require("config.icons").vim_log_level
-					return string.format("%s :%s ·%s", icons[notify.level], notify.msg, os.date("%H:%M"))
+					return string.format("%s │%s.", icons[notify.level], notify.msg)
 				end,
-				sort = function(notif_arr)
-					table.sort(notif_arr, function(a, b)
+				sort = function(notify_arr)
+					table.sort(notify_arr, function(a, b)
 						return a.ts_update > b.ts_update
 					end)
-					return notif_arr
+					return notify_arr
 				end,
 			},
 

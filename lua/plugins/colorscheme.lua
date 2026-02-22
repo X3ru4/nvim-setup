@@ -258,8 +258,46 @@ c = {
 		lazy = false,
 		priority = 1000,
 		config = function()
+      require('nightfox').setup({
+        options = {
+          -- Compiled file's destination location
+          compile_path = vim.fn.stdpath("cache") .. "/nightfox",
+          compile_file_suffix = "_compiled", -- Compiled file suffix
+          transparent = false,     -- Disable setting background
+          terminal_colors = true,  -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+          dim_inactive = false,    -- Non focused panes set to alternative background
+          module_default = true,   -- Default enable value for modules
+          colorblind = {
+            enable = false,        -- Enable colorblind support
+            simulate_only = false, -- Only show simulated colorblind colors and not diff shifted
+            severity = {
+              protan = 0,          -- Severity [0,1] for protan (red)
+              deutan = 0,          -- Severity [0,1] for deutan (green)
+              tritan = 0,          -- Severity [0,1] for tritan (blue)
+            },
+          },
+          styles = {               -- Style to be applied to different syntax groups
+            comments = "italic",     -- Value is any valid attr-list value `:help attr-list`
+            conditionals = "NONE",
+            constants = "bold",
+            functions = "bold",
+            keywords = "italic",
+            numbers = "NONE",
+            operators = "NONE",
+            strings = "NONE",
+            types = "italic",
+            variables = "NONE",
+          },
+          inverse = {             -- Inverse highlight for different types
+            match_paren = false,
+            visual = false,
+            search = false,
+          },
+        },
+      })
+
 			vim.g.blinkcmp_border = "none"
-			vim.cmd.colorscheme("nightfox")
+			vim.cmd.colorscheme("duskfox")
 		end,
 	},
 	material = {
@@ -417,11 +455,12 @@ local cs = require("utility.colorscheme")
 
 -- Recomment lever = index
 cs.list = {
-	c.gruvbox_material, -- Recomment!
+  c.nightfox,         -- Recomment!
 	c.catppuccin,       -- Recomment!
-	c.gruvbox,          -- Recomment!
   c.vscode,           -- Recomment!
-	c.vague,            -- Recomment! Like vscode
+  c.vague,            -- Recomment! Like vscode
+	c.gruvbox,          -- Recomment!
+  c.gruvbox_material, -- Recomment!
 	c.kanagawa,         -- Recomment!
   c.kanagawa_paper,   -- Recomment!
   c.based46,          -- Recomment! Like NvChad colorscheme
@@ -429,11 +468,10 @@ cs.list = {
   c.everforest,       -- Recomment!
 	c.cyberdream,       -- Recomment!
 	c.nord,             -- Hmmmmm!
+  c.tokyonight,       -- Hmmmmm!
+  c.onedark,          -- Hmmmmm!
   c.cursor_dark,      -- Hmmmmm!
-	c.tokyonight,       -- Hmmmmm!
-	c.onedark,          -- Hmmmmm!
-	c.nightfox,         -- Hmmmmm!
 }
 
 -- NOTE: Goto ~/.config/nvim/lua/config/lazy.lua line 32
-return cs.install_(c.edge)
+return cs.install_(c.nightfox)

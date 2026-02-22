@@ -1,6 +1,7 @@
 return {
 
 	{
+    -- Disable this plugin may cause some issues.
 		"ibhagwan/fzf-lua",
 		event = "VeryLazy",
 		config = function()
@@ -73,13 +74,13 @@ return {
 					["fg+"] = { "fg", "Normal" },
 					["bg+"] = { "bg", { "CursorLine", "Normal" } },
 					["hl+"] = { "fg", "Statement" },
-					["info"] = { "fg", "PreProc" },
+					["info"] = { "fg", "PreProc", "bold" },
 					["prompt"] = { "fg", "Conditional" },
 					["pointer"] = { "fg", "Exception" },
 					["marker"] = { "fg", "Keyword" },
 					["spinner"] = { "fg", "Label" },
 					["header"] = { "fg", "Comment" },
-					-- ["gutter"] = "-1",
+					["gutter"] = "-1",
 				},
 				colorschemes = {
 					prompt = " ",
@@ -98,6 +99,7 @@ return {
 				},
 				registers = {
 					prompt = " ",
+					winopts = { preview = { hidden = false } },
 				},
 				buffers = {
 					prompt = default_prompt,
@@ -119,7 +121,12 @@ return {
 					winopts = { preview = { hidden = false } },
 				},
 				git = {
-					winopts = { preview = { hidden = false } },
+					diff = {
+						winopts = { preview = { hidden = false } },
+					},
+					hunks = {
+						winopts = { preview = { hidden = false } },
+					},
 				},
 				quickfix = {
 					winopts = { preview = { hidden = false } },
@@ -129,119 +136,37 @@ return {
 					winopts = { preview = { hidden = false } },
 				},
 			})
-		end,
-		keys = function()
-			local fzf = require("fzf-lua")
-			return {
+      local fzf = require("fzf-lua")
+			local keymap = vim.keymap.set
+			local mode = "n"
 
-				-- <leader>c group
+			-- <leader>c group
+			keymap(mode, "<leader>cs", fzf.spell_suggest, { desc = "Spell suggest" })
+			keymap(mode, "<leader>cq", fzf.quickfix, { desc = "Quickfix" })
+			keymap(mode, "<leader>cd", fzf.awesome_colorschemes, { desc = "Download colorschemes" })
+			keymap(mode, "<leader>cc", fzf.colorschemes, { desc = "Change colorscheme" })
+			keymap(mode, "<leader>cgh", fzf.git_hunks, { desc = "Git hunks" })
+			keymap(mode, "<leader>cgd", fzf.git_diff, { desc = "Git diff" })
 
-				{
-					"<leader>cs",
-					fzf.spell_suggest,
-					desc = "Spell suggest",
-				},
-
-				{
-					"<leader>cq",
-					fzf.quickfix,
-					desc = "Quickfix",
-				},
-
-				{
-					"<leader>cd",
-					fzf.awesome_colorschemes,
-					desc = "Download colorschemes",
-				},
-
-				{
-					"<leader>cc",
-					fzf.colorschemes,
-					desc = "Change colorscheme",
-				},
-
-				{
-					"<leader>cgh",
-					fzf.git_hunks,
-					desc = "Git hunks",
-				},
-
-				{
-					"<leader>cgd",
-					fzf.git_diff,
-					desc = "Git diff",
-				},
-
-				-- <leader>f group
-
-				{
-					"<leader>fr",
-					fzf.registers,
-					desc = "Find register",
-				},
-
-				{
-					"<leader>ff",
-					fzf.files,
-					desc = "Find file CWD",
-				},
-
-				{
-					"<leader>fF",
-					function()
-						fzf.files({
-							cwd = vim.fn.expand("%:h"),
-						})
-					end,
-					desc = "Find file",
-				},
-
-				{
-					"<leader>fc",
-					function()
-						fzf.files({
-							cwd = "~/.config/nvim",
-						})
-					end,
-					desc = "Find config files",
-				},
-
-				{
-					"<leader>fb",
-					fzf.buffers,
-					desc = "Find buffers",
-				},
-
-				{
-					"<leader>fh",
-					fzf.highlights,
-					desc = "Find highlights",
-				},
-
-				{
-					"<leader>fd",
-					fzf.diagnostics_document,
-					desc = "Find diagnostics",
-				},
-
-				{
-					"<leader>fo",
-					fzf.oldfiles,
-					desc = "Find old files",
-				},
-
-				{
-					"<leader>ft",
-					fzf.filetypes,
-					desc = "Find filetypes",
-				},
-
-				{
-					"<leader>fg",
-					fzf.live_grep,
-					desc = "Live grep",
-				},
-			}
+			-- <leader>f group
+			keymap(mode, "<leader>fr", fzf.registers, { desc = "Find register" })
+			keymap(mode, "<leader>ff", fzf.files, { desc = "Find file CWD" })
+			keymap(mode, "<leader>fF", function()
+				fzf.files({
+					cwd = vim.fn.expand("%:h"),
+				})
+			end, { desc = "Find file" })
+			keymap(mode, "<leader>fc", function()
+				fzf.files({
+					cwd = "~/.config/nvim",
+				})
+			end, { desc = "Find config files" })
+			keymap(mode, "<leader>fb", fzf.buffers, { desc = "Find buffers" })
+			keymap(mode, "<leader>fh", fzf.highlights, { desc = "Find highlights" })
+			keymap(mode, "<leader>fd", fzf.diagnostics_document, { desc = "Find diagnostics" })
+			keymap(mode, "<leader>fo", fzf.oldfiles, { desc = "Find old files" })
+			keymap(mode, "<leader>ft", fzf.filetypes, { desc = "Find filetypes" })
+			keymap(mode, "<leader>fg", fzf.live_grep, { desc = "Live grep" })
 		end,
 	},
 }
