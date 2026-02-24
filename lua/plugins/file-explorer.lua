@@ -4,12 +4,46 @@ return {
 		"stevearc/oil.nvim",
 		enabled = true,
 		cmd = "Oil",
+		-- Extensions
 		dependencies = {
 			{
-				enabled = false,
-				"benomahony/oil-git.nvim",
+				enabled = true,
+				"malewicz1337/oil-git.nvim",
 				config = function()
-					require("oil-git").setup()
+					require("oil-git").setup({
+						symbols = {
+							file = {
+								added = "+",
+								modified = "~",
+								renamed = "->",
+								deleted = "D",
+								copied = "C",
+								conflict = "!",
+								untracked = "?",
+								ignored = "o",
+							},
+							directory = {
+								added = "*",
+								modified = "*",
+								renamed = "*",
+								deleted = "*",
+								copied = "*",
+								conflict = "!",
+								untracked = "*",
+								ignored = "o",
+							},
+						},
+						highlights = {
+							OilGitAdded = { link = "Green" },
+							OilGitModified = { link = "Yellow" },
+							OilGitRenamed = { link = "Yellow" },
+							OilGitDeleted = { link = "Red" },
+							OilGitCopied = { link = "Orange" },
+							OilGitConflict = { link = "Purple" },
+							OilGitUntracked = { link = "Blue" },
+							OilGitIgnored = { link = "Cyan" },
+						},
+					})
 				end,
 			},
 			{
@@ -17,10 +51,10 @@ return {
 				"JezerM/oil-lsp-diagnostics.nvim",
 				opts = {
 					diagnostic_symbols = {
-						error = require("config.icons").diagnostic.errr,
-						warn = require("config.icons").diagnostic.warn,
-						info = require("config.icons").diagnostic.info,
-						hint = require("config.icons").diagnostic.hint,
+						error = require("config.icons").diagnostic.Error,
+						warn = require("config.icons").diagnostic.Warn,
+						info = require("config.icons").diagnostic.Info,
+						hint = require("config.icons").diagnostic.Hint,
 					},
 				},
 			},
@@ -85,7 +119,7 @@ return {
 					["q"] = { "actions.close", mode = "n" },
 					["gs"] = {
 						function()
-							vim.ui.input({ prompt = "Search  ", }, function(input)
+							vim.ui.input({ prompt = "Search  " }, function(input)
 								if input then
 									vim.cmd("Oil " .. input)
 								end
@@ -105,7 +139,7 @@ return {
 		keys = {
 			{ "<leader>e", "<cmd>Oil<cr>", desc = "Open oil" },
 			{ "<leader>E", "<cmd>Oil .<cr>", desc = "Open oil home" },
-      { "gf" },
+			{ "gf" },
 		},
 	},
 
