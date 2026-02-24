@@ -162,7 +162,7 @@ return {
 				snippets = {
 					preset = "luasnip",
 				},
-				sources = require("utility.lazy").is_loaded("lazydev.nvim") and {
+				sources = require("utility.lazy").plugin_loaded("lazydev.nvim") and {
 					default = { "lazydev", "lsp", "path", "snippets", "buffer" },
 					providers = {
 						lazydev = {

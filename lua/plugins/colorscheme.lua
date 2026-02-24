@@ -128,7 +128,7 @@ c = {
 			vim.g.edge_diagnostic_virtual_text = "colored"
 			vim.g.edge_better_performance = 1
 			-- Available values "none"|"dimmed"
-			vim.g.edge_inlay_hints_background = "dimmed"
+			vim.g.edge_inlay_hints_background = "none"
 			vim.cmd.colorscheme("edge")
 		end,
 	},
@@ -154,7 +154,7 @@ c = {
 			vim.g.everforest_diagnostic_virtual_text = "highlighted"
 			vim.g.everforest_better_performance = 1
 			-- Available values "none"|"dimmed"
-			vim.g.everforest_inlay_hints_background = "dimmed"
+			vim.g.everforest_inlay_hints_background = "none"
 			vim.cmd.colorscheme("everforest")
 		end,
 	},
@@ -164,7 +164,7 @@ c = {
     event = "VimEnter",
 		priority = 1000,
 		config = function()
-			vim.g.blinkcmp_border = "none"
+			vim.g.blinkcmp_border = "rounded"
 			vim.g.gruvbox_material_transparent_background = 0
 			vim.g.gruvbox_material_enable_bold = 1
 			vim.g.gruvbox_material_enable_italic = 1
@@ -184,7 +184,7 @@ c = {
 			vim.g.gruvbox_material_diagnostic_virtual_text = "highlighted"
 			vim.g.gruvbox_material_better_performance = 1
 			-- Available values "none"|"dimmed"
-			vim.g.gruvbox_material_inlay_hints_background = "dimmed"
+			vim.g.gruvbox_material_inlay_hints_background = "none"
 
 			vim.cmd.colorscheme("gruvbox-material")
 		end,
@@ -473,5 +473,5 @@ cs.list = {
   c.cursor_dark,      -- Hmmmmm!
 }
 
--- NOTE: Goto ~/.config/nvim/lua/config/lazy.lua line 32
-return cs.install_(c.nightfox)
+-- NOTE: Goto ~/.config/nvim/lua/config/lazy.lua to more infos
+return cs.install_(c.vague)

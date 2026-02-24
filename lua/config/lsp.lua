@@ -40,9 +40,27 @@ local servers = {
 			},
 		},
 	},
+
+	rust_analyzer = {
+		settings = {
+			["rust-analyzer"] = {
+				-- Set cargo features to automatically enable all features for completion
+				cargo = {
+					allFeatures = true,
+					-- You can also specify a specific command for check on save, e.g.,
+					-- command = "clippy", (instead of the default 'check')
+				},
+				-- Inlay hints are very useful for Rust
+				inlayHints = {
+					enable = true,
+					-- Further options for hints can be found in the rust-analyzer docs
+				},
+			},
+		},
+	},
 }
 
-vim.lsp.inlay_hint.enable(false) -- Disable inlay_hint
+vim.lsp.inlay_hint.enable(false)
 vim.lsp.config("*", {})
 for name, config in pairs(servers) do
 	-- Skip define lsp if config is false

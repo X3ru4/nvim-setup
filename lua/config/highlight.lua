@@ -2,6 +2,7 @@ local M = {}
 
 M.setup = function()
 	local hl = require("utility.highlight")
+	local lazy = require("utility.lazy")
 
 	hl.highlights = {
 		-- Custom
@@ -265,6 +266,10 @@ M.setup = function()
 				link = "Keyword",
 			},
 
+			Cursor = {
+				bg = hl.get("blue").fg,
+			},
+
 			-- BlinkPair
 			BlinkPairsUnmatched = {
 				fg = hl.get("red").fg,
@@ -395,7 +400,12 @@ M.setup = function()
 			link = "Orange",
 		},
 		fn = function()
-			local palette = require("kanagawa.colors").setup().palette
+			local palette = {}
+			if lazy.plugin_loaded("kanagawa") then
+				palette = require("kanagawa.colors").setup().palette
+			else
+				palette = require("kanagawa-paper.colors").setup().palette
+			end
 
 			hl.set("Red", { fg = palette.peachRed }, false)
 			hl.set("Orange", { fg = palette.roninYellow }, false)
@@ -419,7 +429,7 @@ M.setup = function()
 
 	hl.set_match("gruvbox", {
 		Cursor = {
-			bg = hl.get("Normal").fg,
+			bg = hl.get("Orange").fg,
 		},
 		SignColumn = {
 			link = "Normal",

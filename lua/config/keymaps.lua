@@ -10,7 +10,7 @@ keymap("n", "K", "<Nop>")
 keymap("i", "<C-a>", "<C-o>I")
 
 -- Not use this keymap if use cinnamon.nvim
-if not lazy.is_loaded("cinnamon.nvim") then
+if not lazy.plugin_loaded("cinnamon.nvim") then
 	keymap({ "n", "x" }, "zh", "zH", { desc = 'Horizontal scroll like "zH"' })
 	keymap({ "n", "x" }, "zl", "zL", { desc = 'Horizontal scroll like "zL"' })
 end
@@ -117,7 +117,7 @@ function M.lsp(bufnr)
 	end, { desc = "Toggle inlay hint", buffer = bufnr })
 
 	-- If not use the fzf-lua swith to use the default
-	if not lazy.is_loaded("fzf-lua") then
+	if not lazy.plugin_loaded("fzf-lua") then
 		keymap("n", "grd", vim.lsp.buf.definition, { desc = "Definition", buffer = bufnr })
 		keymap("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation", buffer = bufnr })
 		keymap("n", "grr", vim.lsp.buf.references, { desc = "References", buffer = bufnr })
