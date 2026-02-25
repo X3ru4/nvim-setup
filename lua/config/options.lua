@@ -5,7 +5,7 @@ function _G.newfoldtext()
 end
 
 vim.g.statusline_style = {
-	style = nil, -- You can set with "minimal" or "normal"
+	style = "minimal1", -- You can set with "minimal[x]" or "normal[x]"
 	diagnostic = true,
 	coordinate = true,
 	file_name = false,

@@ -82,7 +82,7 @@ c = {
 	edge = {
 		"sainnhe/edge",
 		name = "edge",
-    event = "VimEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "none"
@@ -107,7 +107,7 @@ c = {
 	everforest = {
 		"sainnhe/everforest",
 		name = "everforest",
-    event = "VimEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "none"
@@ -133,7 +133,7 @@ c = {
 	gruvbox_material = {
 		"sainnhe/gruvbox-material",
 		name = "gruvbox-material",
-    event = "VimEnter",
+		event = "VimEnter",
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "rounded"
@@ -230,43 +230,43 @@ c = {
 		lazy = false,
 		priority = 1000,
 		config = function()
-      require('nightfox').setup({
-        options = {
-          -- Compiled file's destination location
-          compile_path = vim.fn.stdpath("cache") .. "/nightfox",
-          compile_file_suffix = "_compiled", -- Compiled file suffix
-          transparent = false,     -- Disable setting background
-          terminal_colors = true,  -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
-          dim_inactive = false,    -- Non focused panes set to alternative background
-          module_default = true,   -- Default enable value for modules
-          colorblind = {
-            enable = false,        -- Enable colorblind support
-            simulate_only = false, -- Only show simulated colorblind colors and not diff shifted
-            severity = {
-              protan = 0,          -- Severity [0,1] for protan (red)
-              deutan = 0,          -- Severity [0,1] for deutan (green)
-              tritan = 0,          -- Severity [0,1] for tritan (blue)
-            },
-          },
-          styles = {               -- Style to be applied to different syntax groups
-            comments = "italic",     -- Value is any valid attr-list value `:help attr-list`
-            conditionals = "NONE",
-            constants = "bold",
-            functions = "bold",
-            keywords = "italic",
-            numbers = "NONE",
-            operators = "NONE",
-            strings = "NONE",
-            types = "italic",
-            variables = "NONE",
-          },
-          inverse = {             -- Inverse highlight for different types
-            match_paren = false,
-            visual = false,
-            search = false,
-          },
-        },
-      })
+			require("nightfox").setup({
+				options = {
+					-- Compiled file's destination location
+					compile_path = vim.fn.stdpath("cache") .. "/nightfox",
+					compile_file_suffix = "_compiled", -- Compiled file suffix
+					transparent = false, -- Disable setting background
+					terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+					dim_inactive = false, -- Non focused panes set to alternative background
+					module_default = true, -- Default enable value for modules
+					colorblind = {
+						enable = false, -- Enable colorblind support
+						simulate_only = false, -- Only show simulated colorblind colors and not diff shifted
+						severity = {
+							protan = 0, -- Severity [0,1] for protan (red)
+							deutan = 0, -- Severity [0,1] for deutan (green)
+							tritan = 0, -- Severity [0,1] for tritan (blue)
+						},
+					},
+					styles = { -- Style to be applied to different syntax groups
+						comments = "italic", -- Value is any valid attr-list value `:help attr-list`
+						conditionals = "NONE",
+						constants = "bold",
+						functions = "bold",
+						keywords = "italic",
+						numbers = "NONE",
+						operators = "NONE",
+						strings = "NONE",
+						types = "italic",
+						variables = "NONE",
+					},
+					inverse = { -- Inverse highlight for different types
+						match_paren = false,
+						visual = false,
+						search = false,
+					},
+				},
+			})
 
 			vim.g.blinkcmp_border = "none"
 			vim.cmd.colorscheme("duskfox")
@@ -320,19 +320,18 @@ c = {
 
 			-- Press gf to go the folder
 			-- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
-			local theme = "doomchad"
-      vim.g.blinkcmp_border = "rounded"
+			local theme = "onedark"
 			local color_base = "base46"
-
 			local theme_opts = {
 				base = color_base,
 				theme = theme,
 				transparency = false, -- Unrecomment at now
 			}
-
 			local palette = base46.get_colors(color_base, theme)
-			vim.g.colors_name = "base46"
+
 			vim.g.base46_palette = palette
+      vim.g.blinkcmp_border = "rounded"
+			vim.g.colors_name = "base46"
 
 			base46.load_theme(theme_opts)
 		end,
@@ -405,21 +404,21 @@ c = {
 			vim.cmd("colorscheme vague")
 		end,
 	},
-  cursor_dark = {
-    "ydkulks/cursor-dark.nvim",
-    name = "cursor-dark",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- vim.cmd.colorscheme("cursor-dark-midnight")
-      require("cursor-dark").setup({
-        -- For theme
-        style = "dark-midnight",
-        -- For a transparent background
-        transparent = false,
-      })
-    end,
-  },
+	cursor_dark = {
+		"ydkulks/cursor-dark.nvim",
+		name = "cursor-dark",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			-- vim.cmd.colorscheme("cursor-dark-midnight")
+			require("cursor-dark").setup({
+				-- For theme
+				style = "dark-midnight",
+				-- For a transparent background
+				transparent = false,
+			})
+		end,
+	},
 }
 
 -- Super clean =))
@@ -427,22 +426,22 @@ local cs = require("utility.colorscheme")
 
 -- Recomment lever = index
 cs.list = {
-  c.nightfox,         -- Recomment!
-	c.catppuccin,       -- Recomment!
-  c.vscode,           -- Recomment!
-  c.vague,            -- Recomment! Like vscode
-	c.gruvbox,          -- Recomment!
-  c.gruvbox_material, -- Recomment!
-	c.kanagawa,         -- Recomment!
-  c.kanagawa_paper,   -- Recomment!
-  c.base46,          -- Recomment! Like NvChad colorscheme
-  c.edge,             -- Recomment! Better than onedark
-  c.everforest,       -- Recomment!
-	c.cyberdream,       -- Recomment!
-	c.nord,             -- Hmmmmm!
-  c.tokyonight,       -- Hmmmmm!
-  c.onedark,          -- Hmmmmm!
-  c.cursor_dark,      -- Hmmmmm!
+	c.nightfox, -- Recomment!
+	c.catppuccin, -- Recomment!
+	c.vscode, -- Recomment!
+	c.vague, -- Recomment! Like vscode
+	c.gruvbox, -- Recomment!
+	c.gruvbox_material, -- Recomment!
+	c.kanagawa, -- Recomment!
+	c.kanagawa_paper, -- Recomment!
+	c.base46, -- Recomment! Like NvChad colorscheme
+	c.edge, -- Recomment! Better than onedark
+	c.everforest, -- Recomment!
+	c.cyberdream, -- Recomment!
+	c.nord, -- Hmmmmm!
+	c.tokyonight, -- Hmmmmm!
+	c.onedark, -- Hmmmmm!
+	c.cursor_dark, -- Hmmmmm!
 }
 
 -- NOTE: Goto ~/.config/nvim/lua/config/lazy.lua to more infos
