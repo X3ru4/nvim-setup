@@ -2,6 +2,7 @@ local M = {}
 local hl_api = require("utility.highlight")
 
 M.separator_data = {}
+M._fmt_cache = {}
 
 ---GamenhuCak
 ---@param hl_name string

@@ -8,6 +8,7 @@ return {
 		dependencies = {
 			{
 				"MeanderingProgrammer/treesitter-modules.nvim",
+        enabled = true,
 				---@module 'treesitter-modules'
 				---@type ts.mod.UserConfig
 				opts = {

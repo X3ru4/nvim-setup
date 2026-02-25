@@ -312,28 +312,14 @@ c = {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			-- exit if it can't be found
-			local present, base46 = pcall(require, "base46")
-			if not present then
-				return
-			end
-
 			-- Press gf to go the folder
 			-- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
-			local theme = "onedark"
-			local color_base = "base46"
-			local theme_opts = {
-				base = color_base,
-				theme = theme,
-				transparency = false, -- Unrecomment at now
-			}
-			local palette = base46.get_colors(color_base, theme)
-
-			vim.g.base46_palette = palette
-      vim.g.blinkcmp_border = "rounded"
-			vim.g.colors_name = "base46"
-
-			base46.load_theme(theme_opts)
+			require("config.base46").load({
+				theme = "onedark",
+        --FIXME:Got bug when transparency is true
+				transparency = false,
+			})
+			vim.g.blinkcmp_border = "rounded"
 		end,
 	},
 	vague = {
@@ -426,22 +412,22 @@ local cs = require("utility.colorscheme")
 
 -- Recomment lever = index
 cs.list = {
-	c.nightfox, -- Recomment!
-	c.catppuccin, -- Recomment!
-	c.vscode, -- Recomment!
-	c.vague, -- Recomment! Like vscode
-	c.gruvbox, -- Recomment!
+	c.nightfox,         -- Recomment!
+	c.catppuccin,       -- Recomment!
+	c.vscode,           -- Recomment!
+	c.vague,            -- Recomment! Like vscode
+	c.gruvbox,          -- Recomment!
 	c.gruvbox_material, -- Recomment!
-	c.kanagawa, -- Recomment!
-	c.kanagawa_paper, -- Recomment!
-	c.base46, -- Recomment! Like NvChad colorscheme
-	c.edge, -- Recomment! Better than onedark
-	c.everforest, -- Recomment!
-	c.cyberdream, -- Recomment!
-	c.nord, -- Hmmmmm!
-	c.tokyonight, -- Hmmmmm!
-	c.onedark, -- Hmmmmm!
-	c.cursor_dark, -- Hmmmmm!
+	c.kanagawa,         -- Recomment!
+	c.kanagawa_paper,   -- Recomment!
+	c.base46,           -- Recomment! Like NvChad colorscheme
+	c.edge,             -- Recomment! Better than onedark
+	c.everforest,       -- Recomment!
+	c.cyberdream,       -- Recomment!
+	c.nord,             -- Hmmmmm!
+	c.tokyonight,       -- Hmmmmm!
+	c.onedark,          -- Hmmmmm!
+	c.cursor_dark,      -- Hmmmmm!
 }
 
 -- NOTE: Goto ~/.config/nvim/lua/config/lazy.lua to more infos

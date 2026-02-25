@@ -596,11 +596,11 @@ M.setup = function()
 	end)
 
 	hl.set_match("base46", function()
+    if vim.g.base46_palette == nil then
+      return
+    end
 		local palette = vim.g.base46_palette
-		if palette == nil then
-			return {}
-		end
-		local vmode_fg = palette.black
+		local dark_fg = palette.black
 		local normal_bg = hl.dec_to_hex(hl.get("Normal").bg)
 
 		-- Syntax
@@ -742,27 +742,27 @@ M.setup = function()
 
 			-- Vim mode
 			ModeOther = {
-				fg = vmode_fg,
+				fg = dark_fg,
 				bg = palette.red,
 			},
 			ModeNormal = {
-				fg = vmode_fg,
+				fg = dark_fg,
 				bg = palette.nord_blue,
 			},
 			ModeInsert = {
-				fg = vmode_fg,
+				fg = dark_fg,
 				bg = palette.vibrant_green,
 			},
 			ModeVisual = {
-				fg = vmode_fg,
+				fg = dark_fg,
 				bg = palette.dark_purple,
 			},
 			ModeReplace = {
-				fg = vmode_fg,
+				fg = dark_fg,
 				bg = palette.red,
 			},
 			ModeCommand = {
-				fg = vmode_fg,
+				fg = dark_fg,
 				bg = palette.sun,
 			},
 		}

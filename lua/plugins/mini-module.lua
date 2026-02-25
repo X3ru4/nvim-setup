@@ -132,6 +132,9 @@ return {
 				todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
 				note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
 
+				author = { pattern = "%f[%w]()X3ru4()%f[%W]", group = "MiniHipatternsHack" },
+				bug = { pattern = "%f[%w]()BUG()%f[%W]", group = "MiniHipatternsFixme" },
+
 				-- Highlight hex color strings (`#rrggbb`) using that color
 			},
 		},
