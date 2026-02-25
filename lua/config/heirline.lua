@@ -51,12 +51,12 @@ local mode = {
 	provider = function(self)
 		-- Classic sep: "" | "" | "" | "" | ""
 		-- Special sep: "" | "" | ""
-		local sep = ""
+		local sep = ""
 		hl.set("ModeSep2", {
-			fg = hl.get("Visual").bg,
+			fg = hl.get("Dark3").fg,
 		})
 		hl.set("ModeSep1", {
-			fg = hl.get("PmenuThumb").bg,
+			fg = hl.get("Dark4").fg,
 			bg = hl.get("ModeSep2").fg,
 		})
 

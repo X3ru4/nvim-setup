@@ -89,7 +89,7 @@ keymap("n", "<leader>gf", "<cmd>e!<cr>", { desc = "Re-open" })
 -- <leader>c
 keymap("n", "<leader>cb", function()
 	vim.o.background = vim.o.background == "dark" and "light" or "dark"
-end, { desc = "Toggle background" })
+end, { desc = "Toggle background" }) -- Can not working on some themes
 keymap("n", "<leader>cw", function()
 	if not vim.o.wrap then
 		vim.opt.wrap = true

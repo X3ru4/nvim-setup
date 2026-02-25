@@ -5,6 +5,20 @@ M.setup = function()
 	local lazy = require("utility.lazy")
 
 	hl.highlights = {
+		-- Dark colors
+		Dark1 = {
+			fg = hl.get("Pmenu").bg,
+		},
+		Dark2 = {
+			fg = hl.get("Normal").bg,
+		},
+		Dark3 = {
+			fg = hl.get("Visual").bg,
+		},
+		Dark4 = {
+			fg = hl.get("PmenuThumb").bg,
+		},
+
 		-- Custom
 		ModeOther = {
 			link = "MiniStatuslineModeOther",
@@ -604,51 +618,37 @@ M.setup = function()
 		})
 
 		return {
-			-- Colors
-			Red = {
-				fg = palette.base08,
-			},
-			Orange = {
-				fg = palette.base09,
-			},
-			Yellow = {
-				fg = palette.base0A,
-			},
-			Green = {
-				fg = palette.base0B,
-			},
-			Lime = {
-				fg = palette.base0C,
-			},
-			Blue = {
-				fg = palette.blue,
-			},
-			Cyan = {
-				fg = palette.base0D,
-			},
-			Violet = {
-				fg = palette.base0E,
-			},
-			Gold = {
-				fg = palette.base0F,
-			},
+			-- Basic Colors
+			Red = { fg = palette.base08, },
+			Orange = { fg = palette.base09, },
+			Yellow = { fg = palette.base0A, },
+			Green = { fg = palette.base0B, },
+			Aqua = { fg = palette.base0C, },
+			Blue = { fg = palette.base0D, },
+			Purple = { fg = palette.base0E, },
+			Gold = { fg = palette.sun, },
+			Dark1 = { fg = palette.base00, },
+			Dark2 = { fg = palette.base01, },
+			Dark3 = { fg = palette.base02, },
+			Dark4 = { fg = palette.base03, },
+
+			hl.modify("MatchWord", { fg = "none" }),
+			MatchWordCur = { link = "MatchWord" },
+
+			-- Mini.icons
+			MiniIconsPurple = { link = "Purple" },
+			MiniIconsGreen = { link = "Green" },
+			MiniIconsBlue = { link = "Aqua" },
+			MiniIconsAzure = { link = "Blue" },
 
 			-- Diagnostic
-			DiagnosticWarn = {
-				fg = palette.base0F,
-			},
-			DiagnosticInfo = {
-				fg = palette.cyan,
-			},
-			DiagnosticHint = {
-				fg = palette.purple,
-			},
-			DiagnosticError = {
-				fg = palette.red,
-			},
+			DiagnosticWarn = { fg = palette.base0A },
+			DiagnosticInfo = { fg = palette.cyan },
+			DiagnosticHint = { fg = palette.purple },
+			DiagnosticError = { fg = palette.red },
 			DiagnosticVirtualTextWarn = {
-				fg = palette.base0F,
-				bg = hl.blend(palette.base0F, normal_bg, 0.2),
+				fg = palette.base0A,
+				bg = hl.blend(palette.base0A, normal_bg, 0.2),
 			},
 			DiagnosticVirtualTextInfo = {
 				fg = palette.cyan,
@@ -662,46 +662,21 @@ M.setup = function()
 				fg = palette.red,
 				bg = hl.blend(palette.red, normal_bg, 0.2),
 			},
-			DiagnosticVirtualLineWarn = {
-				link = "DiagnosticVirtualTextWarn",
-			},
-			DiagnosticVirtualLineInfo = {
-				link = "DiagnosticVirtualTextInfo",
-			},
-			DiagnosticVirtualLineHint = {
-				link = "DiagnosticVirtualTextHint",
-			},
-			DiagnosticVirtualLineError = {
-				link = "DiagnosticVirtualTextError",
-			},
+			DiagnosticVirtualLineWarn = { link = "DiagnosticVirtualTextWarn" },
+			DiagnosticVirtualLineInfo = { link = "DiagnosticVirtualTextInfo" },
+			DiagnosticVirtualLineHint = { link = "DiagnosticVirtualTextHint" },
+			DiagnosticVirtualLineError = { link = "DiagnosticVirtualTextError" },
 
 			-- Diff
-			Added = {
-				link = "Green",
-			},
-			Changed = {
-				link = "Yellow",
-			},
-			Removed = {
-				link = "Red",
-			},
+			Added = { link = "Green", },
+			Changed = { link = "Yellow", },
+			Removed = { link = "Red", },
 
-			WarningMsg = {
-				link = "Gold",
-			},
-			FileInfoMod = {
-				link = "Gold",
-			},
+			WarningMsg = { link = "Gold", },
 
-			StatusLineNC = {
-				fg = palette.grey_fg,
-			},
-			StatusLine = {
-				bg = palette.black2,
-			},
-			WinBarNc = {
-				bg = palette.one_bg,
-			},
+			StatusLineNC = { fg = palette.grey_fg, },
+			StatusLine = { bg = palette.black2, },
+			WinBarNc = { bg = palette.one_bg, },
 
 			-- BlinkPair
 			BlinkPairsUnmatched = {
@@ -709,55 +684,78 @@ M.setup = function()
 				reverse = true,
 				bold = true,
 			},
-			BlinkPairsBlue = {
-				link = "Blue",
-			},
-			BlinkPairsOrange = {
-				link = "Orange",
-			},
-			BlinkPairsPurple = {
-				link = "Violet",
-			},
+			BlinkPairsBlue = { link = "Blue", },
+			BlinkPairsOrange = { link = "Orange", },
+			BlinkPairsPurple = { link = "Purple", },
 
 			-- BlinkIndent
-			BlinkIndentRed = {
-				link = "Red",
-			},
-			BlinkIndentCyan = {
-				link = "Cyan",
-			},
-			BlinkIndentBlue = {
-				link = "Blue",
-			},
-			BlinkIndentGreen = {
-				link = "Green",
-			},
-			BlinkIndentYellow = {
-				link = "Yellow",
-			},
-			BlinkIndentViolet = {
-				link = "Violet",
-			},
-			BlinkIndentOrange = {
-				link = "Orange",
-			},
+			BlinkIndentRed = { link = "Red", },
+			BlinkIndentCyan = { link = "Cyan", },
+			BlinkIndentBlue = { link = "Blue", },
+			BlinkIndentGreen = { link = "Green", },
+			BlinkIndentYellow = { link = "Yellow", },
+			BlinkIndentViolet = { link = "Purple", },
+			BlinkIndentOrange = { link = "Orange", },
+
+			-- BlinkCmo
+			BlinkCmpMenu = { link = "Normal" },
+			BlinkCmpMenuBorder = { link = "NonText" },
+			BlinkCmpLabelDescription = { fg = palette.grey },
+			BlinkCmpLabelDetail = { fg = palette.grey },
+			BlinkCmpLabelDeprecated = { fg = palette.grey },
+			BlinkCmpLabel = { fg = palette.white },
+			BlinkCmpLabelMatch = { fg = palette.blue, bold = true },
+
+			BlinkCmpKindField = { link = "@field" },
+			BlinkCmpKindProperty = { link = "@property" },
+			BlinkCmpKindEvent = { link = "@type" },
+
+			BlinkCmpKindText = { fg = palette.green },
+			BlinkCmpKindEnum = { fg = palette.green },
+			BlinkCmpKindKeyword = { fg = palette.green },
+
+			BlinkCmpKindConstant = { fg = palette.orange },
+			BlinkCmpKindConstructor = { fg = palette.orange },
+			BlinkCmpKindReference = { fg = palette.orange },
+
+			BlinkCmpKindFunction = { fg = palette.purple },
+			BlinkCmpKindStruct = { fg = palette.purple },
+			BlinkCmpKindClass = { fg = palette.purple },
+			BlinkCmpKindModule = { fg = palette.purple },
+			BlinkCmpKindOperator = { fg = palette.purple },
+
+			BlinkCmpKindFile = { fg = palette.pink },
+
+			BlinkCmpKindUnit = { fg = palette.baby_pink },
+			BlinkCmpKindSnippet = { fg = palette.baby_pink },
+
+			BlinkCmpKindFolder = { fg = palette.blue },
+			BlinkCmpKindVariable = { fg = palette.blue },
+			BlinkCmpKindMethod = { fg = palette.blue },
+			BlinkCmpKindValue = { fg = palette.blue },
+			BlinkCmpKindEnumMember = { fg = palette.blue },
+
+			BlinkCmpKindInterface = { fg = palette.cyan },
+			BlinkCmpKindColor = { fg = palette.cyan },
+			BlinkCmpKindTypeParameter = { fg = palette.cyan },
+			-- * --
 
 			-- Vim mode
 			ModeOther = {
 				fg = vmode_fg,
-				bg = palette.purple,
+				bg = palette.red,
 			},
 			ModeNormal = {
 				fg = vmode_fg,
-				bg = palette.blue,
+				bg = palette.nord_blue,
 			},
 			ModeInsert = {
 				fg = vmode_fg,
-				bg = palette.green,
+				bg = palette.vibrant_green,
 			},
 			ModeVisual = {
 				fg = vmode_fg,
-				bg = palette.baby_pink,
+				bg = palette.dark_purple,
 			},
 			ModeReplace = {
 				fg = vmode_fg,
@@ -765,7 +763,7 @@ M.setup = function()
 			},
 			ModeCommand = {
 				fg = vmode_fg,
-				bg = palette.orange,
+				bg = palette.sun,
 			},
 		}
 	end)
@@ -887,6 +885,36 @@ M.setup = function()
 				link = "Normal",
 			},
 		}
+	end)
+
+	hl.set_match("tokyonight!", function()
+		local colors = require("tokyonight.colors").setup()
+		local fg = colors.black
+
+		hl.set("MiniStatuslineModeNormal", {
+			fg = fg,
+			bg = colors.blue,
+		})
+		hl.set("MiniStatuslineModeInsert", {
+			fg = fg,
+			bg = colors.green,
+		})
+		hl.set("MiniStatuslineModeVisual", {
+			fg = fg,
+			bg = colors.purple,
+		})
+		hl.set("MiniStatuslineModeCommand", {
+			fg = fg,
+			bg = colors.orange,
+		})
+		hl.set("MiniStatuslineModeOther", {
+			fg = fg,
+			bg = colors.green1,
+		})
+		hl.set("MiniStatuslineModeReplace", {
+			fg = fg,
+			bg = colors.orange,
+		})
 	end)
 
 	hl.apply()

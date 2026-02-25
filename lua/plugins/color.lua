@@ -2,9 +2,9 @@ return {
 
 	{
 		"catgoose/nvim-colorizer.lua",
-		event = "BufReadPost",
+    cmd = "ColorizerToggle",
     keys = {
-      { "<leader>cC", "<cmd>ColorizerToggle<cr>" }
+      { "<leader>cC", "<cmd>ColorizerToggle<cr>" , desc = "ColorizerToggle"}
     },
 		opts = {
 			filetypes = { "*" }, -- Filetype options.  Accepts table like `user_default_options`
@@ -15,9 +15,9 @@ return {
 			user_default_options = {
 				names = true, -- "Name" codes like Blue or red.  Added from `vim.api.nvim_get_color_map()`
 				names_opts = { -- options for mutating/filtering names.
-					lowercase = true, -- name:lower(), highlight `blue` and `red`
-					camelcase = true, -- name, highlight `Blue` and `Red`
-					uppercase = true, -- name:upper(), highlight `BLUE` and `RED`
+					lowercase = false, -- name:lower(), highlight `blue` and `red`
+					camelcase = false, -- name, highlight `Blue` and `Red`
+					uppercase = false, -- name:upper(), highlight `BLUE` and `RED`
 					strip_digits = false, -- ignore names with digits,
 					-- highlight `blue` and `red`, but not `blue3` and `red4`
 				},
@@ -44,7 +44,7 @@ return {
 				sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
 				xterm = false, -- Enable xterm 256-color codes (#xNN, \e[38;5;NNNm)
 				-- Highlighting mode.  'background'|'foreground'|'virtualtext'
-				mode = "background", -- Set the display mode
+				mode = "virtualtext", -- Set the display mode
 				-- Virtualtext character to use
 				virtualtext = " ",
 				-- Display virtualtext inline with color.  boolean|'before'|'after'.  True sets to 'after'

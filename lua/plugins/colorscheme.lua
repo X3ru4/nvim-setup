@@ -11,34 +11,6 @@ c = {
 			require("tokyonight").load({
 				style = "moon",
 			})
-
-			local colors = require("tokyonight.colors").setup()
-			local fg = colors.black
-
-			hl.set("MiniStatuslineModeNormal", {
-				fg = fg,
-				bg = colors.blue,
-			})
-			hl.set("MiniStatuslineModeInsert", {
-				fg = fg,
-				bg = colors.green,
-			})
-			hl.set("MiniStatuslineModeVisual", {
-				fg = fg,
-				bg = colors.purple,
-			})
-			hl.set("MiniStatuslineModeCommand", {
-				fg = fg,
-				bg = colors.orange,
-			})
-			hl.set("MiniStatuslineModeOther", {
-				fg = fg,
-				bg = colors.green1,
-			})
-			hl.set("MiniStatuslineModeReplace", {
-				fg = fg,
-				bg = colors.orange,
-			})
 		end,
 	},
 	onedark = {
@@ -171,7 +143,7 @@ c = {
 			-- Available values 'grey background'|"green background"|"blue background"|"red background"|"reverse"
 			vim.g.gruvbox_material_visual = "green background"
 			-- Available values "material"|"mix"|"original"
-			vim.g.gruvbox_material_foreground = "material"
+			vim.g.gruvbox_material_foreground = "mix"
 			-- Available values "hard"|"medium"|"soft"
 			vim.g.gruvbox_material_background = "medium"
 			vim.g.gruvbox_material_ui_contrast = "high" -- "low"|"high"
@@ -334,7 +306,7 @@ c = {
 			require("vscode").load("dark")
 		end,
 	},
-	based46 = {
+	base46 = {
 		"jayden-chan/base46.nvim",
 		name = "base46",
 		lazy = false,
@@ -348,7 +320,8 @@ c = {
 
 			-- Press gf to go the folder
 			-- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
-			local theme = "gruvchad"
+			local theme = "doomchad"
+      vim.g.blinkcmp_border = "rounded"
 			local color_base = "base46"
 
 			local theme_opts = {
@@ -360,7 +333,6 @@ c = {
 			local palette = base46.get_colors(color_base, theme)
 			vim.g.colors_name = "base46"
 			vim.g.base46_palette = palette
-      vim.g.blinkcmp_border = "none"
 
 			base46.load_theme(theme_opts)
 		end,
@@ -463,7 +435,7 @@ cs.list = {
   c.gruvbox_material, -- Recomment!
 	c.kanagawa,         -- Recomment!
   c.kanagawa_paper,   -- Recomment!
-  c.based46,          -- Recomment! Like NvChad colorscheme
+  c.base46,          -- Recomment! Like NvChad colorscheme
   c.edge,             -- Recomment! Better than onedark
   c.everforest,       -- Recomment!
 	c.cyberdream,       -- Recomment!
@@ -474,4 +446,4 @@ cs.list = {
 }
 
 -- NOTE: Goto ~/.config/nvim/lua/config/lazy.lua to more infos
-return cs.install_(c.vague)
+return cs.install_(c.base46)

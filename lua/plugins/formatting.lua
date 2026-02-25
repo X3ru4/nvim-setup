@@ -12,6 +12,7 @@ return {
 				h = { "clang-format" },
 				json = { "clang-format" },
 				python = { "ruff" },
+        rust = { "rustfmt" },
 			},
 			default_format_opts = {
 				lsp_format = "fallback",

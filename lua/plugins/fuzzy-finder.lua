@@ -1,7 +1,7 @@
 return {
 
 	{
-    -- Disable this plugin may cause some issues.
+		-- Disable this plugin may cause some issues.
 		"ibhagwan/fzf-lua",
 		event = "VeryLazy",
 		config = function()
@@ -56,7 +56,7 @@ return {
 				winopts = {
 					preview = {
 						wrap = true,
-						hidden = "hidden",
+						hidden = true,
 					},
 					row = 0.4,
 					backdrop = 60,
@@ -80,7 +80,7 @@ return {
 					["marker"] = { "fg", "Keyword" },
 					["spinner"] = { "fg", "Label" },
 					["header"] = { "fg", "Comment" },
-					["gutter"] = "-1",
+					["gutter"] = "0",
 				},
 				colorschemes = {
 					prompt = " ",
@@ -136,14 +136,16 @@ return {
 					winopts = { preview = { hidden = false } },
 				},
 			})
-      local fzf = require("fzf-lua")
+			local fzf = require("fzf-lua")
 			local keymap = vim.keymap.set
 			local mode = "n"
 
 			-- <leader>c group
 			keymap(mode, "<leader>cs", fzf.spell_suggest, { desc = "Spell suggest" })
 			keymap(mode, "<leader>cq", fzf.quickfix, { desc = "Quickfix" })
-			keymap(mode, "<leader>cd", fzf.awesome_colorschemes, { desc = "Download colorschemes" })
+			-- keymap(mode, "<leader>cp", fzf.awesome_colorschemes, { desc = "Download colorschemes" })
+      keymap(mode, "<leader>cl", fzf.lsp_document_symbols, { desc = "Lsp sumbols" })
+			keymap(mode, "<leader>cd", fzf.diagnostics_document, { desc = "All diagnostics" })
 			keymap(mode, "<leader>cc", fzf.colorschemes, { desc = "Change colorscheme" })
 			keymap(mode, "<leader>cgh", fzf.git_hunks, { desc = "Git hunks" })
 			keymap(mode, "<leader>cgd", fzf.git_diff, { desc = "Git diff" })
@@ -163,7 +165,6 @@ return {
 			end, { desc = "Find config files" })
 			keymap(mode, "<leader>fb", fzf.buffers, { desc = "Find buffers" })
 			keymap(mode, "<leader>fh", fzf.highlights, { desc = "Find highlights" })
-			keymap(mode, "<leader>fd", fzf.diagnostics_document, { desc = "Find diagnostics" })
 			keymap(mode, "<leader>fo", fzf.oldfiles, { desc = "Find old files" })
 			keymap(mode, "<leader>ft", fzf.filetypes, { desc = "Find filetypes" })
 			keymap(mode, "<leader>fg", fzf.live_grep, { desc = "Live grep" })
