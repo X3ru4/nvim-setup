@@ -612,21 +612,29 @@ M.setup = function()
 		end
 
 		-- Support terminal colors
+    -- Black & Grey
 		vim.g.terminal_color_0 = palette.black2
-		vim.g.terminal_color_1 = palette.red
-		vim.g.terminal_color_2 = palette.green
-		vim.g.terminal_color_3 = palette.yellow
-		vim.g.terminal_color_4 = palette.blue
-		vim.g.terminal_color_5 = palette.purple
-		vim.g.terminal_color_6 = palette.cyan
-		vim.g.terminal_color_7 = palette.base06
 		vim.g.terminal_color_8 = palette.grey
-		vim.g.terminal_color_9 = palette.pink
-		vim.g.terminal_color_10 = palette.teal
-		vim.g.terminal_color_11 = palette.sun
-		vim.g.terminal_color_12 = palette.base0C
-		vim.g.terminal_color_13 = palette.dark_purple
-		vim.g.terminal_color_14 = palette.nord_blue
+    -- Red & Bright red
+		vim.g.terminal_color_1 = palette.red
+		vim.g.terminal_color_9 = palette.baby_pink
+    -- Green & Bright green
+		vim.g.terminal_color_2 = palette.green
+		vim.g.terminal_color_10 = palette.vibrant_green
+    -- Yellow & Bright yellow
+		vim.g.terminal_color_3 = palette.base09
+    vim.g.terminal_color_11 = palette.base0A
+    -- Blue & Bright Blue
+		vim.g.terminal_color_4 = palette.blue
+    vim.g.terminal_color_12 = palette.base0C
+    -- Magenta & Bright Magenta
+		vim.g.terminal_color_5 = palette.base0E
+    vim.g.terminal_color_13 = palette.purple
+    -- Cyan & Bright cyan
+		vim.g.terminal_color_6 = palette.nord_blue
+    vim.g.terminal_color_14 = palette.cyan
+    -- White & Gray
+		vim.g.terminal_color_7 = palette.base06
 		vim.g.terminal_color_15 = palette.base07
 
 		-- Syntax
