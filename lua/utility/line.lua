@@ -1,8 +1,8 @@
 local M = {}
 local hl_api = require("utility.highlight")
 
-M.separator_data = {}
-M._fmt_cache = {}
+M.__separator_cache = {}
+M.__hl_fmt_cache = {}
 
 ---GamenhuCak
 ---@param hl_name string
@@ -10,9 +10,14 @@ M._fmt_cache = {}
 ---@param last_str string|nil
 ---@return string
 function M.hl_fmt(hl_name, str, last_str)
+	hl_name = hl_name or ""
 	str = str or ""
 	last_str = last_str or ""
-	return string.format("%%#%s#%s%s", hl_name, str, last_str)
+	local field = hl_name .. str .. last_str
+	if not M.__hl_fmt_cache[field] then
+		M.__hl_fmt_cache[field] = string.format("%%#%s#%s%s", hl_name, str, last_str)
+	end
+	return M.__hl_fmt_cache[field]
 end
 
 ---PADDING!
@@ -21,11 +26,10 @@ end
 ---@param r integer|nil
 ---@return string
 function M.padding(s, l, r)
-	return table.concat({
-		string.rep(" ", l or 1),
-		s or "",
-		string.rep(" ", r or 1),
-	})
+	s = s or ""
+	l = l or 0
+	r = r or 0
+	return string.rep(" ", l or 1) .. s or "" .. string.rep(" ", r or 1)
 end
 
 ---@alias line.SepPart
@@ -66,15 +70,15 @@ function M.separator(spec)
 
 		if type(section) == "table" then
 			if type(section.hl) == "string" then
-				return M.hl_fmt(section.hl) .. value()
+				return M.hl_fmt(section.hl, value())
 			elseif section.hl == nil then
-				return M.hl_fmt(spec.default_hl) .. value()
+				return M.hl_fmt(spec.default_hl, value())
 			end
 
 			section.hl.default_hl = spec.default_hl
 			self.hl = hl_api.mix_hl(hl_ns, section.hl)
 
-			return M.hl_fmt(self.hl) .. value()
+			return M.hl_fmt(self.hl, value())
 		end
 
 		return ""

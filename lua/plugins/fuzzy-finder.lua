@@ -104,6 +104,7 @@ return {
 				buffers = {
 					prompt = default_prompt,
 					filename_only = true,
+					winopts = { preview = { hidden = false } },
 				},
 				highlights = {
 					prompt = default_prompt,

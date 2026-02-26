@@ -1,6 +1,9 @@
 local hl = require("utility.highlight")
 local c = {}
 
+---@type "bold"|"double"|"none"|"rounded"|"shadow"|"single"|"solid"|table
+vim.g.blinkcmp_border = nil
+
 c = {
 	tokyonight = {
 		"folke/tokyonight.nvim",
@@ -314,11 +317,11 @@ c = {
 		config = function()
 			-- Press gf to go the folder
 			-- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
-			require("config.base46").load({
+			require("lua.config.plugin-base46").load({
 				theme = "onedark",
-        --FIXME:Got bug when transparency is true
 				transparency = false,
 			})
+      ---@type "bold"|"double"|"none"|"rounded"|"shadow"|"single"|"solid"|table
 			vim.g.blinkcmp_border = "rounded"
 		end,
 	},

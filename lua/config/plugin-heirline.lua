@@ -60,13 +60,20 @@ local mode = {
 			bg = hl.get("ModeSep2").fg,
 		})
 
+		local fg_opt = {}
+		if vim.g.colors_name == "base46" then
+			fg_opt = { name = "Dark0", type = "fg" }
+		else
+			fg_opt = { name = "Normal", type = "bg" }
+		end
+
 		local section = {
 			line.separator({
 				id = "Mode",
 				left = {
 					value = "  ",
 					hl = {
-						fg = { name = "Normal", type = "bg" },
+						fg = fg_opt,
 						bg = {
 							list = mode_color,
 							default_key = "n",
@@ -89,7 +96,7 @@ local mode = {
 				string = {
 					value = (self.mode_name[self.mode] or self.mode) .. " ",
 					hl = {
-						fg = { name = "Normal", type = "bg" },
+						fg = fg_opt,
 						bg = {
 							list = mode_color,
 							default_key = "n",
@@ -155,9 +162,9 @@ M.config = function()
 		statusline = {
 			mode,
 			{ provider = " " },
-      -- File name
+			-- File name
 			{ update = "BufWinEnter", provider = stl.file_name and "%t " or "" },
-      -- File modify
+			-- File modify
 			{
 				update = "BufModifiedSet",
 				provider = function()
@@ -168,7 +175,7 @@ M.config = function()
 					return line.hl_fmt("FileInfoMod", stl.modify and "%m " or "", "%*")
 				end,
 			},
-      -- Read only buffer
+			-- Read only buffer
 			{
 				update = "BufWinEnter",
 				provider = function()
@@ -180,7 +187,7 @@ M.config = function()
 				end,
 			},
 			{ provider = "%=" },
-      -- Cursor position row/col
+			-- Cursor position row/col
 			{ update = { "CursorMoved", "CursorMovedI" }, provider = stl.coordinate and "%l|%c " or "" },
 			{ update = { "CursorMoved", "CursorMovedI" }, provider = stl.percent and "%p%% " or "" },
 			{ provider = "%=" },

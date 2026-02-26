@@ -75,8 +75,8 @@ end
 ---@param opts table|function|{ fn: function }
 ---@param apply boolean|nil Default is true
 function M.set_match(name, opts, apply)
-  local self = {}
-  self.theme = vim.g.colors_name
+	local self = {}
+	self.theme = vim.g.colors_name
 	apply = apply or false
 
 	local function match()
@@ -88,10 +88,10 @@ function M.set_match(name, opts, apply)
 		local function check_str(s)
 			if s:match("!$") == "!" then
 				s = s:match("(%w+)!$")
-				return color:match(s) == s
+				return color:match("^" .. s) == s
 			elseif s:match("^!") then
 				s = s:match("^!(%w+)")
-				return color:match(s) == s
+				return color:match(s .. "$") == s
 			end
 			return s == color
 		end
@@ -180,46 +180,48 @@ end
 ---@param spec hl_api.HlSpec Spection
 ---@return string
 function M.mix_hl(ns, spec)
-	local function pick_hl(arg, fallback_key)
-		if arg == nil then
-			return M.get(spec.default_hl)[fallback_key]
-		end
-		if type(arg) == "string" then
-			return arg
-		end
+	if not M.hl_def_cache[ns] then
+		local function pick_hl(arg, fallback_key)
+			if arg == nil then
+				return M.get(spec.default_hl)[fallback_key]
+			end
+			if type(arg) == "string" then
+				return arg
+			end
 
-		local type = arg.type or fallback_key
-		if arg.name then
-			return M.get(arg.name)[type]
-		end
-		if arg.list then
-			return M.get(arg.list[arg.key] or arg.list[arg.default_key] or spec.default_hl)[type]
-		end
-	end
-
-	local function create_key(arg)
-		if arg then
+			local type = arg.type or fallback_key
+			if arg.name then
+				return M.get(arg.name)[type]
+			end
 			if arg.list then
-				return arg.list[arg.key] or ""
+				return M.get(arg.list[arg.key] or arg.list[arg.default_key] or spec.default_hl)[type]
 			end
 		end
-		return ""
+
+		local function create_key(arg)
+			if arg then
+				if arg.list then
+					return arg.list[arg.key] or ""
+				end
+			end
+			return ""
+		end
+
+		spec.default_hl = spec.default_hl or "Normal"
+
+		ns = table.concat({
+			ns,
+			create_key(spec.fg),
+			create_key(spec.bg),
+		})
+		M.set(
+			ns,
+			vim.tbl_extend("keep", {
+				fg = pick_hl(spec.fg, "fg"),
+				bg = pick_hl(spec.bg, "bg"),
+			}, spec.gui or {})
+		)
 	end
-
-	spec.default_hl = spec.default_hl or "Normal"
-
-	ns = table.concat({
-		ns,
-		create_key(spec.fg),
-		create_key(spec.bg),
-	})
-	M.set(
-		ns,
-		vim.tbl_extend("keep", {
-			fg = pick_hl(spec.fg, "fg"),
-			bg = pick_hl(spec.bg, "bg"),
-		}, spec.gui or {})
-	)
 	return ns
 end
 
@@ -239,6 +241,9 @@ function M.rgb_to_hex(rgb)
 end
 
 function M.dec_to_hex(dec_color)
+	if not dec_color then
+		return nil
+	end
 	return string.format("#%06X", dec_color)
 end
 
@@ -260,14 +265,13 @@ M.blend = function(hex1, hex2, alpha)
 	r = math.max(0, math.min(255, r))
 	g = math.max(0, math.min(255, g))
 	b = math.max(0, math.min(255, b))
-
 	return M.rgb_to_hex({ r = r, g = g, b = b })
 end
 
 ---Checking if that highlight is available
 ---@param hl string
 ---@return boolean
-function M.hlexits(hl)
+function M.hlexists(hl)
 	return vim.fn.hlexists(hl) == 1
 end
 

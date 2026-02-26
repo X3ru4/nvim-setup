@@ -6,18 +6,6 @@ M.setup = function()
 
 	hl.highlights = {
 		-- Dark colors
-		Dark1 = {
-			fg = hl.get("Pmenu").bg,
-		},
-		Dark2 = {
-			fg = hl.get("Normal").bg,
-		},
-		Dark3 = {
-			fg = hl.get("Visual").bg,
-		},
-		Dark4 = {
-			fg = hl.get("PmenuThumb").bg,
-		},
 
 		-- Custom
 		ModeOther = {
@@ -595,45 +583,77 @@ M.setup = function()
 		}
 	end)
 
-	hl.set_match("base46", function()
-    if vim.g.base46_palette == nil then
-      return
-    end
+	hl.set_match("base46!", function(self)
+		vim.notify(self.theme)
+		if vim.g.base46_palette == nil then
+			return
+		end
 		local palette = vim.g.base46_palette
 		local dark_fg = palette.black
-		local normal_bg = hl.dec_to_hex(hl.get("Normal").bg)
+		local normal_bg = palette.black
+
+		-- Basic Colors
+		hl.set("Red", { fg = palette.base08 })
+		hl.set("Orange", { fg = palette.base09 })
+		hl.set("Yellow", { fg = palette.base0A })
+		hl.set("Green", { fg = palette.base0B })
+		hl.set("Aqua", { fg = palette.base0C })
+		hl.set("Blue", { fg = palette.base0D })
+		hl.set("Purple", { fg = palette.base0E })
+		hl.set("Gold", { fg = palette.sun })
+		hl.set("Dark0", { fg = palette.black })
+		hl.set("Dark1", { fg = palette.base00 })
+		hl.set("Dark2", { fg = palette.base01 })
+		hl.set("Dark3", { fg = palette.base02 })
+		hl.set("Dark4", { fg = palette.base03 })
+		if self.theme == "base46-onedark" then
+			hl.set("Cursor", { bg = palette.blue })
+			hl.set("TermCursor", { bg = palette.blue })
+		end
+
+		-- Support terminal colors
+		vim.g.terminal_color_0 = palette.black2
+		vim.g.terminal_color_1 = palette.red
+		vim.g.terminal_color_2 = palette.green
+		vim.g.terminal_color_3 = palette.yellow
+		vim.g.terminal_color_4 = palette.blue
+		vim.g.terminal_color_5 = palette.purple
+		vim.g.terminal_color_6 = palette.cyan
+		vim.g.terminal_color_7 = palette.base06
+		vim.g.terminal_color_8 = palette.grey
+		vim.g.terminal_color_9 = palette.pink
+		vim.g.terminal_color_10 = palette.teal
+		vim.g.terminal_color_11 = palette.sun
+		vim.g.terminal_color_12 = palette.base0C
+		vim.g.terminal_color_13 = palette.dark_purple
+		vim.g.terminal_color_14 = palette.nord_blue
+		vim.g.terminal_color_15 = palette.base07
 
 		-- Syntax
-		hl.modify("@keyword.return", {
-			italic = true,
-		})
-		hl.modify("@keyword.exception", {
-			italic = true,
-		})
-		hl.modify("@keyword.repeat", {
-			italic = true,
-		})
-		hl.modify("@string", {
-			italic = true,
-		})
+		hl.modify("@keyword.return", { italic = true })
+		hl.modify("@keyword.exception", { italic = true })
+		hl.modify("@keyword.repeat", { italic = true })
+		hl.modify("@string", { italic = true })
 
 		return {
-			-- Basic Colors
-			Red = { fg = palette.base08, },
-			Orange = { fg = palette.base09, },
-			Yellow = { fg = palette.base0A, },
-			Green = { fg = palette.base0B, },
-			Aqua = { fg = palette.base0C, },
-			Blue = { fg = palette.base0D, },
-			Purple = { fg = palette.base0E, },
-			Gold = { fg = palette.sun, },
-			Dark1 = { fg = palette.base00, },
-			Dark2 = { fg = palette.base01, },
-			Dark3 = { fg = palette.base02, },
-			Dark4 = { fg = palette.base03, },
 
 			hl.modify("MatchWord", { fg = "none" }),
 			MatchWordCur = { link = "MatchWord" },
+			hl.modify("Visual", { bold = true }),
+			Yank = { link = "Visual" },
+
+			-- Fzf-lua
+			FzfLuaBackdrop = { bg = palette.black },
+			FzfLuaHeaderText = { link = "Red" },
+			FzfLuaBufFlagCur = { link = "Red" },
+      FzfLuaPathColNr = { link = "Blue" },
+      FzfLuaBufFlagAlt  = { link = "Blue" },
+      FzfLuaLiveSym = { link = "Red" },
+      FzfLuaBufNr = { link = "Yellow" },
+      FzfLuaHeaderBind = { link = "Yellow" },
+      FzfLuaTabMarker = { link = "Yellow" },
+      FzfLuaTabTitle = { link = "Blue" },
+      FzfLuaLivePrompt = { link = "Red" },
 
 			-- Mini.icons
 			MiniIconsPurple = { link = "Purple" },
@@ -668,15 +688,15 @@ M.setup = function()
 			DiagnosticVirtualLineError = { link = "DiagnosticVirtualTextError" },
 
 			-- Diff
-			Added = { link = "Green", },
-			Changed = { link = "Yellow", },
-			Removed = { link = "Red", },
+			Added = { link = "Green" },
+			Changed = { link = "Yellow" },
+			Removed = { link = "Red" },
 
-			WarningMsg = { link = "Gold", },
+			WarningMsg = { link = "Gold" },
 
-			StatusLineNC = { fg = palette.grey_fg, },
-			StatusLine = { bg = palette.black2, },
-			WinBarNc = { bg = palette.one_bg, },
+			StatusLineNC = { fg = palette.grey_fg },
+			StatusLine = { bg = palette.black2 },
+			WinBarNc = { bg = palette.one_bg },
 
 			-- BlinkPair
 			BlinkPairsUnmatched = {
@@ -684,22 +704,22 @@ M.setup = function()
 				reverse = true,
 				bold = true,
 			},
-			BlinkPairsBlue = { link = "Blue", },
-			BlinkPairsOrange = { link = "Orange", },
-			BlinkPairsPurple = { link = "Purple", },
+			BlinkPairsBlue = { link = "Blue" },
+			BlinkPairsOrange = { link = "Orange" },
+			BlinkPairsPurple = { link = "Purple" },
 
 			-- BlinkIndent
-			BlinkIndentRed = { link = "Red", },
-			BlinkIndentCyan = { link = "Cyan", },
-			BlinkIndentBlue = { link = "Blue", },
-			BlinkIndentGreen = { link = "Green", },
-			BlinkIndentYellow = { link = "Yellow", },
-			BlinkIndentViolet = { link = "Purple", },
-			BlinkIndentOrange = { link = "Orange", },
+			BlinkIndentRed = { link = "Red" },
+			BlinkIndentCyan = { link = "Cyan" },
+			BlinkIndentBlue = { link = "Blue" },
+			BlinkIndentGreen = { link = "Green" },
+			BlinkIndentYellow = { link = "Yellow" },
+			BlinkIndentViolet = { link = "Purple" },
+			BlinkIndentOrange = { link = "Orange" },
 
 			-- BlinkCmo
 			BlinkCmpMenu = { link = "Normal" },
-			BlinkCmpMenuBorder = { link = "NonText" },
+			BlinkCmpMenuBorder = { fg = palette.grey_fg2 },
 			BlinkCmpLabelDescription = { fg = palette.grey },
 			BlinkCmpLabelDetail = { fg = palette.grey },
 			BlinkCmpLabelDeprecated = { fg = palette.grey },

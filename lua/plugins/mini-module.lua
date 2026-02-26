@@ -86,7 +86,7 @@ return {
 			content = {
 				format = function(notify)
 					local icons = require("config.icons").vim_log_level
-					return string.format("%s │%s.", icons[notify.level], notify.msg)
+					return string.format("%s │ %s.", icons[notify.level], notify.msg)
 				end,
 				sort = function(notify_arr)
 					table.sort(notify_arr, function(a, b)
