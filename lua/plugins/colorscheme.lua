@@ -317,7 +317,7 @@ c = {
 		config = function()
 			-- Press gf to go the folder
 			-- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
-			require("lua.config.plugin-base46").load({
+			require("config.plugin-base46").load({
 				theme = "onedark",
 				transparency = false,
 			})
