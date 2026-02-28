@@ -608,9 +608,9 @@ M.setup = function()
 		hl.set("Dark4", { fg = palette.base03 })
 
     -- Change the cursor color when the theme is onedark
-		if self.theme == "base46-onedark" then
+		if self.variant == "-doomchad" or "-onedark" then
 			highlights.Cursor = { bg = palette.blue }
-			highlights.TermCursor = { bg = palette.blue }
+			highlights.TermCursor = { link = "Cursor" }
 		end
 
 		-- Support terminal colors

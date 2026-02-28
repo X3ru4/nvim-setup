@@ -88,9 +88,11 @@ function M.set_match(name, opts, apply)
 		local function check_str(s)
 			if s:match("!$") == "!" then
 				s = s:match("(%w+)!$")
+        self.variant = color:gsub(s, "")
 				return color:match("^" .. s) == s
 			elseif s:match("^!") then
 				s = s:match("^!(%w+)")
+        self.variant = color:gsub(s, "")
 				return color:match(s .. "$") == s
 			end
 			return s == color
