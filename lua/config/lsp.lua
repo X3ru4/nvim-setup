@@ -76,7 +76,6 @@ end
 local icons = require("config.icons").diagnostic
 vim.diagnostic.config({
 	virtual_text = {
-    enable = false,
 		prefix = "",
 		suffix = "",
 		format = function(diagnostic)

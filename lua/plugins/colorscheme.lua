@@ -316,8 +316,8 @@ c = {
 		priority = 1000,
 		config = function()
 			-- Press gf to go the folder
-			-- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
 			require("config.plugin-base46").load({
+        -- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
 				theme = "onedark",
 				transparency = false,
 			})

@@ -29,6 +29,13 @@ autocmd("UiEnter", {
 	end,
 })
 
+autocmd("VimEnter", {
+  once = true,
+  callback = function ()
+    vim.notify("Warning X3ru4 is coming!", 3)
+  end
+})
+
 autocmd("LspAttach", {
   callback = function (ev)
     require("config.keymaps").lsp(ev.buf)

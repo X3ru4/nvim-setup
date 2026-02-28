@@ -1,7 +1,6 @@
 local M = {}
 local hl_api = require("utility.highlight")
 
-M.__separator_cache = {}
 M.__hl_fmt_cache = {}
 
 ---GamenhuCak

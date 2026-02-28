@@ -584,15 +584,15 @@ M.setup = function()
 	end)
 
 	hl.set_match("base46!", function(self)
-		vim.notify(self.theme)
 		if vim.g.base46_palette == nil then
 			return
 		end
 		local palette = vim.g.base46_palette
 		local dark_fg = palette.black
 		local normal_bg = palette.black
+		local highlights = {}
 
-		-- Basic Colors
+		-- Set all the basic colors before return and apply
 		hl.set("Red", { fg = palette.base08 })
 		hl.set("Orange", { fg = palette.base09 })
 		hl.set("Yellow", { fg = palette.base0A })
@@ -606,34 +606,36 @@ M.setup = function()
 		hl.set("Dark2", { fg = palette.base01 })
 		hl.set("Dark3", { fg = palette.base02 })
 		hl.set("Dark4", { fg = palette.base03 })
+
+    -- Change the cursor color when the theme is onedark
 		if self.theme == "base46-onedark" then
-			hl.set("Cursor", { bg = palette.blue })
-			hl.set("TermCursor", { bg = palette.blue })
+			highlights.Cursor = { bg = palette.blue }
+			highlights.TermCursor = { bg = palette.blue }
 		end
 
 		-- Support terminal colors
-    -- Black & Grey
+		-- Black & Grey
 		vim.g.terminal_color_0 = palette.black2
 		vim.g.terminal_color_8 = palette.grey
-    -- Red & Bright red
+		-- Red & Bright red
 		vim.g.terminal_color_1 = palette.red
 		vim.g.terminal_color_9 = palette.baby_pink
-    -- Green & Bright green
+		-- Green & Bright green
 		vim.g.terminal_color_2 = palette.green
 		vim.g.terminal_color_10 = palette.vibrant_green
-    -- Yellow & Bright yellow
+		-- Yellow & Bright yellow
 		vim.g.terminal_color_3 = palette.base09
-    vim.g.terminal_color_11 = palette.base0A
-    -- Blue & Bright Blue
+		vim.g.terminal_color_11 = palette.base0A
+		-- Blue & Bright Blue
 		vim.g.terminal_color_4 = palette.blue
-    vim.g.terminal_color_12 = palette.base0C
-    -- Magenta & Bright Magenta
+		vim.g.terminal_color_12 = palette.base0C
+		-- Magenta & Bright Magenta
 		vim.g.terminal_color_5 = palette.base0E
-    vim.g.terminal_color_13 = palette.purple
-    -- Cyan & Bright cyan
+		vim.g.terminal_color_13 = palette.purple
+		-- Cyan & Bright cyan
 		vim.g.terminal_color_6 = palette.nord_blue
-    vim.g.terminal_color_14 = palette.cyan
-    -- White & Gray
+		vim.g.terminal_color_14 = palette.cyan
+		-- White & Gray
 		vim.g.terminal_color_7 = palette.base06
 		vim.g.terminal_color_15 = palette.base07
 
@@ -643,8 +645,7 @@ M.setup = function()
 		hl.modify("@keyword.repeat", { italic = true })
 		hl.modify("@string", { italic = true })
 
-		return {
-
+		highlights = vim.tbl_extend("keep", highlights, {
 			hl.modify("MatchWord", { fg = "none" }),
 			MatchWordCur = { link = "MatchWord" },
 			hl.modify("Visual", { bold = true }),
@@ -654,14 +655,14 @@ M.setup = function()
 			FzfLuaBackdrop = { bg = palette.black },
 			FzfLuaHeaderText = { link = "Red" },
 			FzfLuaBufFlagCur = { link = "Red" },
-      FzfLuaPathColNr = { link = "Blue" },
-      FzfLuaBufFlagAlt  = { link = "Blue" },
-      FzfLuaLiveSym = { link = "Red" },
-      FzfLuaBufNr = { link = "Yellow" },
-      FzfLuaHeaderBind = { link = "Yellow" },
-      FzfLuaTabMarker = { link = "Yellow" },
-      FzfLuaTabTitle = { link = "Blue" },
-      FzfLuaLivePrompt = { link = "Red" },
+			FzfLuaPathColNr = { link = "Blue" },
+			FzfLuaBufFlagAlt = { link = "Blue" },
+			FzfLuaLiveSym = { link = "Red" },
+			FzfLuaBufNr = { link = "Yellow" },
+			FzfLuaHeaderBind = { link = "Yellow" },
+			FzfLuaTabMarker = { link = "Yellow" },
+			FzfLuaTabTitle = { link = "Blue" },
+			FzfLuaLivePrompt = { link = "Red" },
 
 			-- Mini.icons
 			MiniIconsPurple = { link = "Purple" },
@@ -792,6 +793,16 @@ M.setup = function()
 			ModeCommand = {
 				fg = dark_fg,
 				bg = palette.sun,
+			},
+		})
+
+		return highlights
+	end)
+	hl.set_match("base46-nightowl", function()
+		local palette = vim.g.base46_palette
+		return {
+			BlinkCmpMenuSelection = {
+				bg = palette.base04,
 			},
 		}
 	end)
