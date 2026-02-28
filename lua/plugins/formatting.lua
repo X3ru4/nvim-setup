@@ -12,11 +12,16 @@ return {
 				h = { "clang-format" },
 				json = { "clang-format" },
 				python = { "ruff" },
-        rust = { "rustfmt" },
+				rust = { "rustfmt" },
 			},
 			default_format_opts = {
 				lsp_format = "fallback",
 			},
+			-- Use the "*" filetype to run formatters on all filetypes.
+			["*"] = { "codespell" },
+			-- Use the "_" filetype to run formatters on filetypes that don't
+			-- have other formatters configured.
+			["_"] = { "trim_whitespace" },
 			format_on_save = false,
 			formatters = {
 				shfmt = {
@@ -37,6 +42,7 @@ return {
 					vim.cmd("silent! w")
 				end,
 				desc = "Format and save file",
+				mode = { "x", "n", "v" },
 			},
 		},
 		init = function()
