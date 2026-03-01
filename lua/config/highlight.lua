@@ -645,7 +645,6 @@ M.setup = function()
 		hl.modify("@keyword.repeat", { italic = true })
 		hl.modify("@string", { italic = true })
 		highlights["@lsp.type.struct"] = { fg = palette.vibrant_green, }
-    highlights.rustString = { fg = palette.base0A }
 
 		highlights = vim.tbl_extend("keep", highlights, {
 			hl.modify("MatchWord", { fg = "none" }),
