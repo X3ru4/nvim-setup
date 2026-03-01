@@ -41,7 +41,7 @@ return {
 							OilGitCopied = { link = "Orange" },
 							OilGitConflict = { link = "Purple" },
 							OilGitUntracked = { link = "Blue" },
-							OilGitIgnored = { link = "Cyan" },
+							OilGitIgnored = { link = "Aqua" },
 						},
 					})
 				end,

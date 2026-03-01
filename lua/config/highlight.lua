@@ -607,7 +607,7 @@ M.setup = function()
 		hl.set("Dark3", { fg = palette.base02 })
 		hl.set("Dark4", { fg = palette.base03 })
 
-    -- Change the cursor color when the theme is onedark
+		-- Change the cursor color when the theme is onedark
 		if self.variant == "-doomchad" or "-onedark" then
 			highlights.Cursor = { bg = palette.blue }
 			highlights.TermCursor = { link = "Cursor" }
@@ -644,6 +644,7 @@ M.setup = function()
 		hl.modify("@keyword.exception", { italic = true })
 		hl.modify("@keyword.repeat", { italic = true })
 		hl.modify("@string", { italic = true })
+		highlights["@lsp.type.struct"] = { fg = palette.vibrant_green, }
 
 		highlights = vim.tbl_extend("keep", highlights, {
 			hl.modify("MatchWord", { fg = "none" }),
@@ -706,6 +707,14 @@ M.setup = function()
 			StatusLineNC = { fg = palette.grey_fg },
 			StatusLine = { bg = palette.black2 },
 			WinBarNc = { bg = palette.one_bg },
+
+			-- Lazy
+			LazyReasonCmd = { fg = palette.base09 },
+			LazyReasonEvent = { fg = palette.cyan },
+			LazyReasonFt = { fg = palette.vibrant_green },
+			LazyReasonKeys = { fg = palette.nord_blue },
+			LazyReasonSource = { fg = palette.base0A },
+			LazyReasonPlugin = { fg = palette.blue },
 
 			-- BlinkPair
 			BlinkPairsUnmatched = {

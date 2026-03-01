@@ -318,7 +318,6 @@ c = {
 			-- Press gf to go the folder
 			require("config.plugin-base46").load({
         -- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
-				theme = "onedark",
 				transparency = false,
 			})
       ---@type "bold"|"double"|"none"|"rounded"|"shadow"|"single"|"solid"|table
