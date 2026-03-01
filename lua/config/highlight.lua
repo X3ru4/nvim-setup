@@ -645,6 +645,7 @@ M.setup = function()
 		hl.modify("@keyword.repeat", { italic = true })
 		hl.modify("@string", { italic = true })
 		highlights["@lsp.type.struct"] = { fg = palette.vibrant_green, }
+    -- highlights.Operator = { fg = palette.cyan }
 
 		highlights = vim.tbl_extend("keep", highlights, {
 			hl.modify("MatchWord", { fg = "none" }),
@@ -728,7 +729,7 @@ M.setup = function()
 
 			-- BlinkIndent
 			BlinkIndentRed = { link = "Red" },
-			BlinkIndentCyan = { link = "Cyan" },
+			BlinkIndentCyan = { link = "Aqua" },
 			BlinkIndentBlue = { link = "Blue" },
 			BlinkIndentGreen = { link = "Green" },
 			BlinkIndentYellow = { link = "Yellow" },
