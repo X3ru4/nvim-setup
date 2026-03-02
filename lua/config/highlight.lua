@@ -643,7 +643,7 @@ M.setup = function()
 		hl.modify("@keyword.return", { italic = true })
 		hl.modify("@keyword.exception", { italic = true })
 		hl.modify("@keyword.repeat", { italic = true })
-		highlights["@lsp.type.struct"] = { fg = palette.vibrant_green }
+		highlights["@lsp.type.struct"] = { fg = palette.teal }
 		highlights["@keyword"] = { fg = hl.get("@keyword").fg, italic = true }
 		highlights.rustFuncName = { fg = hl.get("@function").dark_fg, bold = true }
 		highlights.rustKeyword = { link = "@keyword" }
@@ -768,9 +768,9 @@ M.setup = function()
 			BlinkCmpKindModule = { fg = palette.purple },
 			BlinkCmpKindOperator = { fg = palette.purple },
 
-			BlinkCmpKindFile = { fg = palette.pink },
+			BlinkCmpKindFile = { fg = palette.yellow },
+			BlinkCmpKindUnit = { fg = palette.yellow },
 
-			BlinkCmpKindUnit = { fg = palette.baby_pink },
 			BlinkCmpKindSnippet = { fg = palette.baby_pink },
 
 			BlinkCmpKindFolder = { fg = palette.blue },
