@@ -35,6 +35,15 @@ function M.get(name, cache)
 	return M.vget_hl(0, { name = name, link = false })
 end
 
+---Like M.get but return the forground color
+function M.getfg(name)
+	return M.get(name).fg
+end
+---Like M.get but return the background color
+function M.getbg(name)
+	return M.get(name).bg
+end
+
 ---Like the vim.api.nvim_set_hl() but with the cache.
 ---Please use this function with M.get() to the best performance.
 ---@param name string Name of highlight.
@@ -61,6 +70,9 @@ end
 ---@param fallback boolean|nil If true the function will return a table.
 ---@return vim.api.keyset.highlight|nil|table
 function M.modify(name, opts, fallback)
+	if not M.hlexists(name) then
+		return
+	end
 	local base = M.get(name) or {}
 	local merged = vim.tbl_extend("force", base, opts or {})
 

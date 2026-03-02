@@ -608,7 +608,7 @@ M.setup = function()
 		hl.set("Dark4", { fg = palette.base03 })
 
 		-- Change the cursor color when the theme is onedark
-		if self.variant == "-doomchad" or "-onedark" then
+		if self.variant == ("-doomchad" or "-onedark") then
 			highlights.Cursor = { bg = palette.blue }
 			highlights.TermCursor = { link = "Cursor" }
 		end
@@ -643,9 +643,10 @@ M.setup = function()
 		hl.modify("@keyword.return", { italic = true })
 		hl.modify("@keyword.exception", { italic = true })
 		hl.modify("@keyword.repeat", { italic = true })
-		hl.modify("@string", { italic = true })
-		highlights["@lsp.type.struct"] = { fg = palette.vibrant_green, }
-    -- highlights.Operator = { fg = palette.cyan }
+		highlights["@lsp.type.struct"] = { fg = palette.vibrant_green }
+		highlights["@keyword"] = { fg = hl.get("@keyword").fg, italic = true }
+		highlights.rustFuncName = { fg = hl.get("@function").dark_fg, bold = true }
+		highlights.rustKeyword = { link = "@keyword" }
 
 		highlights = vim.tbl_extend("keep", highlights, {
 			hl.modify("MatchWord", { fg = "none" }),
@@ -698,16 +699,18 @@ M.setup = function()
 			DiagnosticVirtualLineHint = { link = "DiagnosticVirtualTextHint" },
 			DiagnosticVirtualLineError = { link = "DiagnosticVirtualTextError" },
 
+      -- Vanilla
 			-- Diff
 			Added = { link = "Green" },
 			Changed = { link = "Yellow" },
 			Removed = { link = "Red" },
 
 			WarningMsg = { link = "Gold" },
-
 			StatusLineNC = { fg = palette.grey_fg },
 			StatusLine = { bg = palette.black2 },
 			WinBarNc = { bg = palette.one_bg },
+      NormalFloat = { link = "Normal" },
+      FloatBorder = { bg = hl.getbg("Normal"), fg = palette.grey_fg2 },
 
 			-- Lazy
 			LazyReasonCmd = { fg = palette.base09 },
@@ -737,8 +740,10 @@ M.setup = function()
 			BlinkIndentOrange = { link = "Orange" },
 
 			-- BlinkCmo
-			BlinkCmpMenu = { link = "Normal" },
+			-- BlinkCmpMenu = { link = "Normal" },
+			BlinkCmpMenu = { bg = palette.black2 },
 			BlinkCmpMenuBorder = { fg = palette.grey_fg2 },
+			BlinkCmpDocBorder = { link = "FloatBorder" },
 			BlinkCmpLabelDescription = { fg = palette.grey },
 			BlinkCmpLabelDetail = { fg = palette.grey },
 			BlinkCmpLabelDeprecated = { fg = palette.grey },
