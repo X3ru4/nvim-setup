@@ -1,1 +1,1 @@
-require("config.plugin-base46").load({ theme = "toktonight" })
+require("config.plugin-base46").load({ theme = "tokyonight" })

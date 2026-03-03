@@ -7,7 +7,6 @@ return {
 			{ "<leader>cC", "<cmd>ColorizerToggle<cr>", desc = "ColorizerToggle" },
 		},
 		opts = {
-			---@type table
 			options = {
 				parsers = {
 					css = false, -- preset: enables names, hex, rgb, hsl, oklch
@@ -19,7 +18,7 @@ return {
 					oklch = { enable = false },
 					xterm = { enable = true },
 					hex = {
-						enable = true,
+            default = true,
 						rgb = false,
 						rgba = false,
 						rrggbb = true,

@@ -70,10 +70,10 @@ return {
 					-- the auto-generated theme similar to `fzf_colors=true`
 					["fg"] = { "fg", "CursorLine" },
 					["bg"] = { "bg", "Normal" },
-					["hl"] = { "fg", "Comment" },
+					["hl"] = { "fg", "Statement", "bold" },
 					["fg+"] = { "fg", "Normal" },
 					["bg+"] = { "bg", { "CursorLine", "Normal" } },
-					["hl+"] = { "fg", "Statement" },
+					["hl+"] = { "fg", "Statement", "bold" },
 					["info"] = { "fg", "PreProc", "bold" },
 					["prompt"] = { "fg", "Conditional" },
 					["pointer"] = { "fg", "Exception" },
@@ -106,6 +106,10 @@ return {
 					filename_only = true,
 					winopts = { preview = { hidden = false } },
 				},
+				tabs = {
+					prompt = default_prompt,
+					winopts = { preview = { hidden = false } },
+				},
 				highlights = {
 					prompt = default_prompt,
 					winopts = { preview = { hidden = false } },
@@ -135,6 +139,69 @@ return {
 				lsp = {
 					prompt = default_prompt,
 					winopts = { preview = { hidden = false } },
+					symbols = {
+						-- lsp_query      = "foo"       -- query passed to the LSP directly
+						-- query          = "bar"       -- query passed to fzf prompt for fuzzy matching
+						locate = false, -- attempt to position cursor at current symbol
+						async_or_timeout = true, -- symbols are async by default
+						symbol_style = 1, -- style for document/workspace symbols
+						-- false: disable,    1: icon+kind
+						--     2: icon only,  3: kind only
+						-- NOTE: icons are extracted from
+						-- vim.lsp.protocol.CompletionItemKind
+						-- icons for symbol kind
+						-- see https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#symbolKind
+						-- see https://github.com/neovim/neovim/blob/829d92eca3d72a701adc6e6aa17ccd9fe2082479/runtime/lua/vim/lsp/protocol.lua#L117
+						symbol_icons = {
+							File = "",
+							Module = "",
+							Namespace = "",
+							Package = "",
+							Class = "",
+							Method = "",
+							Property = "",
+							Field = "",
+							Constructor = "󰢻",
+							Enum = "",
+							Interface = "",
+							Function = "󰊕",
+							Variable = "",
+							Constant = "",
+							String = "",
+							Number = "",
+							Boolean = "",
+							Array = "",
+							Object = "",
+							Key = "",
+							Null = "",
+							EnumMember = "",
+							Struct = "",
+							Event = "",
+							Operator = "",
+							TypeParameter = "",
+						},
+						-- colorize using Treesitter '@' highlight groups ("@function", etc).
+						-- or 'false' to disable highlighting
+						symbol_hl = function(s)
+							local hl = {
+								object = "@type.builtin",
+								array = "@type.builtin",
+                struct = "BlinkCmpKindStruct",
+                variable = "BlinkCmpKindVariable",
+                package = "BlinkCmpKindModule",
+                interface = "BlinkCmpKindInterface",
+							}
+							s = s:lower()
+							if hl[s] then
+								return hl[s]
+							end
+              return "@" .. s
+						end,
+						-- additional symbol formatting, works with or without style
+						symbol_fmt = function(s, opts)
+							return "⟨" .. s .. "⟩"
+						end,
+					},
 				},
 			})
 			local fzf = require("fzf-lua")
@@ -145,7 +212,7 @@ return {
 			keymap(mode, "<leader>cs", fzf.spell_suggest, { desc = "Spell suggest" })
 			keymap(mode, "<leader>cq", fzf.quickfix, { desc = "Quickfix" })
 			-- keymap(mode, "<leader>cp", fzf.awesome_colorschemes, { desc = "Download colorschemes" })
-      keymap(mode, "<leader>cl", fzf.lsp_document_symbols, { desc = "Lsp sumbols" })
+			keymap(mode, "<leader>cl", fzf.lsp_document_symbols, { desc = "Lsp sumbols" })
 			keymap(mode, "<leader>cd", fzf.diagnostics_document, { desc = "All diagnostics" })
 			keymap(mode, "<leader>cc", fzf.colorschemes, { desc = "Change colorscheme" })
 			keymap(mode, "<leader>cgh", fzf.git_hunks, { desc = "Git hunks" })
@@ -165,9 +232,10 @@ return {
 				})
 			end, { desc = "Find config files" })
 			keymap(mode, "<leader>fb", fzf.buffers, { desc = "Find buffers" })
+			keymap(mode, "<leader>ft", fzf.tabs, { desc = "Find tabs" })
 			keymap(mode, "<leader>fh", fzf.highlights, { desc = "Find highlights" })
 			keymap(mode, "<leader>fo", fzf.oldfiles, { desc = "Find old files" })
-			keymap(mode, "<leader>ft", fzf.filetypes, { desc = "Find filetypes" })
+			keymap(mode, "<leader>fT", fzf.filetypes, { desc = "Find filetypes" })
 			keymap(mode, "<leader>fg", fzf.live_grep, { desc = "Live grep" })
 		end,
 	},

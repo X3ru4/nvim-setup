@@ -15,8 +15,26 @@ return {
 				btn.opts.width = math.min(width - 4, 40)
 				return btn
 			end
+			local header_style = {
+				{
+					"██╗░░██╗██████╗░██████╗░██╗░░░██╗░░██╗██╗",
+					"╚██╗██╔╝╚════██╗██╔══██╗██║░░░██║░██╔╝██║",
+					"░╚███╔╝░░█████╔╝██████╔╝██║░░░██║██╔╝░██║",
+					"░██╔██╗░░╚═══██╗██╔══██╗██║░░░██║███████║",
+					"██╔╝╚██╗██████╔╝██║░░██║╚██████╔╝╚════██║",
+					"╚═╝░░╚═╝╚═════╝░╚═╝░░╚═╝░╚═════╝░░░░░░╚═╝",
+				},
+				{
+					"╭━╮╭━┳━━━╮╱╱╱╱╭╮╱╭╮",
+					"╰╮╰╯╭┫╭━╮┃╱╱╱╱┃┃╱┃┃",
+					"╱╰╮╭╯╰╯╭╯┣━┳╮╭┫╰━╯┃",
+					"╱╭╯╰╮╭╮╰╮┃╭┫┃┃┣━━╮┃",
+					"╭╯╭╮╰┫╰━╯┃┃┃╰╯┃╱╱┃┃",
+					"╰━╯╰━┻━━━┻╯╰━━╯╱╱╰╯",
+				},
+			}
 
-			config.section.header.val = "Hello!"
+			config.section.header.val = header_style[1]
 			config.section.buttons.val = {
 				button("n", "  New file", "<cmd>ene <CR>"),
 				button("f", "  Find files", [[<cmd>lua require('fzf-lua').files()<cr>]]),
@@ -27,7 +45,10 @@ return {
 				button("r", "  Open last session", "<cmd>lua require('persistence').load()<cr>"),
 				button("q", "󰩈  Quit", "<cmd>qa!<cr>"),
 			}
-			config.section.footer.val = "@X3ru4 "
+			config.section.footer.val = {
+        "CWD: " .. vim.fn.fnamemodify(vim.fn.getcwd(), ":~") .. "/",
+      }
+      config.section.footer.opts.positon = "center"
 
 			require("alpha").setup(config.config)
 		end,

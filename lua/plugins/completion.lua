@@ -66,7 +66,7 @@ return {
 					completion = { menu = { auto_show = true } },
 				},
 				appearance = {
-          ---@type "mono"|"normal"
+					---@type "mono"|"normal"
 					nerd_font_variant = "normal",
 					kind_icons = {
 						Text = "",
@@ -81,7 +81,7 @@ return {
 						Class = "",
 						Interface = "",
 						Struct = "",
-						Module = "󰅩",
+						Module = "",
 
 						Unit = "",
 						Value = "",
@@ -93,9 +93,9 @@ return {
 
 						Snippet = "",
 						Color = "",
-						File = "",
+						File = "",
 						Reference = "",
-						Folder = "",
+						Folder = "",
 						Event = "",
 						Operator = "",
 						TypeParameter = "",
@@ -107,7 +107,7 @@ return {
 						scrollbar = false,
 						winblend = 0,
 						border = "rounded",
-            show_documentation = false,
+						show_documentation = false,
 					},
 				},
 				completion = {

@@ -1,7 +1,6 @@
 local hl = require("utility.highlight")
 local c = {}
 
----@type "bold"|"double"|"none"|"rounded"|"shadow"|"single"|"solid"|table
 vim.g.blinkcmp_border = nil
 
 c = {
@@ -318,10 +317,9 @@ c = {
 			-- Press gf to go the folder
 			require("config.plugin-base46").load({
         -- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
-        theme = "doomchad",
+        theme = "onedark",
 				transparency = false,
 			})
-      ---@type "bold"|"double"|"none"|"rounded"|"shadow"|"single"|"solid"|table
 			vim.g.blinkcmp_border = "none"
 		end,
 	},
