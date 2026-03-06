@@ -682,7 +682,7 @@ M.setup = function()
 		highlights.MiniIconsCyan = { fg = palette.cyan }
 		highlights.MiniIconsBlue = { fg = palette.base0C }
 		highlights.MiniIconsAzure = { fg = palette.base0D }
-		highlights.MiniIconsGrey = { fg = palette.light_grey }
+		highlights.MiniIconsGrey = { fg = palette.base05 }
 
 		-- Diagnostic
 		highlights.DiagnosticWarn = { fg = palette.base0A }
