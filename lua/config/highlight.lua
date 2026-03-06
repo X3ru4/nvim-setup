@@ -742,13 +742,13 @@ M.setup = function()
 		highlights.BlinkPairsPurple = { link = "Purple" }
 
 		-- BlinkIndent
-		highlights.BlinkIndentRed = { link = "Red" }
-		highlights.BlinkIndentCyan = { link = "Aqua" }
-		highlights.BlinkIndentBlue = { link = "Blue" }
-		highlights.BlinkIndentGreen = { link = "Green" }
-		highlights.BlinkIndentYellow = { link = "Yellow" }
-		highlights.BlinkIndentViolet = { link = "Purple" }
-		highlights.BlinkIndentOrange = { link = "Orange" }
+		highlights.BlinkIndentRed = { fg = palette.base08 }
+		highlights.BlinkIndentCyan = { fg = palette.base0C }
+		highlights.BlinkIndentBlue = { fg = palette.base0D }
+		highlights.BlinkIndentGreen = { fg = palette.vibrant_green }
+		highlights.BlinkIndentYellow = { fg = palette.base0A }
+		highlights.BlinkIndentViolet = { fg = palette.base0E }
+		highlights.BlinkIndentOrange = { fg = palette.base09 }
 
 		-- BlinkCmp
 		highlights.BlinkCmpMenu = { link = "Normal" }
@@ -776,7 +776,7 @@ M.setup = function()
 		highlights.BlinkCmpKindOperator = { fg = palette.purple }
 		highlights.BlinkCmpKindFile = { fg = palette.yellow }
 		highlights.BlinkCmpKindUnit = { fg = palette.yellow }
-		highlights.BlinkCmpKindSnippet = { fg = palette.baby_pink }
+		highlights.BlinkCmpKindSnippet = { fg = palette.dark_purple }
 		highlights.BlinkCmpKindFolder = { fg = palette.blue }
 		highlights.BlinkCmpKindVariable = { fg = palette.blue }
 		highlights.BlinkCmpKindMethod = { fg = palette.blue }

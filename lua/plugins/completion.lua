@@ -91,7 +91,7 @@ return {
 						Keyword = "",
 						Constant = "",
 
-						Snippet = "",
+						Snippet = "󰅴",
 						Color = "",
 						File = "",
 						Reference = "",

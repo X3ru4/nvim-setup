@@ -193,7 +193,7 @@ keymap({ "n", "x" }, "-w", diagnostic_jump(-1, "WARN"), { desc = "Prev Warning" 
 
 -- Clear search
 keymap({ "i", "n", "s" }, "<esc>", function()
-  vim.cmd("noh")
+	vim.cmd("noh")
 	return "<esc>"
 end, { expr = true, desc = "Escape and Clear hlsearch" })
 

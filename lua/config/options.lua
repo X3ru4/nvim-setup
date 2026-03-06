@@ -20,7 +20,6 @@ local opt = vim.opt
 
 -- Performance
 opt.updatetime = 100
--- opt.lazyredraw = true
 opt.timeoutlen = 300
 opt.ttimeoutlen = 10
 opt.synmaxcol = 200
@@ -37,8 +36,8 @@ opt.foldcolumn = "0"
 
 -- Wrap
 opt.wrap = false
-opt.breakindent = false
-opt.linebreak = false
+opt.breakindent = true
+opt.linebreak = true
 
 opt.number = true
 opt.autowrite = true
