@@ -1,6 +1,7 @@
 return {
 
 	{
+    -- Do not disable this plugin!
 		"nvim-mini/mini.icons",
 		event = "VeryLazy",
 		opts = {

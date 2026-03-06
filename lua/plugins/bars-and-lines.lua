@@ -54,12 +54,13 @@ return {
 								},
 							},
 							kinds = {
-								dir_icon = function(_)
-									return require("mini.icons").get("default", "derectory").icon, "DropBarIconKindFolder"
-								end,
+								dir_icon = function(path)
+                  local icon, hl = MiniIcons.get("directory", path)
+                  return icon .. " ", hl
+                end,
 								file_icon = function(path)
-                  local icons = require("mini.icons").get("file", "init.lua")
-                  return icons.icon, icons.hl
+									local icon, hl = MiniIcons.get("file", path)
+									return icon .. " ", hl
 								end,
 								symbols = {
 									Array = " ",

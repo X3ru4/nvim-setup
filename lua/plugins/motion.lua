@@ -2,8 +2,34 @@ return {
 
 	{
 		"folke/flash.nvim",
-		enabled = false,
-		opts = {},
+		enabled = true,
+		opts = {
+			label = {
+				uppercase = true,
+				-- reuse = "none",
+				rainbow = {
+					enabled = true,
+					-- number between 1 and 9
+					shade = 7,
+				},
+			},
+			jump = {
+				-- add pattern to search history
+				history = false,
+				-- add pattern to search register
+				register = false,
+				-- clear highlight after jump
+				nohlsearch = false,
+				-- automatically jump when there is only one match
+				autojump = true,
+			},
+			prompt = {
+				enabled = false,
+			},
+			highlight = {
+				backdrop = false,
+			},
+		},
 		keys = {
 			{
 				"s",
@@ -38,7 +64,7 @@ return {
 
 	{
 		url = "https://codeberg.org/andyg/leap.nvim",
-		enabled = true,
+		enabled = false,
 		event = "VeryLazy",
 		keys = {
 			{

@@ -648,168 +648,167 @@ M.setup = function()
 		highlights.rustFuncName = { fg = hl.get("@function").dark_fg, bold = true }
 		highlights.rustKeyword = { link = "@keyword" }
 
-		highlights = vim.tbl_extend("keep", highlights, {
-			hl.modify("MatchWord", { fg = "none" }),
-			MatchWordCur = { link = "MatchWord" },
-			hl.modify("Visual", { bold = true }),
-			Yank = { link = "Visual" },
+		-- Nvim
+		hl.modify("MatchWord", { fg = "none" })
+		hl.modify("Visual", { bold = true })
+		highlights.MatchWordCur = { link = "MatchWord" }
+		highlights.Yank = { link = "Visual" }
 
-			-- Fzf-lua
-			FzfLuaBackdrop = { bg = palette.black },
-			FzfLuaHeaderText = { link = "Red" },
-			FzfLuaBufFlagCur = { link = "Red" },
-			FzfLuaPathColNr = { link = "Blue" },
-			FzfLuaBufFlagAlt = { link = "Blue" },
-			FzfLuaLiveSym = { link = "Red" },
-			FzfLuaBufNr = { link = "Yellow" },
-			FzfLuaHeaderBind = { link = "Yellow" },
-			FzfLuaTabMarker = { link = "Yellow" },
-			FzfLuaTabTitle = { link = "Blue" },
-			FzfLuaLivePrompt = { link = "Red" },
+		-- DropBar
+		highlights.DropBarIconKindArray = { link = "Statement" }
 
-			-- Mini.icons
-			MiniIconsPurple = { link = "Purple" },
-			MiniIconsGreen = { link = "Green" },
-			MiniIconsBlue = { link = "Aqua" },
-			MiniIconsAzure = { link = "Blue" },
+		-- Fzf-lua
+		highlights.FzfLuaBackdrop = { bg = palette.black }
+		highlights.FzfLuaHeaderText = { link = "Red" }
+		highlights.FzfLuaBufFlagCur = { link = "Red" }
+		highlights.FzfLuaPathColNr = { link = "Blue" }
+		highlights.FzfLuaBufFlagAlt = { link = "Blue" }
+		highlights.FzfLuaLiveSym = { link = "Red" }
+		highlights.FzfLuaBufNr = { link = "Yellow" }
+		highlights.FzfLuaHeaderBind = { link = "Yellow" }
+		highlights.FzfLuaTabMarker = { link = "Yellow" }
+		highlights.FzfLuaTabTitle = { link = "Blue" }
+		highlights.FzfLuaLivePrompt = { link = "Red" }
 
-			-- Diagnostic
-			DiagnosticWarn = { fg = palette.base0A },
-			DiagnosticInfo = { fg = palette.cyan },
-			DiagnosticHint = { fg = palette.purple },
-			DiagnosticError = { fg = palette.red },
-			DiagnosticVirtualTextWarn = {
-				fg = palette.base0A,
-				bg = hl.blend(palette.base0A, normal_bg, 0.2),
-			},
-			DiagnosticVirtualTextInfo = {
-				fg = palette.cyan,
-				bg = hl.blend(palette.cyan, normal_bg, 0.2),
-			},
-			DiagnosticVirtualTextHint = {
-				fg = palette.purple,
-				bg = hl.blend(palette.purple, normal_bg, 0.2),
-			},
-			DiagnosticVirtualTextError = {
-				fg = palette.red,
-				bg = hl.blend(palette.red, normal_bg, 0.2),
-			},
-			DiagnosticVirtualLineWarn = { link = "DiagnosticVirtualTextWarn" },
-			DiagnosticVirtualLineInfo = { link = "DiagnosticVirtualTextInfo" },
-			DiagnosticVirtualLineHint = { link = "DiagnosticVirtualTextHint" },
-			DiagnosticVirtualLineError = { link = "DiagnosticVirtualTextError" },
+		-- Mini.icons
+		highlights.MiniIconsRed = { fg = palette.base08 }
+		highlights.MiniIconsOrange = { fg = palette.base09 }
+		highlights.MiniIconsYellow = { fg = palette.base0A }
+		highlights.MiniIconsPurple = { fg = palette.base0E }
+		highlights.MiniIconsGreen = { fg = palette.base0B }
+		highlights.MiniIconsCyan = { fg = palette.cyan }
+		highlights.MiniIconsBlue = { fg = palette.base0C }
+		highlights.MiniIconsAzure = { fg = palette.base0D }
+		highlights.MiniIconsGrey = { fg = palette.light_grey }
 
-      -- Vanilla
-			-- Diff
-			Added = { link = "Green" },
-			Changed = { link = "Yellow" },
-			Removed = { link = "Red" },
+		-- Diagnostic
+		highlights.DiagnosticWarn = { fg = palette.base0A }
+		highlights.DiagnosticInfo = { fg = palette.cyan }
+		highlights.DiagnosticHint = { fg = palette.purple }
+		highlights.DiagnosticError = { fg = palette.red }
+		highlights.DiagnosticVirtualTextWarn = {
+			fg = palette.base0A,
+			bg = hl.blend(palette.base0A, normal_bg, 0.2),
+		}
+		highlights.DiagnosticVirtualTextInfo = {
+			fg = palette.cyan,
+			bg = hl.blend(palette.cyan, normal_bg, 0.2),
+		}
+		highlights.DiagnosticVirtualTextHint = {
+			fg = palette.purple,
+			bg = hl.blend(palette.purple, normal_bg, 0.2),
+		}
+		highlights.DiagnosticVirtualTextError = {
+			fg = palette.red,
+			bg = hl.blend(palette.red, normal_bg, 0.2),
+		}
+		highlights.DiagnosticVirtualLineWarn = { link = "DiagnosticVirtualTextWarn" }
+		highlights.DiagnosticVirtualLineInfo = { link = "DiagnosticVirtualTextInfo" }
+		highlights.DiagnosticVirtualLineHint = { link = "DiagnosticVirtualTextHint" }
+		highlights.DiagnosticVirtualLineError = { link = "DiagnosticVirtualTextError" }
 
-			WarningMsg = { link = "Gold" },
-			StatusLineNC = { fg = palette.grey_fg },
-			StatusLine = { bg = palette.black2 },
-			WinBarNc = { bg = palette.one_bg },
-      NormalFloat = { link = "Normal" },
-      FloatBorder = { bg = hl.getbg("Normal"), fg = palette.grey_fg2 },
+		-- Vanilla
+		-- Diff
+		highlights.Added = { link = "Green" }
+		highlights.Changed = { link = "Yellow" }
+		highlights.Removed = { link = "Red" }
 
-			-- Lazy
-			LazyReasonCmd = { fg = palette.base09 },
-			LazyReasonEvent = { fg = palette.cyan },
-			LazyReasonFt = { fg = palette.vibrant_green },
-			LazyReasonKeys = { fg = palette.nord_blue },
-			LazyReasonSource = { fg = palette.base0A },
-			LazyReasonPlugin = { fg = palette.blue },
+		highlights.WarningMsg = { link = "Gold" }
+		highlights.StatusLineNC = { fg = palette.grey_fg }
+		highlights.StatusLine = { bg = palette.black2 }
+		highlights.WinBarNc = { bg = palette.one_bg }
+		highlights.NormalFloat = { link = "Normal" }
+		highlights.FloatBorder = { bg = hl.getbg("Normal"), fg = palette.grey_fg2 }
 
-			-- BlinkPair
-			BlinkPairsUnmatched = {
-				fg = palette.red,
-				reverse = true,
-				bold = true,
-			},
-			BlinkPairsBlue = { link = "Blue" },
-			BlinkPairsOrange = { link = "Orange" },
-			BlinkPairsPurple = { link = "Purple" },
+		-- Lazy
+		highlights.LazyReasonCmd = { fg = palette.base09 }
+		highlights.LazyReasonEvent = { fg = palette.cyan }
+		highlights.LazyReasonFt = { fg = palette.vibrant_green }
+		highlights.LazyReasonKeys = { fg = palette.nord_blue }
+		highlights.LazyReasonSource = { fg = palette.base0A }
+		highlights.LazyReasonPlugin = { fg = palette.blue }
 
-			-- BlinkIndent
-			BlinkIndentRed = { link = "Red" },
-			BlinkIndentCyan = { link = "Aqua" },
-			BlinkIndentBlue = { link = "Blue" },
-			BlinkIndentGreen = { link = "Green" },
-			BlinkIndentYellow = { link = "Yellow" },
-			BlinkIndentViolet = { link = "Purple" },
-			BlinkIndentOrange = { link = "Orange" },
+		-- BlinkPair
+		highlights.BlinkPairsUnmatched = {
+			fg = palette.red,
+			reverse = true,
+			bold = true,
+		}
+		highlights.BlinkPairsBlue = { link = "Blue" }
+		highlights.BlinkPairsOrange = { link = "Orange" }
+		highlights.BlinkPairsPurple = { link = "Purple" }
 
-			-- BlinkCmo
-			-- BlinkCmpMenu = { link = "Normal" },
-			BlinkCmpMenu = { bg = palette.black2 },
-			BlinkCmpMenuBorder = { fg = palette.grey_fg2 },
-			BlinkCmpDocBorder = { link = "FloatBorder" },
-			BlinkCmpLabelDescription = { fg = palette.grey },
-			BlinkCmpLabelDetail = { fg = palette.grey },
-			BlinkCmpLabelDeprecated = { fg = palette.grey },
-			BlinkCmpLabel = { fg = palette.white },
-			BlinkCmpLabelMatch = { fg = palette.blue, bold = true },
+		-- BlinkIndent
+		highlights.BlinkIndentRed = { link = "Red" }
+		highlights.BlinkIndentCyan = { link = "Aqua" }
+		highlights.BlinkIndentBlue = { link = "Blue" }
+		highlights.BlinkIndentGreen = { link = "Green" }
+		highlights.BlinkIndentYellow = { link = "Yellow" }
+		highlights.BlinkIndentViolet = { link = "Purple" }
+		highlights.BlinkIndentOrange = { link = "Orange" }
 
-			BlinkCmpKindField = { link = "@field" },
-			BlinkCmpKindProperty = { link = "@property" },
-			BlinkCmpKindEvent = { link = "@type" },
+		-- BlinkCmo
+		-- BlinkCmpMenu = { link = "Normal" },
+		highlights.BlinkCmpMenu = { bg = palette.black2 }
+		highlights.BlinkCmpMenuBorder = { fg = palette.grey_fg2 }
+		highlights.BlinkCmpDocBorder = { link = "FloatBorder" }
+		highlights.BlinkCmpLabelDescription = { fg = palette.grey }
+		highlights.BlinkCmpLabelDetail = { fg = palette.grey }
+		highlights.BlinkCmpLabelDeprecated = { fg = palette.grey }
+		highlights.BlinkCmpLabel = { fg = palette.white }
+		highlights.BlinkCmpLabelMatch = { fg = palette.blue, bold = true }
+		highlights.BlinkCmpKindField = { link = "@field" }
+		highlights.BlinkCmpKindProperty = { link = "@property" }
+		highlights.BlinkCmpKindEvent = { link = "@type" }
+		highlights.BlinkCmpKindText = { fg = palette.green }
+		highlights.BlinkCmpKindEnum = { fg = palette.green }
+		highlights.BlinkCmpKindKeyword = { fg = palette.green }
+		highlights.BlinkCmpKindConstant = { fg = palette.orange }
+		highlights.BlinkCmpKindConstructor = { fg = palette.orange }
+		highlights.BlinkCmpKindReference = { fg = palette.orange }
+		highlights.BlinkCmpKindFunction = { fg = palette.purple }
+		highlights.BlinkCmpKindStruct = { fg = palette.purple }
+		highlights.BlinkCmpKindClass = { fg = palette.purple }
+		highlights.BlinkCmpKindModule = { fg = palette.purple }
+		highlights.BlinkCmpKindOperator = { fg = palette.purple }
+		highlights.BlinkCmpKindFile = { fg = palette.yellow }
+		highlights.BlinkCmpKindUnit = { fg = palette.yellow }
+		highlights.BlinkCmpKindSnippet = { fg = palette.baby_pink }
+		highlights.BlinkCmpKindFolder = { fg = palette.blue }
+		highlights.BlinkCmpKindVariable = { fg = palette.blue }
+		highlights.BlinkCmpKindMethod = { fg = palette.blue }
+		highlights.BlinkCmpKindValue = { fg = palette.blue }
+		highlights.BlinkCmpKindEnumMember = { fg = palette.blue }
+		highlights.BlinkCmpKindInterface = { fg = palette.cyan }
+		highlights.BlinkCmpKindColor = { fg = palette.cyan }
+		highlights.BlinkCmpKindTypeParameter = { fg = palette.cyan }
+		-- * --
 
-			BlinkCmpKindText = { fg = palette.green },
-			BlinkCmpKindEnum = { fg = palette.green },
-			BlinkCmpKindKeyword = { fg = palette.green },
-
-			BlinkCmpKindConstant = { fg = palette.orange },
-			BlinkCmpKindConstructor = { fg = palette.orange },
-			BlinkCmpKindReference = { fg = palette.orange },
-
-			BlinkCmpKindFunction = { fg = palette.purple },
-			BlinkCmpKindStruct = { fg = palette.purple },
-			BlinkCmpKindClass = { fg = palette.purple },
-			BlinkCmpKindModule = { fg = palette.purple },
-			BlinkCmpKindOperator = { fg = palette.purple },
-
-			BlinkCmpKindFile = { fg = palette.yellow },
-			BlinkCmpKindUnit = { fg = palette.yellow },
-
-			BlinkCmpKindSnippet = { fg = palette.baby_pink },
-
-			BlinkCmpKindFolder = { fg = palette.blue },
-			BlinkCmpKindVariable = { fg = palette.blue },
-			BlinkCmpKindMethod = { fg = palette.blue },
-			BlinkCmpKindValue = { fg = palette.blue },
-			BlinkCmpKindEnumMember = { fg = palette.blue },
-
-			BlinkCmpKindInterface = { fg = palette.cyan },
-			BlinkCmpKindColor = { fg = palette.cyan },
-			BlinkCmpKindTypeParameter = { fg = palette.cyan },
-			-- * --
-
-			-- Vim mode
-			ModeOther = {
-				fg = dark_fg,
-				bg = palette.red,
-			},
-			ModeNormal = {
-				fg = dark_fg,
-				bg = palette.nord_blue,
-			},
-			ModeInsert = {
-				fg = dark_fg,
-				bg = palette.vibrant_green,
-			},
-			ModeVisual = {
-				fg = dark_fg,
-				bg = palette.dark_purple,
-			},
-			ModeReplace = {
-				fg = dark_fg,
-				bg = palette.red,
-			},
-			ModeCommand = {
-				fg = dark_fg,
-				bg = palette.sun,
-			},
-		})
+		-- Vim mode
+		highlights.ModeOther = {
+			fg = dark_fg,
+			bg = palette.red,
+		}
+		highlights.ModeNormal = {
+			fg = dark_fg,
+			bg = palette.nord_blue,
+		}
+		highlights.ModeInsert = {
+			fg = dark_fg,
+			bg = palette.vibrant_green,
+		}
+		highlights.ModeVisual = {
+			fg = dark_fg,
+			bg = palette.dark_purple,
+		}
+		highlights.ModeReplace = {
+			fg = dark_fg,
+			bg = palette.red,
+		}
+		highlights.ModeCommand = {
+			fg = dark_fg,
+			bg = palette.sun,
+		}
 
 		return highlights
 	end)
