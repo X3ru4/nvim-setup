@@ -608,7 +608,7 @@ M.setup = function()
 		hl.set("Dark4", { fg = palette.base03 })
 
 		-- Change the cursor color when the theme is onedark
-		if self.variant == ("-doomchad" or "-onedark") then
+		if self.variant == "-onedark" or self.variant == "-doomchad" then
 			highlights.Cursor = { bg = palette.blue }
 			highlights.TermCursor = { link = "Cursor" }
 		end
@@ -647,6 +647,9 @@ M.setup = function()
 		highlights["@keyword"] = { fg = hl.get("@keyword").fg, italic = true }
 		highlights.rustFuncName = { fg = hl.get("@function").dark_fg, bold = true }
 		highlights.rustKeyword = { link = "@keyword" }
+		if self.variant == "-catppuccin" then
+			-- highlights["@property"] = { fg = palette.cyan }
+		end
 
 		-- Nvim
 		hl.modify("MatchWord", { fg = "none" })
@@ -747,7 +750,7 @@ M.setup = function()
 		highlights.BlinkIndentViolet = { link = "Purple" }
 		highlights.BlinkIndentOrange = { link = "Orange" }
 
-		-- BlinkCmo
+		-- BlinkCmp
 		-- BlinkCmpMenu = { link = "Normal" },
 		highlights.BlinkCmpMenu = { bg = palette.black2 }
 		highlights.BlinkCmpMenuBorder = { fg = palette.grey_fg2 }

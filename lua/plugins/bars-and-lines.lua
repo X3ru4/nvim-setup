@@ -111,7 +111,7 @@ return {
 									Operator = "󰆕 ",
 									Package = "󰏗 ",
 									Pair = "󰅪 ",
-									Property = " ",
+									Property = " ",
 									Reference = "󰦾 ",
 									Regex = " ",
 									Repeat = "󰑖 ",
