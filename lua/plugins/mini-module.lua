@@ -1,11 +1,22 @@
 return {
 
 	{
-    -- Do not disable this plugin!
+		-- Do not disable this plugin!
 		"nvim-mini/mini.icons",
 		event = "VeryLazy",
 		opts = {
 			style = "glyph",
+			-- Customize per category. See `:h MiniIcons.config` for details.
+			default = {},
+			directory = {
+				Download = { glyph = "󰉍", hl = "MiniIconsOrange" },
+				Movies = { glyph = "󰎁", hl = "MiniIconsOrange" },
+			},
+			file = {},
+			filetype = {},
+			extension = {},
+			lsp = {},
+			os = {},
 		},
 	},
 

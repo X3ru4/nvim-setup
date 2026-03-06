@@ -647,9 +647,9 @@ M.setup = function()
 		highlights["@keyword"] = { fg = hl.get("@keyword").fg, italic = true }
 		highlights.rustFuncName = { fg = hl.get("@function").dark_fg, bold = true }
 		highlights.rustKeyword = { link = "@keyword" }
-		if self.variant == "-catppuccin" then
+		-- if self.variant == "-catppuccin" then
 			-- highlights["@property"] = { fg = palette.cyan }
-		end
+		-- end
 
 		-- Nvim
 		hl.modify("MatchWord", { fg = "none" })
@@ -751,8 +751,8 @@ M.setup = function()
 		highlights.BlinkIndentOrange = { link = "Orange" }
 
 		-- BlinkCmp
-		-- BlinkCmpMenu = { link = "Normal" },
-		highlights.BlinkCmpMenu = { bg = palette.black2 }
+		highlights.BlinkCmpMenu = { link = "Normal" }
+		-- highlights.BlinkCmpMenu = { bg = palette.black2 }
 		highlights.BlinkCmpMenuBorder = { fg = palette.grey_fg2 }
 		highlights.BlinkCmpDocBorder = { link = "FloatBorder" }
 		highlights.BlinkCmpLabelDescription = { fg = palette.grey }

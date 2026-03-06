@@ -317,10 +317,10 @@ c = {
 			-- Press gf to go the folder
 			require("config.plugin-base46").load({
         -- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
-        theme = "catppuccin",
+        theme = "onedark",
 				transparency = false,
 			})
-			vim.g.blinkcmp_border = "none"
+			vim.g.blinkcmp_border = "rounded"
 		end,
 	},
 	vague = {
@@ -427,7 +427,7 @@ cs.list = {
 	c.cyberdream,       -- Recomment!
 	c.nord,             -- Hmmmmm!
 	c.tokyonight,       -- Hmmmmm!
-	c.onedark,          -- Hmmmmm!
+  c.onedark,          -- Hmmmmm!
 	c.cursor_dark,      -- Hmmmmm!
 }
 
