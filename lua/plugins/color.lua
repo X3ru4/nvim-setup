@@ -18,7 +18,7 @@ return {
 					oklch = { enable = false },
 					xterm = { enable = true },
 					hex = {
-            default = true,
+						default = true,
 						rgb = false,
 						rgba = false,
 						rrggbb = true,
@@ -29,9 +29,9 @@ return {
 				display = {
 					mode = "virtualtext",
 					virtualtext = {
-            char = "",
+						char = "",
 						position = "before",
-            hl_mode = "foreground"
+						hl_mode = "foreground",
 					},
 				},
 			},

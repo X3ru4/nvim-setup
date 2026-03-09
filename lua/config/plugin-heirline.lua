@@ -53,7 +53,7 @@ local mode = {
 		-- Special sep: "" | "" | ""
 		local sep = ""
 		hl.set("ModeSep2", {
-			fg = hl.get("Dark3").fg,
+			fg = hl.get("Dark2").fg,
 		})
 		hl.set("ModeSep1", {
 			fg = hl.get("Dark4").fg,

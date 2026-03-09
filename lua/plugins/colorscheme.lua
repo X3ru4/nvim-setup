@@ -320,7 +320,7 @@ c = {
         theme = "onedark",
 				transparency = false,
 			})
-			vim.g.blinkcmp_border = "rounded"
+			vim.g.blinkcmp_border = "none"
 		end,
 	},
 	vague = {
@@ -421,7 +421,7 @@ cs.list = {
 	c.gruvbox_material, -- Recomment!
 	c.kanagawa,         -- Recomment!
 	c.kanagawa_paper,   -- Recomment!
-	c.base46,           -- Recomment! Like NvChad colorscheme
+	c.base46,           -- Recomment! Like NvChad themes
 	c.edge,             -- Recomment! Better than onedark
 	c.everforest,       -- Recomment!
 	c.cyberdream,       -- Recomment!

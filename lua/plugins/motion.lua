@@ -2,7 +2,7 @@ return {
 
 	{
 		"folke/flash.nvim",
-		enabled = true,
+		enabled = false,
 		opts = {
 			label = {
 				uppercase = true,
@@ -64,7 +64,8 @@ return {
 
 	{
 		url = "https://codeberg.org/andyg/leap.nvim",
-		enabled = false,
+    -- For more colors and futures, flash.nvim isn the best choice.
+		enabled = true,
 		event = "VeryLazy",
 		keys = {
 			{

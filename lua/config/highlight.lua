@@ -4,6 +4,11 @@ M.setup = function()
 	local hl = require("utility.highlight")
 	local lazy = require("utility.lazy")
 
+	hl.set("Dark1", { fg = hl.get("Pmenu").bg })
+	hl.set("Dark2", { fg = hl.get("Normal").bg })
+	hl.set("Dark3", { fg = hl.get("Visual").bg })
+	hl.set("Dark4", { fg = hl.get("PmenuThumb").bg })
+
 	hl.highlights = {
 		-- Dark colors
 
@@ -602,15 +607,19 @@ M.setup = function()
 		hl.set("Purple", { fg = palette.base0E })
 		hl.set("Gold", { fg = palette.sun })
 		hl.set("Dark0", { fg = palette.black })
-		hl.set("Dark1", { fg = palette.base00 })
-		hl.set("Dark2", { fg = palette.base01 })
-		hl.set("Dark3", { fg = palette.base02 })
-		hl.set("Dark4", { fg = palette.base03 })
+		highlights.Dark1 = { fg = palette.base00 }
+		highlights.Dark2 = { fg = palette.base01 }
+		highlights.Dark3 = { fg = palette.base02 }
+		highlights.Dark4 = { fg = palette.base03 }
 
 		-- Change the cursor color when the theme is onedark
 		if self.variant == "-onedark" or self.variant == "-doomchad" then
 			highlights.Cursor = { bg = palette.blue }
 			highlights.TermCursor = { link = "Cursor" }
+		end
+		if self.variant == "-chadtain" then
+			highlights.Cursor = { bg = palette.sun }
+			-- highlights.BlinkCmpMenuSelection = { bg = palette.light_grey }
 		end
 
 		-- Support terminal colors
@@ -648,7 +657,7 @@ M.setup = function()
 		highlights.rustFuncName = { fg = hl.get("@function").dark_fg, bold = true }
 		highlights.rustKeyword = { link = "@keyword" }
 		-- if self.variant == "-catppuccin" then
-			-- highlights["@property"] = { fg = palette.cyan }
+		-- highlights["@property"] = { fg = palette.cyan }
 		-- end
 
 		-- Nvim
@@ -751,8 +760,11 @@ M.setup = function()
 		highlights.BlinkIndentOrange = { fg = palette.base09 }
 
 		-- BlinkCmp
-		highlights.BlinkCmpMenu = { link = "Normal" }
-		-- highlights.BlinkCmpMenu = { bg = palette.black2 }
+		if vim.g.blinkcmp_border == "none" then
+			highlights.BlinkCmpMenu = { bg = palette.black2 }
+		else
+			highlights.BlinkCmpMenu = { link = "Normal" }
+		end
 		highlights.BlinkCmpMenuBorder = { fg = palette.grey_fg2 }
 		highlights.BlinkCmpDocBorder = { link = "FloatBorder" }
 		highlights.BlinkCmpLabelDescription = { fg = palette.grey }
@@ -839,7 +851,7 @@ M.setup = function()
 
 			-- BlinkPair
 			BlinkPairsUnmatched = {
-				fg = hl.get("red").fg,
+				fg = hl.get("Red").fg,
 				reverse = true,
 				bold = true,
 			},
@@ -946,31 +958,34 @@ M.setup = function()
 	hl.set_match("tokyonight!", function()
 		local colors = require("tokyonight.colors").setup()
 		local fg = colors.black
+		local highlights = {}
 
-		hl.set("MiniStatuslineModeNormal", {
+		highlights.MiniStatuslineModeNormal = {
 			fg = fg,
 			bg = colors.blue,
-		})
-		hl.set("MiniStatuslineModeInsert", {
+		}
+		highlights.MiniStatuslineModeInsert = {
 			fg = fg,
 			bg = colors.green,
-		})
-		hl.set("MiniStatuslineModeVisual", {
+		}
+		highlights.MiniStatuslineModeVisual = {
 			fg = fg,
 			bg = colors.purple,
-		})
-		hl.set("MiniStatuslineModeCommand", {
+		}
+		highlights.MiniStatuslineModeCommand = {
 			fg = fg,
 			bg = colors.orange,
-		})
-		hl.set("MiniStatuslineModeOther", {
+		}
+		highlights.MiniStatuslineModeOther = {
 			fg = fg,
 			bg = colors.green1,
-		})
-		hl.set("MiniStatuslineModeReplace", {
+		}
+		highlights.MiniStatuslineModeReplace = {
 			fg = fg,
 			bg = colors.orange,
-		})
+		}
+
+		return highlights
 	end)
 
 	hl.apply()

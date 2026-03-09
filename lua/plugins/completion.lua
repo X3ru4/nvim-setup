@@ -14,24 +14,6 @@ return {
 				config = function()
 					require("luasnip").setup()
 					require("luasnip.loaders.from_vscode").lazy_load()
-
-					local ls = require("luasnip")
-
-					vim.keymap.set({ "i", "s" }, "<Tab>", function()
-						if ls.expand_or_jumpable() then
-							return "<Plug>luasnip-expand-or-jump"
-						else
-							return "<Tab>"
-						end
-					end, { expr = true, silent = true })
-
-					vim.keymap.set({ "i", "s" }, "<C-h>", function()
-						if ls.jumpable(-1) then
-							return "<Plug>luasnip-jump-prev"
-						else
-							return "<C-h>"
-						end
-					end, { expr = true, silent = true })
 				end,
 			},
 			{
@@ -56,16 +38,28 @@ return {
 			require("blink-cmp").setup({
 				keymap = {
 					preset = "enter",
-					["<C-x>"] = { "hide_documentation", "fallback" },
+					["<Tab>"] = { "snippet_forward", "fallback" },
+					["<C-h>"] = { "snippet_backward", "fallback" },
 				},
 				cmdline = {
 					enabled = true,
 					keymap = {
 						preset = "default",
+						["<Tab>"] = { "show_and_insert_or_accept_single", "select_next" },
+						["<S-Tab>"] = { "show_and_insert_or_accept_single", "select_prev" },
 					},
-					completion = { menu = { auto_show = true } },
+					completion = {
+						menu = {
+							auto_show = function(ctx)
+								return vim.fn.getcmdtype() == ":"
+								-- enable for inputs as well, with:
+								-- or vim.fn.getcmdtype() == '@'
+							end,
+						},
+					},
 				},
 				appearance = {
+					use_nvim_cmp_as_default = false,
 					---@type "mono"|"normal"
 					nerd_font_variant = "normal",
 					kind_icons = {
@@ -113,6 +107,10 @@ return {
 				completion = {
 					ghost_text = {
 						enabled = true,
+						show_with_selection = true,
+						show_without_selection = true,
+						show_with_menu = true,
+						show_without_menu = true,
 					},
 					accept = {
 						auto_brackets = {
@@ -121,6 +119,7 @@ return {
 					},
 					documentation = {
 						auto_show = false,
+						auto_show_delay_ms = 500,
 						window = {
 							scrollbar = false,
 							min_width = 15,
@@ -144,8 +143,8 @@ return {
 								{
 									"kind_icon",
 									"label",
+									"label_description",
 									"kind",
-									-- "label_description",
 									gap = 1,
 								},
 							},
@@ -159,19 +158,19 @@ return {
 						},
 					},
 				},
-				snippets = {
-					preset = "luasnip",
-				},
-				sources = require("utility.lazy").plugin_loaded("lazydev.nvim") and {
-					default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-					providers = {
-						lazydev = {
-							name = "LazyDev",
-							module = "lazydev.integrations.blink",
-							score_offset = 100,
-						},
-					},
-				} or {},
+				snippets = { preset = "luasnip" },
+				sources = require("utility.lazy").plugin_loaded("lazydev.nvim")
+						and {
+							default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+							providers = {
+								lazydev = {
+									name = "LazyDev",
+									module = "lazydev.integrations.blink",
+									score_offset = 100,
+								},
+							},
+						}
+					or {},
 			})
 		end,
 	},
