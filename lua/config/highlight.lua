@@ -652,13 +652,12 @@ M.setup = function()
 		hl.modify("@keyword.return", { italic = true })
 		hl.modify("@keyword.exception", { italic = true })
 		hl.modify("@keyword.repeat", { italic = true })
-		highlights["@lsp.type.struct"] = { fg = palette.teal }
 		highlights["@keyword"] = { fg = hl.get("@keyword").fg, italic = true }
+    highlights["@type"] = { fg = palette.vibrant_green }
+    highlights["@lsp.type.struct"] = { fg = palette.nord_blue }
 		highlights.rustFuncName = { fg = hl.get("@function").dark_fg, bold = true }
 		highlights.rustKeyword = { link = "@keyword" }
-		-- if self.variant == "-catppuccin" then
-		-- highlights["@property"] = { fg = palette.cyan }
-		-- end
+    highlights.Special = { fg = palette.cyan, bold = true }
 
 		-- Nvim
 		hl.modify("MatchWord", { fg = "none" })
@@ -806,7 +805,7 @@ M.setup = function()
 		}
 		highlights.ModeNormal = {
 			fg = dark_fg,
-			bg = palette.nord_blue,
+			bg = palette.cyan,
 		}
 		highlights.ModeInsert = {
 			fg = dark_fg,

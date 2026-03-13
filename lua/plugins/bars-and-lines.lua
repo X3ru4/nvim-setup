@@ -45,6 +45,7 @@ return {
 					if vim.g.loaded_dropbar then
 						return
 					end
+          local kind = require("config.icons").kind
 					require("dropbar").setup({
 						icons = {
 							ui = {
