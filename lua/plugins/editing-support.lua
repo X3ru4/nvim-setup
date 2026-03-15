@@ -198,8 +198,8 @@ return {
 		"nat-418/boole.nvim",
 		enabled = true,
 		keys = {
-			{ "<C-a>" },
-			{ "<C-x>" },
+			"<C-a>",
+			"<C-x>",
 		},
 		config = function()
 			require("boole").setup({
@@ -216,56 +216,58 @@ return {
 	},
 
 	{
-		"mizlan/iswap.nvim",
-		enabled = false,
-		opts = {
-			-- The keys that will be used as a selection, in order
-			-- ('asdfghjklqwertyuiopzxcvbnm' by default)
-			keys = "qwertyuiop",
-
-			-- Grey out the rest of the text when making a selection
-			-- (enabled by default)
-			grey = "disable",
-
-			-- Highlight group for the sniping value (asdf etc.)
-			-- default 'Search'
-			hl_snipe = "DiagnosticVirtualTextError",
-
-			-- Highlight group for the visual selection of terms
-			-- default 'Visual'
-			hl_selection = "DiagnosticVirtualTextHint",
-
-			-- Highlight group for the greyed background
-			-- default 'Comment'
-			hl_grey = "LineNr",
-
-			-- Post-operation flashing highlight style,
-			-- either 'simultaneous' or 'sequential', or false to disable
-			-- default 'sequential'
-			flash_style = "simultaneous",
-
-			-- Highlight group for flashing highlight afterward
-			-- default 'IncSearch'
-			hl_flash = "DiagnosticVirtualTextInfo",
-
-			-- Move cursor to the other element in ISwap*With commands
-			-- default false
-			move_cursor = true,
-
-			-- Automatically swap with only two arguments
-			-- default nil
-			autoswap = true,
-
-			-- Other default options you probably should not change:
-			debug = nil,
-			hl_grey_priority = "1000",
-		},
+		"Wansmer/sibling-swap.nvim",
+		enabled = true,
 		keys = {
-			{ "<leader>ss", "<cmd>ISwap<cr>", desc = "Swap" },
-			{ "<leader>sw", "<cmd>ISwapWith<cr>", desc = "Swap with" },
-			{ "<leader>sh", "<cmd>ISwapWithLeft<cr>", desc = "Swap left" },
-			{ "<leader>sl", "<cmd>ISwapWithRight<cr>", desc = "Swap right" },
+			"<leader>sh",
+			"<leader>sl",
+			"<leader>soh",
+			"<leader>sol",
 		},
+		config = function()
+			require("sibling-swap").setup({
+				allowed_separators = {
+					",",
+					";",
+					"and",
+					"or",
+					"&&",
+					"&",
+					"||",
+					"|",
+					"==",
+					"===",
+					"!=",
+					"!==",
+					"-",
+					"+",
+					["<"] = ">",
+					["<="] = ">=",
+					[">"] = "<",
+					[">="] = "<=",
+				},
+				use_default_keymaps = true,
+				-- Highlight recently swapped node. Can be boolean or table
+				-- If table: { ms = 500, hl_opts = { link = 'IncSearch' } }
+				-- `hl_opts` is a `val` from `nvim_set_hl()`
+				highlight_node_at_cursor = false,
+				-- keybinding for movements to right or left (and up or down, if `allow_interline_swaps` is true)
+				-- (`<C-,>` and `<C-.>` may not map to control chars at system level, so are sent by certain terminals as just `,` and `.`. In this case, just add the mappings you want.)
+				keymaps = {
+					["<leader>sl"] = "swap_with_right",
+					["<leader>sh"] = "swap_with_left",
+					["<leader>sol"] = "swap_with_right_with_opp",
+					["<leader>soh"] = "swap_with_left_with_opp",
+				},
+				ignore_injected_langs = false,
+				-- allow swaps across lines
+				allow_interline_swaps = true,
+				-- swaps interline siblings without separators (no recommended, helpful for swaps html-like attributes)
+				interline_swaps_without_separator = false,
+				-- Fallbacs for tiny settings for langs and nodes. See #fallback
+				fallback = {},
+			})
+		end,
 	},
 
 	{
