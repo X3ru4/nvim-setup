@@ -314,13 +314,13 @@ c = {
 		lazy = false,
 		priority = 1000,
 		config = function()
+			vim.g.blinkcmp_border = "none"
 			-- Press gf to go the folder
 			require("config.plugin-base46").load({
-        -- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
-        theme = "onedark",
+				-- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
+				theme = "onedark",
 				transparency = false,
 			})
-			vim.g.blinkcmp_border = "none"
 		end,
 	},
 	vague = {
@@ -413,22 +413,22 @@ local cs = require("utility.colorscheme")
 
 -- Recomment lever = index
 cs.list = {
-	c.nightfox,         -- Recomment!
-	c.catppuccin,       -- Recomment!
-	c.vscode,           -- Recomment!
-	c.vague,            -- Recomment! Like vscode
-	c.gruvbox,          -- Recomment!
+	c.nightfox, -- Recomment!
+	c.catppuccin, -- Recomment!
+	c.vscode, -- Recomment!
+	c.vague, -- Recomment! Like vscode
+	c.gruvbox, -- Recomment!
 	c.gruvbox_material, -- Recomment!
-	c.kanagawa,         -- Recomment!
-	c.kanagawa_paper,   -- Recomment!
-	c.base46,           -- Recomment! Like NvChad themes
-	c.edge,             -- Recomment! Better than onedark
-	c.everforest,       -- Recomment!
-	c.cyberdream,       -- Recomment!
-	c.nord,             -- Hmmmmm!
-	c.tokyonight,       -- Hmmmmm!
-  c.onedark,          -- Hmmmmm!
-	c.cursor_dark,      -- Hmmmmm!
+	c.kanagawa, -- Recomment!
+	c.kanagawa_paper, -- Recomment!
+	c.base46, -- Recomment! Like NvChad themes
+	c.edge, -- Recomment! Better than onedark
+	c.everforest, -- Recomment!
+	c.cyberdream, -- Recomment!
+	c.nord, -- Hmmmmm!
+	c.tokyonight, -- Hmmmmm!
+	c.onedark, -- Hmmmmm!
+	c.cursor_dark, -- Hmmmmm!
 }
 
 -- NOTE: Goto ~/.config/nvim/lua/config/lazy.lua to more infos

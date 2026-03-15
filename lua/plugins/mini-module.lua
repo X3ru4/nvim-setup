@@ -1,7 +1,7 @@
 return {
 
 	{
-		-- Do not disable this plugin!
+		-- WARNING: Do not disable this plugin!
 		"nvim-mini/mini.icons",
 		event = "VeryLazy",
 		opts = {
@@ -12,7 +12,9 @@ return {
 				Download = { glyph = "󰉍", hl = "MiniIconsOrange" },
 				Movies = { glyph = "󰎁", hl = "MiniIconsOrange" },
 			},
-			file = {},
+			file = {
+        bash = { glyph = "", hl = "MiniIconsOrange" }
+      },
 			filetype = {},
 			extension = {},
 			lsp = {},
@@ -146,10 +148,10 @@ return {
 				todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
 				note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
 
-				author = { pattern = "%f[%w]()X3ru4()%f[%W]", group = "MiniHipatternsHack" },
+				author = { pattern = "%f[%w]()X3ru4()%f[%W]", group = "MiniHipatternsFixme" },
+				warning = { pattern = "%f[%w]()WARNING()%f[%W]", group = "MiniHipatternsHack" },
+				warn = { pattern = "%f[%w]()WARN()%f[%W]", group = "MiniHipatternsHack" },
 				bug = { pattern = "%f[%w]()BUG()%f[%W]", group = "MiniHipatternsFixme" },
-
-				-- Highlight hex color strings (`#rrggbb`) using that color
 			},
 		},
 	},
