@@ -159,18 +159,20 @@ return {
 							local hl = {
 								object = "@type.builtin",
 								array = "@type.builtin",
-                struct = "Structure",
-                class = "Structure",
-                variable = "@variable.builtin",
-                package = "@module",
-                interface = "Character",
-                event = "Directory",
-                key = "Keyword",
-                enum = ""
+								struct = "Structure",
+								class = "Structure",
+								variable = "@variable.builtin",
+								package = "@module",
+								interface = "Character",
+								event = "Directory",
+								key = "Keyword",
+								enum = "",
 							}
 							s = s:lower()
-							if hl[s] then return hl[s] end
-              return "@" .. s
+							if hl[s] then
+								return hl[s]
+							end
+							return "@" .. s
 						end,
 						-- additional symbol formatting, works with or without style
 						symbol_fmt = function(s, opts)
