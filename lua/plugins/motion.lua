@@ -75,12 +75,13 @@ return {
 				nowait = true,
 				remap = true,
 			},
-			{
-				"S",
-				"<Plug>(leap-from-window)",
-				mode = "n",
-				nowait = true,
-			},
+      -- Not recommended to use
+			-- {
+			-- 	"S",
+			-- 	"<Plug>(leap-from-window)",
+			-- 	mode = "n",
+			-- 	nowait = true,
+			-- },
 			{
 				"R",
 				function()
