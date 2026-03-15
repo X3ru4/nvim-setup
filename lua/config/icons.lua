@@ -1,7 +1,7 @@
 local M = {}
 
 M.diagnostic = {
-	Error = "󰅙",
+	Error = "",
 	Warn = "",
 	Info = "",
 	Hint = "",
@@ -25,11 +25,11 @@ M.icons = {
 M.kind = {
 	Text = "",
 	Method = "",
-	Function = "󰊕",
-	Constructor = "󰢻",
+	Function = "󰯼",
+	Constructor = "",
 
 	Field = "",
-	Variable = "",
+	Variable = "󰰬",
 	Property = "",
 
 	Class = "",
@@ -42,17 +42,27 @@ M.kind = {
 	Enum = "",
 	EnumMember = "",
 
-	Keyword = "",
-	Constant = "",
+	Keyword = "",
+	Constant = "π",
 
-	Snippet = "󰅴",
+	Snippet = "",
 	Color = "",
-	File = "",
+	File = "",
 	Reference = "",
-	Folder = "",
+	Folder = "",
 	Event = "",
 	Operator = "",
 	TypeParameter = "",
+
+	Namespace = "",
+	Package = "",
+	String = "󰉾",
+	Number = "",
+	Boolean = "",
+	Array = "",
+	Object = "",
+	Key = "",
+	Null = "",
 }
 
 return M

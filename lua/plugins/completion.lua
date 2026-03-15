@@ -112,7 +112,7 @@ return {
 								{
 									"kind_icon",
 									"label",
-									"label_description",
+									-- "label_description",
 									"kind",
 									gap = 1,
 								},
