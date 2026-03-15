@@ -653,11 +653,11 @@ M.setup = function()
 		hl.modify("@keyword.exception", { italic = true })
 		hl.modify("@keyword.repeat", { italic = true })
 		highlights["@keyword"] = { fg = hl.get("@keyword").fg, italic = true }
-    highlights["@type"] = { fg = palette.vibrant_green }
-    highlights["@lsp.type.struct"] = { fg = palette.nord_blue }
+		highlights["@type"] = { fg = palette.vibrant_green }
+		highlights["@lsp.type.struct"] = { fg = palette.nord_blue }
 		highlights.rustFuncName = { fg = hl.get("@function").dark_fg, bold = true }
 		highlights.rustKeyword = { link = "@keyword" }
-    highlights.Special = { fg = palette.cyan, bold = true }
+		highlights.Special = { fg = palette.cyan, bold = true }
 
 		-- Nvim
 		hl.modify("MatchWord", { fg = "none" })
@@ -667,6 +667,7 @@ M.setup = function()
 
 		-- DropBar
 		highlights.DropBarIconKindArray = { link = "Statement" }
+    highlights.DropBarIconKindVariable = { fg = palette.base09 }
 
 		-- Fzf-lua
 		highlights.FzfLuaBackdrop = { bg = palette.black }
@@ -761,41 +762,44 @@ M.setup = function()
 		-- BlinkCmp
 		if vim.g.blinkcmp_border == "none" then
 			highlights.BlinkCmpMenu = { bg = palette.black2 }
+			highlights.BlinkCmpMenuBorder = { fg = palette.grey_fg2, bg = palette.black2 }
 		else
 			highlights.BlinkCmpMenu = { link = "Normal" }
+			highlights.BlinkCmpMenuBorder = { fg = palette.grey_fg2 }
 		end
-		highlights.BlinkCmpMenuBorder = { fg = palette.grey_fg2 }
-		highlights.BlinkCmpDocBorder = { link = "FloatBorder" }
+		highlights.BlinkCmpDoc = { link = "BlinkCmpMenu" }
+		highlights.BlinkCmpDocBorder = { link = "BlinkCmpMenuBorder" }
 		highlights.BlinkCmpLabelDescription = { fg = palette.grey }
 		highlights.BlinkCmpLabelDetail = { fg = palette.grey }
 		highlights.BlinkCmpLabelDeprecated = { fg = palette.grey }
 		highlights.BlinkCmpLabel = { fg = palette.white }
 		highlights.BlinkCmpLabelMatch = { fg = palette.blue, bold = true }
+
+		highlights.BlinkCmpKindConstant = { link = "@constant" }
 		highlights.BlinkCmpKindField = { link = "@field" }
 		highlights.BlinkCmpKindProperty = { link = "@property" }
 		highlights.BlinkCmpKindEvent = { link = "@type" }
+		highlights.BlinkCmpKindFunction = { link = "@function" }
+		highlights.BlinkCmpKindVariable = { link = "@variable.builtin" }
+		highlights.BlinkCmpKindMethod = { link = "@method" }
+    highlights.BlinkCmpKindConstructor = { link = "@constructor" }
+    highlights.BlinkCmpKindReference = { link = "@reference" }
+    highlights.BlinkCmpKindKeyword = { fg = palette.orange }
 		highlights.BlinkCmpKindText = { fg = palette.green }
 		highlights.BlinkCmpKindEnum = { fg = palette.green }
-		highlights.BlinkCmpKindKeyword = { fg = palette.green }
-		highlights.BlinkCmpKindConstant = { fg = palette.orange }
-		highlights.BlinkCmpKindConstructor = { fg = palette.orange }
-		highlights.BlinkCmpKindReference = { fg = palette.orange }
-		highlights.BlinkCmpKindFunction = { fg = palette.purple }
-		highlights.BlinkCmpKindStruct = { fg = palette.purple }
 		highlights.BlinkCmpKindClass = { fg = palette.purple }
 		highlights.BlinkCmpKindModule = { fg = palette.purple }
 		highlights.BlinkCmpKindOperator = { fg = palette.purple }
+    highlights.BlinkCmpKindStruct = { fg = palette.yellow }
 		highlights.BlinkCmpKindFile = { fg = palette.yellow }
 		highlights.BlinkCmpKindUnit = { fg = palette.yellow }
 		highlights.BlinkCmpKindSnippet = { fg = palette.dark_purple }
 		highlights.BlinkCmpKindFolder = { fg = palette.blue }
-		highlights.BlinkCmpKindVariable = { fg = palette.blue }
-		highlights.BlinkCmpKindMethod = { fg = palette.blue }
 		highlights.BlinkCmpKindValue = { fg = palette.blue }
 		highlights.BlinkCmpKindEnumMember = { fg = palette.blue }
-		highlights.BlinkCmpKindInterface = { fg = palette.cyan }
 		highlights.BlinkCmpKindColor = { fg = palette.cyan }
 		highlights.BlinkCmpKindTypeParameter = { fg = palette.cyan }
+    highlights.BlinkCmpKindInterface = { fg = palette.vibrant_green }
 		-- * --
 
 		-- Vim mode
