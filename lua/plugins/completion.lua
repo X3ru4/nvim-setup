@@ -4,6 +4,8 @@ return {
 
 		"saghen/blink.cmp",
 		event = { "InsertEnter", "CmdlineEnter" },
+		build = "cargo build --release",
+		version = "1.*",
 		dependencies = {
 			{
 				"L3MON4D3/LuaSnip",
@@ -25,8 +27,24 @@ return {
 					},
 				},
 			},
+			{
+				"fang2hou/blink-copilot",
+				config = function()
+					require("blink-copilot").setup({
+						max_completions = 3,
+						max_attempts = 4,
+						kind_name = "Copilot", ---@type string | false
+						kind_icon = " ", ---@type string | false
+						kind_hl = "BlinkCmpKindEvent", ---@type string | false
+						debounce = 200, ---@type integer | false
+						auto_refresh = {
+							backward = true,
+							forward = true,
+						},
+					})
+				end,
+			},
 		},
-		version = "1.*",
 		config = function()
 			vim.lsp.config("*", {
 				capabilities = vim.tbl_deep_extend(
@@ -38,8 +56,26 @@ return {
 			require("blink-cmp").setup({
 				keymap = {
 					preset = "enter",
-					["<Tab>"] = { "snippet_forward", "fallback" },
+					-- ["<Tab>"] = { "snippet_forward", "fallback" },
 					["<C-h>"] = { "snippet_backward", "fallback" },
+					["<Tab>"] = {
+						function(cmp)
+							if vim.b[vim.api.nvim_get_current_buf()].nes_state then
+								cmp.hide()
+								return (
+									require("copilot-lsp.nes").apply_pending_nes()
+									and require("copilot-lsp.nes").walk_cursor_end_edit()
+								)
+							end
+							if cmp.snippet_active() then
+								return cmp.accept()
+							else
+								return cmp.select_and_accept()
+							end
+						end,
+						"snippet_forward",
+						"fallback",
+					},
 				},
 				cmdline = {
 					enabled = true,
@@ -91,8 +127,8 @@ return {
 						auto_show_delay_ms = 500,
 						window = {
 							scrollbar = false,
-							min_width = 15,
-							max_width = 30,
+							min_width = 30,
+							max_width = 45,
 							max_height = 10,
 							winblend = 0,
 							border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
@@ -128,18 +164,36 @@ return {
 					},
 				},
 				snippets = { preset = "luasnip" },
-				sources = require("utility.lazy").plugin_loaded("lazydev.nvim")
-						and {
-							default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-							providers = {
-								lazydev = {
-									name = "LazyDev",
-									module = "lazydev.integrations.blink",
-									score_offset = 100,
-								},
-							},
-						}
-					or {},
+				sources = {
+					default = { "lazydev", "copilot", "lsp", "path", "snippets", "buffer" },
+					providers = {
+						lazydev = {
+							name = "LazyDev",
+							module = "lazydev.integrations.blink",
+							score_offset = 100,
+						},
+						copilot = {
+							name = "copilot",
+							module = "blink-copilot",
+							score_offset = 70,
+							async = true,
+						},
+
+						-- Built-in sources
+						lsp = {
+							score_offset = 90,
+						},
+						path = {
+							score_offset = 80,
+						},
+            snippets = {
+              score_offset = 70,
+            },
+            buffer = {
+              score_offset = 60,
+            }
+					},
+				},
 			})
 		end,
 	},

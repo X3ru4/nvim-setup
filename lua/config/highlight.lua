@@ -45,6 +45,18 @@ M.setup = function()
 		MultiCursorDisabledVisual = { link = "Visual" },
 		MultiCursorDisabledSign = { link = "SignColumn" },
 
+		-- fzf-lua
+		FzfLuaHeaderText = { link = "Red" },
+		FzfLuaBufFlagCur = { link = "Red" },
+		FzfLuaPathColNr = { link = "Blue" },
+		FzfLuaBufFlagAlt = { link = "Blue" },
+		FzfLuaLiveSym = { link = "Red" },
+		FzfLuaBufNr = { link = "Yellow" },
+		FzfLuaHeaderBind = { link = "Yellow" },
+		FzfLuaTabMarker = { link = "Yellow" },
+		FzfLuaTabTitle = { link = "Blue" },
+		FzfLuaLivePrompt = { link = "Red" },
+
 		-- Vanilla
 		-- StatusLine = {
 		-- 	link = "Normal",
@@ -616,10 +628,10 @@ M.setup = function()
 		if self.variant == "-onedark" or self.variant == "-doomchad" then
 			highlights.Cursor = { bg = palette.blue }
 			highlights.TermCursor = { link = "Cursor" }
+			highlights.BlinkCmpMenuSelection = { bg = palette.base03 }
 		end
 		if self.variant == "-chadtain" then
 			highlights.Cursor = { bg = palette.sun }
-			-- highlights.BlinkCmpMenuSelection = { bg = palette.light_grey }
 		end
 
 		-- Support terminal colors
@@ -664,23 +676,22 @@ M.setup = function()
 		hl.modify("Visual", { bold = true })
 		highlights.MatchWordCur = { link = "MatchWord" }
 		highlights.Yank = { link = "Visual" }
+		highlights.DiffAdd = {
+			bg = hl.blend(palette.green, normal_bg, 0.2),
+		}
+		highlights.DiffText = {
+			bg = hl.blend(palette.white, normal_bg, 0.2),
+		}
+		highlights.DiffDelete = {
+			bg = hl.blend(palette.red, normal_bg, 0.2),
+		}
 
 		-- DropBar
 		highlights.DropBarIconKindArray = { link = "Statement" }
-    highlights.DropBarIconKindVariable = { fg = palette.base09 }
+		highlights.DropBarIconKindVariable = { fg = palette.base09 }
 
 		-- Fzf-lua
 		highlights.FzfLuaBackdrop = { bg = palette.black }
-		highlights.FzfLuaHeaderText = { link = "Red" }
-		highlights.FzfLuaBufFlagCur = { link = "Red" }
-		highlights.FzfLuaPathColNr = { link = "Blue" }
-		highlights.FzfLuaBufFlagAlt = { link = "Blue" }
-		highlights.FzfLuaLiveSym = { link = "Red" }
-		highlights.FzfLuaBufNr = { link = "Yellow" }
-		highlights.FzfLuaHeaderBind = { link = "Yellow" }
-		highlights.FzfLuaTabMarker = { link = "Yellow" }
-		highlights.FzfLuaTabTitle = { link = "Blue" }
-		highlights.FzfLuaLivePrompt = { link = "Red" }
 
 		-- Mini.icons
 		highlights.MiniIconsRed = { fg = palette.base08 }
@@ -782,15 +793,15 @@ M.setup = function()
 		highlights.BlinkCmpKindFunction = { link = "@function" }
 		highlights.BlinkCmpKindVariable = { link = "@variable.builtin" }
 		highlights.BlinkCmpKindMethod = { link = "@method" }
-    highlights.BlinkCmpKindConstructor = { link = "@constructor" }
-    highlights.BlinkCmpKindReference = { link = "@reference" }
-    highlights.BlinkCmpKindKeyword = { fg = palette.orange }
+		highlights.BlinkCmpKindConstructor = { link = "@constructor" }
+		highlights.BlinkCmpKindReference = { link = "@reference" }
+		highlights.BlinkCmpKindKeyword = { fg = palette.orange }
 		highlights.BlinkCmpKindText = { fg = palette.green }
 		highlights.BlinkCmpKindEnum = { fg = palette.green }
 		highlights.BlinkCmpKindClass = { fg = palette.purple }
 		highlights.BlinkCmpKindModule = { fg = palette.purple }
 		highlights.BlinkCmpKindOperator = { fg = palette.purple }
-    highlights.BlinkCmpKindStruct = { fg = palette.yellow }
+		highlights.BlinkCmpKindStruct = { fg = palette.yellow }
 		highlights.BlinkCmpKindFile = { fg = palette.yellow }
 		highlights.BlinkCmpKindUnit = { fg = palette.yellow }
 		highlights.BlinkCmpKindSnippet = { fg = palette.dark_purple }
@@ -799,7 +810,7 @@ M.setup = function()
 		highlights.BlinkCmpKindEnumMember = { fg = palette.blue }
 		highlights.BlinkCmpKindColor = { fg = palette.cyan }
 		highlights.BlinkCmpKindTypeParameter = { fg = palette.cyan }
-    highlights.BlinkCmpKindInterface = { fg = palette.vibrant_green }
+		highlights.BlinkCmpKindInterface = { fg = palette.vibrant_green }
 		-- * --
 
 		-- Vim mode
@@ -992,6 +1003,7 @@ M.setup = function()
 	end)
 
 	hl.apply()
+  vim.notify("Highlight groups applied!", vim.log.levels.INFO)
 end
 
 return M

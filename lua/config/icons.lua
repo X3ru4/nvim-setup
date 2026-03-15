@@ -46,7 +46,7 @@ M.kind = {
 	Constant = "π",
 
 	Snippet = "",
-	Color = "",
+  Color = "",
 	File = "",
 	Reference = "",
 	Folder = "",
@@ -60,7 +60,7 @@ M.kind = {
 	Number = "",
 	Boolean = "",
 	Array = "",
-	Object = "",
+	Object = "󰅩",
 	Key = "",
 	Null = "",
 }
