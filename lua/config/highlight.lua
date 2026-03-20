@@ -1,3 +1,4 @@
+local kinds = require "tokyonight.groups.kinds"
 local M = {}
 
 M.setup = function()
@@ -56,6 +57,9 @@ M.setup = function()
 		FzfLuaTabMarker = { link = "Yellow" },
 		FzfLuaTabTitle = { link = "Blue" },
 		FzfLuaLivePrompt = { link = "Red" },
+
+    -- Blink.cmp
+    BlinkCmpKindCopilot = { link = "Green" },
 
 		-- Vanilla
 		-- StatusLine = {
@@ -705,21 +709,21 @@ M.setup = function()
 		highlights.MiniIconsGrey = { fg = palette.base05 }
 
 		-- Diagnostic
-		highlights.DiagnosticWarn = { fg = palette.base0A }
+		highlights.DiagnosticWarn = { fg = palette.yellow }
 		highlights.DiagnosticInfo = { fg = palette.cyan }
-		highlights.DiagnosticHint = { fg = palette.purple }
+		highlights.DiagnosticHint = { fg = palette.dark_purple }
 		highlights.DiagnosticError = { fg = palette.red }
 		highlights.DiagnosticVirtualTextWarn = {
-			fg = palette.base0A,
-			bg = hl.blend(palette.base0A, normal_bg, 0.2),
+			fg = palette.yellow,
+			bg = hl.blend(palette.yellow, normal_bg, 0.2),
 		}
 		highlights.DiagnosticVirtualTextInfo = {
 			fg = palette.cyan,
 			bg = hl.blend(palette.cyan, normal_bg, 0.2),
 		}
 		highlights.DiagnosticVirtualTextHint = {
-			fg = palette.purple,
-			bg = hl.blend(palette.purple, normal_bg, 0.2),
+			fg = palette.dark_purple,
+			bg = hl.blend(palette.dark_purple, normal_bg, 0.2),
 		}
 		highlights.DiagnosticVirtualTextError = {
 			fg = palette.red,

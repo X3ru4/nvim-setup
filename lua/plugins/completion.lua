@@ -28,21 +28,7 @@ return {
 				},
 			},
 			{
-				"fang2hou/blink-copilot",
-				config = function()
-					require("blink-copilot").setup({
-						max_completions = 3,
-						max_attempts = 4,
-						kind_name = "Copilot", ---@type string | false
-						kind_icon = " ", ---@type string | false
-						kind_hl = "BlinkCmpKindEvent", ---@type string | false
-						debounce = 200, ---@type integer | false
-						auto_refresh = {
-							backward = true,
-							forward = true,
-						},
-					})
-				end,
+				"giuxtaposition/blink-cmp-copilot",
 			},
 		},
 		config = function()
@@ -170,13 +156,23 @@ return {
 						lazydev = {
 							name = "LazyDev",
 							module = "lazydev.integrations.blink",
+							enabled = true,
 							score_offset = 100,
 						},
 						copilot = {
 							name = "copilot",
-							module = "blink-copilot",
-							score_offset = 70,
+							module = "blink-cmp-copilot",
+							score_offset = 75,
 							async = true,
+							transform_items = function(_, items)
+								local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+								local kind_idx = #CompletionItemKind + 1
+								CompletionItemKind[kind_idx] = "Copilot"
+								for _, item in ipairs(items) do
+									item.kind = kind_idx
+								end
+								return items
+							end,
 						},
 
 						-- Built-in sources
@@ -186,12 +182,12 @@ return {
 						path = {
 							score_offset = 80,
 						},
-            snippets = {
-              score_offset = 70,
-            },
-            buffer = {
-              score_offset = 60,
-            }
+						snippets = {
+							score_offset = 70,
+						},
+						buffer = {
+							score_offset = 60,
+						},
 					},
 				},
 			})

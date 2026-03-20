@@ -1,11 +1,13 @@
+local opt = vim.opt
+local g = vim.g
+
 function _G.newfoldtext()
 	local line = vim.fn.getline(vim.v.foldstart)
 	local count = vim.v.foldend - vim.v.foldstart + 1
 	return "  " .. line .. " ↙" .. count
 end
 
-vim.g.statusline_style = {
-	style = "minimal1", -- You can set with "minimal[x]" or "normal[x]"
+g.statusline_style = {
 	diagnostic = true,
 	coordinate = true,
 	file_name = false,
@@ -15,8 +17,6 @@ vim.g.statusline_style = {
 	hlsearch = true,
 	macro = true,
 }
-
-local opt = vim.opt
 
 -- Performance
 opt.updatetime = 100
@@ -30,8 +30,8 @@ opt.cmdheight = 0
 -- Fold
 opt.foldenable = true
 opt.foldlevel = 99
-opt.foldmethod = 'expr'
-opt.foldtext = "v:lua.newfoldtext()"
+opt.foldmethod = "expr"
+opt.foldtext = "v:lua.newfoldtext()" -- Custom foldtext
 opt.foldcolumn = "0"
 
 -- Wrap
@@ -103,11 +103,11 @@ opt.listchars = {
 	eol = " ",
 	tab = "  ",
 	leadmultispace = "  ",
-	extends = "",
-	precedes = "",
+	extends = "»",
+	precedes = "«",
 	space = " ",
 	trail = "·",
-	nbsp = " ",
+	nbsp = "␣",
 }
 
 opt.guicursor = {

@@ -430,10 +430,10 @@ return {
 		version = false,
 		keys = {
 			{ "Sa", mode = { "n", "x", "v" } },
-			{ "Sd", mode = { "n", "x", "v" } },
-			{ "Sr", mode = { "n", "x", "v" } },
-			{ "Sf", mode = { "n", "x", "v" } },
-			{ "SF", mode = { "n", "x", "v" } },
+      { "Sd", mode = { "n", "x", "v" } },
+      { "Sr", mode = { "n", "x", "v" } },
+      { "Sf", mode = { "n", "x", "v" } },
+      { "SF", mode = { "n", "x", "v" } },
 		},
 		opts = {
 			mappings = {
@@ -460,136 +460,6 @@ return {
 			{ "<A-k>", mode = { "n", "v", "x" } },
 		},
 		opts = {},
-	},
-
-	{
-		-- Using heirline.nvim
-		"nvim-mini/mini.statusline",
-		enabled = false,
-		event = "VimEnter",
-		version = true,
-		config = function()
-			require("mini.statusline").setup({
-				content = {
-					active = function()
-						local sl = require("mini.statusline")
-						local _, mode_hl = sl.section_mode({ trunc_width = 120 })
-
-						local mode_str = function()
-							local modes = {
-								n = "Normal",
-								i = "Insert",
-								v = "Visual",
-								V = "V-Line",
-								["\22"] = "V-Block",
-								c = "Command",
-								R = "Replace",
-								t = "Terminal",
-								s = "Select",
-								S = "S-Line",
-								["\19"] = "S-Block",
-							}
-							local current_mode = vim.api.nvim_get_mode().mode
-							return modes[current_mode] or "Normal"
-						end
-
-						-- local function file_size()
-						-- 	local ok, stats = pcall((vim.uv or vim.loop).fs_stat, vim.api.nvim_buf_get_name(0))
-						-- 	if ok and stats then
-						-- 		local i = 0
-						-- 		local sizes = { "B", "KB", "MB", "GB" }
-						-- 		while stats.size >= 1024 and i < #sizes - 1 do
-						-- 			stats.size = stats.size / 1024
-						-- 			i = i + 1
-						-- 		end
-						-- 		return string.format("%.1f%s", stats.size, sizes[i + 1])
-						-- 	else
-						-- 		return ""
-						-- 	end
-						-- end
-
-						local function file_icon(init)
-							local icons, hl
-							icons, hl = require("mini.icons").get("file", vim.fn.expand("%:t"))
-							local modify_icon = function(filetype, icon)
-								if vim.bo.filetype == filetype then
-									icons = icon
-								end
-							end
-
-							modify_icon("", "X3ru4")
-							modify_icon("alpha", "α")
-							modify_icon("oil", "󰏇")
-							modify_icon("lazy", "💤")
-							modify_icon("mason", " ")
-							modify_icon("checkhealth", "󰩂 ")
-
-							return table.concat({
-								"%#",
-								hl,
-								"#",
-								init,
-								icons,
-								" ",
-								"%#StatusLine#",
-							})
-						end
-
-						return sl.combine_groups({
-							{
-								hl = mode_hl,
-								strings = { mode_str() },
-							},
-							"%<",
-							{
-								hl = "StatusLine",
-								strings = {
-									table.concat({
-										file_icon(vim.bo.filetype .. " "),
-										(vim.bo.modified and "Modified" or ""),
-									}, " "),
-								},
-							},
-							"%=",
-							{
-								hl = "StatusLine",
-								strings = {
-									sl.section_diagnostics({
-										icon = "",
-										signs = {
-											ERROR = table.concat({
-												"%#DiagnosticError#",
-												require("config.icons").diagnostic.errr,
-												" ",
-												"%#StatusLine# ",
-											}),
-											WARN = table.concat({
-												"%#DiagnosticWarn#",
-												require("config.icons").diagnostic.warn,
-												" ",
-												"%#StatusLine# ",
-											}),
-											INFO = table.concat({
-												"%#DiagnosticInfo#",
-												require("config.icons").diagnostic.info,
-												" ",
-												"%#StatusLine# ",
-											}),
-											HINT = table.concat({
-												"%#DiagnosticHint#",
-												require("config.icons").diagnostic.hint,
-												" ",
-												"%#StatusLine# ",
-											}),
-										},
-									}):gsub("%s+(%d+)", "%1"),
-								},
-							},
-						})
-					end,
-				},
-			})
-		end,
 	},
 
 	{

@@ -58,21 +58,15 @@ keymap("x", "<leader>gr", function()
 
 	vim.ui.input({ prompt = 'Replace "' .. selection .. '" with' }, function(input)
 		if input then
-			vim.ui.input({ prompt = 'Flag | Ex: "gc"' }, function(flag)
-				vim.cmd(table.concat({
-					"%s/",
-					selection,
-					"/",
-					input,
-					"/",
-					flag or "g",
-				}))
+			vim.ui.input({ prompt = 'Flag | Ex: "gc"' }, function(input_flag)
+				local flag = input_flag or "g"
+				vim.cmd(string.format("%%s/%s/%s/%s", selection, input, flag))
 			end)
 		end
 	end)
 end, { desc = "Replace" })
 -- Popup search
-keymap("n", "<leader>gs", function()
+keymap({ "n", "x" }, "<leader>gs", function()
 	vim.ui.input({ prompt = "Search  " }, function(input)
 		if type(input) == "string" then
 			vim.cmd("?" .. input)
@@ -92,9 +86,9 @@ keymap("n", "<leader>cb", function()
 end, { desc = "Toggle background" }) -- Can not working on some themes
 keymap("n", "<leader>cw", function()
 	if not vim.o.wrap then
-		vim.opt.wrap = true
+		vim.o.wrap = true
 	else
-		vim.opt.wrap = false
+		vim.o.wrap = false
 	end
 end, { desc = "Wrap" })
 keymap("n", "<leader>cr", function()
@@ -116,7 +110,7 @@ function M.lsp(bufnr)
 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 	end, { desc = "Toggle inlay hint", buffer = bufnr })
 
-	-- If not use the fzf-lua swith to use the default
+	-- If not use the fzf-lua swith to use the built-in
 	if not lazy.plugin_loaded("fzf-lua") then
 		keymap("n", "grd", vim.lsp.buf.definition, { desc = "Definition", buffer = bufnr })
 		keymap("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation", buffer = bufnr })

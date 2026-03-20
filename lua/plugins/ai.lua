@@ -1,9 +1,10 @@
 return {
 	{
 		"copilotlsp-nvim/copilot-lsp",
-    event = "BufReadPre",
+		enabled = false,
+		event = "BufReadPre",
 		init = function()
-      -- Use the following command to install the copilot-lsp npm install -g @github/copilot-language-server
+			-- Use the following command to install the copilot-lsp npm install -g @github/copilot-language-server
 			vim.g.copilot_nes_debounce = 500
 			vim.lsp.enable("copilot_ls")
 			vim.keymap.set("n", "<tab>", function()
@@ -20,6 +21,18 @@ return {
 					return "<C-i>"
 				end
 			end, { desc = "Accept Copilot NES suggestion", expr = true })
+		end,
+	},
+
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({
+				suggestion = { enabled = false },
+				panel = { enabled = false },
+			})
 		end,
 	},
 }

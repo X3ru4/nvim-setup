@@ -55,7 +55,7 @@ function M.separator(spec)
 	end
 
 	local function section_fmt(section, id)
-		local hl_ns = table.concat({ "CustomHl", (spec.id or "nil"), id })
+		local hl_ns = "CustomHl" .. (spec.id or "nil") .. id
 
 		local function value()
 			if type(section.value) == "function" then

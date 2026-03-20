@@ -63,6 +63,8 @@ M.kind = {
 	Object = "󰅩",
 	Key = "",
 	Null = "",
+
+  Copilot = "",
 }
 
 return M
