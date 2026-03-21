@@ -1,7 +1,7 @@
 return {
 	{
 		"copilotlsp-nvim/copilot-lsp",
-		enabled = false,
+		enabled = true,
 		event = "BufReadPre",
 		init = function()
 			-- Use the following command to install the copilot-lsp npm install -g @github/copilot-language-server
