@@ -66,7 +66,7 @@ end
 
 ---Modify highlight.
 ---@param name string The highlight name
----@param opts vim.api.keyset.highlight
+---@param opts vim.api.keyset.highlight|function
 ---@param fallback boolean|nil If true the function will return a table.
 ---@return vim.api.keyset.highlight|nil|table
 function M.modify(name, opts, fallback)
@@ -74,6 +74,9 @@ function M.modify(name, opts, fallback)
 		return
 	end
 	local base = M.get(name) or {}
+	if type(opts) == "function" then
+		opts = opts(base) or {}
+	end
 	local merged = vim.tbl_extend("force", base, opts or {})
 
 	if fallback then
@@ -145,8 +148,7 @@ end
 ---Apply all highlights from M.highlights and other table.
 ---@param other table|function|nil
 function M.apply(other)
-	M.clear_cache()
-
+  M.clear_cache()
 	local function pair(t)
 		if not t then
 			return
@@ -255,10 +257,11 @@ function M.rgb_to_hex(rgb)
 end
 
 function M.dec_to_hex(dec_color)
-	if not dec_color then
-		return nil
-	end
-	return string.format("#%06X", dec_color)
+  if type(dec_color) == "number" then
+    return string.format("#%06X", dec_color)
+  end
+  vim.notify("Expected a number for dec_color, got " .. type(dec_color), vim.log.levels.WARN)
+  return "#000000"
 end
 
 --- Blends colors with an alpha value

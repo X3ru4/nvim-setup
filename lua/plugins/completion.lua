@@ -28,7 +28,19 @@ return {
 				},
 			},
 			{
-				"giuxtaposition/blink-cmp-copilot",
+				"fang2hou/blink-copilot",
+				opts = {
+					max_completions = 3,
+					max_attempts = 2,
+					kind_name = "Copilot", ---@type string | false
+					kind_icon = require("config.icons").kind.Copilot .. " ", ---@type string | false
+					kind_hl = "BlinkCmpKindEvent", ---@type string | false
+					debounce = 200, ---@type integer | false
+					auto_refresh = {
+						backward = true,
+						forward = true,
+					},
+				},
 			},
 		},
 		config = function()
@@ -42,26 +54,8 @@ return {
 			require("blink-cmp").setup({
 				keymap = {
 					preset = "enter",
-					-- ["<Tab>"] = { "snippet_forward", "fallback" },
+					["<Tab>"] = { "snippet_forward", "fallback" },
 					["<C-h>"] = { "snippet_backward", "fallback" },
-					["<Tab>"] = {
-						function(cmp)
-							if vim.b[vim.api.nvim_get_current_buf()].nes_state then
-								cmp.hide()
-								return (
-									require("copilot-lsp.nes").apply_pending_nes()
-									and require("copilot-lsp.nes").walk_cursor_end_edit()
-								)
-							end
-							if cmp.snippet_active() then
-								return cmp.accept()
-							else
-								return cmp.select_and_accept()
-							end
-						end,
-						"snippet_forward",
-						"fallback",
-					},
 				},
 				cmdline = {
 					enabled = true,
@@ -161,18 +155,9 @@ return {
 						},
 						copilot = {
 							name = "copilot",
-							module = "blink-cmp-copilot",
+							module = "blink-copilot",
 							score_offset = 75,
 							async = true,
-							transform_items = function(_, items)
-								local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
-								local kind_idx = #CompletionItemKind + 1
-								CompletionItemKind[kind_idx] = "Copilot"
-								for _, item in ipairs(items) do
-									item.kind = kind_idx
-								end
-								return items
-							end,
 						},
 
 						-- Built-in sources

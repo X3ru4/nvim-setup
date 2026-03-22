@@ -1,19 +1,23 @@
-local kinds = require "tokyonight.groups.kinds"
+local kinds = require("tokyonight.groups.kinds")
 local M = {}
 
 M.setup = function()
+  -- local start = os.clock()
 	local hl = require("utility.highlight")
 	local lazy = require("utility.lazy")
+	local normal = {
+		fg = hl.dec_to_hex(hl.getfg("Normal")),
+		bg = hl.dec_to_hex(hl.getbg("Normal")),
+	}
 
-	hl.set("Dark1", { fg = hl.get("Pmenu").bg })
-	hl.set("Dark2", { fg = hl.get("Normal").bg })
-	hl.set("Dark3", { fg = hl.get("Visual").bg })
-	hl.set("Dark4", { fg = hl.get("PmenuThumb").bg })
+	-- Generate the basic colors with blending for dark variants
+	hl.set("Dark1", { fg = hl.blend(normal.bg, normal.fg, 0.9) })
+	hl.set("Dark2", { fg = hl.blend(normal.bg, normal.fg, 0.8) })
+	hl.set("Dark3", { fg = hl.blend(normal.bg, normal.fg, 0.7) })
+	hl.set("Dark4", { fg = hl.blend(normal.bg, normal.fg, 0.6) })
 
 	hl.highlights = {
-		-- Dark colors
-
-		-- Custom
+		-- Custom highlights
 		ModeOther = {
 			link = "MiniStatuslineModeOther",
 		},
@@ -33,11 +37,11 @@ M.setup = function()
 			link = "MiniStatuslineModeCommand",
 		},
 		Yank = {
-			bg = hl.get("Visual").bg,
+			bg = hl.getbg("Visual"),
 		},
 
 		--- Plugins
-		-- multicutsor.nvim
+		-- MultiCursor
 		MultiCursorCursor = { reverse = true },
 		MultiCursorVisual = { link = "Visual" },
 		MultiCursorSign = { link = "SignColumn" },
@@ -46,47 +50,66 @@ M.setup = function()
 		MultiCursorDisabledVisual = { link = "Visual" },
 		MultiCursorDisabledSign = { link = "SignColumn" },
 
-		-- fzf-lua
-		FzfLuaHeaderText = { link = "Red" },
-		FzfLuaBufFlagCur = { link = "Red" },
-		FzfLuaPathColNr = { link = "Blue" },
-		FzfLuaBufFlagAlt = { link = "Blue" },
-		FzfLuaLiveSym = { link = "Red" },
-		FzfLuaBufNr = { link = "Yellow" },
-		FzfLuaHeaderBind = { link = "Yellow" },
-		FzfLuaTabMarker = { link = "Yellow" },
-		FzfLuaTabTitle = { link = "Blue" },
-		FzfLuaLivePrompt = { link = "Red" },
+		-- FzfLua
+		FzfLuaHeaderText = { link = "ErrorMsg" },
+		FzfLuaBufFlagCur = { link = "ErrorMsg" },
+		FzfLuaLiveSym = { link = "ErrorMsg" },
+		FzfLuaLivePrompt = { link = "ErrorMsg" },
+		FzfLuaPathColNr = { link = "Directory" },
+		FzfLuaBufFlagAlt = { link = "Directory" },
+		FzfLuaTabTitle = { link = "Directory" },
+		FzfLuaBufNr = { link = "WarningMsg" },
+		FzfLuaHeaderBind = { link = "WarningMsg" },
+		FzfLuaTabMarker = { link = "WarningMsg" },
 
-    -- Blink.cmp
-    BlinkCmpKindCopilot = { link = "Green" },
+		-- BlinkCmp
 
-		-- Vanilla
-		-- StatusLine = {
-		-- 	link = "Normal",
-		-- },
-		WinBar = {
-			link = "Normal",
-		},
+		-- MiniTabline
 		MiniTablineCurrent = {
-			link = "Normal",
+			fg = normal.fg,
+			bg = normal.bg,
+			bold = true,
 		},
 		MiniTablineModifiedCurrent = {
-			link = "Normal",
+			fg = hl.getfg("WarningMsg"),
+			bg = normal.bg,
+			bold = true,
 		},
 		MiniTablineHidden = {
 			link = "StatusLineNC",
 		},
-		MiniTablineModifiedHidden = {
-			link = "MiniTablineHidden",
-		},
+		MiniTablineModifiedHidden = hl.modify("MiniTablineHidden", function (base)
+		  local primary = hl.dec_to_hex(hl.getfg("WarningMsg"))
+      local secondary = hl.dec_to_hex(base.fg)
+      return {
+        bold = true,
+        fg = hl.blend(primary, secondary, 0.5),
+        bg = base.bg,
+      }
+		end, true),
 		MiniTablineFill = {
 			link = "StatusLineNC",
 		},
+
+		-- DropBar
 		DropBarMenuHoverEntry = {
 			link = "Visual",
 		},
 		DropBarMenuHoverIcon = vim.empty_dict(),
+		hl.modify("DropBarIconUISeparator", {
+			italic = false,
+		}),
+		hl.modify("DropBarIconUISeparatorNC", {
+			italic = false,
+		}),
+		hl.modify("DropBarIconUISeparatorMenu", {
+			italic = false,
+		}),
+
+		-- Vanilla
+		WinBar = {
+			link = "Normal",
+		},
 		SpellBad = {
 			strikethrough = true,
 		},
@@ -99,15 +122,6 @@ M.setup = function()
 		SpellLocal = {
 			strikethrough = true,
 		},
-		hl.modify("DropBarIconUISeparator", {
-			italic = false,
-		}),
-		hl.modify("DropBarIconUISeparatorNC", {
-			italic = false,
-		}),
-		hl.modify("DropBarIconUISeparatorMenu", {
-			italic = false,
-		}),
 	}
 
 	hl.set_match("gruvbox-material", {
@@ -120,7 +134,7 @@ M.setup = function()
 
 		-- BlinkPair
 		BlinkPairsUnmatched = {
-			fg = hl.get("Red").fg,
+			fg = hl.getfg("Red"),
 			reverse = true,
 			bold = true,
 		},
@@ -202,7 +216,7 @@ M.setup = function()
 
 		-- BlinkPair
 		BlinkPairsUnmatched = {
-			fg = hl.get("Red").fg,
+			fg = hl.getfg("Red"),
 			reverse = true,
 			bold = true,
 		},
@@ -290,12 +304,12 @@ M.setup = function()
 			},
 
 			Cursor = {
-				bg = hl.get("blue").fg,
+				bg = hl.getfg("blue"),
 			},
 
 			-- BlinkPair
 			BlinkPairsUnmatched = {
-				fg = hl.get("red").fg,
+				fg = hl.getfg("red"),
 				reverse = true,
 				bold = true,
 			},
@@ -386,7 +400,7 @@ M.setup = function()
 		MiniCursorwordCurrent = vim.empty_dict(),
 		-- BlinkPair
 		BlinkPairsUnmatched = {
-			fg = hl.get("red").fg,
+			fg = hl.getfg("red"),
 			reverse = true,
 			bold = true,
 		},
@@ -452,7 +466,7 @@ M.setup = function()
 
 	hl.set_match("gruvbox", {
 		Cursor = {
-			bg = hl.get("Orange").fg,
+			bg = hl.getfg("Orange"),
 		},
 		SignColumn = {
 			link = "Normal",
@@ -466,7 +480,7 @@ M.setup = function()
 
 		-- BlinkPair
 		BlinkPairsUnmatched = {
-			fg = hl.get("red").fg,
+			fg = hl.getfg("red"),
 			reverse = true,
 			bold = true,
 		},
@@ -668,12 +682,12 @@ M.setup = function()
 		hl.modify("@keyword.return", { italic = true })
 		hl.modify("@keyword.exception", { italic = true })
 		hl.modify("@keyword.repeat", { italic = true })
-		highlights["@keyword"] = { fg = hl.get("@keyword").fg, italic = true }
+		highlights["@keyword"] = { fg = hl.getfg("@keyword"), italic = true }
 		highlights["@type"] = { fg = palette.vibrant_green }
 		highlights["@lsp.type.struct"] = { fg = palette.nord_blue }
-		highlights.rustFuncName = { fg = hl.get("@function").dark_fg, bold = true }
+		highlights.rustFuncName = { fg = hl.getfg("@function"), bold = true }
 		highlights.rustKeyword = { link = "@keyword" }
-		highlights.Special = { fg = palette.cyan, bold = true }
+		highlights.Special = { fg = palette.cyan }
 
 		-- Nvim
 		hl.modify("MatchWord", { fg = "none" })
@@ -746,6 +760,12 @@ M.setup = function()
 		highlights.WinBarNc = { bg = palette.one_bg }
 		highlights.NormalFloat = { link = "Normal" }
 		highlights.FloatBorder = { bg = hl.getbg("Normal"), fg = palette.grey_fg2 }
+
+		highlights.NonText = { fg = palette.grey_fg }
+		highlights.Comment = { fg = palette.grey_fg2, italic = true }
+
+		-- Oil.nvim
+		highlights.OilChange = { link = "WarningMsg" }
 
 		-- Lazy
 		highlights.LazyReasonCmd = { fg = palette.base09 }
@@ -869,7 +889,7 @@ M.setup = function()
 
 			-- BlinkPair
 			BlinkPairsUnmatched = {
-				fg = hl.get("Red").fg,
+				fg = hl.getfg("Red"),
 				reverse = true,
 				bold = true,
 			},
@@ -963,7 +983,7 @@ M.setup = function()
 
 			-- Blink.cmp
 			BlinkCmpKind = {
-				fg = hl.get("PmenuKind").fg,
+				fg = hl.getfg("PmenuKind"),
 			},
 
 			-- Vanilla
@@ -1007,7 +1027,8 @@ M.setup = function()
 	end)
 
 	hl.apply()
-  vim.notify("Highlight groups applied!", vim.log.levels.INFO)
+  -- local elapsed = (os.clock() - start) * 1000
+  -- vim.notify(string.format("Highlight configuration applied in %.2f ms", elapsed), vim.log.levels.INFO)
 end
 
 return M

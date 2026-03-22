@@ -430,8 +430,8 @@ return {
 		version = false,
 		keys = {
 			{ "Sa", mode = { "n", "x", "v" } },
-      { "Sd", mode = { "n", "x", "v" } },
       { "Sr", mode = { "n", "x", "v" } },
+      { "Sd", mode = { "n", "x", "v" } },
       { "Sf", mode = { "n", "x", "v" } },
       { "SF", mode = { "n", "x", "v" } },
 		},

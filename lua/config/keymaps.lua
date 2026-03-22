@@ -9,6 +9,8 @@ keymap("n", "K", "<Nop>")
 -- Better insert
 keymap("i", "<C-a>", "<C-o>I")
 
+keymap("n", "gy", "gvy", { desc = "Yank" })
+
 -- Not use this keymap if use cinnamon.nvim
 if not lazy.plugin_loaded("cinnamon.nvim") then
 	keymap({ "n", "x" }, "zh", "zH", { desc = 'Horizontal scroll like "zH"' })
