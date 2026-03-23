@@ -2,7 +2,7 @@ local kinds = require("tokyonight.groups.kinds")
 local M = {}
 
 M.setup = function()
-  -- local start = os.clock()
+	-- local start = os.clock()
 	local hl = require("utility.highlight")
 	local lazy = require("utility.lazy")
 	local normal = {
@@ -78,14 +78,14 @@ M.setup = function()
 		MiniTablineHidden = {
 			link = "StatusLineNC",
 		},
-		MiniTablineModifiedHidden = hl.modify("MiniTablineHidden", function (base)
-		  local primary = hl.dec_to_hex(hl.getfg("WarningMsg"))
-      local secondary = hl.dec_to_hex(base.fg)
-      return {
-        bold = true,
-        fg = hl.blend(primary, secondary, 0.5),
-        bg = base.bg,
-      }
+		MiniTablineModifiedHidden = hl.modify("MiniTablineHidden", function(base)
+			local primary = hl.dec_to_hex(hl.getfg("WarningMsg"))
+			local secondary = hl.dec_to_hex(base.fg)
+			return {
+				bold = true,
+				fg = hl.blend(primary, secondary, 0.5),
+				bg = base.bg,
+			}
 		end, true),
 		MiniTablineFill = {
 			link = "StatusLineNC",
@@ -642,16 +642,6 @@ M.setup = function()
 		highlights.Dark3 = { fg = palette.base02 }
 		highlights.Dark4 = { fg = palette.base03 }
 
-		-- Change the cursor color when the theme is onedark
-		if self.variant == "-onedark" or self.variant == "-doomchad" then
-			highlights.Cursor = { bg = palette.blue }
-			highlights.TermCursor = { link = "Cursor" }
-			highlights.BlinkCmpMenuSelection = { bg = palette.base03 }
-		end
-		if self.variant == "-chadtain" then
-			highlights.Cursor = { bg = palette.sun }
-		end
-
 		-- Support terminal colors
 		-- Black & Grey
 		vim.g.terminal_color_0 = palette.black2
@@ -684,10 +674,9 @@ M.setup = function()
 		hl.modify("@keyword.repeat", { italic = true })
 		highlights["@keyword"] = { fg = hl.getfg("@keyword"), italic = true }
 		highlights["@type"] = { fg = palette.vibrant_green }
-		highlights["@lsp.type.struct"] = { fg = palette.nord_blue }
-		highlights.rustFuncName = { fg = hl.getfg("@function"), bold = true }
+		highlights["@lsp.type.struct"] = { fg = palette.cyan }
 		highlights.rustKeyword = { link = "@keyword" }
-		highlights.Special = { fg = palette.cyan }
+		highlights.Special = { fg = palette.orange }
 
 		-- Nvim
 		hl.modify("MatchWord", { fg = "none" })
@@ -863,15 +852,25 @@ M.setup = function()
 			bg = palette.sun,
 		}
 
-		return highlights
-	end)
-	hl.set_match("base46-nightowl", function()
-		local palette = vim.g.base46_palette
-		return {
-			BlinkCmpMenuSelection = {
-				bg = palette.base04,
+		local theme = {
+			["-chadtain"] = {
+				Cursor = { bg = palette.sun },
+				TermCursor = { link = "Cursor" },
+			},
+			["-onedark"] = {
+				Cursor = { bg = palette.base07 },
+				TermCursor = { link = "Cursor" },
+			},
+			["-doomchad"] = {
+				Cursor = { bg = palette.red },
+				TermCursor = { link = "Cursor" },
 			},
 		}
+		if theme[self.variant] then
+			highlights = vim.tbl_extend("force", highlights, theme[self.variant])
+		end
+
+		return highlights
 	end)
 
 	hl.set_match("vague", function()
@@ -1027,8 +1026,8 @@ M.setup = function()
 	end)
 
 	hl.apply()
-  -- local elapsed = (os.clock() - start) * 1000
-  -- vim.notify(string.format("Highlight configuration applied in %.2f ms", elapsed), vim.log.levels.INFO)
+	-- local elapsed = (os.clock() - start) * 1000
+	-- vim.notify(string.format("Highlight configuration applied in %.2f ms", elapsed), vim.log.levels.INFO)
 end
 
 return M

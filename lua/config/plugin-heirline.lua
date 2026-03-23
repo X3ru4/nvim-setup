@@ -102,7 +102,7 @@ local mode = {
 							default_key = "n",
 							key = self.mode,
 						},
-						gui = { bold = true, italic = true },
+						gui = { bold = true, italic = false },
 					},
 				},
 			}),

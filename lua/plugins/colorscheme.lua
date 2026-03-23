@@ -432,4 +432,4 @@ cs.list = {
 }
 
 -- NOTE: Goto ~/.config/nvim/lua/config/lazy.lua to more infos
-return cs.install_(c.vague)
+return cs.install_(c.base46)

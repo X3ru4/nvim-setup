@@ -25,7 +25,7 @@ M.icons = {
 M.kind = {
 	Text = "",
 	Method = "",
-	Function = "󰯼",
+	Function = "λ",
 	Constructor = "",
 
 	Field = "",
