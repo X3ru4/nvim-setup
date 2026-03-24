@@ -1,4 +1,3 @@
-local kinds = require("tokyonight.groups.kinds")
 local M = {}
 
 M.setup = function()
@@ -674,7 +673,6 @@ M.setup = function()
 		hl.modify("@keyword.repeat", { italic = true })
 		highlights["@keyword"] = { fg = hl.getfg("@keyword"), italic = true }
 		highlights["@type"] = { fg = palette.vibrant_green }
-		highlights["@lsp.type.struct"] = { fg = palette.cyan }
 		highlights.rustKeyword = { link = "@keyword" }
 		highlights.Special = { fg = palette.orange }
 
@@ -758,11 +756,12 @@ M.setup = function()
 
 		-- Lazy
 		highlights.LazyReasonCmd = { fg = palette.base09 }
-		highlights.LazyReasonEvent = { fg = palette.cyan }
-		highlights.LazyReasonFt = { fg = palette.vibrant_green }
+		highlights.LazyReasonEvent = { fg = palette.teal }
+		highlights.LazyReasonFt = { fg = palette.green }
 		highlights.LazyReasonKeys = { fg = palette.nord_blue }
 		highlights.LazyReasonSource = { fg = palette.base0A }
-		highlights.LazyReasonPlugin = { fg = palette.blue }
+		highlights.LazyReasonPlugin = { fg = palette.dark_purple }
+    highlights.LazyReasonStart = { fg = palette.red }
 
 		-- BlinkPair
 		highlights.BlinkPairsUnmatched = {
@@ -833,7 +832,7 @@ M.setup = function()
 		}
 		highlights.ModeNormal = {
 			fg = dark_fg,
-			bg = palette.cyan,
+			bg = palette.nord_blue,
 		}
 		highlights.ModeInsert = {
 			fg = dark_fg,
@@ -865,6 +864,11 @@ M.setup = function()
 				Cursor = { bg = palette.red },
 				TermCursor = { link = "Cursor" },
 			},
+      ["-catppuccin"] = {
+        ["@property"] = {
+          fg = palette.lavender
+        }
+      }
 		}
 		if theme[self.variant] then
 			highlights = vim.tbl_extend("force", highlights, theme[self.variant])

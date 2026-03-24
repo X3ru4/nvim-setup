@@ -49,7 +49,7 @@ c = {
 					numbers = {},
 					booleans = {},
 					properties = {},
-					types = { "bold" },
+					types = {},
 					operators = {},
 				},
 				float = {
@@ -314,12 +314,21 @@ c = {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.g.blinkcmp_border = "none"
-			-- Press gf to go the folder
+			vim.g.blinkcmp_border = "rounded"
 			require("config.plugin-base46").load({
+        -- Press gf to go the folder
 				-- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
-				theme = "onedark",
-				transparency = false,
+				-- Recomment themes:
+				-- onedark
+				-- gruvchad
+				-- mountain
+				-- rosepine
+				-- kanagawa
+				-- tomorrow_night
+        -- tokyodark
+        -- catppuccin
+				theme = "onedark", -- Default theme
+				transparency = false, -- Not recommended if you don't know how to set it up, it'll break some plugins
 			})
 		end,
 	},
@@ -417,8 +426,8 @@ cs.list = {
 	c.catppuccin, -- Recomment!
 	c.vscode, -- Recomment!
 	c.vague, -- Recomment! Like vscode
+  c.gruvbox_material, -- Recomment!
 	c.gruvbox, -- Recomment!
-	c.gruvbox_material, -- Recomment!
 	c.kanagawa, -- Recomment!
 	c.kanagawa_paper, -- Recomment!
 	c.base46, -- Recomment! Like NvChad themes

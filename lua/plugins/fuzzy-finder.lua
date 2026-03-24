@@ -69,7 +69,7 @@ return {
 					true, -- inherit fzf colors that aren't specified below from
 					-- the auto-generated theme similar to `fzf_colors=true`
 					["fg"] = { "fg", "CursorLine" },
-					["bg"] = { "bg", "Normal" },
+					-- ["bg"] = { "bg", "Normal" },
 					["hl"] = { "fg", "Statement", "bold" },
 					["fg+"] = { "fg", "Normal" },
 					["bg+"] = { "bg", { "CursorLine", "Normal" } },
@@ -159,8 +159,8 @@ return {
 							local hl = {
 								object = "@type.builtin",
 								array = "@type.builtin",
-								struct = "Structure",
-								class = "Structure",
+								struct = "Type",
+								class = "Type",
 								variable = "@variable.builtin",
 								package = "@module",
 								interface = "Character",
