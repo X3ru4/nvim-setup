@@ -1,6 +1,7 @@
 return {
 	{
 		"zbirenbaum/copilot.lua",
+    enabled = vim.g.plugin.ai,
 		cmd = "Copilot",
 		event = "InsertEnter",
 		dependencies = {
@@ -19,7 +20,7 @@ return {
 			suggestion = { enabled = false },
 			panel = { enabled = false },
 			nes = {
-				enabled = true,
+				enabled = false,
 				keymap = {
 					accept_and_goto = "<Tab>",
 					accept = false,

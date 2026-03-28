@@ -316,7 +316,7 @@ c = {
 		config = function()
 			vim.g.blinkcmp_border = "rounded"
 			require("config.plugin-base46").load({
-        -- Press gf to go the folder
+				-- Press gf to go the folder
 				-- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
 				-- Recomment themes:
 				-- onedark
@@ -325,9 +325,9 @@ c = {
 				-- rosepine
 				-- kanagawa
 				-- tomorrow_night
-        -- tokyodark
-        -- catppuccin
-				theme = "onedark", -- Default theme
+				-- tokyodark
+				-- catppuccin
+				theme = nil, -- Set it to nil to use the default theme
 				transparency = false, -- Not recommended if you don't know how to set it up, it'll break some plugins
 			})
 		end,
@@ -417,7 +417,6 @@ c = {
 	},
 }
 
--- Super clean =))
 local cs = require("utility.colorscheme")
 
 -- Recomment lever = index
@@ -426,7 +425,7 @@ cs.list = {
 	c.catppuccin, -- Recomment!
 	c.vscode, -- Recomment!
 	c.vague, -- Recomment! Like vscode
-  c.gruvbox_material, -- Recomment!
+	c.gruvbox_material, -- Recomment!
 	c.gruvbox, -- Recomment!
 	c.kanagawa, -- Recomment!
 	c.kanagawa_paper, -- Recomment!
@@ -441,4 +440,4 @@ cs.list = {
 }
 
 -- NOTE: Goto ~/.config/nvim/lua/config/lazy.lua to more infos
-return cs.install_(c.base46)
+return cs.install_(c.base46) -- What is the best colorscheme for you? Change it here =))

@@ -1,39 +1,35 @@
 --- Simple base46 config
 local M = {}
-M._palette_cache = {}
+M.__palette_cache = {}
 
 -- Default options
 M.options = {
 	-- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
-	theme = "onedark",
+	theme = "onedark", -- default theme
 }
 
-function M.load(opts, overwrite)
-	overwrite = overwrite or true
+---@param opts table|nil
+function M.load(opts)
 	-- Exit if it can't be found
 	local present, base46 = pcall(require, "base46")
 	if not present then
 		return
 	end
 
-	local opts_cache = {}
+	local theme = M.options.theme
+
 	if opts then
-		if overwrite then
-			M.options = vim.tbl_extend("force", M.options, opts)
-		else
-			opts_cache = M.options
-			M.options = vim.tbl_extend("force", M.options, opts)
-		end
+		opts.theme = opts.theme or theme
+		M.options = vim.tbl_extend("force", M.options, opts)
 	end
-	if not M._palette_cache[M.options.theme] then
-		vim.g.base46_palette = base46.get_colors("base46", M.options.theme)
-		M._palette_cache[M.options.theme] = true
+	if not M.__palette_cache[theme] then
+		M.__palette_cache[theme] = base46.get_colors("base46", theme)
+		vim.g.base46_palette = M.__palette_cache[theme]
+	else
+		vim.g.base46_palette = M.__palette_cache[theme]
 	end
-	vim.g.colors_name = "base46-" .. M.options.theme
+	vim.g.colors_name = "base46-" .. theme
 	base46.load_theme(M.options)
-	if not overwrite then
-		M.options = opts_cache
-	end
 end
 
 return M

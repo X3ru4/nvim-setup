@@ -49,15 +49,15 @@ local mode = {
 		},
 	},
 	provider = function(self)
-		-- Classic sep: "" | "" | "" | "" | ""
+		-- Classic sep: "" | "" | "" | "" | "" | "▀" | "▄"
 		-- Special sep: "" | "" | ""
-		local sep = "▀"
+		local sep = ""
 		hl.set("ModeSep2", {
-			fg = hl.get("Dark2").fg,
+			fg = hl.getfg("Dark2"),
 		})
 		hl.set("ModeSep1", {
-			fg = hl.get("Dark4").fg,
-			bg = hl.get("ModeSep2").fg,
+			fg = hl.getfg("Dark4"),
+			bg = hl.getfg("ModeSep2"),
 		})
 
 		local fg_opt = {}
@@ -169,7 +169,7 @@ M.config = function()
 				update = "BufModifiedSet",
 				provider = function()
 					hl.set("FileInfoMod", {
-						fg = hl.get("WarningMsg").fg,
+						fg = hl.getfg("WarningMsg"),
 						bold = true,
 					})
 					return line.hl_fmt("FileInfoMod", stl.modify and "%m " or "", "%*")
@@ -180,7 +180,7 @@ M.config = function()
 				update = "BufWinEnter",
 				provider = function()
 					hl.set("FileInfoRO", {
-						fg = hl.get("ErrorMsg").fg,
+						fg = hl.getfg("ErrorMsg"),
 						bold = true,
 					})
 					return line.hl_fmt("FileInfoRO", stl.read_only and "%r " or "", "%*")

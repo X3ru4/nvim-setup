@@ -3,7 +3,6 @@ local M = {}
 M.setup = function()
 	-- local start = os.clock()
 	local hl = require("utility.highlight")
-	local lazy = require("utility.lazy")
 	local normal = {
 		fg = hl.dec_to_hex(hl.getfg("Normal")),
 		bg = hl.dec_to_hex(hl.getbg("Normal")),
@@ -437,6 +436,7 @@ M.setup = function()
 		},
 		fn = function()
 			local palette = {}
+			local lazy = require("utility.lazy")
 			if lazy.plugin_loaded("kanagawa") then
 				palette = require("kanagawa.colors").setup().palette
 			else
@@ -761,7 +761,7 @@ M.setup = function()
 		highlights.LazyReasonKeys = { fg = palette.nord_blue }
 		highlights.LazyReasonSource = { fg = palette.base0A }
 		highlights.LazyReasonPlugin = { fg = palette.dark_purple }
-    highlights.LazyReasonStart = { fg = palette.red }
+		highlights.LazyReasonStart = { fg = palette.red }
 
 		-- BlinkPair
 		highlights.BlinkPairsUnmatched = {
@@ -797,6 +797,7 @@ M.setup = function()
 		highlights.BlinkCmpLabelDeprecated = { fg = palette.grey }
 		highlights.BlinkCmpLabel = { fg = palette.white }
 		highlights.BlinkCmpLabelMatch = { fg = palette.blue, bold = true }
+    highlights.BlinkCmpMenuSelection = { bg = palette.base03 }
 
 		highlights.BlinkCmpKindConstant = { link = "@constant" }
 		highlights.BlinkCmpKindField = { link = "@field" }
@@ -857,18 +858,18 @@ M.setup = function()
 				TermCursor = { link = "Cursor" },
 			},
 			["-onedark"] = {
-				Cursor = { bg = palette.base07 },
+				Cursor = { bg = palette.blue },
 				TermCursor = { link = "Cursor" },
 			},
 			["-doomchad"] = {
 				Cursor = { bg = palette.red },
 				TermCursor = { link = "Cursor" },
 			},
-      ["-catppuccin"] = {
-        ["@property"] = {
-          fg = palette.lavender
-        }
-      }
+			["-catppuccin"] = {
+				["@property"] = {
+					fg = palette.lavender,
+				},
+			},
 		}
 		if theme[self.variant] then
 			highlights = vim.tbl_extend("force", highlights, theme[self.variant])

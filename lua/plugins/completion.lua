@@ -156,6 +156,7 @@ return {
 						copilot = {
 							name = "copilot",
 							module = "blink-copilot",
+              enabled = vim.g.plugin.ai,
 							score_offset = 75,
 							async = true,
 						},

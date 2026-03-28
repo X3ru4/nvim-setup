@@ -60,6 +60,7 @@ local servers = {
 	},
 }
 
+vim.lsp.set_log_level("off")
 vim.lsp.inlay_hint.enable(false)
 vim.lsp.config("*", {})
 for name, config in pairs(servers) do

@@ -7,6 +7,10 @@ function _G.newfoldtext()
 	return "  " .. line .. " ↙" .. count
 end
 
+g.plugin = {
+  ai = true -- Set it to false to have the best performance
+}
+
 g.statusline_style = {
 	diagnostic = true,
 	coordinate = true,
