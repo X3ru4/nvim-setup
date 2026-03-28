@@ -13,35 +13,35 @@ return {
 					require("oil-git").setup({
 						symbols = {
 							file = {
-								added = "+",
-								modified = "~",
-								renamed = "->",
-								deleted = "D",
-								copied = "C",
-								conflict = "!",
-								untracked = "?",
-								ignored = "o",
+								added = " ",
+								modified = " ",
+								renamed = " ",
+								deleted = " ",
+								copied = " ",
+								conflict = " ",
+								untracked = " ",
+								ignored = " ",
 							},
 							directory = {
-								added = "*",
-								modified = "*",
-								renamed = "*",
-								deleted = "*",
-								copied = "*",
-								conflict = "!",
-								untracked = "*",
-								ignored = "o",
+								added = " ",
+								modified = " ",
+								renamed = " ",
+								deleted = " ",
+								copied = " ",
+								conflict = " ",
+								untracked = " ",
+								ignored = " ",
 							},
 						},
 						highlights = {
-							OilGitAdded = { link = "Green" },
-							OilGitModified = { link = "Yellow" },
-							OilGitRenamed = { link = "Yellow" },
-							OilGitDeleted = { link = "Red" },
-							OilGitCopied = { link = "Orange" },
-							OilGitConflict = { link = "Purple" },
-							OilGitUntracked = { link = "Blue" },
-							OilGitIgnored = { link = "Aqua" },
+							OilGitAdded = { link = "Added" },
+							OilGitModified = { link = "Changed" },
+							OilGitRenamed = { link = "Changed" },
+							OilGitDeleted = { link = "Removed" },
+							OilGitCopied = { link = "DiagnosticHint" },
+							OilGitConflict = { link = "DiagnosticInfo" },
+							OilGitUntracked = { link = "DiagnosticInfo" },
+							OilGitIgnored = { link = "DiagnosticInfo" },
 						},
 					})
 				end,
@@ -64,7 +64,7 @@ return {
 				local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
 				local dir = require("oil").get_current_dir(bufnr)
 				if dir then
-					return vim.fn.fnamemodify(dir, ":~")
+					return "%#FileInfoMod#" .. vim.fn.fnamemodify(dir, ":~")
 				else
 					return vim.api.nvim_buf_get_name(0)
 				end
@@ -144,7 +144,7 @@ return {
 	},
 
 	{
-		-- oil.nvim better than
+		-- oil.nvim is better than
 		"mikavilpas/yazi.nvim",
 		enabled = false,
 		version = "*", -- use the latest stable version
