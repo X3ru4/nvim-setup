@@ -105,11 +105,6 @@ return {
 						function()
 							fzf.live_grep({
 								cwd = current_dir(0),
-								winopts = {
-									preview = {
-										hidden = false,
-									},
-								},
 							})
 						end,
 						mode = "n",
@@ -117,9 +112,19 @@ return {
 					["<bs>"] = { "actions.parent", mode = "n" },
 					["."] = { "actions.toggle_hidden", mode = "n" },
 					["q"] = { "actions.close", mode = "n" },
-					["gs"] = {
+					["gc"] = {
 						function()
-							vim.ui.input({ prompt = "Search  " }, function(input)
+							vim.ui.input({ prompt = "Search  ", default = "./" }, function(input)
+								if input then
+									vim.cmd("Oil " .. input)
+								end
+							end)
+						end,
+						mode = "n",
+					},
+					["gf"] = {
+						function()
+							vim.ui.input({ prompt = "Search  ", default = "~/" }, function(input)
 								if input then
 									vim.cmd("Oil " .. input)
 								end

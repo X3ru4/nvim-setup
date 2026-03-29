@@ -797,7 +797,7 @@ M.setup = function()
 		highlights.BlinkCmpLabelDeprecated = { fg = palette.grey }
 		highlights.BlinkCmpLabel = { fg = palette.white }
 		highlights.BlinkCmpLabelMatch = { fg = palette.blue, bold = true }
-    highlights.BlinkCmpMenuSelection = { bg = palette.base03 }
+		highlights.BlinkCmpMenuSelection = { bg = palette.base03 }
 
 		highlights.BlinkCmpKindConstant = { link = "@constant" }
 		highlights.BlinkCmpKindField = { link = "@field" }

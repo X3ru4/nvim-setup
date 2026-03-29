@@ -60,9 +60,8 @@ keymap("x", "<leader>gr", function()
 
 	vim.ui.input({ prompt = 'Replace "' .. selection .. '" with' }, function(input)
 		if input then
-			vim.ui.input({ prompt = 'Flag | Ex: "gc"' }, function(input_flag)
-				local flag = input_flag or "g"
-				vim.cmd(string.format("%%s/%s/%s/%s", selection, input, flag))
+			vim.ui.input({ prompt = 'Flag | Ex: "gc"', default = "g" }, function(input_flag)
+				vim.cmd(string.format("%%s/%s/%s/%s", selection, input, input_flag))
 			end)
 		end
 	end)
@@ -70,7 +69,7 @@ end, { desc = "Replace" })
 -- Popup search
 keymap({ "n", "x" }, "<leader>gs", function()
 	vim.ui.input({ prompt = "Search  " }, function(input)
-		if type(input) == "string" then
+		if input then
 			vim.cmd("?" .. input)
 		end
 	end)
