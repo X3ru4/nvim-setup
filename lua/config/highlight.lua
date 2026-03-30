@@ -694,6 +694,8 @@ M.setup = function()
 		-- DropBar
 		highlights.DropBarIconKindArray = { link = "Statement" }
 		highlights.DropBarIconKindVariable = { fg = palette.base09 }
+    highlights.DropBarIconUISeparator = { fg = palette.grey_fg }
+    highlights.DropBarIconUISeparatorNC = { fg = palette.grey_fg }
 
 		-- Fzf-lua
 		highlights.FzfLuaBackdrop = { bg = palette.black }
@@ -751,17 +753,14 @@ M.setup = function()
 		highlights.NonText = { fg = palette.grey_fg }
 		highlights.Comment = { fg = palette.grey_fg2, italic = true }
 
-		-- Oil.nvim
-		highlights.OilChange = { link = "WarningMsg" }
-
 		-- Lazy
 		highlights.LazyReasonCmd = { fg = palette.base09 }
 		highlights.LazyReasonEvent = { fg = palette.teal }
 		highlights.LazyReasonFt = { fg = palette.green }
 		highlights.LazyReasonKeys = { fg = palette.nord_blue }
 		highlights.LazyReasonSource = { fg = palette.base0A }
-		highlights.LazyReasonPlugin = { fg = palette.dark_purple }
-		highlights.LazyReasonStart = { fg = palette.red }
+		highlights.LazyReasonPlugin = { fg = palette.red }
+		highlights.LazyReasonStart = { fg = palette.dark_purple }
 
 		-- BlinkPair
 		highlights.BlinkPairsUnmatched = {
@@ -824,7 +823,13 @@ M.setup = function()
 		highlights.BlinkCmpKindColor = { fg = palette.cyan }
 		highlights.BlinkCmpKindTypeParameter = { fg = palette.cyan }
 		highlights.BlinkCmpKindInterface = { fg = palette.vibrant_green }
-		-- * --
+
+    -- Oil.nvim
+    highlights.OilCreate = { fg = palette.green, bold = true }
+    highlights.OilChange = { fg = palette.yellow, bold = true }
+    highlights.OilDelete = { fg = palette.red, bold = true }
+    highlights.OilCopy = { fg = palette.blue, bold = true }
+    highlights.OilMove = { fg = palette.yellow, bold = true }
 
 		-- Vim mode
 		highlights.ModeOther = {
@@ -860,6 +865,7 @@ M.setup = function()
 			["-onedark"] = {
 				Cursor = { bg = palette.blue },
 				TermCursor = { link = "Cursor" },
+        Special = { fg = palette.yellow },
 			},
 			["-doomchad"] = {
 				Cursor = { bg = palette.red },

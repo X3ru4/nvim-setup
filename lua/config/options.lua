@@ -116,7 +116,7 @@ opt.listchars = {
 
 opt.guicursor = {
 	"n-c:block-Cursor",
-	"v:hor20-Cursor",
+	"v:block-Cursor",
 	"i-ci-ve:ver25-Cursor",
 	"r-cr:hor20-Cursor",
 	"o:hor50-Cursor",
