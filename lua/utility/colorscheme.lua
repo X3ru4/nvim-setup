@@ -2,7 +2,7 @@ local M = {}
 
 M.list = {}
 
-function M.install_(apply, list)
+function M.install(apply, list)
 	list = list or M.list
 	local t = {}
 	local function push(spec)

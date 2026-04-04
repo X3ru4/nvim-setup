@@ -8,13 +8,15 @@ return {
 		},
 		config = function()
 			local config = require("alpha.themes.dashboard")
+      -- Custom button function to set width of buttons based on terminal width
 			local button = function(sc, txt, keybind, keybind_opts)
 				local btn = config.button(sc, txt, keybind, keybind_opts)
-				local tbl = vim.api.nvim_exec2("echo &columns", { output = true })
-				local width = tonumber(tbl.output) or 0
+				local cmd = vim.api.nvim_exec2("echo &columns", { output = true })
+				local width = tonumber(cmd.output) or 0
 				btn.opts.width = math.min(width - 4, 40)
 				return btn
 			end
+
 			local header_style = {
 				{
 					"     ▄   ▄",

@@ -16,27 +16,13 @@ M.setup = function()
 
 	hl.highlights = {
 		-- Custom highlights
-		ModeOther = {
-			link = "MiniStatuslineModeOther",
-		},
-		ModeNormal = {
-			link = "MiniStatuslineModeNormal",
-		},
-		ModeInsert = {
-			link = "MiniStatuslineModeInsert",
-		},
-		ModeVisual = {
-			link = "MiniStatuslineModeVisual",
-		},
-		ModeReplace = {
-			link = "MiniStatuslineModeReplace",
-		},
-		ModeCommand = {
-			link = "MiniStatuslineModeCommand",
-		},
-		Yank = {
-			bg = hl.getbg("Visual"),
-		},
+		ModeOther = { link = "Search" },
+		ModeNormal = { link = "Search" },
+		ModeInsert = { link = "Search" },
+		ModeVisual = { link = "Search" },
+		ModeReplace = { link = "Search" },
+		ModeCommand = { link = "Search" },
+		Yank = { bg = hl.getbg("Visual") },
 
 		--- Plugins
 		-- MultiCursor
@@ -60,8 +46,6 @@ M.setup = function()
 		FzfLuaHeaderBind = { link = "WarningMsg" },
 		FzfLuaTabMarker = { link = "WarningMsg" },
 
-		-- BlinkCmp
-
 		-- MiniTabline
 		MiniTablineCurrent = {
 			fg = normal.fg,
@@ -73,10 +57,8 @@ M.setup = function()
 			bg = normal.bg,
 			bold = true,
 		},
-		MiniTablineHidden = {
-			link = "StatusLineNC",
-		},
-		MiniTablineModifiedHidden = hl.modify("MiniTablineHidden", function(base)
+		MiniTablineHidden = { link = "TabLineNC" },
+		MiniTablineModifiedHidden = hl.modify("TabLineNC", function(base)
 			local primary = hl.dec_to_hex(hl.getfg("WarningMsg"))
 			local secondary = hl.dec_to_hex(base.fg)
 			return {
@@ -84,15 +66,11 @@ M.setup = function()
 				fg = hl.blend(primary, secondary, 0.5),
 				bg = base.bg,
 			}
-		end, true),
-		MiniTablineFill = {
-			link = "StatusLineNC",
-		},
+		end),
+		MiniTablineFill = { link = "TabLineNC" },
 
 		-- DropBar
-		DropBarMenuHoverEntry = {
-			link = "Visual",
-		},
+		DropBarMenuHoverEntry = { link = "Visual" },
 		DropBarMenuHoverIcon = vim.empty_dict(),
 		hl.modify("DropBarIconUISeparator", {
 			italic = false,
@@ -105,21 +83,11 @@ M.setup = function()
 		}),
 
 		-- Vanilla
-		WinBar = {
-			link = "Normal",
-		},
-		SpellBad = {
-			strikethrough = true,
-		},
-		SpellCap = {
-			strikethrough = true,
-		},
-		SpellRare = {
-			strikethrough = true,
-		},
-		SpellLocal = {
-			strikethrough = true,
-		},
+		WinBar = { link = "Normal" },
+		SpellBad = { strikethrough = true },
+		SpellCap = { strikethrough = true },
+		SpellRare = { strikethrough = true },
+		SpellLocal = { strikethrough = true },
 	}
 
 	hl.set_match("gruvbox-material", {
@@ -694,8 +662,8 @@ M.setup = function()
 		-- DropBar
 		highlights.DropBarIconKindArray = { link = "Statement" }
 		highlights.DropBarIconKindVariable = { fg = palette.base09 }
-    highlights.DropBarIconUISeparator = { fg = palette.grey_fg }
-    highlights.DropBarIconUISeparatorNC = { fg = palette.grey_fg }
+		highlights.DropBarIconUISeparator = { fg = palette.grey_fg }
+		highlights.DropBarIconUISeparatorNC = { fg = palette.grey_fg }
 
 		-- Fzf-lua
 		highlights.FzfLuaBackdrop = { bg = palette.black }
@@ -824,12 +792,12 @@ M.setup = function()
 		highlights.BlinkCmpKindTypeParameter = { fg = palette.cyan }
 		highlights.BlinkCmpKindInterface = { fg = palette.vibrant_green }
 
-    -- Oil.nvim
-    highlights.OilCreate = { fg = palette.green, bold = true }
-    highlights.OilChange = { fg = palette.yellow, bold = true }
-    highlights.OilDelete = { fg = palette.red, bold = true }
-    highlights.OilCopy = { fg = palette.blue, bold = true }
-    highlights.OilMove = { fg = palette.yellow, bold = true }
+		-- Oil.nvim
+		highlights.OilCreate = { fg = palette.green, bold = true }
+		highlights.OilChange = { fg = palette.yellow, bold = true }
+		highlights.OilDelete = { fg = palette.red, bold = true }
+		highlights.OilCopy = { fg = palette.blue, bold = true }
+		highlights.OilMove = { fg = palette.yellow, bold = true }
 
 		-- Vim mode
 		highlights.ModeOther = {
@@ -865,7 +833,7 @@ M.setup = function()
 			["-onedark"] = {
 				Cursor = { bg = palette.blue },
 				TermCursor = { link = "Cursor" },
-        Special = { fg = palette.yellow },
+				Special = { fg = palette.yellow },
 			},
 			["-doomchad"] = {
 				Cursor = { bg = palette.red },
@@ -1008,30 +976,216 @@ M.setup = function()
 		local fg = colors.black
 		local highlights = {}
 
-		highlights.MiniStatuslineModeNormal = {
+		highlights.ModeNormal = {
 			fg = fg,
 			bg = colors.blue,
 		}
-		highlights.MiniStatuslineModeInsert = {
+		highlights.ModeInsert = {
 			fg = fg,
 			bg = colors.green,
 		}
-		highlights.MiniStatuslineModeVisual = {
+		highlights.ModeVisual = {
 			fg = fg,
 			bg = colors.purple,
 		}
-		highlights.MiniStatuslineModeCommand = {
+		highlights.ModeCommand = {
 			fg = fg,
 			bg = colors.orange,
 		}
-		highlights.MiniStatuslineModeOther = {
+		highlights.ModeOther = {
 			fg = fg,
 			bg = colors.green1,
 		}
-		highlights.MiniStatuslineModeReplace = {
+		highlights.ModeReplace = {
 			fg = fg,
 			bg = colors.orange,
 		}
+
+		return highlights
+	end)
+
+	hl.set_match("rusty", function()
+		local highlights = {}
+		local colors = require("rusty.colors").get()
+		local fg = colors.background
+
+		highlights.ModeNormal = {
+			fg = fg,
+			bg = colors.blue,
+		}
+		highlights.ModeInsert = {
+			fg = fg,
+			bg = colors.green,
+		}
+		highlights.ModeVisual = {
+			fg = fg,
+			bg = colors.purple,
+		}
+		highlights.ModeCommand = {
+			fg = fg,
+			bg = colors.orange,
+		}
+		highlights.ModeOther = {
+			fg = fg,
+			bg = colors.aqua,
+		}
+		highlights.ModeReplace = {
+			fg = fg,
+			bg = colors.red,
+		}
+
+		highlights.MiniIconsRed = { fg = colors.red }
+		highlights.MiniIconsOrange = { fg = colors.orange }
+		highlights.MiniIconsYellow = { fg = colors.yellow }
+		highlights.MiniIconsPurple = { fg = colors.purple }
+		highlights.MiniIconsGreen = { fg = colors.green }
+		highlights.MiniIconsCyan = { fg = colors.aqua }
+		highlights.MiniIconsBlue = { fg = colors.blue }
+		highlights.MiniIconsAzure = { fg = colors.aqua }
+		highlights.MiniIconsGrey = { fg = colors.comment }
+
+		highlights.MiniTablineModifiedCurrent = {
+			fg = colors.red,
+			bg = colors.background,
+			bold = true,
+		}
+		highlights.MiniTablineModifiedHidden = {
+			fg = hl.blend(colors.red, colors.line, 0.8),
+			bg = colors.line,
+		}
+
+		highlights.BlinkCmpLabel = { fg = colors.foreground, bg = colors.background }
+		highlights.BlinkCmpLabelDescription = { fg = colors.comment }
+		highlights.BlinkCmpLabelDetail = { fg = colors.comment }
+		highlights.BlinkCmpLabelDeprecated = { fg = colors.comment }
+		highlights.BlinkCmpLabelMatch = { fg = colors.blue, bold = true }
+		highlights.BlinkCmpMenu = { bg = colors.background }
+		highlights.BlinkCmpMenuSelection = { bg = colors.selection }
+		highlights.BlinkCmpMenuBorder = { bg = colors.background }
+		highlights.BlinkCmpKind = { fg = colors.foreground }
+		highlights.BlinkCmpKindConstant = { link = "@constant" }
+		highlights.BlinkCmpKindProperty = { link = "@property" }
+		highlights.BlinkCmpKindFunction = { link = "@function" }
+		highlights.BlinkCmpKindMethod = { link = "@method" }
+		highlights.BlinkCmpKindConstructor = { link = "@constructor" }
+		highlights.BlinkCmpKindReference = { link = "@reference" }
+		highlights.BlinkCmpKindField = { fg = colors.orange }
+		highlights.BlinkCmpKindVariable = { fg = colors.orange }
+		highlights.BlinkCmpKindKeyword = { fg = colors.orange }
+		highlights.BlinkCmpKindEvent = { fg = colors.green }
+		highlights.BlinkCmpKindText = { fg = colors.green }
+		highlights.BlinkCmpKindEnum = { fg = colors.green }
+		highlights.BlinkCmpKindClass = { fg = colors.purple }
+		highlights.BlinkCmpKindModule = { fg = colors.purple }
+		highlights.BlinkCmpKindSnippet = { fg = colors.purple }
+		highlights.BlinkCmpKindOperator = { fg = colors.purple }
+		highlights.BlinkCmpKindStruct = { fg = colors.yellow }
+		highlights.BlinkCmpKindFile = { fg = colors.yellow }
+		highlights.BlinkCmpKindUnit = { fg = colors.yellow }
+		highlights.BlinkCmpKindFolder = { fg = colors.blue }
+		highlights.BlinkCmpKindValue = { fg = colors.blue }
+		highlights.BlinkCmpKindEnumMember = { fg = colors.aqua }
+		highlights.BlinkCmpKindColor = { fg = colors.aqua }
+		highlights.BlinkCmpKindTypeParameter = { fg = colors.aqua }
+		highlights.BlinkCmpKindInterface = { fg = colors.aqua }
+
+		highlights.BlinkPairsUnmatched = {
+			fg = colors.red,
+			reverse = true,
+			bold = true,
+		}
+		highlights.BlinkPairsBlue = {
+			fg = colors.blue,
+		}
+		highlights.BlinkPairsOrange = {
+			fg = colors.orange,
+		}
+		highlights.BlinkPairsPurple = {
+			fg = colors.purple,
+		}
+
+		highlights.BlinkIndentRed = {
+			fg = colors.red,
+		}
+		highlights.BlinkIndentCyan = {
+			fg = colors.aqua,
+		}
+		highlights.BlinkIndentBlue = {
+			fg = colors.blue,
+		}
+		highlights.BlinkIndentGreen = {
+			fg = colors.green,
+		}
+		highlights.BlinkIndentYellow = {
+			fg = colors.yellow,
+		}
+		highlights.BlinkIndentViolet = {
+			fg = colors.purple,
+		}
+		highlights.BlinkIndentOrange = {
+			fg = colors.orange,
+		}
+
+		highlights.DiagnosticError = {
+			fg = colors.red,
+		}
+		highlights.DiagnosticWarn = {
+			fg = colors.yellow,
+		}
+		highlights.DiagnosticInfo = {
+			fg = colors.blue,
+		}
+		highlights.DiagnosticHint = {
+			fg = colors.purple,
+		}
+		highlights.Added = {
+			fg = colors.green,
+		}
+		highlights.Changed = {
+			fg = colors.yellow,
+		}
+		highlights.Removed = {
+			fg = colors.red,
+		}
+		highlights.WinBarNC = {
+			bg = colors.background,
+		}
+		highlights.TabLineNC = {
+			fg = colors.foreground,
+			bg = colors.line,
+		}
+		highlights.TabLine = {
+			fg = colors.foreground,
+			bg = colors.line,
+		}
+		highlights.StatusLine = {
+			fg = colors.foreground,
+		}
+
+		-- Black & Grey
+		vim.g.terminal_color_0 = colors.background
+		vim.g.terminal_color_8 = colors.window
+		-- Red & Bright red
+		vim.g.terminal_color_1 = colors.red
+		vim.g.terminal_color_9 = colors.red
+		-- Green & Bright green
+		vim.g.terminal_color_2 = colors.green
+		vim.g.terminal_color_10 = colors.green
+		-- Yellow & Bright yellow
+		vim.g.terminal_color_3 = colors.yellow
+		vim.g.terminal_color_11 = colors.yellow
+		-- Blue & Bright Blue
+		vim.g.terminal_color_4 = colors.blue
+		vim.g.terminal_color_12 = colors.blue
+		-- Magenta & Bright Magenta
+		vim.g.terminal_color_5 = colors.purple
+		vim.g.terminal_color_13 = colors.purple
+		-- Cyan & Bright cyan
+		vim.g.terminal_color_6 = colors.aqua
+		vim.g.terminal_color_14 = colors.aqua
+		-- White & Gray
+		vim.g.terminal_color_7 = colors.foreground
+		vim.g.terminal_color_15 = colors.comment
 
 		return highlights
 	end)

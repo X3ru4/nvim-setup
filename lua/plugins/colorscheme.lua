@@ -415,6 +415,68 @@ c = {
 			})
 		end,
 	},
+	shale = {
+		"smit4k/shale.nvim",
+		name = "shale",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("shale")
+		end,
+	},
+	monokai_pro = {
+		"loctvl842/monokai-pro.nvim",
+		name = "monokai-pro",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("monokai-pro").setup({
+				transparent_background = false,
+				terminal_colors = true,
+				filter = "octagon",
+				styles = {
+					comments = { italic = true },
+					conditionals = { italic = true },
+					functions = { bold = true },
+					keywords = { italic = true },
+					strings = {},
+					variables = {},
+				},
+			})
+			vim.cmd.colorscheme("monokai-pro")
+			vim.g.blinkcmp_border = "none"
+		end,
+	},
+	rusty = {
+		"armannikoyan/rusty",
+		name = "rusty",
+		lazy = false,
+		priority = 1000,
+		opts = {
+			transparent = false,
+			italic_comments = true,
+			underline_current_line = false,
+			colors = {
+				foreground = "#c5c8c6",
+				background = "#1d1f21",
+				selection = "#373b41",
+				line = "#282a2e",
+				comment = "#969896",
+				red = "#cc6666",
+				orange = "#de935f",
+				yellow = "#f0c674",
+				green = "#b5bd68",
+				aqua = "#8abeb7",
+				blue = "#81a2be",
+				purple = "#b294bb",
+				window = "#4d5057",
+			},
+		},
+		config = function(_, opts)
+			require("rusty").setup(opts)
+			vim.cmd("colorscheme rusty")
+		end,
+	},
 }
 
 local cs = require("utility.colorscheme")
@@ -424,6 +486,7 @@ cs.list = {
 	c.nightfox, -- Recomment!
 	c.catppuccin, -- Recomment!
 	c.vscode, -- Recomment!
+  c.rusty, -- Recomment! Like vscode
 	c.vague, -- Recomment! Like vscode
 	c.gruvbox_material, -- Recomment!
 	c.gruvbox, -- Recomment!
@@ -436,8 +499,7 @@ cs.list = {
 	c.nord, -- Hmmmmm!
 	c.tokyonight, -- Hmmmmm!
 	c.onedark, -- Hmmmmm!
-	c.cursor_dark, -- Hmmmmm!
 }
 
 -- NOTE: Goto ~/.config/nvim/lua/config/lazy.lua to more infos
-return cs.install_(c.base46) -- What is the best colorscheme for you? Change it here =))
+return cs.install(c.base46) -- What is the best colorscheme for you? Change it here =))

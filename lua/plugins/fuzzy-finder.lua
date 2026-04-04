@@ -196,26 +196,27 @@ return {
 			keymap(mode, "<leader>cgd", fzf.git_diff, { desc = "Git diff" })
 
 			-- <leader>f group
-			keymap(mode, "<leader>fr", fzf.registers, { desc = "Find register" })
-			keymap(mode, "<leader>ff", fzf.files, { desc = "Find file CWD" })
+			keymap(mode, "<leader>fr", fzf.registers, { desc = "Fzf register" })
+			keymap(mode, "<leader>ff", fzf.files, { desc = "Fzf file CWD" })
 
 			keymap(mode, "<leader>fF", function()
 				fzf.files({
 					cwd = vim.fn.expand("%:h"),
 				})
-			end, { desc = "Find file" })
+			end, { desc = "Fzf file" })
 			keymap(mode, "<leader>fc", function()
 				fzf.files({
 					cwd = "~/.config/nvim",
 				})
-			end, { desc = "Find config files" })
+			end, { desc = "Fzf config files" })
 
-			keymap(mode, "<leader>fb", fzf.buffers, { desc = "Find buffers" })
-			keymap(mode, "<leader>ft", fzf.tabs, { desc = "Find tabs" })
-			keymap(mode, "<leader>fh", fzf.highlights, { desc = "Find highlights" })
-			keymap(mode, "<leader>fo", fzf.oldfiles, { desc = "Find old files" })
-			keymap(mode, "<leader>fT", fzf.filetypes, { desc = "Find filetypes" })
+			keymap(mode, "<leader>fb", fzf.buffers, { desc = "Fzf buffers" })
+			keymap(mode, "<leader>ft", fzf.tabs, { desc = "Fzf tabs" })
+			keymap(mode, "<leader>fh", fzf.highlights, { desc = "Fzf highlights" })
+			keymap(mode, "<leader>fo", fzf.oldfiles, { desc = "Fzf old files" })
+			keymap(mode, "<leader>fT", fzf.filetypes, { desc = "Fzf filetypes" })
 			keymap(mode, "<leader>fg", fzf.live_grep, { desc = "Live grep" })
+			keymap(mode, "<leader>fu", fzf.builtin, { desc = "Fzf built-in" })
 		end,
 	},
 }
