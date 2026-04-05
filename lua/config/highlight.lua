@@ -16,12 +16,12 @@ M.setup = function()
 
 	hl.highlights = {
 		-- Custom highlights
-		ModeOther = { link = "Search" },
-		ModeNormal = { link = "Search" },
-		ModeInsert = { link = "Search" },
-		ModeVisual = { link = "Search" },
-		ModeReplace = { link = "Search" },
-		ModeCommand = { link = "Search" },
+		ModeOther = { link = "MiniStatuslineModeOther" },
+		ModeNormal = { link = "MiniStatuslineModeNormal" },
+		ModeInsert = { link = "MiniStatuslineModeInsert" },
+		ModeVisual = { link = "MiniStatuslineModeVisual" },
+		ModeReplace = { link = "MiniStatuslineModeReplace" },
+		ModeCommand = { link = "MiniStatuslineModeCommand" },
 		Yank = { bg = hl.getbg("Visual") },
 
 		--- Plugins
@@ -590,8 +590,6 @@ M.setup = function()
 			return
 		end
 		local palette = vim.g.base46_palette
-		local dark_fg = palette.black
-		local normal_bg = palette.black
 		local highlights = {}
 
 		-- Set all the basic colors before return and apply
@@ -603,11 +601,6 @@ M.setup = function()
 		hl.set("Blue", { fg = palette.base0D })
 		hl.set("Purple", { fg = palette.base0E })
 		hl.set("Gold", { fg = palette.sun })
-		hl.set("Dark0", { fg = palette.black })
-		highlights.Dark1 = { fg = palette.base00 }
-		highlights.Dark2 = { fg = palette.base01 }
-		highlights.Dark3 = { fg = palette.base02 }
-		highlights.Dark4 = { fg = palette.base03 }
 
 		-- Support terminal colors
 		-- Black & Grey
@@ -650,13 +643,13 @@ M.setup = function()
 		highlights.MatchWordCur = { link = "MatchWord" }
 		highlights.Yank = { link = "Visual" }
 		highlights.DiffAdd = {
-			bg = hl.blend(palette.green, normal_bg, 0.2),
+			bg = hl.blend(palette.green, palette.black, 0.2),
 		}
 		highlights.DiffText = {
-			bg = hl.blend(palette.white, normal_bg, 0.2),
+			bg = hl.blend(palette.white, palette.black, 0.2),
 		}
 		highlights.DiffDelete = {
-			bg = hl.blend(palette.red, normal_bg, 0.2),
+			bg = hl.blend(palette.red, palette.black, 0.2),
 		}
 
 		-- DropBar
@@ -686,19 +679,19 @@ M.setup = function()
 		highlights.DiagnosticError = { fg = palette.red }
 		highlights.DiagnosticVirtualTextWarn = {
 			fg = palette.yellow,
-			bg = hl.blend(palette.yellow, normal_bg, 0.2),
+			bg = hl.blend(palette.yellow, palette.black, 0.2),
 		}
 		highlights.DiagnosticVirtualTextInfo = {
 			fg = palette.cyan,
-			bg = hl.blend(palette.cyan, normal_bg, 0.2),
+			bg = hl.blend(palette.cyan, palette.black, 0.2),
 		}
 		highlights.DiagnosticVirtualTextHint = {
 			fg = palette.dark_purple,
-			bg = hl.blend(palette.dark_purple, normal_bg, 0.2),
+			bg = hl.blend(palette.dark_purple, palette.black, 0.2),
 		}
 		highlights.DiagnosticVirtualTextError = {
 			fg = palette.red,
-			bg = hl.blend(palette.red, normal_bg, 0.2),
+			bg = hl.blend(palette.red, palette.black, 0.2),
 		}
 		highlights.DiagnosticVirtualLineWarn = { link = "DiagnosticVirtualTextWarn" }
 		highlights.DiagnosticVirtualLineInfo = { link = "DiagnosticVirtualTextInfo" }
@@ -801,27 +794,27 @@ M.setup = function()
 
 		-- Vim mode
 		highlights.ModeOther = {
-			fg = dark_fg,
+			fg = palette.black,
 			bg = palette.red,
 		}
 		highlights.ModeNormal = {
-			fg = dark_fg,
+			fg = palette.black,
 			bg = palette.nord_blue,
 		}
 		highlights.ModeInsert = {
-			fg = dark_fg,
+			fg = palette.black,
 			bg = palette.vibrant_green,
 		}
 		highlights.ModeVisual = {
-			fg = dark_fg,
+			fg = palette.black,
 			bg = palette.dark_purple,
 		}
 		highlights.ModeReplace = {
-			fg = dark_fg,
+			fg = palette.black,
 			bg = palette.red,
 		}
 		highlights.ModeCommand = {
-			fg = dark_fg,
+			fg = palette.black,
 			bg = palette.sun,
 		}
 

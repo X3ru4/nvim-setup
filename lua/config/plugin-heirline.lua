@@ -28,10 +28,10 @@ local hlsearch = {
 		local search = self.search
 		return string.format(" %d/%d ", search.current, math.min(search.total, search.maxcount))
 	end,
-	hl = "Number",
+	hl = "WarningMsg",
 }
-local mode = {
-	update = { "ModeChanged" },
+local vim_mode = {
+	update = { "ModeChanged", "BufWinLeave" },
 	init = function(self)
 		self.mode = vim.fn.mode(1):sub(1, 1)
 	end,
@@ -49,17 +49,6 @@ local mode = {
 		},
 	},
 	provider = function(self)
-		-- Classic sep: "" | "" | "" | "" | "" | "▀" | "▄"
-		-- Special sep: "" | "" | ""
-		local sep = ""
-		hl.set("ModeSep2", {
-			fg = hl.getfg("Dark2"),
-		})
-		hl.set("ModeSep1", {
-			fg = hl.getfg("Dark4"),
-			bg = hl.getfg("ModeSep2"),
-		})
-
 		local fg_opt = {}
 		if vim.g.colors_name == "base46" then
 			fg_opt = { name = "Dark0", type = "fg" }
@@ -67,53 +56,118 @@ local mode = {
 			fg_opt = { name = "Normal", type = "bg" }
 		end
 
-		local section = {
-			line.separator({
-				id = "Mode",
-				left = {
-					value = "  ",
-					hl = {
-						fg = fg_opt,
-						bg = {
-							list = mode_color,
-							default_key = "n",
-							key = self.mode,
-						},
+		return line.separator({
+			id = "Mode",
+			left = {
+				value = "  ",
+				hl = {
+					fg = fg_opt,
+					bg = {
+						list = mode_color,
+						default_key = "n",
+						key = self.mode,
 					},
 				},
-				right = {
-					value = sep,
+			},
+			string = {
+				value = (self.mode_name[self.mode] or self.mode) .. " ",
+				hl = {
+					fg = fg_opt,
+					bg = {
+						list = mode_color,
+						default_key = "n",
+						key = self.mode,
+					},
+					gui = { bold = true, italic = false },
+				},
+			},
+			right = {
+				value = "",
+				hl = {
+					fg = {
+						list = mode_color,
+						default_key = "n",
+						key = self.mode,
+						type = "bg",
+					},
+					bg = { name = "Dark3", type = "fg" },
+				},
+			},
+		})
+	end,
+}
+
+local file_info = {
+	{
+		update = "BufWinEnter",
+		provider = function()
+			return line.separator({
+				id = "FileName",
+				default_hl = "StatusLine",
+				left = {
+					value = "",
 					hl = {
-						fg = {
-							list = mode_color,
-							default_key = "n",
-							key = self.mode,
-							type = "bg",
-						},
-						bg = { name = "ModeSep1", type = "fg" },
+						fg = { name = "Dark3", type = "fg" },
+						bg = { name = "Dark2", type = "fg" },
 					},
 				},
 				string = {
-					value = (self.mode_name[self.mode] or self.mode) .. " ",
+					value = function()
+						local icon, _ = require("mini.icons").get("filetype", vim.bo.filetype)
+						return " " .. icon .. " %{&filetype == '' ? 'Unknown' : toupper(&filetype[0]) . &filetype[1:]} "
+					end,
 					hl = {
-						fg = fg_opt,
-						bg = {
-							list = mode_color,
-							default_key = "n",
-							key = self.mode,
-						},
-						gui = { bold = true, italic = false },
+						bg = { name = "Dark2", type = "fg" },
 					},
 				},
-			}),
-			line.hl_fmt("ModeSep1", sep),
-			line.hl_fmt("ModeSep2", sep),
-		}
-
-		return table.concat(section)
-	end,
+			})
+		end,
+	},
+	{
+		update = "BufModifiedSet",
+		condition = function()
+			return vim.bo.modified
+		end,
+		init = function()
+			hl.set("FileInfoMod", {
+				fg = hl.getfg("WarningMsg"),
+				bg = hl.getfg("Dark2"),
+				bold = true,
+			})
+		end,
+		provider = "%m ",
+		hl = "FileInfoMod",
+	},
+	{
+		update = "BufWinEnter",
+		condition = function()
+			return vim.bo.readonly
+		end,
+		init = function()
+			hl.set("FileInfoRO", {
+				fg = hl.getfg("ErrorMsg"),
+				bg = hl.getfg("Dark2"),
+				bold = true,
+			})
+		end,
+		provider = "%r ",
+		hl = "FileInfoRO",
+	},
+	{
+		update = "ColorScheme",
+		init = function()
+			hl.set("FileInfoSep", {
+				fg = hl.getfg("Dark2"),
+				bg = hl.getbg("StatusLine"),
+			})
+		end,
+		provider = "",
+		hl = "FileInfoSep",
+	},
 }
+
 local macro = {
+	update = { "RecordingEnter", "RecordingLeave" },
 	condition = function()
 		return vim.fn.reg_recording() ~= ""
 	end,
@@ -154,48 +208,22 @@ local diagnostic = {
 	end,
 }
 
-M.config = function()
-	-- Quick config. Go to lua/config/options.lua to see more.
-	local stl = vim.g.statusline_style
+local cursor_postion = {
+	{ update = { "CursorMoved", "CursorMovedI" }, provider = "%l·%c " },
+	{ update = { "CursorMoved", "CursorMovedI" }, provider = "%p%% " },
+}
 
-	return {
-		statusline = {
-			mode,
-			{ provider = " " },
-			-- File name
-			{ update = "BufWinEnter", provider = stl.file_name and "%t " or "" },
-			-- File modify
-			{
-				update = "BufModifiedSet",
-				provider = function()
-					hl.set("FileInfoMod", {
-						fg = hl.getfg("WarningMsg"),
-						bold = true,
-					})
-					return line.hl_fmt("FileInfoMod", stl.modify and "%m " or "", "%*")
-				end,
-			},
-			-- Read only buffer
-			{
-				update = "BufWinEnter",
-				provider = function()
-					hl.set("FileInfoRO", {
-						fg = hl.getfg("ErrorMsg"),
-						bold = true,
-					})
-					return line.hl_fmt("FileInfoRO", stl.read_only and "%r " or "", "%*")
-				end,
-			},
-			{ provider = "%=" },
-			-- Cursor position row/col
-			{ update = { "CursorMoved", "CursorMovedI" }, provider = stl.coordinate and "%l|%c " or "" },
-			{ update = { "CursorMoved", "CursorMovedI" }, provider = stl.percent and "%p%% " or "" },
-			{ provider = "%=" },
-			stl.hlsearch and hlsearch,
-			stl.macro and macro,
-			stl.diagnostic and diagnostic,
-		},
-	}
-end
+M.config = {
+	statusline = {
+		vim_mode,
+		file_info,
+		{ provider = " " },
+		diagnostic,
+		{ provider = "%=" },
+		hlsearch,
+		macro,
+		cursor_postion,
+	},
+}
 
 return M

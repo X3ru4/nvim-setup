@@ -55,6 +55,9 @@ function M.separator(spec)
 	end
 
 	local function section_fmt(section, id)
+    if not section then
+      return ""
+    end
 		local hl_ns = "CustomHl" .. (spec.id or "nil") .. id
 
 		local function value()

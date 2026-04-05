@@ -33,7 +33,7 @@ return {
 					max_completions = 3,
 					max_attempts = 2,
 					kind_name = "Copilot", ---@type string | false
-					kind_icon = require("config.icons").kind.Copilot .. " ", ---@type string | false
+					kind_icon = require("config.icons").kind.Copilot, ---@type string | false
 					kind_hl = "BlinkCmpKindEvent", ---@type string | false
 					debounce = 200, ---@type integer | false
 					auto_refresh = {
@@ -124,19 +124,24 @@ return {
 						border = vim.g.blinkcmp_border or "rounded",
 						winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
 						draw = {
+							gap = 1,
+							padding = { 1, 1 },
+							align_to = "label",
 							columns = {
+								{ "kind_icon", },
 								{
-									"kind_icon",
 									"label",
 									-- "label_description",
 									"kind",
 									gap = 1,
 								},
 							},
-							padding = { 1, 1 },
 							components = {
 								label = {
 									width = { fill = true, max = 30 },
+								},
+								kind = {
+									width = { fill = false },
 								},
 							},
 							treesitter = { "lsp" },
@@ -156,7 +161,7 @@ return {
 						copilot = {
 							name = "copilot",
 							module = "blink-copilot",
-              enabled = vim.g.plugin.ai,
+							enabled = vim.g.plugin.ai,
 							score_offset = 75,
 							async = true,
 						},

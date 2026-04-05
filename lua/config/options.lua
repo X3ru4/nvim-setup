@@ -8,18 +8,7 @@ function _G.newfoldtext()
 end
 
 g.plugin = {
-  ai = true -- Set it to false to have the best performance
-}
-
-g.statusline_style = {
-	diagnostic = true,
-	coordinate = true,
-	file_name = false,
-	read_only = true,
-	modify = true,
-	percent = true,
-	hlsearch = true,
-	macro = true,
+	ai = true, -- Set it to false to have the best performance
 }
 
 -- Performance
