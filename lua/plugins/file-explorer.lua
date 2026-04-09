@@ -34,9 +34,9 @@ return {
 							},
 						},
 						highlights = {
-							OilGitAdded = { link = "Added" },
-							OilGitModified = { link = "Changed" },
-							OilGitRenamed = { link = "Changed" },
+							OilGitAdded = { link = "MiniIconsGreen" },
+							OilGitModified = { link = "MiniIconsYellow" },
+							OilGitRenamed = { link = "MiniIconsYellow" },
 							OilGitDeleted = { link = "Removed" },
 							OilGitCopied = { link = "DiagnosticHint" },
 							OilGitConflict = { link = "DiagnosticInfo" },

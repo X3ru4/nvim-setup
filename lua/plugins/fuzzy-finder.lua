@@ -69,7 +69,7 @@ return {
 					true, -- inherit fzf colors that aren't specified below from
 					-- the auto-generated theme similar to `fzf_colors=true`
 					["fg"] = { "fg", "CursorLine" },
-					-- ["bg"] = { "bg", "Normal" },
+					["bg"] = { "bg", "NormalFloat" },
 					["hl"] = { "fg", "Statement", "bold" },
 					["fg+"] = { "fg", "Normal" },
 					["bg+"] = { "bg", { "CursorLine", "Normal" } },

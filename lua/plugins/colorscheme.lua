@@ -34,8 +34,9 @@ c = {
 		lazy = false,
 		priority = 1000,
 		config = function()
+      vim.g.blinkcmp_border = "none"
 			require("catppuccin").setup({
-				flavour = "mocha",
+				flavour = "macchiato",
 				transparent_background = false, -- disables setting the background color.
 				no_italic = false,
 				styles = {
@@ -308,30 +309,6 @@ c = {
 			require("vscode").load("dark")
 		end,
 	},
-	base46 = {
-		"jayden-chan/base46.nvim",
-		name = "base46",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			vim.g.blinkcmp_border = "rounded"
-			require("config.plugin-base46").load({
-				-- Press gf to go the folder
-				-- All availables theme at ~/.local/share/nvim/lazy/base46/lua/base46/hl_themes/
-				-- Recomment themes:
-				-- onedark
-				-- gruvchad
-				-- mountain
-				-- rosepine
-				-- kanagawa
-				-- tomorrow_night
-				-- tokyodark
-				-- catppuccin
-				theme = nil, -- Set it to nil to use the default theme
-				transparency = false, -- Not recommended if you don't know how to set it up, it'll break some plugins
-			})
-		end,
-	},
 	vague = {
 		"vague-theme/vague.nvim",
 		name = "vague",
@@ -492,14 +469,14 @@ cs.list = {
 	c.gruvbox, -- Recomment!
 	c.kanagawa, -- Recomment!
 	c.kanagawa_paper, -- Recomment!
-	c.base46, -- Recomment! Like NvChad themes
 	c.edge, -- Recomment! Better than onedark
 	c.everforest, -- Recomment!
 	c.cyberdream, -- Recomment!
 	c.nord, -- Hmmmmm!
 	c.tokyonight, -- Hmmmmm!
+  c.shale, -- Hmmmmm!
 	c.onedark, -- Hmmmmm!
 }
 
 -- NOTE: Goto ~/.config/nvim/lua/config/lazy.lua to more infos
-return cs.install(c.base46) -- What is the best colorscheme for you? Change it here =))
+return cs.install(c.catppuccin) -- What is the best colorscheme for you? Change it here =))

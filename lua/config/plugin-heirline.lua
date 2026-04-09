@@ -99,7 +99,7 @@ local vim_mode = {
 
 local file_info = {
 	{
-		update = "BufWinEnter",
+		update = { "BufWinEnter", "BufWinLeave", "BufReadPre" },
 		provider = function()
 			return line.separator({
 				id = "FileName",

@@ -5,27 +5,9 @@ return {
 		version = false,
 		build = ":TSUpdate",
 		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			{
-				"MeanderingProgrammer/treesitter-modules.nvim",
-        enabled = true,
-				---@module 'treesitter-modules'
-				---@type ts.mod.UserConfig
-				opts = {
-					incremental_selection = {
-						enable = true,
-						keymaps = {
-							init_selection = "<C-Space>", -- keymap to start the selection
-							node_incremental = "<C-Space>", -- keymap to increment the selection
-							scope_incremental = false, -- keymap to increment to the next scope
-							node_decremental = "<BS>", -- keymap to decrement the selection
-						},
-					},
-				},
-			},
-		},
 		config = function()
 			require("nvim-treesitter.config").setup({
+        install_dir = "",
 				ensure_installed = {
 					"c",
 					"lua",
@@ -48,6 +30,8 @@ return {
 					enable = true,
 				},
 			})
+
+      local keymap = vim.keymap.set
 		end,
 	},
 
@@ -71,19 +55,5 @@ return {
 				},
 			})
 		end,
-	},
-
-	{
-		"utilyre/sentiment.nvim",
-		enabled = false,
-		version = "*",
-		event = "VeryLazy",
-		opts = {
-			pairs = {
-				{ "(", ")" },
-				{ "{", "}" },
-				{ "[", "]" },
-			},
-		},
 	},
 }

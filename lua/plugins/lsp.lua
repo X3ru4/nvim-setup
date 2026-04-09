@@ -25,6 +25,67 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		event = "BufReadPre",
+		config = function()
+			local icons = require("config.icons").diagnostic
+			local enable = vim.lsp.enable
+			local config = vim.lsp.config
+			local severity_icons = {
+				[vim.diagnostic.severity.ERROR] = icons.Error,
+				[vim.diagnostic.severity.WARN] = icons.Warn,
+				[vim.diagnostic.severity.INFO] = icons.Info,
+				[vim.diagnostic.severity.HINT] = icons.Hint,
+			}
+
+			vim.diagnostic.config({
+				virtual_text = {
+					prefix = function(diagnostic)
+						return severity_icons[diagnostic.severity]
+					end,
+					suffix = "",
+				},
+				underline = false,
+				float = { source = "if_many" },
+				update_in_insert = false,
+				signs = {
+					text = {
+						[vim.diagnostic.severity.ERROR] = icons.Error,
+						[vim.diagnostic.severity.WARN] = icons.Warn,
+						[vim.diagnostic.severity.INFO] = icons.Info,
+						[vim.diagnostic.severity.HINT] = icons.Hint,
+					},
+				},
+			})
+
+			vim.lsp.inlay_hint.enable(false)
+			config("rust_analyzer", {
+				settings = {
+					["rust-analyzer"] = {
+						-- Set cargo features to automatically enable all features for completion
+						cargo = {
+							allFeatures = true,
+							-- You can also specify a specific command for check on save, e.g.,
+							-- command = "clippy", (instead of the default 'check')
+						},
+						-- Inlay hints are very useful for Rust
+						inlayHints = {
+							enable = true,
+							-- Further options for hints can be found in the rust-analyzer docs
+						},
+					},
+				},
+			})
+			config("lua_ls", {
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+					},
+				},
+			})
+
+			enable({ "rust_analyzer", "lua_ls" })
+		end,
 	},
 
 	{

@@ -60,11 +60,11 @@ return {
 							},
 							kinds = {
 								dir_icon = function(path)
-									local icon, hl = MiniIcons.get("directory", path)
+									local icon, hl = require("mini.icons").get("directory", path)
 									return icon .. " ", hl
 								end,
 								file_icon = function(path)
-									local icon, hl = MiniIcons.get("file", path)
+									local icon, hl = require("mini.icons").get("file", path)
 									return icon .. " ", hl
 								end,
 								symbols = {

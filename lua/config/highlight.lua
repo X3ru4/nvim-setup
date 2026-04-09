@@ -582,6 +582,13 @@ M.setup = function()
 			BlinkIndentOrange = {
 				link = "RainbowDelimiterOrange",
 			},
+
+      Changed = {
+        fg = colors.vscYellow
+      },
+      Removed = {
+        fg = colors.vscRed
+      },
 		}
 	end)
 
