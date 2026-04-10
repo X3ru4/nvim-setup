@@ -34,7 +34,7 @@ c = {
 		lazy = false,
 		priority = 1000,
 		config = function()
-      vim.g.blinkcmp_border = "none"
+			vim.g.blinkcmp_border = "none"
 			require("catppuccin").setup({
 				flavour = "macchiato",
 				transparent_background = false, -- disables setting the background color.
@@ -140,9 +140,10 @@ c = {
 		priority = 1000,
 		config = function()
 			vim.g.blinkcmp_border = "rounded"
-			vim.g.gruvbox_material_transparent_background = 0
-			vim.g.gruvbox_material_enable_bold = 1
-			vim.g.gruvbox_material_enable_italic = 1
+			vim.g.gruvbox_material_transparent_background = false
+			vim.g.gruvbox_material_enable_bold = true
+			vim.g.gruvbox_material_enable_italic = false
+			vim.g.gruvbox_material_disable_italic_comment = true
 			-- Available values 'grey background'|"green background"|"blue background"|"red background"|"reverse"
 			vim.g.gruvbox_material_visual = "green background"
 			-- Available values "material"|"mix"|"original"
@@ -177,8 +178,8 @@ c = {
 				bold = true,
 				italic = {
 					strings = false,
-					emphasis = true,
-					comments = true,
+					emphasis = false,
+					comments = false,
 					operators = false,
 					folds = false,
 				},
@@ -374,6 +375,8 @@ c = {
 					},
 				},
 			})
+			vim.g.blinkcmp_cmphl = true
+			vim.g.blinkcmp_border = "rounded"
 			vim.cmd("colorscheme vague")
 		end,
 	},
@@ -463,7 +466,7 @@ cs.list = {
 	c.nightfox, -- Recomment!
 	c.catppuccin, -- Recomment!
 	c.vscode, -- Recomment!
-  c.rusty, -- Recomment! Like vscode
+	c.rusty, -- Recomment! Like vscode
 	c.vague, -- Recomment! Like vscode
 	c.gruvbox_material, -- Recomment!
 	c.gruvbox, -- Recomment!
@@ -474,9 +477,9 @@ cs.list = {
 	c.cyberdream, -- Recomment!
 	c.nord, -- Hmmmmm!
 	c.tokyonight, -- Hmmmmm!
-  c.shale, -- Hmmmmm!
+	c.shale, -- Hmmmmm!
 	c.onedark, -- Hmmmmm!
 }
 
 -- NOTE: Goto ~/.config/nvim/lua/config/lazy.lua to more infos
-return cs.install(c.catppuccin) -- What is the best colorscheme for you? Change it here =))
+return cs.install(c.gruvbox_material) -- What is the best colorscheme for you? Change it here =))
