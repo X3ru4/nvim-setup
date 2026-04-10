@@ -148,7 +148,7 @@ end
 ---Apply all highlights from M.highlights and other table.
 ---@param other table|function|nil
 function M.apply(other)
-  M.clear_cache()
+	M.clear_cache()
 	local function pair(t)
 		if not t then
 			return
@@ -198,19 +198,17 @@ end
 function M.mix_hl(ns, spec)
 	if not M.hl_def_cache[ns] then
 		local function pick_hl(arg, fallback_key)
-			if arg == nil then
+			if not arg then
 				return M.get(spec.default_hl)[fallback_key]
 			end
 			if type(arg) == "string" then
 				return arg
 			end
 
-			local type = arg.type or fallback_key
-			if arg.name then
-				return M.get(arg.name)[type]
-			end
 			if arg.list then
-				return M.get(arg.list[arg.key] or arg.list[arg.default_key] or spec.default_hl)[type]
+				return M.get(arg.list[arg.key] or arg.list[arg.default_key] or spec.default_hl)[arg[1] or fallback_key]
+			elseif arg[1] then
+				return M.get(arg[1])[arg[2] or fallback_key]
 			end
 		end
 
@@ -224,12 +222,12 @@ function M.mix_hl(ns, spec)
 		end
 
 		spec.default_hl = spec.default_hl or "Normal"
-
 		ns = table.concat({
 			ns,
 			create_key(spec.fg),
 			create_key(spec.bg),
 		})
+
 		M.set(
 			ns,
 			vim.tbl_extend("keep", {
@@ -257,11 +255,11 @@ function M.rgb_to_hex(rgb)
 end
 
 function M.dec_to_hex(dec_color)
-  if type(dec_color) == "number" then
-    return string.format("#%06X", dec_color)
-  end
-  vim.notify("Expected a number for dec_color, got " .. type(dec_color), vim.log.levels.WARN)
-  return "#000000"
+	if type(dec_color) == "number" then
+		return string.format("#%06X", dec_color)
+	end
+	vim.notify("Expected a number for dec_color, got " .. type(dec_color), vim.log.levels.WARN)
+	return "#000000"
 end
 
 --- Blends colors with an alpha value

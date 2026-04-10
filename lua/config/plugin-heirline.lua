@@ -51,9 +51,9 @@ local vim_mode = {
 	provider = function(self)
 		local fg_opt = {}
 		if vim.g.colors_name == "base46" then
-			fg_opt = { name = "Dark0", type = "fg" }
+			fg_opt = { "Dark0", "fg" }
 		else
-			fg_opt = { name = "Normal", type = "bg" }
+			fg_opt = { "Normal", "bg" }
 		end
 
 		return line.separator({
@@ -88,9 +88,9 @@ local vim_mode = {
 						list = mode_color,
 						default_key = "n",
 						key = self.mode,
-						type = "bg",
+						"bg",
 					},
-					bg = { name = "Dark3", type = "fg" },
+					bg = { "Dark3", "fg" },
 				},
 			},
 		})
@@ -107,17 +107,26 @@ local file_info = {
 				left = {
 					value = "",
 					hl = {
-						fg = { name = "Dark3", type = "fg" },
-						bg = { name = "Dark2", type = "fg" },
+						fg = { "Dark3", "fg" },
+						bg = { "Dark2", "fg" },
 					},
 				},
 				string = {
-					value = function()
-						local icon, _ = require("mini.icons").get("filetype", vim.bo.filetype)
-						return " " .. icon .. " %{&filetype == '' ? 'Unknown' : toupper(&filetype[0]) . &filetype[1:]} "
+					value = function(self)
+						local icon, icon_hl = require("mini.icons").get("filetype", vim.bo.filetype)
+						local new_hl = hl.mix_hl("FileInfo" .. icon_hl, {
+							fg = { icon_hl },
+							bg = { "Dark2", "fg" },
+						})
+						return
+              line.hl_fmt(new_hl, " " .. icon, " %*") ..
+              line.hl_fmt(
+								self.hl,
+								"%{&filetype == '' ? 'Unknown' : toupper(&filetype[0]) . &filetype[1:]} "
+							)
 					end,
 					hl = {
-						bg = { name = "Dark2", type = "fg" },
+						bg = { "Dark2", "fg" },
 					},
 				},
 			})
