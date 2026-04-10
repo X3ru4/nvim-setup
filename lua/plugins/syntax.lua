@@ -1,13 +1,11 @@
 return {
+
 	{
-		"nvim-treesitter/nvim-treesitter",
-		branch = "main",
-		version = false,
-		build = ":TSUpdate",
-		event = { "BufReadPre", "BufNewFile" },
+		"romus204/tree-sitter-manager.nvim",
+		dependencies = {}, -- tree-sitter CLI must be installed system-wide
 		config = function()
-			require("nvim-treesitter.config").setup({
-        install_dir = "",
+			require("tree-sitter-manager").setup({
+				-- list of parsers to install automatically
 				ensure_installed = {
 					"c",
 					"lua",
@@ -17,21 +15,10 @@ return {
 					"markdown",
 					"markdown_inline",
 				},
-				sync_install = false,
-				auto_install = true,
-				ignore_install = { "javascript" },
-				indent = { enable = true },
-				highlight = {
-					enable = true,
-					-- disable = { "c", "rust" },
-					additional_vim_regex_highlighting = false,
-				},
-				folds = {
-					enable = true,
-				},
+				-- Optional: custom paths
+				-- parser_dir = vim.fn.stdpath("data") .. "/site/parser",
+				-- query_dir = vim.fn.stdpath("data") .. "/site/queries",
 			})
-
-      local keymap = vim.keymap.set
 		end,
 	},
 

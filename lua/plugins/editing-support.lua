@@ -1,6 +1,12 @@
 return {
 
 	{
+		"nemanjamalesija/smart-paste.nvim",
+		event = "VeryLazy",
+		config = true,
+	},
+
+	{
 		"nacro90/numb.nvim",
 		enabled = false,
 		event = "VeryLazy",
