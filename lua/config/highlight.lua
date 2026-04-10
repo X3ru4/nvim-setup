@@ -26,7 +26,7 @@ M.setup = function()
 
 		--- Plugins
 		-- MultiCursor
-		MultiCursorCursor = { reverse = true },
+		MultiCursorCursor = { link = "Cursor" },
 		MultiCursorVisual = { link = "Visual" },
 		MultiCursorSign = { link = "SignColumn" },
 		MultiCursorMatchPreview = { link = "Search" },
@@ -45,6 +45,7 @@ M.setup = function()
 		FzfLuaBufNr = { link = "WarningMsg" },
 		FzfLuaHeaderBind = { link = "WarningMsg" },
 		FzfLuaTabMarker = { link = "WarningMsg" },
+		FzfLuaBorder = { link = "Normal" },
 
 		-- MiniTabline
 		MiniTablineCurrent = {
@@ -583,326 +584,73 @@ M.setup = function()
 				link = "RainbowDelimiterOrange",
 			},
 
-      Changed = {
-        fg = colors.vscYellow
-      },
-      Removed = {
-        fg = colors.vscRed
-      },
-		}
-	end)
-
-	hl.set_match("base46!", function(self)
-		if vim.g.base46_palette == nil then
-			return
-		end
-		local palette = vim.g.base46_palette
-		local highlights = {}
-
-		-- Set all the basic colors before return and apply
-		hl.set("Red", { fg = palette.base08 })
-		hl.set("Orange", { fg = palette.base09 })
-		hl.set("Yellow", { fg = palette.base0A })
-		hl.set("Green", { fg = palette.base0B })
-		hl.set("Aqua", { fg = palette.base0C })
-		hl.set("Blue", { fg = palette.base0D })
-		hl.set("Purple", { fg = palette.base0E })
-		hl.set("Gold", { fg = palette.sun })
-
-		-- Support terminal colors
-		-- Black & Grey
-		vim.g.terminal_color_0 = palette.black2
-		vim.g.terminal_color_8 = palette.grey
-		-- Red & Bright red
-		vim.g.terminal_color_1 = palette.red
-		vim.g.terminal_color_9 = palette.baby_pink
-		-- Green & Bright green
-		vim.g.terminal_color_2 = palette.green
-		vim.g.terminal_color_10 = palette.vibrant_green
-		-- Yellow & Bright yellow
-		vim.g.terminal_color_3 = palette.base09
-		vim.g.terminal_color_11 = palette.base0A
-		-- Blue & Bright Blue
-		vim.g.terminal_color_4 = palette.blue
-		vim.g.terminal_color_12 = palette.base0C
-		-- Magenta & Bright Magenta
-		vim.g.terminal_color_5 = palette.base0E
-		vim.g.terminal_color_13 = palette.purple
-		-- Cyan & Bright cyan
-		vim.g.terminal_color_6 = palette.nord_blue
-		vim.g.terminal_color_14 = palette.cyan
-		-- White & Gray
-		vim.g.terminal_color_7 = palette.base06
-		vim.g.terminal_color_15 = palette.base07
-
-		-- Syntax
-		hl.modify("@keyword.return", { italic = true })
-		hl.modify("@keyword.exception", { italic = true })
-		hl.modify("@keyword.repeat", { italic = true })
-		highlights["@keyword"] = { fg = hl.getfg("@keyword"), italic = true }
-		highlights["@type"] = { fg = palette.vibrant_green }
-		highlights.rustKeyword = { link = "@keyword" }
-		highlights.Special = { fg = palette.orange }
-
-		-- Nvim
-		hl.modify("MatchWord", { fg = "none" })
-		hl.modify("Visual", { bold = true })
-		highlights.MatchWordCur = { link = "MatchWord" }
-		highlights.Yank = { link = "Visual" }
-		highlights.DiffAdd = {
-			bg = hl.blend(palette.green, palette.black, 0.2),
-		}
-		highlights.DiffText = {
-			bg = hl.blend(palette.white, palette.black, 0.2),
-		}
-		highlights.DiffDelete = {
-			bg = hl.blend(palette.red, palette.black, 0.2),
-		}
-
-		-- DropBar
-		highlights.DropBarIconKindArray = { link = "Statement" }
-		highlights.DropBarIconKindVariable = { fg = palette.base09 }
-		highlights.DropBarIconUISeparator = { fg = palette.grey_fg }
-		highlights.DropBarIconUISeparatorNC = { fg = palette.grey_fg }
-
-		-- Fzf-lua
-		highlights.FzfLuaBackdrop = { bg = palette.black }
-
-		-- Mini.icons
-		highlights.MiniIconsRed = { fg = palette.base08 }
-		highlights.MiniIconsOrange = { fg = palette.base09 }
-		highlights.MiniIconsYellow = { fg = palette.base0A }
-		highlights.MiniIconsPurple = { fg = palette.base0E }
-		highlights.MiniIconsGreen = { fg = palette.base0B }
-		highlights.MiniIconsCyan = { fg = palette.cyan }
-		highlights.MiniIconsBlue = { fg = palette.base0C }
-		highlights.MiniIconsAzure = { fg = palette.base0D }
-		highlights.MiniIconsGrey = { fg = palette.base05 }
-
-		-- Diagnostic
-		highlights.DiagnosticWarn = { fg = palette.yellow }
-		highlights.DiagnosticInfo = { fg = palette.cyan }
-		highlights.DiagnosticHint = { fg = palette.dark_purple }
-		highlights.DiagnosticError = { fg = palette.red }
-		highlights.DiagnosticVirtualTextWarn = {
-			fg = palette.yellow,
-			bg = hl.blend(palette.yellow, palette.black, 0.2),
-		}
-		highlights.DiagnosticVirtualTextInfo = {
-			fg = palette.cyan,
-			bg = hl.blend(palette.cyan, palette.black, 0.2),
-		}
-		highlights.DiagnosticVirtualTextHint = {
-			fg = palette.dark_purple,
-			bg = hl.blend(palette.dark_purple, palette.black, 0.2),
-		}
-		highlights.DiagnosticVirtualTextError = {
-			fg = palette.red,
-			bg = hl.blend(palette.red, palette.black, 0.2),
-		}
-		highlights.DiagnosticVirtualLineWarn = { link = "DiagnosticVirtualTextWarn" }
-		highlights.DiagnosticVirtualLineInfo = { link = "DiagnosticVirtualTextInfo" }
-		highlights.DiagnosticVirtualLineHint = { link = "DiagnosticVirtualTextHint" }
-		highlights.DiagnosticVirtualLineError = { link = "DiagnosticVirtualTextError" }
-
-		-- Vanilla
-		-- Diff
-		highlights.Added = { link = "Green" }
-		highlights.Changed = { link = "Yellow" }
-		highlights.Removed = { link = "Red" }
-
-		highlights.WarningMsg = { link = "Gold" }
-		highlights.StatusLineNC = { fg = palette.grey_fg }
-		highlights.StatusLine = { bg = palette.black2 }
-		highlights.WinBarNc = { bg = palette.one_bg }
-		highlights.NormalFloat = { link = "Normal" }
-		highlights.FloatBorder = { bg = hl.getbg("Normal"), fg = palette.grey_fg2 }
-
-		highlights.NonText = { fg = palette.grey_fg }
-		highlights.Comment = { fg = palette.grey_fg2, italic = true }
-
-		-- Lazy
-		highlights.LazyReasonCmd = { fg = palette.base09 }
-		highlights.LazyReasonEvent = { fg = palette.teal }
-		highlights.LazyReasonFt = { fg = palette.green }
-		highlights.LazyReasonKeys = { fg = palette.nord_blue }
-		highlights.LazyReasonSource = { fg = palette.base0A }
-		highlights.LazyReasonPlugin = { fg = palette.red }
-		highlights.LazyReasonStart = { fg = palette.dark_purple }
-
-		-- BlinkPair
-		highlights.BlinkPairsUnmatched = {
-			fg = palette.red,
-			reverse = true,
-			bold = true,
-		}
-		highlights.BlinkPairsBlue = { link = "Blue" }
-		highlights.BlinkPairsOrange = { link = "Orange" }
-		highlights.BlinkPairsPurple = { link = "Purple" }
-
-		-- BlinkIndent
-		highlights.BlinkIndentRed = { fg = palette.base08 }
-		highlights.BlinkIndentCyan = { fg = palette.base0C }
-		highlights.BlinkIndentBlue = { fg = palette.base0D }
-		highlights.BlinkIndentGreen = { fg = palette.vibrant_green }
-		highlights.BlinkIndentYellow = { fg = palette.base0A }
-		highlights.BlinkIndentViolet = { fg = palette.base0E }
-		highlights.BlinkIndentOrange = { fg = palette.base09 }
-
-		-- BlinkCmp
-		if vim.g.blinkcmp_border == "none" then
-			highlights.BlinkCmpMenu = { bg = palette.black2 }
-			highlights.BlinkCmpMenuBorder = { fg = palette.grey_fg2, bg = palette.black2 }
-		else
-			highlights.BlinkCmpMenu = { link = "Normal" }
-			highlights.BlinkCmpMenuBorder = { fg = palette.grey_fg2 }
-		end
-		highlights.BlinkCmpDoc = { link = "BlinkCmpMenu" }
-		highlights.BlinkCmpDocBorder = { link = "BlinkCmpMenuBorder" }
-		highlights.BlinkCmpLabelDescription = { fg = palette.grey }
-		highlights.BlinkCmpLabelDetail = { fg = palette.grey }
-		highlights.BlinkCmpLabelDeprecated = { fg = palette.grey }
-		highlights.BlinkCmpLabel = { fg = palette.white }
-		highlights.BlinkCmpLabelMatch = { fg = palette.blue, bold = true }
-		highlights.BlinkCmpMenuSelection = { bg = palette.base03 }
-
-		highlights.BlinkCmpKindConstant = { link = "@constant" }
-		highlights.BlinkCmpKindField = { link = "@field" }
-		highlights.BlinkCmpKindProperty = { link = "@property" }
-		highlights.BlinkCmpKindEvent = { link = "@type" }
-		highlights.BlinkCmpKindFunction = { link = "@function" }
-		highlights.BlinkCmpKindVariable = { link = "@variable.builtin" }
-		highlights.BlinkCmpKindMethod = { link = "@method" }
-		highlights.BlinkCmpKindConstructor = { link = "@constructor" }
-		highlights.BlinkCmpKindReference = { link = "@reference" }
-		highlights.BlinkCmpKindKeyword = { fg = palette.orange }
-		highlights.BlinkCmpKindText = { fg = palette.green }
-		highlights.BlinkCmpKindEnum = { fg = palette.green }
-		highlights.BlinkCmpKindClass = { fg = palette.purple }
-		highlights.BlinkCmpKindModule = { fg = palette.purple }
-		highlights.BlinkCmpKindOperator = { fg = palette.purple }
-		highlights.BlinkCmpKindStruct = { fg = palette.yellow }
-		highlights.BlinkCmpKindFile = { fg = palette.yellow }
-		highlights.BlinkCmpKindUnit = { fg = palette.yellow }
-		highlights.BlinkCmpKindSnippet = { fg = palette.dark_purple }
-		highlights.BlinkCmpKindFolder = { fg = palette.blue }
-		highlights.BlinkCmpKindValue = { fg = palette.blue }
-		highlights.BlinkCmpKindEnumMember = { fg = palette.blue }
-		highlights.BlinkCmpKindColor = { fg = palette.cyan }
-		highlights.BlinkCmpKindTypeParameter = { fg = palette.cyan }
-		highlights.BlinkCmpKindInterface = { fg = palette.vibrant_green }
-
-		-- Oil.nvim
-		highlights.OilCreate = { fg = palette.green, bold = true }
-		highlights.OilChange = { fg = palette.yellow, bold = true }
-		highlights.OilDelete = { fg = palette.red, bold = true }
-		highlights.OilCopy = { fg = palette.blue, bold = true }
-		highlights.OilMove = { fg = palette.yellow, bold = true }
-
-		-- Vim mode
-		highlights.ModeOther = {
-			fg = palette.black,
-			bg = palette.red,
-		}
-		highlights.ModeNormal = {
-			fg = palette.black,
-			bg = palette.nord_blue,
-		}
-		highlights.ModeInsert = {
-			fg = palette.black,
-			bg = palette.vibrant_green,
-		}
-		highlights.ModeVisual = {
-			fg = palette.black,
-			bg = palette.dark_purple,
-		}
-		highlights.ModeReplace = {
-			fg = palette.black,
-			bg = palette.red,
-		}
-		highlights.ModeCommand = {
-			fg = palette.black,
-			bg = palette.sun,
-		}
-
-		local theme = {
-			["-chadtain"] = {
-				Cursor = { bg = palette.sun },
-				TermCursor = { link = "Cursor" },
+			Changed = {
+				fg = colors.vscYellow,
 			},
-			["-onedark"] = {
-				Cursor = { bg = palette.blue },
-				TermCursor = { link = "Cursor" },
-				Special = { fg = palette.yellow },
-			},
-			["-doomchad"] = {
-				Cursor = { bg = palette.red },
-				TermCursor = { link = "Cursor" },
-			},
-			["-catppuccin"] = {
-				["@property"] = {
-					fg = palette.lavender,
-				},
+			Removed = {
+				fg = colors.vscRed,
 			},
 		}
-		if theme[self.variant] then
-			highlights = vim.tbl_extend("force", highlights, theme[self.variant])
-		end
-
-		return highlights
 	end)
 
 	hl.set_match("vague", function()
 		local colors = require("vague").get_palette()
 
-		hl.set("Red", { fg = colors.error })
-		hl.set("Orange", { fg = colors.number })
-		hl.set("Yellow", { fg = colors.warning })
-		hl.set("Green", { fg = colors.plus })
-		hl.set("Aqua", { fg = colors.type })
-		hl.set("Blue", { fg = colors.keyword })
-		hl.set("Purple", { fg = colors.hint })
+		local red = colors.error
+		local orange = colors.number
+		local yellow = colors.warning
+		local green = colors.plus
+		local aqua = colors.keyword
+		local blue = colors.hint
+		local purple = colors.parameter
 
 		return {
 
 			-- BlinkPair
 			BlinkPairsUnmatched = {
-				fg = hl.getfg("Red"),
+				fg = red,
 				reverse = true,
 				bold = true,
 			},
-			BlinkPairsBlue = {
-				link = "Blue",
-			},
-			BlinkPairsOrange = {
-				link = "Orange",
-			},
-			BlinkPairsPurple = {
-				link = "Purple",
-			},
+			BlinkPairsBlue = { fg = blue },
+			BlinkPairsOrange = { fg = orange },
+			BlinkPairsPurple = { fg = purple },
 
 			-- BlinkIndent
-			BlinkIndentRed = {
-				link = "Red",
+			BlinkIndentRed = { fg = red },
+			BlinkIndentCyan = { fg = aqua },
+			BlinkIndentBlue = { fg = blue },
+			BlinkIndentGreen = { fg = green },
+			BlinkIndentYellow = { fg = yellow },
+			BlinkIndentViolet = { fg = purple },
+			BlinkIndentOrange = { fg = orange },
+
+			-- Blink.cmp
+			BlinkCmpMenu = {
+				link = "Normal",
 			},
-			BlinkIndentCyan = {
-				link = "Cyan",
+			BlinkCmpMenuSelection = {
+				bg = colors.line,
 			},
-			BlinkIndentBlue = {
-				link = "Blue",
+			BlinkCmpDoc = {
+				link = "Normal",
 			},
-			BlinkIndentGreen = {
-				link = "Green",
+
+			-- MiniClues
+			MiniClueSeparator = {
+				fg = colors.parameter,
 			},
-			BlinkIndentYellow = {
-				link = "Yellow",
-			},
-			BlinkIndentViolet = {
-				link = "Purple",
-			},
-			BlinkIndentOrange = {
-				link = "Orange",
-			},
+
+			-- MiniIcons
+			MiniIconsRed = { fg = red },
+			MiniIconsOrange = { fg = orange },
+			MiniIconsYellow = { fg = yellow },
+			MiniIconsPurple = { fg = purple },
+			MiniIconsGreen = { fg = green },
+			MiniIconsCyan = { fg = aqua },
+			MiniIconsBlue = { fg = blue },
+			MiniIconsAzure = { fg = aqua },
+			MiniIconsGrey = { fg = colors.comment },
 		}
 	end)
 
