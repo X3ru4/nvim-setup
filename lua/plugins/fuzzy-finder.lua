@@ -69,11 +69,11 @@ return {
 					true, -- inherit fzf colors that aren't specified below from
 					-- the auto-generated theme similar to `fzf_colors=true`
 					["fg"] = { "fg", "CursorLine" },
-					["bg"] = { "bg", "NormalFloat" },
-					["hl"] = { "fg", "Statement", "bold" },
+					["bg"] = { "bg", "Normal" },
+					["hl"] = { "fg", "Directory", "underline" },
 					["fg+"] = { "fg", "Normal" },
 					["bg+"] = { "bg", { "CursorLine", "Normal" } },
-					["hl+"] = { "fg", "Statement", "bold" },
+					["hl+"] = { "fg", "Directory", "underline" },
 					["info"] = { "fg", "PreProc", "bold" },
 					["prompt"] = { "fg", "Conditional" },
 					["pointer"] = { "fg", "Exception" },
