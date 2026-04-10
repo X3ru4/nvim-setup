@@ -17,7 +17,7 @@ opt.timeoutlen = 300
 opt.ttimeoutlen = 10
 opt.synmaxcol = 200
 
-opt.relativenumber = false
+opt.relativenumber = true
 opt.cmdheight = 0
 
 -- Fold
