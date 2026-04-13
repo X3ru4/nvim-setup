@@ -2,7 +2,7 @@ return {
 
 	{
 		"nemanjamalesija/smart-paste.nvim",
-		event = "VeryLazy",
+		keys = { "p", "P", "gp", "gP" },
 		config = true,
 	},
 
@@ -221,9 +221,16 @@ return {
 					increment = "<C-a>",
 					decrement = "<C-x>",
 				},
-				additions = {},
+				-- User defined loops
+				additions = {
+					{ "Foo", "Bar" },
+					{ "tic", "tac", "toe" },
+				},
 				allow_caps_additions = {
-					-- { "right", "left" },
+					{ "enable", "disable" },
+					-- enable → disable
+					-- Enable → Disable
+					-- ENABLE → DISABLE
 				},
 			})
 		end,
@@ -285,41 +292,6 @@ return {
 	},
 
 	{
-		"khoido2003/multiple-cursor.nvim",
-		enabled = false,
-		keys = {
-			{ "<C-n>", "<cmd>MultipleCursorStart<cr>", desc = "Start Multiple Cursor" },
-		},
-		cmd = { "MultipleCursorStart", "MultipleCursorSelectAll" },
-		config = function()
-			require("multiple-cursor").setup({
-				keymaps = {
-					start_next = "<C-n>",
-					skip = "<C-x>",
-					next_match = "<C-j>",
-					prev_match = "<C-k>",
-					select_all = "<C-a>",
-					exit = "<Esc>",
-				},
-				highlights = {
-					cursor = "MultipleCursor",
-					match = "MultipleCursorMatch",
-					current = "MultipleCursorCurrent",
-					skipped = "MultipleCursorSkipped",
-				},
-				highlight_definitions = {
-					cursor = { bg = "#50fa7b", fg = "#000000", bold = true }, -- Vivid Green with Black text
-					match = { bg = "#f1fa8c", fg = "#000000", bold = true }, -- Bright Yellow with Black text
-					current = { bg = "#8be9fd", fg = "#000000", bold = true }, -- Cyan with Black text
-					skipped = { bg = "#ff5555", fg = "#000000", strikethrough = true }, -- Red with Black text
-				},
-				match_whole_word = true,
-				case_sensitive = true,
-			})
-		end,
-	},
-
-	{
 		"jake-stewart/multicursor.nvim",
 		branch = "1.0",
 		enabled = true,
@@ -329,14 +301,14 @@ return {
 			return {
 				{
 					mode = { "n", "x" },
-					"<A-Up>",
+					"<C-Up>",
 					function()
 						mc.lineAddCursor(-1)
 					end,
 				},
 				{
-					mode = { "n", "x" },
-					"<A-Down>",
+          mode = { "n", "x" },
+					"<C-Down>",
 					function()
 						mc.lineAddCursor(1)
 					end,
@@ -418,7 +390,7 @@ return {
 
 			-- Customize how cursors look.
 			local hl = vim.api.nvim_set_hl
-			hl(0, "MultiCursorCursor", { reverse = true })
+			hl(0, "MultiCursorCursor", { link = "Cursor" })
 			hl(0, "MultiCursorVisual", { link = "Visual" })
 			hl(0, "MultiCursorSign", { link = "SignColumn" })
 			hl(0, "MultiCursorMatchPreview", { link = "Search" })

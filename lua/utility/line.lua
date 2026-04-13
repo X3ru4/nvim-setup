@@ -2,6 +2,7 @@ local M = {}
 local hl_api = require("utility.highlight")
 
 M.__hl_fmt_cache = {}
+M.__pad_cache = {}
 
 ---GamenhuCak
 ---@param hl_name string
@@ -26,9 +27,15 @@ end
 ---@return string
 function M.padding(s, l, r)
 	s = s or ""
-	l = l or 0
-	r = r or 0
-	return string.rep(" ", l or 1) .. s or "" .. string.rep(" ", r or 1)
+	l = l or 1
+	r = r or 1
+  local field = s .. l .. r
+  if not field then
+    M.__pad_cache[field] = string.rep(" ", l) .. s .. string.rep(" ", r)
+  else
+    return M.__pad_cache[field]
+  end
+  return ""
 end
 
 ---@alias line.SepPart

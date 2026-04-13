@@ -1,18 +1,21 @@
 local M = {}
 
 M.setup = function()
-	-- local start = os.clock()
 	local hl = require("utility.highlight")
 	local normal = {
-		fg = hl.dec_to_hex(hl.getfg("Normal")),
-		bg = hl.dec_to_hex(hl.getbg("Normal")),
+		fg = hl.getfg("Normal"),
+		bg = hl.getbg("Normal"),
+	}
+	local normal_extra = {
+		fg = normal.fg or hl.getfg("TroubleText"),
+		bg = normal.bg or hl.getfg("Search"),
 	}
 
 	-- Generate the basic colors with blending for dark variants
-	hl.set("Dark1", { fg = hl.blend(normal.bg, normal.fg, 0.9) })
-	hl.set("Dark2", { fg = hl.blend(normal.bg, normal.fg, 0.8) })
-	hl.set("Dark3", { fg = hl.blend(normal.bg, normal.fg, 0.7) })
-	hl.set("Dark4", { fg = hl.blend(normal.bg, normal.fg, 0.6) })
+	hl.set("Dark1", { fg = hl.blend(normal_extra.bg, normal_extra.fg, 0.9) })
+	hl.set("Dark2", { fg = hl.blend(normal_extra.bg, normal_extra.fg, 0.8) })
+	hl.set("Dark3", { fg = hl.blend(normal_extra.bg, normal_extra.fg, 0.7) })
+	hl.set("Dark4", { fg = hl.blend(normal_extra.bg, normal_extra.fg, 0.6) })
 
 	hl.highlights = {
 		-- Custom highlights
@@ -25,15 +28,6 @@ M.setup = function()
 		Yank = { bg = hl.getbg("Visual") },
 
 		--- Plugins
-		-- MultiCursor
-		MultiCursorCursor = { link = "Cursor" },
-		MultiCursorVisual = { link = "Visual" },
-		MultiCursorSign = { link = "SignColumn" },
-		MultiCursorMatchPreview = { link = "Search" },
-		MultiCursorDisabledCursor = { reverse = true },
-		MultiCursorDisabledVisual = { link = "Visual" },
-		MultiCursorDisabledSign = { link = "SignColumn" },
-
 		-- FzfLua
 		FzfLuaHeaderText = { link = "ErrorMsg" },
 		FzfLuaBufFlagCur = { link = "ErrorMsg" },
@@ -60,11 +54,9 @@ M.setup = function()
 		},
 		MiniTablineHidden = { link = "TabLineNC" },
 		MiniTablineModifiedHidden = hl.modify("TabLineNC", function(base)
-			local primary = hl.dec_to_hex(hl.getfg("WarningMsg"))
-			local secondary = hl.dec_to_hex(base.fg)
 			return {
 				bold = true,
-				fg = hl.blend(primary, secondary, 0.5),
+				fg = hl.blend(hl.getfg("WarningMsg"), base.fg, 0.5),
 				bg = base.bg,
 			}
 		end),
@@ -506,32 +498,26 @@ M.setup = function()
 			ModeOther = {
 				bg = colors.vscRed,
 				fg = fg,
-				bold = true,
 			},
 			ModeNormal = {
 				bg = colors.vscBlue,
 				fg = fg,
-				bold = true,
 			},
 			ModeInsert = {
 				bg = colors.vscGreen,
 				fg = fg,
-				bold = true,
 			},
 			ModeVisual = {
 				bg = colors.vscPink,
 				fg = fg,
-				bold = true,
 			},
 			ModeReplace = {
 				bg = colors.vscLightRed,
 				fg = fg,
-				bold = true,
 			},
 			ModeCommand = {
 				bg = colors.vscOrange,
 				fg = fg,
-				bold = true,
 			},
 
 			-- Mini.Diff
@@ -938,9 +924,88 @@ M.setup = function()
 		return highlights
 	end)
 
+	hl.set_match("shale", function()
+		local colors = require("shale.colors")
+
+		-- Black & Grey
+		vim.g.terminal_color_0 = colors.bg
+		vim.g.terminal_color_8 = colors.bg_alt
+		-- Red & Bright red
+		vim.g.terminal_color_1 = colors.error
+		vim.g.terminal_color_9 = colors.error
+		-- Green & Bright green
+		vim.g.terminal_color_2 = colors.git_add
+		vim.g.terminal_color_10 = colors.git_add
+		-- Yellow & Bright yellow
+		vim.g.terminal_color_3 = colors.git_change
+		vim.g.terminal_color_11 = colors.git_change
+		-- Blue & Bright Blue
+		vim.g.terminal_color_4 = colors.hint
+		vim.g.terminal_color_12 = colors.hint
+		-- Magenta & Bright Magenta
+		vim.g.terminal_color_5 = colors.keyword
+		vim.g.terminal_color_13 = colors.keyword
+		-- Cyan & Bright cyan
+		vim.g.terminal_color_6 = colors.func
+		vim.g.terminal_color_14 = colors.func
+		-- White & Gray
+		vim.g.terminal_color_7 = colors.fg
+		vim.g.terminal_color_15 = colors.fg_dim
+
+		return {
+			BlinkPairsUnmatched = {
+				fg = colors.error,
+				reverse = true,
+				bold = true,
+			},
+			BlinkPairsBlue = {
+				fg = colors.hint,
+			},
+			BlinkPairsOrange = {
+				fg = colors.number,
+			},
+			BlinkPairsPurple = {
+				fg = colors.keyword,
+			},
+			BlinkIndentRed = {
+				fg = colors.error,
+			},
+			BlinkIndentCyan = {
+				fg = colors.func,
+			},
+			BlinkIndentBlue = {
+				fg = colors.hint,
+			},
+			BlinkIndentGreen = {
+				fg = colors.git_add,
+			},
+			BlinkIndentYellow = {
+				fg = colors.git_change,
+			},
+			BlinkIndentViolet = {
+				fg = colors.keyword,
+			},
+			BlinkIndentOrange = {
+				fg = colors.number,
+			},
+
+			FloatBorder = {
+				fg = colors.border,
+				bg = hl.getbg("NormalFloat"),
+			},
+
+			BlinkCmpMenu = { link = "CmpItemMenu" },
+			BlinkCmpMenuBorder = {
+				fg = colors.border,
+				bg = hl.getbg("Normal"),
+			},
+			BlinkCmpMenuSelection = {
+				bg = colors.selection,
+			},
+		}
+	end)
+
 	hl.apply()
-	-- local elapsed = (os.clock() - start) * 1000
-	-- vim.notify(string.format("Highlight configuration applied in %.2f ms", elapsed), vim.log.levels.INFO)
 end
 
 return M

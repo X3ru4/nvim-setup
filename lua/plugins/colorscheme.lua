@@ -38,7 +38,7 @@ c = {
 			require("catppuccin").setup({
 				flavour = "macchiato",
 				transparent_background = false, -- disables setting the background color.
-				no_italic = false,
+				no_italic = true,
 				styles = {
 					comments = { "italic" },
 					conditionals = { "italic" },
@@ -253,15 +253,15 @@ c = {
 						},
 					},
 					styles = { -- Style to be applied to different syntax groups
-						comments = "italic", -- Value is any valid attr-list value `:help attr-list`
+						comments = "NONE", -- Value is any valid attr-list value `:help attr-list`
 						conditionals = "NONE",
 						constants = "bold",
 						functions = "bold",
-						keywords = "italic",
+						keywords = "NONE",
 						numbers = "NONE",
 						operators = "NONE",
 						strings = "NONE",
-						types = "italic",
+						types = "NONE",
 						variables = "NONE",
 					},
 					inverse = { -- Inverse highlight for different types
@@ -401,6 +401,12 @@ c = {
 		lazy = false,
 		priority = 1000,
 		config = function()
+      require("shale").setup({
+        italic_comments = false,
+        italic_keywords = false,
+        transparent  = false,
+      })
+      vim.g.blinkcmp_cmphl = true -- Use Cmp highlight
 			vim.cmd.colorscheme("shale")
 		end,
 	},
@@ -465,9 +471,10 @@ local cs = require("utility.colorscheme")
 cs.list = {
 	c.nightfox, -- Recomment!
 	c.catppuccin, -- Recomment!
+	c.shale, -- Recomment!
 	c.vscode, -- Recomment!
+  c.vague, -- Recomment! Like vscode
 	c.rusty, -- Recomment! Like vscode
-	c.vague, -- Recomment! Like vscode
 	c.gruvbox_material, -- Recomment!
 	c.gruvbox, -- Recomment!
 	c.kanagawa, -- Recomment!
@@ -477,9 +484,8 @@ cs.list = {
 	c.cyberdream, -- Recomment!
 	c.nord, -- Hmmmmm!
 	c.tokyonight, -- Hmmmmm!
-	c.shale, -- Hmmmmm!
 	c.onedark, -- Hmmmmm!
 }
 
 -- NOTE: Goto ~/.config/nvim/lua/config/lazy.lua to more infos
-return cs.install(c.gruvbox_material) -- What is the best colorscheme for you? Change it here =))
+return cs.install(c.shale) -- What is the best colorscheme for you? Change it here =))

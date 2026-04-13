@@ -164,6 +164,10 @@ function M.apply(other)
 
 			M.set(name, opts)
 		end
+
+    for i, v in ipairs(t) do
+      vim.notify(type(v))
+    end
 	end
 
 	if other then
@@ -259,15 +263,28 @@ function M.dec_to_hex(dec_color)
 		return string.format("#%06X", dec_color)
 	end
 	vim.notify("Expected a number for dec_color, got " .. type(dec_color), vim.log.levels.WARN)
-	return "#000000"
+	return nil
 end
 
 --- Blends colors with an alpha value
---- @param hex1 string color in hex format (e.g., "#RRGGBB")
---- @param hex2 string color in hex format (e.g., "#RRGGBB")
+--- @param hex1 string|number color in hex format (e.g., "#RRGGBB")
+--- @param hex2 string|number color in hex format (e.g., "#RRGGBB")
 --- @param alpha number alpha value between 0 (fully transparent) and 1 (fully opaque)
---- @return string the resulting blended color in hex format
+--- @return string|number|nil the resulting blended color in hex format
 M.blend = function(hex1, hex2, alpha)
+	if not hex1 and not hex2 then
+		vim.notify("hex1 and hex2 are nil", vim.log.levels.WARN)
+		return nil
+	elseif not hex1 then
+		vim.notify("hex1 got " .. type(hex1), vim.log.levels.WARN)
+		return hex1
+	elseif not hex2 then
+		vim.notify("hex2 got " .. type(hex2), vim.log.levels.WARN)
+		return hex2
+	end
+
+	hex1 = type(hex1) == "number" and M.dec_to_hex(hex1) or hex1
+	hex2 = type(hex2) == "number" and M.dec_to_hex(hex2) or hex2
 	local color1 = M.hex_to_rgb(hex1)
 	local color2 = M.hex_to_rgb(hex2)
 

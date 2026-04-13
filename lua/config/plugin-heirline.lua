@@ -1,6 +1,8 @@
 local M = {}
 local line = require("utility.line")
 local hl = require("utility.highlight")
+local mini_icons = require("mini.icons")
+local os_name = vim.loop.os_uname().sysname
 
 local mode_color = {
 	n = "ModeNormal",
@@ -49,36 +51,17 @@ local vim_mode = {
 		},
 	},
 	provider = function(self)
-		local fg_opt = {}
-		if vim.g.colors_name == "base46" then
-			fg_opt = { "Dark0", "fg" }
-		else
-			fg_opt = { "Normal", "bg" }
-		end
-
 		return line.separator({
 			id = "Mode",
 			left = {
-				value = "  ",
+				value = " " .. mini_icons.get("os", os_name) .. " ",
 				hl = {
-					fg = fg_opt,
+					fg = { "ModeOther" },
 					bg = {
 						list = mode_color,
 						default_key = "n",
 						key = self.mode,
 					},
-				},
-			},
-			string = {
-				value = (self.mode_name[self.mode] or self.mode) .. " ",
-				hl = {
-					fg = fg_opt,
-					bg = {
-						list = mode_color,
-						default_key = "n",
-						key = self.mode,
-					},
-					gui = { bold = true, italic = false },
 				},
 			},
 			right = {
@@ -93,13 +76,25 @@ local vim_mode = {
 					bg = { "Dark3", "fg" },
 				},
 			},
+			string = {
+				value = (self.mode_name[self.mode] or self.mode) .. " ",
+				hl = {
+					fg = { "ModeOther" },
+					bg = {
+						list = mode_color,
+						default_key = "n",
+						key = self.mode,
+					},
+					gui = { bold = true, italic = false },
+				},
+			},
 		})
 	end,
 }
 
 local file_info = {
 	{
-		update = { "BufWinEnter", "BufWinLeave", "BufReadPre" },
+		update = { "BufWinEnter", "BufWinLeave", "FileType" },
 		provider = function()
 			return line.separator({
 				id = "FileName",
@@ -113,19 +108,19 @@ local file_info = {
 				},
 				string = {
 					value = function(self)
-						local icon, icon_hl = require("mini.icons").get("filetype", vim.bo.filetype)
+						local icon, icon_hl = mini_icons.get("filetype", vim.bo.filetype)
 						local new_hl = hl.mix_hl("FileInfo" .. icon_hl, {
 							fg = { icon_hl },
 							bg = { "Dark2", "fg" },
 						})
-						return
-              line.hl_fmt(new_hl, " " .. icon, " %*") ..
-              line.hl_fmt(
+						return line.hl_fmt(new_hl, " " .. icon, " %*")
+							.. line.hl_fmt(
 								self.hl,
 								"%{&filetype == '' ? 'Unknown' : toupper(&filetype[0]) . &filetype[1:]} "
 							)
 					end,
 					hl = {
+						fg = { "Normal" },
 						bg = { "Dark2", "fg" },
 					},
 				},

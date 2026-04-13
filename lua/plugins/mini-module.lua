@@ -13,8 +13,8 @@ return {
 				Movies = { glyph = "󰎁", hl = "MiniIconsOrange" },
 			},
 			file = {
-        bash = { glyph = "", hl = "MiniIconsOrange" }
-      },
+				bash = { glyph = "", hl = "MiniIconsOrange" },
+			},
 			filetype = {},
 			extension = {},
 			lsp = {},
@@ -87,7 +87,7 @@ return {
 	{
 		"nvim-mini/mini.notify",
 		enabled = true,
-		event = "VimEnter",
+		event = "VeryLazy",
 		version = false,
 		keys = {
 			{
@@ -430,10 +430,10 @@ return {
 		version = false,
 		keys = {
 			{ "Sa", mode = { "n", "x", "v" } },
-      { "Sr", mode = { "n", "x", "v" } },
-      { "Sd", mode = { "n", "x", "v" } },
-      { "Sf", mode = { "n", "x", "v" } },
-      { "SF", mode = { "n", "x", "v" } },
+			{ "Sr", mode = { "n", "x", "v" } },
+			{ "Sd", mode = { "n", "x", "v" } },
+			{ "Sf", mode = { "n", "x", "v" } },
+			{ "SF", mode = { "n", "x", "v" } },
 		},
 		opts = {
 			mappings = {
@@ -469,7 +469,7 @@ return {
 		opts = function()
 			local ai = require("mini.ai")
 			return {
-				n_lines = 500,
+				n_lines = 50,
 				custom_textobjects = {
 					t = { "<([%p%w]-)%f[^<%w][^<>]->.-</%1>", "^<.->().*()</[^/]->$" },
 					d = { "%f[%d]%d+" },
@@ -484,6 +484,23 @@ return {
 					},
 					u = ai.gen_spec.function_call(),
 					U = ai.gen_spec.function_call({ name_pattern = "[%w_]" }),
+				},
+				mappings = {
+					-- Main textobject prefixes
+					around = "a",
+					inside = "i",
+
+					-- Next/last variants
+					-- NOTE: These override built-in LSP selection mappings on Neovim>=0.12
+					-- Map LSP selection manually to use it (see `:h MiniAi.config`)
+					around_next = "ah",
+					inside_next = "ih",
+					around_last = "al",
+					inside_last = "il",
+
+					-- Move cursor to corresponding edge of `a` textobject
+					goto_left = "g[",
+					goto_right = "g]",
 				},
 				silent = true,
 			}

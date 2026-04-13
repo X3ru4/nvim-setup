@@ -5,18 +5,17 @@
 >  [Here](https://github.com/X3ru4/n30vim/tree/main/lua/plugins)
 
 ## Requirements
-> [!WARNING]
-> clang
-> cmake
-> lua-language-serve ( Optional )
-> treesitter
-> rust
-> python ( Optional )
-> nodejs
-> luarocks
-> ripgrep
-> fzf
-> git
++ clang
++ cmake
++ lua-language-serve ( Optional )
++ treesitter
++ rust
++ python ( Optional )
++ nodejs
++ luarocks
++ ripgrep
++ fzf
++ git
 
 If you want more details, run this command in neovim: `:checkhealth`
 
