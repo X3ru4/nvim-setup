@@ -87,7 +87,7 @@ return {
 	{
 		"nvim-mini/mini.notify",
 		enabled = true,
-		event = "VeryLazy",
+    lazy = false,
 		version = false,
 		keys = {
 			{

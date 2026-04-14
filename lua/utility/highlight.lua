@@ -1,15 +1,14 @@
 local M = {}
 
-M.vset_hl = vim.api.nvim_set_hl
-M.vget_hl = vim.api.nvim_get_hl
-
-M.hl_def_cache = {}
-M.hl_get_cache = {}
+local cache = {
+	def = {},
+	get = {},
+}
 
 ---Clear caches
 function M.clear_cache()
-	M.hl_def_cache = {}
-	M.hl_get_cache = {}
+	cache.def = {}
+	cache.get = {}
 end
 
 ---This is the default table used to load highlights when M.apply() is called.
@@ -20,19 +19,14 @@ M.highlights_extra = {}
 ---Get the highlight but with the cache.
 ---Please use this function with M.set() to the best performance and no bug.
 ---@param name string Is the name of the highlight.
----@param cache boolean|nil Default is true
 ---@return table|vim.api.keyset.get_hl_info
-function M.get(name, cache)
-	cache = cache or true
-	if cache then
-		if not M.hl_get_cache[name] then
-			M.hl_get_cache[name] = M.vget_hl(0, { name = name, link = false })
-			return M.hl_get_cache[name]
-		else
-			return M.hl_get_cache[name]
-		end
+function M.get(name)
+	if not cache.get[name] then
+		cache.get[name] = vim.api.nvim_get_hl(0, { name = name, link = false })
+		return cache.get[name]
+	else
+		return cache.get[name]
 	end
-	return M.vget_hl(0, { name = name, link = false })
 end
 
 ---Like M.get but return the forground color
@@ -48,19 +42,12 @@ end
 ---Please use this function with M.get() to the best performance.
 ---@param name string Name of highlight.
 ---@param opts vim.api.keyset.highlight Options
----@param cache boolean|nil Default is true
----@param  id number|nil
-function M.set(name, opts, id, cache)
-	cache = cache or true
-	id = id or 0
-	if cache then
-		if not M.hl_def_cache[name] then
-			M.vset_hl(id, name, opts)
-			M.hl_get_cache[name] = nil
-			M.hl_def_cache[name] = true
-		end
-	else
-		M.vset_hl(id, name, opts)
+function M.set(name, opts)
+	local key = name .. vim.inspect(opts)
+	if not cache.def[key] then
+		vim.api.nvim_set_hl(0, name, opts)
+		cache.get[name] = nil
+		cache.def[key] = true
 	end
 end
 
@@ -78,7 +65,6 @@ function M.modify(name, opts, fallback)
 		opts = opts(base) or {}
 	end
 	local merged = vim.tbl_extend("force", base, opts or {})
-
 	if fallback then
 		return merged
 	else
@@ -164,10 +150,6 @@ function M.apply(other)
 
 			M.set(name, opts)
 		end
-
-    for i, v in ipairs(t) do
-      vim.notify(type(v))
-    end
 	end
 
 	if other then
@@ -200,7 +182,7 @@ end
 ---@param spec hl_api.HlSpec Spection
 ---@return string
 function M.mix_hl(ns, spec)
-	if not M.hl_def_cache[ns] then
+	if not cache.def[ns] then
 		local function pick_hl(arg, fallback_key)
 			if not arg then
 				return M.get(spec.default_hl)[fallback_key]
@@ -245,7 +227,9 @@ end
 
 -- Helper to convert hex string to RGB table {r, g, b}
 function M.hex_to_rgb(hex)
-	hex = hex:gsub("#", "")
+	if hex:byte(1) == 35 then -- #
+		hex = hex:sub(2)
+	end
 	return {
 		r = tonumber(hex:sub(1, 2), 16),
 		g = tonumber(hex:sub(3, 4), 16),

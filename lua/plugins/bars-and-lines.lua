@@ -36,7 +36,7 @@ return {
 
 	{
 		"Bekaboo/dropbar.nvim",
-		enabled = true,
+		enabled = false,
 		config = function()
 			vim.api.nvim_create_autocmd("FileType", {
 				once = true,
@@ -56,7 +56,7 @@ return {
 								},
 								menu = {
 										separator = " ",
-										indicator = " ",
+										indicator = " ",
 								},
 							},
 							kinds = {
@@ -89,8 +89,8 @@ return {
 									EnumMember = kind.EnumMember .. " ",
 									Event = kind.Event .. " ",
 									Field = kind.Field .. " ",
-									File = "󰈔 ",
-									Folder = "󰉋 ",
+									File = kind.File .. " ",
+									Folder = kind.Folder .. " ",
 									ForStatement = "󰑖 ",
 									Function = kind.Function .. " ",
 									GotoStatement = "󰁔 ",

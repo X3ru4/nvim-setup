@@ -54,7 +54,7 @@ local vim_mode = {
 		return line.separator({
 			id = "Mode",
 			left = {
-				value = " " .. mini_icons.get("os", os_name) .. " ",
+				value = line.padding("", 1, 1),
 				hl = {
 					fg = { "ModeOther" },
 					bg = {

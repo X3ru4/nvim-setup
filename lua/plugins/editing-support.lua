@@ -17,11 +17,11 @@ return {
 
 	{
 		"nvim-treesitter/nvim-treesitter-context",
-		enabled = false,
+		enabled = true,
 		event = { "BufReadPre", "BufNewFile" },
 		keys = {
 			{
-				"[c",
+				"+c",
 				function()
 					require("treesitter-context").go_to_context(vim.v.count1)
 				end,
@@ -295,7 +295,6 @@ return {
 		"jake-stewart/multicursor.nvim",
 		branch = "1.0",
 		enabled = true,
-		event = "VeryLazy",
 		keys = function()
 			local mc = require("multicursor-nvim")
 			return {

@@ -2,6 +2,7 @@ local M = {}
 
 M.setup = function()
 	local hl = require("utility.highlight")
+	local lazy = require("utility.lazy")
 	local normal = {
 		fg = hl.getfg("Normal"),
 		bg = hl.getbg("Normal"),
@@ -326,7 +327,6 @@ M.setup = function()
 		hl.modify("IncSearch", {
 			bold = true,
 		})
-
 		return {}
 	end)
 
@@ -397,20 +397,21 @@ M.setup = function()
 		},
 		fn = function()
 			local palette = {}
-			local lazy = require("utility.lazy")
 			if lazy.plugin_loaded("kanagawa") then
 				palette = require("kanagawa.colors").setup().palette
 			else
 				palette = require("kanagawa-paper.colors").setup().palette
 			end
 
-			hl.set("Red", { fg = palette.peachRed }, false)
-			hl.set("Orange", { fg = palette.roninYellow }, false)
-			hl.set("Yellow", { fg = palette.lotusYellow4 }, false)
-			hl.set("Green", { fg = palette.springGreen }, false)
-			hl.set("Purple", { fg = palette.oniViolet }, false)
-			hl.set("Blue", { fg = palette.crystalBlue }, false)
-			hl.set("Aqua", { fg = palette.springBlue }, false)
+			---@diagnostic disable: need-check-nil
+			hl.set("Red", { fg = palette.peachRed })
+			hl.set("Orange", { fg = palette.roninYellow })
+			hl.set("Yellow", { fg = palette.lotusYellow4 })
+			hl.set("Green", { fg = palette.springGreen })
+			hl.set("Purple", { fg = palette.oniViolet })
+			hl.set("Blue", { fg = palette.crystalBlue })
+			hl.set("Aqua", { fg = palette.springBlue })
+			---@diagnostic enable: need-check-nil
 
 			hl.modify("DropBarIconUISeparator", {
 				italic = false,

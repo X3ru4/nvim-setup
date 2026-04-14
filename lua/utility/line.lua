@@ -1,10 +1,12 @@
 local M = {}
 local hl_api = require("utility.highlight")
 
-M.__hl_fmt_cache = {}
-M.__pad_cache = {}
+local cache = {
+  space = {},
+  hl_fmt = {},
+}
 
----GamenhuCak
+---Convert the highlight name to the string can use at statusline,..
 ---@param hl_name string
 ---@param str string|nil
 ---@param last_str string|nil
@@ -14,13 +16,26 @@ function M.hl_fmt(hl_name, str, last_str)
 	str = str or ""
 	last_str = last_str or ""
 	local field = hl_name .. str .. last_str
-	if not M.__hl_fmt_cache[field] then
-		M.__hl_fmt_cache[field] = string.format("%%#%s#%s%s", hl_name, str, last_str)
+	if cache.hl_fmt[field] then
+		return cache.hl_fmt[field]
 	end
-	return M.__hl_fmt_cache[field]
+
+	local result = string.format("%%#%s#%s%s", hl_name, str, last_str)
+	cache.hl_fmt[field] = result
+	return result
 end
 
----PADDING!
+local function get_space(n)
+	if cache.space[n] then
+		return cache.space[n]
+	end
+
+	local result = string.rep(" ", n)
+	cache.space[n] = result
+	return result
+end
+
+---Simple string padding function
 ---@param s string
 ---@param l integer|nil
 ---@param r integer|nil
@@ -29,13 +44,7 @@ function M.padding(s, l, r)
 	s = s or ""
 	l = l or 1
 	r = r or 1
-  local field = s .. l .. r
-  if not field then
-    M.__pad_cache[field] = string.rep(" ", l) .. s .. string.rep(" ", r)
-  else
-    return M.__pad_cache[field]
-  end
-  return ""
+	return get_space(l) .. s .. get_space(r)
 end
 
 ---@alias line.SepPart
@@ -44,7 +53,7 @@ end
 ---  hl:hl_api.HlSpec|string|nil,
 ---}
 
----Overpower!
+---This function can create your beautiful line
 ---@param spec
 ---|{
 ---  id:string,
@@ -74,7 +83,7 @@ function M.separator(spec)
 				elseif not section.hl then
 					return M.hl_fmt(spec.default_hl, section.value)
 				end
-        return M.hl_fmt(self.hl, section.value)
+				return M.hl_fmt(self.hl, section.value)
 			end
 		end
 		return ""

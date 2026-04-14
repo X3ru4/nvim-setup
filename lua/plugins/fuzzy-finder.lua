@@ -176,7 +176,7 @@ return {
 						end,
 						-- additional symbol formatting, works with or without style
 						symbol_fmt = function(s, opts)
-							return "⟨" .. s .. "⟩"
+							return s .. "|"
 						end,
 					},
 				},
