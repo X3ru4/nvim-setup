@@ -251,26 +251,20 @@ function M.dec_to_hex(dec_color)
 end
 
 --- Blends colors with an alpha value
---- @param hex1 string|number color in hex format (e.g., "#RRGGBB")
---- @param hex2 string|number color in hex format (e.g., "#RRGGBB")
+--- @param foreground string|number color in hex format or number (e.g., "#RRGGBB" or 0xRRGGBB)
+--- @param background string|number color in hex format or number (e.g., "#RRGGBB" or 0xRRGGBB)
 --- @param alpha number alpha value between 0 (fully transparent) and 1 (fully opaque)
 --- @return string|number|nil the resulting blended color in hex format
-M.blend = function(hex1, hex2, alpha)
-	if not hex1 and not hex2 then
-		vim.notify("hex1 and hex2 are nil", vim.log.levels.WARN)
+M.blend = function(foreground, background, alpha)
+	if not foreground or not background then
+		vim.notify("highlight.blend() was returned nil", vim.log.levels.WARN)
 		return nil
-	elseif not hex1 then
-		vim.notify("hex1 got " .. type(hex1), vim.log.levels.WARN)
-		return hex1
-	elseif not hex2 then
-		vim.notify("hex2 got " .. type(hex2), vim.log.levels.WARN)
-		return hex2
 	end
 
-	hex1 = type(hex1) == "number" and M.dec_to_hex(hex1) or hex1
-	hex2 = type(hex2) == "number" and M.dec_to_hex(hex2) or hex2
-	local color1 = M.hex_to_rgb(hex1)
-	local color2 = M.hex_to_rgb(hex2)
+	foreground = type(foreground) == "number" and M.dec_to_hex(foreground) or foreground
+	background = type(background) == "number" and M.dec_to_hex(background) or background
+	local color1 = M.hex_to_rgb(foreground)
+	local color2 = M.hex_to_rgb(background)
 
 	-- Alpha blend formula: blended = alpha * color1 + (1 - alpha) * color2
 	local r = math.floor(alpha * color1.r + (1 - alpha) * color2.r + 0.5)

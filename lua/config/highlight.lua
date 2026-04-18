@@ -42,27 +42,6 @@ M.setup = function()
 		FzfLuaTabMarker = { link = "WarningMsg" },
 		FzfLuaBorder = { link = "Normal" },
 
-		-- MiniTabline
-		MiniTablineCurrent = {
-			fg = normal.fg,
-			bg = normal.bg,
-			bold = true,
-		},
-		MiniTablineModifiedCurrent = {
-			fg = hl.getfg("WarningMsg"),
-			bg = normal.bg,
-			bold = true,
-		},
-		MiniTablineHidden = { link = "TabLineNC" },
-		MiniTablineModifiedHidden = hl.modify("TabLineNC", function(base)
-			return {
-				bold = true,
-				fg = hl.blend(hl.getfg("WarningMsg"), base.fg, 0.5),
-				bg = base.bg,
-			}
-		end),
-		MiniTablineFill = { link = "TabLineNC" },
-
 		-- DropBar
 		DropBarMenuHoverEntry = { link = "Visual" },
 		DropBarMenuHoverIcon = vim.empty_dict(),
@@ -1000,9 +979,23 @@ M.setup = function()
 				fg = colors.border,
 				bg = hl.getbg("Normal"),
 			},
-			BlinkCmpMenuSelection = {
-				bg = colors.selection,
+			BlinkCmpMenuSelection = { bg = colors.selection },
+			BlinkCmpDoc = { bg = colors.bg_alt },
+			BlinkCmpDocBorder = {
+				fg = colors.border,
+				bg = colors.bg_alt,
 			},
+			BlinkCmpDocSeparator = { link = "BlinkCmpDocBorder" },
+
+			MiniIconsRed = { fg = colors.git_delete },
+			MiniIconsOrange = { fg = colors.warning },
+			MiniIconsYellow = { fg = colors.git_change },
+			MiniIconsPurple = { fg = colors.keyword },
+			MiniIconsGreen = { fg = colors.string },
+			MiniIconsCyan = { fg = colors.member },
+			MiniIconsBlue = { fg = colors.hint },
+			MiniIconsAzure = { fg = colors.hint },
+			MiniIconsGrey = { fg = colors.comment },
 		}
 	end)
 

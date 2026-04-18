@@ -46,7 +46,7 @@ return {
 						return
 					end
 					local kind = require("config.icons").kind
-          local mini_icons = require("mini.icons")
+					local mini_icons = require("mini.icons")
 					require("dropbar").setup({
 						icons = {
 							ui = {
@@ -55,8 +55,8 @@ return {
 									extends = "…",
 								},
 								menu = {
-										separator = " ",
-										indicator = " ",
+									separator = " ",
+									indicator = " ",
 								},
 							},
 							kinds = {

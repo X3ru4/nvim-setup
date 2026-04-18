@@ -11,6 +11,24 @@ g.plugin = {
 	ai = true, -- Set it to false to have the best performance
 }
 
+-- Run `:Themes` command to see all all available colorschemes
+g.colorscheme = {
+	apply = "shale",
+	queue = {
+		"onedark",
+		"gruvbox",
+		"edge",
+		"gruvbox-material",
+		"gruvbox",
+		"vscode",
+		"vague",
+		"catppuccin",
+		"tokyonight",
+		"nightfox",
+    -- ...
+	},
+}
+
 -- Performance
 opt.updatetime = 100
 opt.timeoutlen = 300
@@ -18,7 +36,7 @@ opt.ttimeoutlen = 10
 opt.synmaxcol = 200
 
 opt.relativenumber = true
-opt.cmdheight = 0
+opt.cmdheight = 1
 
 -- Fold
 opt.foldenable = true
@@ -37,13 +55,11 @@ opt.autowrite = true
 
 -- Status column
 opt.laststatus = 3
-opt.signcolumn = "auto:1"
--- opt.signcolumn = "yes"
+opt.signcolumn = "yes"
 
 -- Window
 opt.winblend = 0
 opt.pumblend = 0
--- opt.winborder = "single"
 
 opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 

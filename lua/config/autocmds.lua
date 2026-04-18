@@ -10,12 +10,12 @@ autocmd("TextYankPost", {
 })
 
 -- Alway show statusline when in in command mode.
-autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
-  group = group,
-	callback = function(event)
-		vim.o.cmdheight = (event.event == "CmdlineEnter") and 1 or 0
-	end,
-})
+-- autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
+--   group = group,
+-- 	callback = function(event)
+-- 		vim.o.cmdheight = (event.event == "CmdlineEnter") and 1 or 0
+-- 	end,
+-- })
 
 -- Reload config.highlight when colorscheme changed.
 autocmd("ColorScheme", {

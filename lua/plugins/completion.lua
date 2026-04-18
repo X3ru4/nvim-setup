@@ -107,7 +107,7 @@ return {
 							max_width = 45,
 							max_height = 10,
 							winblend = 0,
-							border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
+							border = "rounded",
 							winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,EndOfBuffer:BlinkCmpDoc",
 						},
 					},
@@ -116,7 +116,6 @@ return {
 						min_width = 1,
 						max_height = 8,
 						winblend = 0,
-						-- border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
 						border = vim.g.blinkcmp_border or "rounded",
 						winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
 						draw = {

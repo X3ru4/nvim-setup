@@ -3,6 +3,7 @@ local line = require("utility.line")
 local hl = require("utility.highlight")
 local mini_icons = require("mini.icons")
 local os_name = vim.loop.os_uname().sysname
+local sep = { "", "" }
 
 local mode_color = {
 	n = "ModeNormal",
@@ -65,7 +66,7 @@ local vim_mode = {
 				},
 			},
 			right = {
-				value = "",
+				value = sep[1],
 				hl = {
 					fg = {
 						list = mode_color,
@@ -100,7 +101,7 @@ local file_info = {
 				id = "FileName",
 				default_hl = "StatusLine",
 				left = {
-					value = "",
+					value = sep[1],
 					hl = {
 						fg = { "Dark3", "fg" },
 						bg = { "Dark2", "fg" },
@@ -139,8 +140,9 @@ local file_info = {
 				bold = true,
 			})
 		end,
-		provider = "%m ",
-		hl = "FileInfoMod",
+		provider = function ()
+		  return line.hl_fmt("FileInfoMod", "%m ")
+		end,
 	},
 	{
 		update = "BufWinEnter",
@@ -154,8 +156,9 @@ local file_info = {
 				bold = true,
 			})
 		end,
-		provider = "%r ",
-		hl = "FileInfoRO",
+		provider = function ()
+		  return line.hl_fmt("FileInfoRO", "%r ")
+		end,
 	},
 	{
 		update = "ColorScheme",
@@ -165,8 +168,9 @@ local file_info = {
 				bg = hl.getbg("StatusLine"),
 			})
 		end,
-		provider = "",
-		hl = "FileInfoSep",
+		provider = function ()
+		  return line.hl_fmt("FileInfoSep", sep[1], "%*")
+		end,
 	},
 }
 

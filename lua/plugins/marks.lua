@@ -24,10 +24,11 @@ return {
 				end
 
 				require("fzf-lua").fzf_exec(filepaths, {
-					prompt = "Harpoon ",
+					prompt = " ",
 					winopts = {
 						fullscreen = false,
 						border = "rounded",
+            title = " Harpoon Marks ",
 					},
 					file_icons = true,
 					actions = {

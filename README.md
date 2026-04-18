@@ -1,5 +1,6 @@
 # N30VIM
-**_• The best Neovim setup on Android._**
++ The best Neovim setup on Android.
++ Blazing fast and highly customizable.
 
 ## 🔌 Plugins
 >  [Here](https://github.com/X3ru4/n30vim/tree/main/lua/plugins)
