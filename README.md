@@ -6,6 +6,7 @@
 >  [Here](https://github.com/X3ru4/n30vim/tree/main/lua/plugins)
 
 ## Requirements
++ nerd font
 + clang
 + cmake
 + lua-language-serve ( Optional )
