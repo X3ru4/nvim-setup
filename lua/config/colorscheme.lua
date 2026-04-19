@@ -460,5 +460,65 @@ M["rusty"] = {
 		vim.cmd("colorscheme rusty")
 	end,
 }
+M["tairiki"] = {
+	"deparr/tairiki.nvim",
+	name = "tairiki",
+	lazy = false,
+	priority = 1000,
+	config = function()
+		require("tairiki").setup({
+			palette = "dimmed", -- main palette, available options: dark, light, dimmed, tomorrow, light_legacy
+			default_dark = "dimmed",
+			default_light = "light",
+			transparent = false, -- don't set background colors
+			terminal = true, -- override nvim terminal colors
+			end_of_buffer = false, -- show end of buffer filler lines (tildes)
+			visual_bold = false, -- bolden visual selections
+			cmp_itemkind_reverse = false, -- reverse fg/bg on nvim-cmp item kinds
+
+			diagnostics = {
+				darker = false, -- darken diagnostic virtual text
+				background = true, -- add background to diagnostic virtual text
+				undercurl = true, -- use undercurls for inline diagnostics
+			},
+
+			-- style for different syntactic tokens
+			-- see :help nvim_set_hl() for available keys
+			code_style = {
+				comments = { italic = false },
+				conditionals = {},
+				keywords = { bold = true },
+				functions = {},
+				strings = {},
+				variables = {},
+				parameters = {},
+				types = { bold = true },
+			},
+
+			-- lualine theme config
+			lualine = {
+				transparent = false, -- remove background from center section
+			},
+
+			-- which plugins to enable
+			plugins = {
+				all = true, -- enable all supported plugins
+			},
+		})
+
+		require("tairiki").load()
+	end,
+}
+
+if nil then
+	M["example"] = {
+		"author/example.nvim",
+		lazy = false, -- Disable lazy loading for this plugin (make sure to remove `event`, `cmd`, and `ft` if you set lazy to false)
+		priority = 1000, -- Ensure it loads before all the other plugins
+		config = function()
+			-- plugin config
+		end,
+	}
+end
 
 return M

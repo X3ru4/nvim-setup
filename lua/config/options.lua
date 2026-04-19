@@ -12,20 +12,22 @@ g.plugin = {
 }
 
 -- Run `:Themes` command to see all all available colorschemes
+-- You can add or configure colorschemes in `lua/config/colorscheme.lua`
 g.colorscheme = {
-	apply = "shale",
-	queue = {
-		"onedark",
+	apply = "tairiki",
+	install = {
+		"tairiki", -- Recomment
+		"shale", -- Recomment similar vscode
+		"vscode", -- Recomment
+		"vague", -- Recomment
+		"gruvbox-material", -- Recomment
+		"catppuccin", -- Recomment
+		"tokyonight", -- Recomment
+		"nightfox", -- Recomment
 		"gruvbox",
 		"edge",
-		"gruvbox-material",
-		"gruvbox",
-		"vscode",
-		"vague",
-		"catppuccin",
-		"tokyonight",
-		"nightfox",
-    -- ...
+		"onedark",
+		-- ...
 	},
 }
 

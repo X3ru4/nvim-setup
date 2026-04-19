@@ -24,7 +24,7 @@ require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
 		-- Run `:Themes` command to see all all available colorschemes
-		require("utility.colorscheme").create_spec(vim.g.colorscheme.apply, vim.g.colorscheme.queue),
+		require("utility.colorscheme").create_spec(vim.g.colorscheme.apply, vim.g.colorscheme.install),
 	},
 	install = {
 		-- install missing plugins on startup. This doesn't increase startup time.

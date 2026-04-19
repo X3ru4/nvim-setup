@@ -8,16 +8,22 @@ end, {})
 
 -- Show all available themes in a fzf menu
 create_cmd("Themes", function()
-  local themes = {}
-  for name, _ in pairs(require("config.colorscheme")) do
-    themes[#themes + 1] = name
-  end
-  require("fzf-lua").fzf_exec(themes, {
-    prompt = " ",
-    winopts = {
-      fullscreen = false,
-      border = "rounded",
-      title = " Available Themes ",
-    },
-  })
+	local themes = {}
+	for name, _ in pairs(require("config.colorscheme")) do
+		themes[#themes + 1] = name
+	end
+	require("fzf-lua").fzf_exec(themes, {
+		prompt = " ",
+    header = "Press Enter to yank",
+		winopts = {
+			fullscreen = false,
+			border = "rounded",
+			title = " Available Themes ",
+		},
+		actions = {
+			["enter"] = function(selected)
+				vim.fn.setreg("*", selected[1])
+			end,
+		},
+	})
 end, {})

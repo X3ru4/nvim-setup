@@ -907,31 +907,6 @@ M.setup = function()
 	hl.set_match("shale", function()
 		local colors = require("shale.colors")
 
-		-- Black & Grey
-		vim.g.terminal_color_0 = colors.bg
-		vim.g.terminal_color_8 = colors.bg_alt
-		-- Red & Bright red
-		vim.g.terminal_color_1 = colors.error
-		vim.g.terminal_color_9 = colors.error
-		-- Green & Bright green
-		vim.g.terminal_color_2 = colors.git_add
-		vim.g.terminal_color_10 = colors.git_add
-		-- Yellow & Bright yellow
-		vim.g.terminal_color_3 = colors.git_change
-		vim.g.terminal_color_11 = colors.git_change
-		-- Blue & Bright Blue
-		vim.g.terminal_color_4 = colors.hint
-		vim.g.terminal_color_12 = colors.hint
-		-- Magenta & Bright Magenta
-		vim.g.terminal_color_5 = colors.keyword
-		vim.g.terminal_color_13 = colors.keyword
-		-- Cyan & Bright cyan
-		vim.g.terminal_color_6 = colors.func
-		vim.g.terminal_color_14 = colors.func
-		-- White & Gray
-		vim.g.terminal_color_7 = colors.fg
-		vim.g.terminal_color_15 = colors.fg_dim
-
 		return {
 			BlinkPairsUnmatched = {
 				fg = colors.error,
@@ -996,6 +971,92 @@ M.setup = function()
 			MiniIconsBlue = { fg = colors.hint },
 			MiniIconsAzure = { fg = colors.hint },
 			MiniIconsGrey = { fg = colors.comment },
+		}
+	end)
+
+	hl.set_match("tairiki", function()
+		local palette = require("tairiki.config").options.palette
+		local colors = require("tairiki.palette").palettes[palette]
+
+		return {
+			MiniIconsRed = { fg = colors.red },
+			MiniIconsOrange = { fg = colors.orange },
+			MiniIconsYellow = { fg = colors.yellow },
+			MiniIconsPurple = { fg = colors.purple },
+			MiniIconsGreen = { fg = colors.green },
+			MiniIconsCyan = { fg = colors.cyan },
+			MiniIconsBlue = { fg = colors.blue },
+			MiniIconsAzure = { fg = colors.blue },
+			MiniIconsGrey = { fg = colors.fg_dark },
+
+			ModeOther = { fg = colors.bg, bg = colors.yellow },
+			ModeNormal = { fg = colors.bg, bg = colors.blue },
+			ModeInsert = { fg = colors.bg, bg = colors.green },
+			ModeVisual = { fg = colors.bg, bg = colors.purple },
+			ModeReplace = { fg = colors.bg, bg = colors.red },
+			ModeCommand = { fg = colors.bg, bg = colors.orange },
+
+			BlinkCmpLabelMatch = {
+				fg = colors.blue,
+				bold = true,
+			},
+			BlinkCmpMenuSelection = {
+				bg = colors.bg_light2,
+			},
+
+			BlinkPairsUnmatched = {
+				fg = colors.red,
+				reverse = true,
+				bold = true,
+			},
+			BlinkPairsBlue = {
+				fg = colors.blue,
+			},
+			BlinkPairsOrange = {
+				fg = colors.orange,
+			},
+			BlinkPairsPurple = {
+				fg = colors.purple,
+			},
+
+			BlinkIndent = { fg = colors.bg_light2 },
+			BlinkIndentRed = {
+				fg = colors.red,
+			},
+			BlinkIndentCyan = {
+				fg = colors.cyan,
+			},
+			BlinkIndentBlue = {
+				fg = colors.blue,
+			},
+			BlinkIndentGreen = {
+				fg = colors.green,
+			},
+			BlinkIndentYellow = {
+				fg = colors.yellow,
+			},
+			BlinkIndentViolet = {
+				fg = colors.purple,
+			},
+			BlinkIndentOrange = {
+				fg = colors.orange,
+			},
+
+			MiniTablineCurrent = { bg = hl.getbg("Normal"), bold = true },
+			MiniTablineModifiedCurrent = { fg = colors.yellow, bg = hl.getbg("Normal"), bold = true },
+			MiniTablineHidden = { bg = colors.bg_light },
+			MiniTablineModifiedHidden = { fg = colors.yellow, bg = colors.bg_light },
+			MiniTablineVisible = { bg = colors.bg_light },
+			MiniTablineModifiedVisible = { fg = colors.yellow, bg = colors.bg_light },
+
+			["@comment.documentation"] = { fg = colors.comment, bold = false },
+			MasonHighlight = { fg = colors.red },
+			MasonHighlightBlock = { fg = colors.bg, bg = colors.orange },
+			MasonHighlightBlockBold = { fg = colors.bg, bg = colors.orange },
+			MasonHighlightBlockSecondary = { fg = colors.bg, bg = colors.red },
+			MasonHighlightBlockBoldSecondary = { fg = colors.bg, bg = colors.red },
+			MasonHeader = { link = "MasonHighlightBlockSecondary" },
+			MasonHeaderSecondary = { link = "MasonHighlightBlock" },
 		}
 	end)
 

@@ -3,19 +3,19 @@ local colorscheme = require("config.colorscheme")
 
 ---Creates a colorscheme spec for lazy.nvim
 ---@param apply string Name of the colorscheme to apply
----@param queue table<string> A list of colorscheme names to load before the applied one. This is useful to have a fallback in case the applied colorscheme fails to load.
+---@param install table<string> A list of colorscheme names to load before the applied one. This is useful to have a fallback in case the applied colorscheme fails to load.
 ---@return table
-function M.create_spec(apply, queue)
-	queue = queue or {}
+function M.create_spec(apply, install)
+	install = install or {}
 	local t = {}
 
-	for _, name in ipairs(queue) do
+	for _, name in ipairs(install) do
 		local spec = colorscheme[name]
     if spec then
       if name ~= apply then
         t[#t + 1] = {
           spec[1],
-          name = name,
+          name = spec.name or name,
           dependencies = spec.dependencies or nil,
           event = "VeryLazy",
         }
