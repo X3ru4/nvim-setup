@@ -22,10 +22,12 @@
 If you want more details, run this command in neovim: `:checkhealth`
 
 ## [Usage](https://github.com/X3ru4/n30vim.git)
+For me
 ```bash
 git clone git@github.com:X3ru4/n30vim.git ~/.config/nvim
 ```
 
+For you
 ```bash
 git clone https://github.com/X3ru4/n30vim.git ~/.config/nvim
 ```
