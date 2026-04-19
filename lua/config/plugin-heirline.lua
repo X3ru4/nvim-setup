@@ -140,8 +140,8 @@ local file_info = {
 				bold = true,
 			})
 		end,
-		provider = function ()
-		  return line.hl_fmt("FileInfoMod", "%m ")
+		provider = function()
+			return line.hl_fmt("FileInfoMod", "%m ")
 		end,
 	},
 	{
@@ -156,8 +156,8 @@ local file_info = {
 				bold = true,
 			})
 		end,
-		provider = function ()
-		  return line.hl_fmt("FileInfoRO", "%r ")
+		provider = function()
+			return line.hl_fmt("FileInfoRO", "%r ")
 		end,
 	},
 	{
@@ -168,8 +168,8 @@ local file_info = {
 				bg = hl.getbg("StatusLine"),
 			})
 		end,
-		provider = function ()
-		  return line.hl_fmt("FileInfoSep", sep[1], "%*")
+		provider = function()
+			return line.hl_fmt("FileInfoSep", sep[1], "%*")
 		end,
 	},
 }

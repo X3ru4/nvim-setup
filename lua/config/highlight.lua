@@ -42,6 +42,9 @@ M.setup = function()
 		FzfLuaTabMarker = { link = "WarningMsg" },
 		FzfLuaBorder = { link = "Normal" },
 
+		TinyCmdlineNormal = { link = "NormalFloat" },
+		TinyCmdlineBorder = { link = "FloatBorder" },
+
 		-- DropBar
 		DropBarMenuHoverEntry = { link = "Visual" },
 		DropBarMenuHoverIcon = vim.empty_dict(),
@@ -436,17 +439,17 @@ M.setup = function()
 		fn = function()
 			local palette = require("gruvbox").palette
 
-			hl.set("Red", { fg = palette.bright_red }, false)
-			hl.set("Orange", { fg = palette.bright_orange }, false)
-			hl.set("Yellow", { fg = palette.bright_yellow }, false)
-			hl.set("Green", { fg = palette.bright_green }, false)
-			hl.set("Purple", { fg = palette.bright_purple }, false)
-			hl.set("Blue", { fg = palette.bright_blue }, false)
-			hl.set("Aqua", { fg = palette.bright_aqua }, false)
-			hl.set("dark1", { fg = palette.dark1 }, false)
-			hl.set("dark2", { fg = palette.dark2 }, false)
-			hl.set("dark3", { fg = palette.dark3 }, false)
-			hl.set("dark4", { fg = palette.dark4 }, false)
+			hl.set("Red", { fg = palette.bright_red })
+			hl.set("Orange", { fg = palette.bright_orange })
+			hl.set("Yellow", { fg = palette.bright_yellow })
+			hl.set("Green", { fg = palette.bright_green })
+			hl.set("Purple", { fg = palette.bright_purple })
+			hl.set("Blue", { fg = palette.bright_blue })
+			hl.set("Aqua", { fg = palette.bright_aqua })
+			hl.set("dark1", { fg = palette.dark1 })
+			hl.set("dark2", { fg = palette.dark2 })
+			hl.set("dark3", { fg = palette.dark3 })
+			hl.set("dark4", { fg = palette.dark4 })
 
 			-- Blink.cmp
 			if vim.g.blinkcmp_border == "rounded" then
@@ -1048,6 +1051,7 @@ M.setup = function()
 			MiniTablineModifiedHidden = { fg = colors.yellow, bg = colors.bg_light },
 			MiniTablineVisible = { bg = colors.bg_light },
 			MiniTablineModifiedVisible = { fg = colors.yellow, bg = colors.bg_light },
+			MiniTablineFill = { link = "Normal" },
 
 			["@comment.documentation"] = { fg = colors.comment, bold = false },
 			MasonHighlight = { fg = colors.red },
@@ -1057,6 +1061,15 @@ M.setup = function()
 			MasonHighlightBlockBoldSecondary = { fg = colors.bg, bg = colors.red },
 			MasonHeader = { link = "MasonHighlightBlockSecondary" },
 			MasonHeaderSecondary = { link = "MasonHighlightBlock" },
+
+			TinyCmdlineNormal = { link = "NormalFloat" },
+			TinyCmdlineBorder = { link = "FloatBorder" },
+
+			RenderMarkdownCode = { bg = hl.getfg("Dark1") },
+			RenderMarkdownCodeFallback = { link = "RenderMarkdownCode" },
+			RenderMarkdown_RenderMarkdownCodeBorder_bg_as_fg = { fg = hl.getfg("Dark1") },
+
+			WinBarNC = { link = "WinBar" },
 		}
 	end)
 

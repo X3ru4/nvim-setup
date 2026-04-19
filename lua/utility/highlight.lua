@@ -38,12 +38,20 @@ function M.getbg(name)
 	return M.get(name).bg
 end
 
+local function inspect(t)
+  local result = ""
+  for k, v in pairs(t) do
+    result = result .. k.. tostring(v)
+  end
+  return result
+end
+
 ---Like the vim.api.nvim_set_hl() but with the cache.
 ---Please use this function with M.get() to the best performance.
 ---@param name string Name of highlight.
 ---@param opts vim.api.keyset.highlight Options
 function M.set(name, opts)
-	local key = name .. vim.inspect(opts)
+	local key = name .. inspect(opts)
 	if not cache.def[key] then
 		vim.api.nvim_set_hl(0, name, opts)
 		cache.get[name] = nil
