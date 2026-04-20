@@ -14,7 +14,7 @@ create_cmd("Themes", function()
 	end
 	require("fzf-lua").fzf_exec(themes, {
 		prompt = " ",
-    header = "Press Enter to yank",
+		header = "Press Enter to yank",
 		winopts = {
 			fullscreen = false,
 			border = "rounded",

@@ -89,36 +89,6 @@ return {
 	},
 
 	{
-		"m4xshen/autoclose.nvim",
-		enabled = false,
-		event = "InsertEnter",
-		opts = {
-			keys = {
-				["("] = { escape = false, close = true, pair = "()" },
-				["["] = { escape = false, close = true, pair = "[]" },
-				["{"] = { escape = false, close = true, pair = "{}" },
-
-				[">"] = { escape = true, close = false, pair = "<>" },
-				[")"] = { escape = true, close = false, pair = "()" },
-				["]"] = { escape = true, close = false, pair = "[]" },
-				["}"] = { escape = true, close = false, pair = "{}" },
-
-				['"'] = { escape = true, close = true, pair = '""' },
-				["'"] = { escape = true, close = true, pair = "''" },
-				["`"] = { escape = true, close = true, pair = "``" },
-			},
-			options = {
-				disabled_filetypes = { "text" },
-				disable_when_touch = true,
-				touch_regex = "[%w(%[{]",
-				pair_spaces = false,
-				auto_indent = true,
-				disable_command_mode = false,
-			},
-		},
-	},
-
-	{
 		"saghen/blink.pairs",
 		enabled = true,
 		event = { "BufReadPre", "BufNewFile" },
@@ -237,61 +207,6 @@ return {
 	},
 
 	{
-		"Wansmer/sibling-swap.nvim",
-		enabled = true,
-		keys = {
-			"<leader>sh",
-			"<leader>sl",
-			"<leader>soh",
-			"<leader>sol",
-		},
-		config = function()
-			require("sibling-swap").setup({
-				allowed_separators = {
-					",",
-					";",
-					"and",
-					"or",
-					"&&",
-					"&",
-					"||",
-					"|",
-					"==",
-					"===",
-					"!=",
-					"!==",
-					"-",
-					"+",
-					["<"] = ">",
-					["<="] = ">=",
-					[">"] = "<",
-					[">="] = "<=",
-				},
-				use_default_keymaps = true,
-				-- Highlight recently swapped node. Can be boolean or table
-				-- If table: { ms = 500, hl_opts = { link = 'IncSearch' } }
-				-- `hl_opts` is a `val` from `nvim_set_hl()`
-				highlight_node_at_cursor = false,
-				-- keybinding for movements to right or left (and up or down, if `allow_interline_swaps` is true)
-				-- (`<C-,>` and `<C-.>` may not map to control chars at system level, so are sent by certain terminals as just `,` and `.`. In this case, just add the mappings you want.)
-				keymaps = {
-					["<leader>sl"] = "swap_with_right",
-					["<leader>sh"] = "swap_with_left",
-					["<leader>sol"] = "swap_with_right_with_opp",
-					["<leader>soh"] = "swap_with_left_with_opp",
-				},
-				ignore_injected_langs = false,
-				-- allow swaps across lines
-				allow_interline_swaps = true,
-				-- swaps interline siblings without separators (no recommended, helpful for swaps html-like attributes)
-				interline_swaps_without_separator = false,
-				-- Fallbacs for tiny settings for langs and nodes. See #fallback
-				fallback = {},
-			})
-		end,
-	},
-
-	{
 		"jake-stewart/multicursor.nvim",
 		branch = "1.0",
 		enabled = true,
@@ -396,6 +311,61 @@ return {
 			hl(0, "MultiCursorDisabledCursor", { reverse = true })
 			hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
 			hl(0, "MultiCursorDisabledSign", { link = "SignColumn" })
+		end,
+	},
+
+	{
+		"Wansmer/sibling-swap.nvim",
+		enabled = true,
+		keys = {
+			"<leader>sh",
+			"<leader>sl",
+			"<leader>soh",
+			"<leader>sol",
+		},
+		config = function()
+			require("sibling-swap").setup({
+				allowed_separators = {
+					",",
+					";",
+					"and",
+					"or",
+					"&&",
+					"&",
+					"||",
+					"|",
+					"==",
+					"===",
+					"!=",
+					"!==",
+					"-",
+					"+",
+					["<"] = ">",
+					["<="] = ">=",
+					[">"] = "<",
+					[">="] = "<=",
+				},
+				use_default_keymaps = true,
+				-- Highlight recently swapped node. Can be boolean or table
+				-- If table: { ms = 500, hl_opts = { link = 'IncSearch' } }
+				-- `hl_opts` is a `val` from `nvim_set_hl()`
+				highlight_node_at_cursor = false,
+				-- keybinding for movements to right or left (and up or down, if `allow_interline_swaps` is true)
+				-- (`<C-,>` and `<C-.>` may not map to control chars at system level, so are sent by certain terminals as just `,` and `.`. In this case, just add the mappings you want.)
+				keymaps = {
+					["<leader>sl"] = "swap_with_right",
+					["<leader>sh"] = "swap_with_left",
+					["<leader>sol"] = "swap_with_right_with_opp",
+					["<leader>soh"] = "swap_with_left_with_opp",
+				},
+				ignore_injected_langs = false,
+				-- allow swaps across lines
+				allow_interline_swaps = true,
+				-- swaps interline siblings without separators (no recommended, helpful for swaps html-like attributes)
+				interline_swaps_without_separator = false,
+				-- Fallbacs for tiny settings for langs and nodes. See #fallback
+				fallback = {},
+			})
 		end,
 	},
 }
