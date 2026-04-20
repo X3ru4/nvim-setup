@@ -5,9 +5,20 @@ return {
 		"ibhagwan/fzf-lua",
 		event = "VeryLazy",
 		config = function()
-			local default_prompt = "› "
 			require("fzf-lua").setup({
 				file_icon_padding = " ",
+				defaults = {
+					prompt = "  ",
+				},
+				ui_select = function(fzf_opts, items)
+					local title = fzf_opts.prompt:gsub("[^%w%s]", ""):gsub("%s+$", "")
+					return {
+            prompt = "  ",
+						winopts = {
+							title = " " .. title .. " ",
+						},
+					}
+				end,
 				keymap = {
 					-- Below are the default binds, setting any value in these tables will override
 					-- the defaults, to inherit from the defaults change [1] from `false` to `true`
@@ -83,7 +94,6 @@ return {
 					["gutter"] = "0",
 				},
 				colorschemes = {
-					prompt = " ",
 					actions = {
 						["enter"] = function(selected, opts)
 							require("fzf-lua.actions").colorscheme(selected, opts)
@@ -91,35 +101,23 @@ return {
 						end,
 					},
 				},
-				awesome_colorschemes = {
-					prompt = " ",
-				},
-				spell_suggest = {
-					prompt = default_prompt,
-				},
 				registers = {
-					prompt = " ",
 					winopts = { preview = { hidden = false } },
 				},
 				buffers = {
-					prompt = default_prompt,
 					filename_only = true,
 					winopts = { preview = { hidden = false } },
 				},
 				tabs = {
-					prompt = default_prompt,
 					winopts = { preview = { hidden = false } },
 				},
 				highlights = {
-					prompt = default_prompt,
 					winopts = { preview = { hidden = false } },
 				},
 				diagnostics = {
-					prompt = default_prompt,
 					winopts = { preview = { hidden = false } },
 				},
 				oldfiles = {
-					prompt = default_prompt,
 					cwd_only = true,
 				},
 				grep = {
@@ -137,7 +135,6 @@ return {
 					winopts = { preview = { hidden = false } },
 				},
 				lsp = {
-					prompt = default_prompt,
 					winopts = { preview = { hidden = false } },
 					symbols = {
 						-- lsp_query      = "foo"       -- query passed to the LSP directly
