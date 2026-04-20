@@ -487,7 +487,7 @@ M["tairiki"] = {
 			code_style = {
 				comments = { italic = false },
 				conditionals = {},
-				keywords = { bold = true },
+				keywords = { bold = false },
 				functions = {},
 				strings = {},
 				variables = {},
