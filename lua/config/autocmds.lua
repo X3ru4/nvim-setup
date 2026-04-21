@@ -3,31 +3,32 @@ local group = vim.api.nvim_create_augroup("MyGroup", { clear = true })
 
 -- Highlight on yank.
 autocmd("TextYankPost", {
-  group = group,
+	group = group,
 	callback = function()
 		vim.hl.on_yank({ higroup = "Yank", timeout = 150, priority = 10000 })
 	end,
 })
 
--- Alway show statusline when in in command mode.
--- autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
---   group = group,
--- 	callback = function(event)
--- 		vim.o.cmdheight = (event.event == "CmdlineEnter") and 1 or 0
--- 	end,
--- })
-
 -- Reload config.highlight when colorscheme changed.
 autocmd("ColorScheme", {
-  group = group,
+	group = group,
 	callback = function()
 		vim.cmd("SetupHl")
 	end,
 })
 
+-- Render blink-cmp documentation as markdown
+autocmd("FileType", {
+	group = group,
+	pattern = "blink-cmp-documentation",
+	callback = function()
+		vim.bo.filetype = "markdown"
+	end,
+})
+
 -- Setup highlights
 autocmd("UiEnter", {
-  group = group,
+	group = group,
 	once = true,
 	callback = function()
 		vim.cmd("SetupHl")
@@ -35,8 +36,8 @@ autocmd("UiEnter", {
 })
 
 autocmd("LspAttach", {
-  group = group,
-  callback = function (ev)
-    require("config.keymaps").lsp(ev.buf)
-  end
+	group = group,
+	callback = function(ev)
+		require("config.keymaps").lsp(ev.buf)
+	end,
 })

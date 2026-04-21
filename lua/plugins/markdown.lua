@@ -1,13 +1,14 @@
 return {
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
-    ft = "markdown",
+		ft = "markdown",
+    cmd = "RenderMarkdown",
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
 		opts = {
-      completions = {
-        blink = { enabled = true }
-      }
-    },
+			completions = {
+				blink = { enabled = true },
+			},
+		},
 	},
 }

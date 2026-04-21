@@ -7,17 +7,7 @@ return {
 		build = "cargo build --release",
 		version = "1.*",
 		dependencies = {
-			{
-				"L3MON4D3/LuaSnip",
-				version = "v2.*",
-				enabled = true,
-				dependencies = { "rafamadriz/friendly-snippets" },
-				build = "make install_jsregexp",
-				config = function()
-					require("luasnip").setup()
-					require("luasnip.loaders.from_vscode").lazy_load()
-				end,
-			},
+			{ "rafamadriz/friendly-snippets" },
 			{
 				"folke/lazydev.nvim",
 				ft = "lua",
@@ -101,6 +91,7 @@ return {
 					documentation = {
 						auto_show = false,
 						auto_show_delay_ms = 500,
+						treesitter_highlighting = true,
 						window = {
 							scrollbar = false,
 							min_width = 30,
@@ -143,7 +134,6 @@ return {
 						},
 					},
 				},
-				snippets = { preset = "luasnip" },
 				sources = {
 					default = { "lazydev", "copilot", "lsp", "path", "snippets", "buffer" },
 					providers = {
@@ -170,6 +160,9 @@ return {
 						},
 						snippets = {
 							score_offset = 70,
+							opts = {
+								friendly_snippets = true, -- ensure friendly-snippets is enabled
+							},
 						},
 						buffer = {
 							score_offset = 60,

@@ -7,14 +7,12 @@
 
 ## Requirements
 + nerd font
-+ clang
-+ cmake
-+ lua-language-serve ( Optional )
++ clang (For building parsers)
++ lua-language-serve (Optional)
 + treesitter
-+ rust
-+ python ( Optional )
-+ nodejs
-+ luarocks
++ rust (Need to build blink.cmp)
++ python (Optional)
++ nodejs (Optional)
 + ripgrep
 + fzf
 + git
