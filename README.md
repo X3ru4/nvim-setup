@@ -13,9 +13,9 @@
 + rust (Need to build blink.cmp)
 + python (Optional)
 + nodejs (Optional)
-+ ripgrep
-+ fzf
-+ git
++ ripgrep (For fzf-lua)
++ fzf (For fzf-lua)
++ git (Clone the repo)
 
 If you want more details, run this command in neovim: `:checkhealth`
 
