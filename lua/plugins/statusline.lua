@@ -6,7 +6,7 @@ return {
 		-- to make sure all required plugins and colorschemes are loaded before setup
 		event = "UiEnter",
 		config = function()
-			require("heirline").setup(require("config.plugin-heirline").config)
+			require("heirline").setup(require("config.heirline").config)
 		end,
 	},
 

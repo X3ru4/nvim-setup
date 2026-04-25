@@ -141,6 +141,7 @@ return {
 					conf.row = 0
 					return conf
 				end,
+        border = "rounded",
 			},
 			select = {
 				backend = "fzf_lua",

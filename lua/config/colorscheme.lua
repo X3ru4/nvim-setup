@@ -487,12 +487,12 @@ M["tairiki"] = {
 			code_style = {
 				comments = { italic = false },
 				conditionals = {},
-				keywords = { bold = false },
+				keywords = {},
 				functions = {},
 				strings = {},
 				variables = {},
 				parameters = {},
-				types = { bold = true },
+				types = {},
 			},
 
 			-- lualine theme config
