@@ -13,7 +13,7 @@ return {
 				ui_select = function(fzf_opts, items)
 					local title = fzf_opts.prompt:gsub("[^%w%s]", ""):gsub("%s+$", "")
 					return {
-            prompt = "  ",
+						prompt = "  ",
 						winopts = {
 							title = " " .. title .. " ",
 						},

@@ -11,10 +11,9 @@ keymap("n", "K", "<Nop>")
 -- Better insert
 keymap("i", "<C-a>", "<C-o>I")
 
--- Not use this keymap if use cinnamon.nvim
 if not lazy.plugin_loaded("cinnamon.nvim") then
-  keymap({ "n", "x" }, "zh", "zH", { desc = 'Horizontal scroll like "zH"' })
-  keymap({ "n", "x" }, "zl", "zL", { desc = 'Horizontal scroll like "zL"' })
+	keymap({ "n", "x" }, "zh", "zH", { desc = 'Horizontal scroll like "zH"' })
+	keymap({ "n", "x" }, "zl", "zL", { desc = 'Horizontal scroll like "zL"' })
 end
 
 -- Yank all
@@ -45,8 +44,8 @@ keymap("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 -- <leader>g
 -- Source
 keymap("n", "<leader>gg", function()
-  vim.cmd("silent! w")
-  vim.cmd("source %")
+	vim.cmd("silent! w")
+	vim.cmd("source %")
 end, { desc = "Source" })
 
 -- Open term
@@ -54,100 +53,92 @@ keymap("n", "<leader>gt", "<cmd>terminal<cr><cmd>startinsert<cr>", { desc = "Ope
 
 -- Replace select
 keymap("x", "<leader>gr", function()
-  local reg = vim.fn.getreg('"')
-  local regtype = vim.fn.getregtype('"')
-  vim.cmd('normal! "vy')
-  local selection = vim.fn.getreg('"')
-  vim.fn.setreg('"', reg, regtype)
+	local reg = vim.fn.getreg('"')
+	local regtype = vim.fn.getregtype('"')
+	vim.cmd('normal! "vy')
+	local selection = vim.fn.getreg('"')
+	vim.fn.setreg('"', reg, regtype)
 
-  vim.ui.input({ prompt = 'Replace "' .. selection .. '" with' }, function(input)
-    if input then
-      vim.ui.input({ prompt = 'Flag | Ex: "gc"', default = "g" }, function(input_flag)
-        vim.cmd(string.format("%%s/%s/%s/%s", selection, input, input_flag))
-      end)
-    end
-  end)
+	vim.ui.input({ prompt = 'Replace "' .. selection .. '" with' }, function(input)
+		if input then
+			vim.ui.input({ prompt = 'Flag | Ex: "gc"', default = "g" }, function(input_flag)
+				vim.cmd(string.format("%%s/%s/%s/%s", selection, input, input_flag))
+			end)
+		end
+	end)
 end, { desc = "Replace" })
 
 -- Popup search
 keymap({ "n", "x" }, "<leader>gs", function()
-  vim.ui.input({ prompt = "Search  " }, function(input)
-    if input then
-      vim.cmd("?" .. input)
-    end
-  end)
+	vim.ui.input({ prompt = "Search  " }, function(input)
+		if input then
+			vim.cmd("?" .. input)
+		end
+	end)
 end, { desc = "Search" })
 
 -- Re-open file
 keymap("n", "<leader>gf", "<cmd>e!<cr>", { desc = "Re-open" })
 
--- Editor
--- No need more than one cursor
--- map("n", "<leader>n", "*Nciw", { desc = "Search & Replace" })
-
 -- <leader>c
 keymap("n", "<leader>cb", function()
-  vim.o.background = vim.o.background == "dark" and "light" or "dark"
+	vim.o.background = vim.o.background == "dark" and "light" or "dark"
 end, { desc = "Toggle background" }) -- Can not working on some themes
 
 keymap("n", "<leader>cw", function()
-  if not vim.o.wrap then
-    vim.o.wrap = true
-  else
-    vim.o.wrap = false
-  end
+	vim.o.wrap = not vim.o.wrap
 end, { desc = "Wrap" })
 
 keymap("n", "<leader>cr", function()
-  local method = "make"
-  vim.cmd("silent! w")
-  if method == "make" then
-    vim.cmd("terminal make run")
-  elseif method == "shell" then
-    vim.cmd("terminal ./run.sh")
-  end
+	local method = "make"
+	vim.cmd("silent! w")
+	if method == "make" then
+		vim.cmd("terminal make run")
+	elseif method == "shell" then
+		vim.cmd("terminal ./run.sh")
+	end
 end, { desc = "Run code" })
 
 keymap("n", "<leader>co", "<cmd>normal! gg=G''<cr>", { desc = "Indent" })
 
 function M.lsp(bufnr)
-  -- Code action
-  keymap("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action", buffer = bufnr })
+	-- Code action
+	keymap("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action", buffer = bufnr })
 
-  -- Inlay hint
-  keymap("n", "<leader>ch", function()
-    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-  end, { desc = "Toggle inlay hint", buffer = bufnr })
+	-- Inlay hint
+	keymap("n", "<leader>ch", function()
+		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+	end, { desc = "Toggle inlay hint", buffer = bufnr })
 
-  -- If not use the fzf-lua swith to use the built-in
-  if not lazy.plugin_loaded("fzf-lua") then
-    keymap("n", "grd", vim.lsp.buf.definition, { desc = "Definition", buffer = bufnr })
-    keymap("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation", buffer = bufnr })
-    keymap("n", "grr", vim.lsp.buf.references, { desc = "References", buffer = bufnr })
-    keymap("n", "grt", vim.lsp.buf.type_definition, { desc = "Type definition", buffer = bufnr })
-  else
-    local fzf = require("fzf-lua")
-    keymap("n", "grd", fzf.lsp_definitions, { desc = "Definition", buffer = bufnr })
-    keymap("n", "gri", fzf.lsp_implementations, { desc = "Implementation", buffer = bufnr })
-    keymap("n", "grr", fzf.lsp_references, { desc = "References", buffer = bufnr })
-    keymap("n", "grt", fzf.lsp_typedefs, { desc = "Type definition", buffer = bufnr })
-  end
+	-- If not use the fzf-lua swith to use the built-in
+	if not package.loaded["fzf-lua"] then
+		keymap("n", "grd", vim.lsp.buf.definition, { desc = "Definition", buffer = bufnr })
+		keymap("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation", buffer = bufnr })
+		keymap("n", "grr", vim.lsp.buf.references, { desc = "References", buffer = bufnr })
+		keymap("n", "grt", vim.lsp.buf.type_definition, { desc = "Type definition", buffer = bufnr })
+	else
+		local fzf = require("fzf-lua")
+		keymap("n", "grd", fzf.lsp_definitions, { desc = "Definition", buffer = bufnr })
+		keymap("n", "gri", fzf.lsp_implementations, { desc = "Implementation", buffer = bufnr })
+		keymap("n", "grr", fzf.lsp_references, { desc = "References", buffer = bufnr })
+		keymap("n", "grt", fzf.lsp_typedefs, { desc = "Type definition", buffer = bufnr })
+	end
 
-  keymap({ "n", "i" }, "<C-k>", function()
-    vim.lsp.buf.signature_help({
-      border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
-      focus = false,
-      close_events = { "BufWinLeave", "CursorMoved", "CursorMovedI", "ModeChanged" },
-    })
-  end, { desc = "Signature help", buffer = bufnr })
+	keymap({ "n", "i" }, "<C-k>", function()
+		vim.lsp.buf.signature_help({
+			border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
+			focus = false,
+			close_events = { "BufWinLeave", "CursorMoved", "CursorMovedI", "ModeChanged" },
+		})
+	end, { desc = "Signature help", buffer = bufnr })
 
-  keymap({ "n", "i" }, "<C-l>", function()
-    vim.diagnostic.open_float(nil, {
-      border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
-      focus = false,
-      close_events = { "BufWinLeave", "CursorMoved", "CursorMovedI", "ModeChanged" },
-    })
-  end, { desc = "Open diagnostic float", buffer = bufnr })
+	keymap({ "n", "i" }, "<C-l>", function()
+		vim.diagnostic.open_float(nil, {
+			border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
+			focus = false,
+			close_events = { "BufWinLeave", "CursorMoved", "CursorMovedI", "ModeChanged" },
+		})
+	end, { desc = "Open diagnostic float", buffer = bufnr })
 end
 
 -- ©LazyVim
@@ -180,12 +171,12 @@ keymap("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Com
 
 -- Diagnostic
 local diagjump = function(count, severity)
-  return function()
-    vim.diagnostic.jump({
-      count = count,
-      severity = vim.diagnostic.severity[severity],
-    })
-  end
+	return function()
+		vim.diagnostic.jump({
+			count = count,
+			severity = vim.diagnostic.severity[severity],
+		})
+	end
 end
 keymap({ "n", "x" }, "+d", diagjump(1), { desc = "Next Diagnostic" })
 keymap({ "n", "x" }, "-d", diagjump(-1), { desc = "Prev Diagnostic" })
@@ -196,8 +187,8 @@ keymap({ "n", "x" }, "-w", diagjump(-1, "WARN"), { desc = "Prev Warning" })
 
 -- Clear search
 keymap({ "i", "n", "s" }, "<esc>", function()
-  vim.cmd("noh")
-  return "<esc>"
+	vim.cmd("noh")
+	return "<esc>"
 end, { expr = true, desc = "Escape and Clear hlsearch" })
 
 return M

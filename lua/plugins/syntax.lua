@@ -17,6 +17,7 @@ return {
 					"markdown_inline",
 				},
 				auto_install = false,
+				nohighlight = {},
 				border = "rounded", -- border style for the window (e.g. "rounded", "single"), if nil, use the default border style defined by 'vim.o.winborder'. See :h 'winborder' for more info.
 			})
 		end,
@@ -29,10 +30,10 @@ return {
 		opts = {
 			text_obj = { enabled = 0 },
 			motion = { enabled = 0 },
-      mappings = { enabled = 0 },
-      matchpref = { enabled = 0 },
-      mouse = { enabled = 0 },
-      surround = { enabled = 0 },
+			mappings = { enabled = 0 },
+			matchpref = { enabled = 0 },
+			mouse = { enabled = 0 },
+			surround = { enabled = 0 },
 			matchparen = {
 				enabled = 1,
 				offscreen = {

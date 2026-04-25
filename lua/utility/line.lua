@@ -60,7 +60,7 @@ end
 ---  default_hl:string,
 ---  left:line.SepPart,
 ---  right:line.SepPart,
----  string:line.SepPart,
+---  middle:line.SepPart,
 ---}
 ---@return string
 function M.separator(spec)
@@ -91,7 +91,7 @@ function M.separator(spec)
 
 	return table.concat({
 		section_fmt(spec.left, "0"),
-		section_fmt(spec.string, "1"),
+		section_fmt(spec.middle, "1"),
 		section_fmt(spec.right, "2"),
 		M.hl_fmt(spec.default_hl),
 	})

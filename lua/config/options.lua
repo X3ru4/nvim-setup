@@ -39,13 +39,8 @@ opt.synmaxcol = 200
 
 opt.relativenumber = true
 opt.cmdheight = 1
-
--- Fold
-opt.foldenable = true
-opt.foldlevel = 99
-opt.foldmethod = "expr"
-opt.foldtext = "v:lua.newfoldtext()" -- Custom foldtext
-opt.foldcolumn = "0"
+opt.winblend = 0
+opt.pumblend = 0
 
 -- Wrap
 opt.wrap = false
@@ -59,11 +54,12 @@ opt.autowrite = true
 opt.laststatus = 3
 opt.signcolumn = "yes"
 
--- Window
-opt.winblend = 0
-opt.pumblend = 0
-
-opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
+-- Fold
+opt.foldenable = true
+opt.foldlevel = 99
+opt.foldmethod = "expr"
+opt.foldtext = "v:lua.newfoldtext()" -- Custom foldtext
+opt.foldcolumn = "0"
 
 -- opt.conceallevel = 2
 opt.confirm = true
@@ -108,6 +104,8 @@ opt.undolevels = 10000
 opt.virtualedit = "block"
 opt.wildmode = "longest:full,full"
 opt.winminwidth = 5
+
+opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
 
 opt.list = true
 opt.listchars = {

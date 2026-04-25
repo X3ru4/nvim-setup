@@ -55,7 +55,7 @@ local vim_mode = {
 		return line.separator({
 			id = "Mode",
 			left = {
-				value = line.padding("", 1, 1),
+				value = line.padding("", 1, 1),
 				hl = {
 					fg = { "ModeOther" },
 					bg = {
@@ -77,7 +77,7 @@ local vim_mode = {
 					bg = { "Dark3", "fg" },
 				},
 			},
-			string = {
+			middle = {
 				value = (self.mode_name[self.mode] or self.mode) .. " ",
 				hl = {
 					fg = { "ModeOther" },
@@ -107,7 +107,7 @@ local file_info = {
 						bg = { "Dark2", "fg" },
 					},
 				},
-				string = {
+				middle = {
 					value = function(self)
 						local icon, icon_hl = mini_icons.get("filetype", vim.bo.filetype)
 						local new_hl = hl.mix_hl("FileInfo" .. icon_hl, {

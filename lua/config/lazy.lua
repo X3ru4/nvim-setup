@@ -23,7 +23,7 @@ require("config.options")
 require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
-		-- Run `:Themes` command to see all all available colorschemes
+    -- Create plguin specs for colorscheme plugins. This allows us to load a colorscheme during installation, and then apply it after installation.
 		require("utility.colorscheme").create_spec(vim.g.colorscheme.apply, vim.g.colorscheme.install),
 	},
 	install = {
@@ -43,29 +43,29 @@ require("lazy").setup({
 	ui = {
 		border = "solid",
 		icons = {
-			cmd = "󰘳",
+			cmd = "󰆍",
 			config = "󰒓",
 			debug = "󰃤",
-			event = "󰉁",
-			favorite = "󰋣",
+			event = "󱐋",
+			favorite = "󰋑",
 			ft = "󱈖",
 			init = "󰒓",
-			import = "󰈇",
-			keys = "󰌓",
-			lazy = "💤",
+			import = "󰋺",
+			keys = "󰌌",
+			lazy = "💤 ",
 			loaded = "󰄬",
-			not_loaded = "󰄱",
-			plugin = "",
-			runtime = "󰌗",
+			not_loaded = "󰄰",
+			plugin = "󰏖",
+			runtime = "󱨚",
 			require = "󰢱",
-			source = "󱄋",
+			source = "󰓦",
 			start = "",
 			task = "󰄬",
 
 			list = {
-				"•",
-				"➤",
-				"▸",
+				"",
+				"›",
+				"»",
 				"–",
 			},
 		},

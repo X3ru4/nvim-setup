@@ -6,6 +6,7 @@ local colorscheme = require("config.colorscheme")
 ---@param install table<string> A list of colorscheme names to load before the applied one. This is useful to have a fallback in case the applied colorscheme fails to load.
 ---@return table
 function M.create_spec(apply, install)
+  if not apply then return {} end
 	install = install or {}
 	local t = {}
 
