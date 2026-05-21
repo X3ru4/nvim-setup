@@ -90,9 +90,9 @@ function M.separator(spec)
 	end
 
 	return table.concat({
-		section_fmt(spec.left, "0"),
-		section_fmt(spec.middle, "1"),
-		section_fmt(spec.right, "2"),
+		section_fmt(spec.left, 0),
+		section_fmt(spec.middle, 1),
+		section_fmt(spec.right, 2),
 		M.hl_fmt(spec.default_hl),
 	})
 end

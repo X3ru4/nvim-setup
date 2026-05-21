@@ -41,7 +41,7 @@ end
 local function inspect(t)
   local result = ""
   for k, v in pairs(t) do
-    result = result .. k.. tostring(v)
+    result = result .. k .. tostring(v)
   end
   return result
 end
@@ -83,12 +83,12 @@ end
 ---@param name string|table Name of colorscheme
 ---@param opts table|function|{ fn: function }
 ---@param apply boolean|nil Default is true
-function M.set_match(name, opts, apply)
+function M.match(name, opts, apply)
 	local self = {}
 	self.theme = vim.g.colors_name
 	apply = apply or false
 
-	local function match()
+	local function matched()
 		local color = self.theme
 		if color == nil then
 			return
@@ -118,7 +118,7 @@ function M.set_match(name, opts, apply)
 		return check_str(name)
 	end
 
-	if match() then
+	if matched() then
 		if type(opts) == "function" then
 			M.highlights = vim.tbl_extend("force", M.highlights, opts(self) or {})
 		elseif type(opts) == "table" then
@@ -144,9 +144,7 @@ end
 function M.apply(other)
 	M.clear_cache()
 	local function pair(t)
-		if not t then
-			return
-		end
+		if not t then return end
 		if type(t) == "function" then
 			t = t()
 		end

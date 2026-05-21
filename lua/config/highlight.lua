@@ -1,8 +1,7 @@
 local M = {}
+local hl = require("utility.highlight")
 
 M.setup = function()
-	local hl = require("utility.highlight")
-	local lazy = require("utility.lazy")
 	local normal = {
 		fg = hl.getfg("Normal"),
 		bg = hl.getbg("Normal"),
@@ -67,7 +66,7 @@ M.setup = function()
 		SpellLocal = { strikethrough = true },
 	}
 
-	hl.set_match("gruvbox-material", {
+	hl.match("gruvbox-material", {
 		DropBarMenuHoverEntry = {
 			link = "PmenuThumb",
 		},
@@ -152,7 +151,7 @@ M.setup = function()
 		end,
 	})
 
-	hl.set_match("everforest", {
+	hl.match("everforest", {
 		LazyProp = {
 			link = "Operator",
 		},
@@ -220,7 +219,7 @@ M.setup = function()
 		end,
 	})
 
-	hl.set_match("edge", function()
+	hl.match("edge", function()
 		-- Syntax
 		hl.modify("@keyword.return", {
 			italic = true,
@@ -292,7 +291,7 @@ M.setup = function()
 	end)
 
 	-- Using ! at the end of the string to match more variants
-	hl.set_match("catppuccin!", function()
+	hl.match("catppuccin!", function()
 		hl.modify("MiniCursorwordCurrent", {
 			link = "MiniCursorword",
 		})
@@ -313,7 +312,7 @@ M.setup = function()
 		return {}
 	end)
 
-	hl.set_match("onedark", {
+	hl.match("onedark", {
 		WinBar = {
 			link = "Normal",
 		},
@@ -329,7 +328,7 @@ M.setup = function()
 		},
 	})
 
-	hl.set_match("kanagawa!", {
+	hl.match("kanagawa!", {
 		MiniTablineModifiedCurrent = {
 			link = "MiniTablineCurrent",
 		},
@@ -380,7 +379,7 @@ M.setup = function()
 		},
 		fn = function()
 			local palette = {}
-			if lazy.plugin_loaded("kanagawa") then
+			if package.loaded["kanagawa"] then
 				palette = require("kanagawa.colors").setup().palette
 			else
 				palette = require("kanagawa-paper.colors").setup().palette
@@ -408,7 +407,7 @@ M.setup = function()
 		end,
 	})
 
-	hl.set_match("gruvbox", {
+	hl.match("gruvbox", {
 		Cursor = {
 			bg = hl.getfg("Orange"),
 		},
@@ -464,7 +463,7 @@ M.setup = function()
 		end,
 	})
 
-	hl.set_match("vscode", function()
+	hl.match("vscode", function()
 		local colors = require("vscode.colors").get_colors()
 		local fg = colors.vscBack
 
@@ -563,7 +562,7 @@ M.setup = function()
 		}
 	end)
 
-	hl.set_match("vague", function()
+	hl.match("vague", function()
 		local colors = require("vague").get_palette()
 
 		local red = colors.error
@@ -624,7 +623,7 @@ M.setup = function()
 		}
 	end)
 
-	hl.set_match("!fox", function(self)
+	hl.match("!fox", function(self)
 		local palette = require("nightfox.palette." .. self.theme).palette
 
 		-- Basic colors
@@ -689,7 +688,7 @@ M.setup = function()
 		}
 	end)
 
-	hl.set_match("tokyonight!", function()
+	hl.match("tokyonight!", function()
 		local colors = require("tokyonight.colors").setup()
 		local fg = colors.black
 		local highlights = {}
@@ -722,7 +721,7 @@ M.setup = function()
 		return highlights
 	end)
 
-	hl.set_match("rusty", function()
+	hl.match("rusty", function()
 		local highlights = {}
 		local colors = require("rusty.colors").get()
 		local fg = colors.background
@@ -908,7 +907,7 @@ M.setup = function()
 		return highlights
 	end)
 
-	hl.set_match("shale", function()
+	hl.match("shale", function()
 		local colors = require("shale.colors")
 
 		return {
@@ -978,7 +977,7 @@ M.setup = function()
 		}
 	end)
 
-	hl.set_match("tairiki", function()
+	hl.match("tairiki", function()
 		local palette = require("tairiki.config").options.palette
 		local colors = require("tairiki.palette").palettes[palette]
 
@@ -1046,8 +1045,8 @@ M.setup = function()
 				fg = colors.orange,
 			},
 
-			MiniTablineCurrent = { bg = hl.getbg("Normal"), bold = true },
-			MiniTablineModifiedCurrent = { fg = colors.yellow, bg = hl.getbg("Normal"), bold = true },
+			MiniTablineCurrent = { bg = hl.getbg("Normal"), bold = false },
+			MiniTablineModifiedCurrent = { fg = colors.yellow, bg = hl.getbg("Normal"), bold = false },
 			MiniTablineHidden = { bg = colors.bg_light },
 			MiniTablineModifiedHidden = { fg = colors.yellow, bg = colors.bg_light },
 			MiniTablineVisible = { bg = colors.bg_light },

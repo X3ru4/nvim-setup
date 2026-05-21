@@ -212,30 +212,31 @@ return {
 		enabled = true,
 		keys = function()
 			local mc = require("multicursor-nvim")
+			local mode = { "n", "x" }
 			return {
 				{
-					mode = { "n", "x" },
+					mode = mode,
 					"<C-Up>",
 					function()
 						mc.lineAddCursor(-1)
 					end,
 				},
 				{
-          mode = { "n", "x" },
+					mode = mode,
 					"<C-Down>",
 					function()
 						mc.lineAddCursor(1)
 					end,
 				},
 				{
-					mode = { "n", "x" },
+					mode = mode,
 					"<leader><up>",
 					function()
 						mc.lineSkipCursor(-1)
 					end,
 				},
 				{
-					mode = { "n", "x" },
+					mode = mode,
 					"<leader><down>",
 					function()
 						mc.lineSkipCursor(1)
@@ -244,39 +245,40 @@ return {
 
 				-- Add or skip adding a new cursor by matching word/selection
 				{
-					mode = { "n", "x" },
+					mode = mode,
 					"<leader>n",
 					function()
 						mc.matchAddCursor(1)
 					end,
 				},
 				{
-					mode = { "n", "x" },
+					mode = mode,
 					"<leader>x",
 					function()
 						mc.matchSkipCursor(1)
 					end,
 				},
 				{
-					mode = { "n", "x" },
+					mode = mode,
 					"<leader>N",
 					function()
 						mc.matchAddCursor(-1)
 					end,
 				},
 				{
-					mode = { "n", "x" },
+					mode = mode,
 					"<leader>X",
-					function()
-						mc.matchSkipCursor(-1)
-					end,
+					mc.matchSkipCursor,
 				},
 				{
-					mode = { "n", "x" },
+					mode = mode,
 					"<leader>a",
-					function()
-						mc.matchAllAddCursors()
-					end,
+					mc.matchAllAddCursors,
+				},
+				{
+					mode = mode,
+					"<leader>j",
+					mc.addCursor,
 				},
 			}
 		end,

@@ -1,6 +1,18 @@
 local hl = require("utility.highlight")
 local M = {}
 
+if nil then
+	M["example"] = {
+		"author/example.nvim",
+		lazy = false, -- Disable lazy loading for this plugin (make sure to remove `event`, `cmd`, and `ft` if you set lazy to false)
+		priority = 1000, -- Ensure it loads before all the other plugins
+		config = function()
+      -- Configure the plugin here or use the `opts` key if the plugin supports it
+		end,
+    -- opts = {...}
+	}
+end
+
 M["tokyonight"] = {
 	"folke/tokyonight.nvim",
 	name = "tokyonight",
@@ -509,16 +521,5 @@ M["tairiki"] = {
 		require("tairiki").load()
 	end,
 }
-
-if nil then
-	M["example"] = {
-		"author/example.nvim",
-		lazy = false, -- Disable lazy loading for this plugin (make sure to remove `event`, `cmd`, and `ft` if you set lazy to false)
-		priority = 1000, -- Ensure it loads before all the other plugins
-		config = function()
-			-- plugin config
-		end,
-	}
-end
 
 return M

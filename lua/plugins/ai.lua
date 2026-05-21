@@ -2,6 +2,7 @@ return {
 	{
 		"zbirenbaum/copilot.lua",
     enabled = vim.g.plugin.ai,
+    commit = "94b22035e31e82821d015f6481ea3c17800e55b7",
 		cmd = "Copilot",
 		event = "InsertEnter",
 		dependencies = {

@@ -14,16 +14,18 @@ g.plugin = {
 -- Run `:Themes` command to see all all available colorschemes
 -- You can add or configure colorschemes in `lua/config/colorscheme.lua`
 g.colorscheme = {
-	apply = "tairiki", -- Default colorscheme
+	apply = "shale", -- Default colorscheme
 	install = {
 		"tairiki",
 		"shale", -- High contrast, dark and light, with a modern color palette.
 		"vscode",
 		"vague",
+		"kanagawa",
+		"kanagawa-paper",
 		"gruvbox-material",
 		"catppuccin", -- Popular, cute and pastel color scheme with multiple flavors.
 		"tokyonight",
-    "everforest",
+		"everforest",
 		"nightfox",
 		"gruvbox",
 		"edge",

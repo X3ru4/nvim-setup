@@ -102,11 +102,11 @@ return {
 			content = {
 				format = function(notify)
 					local icons = require("config.icons").vim_log_level
-					return string.format("%s │ %s", icons[notify.level], notify.msg)
+					return string.format("%s %s", icons[notify.level], notify.msg)
 				end,
 				sort = function(notify_arr)
 					table.sort(notify_arr, function(a, b)
-						return a.ts_update > b.ts_update
+						return a.ts_update < b.ts_update
 					end)
 					return notify_arr
 				end,
@@ -122,9 +122,9 @@ return {
 				config = {
 					border = "rounded",
 					anchor = "NW",
-					title = "󰂞 Notifications",
+					title = "",
 					title_pos = "center",
-					footer = "-+-",
+					footer = "",
 					footer_pos = "center",
 				},
 
@@ -148,9 +148,9 @@ return {
 				todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
 				note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
 
-				author = { pattern = "%f[%w]()X3ru4()%f[%W]", group = "MiniHipatternsFixme" },
 				warning = { pattern = "%f[%w]()WARNING()%f[%W]", group = "MiniHipatternsHack" },
 				warn = { pattern = "%f[%w]()WARN()%f[%W]", group = "MiniHipatternsHack" },
+        error = { pattern = "%f[%w]()ERROR()%f[%W]", group = "MiniHipatternsFixme" },
 				bug = { pattern = "%f[%w]()BUG()%f[%W]", group = "MiniHipatternsFixme" },
 			},
 		},

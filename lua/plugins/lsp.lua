@@ -83,8 +83,16 @@ return {
 					},
 				},
 			})
+			config("jsonls", {
+				settings = {
+					json = {
+						schemas = require("schemastore").json.schemas(),
+						validate = { enable = true },
+					},
+				},
+			})
 
-			enable({ "rust_analyzer", "lua_ls" })
+			enable({ "rust_analyzer", "lua_ls", "jsonls" })
 		end,
 	},
 
@@ -152,7 +160,7 @@ return {
 
 	{
 		"b0o/schemastore.nvim",
-		enabled = false,
+		enabled = true,
 		ft = { "json" },
 	},
 }

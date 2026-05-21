@@ -1,5 +1,4 @@
 local M = {}
-local lazy = require("utility.lazy")
 local keymap = vim.keymap.set
 
 keymap("n", "<leader>rm", "<cmd>!rm ~/.local/state/nvim/swap -rf<cr>", { desc = "Remove swap folder" })
@@ -11,10 +10,8 @@ keymap("n", "K", "<Nop>")
 -- Better insert
 keymap("i", "<C-a>", "<C-o>I")
 
-if not lazy.plugin_loaded("cinnamon.nvim") then
-	keymap({ "n", "x" }, "zh", "zH", { desc = 'Horizontal scroll like "zH"' })
-	keymap({ "n", "x" }, "zl", "zL", { desc = 'Horizontal scroll like "zL"' })
-end
+keymap({ "n", "x" }, "zh", "zH", { desc = 'Horizontal scroll like "zH"' })
+keymap({ "n", "x" }, "zl", "zL", { desc = 'Horizontal scroll like "zL"' })
 
 -- Yank all
 keymap("n", "<leader>ya", "<cmd>normal! ggyG''<cr>", { desc = "Yank all" })

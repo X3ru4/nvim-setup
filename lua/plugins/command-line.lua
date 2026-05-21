@@ -1,7 +1,7 @@
 return {
   {
     "rachartier/tiny-cmdline.nvim",
-    enabled = false,
+    enabled = true,
     event = "UiEnter",
     priority = 1000,
     config = function()
@@ -9,7 +9,7 @@ return {
       require("tiny-cmdline").setup({
         on_reposition = require("tiny-cmdline").adapters.blink,
         border = "rounded",
-        native_types = { "r", "?" },
+        native_types = { "/", "?" },
       })
     end,
   },

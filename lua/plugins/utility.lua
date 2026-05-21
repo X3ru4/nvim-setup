@@ -48,11 +48,11 @@ return {
 			{
 				"rcarriga/nvim-notify",
 				opts = {
-          render = "minimal",
-          stages = "fade_in_slide_out",
-          max_height = 5,
-          max_width = 20,
-        },
+					render = "minimal",
+					stages = "fade_in_slide_out",
+					max_height = 5,
+					max_width = 20,
+				},
 			},
 		},
 		opts = {
@@ -132,7 +132,32 @@ return {
 	},
 
 	{
+		"folke/snacks.nvim",
+    enabled = false,
+		event = "VeryLazy",
+		---@type snacks.Config
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+			bigfile = { enabled = true },
+			dashboard = { enabled = false },
+			explorer = { enabled = false },
+			indent = { enabled = false },
+			input = { enabled = false },
+			picker = { enabled = false },
+			notifier = { enabled = false },
+			quickfile = { enabled = true },
+			scope = { enabled = false },
+			scroll = { enabled = true },
+			statuscolumn = { enabled = false },
+			words = { enabled = false },
+		},
+	},
+
+	{
 		"stevearc/dressing.nvim",
+		enabled = true,
 		event = "VeryLazy",
 		opts = {
 			input = {
@@ -141,7 +166,7 @@ return {
 					conf.row = 0
 					return conf
 				end,
-        border = "rounded",
+				border = "rounded",
 			},
 			select = {
 				backend = "fzf_lua",
