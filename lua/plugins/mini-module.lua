@@ -87,7 +87,7 @@ return {
 	{
 		"nvim-mini/mini.notify",
 		enabled = true,
-    lazy = false,
+		lazy = false,
 		version = false,
 		keys = {
 			{
@@ -150,7 +150,7 @@ return {
 
 				warning = { pattern = "%f[%w]()WARNING()%f[%W]", group = "MiniHipatternsHack" },
 				warn = { pattern = "%f[%w]()WARN()%f[%W]", group = "MiniHipatternsHack" },
-        error = { pattern = "%f[%w]()ERROR()%f[%W]", group = "MiniHipatternsFixme" },
+				error = { pattern = "%f[%w]()ERROR()%f[%W]", group = "MiniHipatternsFixme" },
 				bug = { pattern = "%f[%w]()BUG()%f[%W]", group = "MiniHipatternsFixme" },
 			},
 		},
@@ -429,20 +429,20 @@ return {
 		"nvim-mini/mini.surround",
 		version = false,
 		keys = {
-			{ "Sa", mode = { "n", "x", "v" } },
-			{ "Sr", mode = { "n", "x", "v" } },
-			{ "Sd", mode = { "n", "x", "v" } },
-			{ "Sf", mode = { "n", "x", "v" } },
-			{ "SF", mode = { "n", "x", "v" } },
+			{ "fa", mode = { "n", "x", "v" } },
+			{ "fr", mode = { "n", "x", "v" } },
+			{ "fd", mode = { "n", "x", "v" } },
+			{ "ff", mode = { "n", "x", "v" } },
+			{ "fF", mode = { "n", "x", "v" } },
 		},
 		opts = {
 			mappings = {
-				add = "Sa",
-				delete = "Sd",
-				find = "Sf",
-				find_left = "SF",
-				highlight = "Sh",
-				replace = "Sr",
+				add = "fa",
+				delete = "fd",
+				find = "ff",
+				find_left = "fF",
+				highlight = "fh",
+				replace = "fr",
 				suffix_last = "l",
 				suffix_next = "n",
 			},

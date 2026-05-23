@@ -1,3 +1,3 @@
-vim.o.wrap = true
-vim.o.breakindent = true
-vim.o.linebreak = true
+vim.opt.wrap = false
+vim.opt.breakindent = false
+vim.opt.linebreak = false

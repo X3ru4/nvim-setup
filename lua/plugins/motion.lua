@@ -75,7 +75,6 @@ return {
 				nowait = true,
 				remap = true,
 			},
-      -- Not recommended to use
 			-- {
 			-- 	"S",
 			-- 	"<Plug>(leap-from-window)",
