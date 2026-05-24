@@ -411,8 +411,8 @@ M["shale"] = {
 	priority = 1000,
 	config = function()
 		require("shale").setup({
-			italic_comments = false,
-			italic_keywords = false,
+			italic_comments = true,
+			italic_keywords = true,
 			transparent = false,
 		})
 		vim.g.blinkcmp_cmphl = true -- Use Cmp highlight

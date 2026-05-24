@@ -18,8 +18,8 @@ g.colorscheme = {
 	install = {
 		"tairiki",
 		"shale", -- High contrast, dark and light, with a modern color palette.
+    "vague",
 		"vscode",
-		"vague",
 		"kanagawa",
 		"kanagawa-paper",
 		"gruvbox-material",

@@ -62,7 +62,7 @@ M.kind = {
   Array = "",
   Object = "",
   Key = "",
-  Null = "󰟢",
+  Null = "󰜺",
 
   Copilot = "",
 }

@@ -39,11 +39,11 @@ function M.getbg(name)
 end
 
 local function inspect(t)
-  local result = ""
-  for k, v in pairs(t) do
-    result = result .. k .. tostring(v)
-  end
-  return result
+	local result = ""
+	for k, v in pairs(t) do
+		result = result .. k .. tostring(v)
+	end
+	return result
 end
 
 ---Like the vim.api.nvim_set_hl() but with the cache.
@@ -144,7 +144,9 @@ end
 function M.apply(other)
 	M.clear_cache()
 	local function pair(t)
-		if not t then return end
+		if not t then
+			return
+		end
 		if type(t) == "function" then
 			t = t()
 		end

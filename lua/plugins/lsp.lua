@@ -297,7 +297,7 @@ return {
 				},
 			})
 
-			enable({ "rust_analyzer", "lua_ls", "jsonls" })
+			enable({ "rust_analyzer", "lua_ls" })
 		end,
 	},
 

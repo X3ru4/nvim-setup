@@ -43,7 +43,7 @@ require("lazy").setup({
 	ui = {
 		border = "solid",
 		icons = {
-			cmd = "󰆍",
+			cmd = "$",
 			config = "󰒓",
 			debug = "󰃤",
 			event = "󱐋",
@@ -54,7 +54,7 @@ require("lazy").setup({
 			keys = "󰌌",
 			lazy = "💤 ",
 			loaded = "󰄬",
-			not_loaded = "󰄰",
+			not_loaded = "󰜺",
 			plugin = "󰏖",
 			runtime = "󱨚",
 			require = "󰢱",
@@ -63,7 +63,7 @@ require("lazy").setup({
 			task = "󰄬",
 
 			list = {
-				"",
+				"󰧞",
 				"›",
 				"»",
 				"–",

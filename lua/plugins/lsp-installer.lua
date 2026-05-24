@@ -1,10 +1,7 @@
 return {
-
 	{
 		"mason-org/mason.nvim",
 		cmd = "Mason",
-		-- keys = { { "<leader>m", "<cmd>Mason<cr>", desc = "Mason" } },
-		build = ":MasonUpdate",
 		opts = {
 			ui = {
 				height = 0.85,
@@ -12,9 +9,17 @@ return {
 				icons = {
 					package_installed = "󰄬 ",
 					package_pending = "󰔟 ",
-					package_uninstalled = "󰚌 ",
+					package_uninstalled = "󰜺 ",
 				},
 			},
+		},
+	},
+	{
+		"mason-org/mason-lspconfig.nvim",
+		event = "VeryLazy",
+		dependencies = { "mason-org/mason.nvim" },
+		opts = {
+			automatic_enable = false,
 		},
 	},
 }

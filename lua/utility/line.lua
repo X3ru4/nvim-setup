@@ -71,7 +71,7 @@ function M.separator(spec)
 	end
 
 	local function section_fmt(section, id)
-		local hl_ns = "CustomHl" .. (spec.id or "nil") .. id
+		local hl_ns = "Separator" .. (spec.id or "nil") .. id
 		if type(section) == "table" then
 			section.hl.default_hl = spec.default_hl
 			self.hl = hl_api.mix_hl(hl_ns, section.hl) -- Create new the highlight group for this section
@@ -90,9 +90,9 @@ function M.separator(spec)
 	end
 
 	return table.concat({
-		section_fmt(spec.left, 0),
-		section_fmt(spec.middle, 1),
-		section_fmt(spec.right, 2),
+		section_fmt(spec.left, 1),
+		section_fmt(spec.middle, 2),
+		section_fmt(spec.right, 3),
 		M.hl_fmt(spec.default_hl),
 	})
 end

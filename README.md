@@ -1,6 +1,7 @@
 # N30VIM
 + Simple Neovim setup.
 + Blazing fast and highly customizable.
++ 20+ Theme support.
 
 ## 🔌 Plugins
 >  [Here](https://github.com/X3ru4/n30vim/tree/main/lua/plugins)

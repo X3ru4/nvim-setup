@@ -3,6 +3,7 @@ local line = require("utility.line")
 local hl = require("utility.highlight")
 local mini_icons = require("mini.icons")
 local os_name = vim.loop.os_uname().sysname
+local os_icon, _, _ = mini_icons.get("os", os_name)
 local sep = { "", "" }
 
 local mode_color = {
@@ -28,8 +29,11 @@ local hlsearch = {
 		end
 	end,
 	provider = function(self)
-		local search = self.search
-		return string.format(" %d/%d ", search.current, math.min(search.total, search.maxcount))
+		if self.search then
+			local search = self.search
+			return string.format(" %d/%d ", search.current, math.min(search.total, search.maxcount))
+		end
+		return ""
 	end,
 	hl = "WarningMsg",
 }
@@ -55,7 +59,7 @@ local vim_mode = {
 		return line.separator({
 			id = "Mode",
 			left = {
-				value = line.padding("", 1, 1),
+				value = line.padding(os_icon, 1, 1),
 				hl = {
 					fg = { "ModeOther" },
 					bg = {
