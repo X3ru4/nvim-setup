@@ -1,5 +1,4 @@
 return {
-
 	{
 		-- Disable this plugin may cause some issues.
 		"ibhagwan/fzf-lua",
@@ -190,6 +189,7 @@ return {
 			keymap(mode, "<leader>cc", fzf.colorschemes, { desc = "Change colorscheme" })
 			keymap(mode, "<leader>cgh", fzf.git_hunks, { desc = "Git hunks" })
 			keymap(mode, "<leader>cgd", fzf.git_diff, { desc = "Git diff" })
+			keymap(mode, "<leader>cgc", fzf.git_commits, { desc = "Git commits" })
 
 			-- <leader>f group
 			keymap(mode, "<leader>fr", fzf.registers, { desc = "Fzf register" })

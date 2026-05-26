@@ -1,5 +1,4 @@
 return {
-
 	{
 		"stevearc/conform.nvim",
 		cmd = { "ConformInfo" },
@@ -10,9 +9,19 @@ return {
 				hpp = { "clang-format" },
 				c = { "clang-format" },
 				h = { "clang-format" },
-				json = { "clang-format" },
+				json = { "prettier" },
 				python = { "ruff" },
 				rust = { "rustfmt" },
+			},
+			formatters = {
+				ruff = {
+					command = "ruff",
+					args = { "format", "-" },
+					stdin = true,
+				},
+				prettier = {
+					prepend_args = { "--tab-width", vim.bo.shiftwidth or 2 },
+				},
 			},
 			default_format_opts = {
 				lsp_format = "fallback",
@@ -23,17 +32,10 @@ return {
 			-- have other formatters configured.
 			["_"] = { "trim_whitespace" },
 			format_on_save = false,
-			formatters = {
-				shfmt = {
-					append_args = { "-i", "2" },
-				},
-				ruff = {
-					command = "ruff",
-					args = { "format", "-" },
-					stdin = true,
-				},
-			},
 		},
+		init = function()
+			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+		end,
 		keys = {
 			{
 				"<leader>cf",
@@ -45,8 +47,5 @@ return {
 				mode = { "x", "n", "v" },
 			},
 		},
-		init = function()
-			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-		end,
 	},
 }
