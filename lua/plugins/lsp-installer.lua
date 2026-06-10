@@ -19,7 +19,7 @@ return {
 		event = "VeryLazy",
 		dependencies = { "mason-org/mason.nvim" },
 		opts = {
-			automatic_enable = false,
+			automatic_enable = true,
 		},
 	},
 }

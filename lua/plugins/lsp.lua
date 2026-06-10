@@ -184,7 +184,7 @@ return {
 							{
 								description = "Minecraft Bedrock Client Entity",
 								fileMatch = {
-									"entity/*.json",
+									-- "entity/*.json",
 									"*.entity.rp.json",
 									"*.e.rp.json",
 									"*.ce.json",
@@ -297,7 +297,7 @@ return {
 				},
 			})
 
-			enable({ "rust_analyzer", "lua_ls" })
+			enable({ "rust_analyzer", "lua_ls", "jsonls" })
 		end,
 	},
 

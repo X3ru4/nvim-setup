@@ -479,13 +479,13 @@ M["tairiki"] = {
 	priority = 1000,
 	config = function()
 		require("tairiki").setup({
-			palette = "dimmed", -- main palette, available options: dark, light, dimmed, tomorrow, light_legacy
-			default_dark = "dimmed",
+			palette = "tomorrow", -- main palette, available options: dark, light, dimmed, tomorrow, light_legacy
+			default_dark = "dark",
 			default_light = "light",
 			transparent = false, -- don't set background colors
 			terminal = true, -- override nvim terminal colors
 			end_of_buffer = false, -- show end of buffer filler lines (tildes)
-			visual_bold = false, -- bolden visual selections
+			visual_bold = true, -- bolden visual selections
 			cmp_itemkind_reverse = false, -- reverse fg/bg on nvim-cmp item kinds
 
 			diagnostics = {
@@ -497,9 +497,9 @@ M["tairiki"] = {
 			-- style for different syntactic tokens
 			-- see :help nvim_set_hl() for available keys
 			code_style = {
-				comments = { italic = false },
+				comments = { italic = true },
 				conditionals = {},
-				keywords = {},
+				keywords = { italic = true },
 				functions = {},
 				strings = {},
 				variables = {},

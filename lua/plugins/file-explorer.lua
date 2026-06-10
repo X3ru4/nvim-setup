@@ -88,6 +88,8 @@ return {
 					border = "rounded",
 					win_options = {},
 				},
+				delete_to_trash = false,
+				use_default_keymaps = true,
 				keymaps = {
 					["<C-s>"] = false,
 					["<C-h>"] = false,

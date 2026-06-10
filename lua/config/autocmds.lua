@@ -41,3 +41,11 @@ autocmd("LspAttach", {
 		require("config.keymaps").lsp(ev.buf)
 	end,
 })
+
+autocmd("FileType", {
+  group = group,
+  pattern = "json",
+  callback = function ()
+    vim.bo.filetype = "jsonc"
+  end
+})

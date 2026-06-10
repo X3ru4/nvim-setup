@@ -20,7 +20,7 @@ return {
 					stdin = true,
 				},
 				prettier = {
-					prepend_args = { "--tab-width", vim.bo.shiftwidth or 2 },
+					prepend_args = { "--tab-width", "2" },
 				},
 			},
 			default_format_opts = {
