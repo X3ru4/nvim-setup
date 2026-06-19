@@ -92,6 +92,9 @@ return {
 		"saghen/blink.pairs",
 		enabled = true,
 		event = { "BufReadPre", "BufNewFile" },
+		build = function()
+			require("blink.pairs").build():pwait(60000)
+		end,
 		version = "*", -- (recommended) only required with prebuilt binaries
 
 		-- download prebuilt binaries from github releases

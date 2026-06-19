@@ -14,7 +14,7 @@ g.plugin = {
 -- Run `:Themes` command to see all all available colorschemes
 -- You can add or configure colorschemes in `lua/config/colorscheme.lua`
 g.colorscheme = {
-	apply = "tairiki", -- Default colorscheme
+	apply = "kanagawa", -- Default colorscheme
 	install = {
 		"tairiki",
 		"shale", -- High contrast, dark and light, with a modern color palette.
@@ -117,8 +117,8 @@ opt.listchars = {
 	leadmultispace = "  ",
 	extends = "⟩",
 	precedes = "⟨",
-	space = " ",
-	trail = "·",
+	space = "•",
+	trail = "•",
 	nbsp = "␣",
 }
 
