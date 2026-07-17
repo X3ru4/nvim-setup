@@ -42,9 +42,17 @@ autocmd("LspAttach", {
 	end,
 })
 
-autocmd("FileType", {
+autocmd("BufReadPre", {
   group = group,
-  pattern = "json",
+  pattern = "*/rp/*/**.json",
+  callback = function ()
+    vim.bo.filetype = "jsonc"
+  end
+})
+
+autocmd("BufReadPre", {
+  group = group,
+  pattern = "*.material",
   callback = function ()
     vim.bo.filetype = "jsonc"
   end

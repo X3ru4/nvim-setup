@@ -1,0 +1,14 @@
+{
+  "write_variable": {
+    "prefix": "va",
+    "body": [
+      "variable.$1 = $2;$0"
+    ]
+  },
+  "variable": {
+    "prefix": "v",
+    "body": [
+      "variable."
+    ]
+  }
+}

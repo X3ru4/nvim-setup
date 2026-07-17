@@ -47,7 +47,7 @@ M["catppuccin"] = {
 		require("catppuccin").setup({
 			flavour = "macchiato",
 			transparent_background = false, -- disables setting the background color.
-			no_italic = true,
+			no_italic = false,
 			styles = {
 				comments = { "italic" },
 				conditionals = { "italic" },
@@ -77,6 +77,7 @@ M["catppuccin"] = {
 			},
 		})
 		vim.cmd.colorscheme("catppuccin")
+    vim.o.background = "light"
 	end,
 }
 M["nord"] = {
@@ -214,7 +215,9 @@ M["kanagawa"] = {
 	lazy = false,
 	priority = 1000,
 	config = function()
+    vim.o.background = "light"
 		require("kanagawa").setup({
+
 			undercurl = true,
 			commentStyle = { italic = true, bold = false },
 			functionStyle = { bold = true },
@@ -479,8 +482,8 @@ M["tairiki"] = {
 	priority = 1000,
 	config = function()
 		require("tairiki").setup({
-			palette = "tomorrow", -- main palette, available options: dark, light, dimmed, tomorrow, light_legacy
-			default_dark = "dark",
+			palette = "dark", -- main palette, available options: dark, light, dimmed, tomorrow, light_legacy
+			default_dark = "dimmed",
 			default_light = "light",
 			transparent = false, -- don't set background colors
 			terminal = true, -- override nvim terminal colors

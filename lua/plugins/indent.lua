@@ -31,13 +31,13 @@ return {
 				object_scope = "ii",
 				object_scope_with_border = "ai",
 				-- motions
-				goto_top = "[i",
-				goto_bottom = "]i",
+				goto_top = "+i",
+				goto_bottom = "-i",
 			},
 			static = {
 				enabled = true,
 				-- thin: '▏', thick: '▎'
-				char = "▎",
+				char = "▏",
 				whitespace_char = nil, -- inherits from `vim.opt.listchars:get().space` when `nil` (see `:h listchars`)
 				priority = 1,
 				highlights = { "BlinkIndent" },
@@ -45,7 +45,7 @@ return {
 			scope = {
 				enabled = true,
 				-- thin: '▏', thick: '▎'
-				char = "▎",
+				char = "▏",
 				priority = 1000,
 				highlights = {
 					"BlinkIndentRed",
