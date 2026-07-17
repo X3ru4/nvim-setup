@@ -24,5 +24,5 @@
 ## Clone
 
 ```bash
-git clone https://github.com/X3ru4/n30vim.git ~/.config/nvim
+git clone https://github.com/X3ru4/nvim-setup.git ~/.config/nvim
 ```
