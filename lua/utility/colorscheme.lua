@@ -1,31 +1,38 @@
 local M = {}
-local colorscheme = require("config.colorscheme")
+local cs_list = {}
 
----Creates a colorscheme spec for lazy.nvim
----@param apply string Name of the colorscheme to apply
----@param install table<string> A list of colorscheme names to load before the applied one. This is useful to have a fallback in case the applied colorscheme fails to load.
----@return table
-function M.create_spec(apply, install)
-  if not apply then return {} end
-	install = install or {}
+M.default = "default"
+
+local function load_colorscheme()
+	local ok, err = pcall(function()
+		for _, spec in require("utility.loader").load_file("lua/plugins/colorscheme", true) do
+			cs_list[#cs_list + 1] = spec
+		end
+	end)
+
+	if not ok then
+		error(err)
+	end
+end
+
+function M.create_spec()
+	load_colorscheme()
+	if cs_list == {} then
+		return {}
+	end
 	local t = {}
 
-	for _, name in ipairs(install) do
-		local spec = colorscheme[name]
-    if spec then
-      if name ~= apply then
-        t[#t + 1] = {
-          spec[1],
-          name = spec.name or name,
-          dependencies = spec.dependencies or nil,
-          event = "VeryLazy",
-        }
-      end
-    end
-	end
-
-	if colorscheme[apply] then
-		t[#t + 1] = colorscheme[apply]
+	for _, spec in ipairs(cs_list) do
+		if spec.name == M.default or spec[1] == M.default then
+			t[#t + 1] = spec
+		else
+			t[#t + 1] = {
+				spec[1],
+				name = spec.name or nil,
+				dependencies = spec.dependencies or nil,
+				event = "VeryLazy",
+			}
+		end
 	end
 
 	return t
