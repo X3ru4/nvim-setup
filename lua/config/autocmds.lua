@@ -27,7 +27,7 @@ autocmd("FileType", {
 })
 
 -- Setup highlights
-autocmd("UiEnter", {
+autocmd("UIEnter", {
 	group = group,
 	once = true,
 	callback = function()
@@ -42,18 +42,26 @@ autocmd("LspAttach", {
 	end,
 })
 
-autocmd("BufReadPre", {
+autocmd("FileType", {
   group = group,
-  pattern = "*/rp/*/**.json",
+  pattern = "json",
   callback = function ()
     vim.bo.filetype = "jsonc"
   end
 })
 
-autocmd("BufReadPre", {
+autocmd("BufReadPost", {
   group = group,
   pattern = "*.material",
   callback = function ()
     vim.bo.filetype = "jsonc"
+  end
+})
+
+autocmd("BufReadPost", {
+  group = group,
+  pattern = "*.molang",
+  callback = function ()
+    vim.bo.filetype = "c"
   end
 })

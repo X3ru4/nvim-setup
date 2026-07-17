@@ -1,4 +1,4 @@
-local M = {}
+local Keymaps = {}
 local keymap = vim.keymap.set
 
 keymap("n", "<leader>rm", "<cmd>!rm ~/.local/state/nvim/swap -rf<cr>", { desc = "Remove swap folder" })
@@ -98,7 +98,7 @@ end, { desc = "Run code" })
 
 keymap("n", "<leader>co", "<cmd>normal! gg=G''<cr>", { desc = "Indent" })
 
-function M.lsp(bufnr)
+function Keymaps.lsp(bufnr)
 	-- Code action
 	keymap("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action", buffer = bufnr })
 
@@ -188,4 +188,4 @@ keymap({ "i", "n", "s" }, "<esc>", function()
 	return "<esc>"
 end, { expr = true, desc = "Escape and Clear hlsearch" })
 
-return M
+return Keymaps

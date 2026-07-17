@@ -1,38 +1,7 @@
 local opt = vim.opt
-local g = vim.g
 
-function _G.newfoldtext()
-	local line = vim.fn.getline(vim.v.foldstart)
-	local count = vim.v.foldend - vim.v.foldstart + 1
-	return "  " .. line .. " ↙" .. count
-end
-
-g.plugin = {
-	ai = true, -- Set it to false to have the best performance
-}
-
--- Run `:Themes` command to see all all available colorschemes
--- You can add or configure colorschemes in `lua/config/colorscheme.lua`
-g.colorscheme = {
-	apply = "tairiki", -- Default colorscheme
-	install = {
-		"tairiki",
-		"shale", -- High contrast, dark and light, with a modern color palette.
-    "vague",
-		"vscode",
-		"kanagawa",
-		"kanagawa-paper",
-		"gruvbox-material",
-		"catppuccin", -- Popular, cute and pastel color scheme with multiple flavors.
-		"tokyonight",
-		"everforest",
-		"nightfox",
-		"gruvbox",
-		"edge",
-		"onedark",
-		-- ...
-	},
-}
+opt.exrc = true
+opt.secure = true
 
 -- Performance
 opt.updatetime = 100
@@ -40,10 +9,13 @@ opt.timeoutlen = 300
 opt.ttimeoutlen = 10
 opt.synmaxcol = 200
 
+-- Window
 opt.relativenumber = true
 opt.cmdheight = 1
 opt.winblend = 0
 opt.pumblend = 0
+opt.winborder = "none"
+
 
 -- Wrap
 opt.wrap = false
@@ -58,6 +30,11 @@ opt.laststatus = 3
 opt.signcolumn = "yes"
 
 -- Fold
+function _G.newfoldtext()
+	local line = vim.fn.getline(vim.v.foldstart)
+	local count = vim.v.foldend - vim.v.foldstart + 1
+	return "  " .. line .. " ↙" .. count
+end
 opt.foldenable = true
 opt.foldlevel = 99
 opt.foldmethod = "expr"
