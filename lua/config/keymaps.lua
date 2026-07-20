@@ -1,191 +1,54 @@
-local Keymaps = {}
-local keymap = vim.keymap.set
+local keymap = require("utility.keymap")
 
-keymap("n", "<leader>rm", "<cmd>!rm ~/.local/state/nvim/swap -rf<cr>", { desc = "Remove swap folder" })
-keymap("n", "<leader>re", "<cmd>restart<cr>", { desc = "Restart Neovim" })
+keymap.set_list({
+	{ "n", "<leader>re", "<Cmd>restart<Cr>", { desc = "Restart Neovim" } },
+	{ "n", "<leader>ro", "<Cmd>e!<Cr>", { desc = "Re-open" } },
+	{ "n", "<leader>rm", "<Cmd>!rm ~/.local/state/nvim/swap -rf<Cr>", { desc = "Remove swap folder" } },
 
-keymap("!", "<F11>", "<Nop>")
-keymap("n", "K", "<Nop>")
+	{ "n", "<leader>co", "<Cmd>normal! gg=G''<Cr>", { desc = "Indent" } },
+	{ "n", "<leader>cr", "<Cmd>silent! w | terminal make run<Cr>", { desc = "Run code" } },
+	{ "n", "<leader>cw", "<Cmd>set wrap!<Cr>", { desc = "Wrap" } },
+	{
+		"n",
+		"<leader>cb",
+		"<Cmd>let &background=&background == 'dark' ? 'light' : 'dark'<Cr>",
+		{ desc = "Toggle background" },
+	},
+	{ { "n", "x" }, "<leader>v", "<Cmd>norm gg0vG$h<Cr>", { desc = "Select all" } },
+	{ "i", "<C-a>", "<C-o>I", { desc = "Move the cursor back to the first character" } },
+	{ { "n", "x" }, "zh", "zH", { desc = 'Horizontal scroll like "zH"' } },
+	{ { "n", "x" }, "zl", "zL", { desc = 'Horizontal scroll like "zL"' } },
+	{ "n", "<S-h>", "<Cmd>bprevious<cr>" },
+	{ "n", "<S-l>", "<Cmd>bnext<cr>" },
+	{ "n", "<leader>bd", "<Cmd>bdelete<cr>", { desc = "Delete buffer" } },
+	{ "n", "<leader>bb", "<Cmd>buffer #<cr>", { desc = "Previous buffer" } },
+	{ { "n", "x", "i" }, "<C-s>", "<Cmd>silent!w<cr><esc>", { desc = "Save file", silent = true } },
+	{ "n", "<leader>qa", "<Cmd>q!<cr>", { desc = "Quit all" } },
+	{ "n", "<leader>qq", "<Cmd>q<cr>", { desc = "Quit" } },
+	{ "n", "<leader>l", "<Cmd>Lazy<cr>", { desc = "Lazy" } },
 
--- Better insert
-keymap("i", "<C-a>", "<C-o>I")
+	-- Better up/down
+	{ { "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true } },
+	{ { "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true } },
+	{ { "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true } },
+	{ { "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true } },
 
-keymap({ "n", "x" }, "zh", "zH", { desc = 'Horizontal scroll like "zH"' })
-keymap({ "n", "x" }, "zl", "zL", { desc = 'Horizontal scroll like "zL"' })
+	-- Undo point
+	{ "i", ",", ",<C-g>u" },
+	{ "i", ".", ".<C-g>u" },
+	{ "i", ";", ";<C-g>u" },
 
--- Yank all
-keymap("n", "<leader>ya", "<cmd>normal! ggyG''<cr>", { desc = "Yank all" })
+	-- Commenting
+	{ "n", "gco", "o<esc>Vcx<esc><Cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" } },
+	{ "n", "gcO", "O<esc>Vcx<esc><Cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" } },
 
--- Window
-keymap("n", "<leader>w", "<C-w>", { desc = "Window" })
-
--- Buffer
-keymap("n", "<S-h>", "<cmd>bprevious<cr>")
-keymap("n", "<S-l>", "<cmd>bnext<cr>")
-keymap("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
-keymap("n", "<leader>bb", "<cmd>buffer #<cr>", { desc = "Previous buffer" })
-
--- Select all
-keymap({ "n", "x" }, "<leader>v", "gg0vG$", { desc = "Select all" })
-
--- Return Normal mode in terminal mode
-keymap("t", "<C-b>", "<cmd>e #<cr><cmd>e #<cr>")
--- Save file
-keymap({ "n", "x", "i" }, "<C-s>", "<cmd>silent!w<cr><esc>", { desc = "Save file", silent = true })
--- Quit
-keymap("n", "<leader>qa", "<cmd>q!<cr>", { desc = "Quit all" })
-keymap("n", "<leader>qq", "<cmd>q<cr>", { desc = "Quit" })
--- lazy.nvim
-keymap("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
-
--- <leader>g
--- Source
-keymap("n", "<leader>gg", function()
-	vim.cmd("silent! w")
-	vim.cmd("source %")
-end, { desc = "Source" })
-
--- Open term
-keymap("n", "<leader>gt", "<cmd>terminal<cr><cmd>startinsert<cr>", { desc = "Open terminal" })
-
--- Replace select
-keymap("x", "<leader>gr", function()
-	local reg = vim.fn.getreg('"')
-	local regtype = vim.fn.getregtype('"')
-	vim.cmd('normal! "vy')
-	local selection = vim.fn.getreg('"')
-	vim.fn.setreg('"', reg, regtype)
-
-	vim.ui.input({ prompt = 'Replace "' .. selection .. '" with' }, function(input)
-		if input then
-			vim.ui.input({ prompt = 'Flag | Ex: "gc"', default = "g" }, function(input_flag)
-				vim.cmd(string.format("%%s/%s/%s/%s", selection, input, input_flag))
-			end)
-		end
-	end)
-end, { desc = "Replace" })
-
--- Popup search
-keymap({ "n", "x" }, "<leader>gs", function()
-	vim.ui.input({ prompt = "Search  " }, function(input)
-		if input then
-			vim.cmd("?" .. input)
-		end
-	end)
-end, { desc = "Search" })
-
--- Re-open file
-keymap("n", "<leader>gf", "<cmd>e!<cr>", { desc = "Re-open" })
-
--- <leader>c
-keymap("n", "<leader>cb", function()
-	vim.o.background = vim.o.background == "dark" and "light" or "dark"
-end, { desc = "Toggle background" }) -- Can not working on some themes
-
-keymap("n", "<leader>cw", function()
-	vim.o.wrap = not vim.o.wrap
-end, { desc = "Wrap" })
-
-keymap("n", "<leader>cr", function()
-	local method = "make"
-	vim.cmd("silent! w")
-	if method == "make" then
-		vim.cmd("terminal make run")
-	elseif method == "shell" then
-		vim.cmd("terminal ./run.sh")
-	end
-end, { desc = "Run code" })
-
-keymap("n", "<leader>co", "<cmd>normal! gg=G''<cr>", { desc = "Indent" })
-
-function Keymaps.lsp(bufnr)
-	-- Code action
-	keymap("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action", buffer = bufnr })
-
-	-- Inlay hint
-	keymap("n", "<leader>ch", function()
-		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-	end, { desc = "Toggle inlay hint", buffer = bufnr })
-
-	-- If not use the fzf-lua swith to use the built-in
-	if not package.loaded["fzf-lua"] then
-		keymap("n", "grd", vim.lsp.buf.definition, { desc = "Definition", buffer = bufnr })
-		keymap("n", "gri", vim.lsp.buf.implementation, { desc = "Implementation", buffer = bufnr })
-		keymap("n", "grr", vim.lsp.buf.references, { desc = "References", buffer = bufnr })
-		keymap("n", "grt", vim.lsp.buf.type_definition, { desc = "Type definition", buffer = bufnr })
-	else
-		local fzf = require("fzf-lua")
-		keymap("n", "grd", fzf.lsp_definitions, { desc = "Definition", buffer = bufnr })
-		keymap("n", "gri", fzf.lsp_implementations, { desc = "Implementation", buffer = bufnr })
-		keymap("n", "grr", fzf.lsp_references, { desc = "References", buffer = bufnr })
-		keymap("n", "grt", fzf.lsp_typedefs, { desc = "Type definition", buffer = bufnr })
-	end
-
-	keymap({ "n", "i" }, "<C-k>", function()
-		vim.lsp.buf.signature_help({
-			border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
-			focus = false,
-			close_events = { "BufWinLeave", "CursorMoved", "CursorMovedI", "ModeChanged" },
-		})
-	end, { desc = "Signature help", buffer = bufnr })
-
-	keymap({ "n", "i" }, "<C-l>", function()
-		vim.diagnostic.open_float(nil, {
-			border = { "", "─", "╮", "│", "╯", "─", "╰", "│" },
-			focus = false,
-			close_events = { "BufWinLeave", "CursorMoved", "CursorMovedI", "ModeChanged" },
-		})
-	end, { desc = "Open diagnostic float", buffer = bufnr })
-end
-
--- ©LazyVim
--- Better up/down
-keymap({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-keymap({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-keymap({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
-keymap({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
-
--- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-keymap("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
-keymap("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
-keymap("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
-keymap("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
-keymap("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
-keymap("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
-
--- Add undo break-points
-keymap("i", ",", ",<C-g>u")
-keymap("i", ".", ".<C-g>u")
-keymap("i", ";", ";<C-g>u")
-
--- Better indents
-keymap("v", "<", "<gv")
-keymap("v", ">", ">gv")
-
--- commenting
-keymap("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
-keymap("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
-
--- Diagnostic
-local diagjump = function(count, severity)
-	return function()
-		vim.diagnostic.jump({
-			count = count,
-			severity = vim.diagnostic.severity[severity],
-		})
-	end
-end
-keymap({ "n", "x" }, "+d", diagjump(1), { desc = "Next Diagnostic" })
-keymap({ "n", "x" }, "-d", diagjump(-1), { desc = "Prev Diagnostic" })
-keymap({ "n", "x" }, "+e", diagjump(1, "ERROR"), { desc = "Next Error" })
-keymap({ "n", "x" }, "-e", diagjump(-1, "ERROR"), { desc = "Prev Error" })
-keymap({ "n", "x" }, "+w", diagjump(1, "WARN"), { desc = "Next Warning" })
-keymap({ "n", "x" }, "-w", diagjump(-1, "WARN"), { desc = "Prev Warning" })
-
--- Clear search
-keymap({ "i", "n", "s" }, "<esc>", function()
-	vim.cmd("noh")
-	return "<esc>"
-end, { expr = true, desc = "Escape and Clear hlsearch" })
-
-return Keymaps
+	{
+		{ "i", "n", "s" },
+		"<esc>",
+		function()
+			vim.cmd("noh")
+			return "<esc>"
+		end,
+		{ expr = true, desc = "Escape and Clear hlsearch" },
+	},
+})
