@@ -10,8 +10,11 @@
 
 ## Requirements
 
-- nerd font
-- clang (For building parsers)
+- [Nerd font](https://www.nerdfonts.com/font-downloads)
+<details>
+    <summary> - clang (For building parsers)</summary>
+    - Termux `pkg install clangd`
+</details>
 - lua-language-server (Optional)
 - treesitter
 - rust (Need to build blink.cmp)
