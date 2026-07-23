@@ -12,8 +12,8 @@
 
 - [Nerd font](https://www.nerdfonts.com/font-downloads)
 <details>
-    <summary> - clang (For building parsers)</summary>
-    - Termux `pkg install clangd`
+    <summary><p>clang (For building parsers)</p></summary>
+    <p>Termux `pkg install clangd`</p>
 </details>
 - lua-language-server (Optional)
 - treesitter
