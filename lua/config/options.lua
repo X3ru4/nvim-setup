@@ -1,104 +1,37 @@
 local opt = vim.opt
 
+-- Security
 opt.exrc = true
 opt.secure = true
 
 -- Performance
-opt.updatetime = 100
+opt.updatetime = 250
 opt.timeoutlen = 300
 opt.ttimeoutlen = 10
 opt.synmaxcol = 200
 
--- Window
-opt.relativenumber = true
-opt.cmdheight = 1
+-- UI
+opt.termguicolors = true
+opt.winborder = "rounded"
 opt.winblend = 0
 opt.pumblend = 0
-opt.winborder = "none"
-
-
--- Wrap
-opt.wrap = false
-opt.breakindent = true
-opt.linebreak = true
-
-opt.number = true
-opt.autowrite = true
-
--- Status column
+opt.pumheight = 10
+opt.cmdheight = 1
 opt.laststatus = 3
-opt.signcolumn = "yes"
-
--- Fold
-function _G.newfoldtext()
-	local line = vim.fn.getline(vim.v.foldstart)
-	local count = vim.v.foldend - vim.v.foldstart + 1
-	return "  " .. line .. " ↙" .. count
-end
-opt.foldenable = true
-opt.foldlevel = 99
-opt.foldmethod = "expr"
-opt.foldtext = "v:lua.newfoldtext()" -- Custom foldtext
-opt.foldcolumn = "0"
-
--- opt.conceallevel = 2
+opt.ruler = false
+opt.showmode = false
 opt.confirm = true
+opt.mouse = "a"
+
+-- Line numbers
+opt.number = true
+opt.relativenumber = true
+
+-- Cursor
 opt.cursorline = true
 opt.cursorcolumn = false
-opt.expandtab = true
-opt.fillchars = {
-	foldopen = "",
-	foldclose = "",
-	fold = " ",
-	foldsep = " ",
-	diff = "╱",
-	eob = "~",
-}
-opt.formatoptions = "jcroqlnt"
-opt.grepformat = "%f:%l:%c:%m"
-opt.grepprg = "rg --vimgrep"
-opt.ignorecase = true
-opt.inccommand = "nosplit"
-opt.jumpoptions = "view"
-opt.mouse = "a"
-opt.pumheight = 20
-opt.ruler = false
 opt.scrolloff = 4
-opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
-opt.shiftround = true
-opt.shiftwidth = 2
-opt.shortmess:append({ W = true, I = true, c = true, C = true })
-opt.showmode = false
 opt.sidescrolloff = 8
-opt.smartcase = true
-opt.smartindent = true
-opt.spelllang = { "en" }
-opt.spell = false
-opt.splitbelow = true
-opt.splitkeep = "screen"
-opt.splitright = true
-opt.tabstop = 2
-opt.termguicolors = true
-opt.undofile = true
-opt.undolevels = 10000
-opt.virtualedit = "block"
-opt.wildmode = "longest:full,full"
-opt.winminwidth = 5
-
-opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
-
-opt.list = true
-opt.listchars = {
-	eol = " ",
-	tab = "  ",
-	leadmultispace = "  ",
-	extends = "⟩",
-	precedes = "⟨",
-	space = "•",
-	trail = "•",
-	nbsp = "␣",
-}
-
 opt.guicursor = {
 	"n-c:block-Cursor",
 	"v:block-Cursor",
@@ -106,3 +39,100 @@ opt.guicursor = {
 	"r-cr:hor20-Cursor",
 	"o:hor50-Cursor",
 }
+
+-- Window & Split
+opt.splitbelow = true
+opt.splitright = true
+opt.splitkeep = "screen"
+opt.winminwidth = 5
+
+-- Wrap
+opt.wrap = false
+opt.linebreak = true
+opt.breakindent = true
+
+-- Fold
+opt.foldenable = true
+opt.foldlevel = 99
+opt.foldmethod = "expr"
+opt.foldcolumn = "0"
+
+-- Indent
+opt.expandtab = true
+opt.shiftwidth = 2
+opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = -1
+opt.smartindent = true
+opt.shiftround = true
+
+-- Search
+opt.ignorecase = true
+opt.smartcase = true
+opt.grepprg = "rg --vimgrep"
+opt.grepformat = "%f:%l:%c:%m"
+opt.inccommand = "nosplit"
+
+-- File
+opt.autowrite = true
+opt.undofile = true
+opt.undolevels = 10000
+opt.sessionoptions = {
+	"buffers",
+	"curdir",
+	"tabpages",
+	"winsize",
+	"help",
+	"globals",
+	"skiprtp",
+	"folds",
+}
+
+-- Editing
+opt.virtualedit = "block"
+opt.jumpoptions = "view"
+opt.formatoptions = "jcrq"
+
+-- Completion
+opt.wildmode = "longest:full,full"
+
+-- Spell
+opt.spell = false
+opt.spelllang = { "en" }
+
+-- Status column
+opt.signcolumn = "yes"
+
+-- Clipboard
+opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
+
+-- List
+opt.list = true
+opt.listchars = {
+	eol = " ",
+	tab = "  ",
+	leadmultispace = "  ",
+	extends = "›",
+	precedes = "‹",
+	space = "·",
+	trail = "•",
+	nbsp = "␣",
+}
+
+-- Fillchars
+opt.fillchars = {
+	foldopen = "",
+	foldclose = "",
+	fold = "",
+	foldsep = "│",
+	diff = "╱",
+	eob = " ",
+}
+
+-- Messages
+opt.shortmess:append({
+	W = true,
+	I = true,
+	c = true,
+	C = true,
+})

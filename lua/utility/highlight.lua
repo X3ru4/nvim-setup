@@ -1,25 +1,48 @@
-local M = {}
+---@alias utility.highlight.hl_list_fun fun():string, table
+
+---@class utility.highlight.highlights
+---@field basic table|table<string, table>|nil
+---@field extra table|[string, table][]|utility.highlight.hl_list_fun[]|nil
+---@field callback table|function[]|nil
+
+---@class utility.highlight.advance_hl_style
+---@field name string,
+---@field list table,
+---@field key string,
+---@field type "fg"|"bg"|nil,
+
+---@class utility.highlight.advance_hl_spec
+---@field default_hl string
+---@field fg utility.highlight.advance_hl_style|string|nil
+---@field bg utility.highlight.advance_hl_style|string|nil
+---@field gui vim.api.keyset.highlight|nil
 
 local cache = {
 	def = {},
 	get = {},
 }
 
----Clear caches
+local M = {}
+
 function M.clear_cache()
 	cache.def = {}
 	cache.get = {}
 end
 
+M.oget = vim.api.nvim_get_hl
+M.oset = vim.api.nvim_set_hl
+M.use_cache = false
+
 ---This is the default table used to load highlights when M.apply() is called.
-M.highlights = {}
----M.highlights_extra is used to load before M.highlights when M.apply() is called.
-M.highlights_extra = {}
+M.highlight = {
+	basic = {},
+	extra = {},
+	callback = {},
+}
 
 ---Get the highlight but with the cache.
----Please use this function with M.set() to the best performance and no bug.
----@param name string Is the name of the highlight.
----@return table|vim.api.keyset.get_hl_info
+---@param name string
+---@return vim.api.keyset.get_hl_info|table
 function M.get(name)
 	if not cache.get[name] then
 		cache.get[name] = vim.api.nvim_get_hl(0, { name = name, link = false })
@@ -38,189 +61,138 @@ function M.getbg(name)
 	return M.get(name).bg
 end
 
-local function inspect(t)
-	local result = ""
-	for k, v in pairs(t) do
-		result = result .. k .. tostring(v)
-	end
-	return result
-end
-
 ---Like the vim.api.nvim_set_hl() but with the cache.
----Please use this function with M.get() to the best performance.
----@param name string Name of highlight.
----@param opts vim.api.keyset.highlight Options
-function M.set(name, opts)
-	local key = name .. inspect(opts)
-	if not cache.def[key] then
+---@param name string
+---@param opts vim.api.keyset.highlight|table
+---@param force boolean|nil
+function M.set(name, opts, force)
+	if (force or opts.cforce) or not cache.def[name] then
+		opts.cforce = nil
 		vim.api.nvim_set_hl(0, name, opts)
 		cache.get[name] = nil
-		cache.def[key] = true
+		cache.def[name] = true
 	end
+end
+
+---@param hl_list utility.highlight.highlights
+function M.insert(hl_list)
+	M.highlight = vim.tbl_deep_extend("force", M.highlight, hl_list)
+	return M.highlight
 end
 
 ---Modify highlight.
 ---@param name string The highlight name
----@param opts vim.api.keyset.highlight|function
----@param fallback boolean|nil If true the function will return a table.
----@return vim.api.keyset.highlight|nil|table
-function M.modify(name, opts, fallback)
-	if not M.hlexists(name) then
+---@param opts vim.api.keyset.highlight|fun(base:vim.api.keyset.get_hl_info):table
+---@param append boolean|nil If true, it will be added to the M.highlight table.
+---@return [string, table]
+function M.modify(name, opts, append)
+	if not M.hl_exist(name) then
+		return {}
+	end
+
+	local base = M.get(name)
+	opts = type(opts) == "function" and opts(base) or opts
+
+	local merged = vim.tbl_extend("force", base, opts)
+	M.highlight.basic[name] = append and merged or M.highlight.basic[name]
+	return { name, merged }
+end
+
+---Apply highlights from `hl_list`. If `hl_list` is empty (nil), apply the M.highlights table instead.
+---@param hl_list nil|utility.highlight.highlights
+---@param use_cache boolean|nil
+function M.apply(hl_list, use_cache)
+	if not M.use_cache and not use_cache then
+		M.clear_cache()
+	end
+
+	local t = (hl_list and hl_list ~= {}) and hl_list or M.highlight
+	if t then
+		if t.basic and t.basic ~= {} then
+			for name, opts in pairs(t.basic) do
+				M.set(name, opts)
+			end
+		end
+		if t.extra and t.extra ~= {} then
+			for _, val in ipairs(t.extra) do
+				if type(val) == "function" then
+					M.set(val())
+				else
+					if val[1] and val[2] then
+						M.set(val[1], val[2])
+					end
+				end
+			end
+		end
+	end
+end
+
+---This function use to callback your function when highlight is load or reload.
+---@param id string
+---@param callback function
+---@param overide boolean|nil
+function M.add_callback(id, callback, overide)
+	if not overide and M.highlight.callback[id] then
+		M.highlight.callback[id]()
 		return
 	end
-	local base = M.get(name) or {}
-	if type(opts) == "function" then
-		opts = opts(base) or {}
-	end
-	local merged = vim.tbl_extend("force", base, opts or {})
-	if fallback then
-		return merged
-	else
-		M.highlights[name] = merged
-	end
+	callback()
+	M.highlight.callback[id] = callback
 end
 
----@param name string|table Name of colorscheme
----@param opts table|function|{ fn: function }
----@param apply boolean|nil Default is true
-function M.match(name, opts, apply)
-	local self = {}
-	self.theme = vim.g.colors_name
-	apply = apply or false
-
-	local function matched()
-		local color = self.theme
-		if color == nil then
-			return
-		end
-
-		local function check_str(s)
-			if s:match("!$") == "!" then
-				s = s:match("(%w+)!$")
-				self.variant = color:gsub(s, "")
-				return color:match("^" .. s) == s
-			elseif s:match("^!") then
-				s = s:match("^!(%w+)")
-				self.variant = color:gsub(s, "")
-				return color:match(s .. "$") == s
-			end
-			return s == color
-		end
-
-		if type(name) == "table" then
-			for _, c in ipairs(name) do
-				if check_str(c) then
-					return true
-				end
-			end
-			return false
-		end
-		return check_str(name)
-	end
-
-	if matched() then
-		if type(opts) == "function" then
-			M.highlights = vim.tbl_extend("force", M.highlights, opts(self) or {})
-		elseif type(opts) == "table" then
-			if type(opts.fn) == "function" then
-				local fn = opts.fn(self)
-				opts.fn = nil
-				if type(fn) == "table" then
-					opts = vim.tbl_extend("force", opts, fn)
-				end
-			end
-
-			M.highlights = vim.tbl_extend("force", M.highlights, opts or {})
-		end
-
-		if apply then
-			M.apply()
+function M.run_callbacks()
+	if M.highlight.callback and M.highlight.callback ~= {} then
+		for _, fn in pairs(M.highlight.callback) do
+			fn()
 		end
 	end
 end
 
----Apply all highlights from M.highlights and other table.
----@param other table|function|nil
-function M.apply(other)
-	M.clear_cache()
-	local function pair(t)
-		if not t then
-			return
-		end
-		if type(t) == "function" then
-			t = t()
-		end
+local started = false
 
-		for name, opts in pairs(t) do
-			if type(opts) == "function" then
-				opts = opts()
-			end
-
-			M.set(name, opts)
-		end
+---Setup
+---@param fn function
+function M.setup(fn)
+	if started then
+		M.highlight.basic = {}
+		M.highlight.extra = {}
 	end
-
-	if other then
-		pair(other)
-	else
-		pair(vim.tbl_extend("force", M.highlights, M.highlights_extra))
-	end
+	fn()
+	M.apply()
+	M.run_callbacks()
+	M.use_cache = true
+	started = true
 end
-
----@alias hl_api.TextStyle
----|{
----  name:string,
----  type:"fg"|"bg"|nil,
----}
----|{
----  list:table,
----  key:string,
----  type:"fg"|"bg"|nil,
----}
----@alias hl_api.HlSpec
----|{
----  default_hl:string,
----  fg:hl_api.TextStyle|string|nil,
----  bg:hl_api.TextStyle|string|nil,
----  gui:vim.api.keyset.highlight|nil,
----}
 
 ---Create your highlight!
 ---@param ns string Namespace
----@param spec hl_api.HlSpec Spection
+---@param spec utility.highlight.advance_hl_spec Spection
 ---@return string
-function M.mix_hl(ns, spec)
+function M.advance_hl(ns, spec)
+	local function create_key(style)
+		return type(style) == "table" and style.list and (style.list[style.key] or "") or ""
+	end
+
+	ns = ns .. create_key(spec.fg) .. create_key(spec.bg)
+
 	if not cache.def[ns] then
-		local function pick_hl(arg, fallback_key)
-			if not arg then
-				return M.get(spec.default_hl)[fallback_key]
+
+		local function pick_hl(style, key)
+			if not style then
+				return nil
 			end
-			if type(arg) == "string" then
-				return arg
+			if type(style) == "string" or type(style) == "number" then
+				return style
 			end
 
-			if arg.list then
-				return M.get(arg.list[arg.key] or arg.list[arg.default_key] or spec.default_hl)[arg[1] or fallback_key]
-			elseif arg[1] then
-				return M.get(arg[1])[arg[2] or fallback_key]
+			spec.default_hl = spec.default_hl or "Normal"
+			if style.list then
+				local group = style.list[style.key] or style.list[style.default_key] or spec.default_hl
+				return M.get(group)[style[1] or key]
+			elseif style[1] then
+				return M.get(style[1])[style[2] or key]
 			end
 		end
-
-		local function create_key(arg)
-			if arg then
-				if arg.list then
-					return arg.list[arg.key] or ""
-				end
-			end
-			return ""
-		end
-
-		spec.default_hl = spec.default_hl or "Normal"
-		ns = table.concat({
-			ns,
-			create_key(spec.fg),
-			create_key(spec.bg),
-		})
 
 		M.set(
 			ns,
@@ -233,8 +205,7 @@ function M.mix_hl(ns, spec)
 	return ns
 end
 
--- Helper to convert hex string to RGB table {r, g, b}
-function M.hex_to_rgb(hex)
+local function hex_to_rgb(hex)
 	if hex:byte(1) == 35 then -- #
 		hex = hex:sub(2)
 	end
@@ -245,8 +216,7 @@ function M.hex_to_rgb(hex)
 	}
 end
 
--- Helper to convert RGB table {r, g, b} to hex string
-function M.rgb_to_hex(rgb)
+local function rgb_to_hex(rgb)
 	return string.format("#%02x%02x%02x", rgb.r, rgb.g, rgb.b)
 end
 
@@ -259,20 +229,20 @@ function M.dec_to_hex(dec_color)
 end
 
 --- Blends colors with an alpha value
---- @param foreground string|number color in hex format or number (e.g., "#RRGGBB" or 0xRRGGBB)
---- @param background string|number color in hex format or number (e.g., "#RRGGBB" or 0xRRGGBB)
---- @param alpha number alpha value between 0 (fully transparent) and 1 (fully opaque)
---- @return string|number|nil the resulting blended color in hex format
+--- @param foreground string|number
+--- @param background string|number
+--- @param alpha number
+--- @return string|nil
 M.blend = function(foreground, background, alpha)
-	if not foreground or not background then
-		vim.notify("highlight.blend() was returned nil", vim.log.levels.WARN)
-		return nil
+	if not foreground or not background or not alpha then
+		vim.notify("blend() returned nil", vim.log.levels.ERROR)
+		return
 	end
 
 	foreground = type(foreground) == "number" and M.dec_to_hex(foreground) or foreground
 	background = type(background) == "number" and M.dec_to_hex(background) or background
-	local color1 = M.hex_to_rgb(foreground)
-	local color2 = M.hex_to_rgb(background)
+	local color1 = hex_to_rgb(foreground)
+	local color2 = hex_to_rgb(background)
 
 	-- Alpha blend formula: blended = alpha * color1 + (1 - alpha) * color2
 	local r = math.floor(alpha * color1.r + (1 - alpha) * color2.r + 0.5)
@@ -283,14 +253,13 @@ M.blend = function(foreground, background, alpha)
 	r = math.max(0, math.min(255, r))
 	g = math.max(0, math.min(255, g))
 	b = math.max(0, math.min(255, b))
-	return M.rgb_to_hex({ r = r, g = g, b = b })
+	return rgb_to_hex({ r = r, g = g, b = b })
 end
 
----Checking if that highlight is available
----@param hl string
+---@param name string
 ---@return boolean
-function M.hlexists(hl)
-	return vim.fn.hlexists(hl) == 1
+function M.hl_exist(name)
+	return not vim.tbl_isempty(M.get(name))
 end
 
 return M

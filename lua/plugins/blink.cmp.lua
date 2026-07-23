@@ -56,14 +56,13 @@ return {
 				enabled = false,
 				window = {
 					scrollbar = false,
-					winblend = 0,
 					border = "rounded",
 					show_documentation = false,
 				},
 			},
 			completion = {
 				ghost_text = {
-					enabled = true,
+					enabled = false,
 					show_with_selection = true,
 					show_without_selection = true,
 					show_with_menu = true,
@@ -83,7 +82,6 @@ return {
 						min_width = 30,
 						max_width = 45,
 						max_height = 10,
-						winblend = 0,
 						border = blinkcmp.documentation.border,
 						winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,EndOfBuffer:BlinkCmpDoc",
 					},
@@ -92,7 +90,6 @@ return {
 					scrollbar = false,
 					min_width = 1,
 					max_height = 8,
-					winblend = 0,
 					border = blinkcmp.menu.border,
 					winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
 					draw = {
@@ -146,6 +143,14 @@ return {
 					},
 				},
 			},
+		})
+
+
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = "blink-cmp-documentation",
+			callback = function()
+				vim.bo.filetype = "markdown"
+			end,
 		})
 	end,
 }

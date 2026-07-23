@@ -4,28 +4,28 @@ return {
 	opts = {},
 	keys = {
 		{
-			"<leader>qs",
+			"<leader>gs",
 			function()
 				require("persistence").load()
 			end,
 			desc = "Restore Session",
 		},
 		{
-			"<leader>qS",
+			"<leader>gS",
 			function()
 				require("persistence").select()
 			end,
 			desc = "Select Session",
 		},
 		{
-			"<leader>ql",
+			"<leader>gl",
 			function()
 				require("persistence").load({ last = true })
 			end,
 			desc = "Restore Last Session",
 		},
 		{
-			"<leader>qd",
+			"<leader>gd",
 			function()
 				require("persistence").stop()
 			end,

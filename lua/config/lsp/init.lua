@@ -7,7 +7,6 @@ local severity_icons = {
 	[vim.diagnostic.severity.HINT] = icons.Hint,
 }
 
-vim.lsp.inlay_hint.enable(false)
 vim.diagnostic.config({
 	virtual_text = {
 		prefix = function(diagnostic)
@@ -15,7 +14,7 @@ vim.diagnostic.config({
 		end,
 		suffix = " ",
 	},
-	underline = false,
+	underline = true,
 	float = { source = "if_many" },
 	update_in_insert = false,
 	signs = {
@@ -23,15 +22,17 @@ vim.diagnostic.config({
 	},
 })
 
+vim.lsp.inlay_hint.enable(false)
+
 for name, config in require("utility.loader").load_file("lua/config/lsp") do
-	if type(config) == "table" then
-		vim.lsp.config(name:gsub("%.lua$", ""), config)
+	if type(config) == "table" and config.enabled ~= false then
+		local server = name:gsub("%.lua$", "")
+		vim.lsp.config(server, config)
+		vim.lsp.enable(server)
 	end
 end
 
-local keymap = require("utility.keymap")
-
-keymap.set_list({
+vimu.keymap.set_list({
 	{
 		{ "n", "x" },
 		"[e",
@@ -80,16 +81,6 @@ keymap.set_list({
 		end,
 		{ desc = "Goto next HINT" },
 	},
-
-	{ "n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" } },
-	{
-		"n",
-		"<leader>ch",
-		function()
-			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-		end,
-		{ desc = "Toggle inlay hint" },
-	},
 	{
 		{ "n", "i" },
 		"<C-k>",
@@ -116,10 +107,27 @@ keymap.set_list({
 	},
 })
 
+vimu.keymap.del_list({
+	{ { "n", "x" }, "gra" }, -- "gra" (Normal and Visual mode) is mapped to vim.lsp.buf.code_action()
+	{ "n", "grx" }, -- "grx" is mapped to vim.lsp.codelens.run()
+})
+
 -- This function will be run when LSP attach to buffer.
 function M.attach(ev)
 	-- Remove the default LSP signature keymap.
-	keymap.del("n", "K", { buf = ev.buf })
+	vimu.keymap.del("n", "K", { buf = ev.buf })
+
+	vimu.keymap.set_list({
+		{ { "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action", buf = ev.buf } },
+		{
+			"n",
+			"<leader>ch",
+			function()
+				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+			end,
+			{ desc = "Toggle inlay hint", buf = ev.buf },
+		},
+	})
 end
 
 return M

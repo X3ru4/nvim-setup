@@ -1,67 +1,68 @@
 local autocmd = vim.api.nvim_create_autocmd
-local group = vim.api.nvim_create_augroup("MyGroup", { clear = true })
+local augroup = vim.api.nvim_create_augroup
+local opts = { clear = true }
+local groups = {
+	misc = augroup("MyAuGroupMisc", opts),
+	control = augroup("MyAuGroupControl", opts),
+}
 
+---Miscelaneous
 -- Highlight on yank.
 autocmd("TextYankPost", {
-	group = group,
+	group = groups.misc,
 	callback = function()
 		vim.hl.on_yank({ higroup = "Yank", timeout = 150, priority = 10000 })
 	end,
 })
+autocmd({ "InsertLeave", "WinEnter" }, {
+	group = groups.misc,
+	callback = function()
+		vim.o.cursorline = true
+	end,
+})
+autocmd({ "InsertEnter", "WinLeave" }, {
+	group = groups.misc,
+	callback = function()
+		vim.o.cursorline = false
+	end,
+})
 
--- Reload config.highlight when colorscheme changed.
+---Control
+-- Load highlight configuration when changing colorscheme.
 autocmd("ColorScheme", {
-	group = group,
+	group = groups.control,
 	callback = function()
-		vim.cmd("SetupHl")
+		vimu.highlight.use_cache = false -- Stop using cache.
+		vim.cmd("Loadhl")
 	end,
 })
-
--- Render blink-cmp documentation as markdown
-autocmd("FileType", {
-	group = group,
-	pattern = "blink-cmp-documentation",
-	callback = function()
-		vim.bo.filetype = "markdown"
-	end,
-})
-
 -- Setup highlights
-autocmd("UIEnter", {
-	group = group,
+autocmd("VimEnter", {
+	group = groups.control,
 	once = true,
 	callback = function()
-		vim.cmd("SetupHl")
+		vim.cmd("Loadhl")
+	end,
+})
+
+autocmd("BufReadPost", {
+	group = groups.control,
+	pattern = "*.material",
+	callback = function()
+		vim.bo.filetype = "jsonc"
+	end,
+})
+autocmd("BufReadPost", {
+	group = groups.control,
+	pattern = "*.molang",
+	callback = function()
+		vim.bo.filetype = "c"
 	end,
 })
 
 autocmd("LspAttach", {
-	group = group,
-	callback = function(ev)
-		require("config.keymaps").lsp(ev.buf)
-	end,
-})
-
-autocmd("FileType", {
-  group = group,
-  pattern = "json",
-  callback = function ()
-    vim.bo.filetype = "jsonc"
-  end
-})
-
-autocmd("BufReadPost", {
-  group = group,
-  pattern = "*.material",
-  callback = function ()
-    vim.bo.filetype = "jsonc"
-  end
-})
-
-autocmd("BufReadPost", {
-  group = group,
-  pattern = "*.molang",
-  callback = function ()
-    vim.bo.filetype = "c"
-  end
+	group = groups.control,
+	callback = function (ev)
+		require("config.lsp").attach(ev)
+	end
 })

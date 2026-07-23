@@ -9,6 +9,7 @@ return {
 			c = { "clang-format" },
 			h = { "clang-format" },
 			json = { "prettier" },
+			markdown = { "prettier" },
 			python = { "ruff" },
 			rust = { "rustfmt" },
 		},
@@ -19,7 +20,7 @@ return {
 				stdin = true,
 			},
 			prettier = {
-				prepend_args = { "--tab-width", "2" },
+				prepend_args = {},
 			},
 		},
 		default_format_opts = {
@@ -40,9 +41,8 @@ return {
 			"<leader>cf",
 			function()
 				require("conform").format({ async = false, lsp_fallback = true })
-				vim.cmd("silent! w")
 			end,
-			desc = "Format and save file",
+			desc = "Format code",
 			mode = { "x", "n", "v" },
 		},
 	},

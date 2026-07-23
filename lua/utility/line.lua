@@ -1,9 +1,9 @@
 local M = {}
-local hl_api = require("utility.highlight")
+local hl = require("utility.highlight")
 
 local cache = {
-  space = {},
-  hl_fmt = {},
+	space = {},
+	hl_fmt = {},
 }
 
 ---Convert the highlight name to the string can use at statusline,..
@@ -49,8 +49,8 @@ end
 
 ---@alias line.SepPart
 ---|{
----  value:string|function,
----  hl:hl_api.HlSpec|string|nil,
+---  str:string|function,
+---  hl:utility.highlight.advance_hl_spec|string|nil,
 ---}
 
 ---This function can create your beautiful line
@@ -64,26 +64,25 @@ end
 ---}
 ---@return string
 function M.separator(spec)
-	local self = {}
-
 	if not spec.id then
 		vim.notify("separator({ id = ? })")
+    spec.id = "nil"
 	end
 
 	local function section_fmt(section, id)
-		local hl_ns = "Separator" .. (spec.id or "nil") .. id
+		local sep_ns = "Separator" .. spec.id .. id
 		if type(section) == "table" then
 			section.hl.default_hl = spec.default_hl
-			self.hl = hl_api.mix_hl(hl_ns, section.hl) -- Create new the highlight group for this section
-			if type(section.value) == "function" then
-				return section.value(self)
-			elseif type(section.value) == "string" then
+			local hl_name = hl.advance_hl(sep_ns, section.hl)
+			if type(section.str) == "function" then
+				return section.str(hl_name)
+			elseif type(section.str) == "string" then
 				if type(section.hl) == "string" then
-					return M.hl_fmt(section.hl, section.value)
+					return M.hl_fmt(section.hl, section.str)
 				elseif not section.hl then
-					return M.hl_fmt(spec.default_hl, section.value)
+					return M.hl_fmt(spec.default_hl, section.str)
 				end
-				return M.hl_fmt(self.hl, section.value)
+				return M.hl_fmt(hl_name, section.str)
 			end
 		end
 		return ""

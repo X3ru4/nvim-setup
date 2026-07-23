@@ -6,9 +6,14 @@ return {
 			italic_comments = true,
 			italic_keywords = true,
 			transparent = false,
-      require("plugins.colorscheme")
 		})
 
 		vim.cmd.colorscheme("shale")
+		local hl = vimu.highlight
+		hl.insert({
+			extra = {
+				hl.modify("FloatBorder", { bg = hl.getbg("NormalFloat") }),
+			},
+		})
 	end,
 }

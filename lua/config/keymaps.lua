@@ -1,6 +1,4 @@
-local keymap = require("utility.keymap")
-
-keymap.set_list({
+vimu.keymap.set_list({
 	{ "n", "<leader>re", "<Cmd>restart<Cr>", { desc = "Restart Neovim" } },
 	{ "n", "<leader>ro", "<Cmd>e!<Cr>", { desc = "Re-open" } },
 	{ "n", "<leader>rm", "<Cmd>!rm ~/.local/state/nvim/swap -rf<Cr>", { desc = "Remove swap folder" } },

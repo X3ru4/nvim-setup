@@ -4,6 +4,6 @@ return {
 		-- input_buffer_type = "dressing",
 	},
 	keys = {
-		{ "grn", ":IncRename ", desc = "Rename" },
+		{ "grn", ":IncRename ", desc = "LSP Rename" },
 	},
 }

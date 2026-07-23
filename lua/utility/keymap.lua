@@ -3,7 +3,7 @@ local M = {}
 M.del = vim.keymap.del
 M.set = vim.keymap.set
 
----@param list vim.keymap.set.Opts[]
+---@param list [string|string[], string, string|function, vim.keymap.set.Opts][]
 function M.set_list(list)
 	for _, opts in ipairs(list) do
 		local ok, _ = pcall(M.set, unpack(opts))
@@ -13,7 +13,7 @@ function M.set_list(list)
 	end
 end
 
----@param list vim.keymap.set.Opts[]
+---@param list [string|string[], string, string|function, vim.keymap.del.Opts][]
 function M.del_list(list)
   for _, opts in ipairs(list) do
     local ok, _ = pcall(M.del, unpack(opts))

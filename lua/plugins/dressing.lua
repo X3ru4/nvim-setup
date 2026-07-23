@@ -1,6 +1,5 @@
 return {
 	"stevearc/dressing.nvim",
-	enabled = true,
 	event = "VeryLazy",
 	opts = {
 		input = {
@@ -9,7 +8,7 @@ return {
 				conf.row = 0
 				return conf
 			end,
-			border = "rounded",
+			border = nil,
 		},
 		select = {
 			backend = "fzf_lua",

@@ -22,13 +22,13 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
   spec = {
     { import = "plugins" },
-    require("utility.colorscheme").create_spec()
+    vimu.colorscheme.create_spec()
   },
   install = {
     -- install missing plugins on startup. This doesn't increase startup time.
     missing = true,
     -- try to load one of these colorschemes when starting an installation during startup
-    colorscheme = { require("utility.colorscheme").default },
+    colorscheme = { vimu.colorscheme.default },
   },
   checker = { enabled = true },
   defaults = {
@@ -39,9 +39,11 @@ require("lazy").setup({
     enabled = false,
   },
   ui = {
-    border = "solid",
+    border = vim.o.winborder,
+    backdrop = 100,
+    title = "› LAZY ‹",
     icons = {
-      cmd = "$",
+      cmd = "󰆍",
       config = "󰒓",
       debug = "󰃤",
       event = "󱐋",
@@ -50,10 +52,10 @@ require("lazy").setup({
       init = "󰒓",
       import = "󰋺",
       keys = "󰌌",
-      lazy = "💤 ",
-      loaded = "󰄬",
-      not_loaded = "󰜺",
-      plugin = "󰏖",
+      lazy = "󰒲 ",
+      loaded = "",
+      not_loaded = "",
+      plugin = "󰏓",
       runtime = "󱨚",
       require = "󰢱",
       source = "󰓦",

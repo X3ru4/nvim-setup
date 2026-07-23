@@ -43,22 +43,13 @@ return {
 		highlights = {
 			enabled = true,
 			cmdline = true,
-			groups = {
-				"BlinkIndentRed",
-				"BlinkIndentOrange",
-				"BlinkIndentYellow",
-				"BlinkIndentGreen",
-				"BlinkIndentCyan",
-				"BlinkIndentBlue",
-				"BlinkIndentViolet",
-			},
-			unmatched_group = "BlinkPairsUnmatched",
+			unmatched_group = "ErrorMsg",
 
 			-- highlights matching pairs under the cursor
 			matchparen = {
 				enabled = false,
 				-- known issue where typing won't update matchparen highlight, disabled by default
-				cmdline = false,
+				cmdline = true,
 				-- also include pairs not on top of the cursor, but surrounding the cursor
 				include_surrounding = false,
 				group = "BlinkPairsMatchParen",

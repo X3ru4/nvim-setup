@@ -1,12 +1,12 @@
 local M = {}
-local cs_list = {}
+M.list = {}
 
 M.default = "default"
 
 local function load_colorscheme()
 	local ok, err = pcall(function()
-		for _, spec in require("utility.loader").load_file("lua/plugins/colorscheme", true) do
-			cs_list[#cs_list + 1] = spec
+		for _, spec in vimu.loader.load_file("lua/plugins/colorscheme") do
+			M.list[#M.list + 1] = spec
 		end
 	end)
 
@@ -17,12 +17,12 @@ end
 
 function M.create_spec()
 	load_colorscheme()
-	if cs_list == {} then
+	if M.list == {} then
 		return {}
 	end
 	local t = {}
 
-	for _, spec in ipairs(cs_list) do
+	for _, spec in ipairs(M.list) do
 		if spec.name == M.default or spec[1] == M.default then
 			t[#t + 1] = spec
 		else

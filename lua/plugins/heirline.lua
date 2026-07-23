@@ -1,5 +1,6 @@
 return {
 	"rebelot/heirline.nvim",
+	enabled = true,
 	event = "UiEnter",
 	dependencies = {
 		"mini.icons",
@@ -35,7 +36,7 @@ return {
 			provider = function(self)
 				if self.search then
 					local search = self.search
-					return string.format(" %d/%d ", search.current, math.min(search.total, search.maxcount))
+					return string.format(" %d/%d", search.current, math.min(search.total, search.maxcount))
 				end
 				return ""
 			end,
@@ -48,7 +49,7 @@ return {
 				self.mode = vim.fn.mode(1):sub(1, 1)
 			end,
 			static = {
-        os_icon = mini_icons.get("os", vim.loop.os_uname().sysname),
+				os_icon = mini_icons.get("os", vim.loop.os_uname().sysname),
 				mode_name = {
 					n = "Normal",
 					i = "Insert",
@@ -64,31 +65,8 @@ return {
 			provider = function(self)
 				return ln.separator({
 					id = "Mode",
-					left = {
-						value = ln.padding(self.os_icon, 1, 1),
-						hl = {
-							fg = { "ModeOther" },
-							bg = {
-								list = mode_color,
-								default_key = "n",
-								key = self.mode,
-							},
-						},
-					},
-					right = {
-						value = statusline.separator[1],
-						hl = {
-							fg = {
-								list = mode_color,
-								default_key = "n",
-								key = self.mode,
-								"bg",
-							},
-							bg = { "Dark3", "fg" },
-						},
-					},
 					middle = {
-						value = (self.mode_name[self.mode] or self.mode) .. " ",
+						str = ln.padding(self.os_icon, 1, 1) .. (self.mode_name[self.mode] or self.mode) .. " ",
 						hl = {
 							fg = { "ModeOther" },
 							bg = {
@@ -99,88 +77,82 @@ return {
 							gui = { bold = true, italic = false },
 						},
 					},
+					right = {
+						str = statusline.separator[1],
+						hl = {
+							fg = {
+								list = mode_color,
+								default_key = "n",
+								key = self.mode,
+								"bg",
+							},
+							bg = { "Dark3", "fg" },
+						},
+					},
 				})
 			end,
 		}
 
 		local file_info = {
+			update = { "BufWinEnter", "BufWinLeave", "FileType", "BufModifiedSet", "Colorscheme" },
+			init = function()
+				hl.advance_hl("HeirlineDark2", {
+					fg = { "StatusLine" },
+					bg = { "Dark2", "fg" },
+				})
+				hl.set("HeirlineMod", {
+					fg = hl.getfg("WarningMsg"),
+					bold = true,
+				})
+				hl.set("HeirlineRon", {
+					fg = hl.getfg("ErrorMsg"),
+					bold = true,
+				})
+				hl.set("HeirlineDark2Sep", {
+					fg = hl.getfg("Dark2"),
+					bg = hl.getbg("StatusLine"),
+				})
+				hl.set("HeirlineDark3Sep", {
+					fg = hl.getfg("Dark3"),
+					bg = hl.getfg("Dark2")
+				})
+			end,
+			hl = "HeirlineDark2",
 			{
-				update = { "BufWinEnter", "BufWinLeave", "FileType" },
-				provider = function()
-					return ln.separator({
-						id = "FileName",
-						default_hl = "StatusLine",
-						left = {
-							value = statusline.separator[1],
-							hl = {
-								fg = { "Dark3", "fg" },
-								bg = { "Dark2", "fg" },
-							},
-						},
-						middle = {
-							value = function(self)
-								local icon, icon_hl = mini_icons.get("filetype", vim.bo.filetype)
-								local new_hl = hl.mix_hl("FileInfo" .. icon_hl, {
-									fg = { icon_hl },
-									bg = { "Dark2", "fg" },
-								})
-								return ln.hl_fmt(new_hl, " " .. icon, " %*")
-									.. ln.hl_fmt(
-										self.hl,
-										"%{&filetype == '' ? 'Unknown' : toupper(&filetype[0]) . &filetype[1:]} "
-									)
-							end,
-							hl = {
-								fg = { "Normal" },
-								bg = { "Dark2", "fg" },
-							},
-						},
-					})
-				end,
+				provider = statusline.separator[1],
+				hl = "HeirlineDark3Sep",
 			},
 			{
-				update = "BufModifiedSet",
+				init = function (self)
+					self.icon, self.hl = mini_icons.get("filetype", vim.bo.filetype)
+				end,
+				provider = function (self)
+					return " " ..self.icon .. " "
+				end,
+				hl = function (self)
+					return self.hl
+				end
+			},
+			{
+				provider = "%{&filetype == '' ? 'Unknown' : toupper(&filetype[0]) . &filetype[1:]} ",
+			},
+			{
 				condition = function()
 					return vim.bo.modified
 				end,
-				init = function()
-					hl.set("FileInfoMod", {
-						fg = hl.getfg("WarningMsg"),
-						bg = hl.getfg("Dark2"),
-						bold = true,
-					})
-				end,
-				provider = function()
-					return ln.hl_fmt("FileInfoMod", "%m ")
-				end,
+				provider = "%m ",
+				hl = "HeirlineMod",
 			},
 			{
-				update = "BufWinEnter",
 				condition = function()
 					return vim.bo.readonly
 				end,
-				init = function()
-					hl.set("FileInfoRO", {
-						fg = hl.getfg("ErrorMsg"),
-						bg = hl.getfg("Dark2"),
-						bold = true,
-					})
-				end,
-				provider = function()
-					return ln.hl_fmt("FileInfoRO", "%r ")
-				end,
+				provider = "%r ",
+				hl = "HeirlineRon",
 			},
 			{
-				update = "ColorScheme",
-				init = function()
-					hl.set("FileInfoSep", {
-						fg = hl.getfg("Dark2"),
-						bg = hl.getbg("StatusLine"),
-					})
-				end,
-				provider = function()
-					return ln.hl_fmt("FileInfoSep", statusline.separator[1], "%*")
-				end,
+				provider = statusline.separator[1],
+				hl = "HeirlineDark2Sep",
 			},
 		}
 
@@ -190,7 +162,7 @@ return {
 				return vim.fn.reg_recording() ~= ""
 			end,
 			provider = function()
-				return " [" .. vim.fn.reg_recording() .. "] "
+				return "  [" .. vim.fn.reg_recording() .. "]"
 			end,
 			hl = "Type",
 		}
@@ -228,8 +200,8 @@ return {
 		}
 
 		local cursor_pos = {
-			{ update = { "CursorMoved", "CursorMovedI" }, provider = "%l·%c " },
-			{ update = { "CursorMoved", "CursorMovedI" }, provider = "%p%% " },
+			update = "CursorMoved",
+			provider = " %{mode() == 'i' ? '󰗧' : '󰇀'} %l·%c ",
 		}
 
 		require("heirline").setup({
