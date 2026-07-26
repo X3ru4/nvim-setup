@@ -26,12 +26,14 @@ function M.create_spec()
 		if spec.name == M.default or spec[1] == M.default then
 			t[#t + 1] = spec
 		else
-			t[#t + 1] = {
-				spec[1],
-				name = spec.name or nil,
-				dependencies = spec.dependencies or nil,
-				event = "VeryLazy",
-			}
+			if spec and spec ~= {} then
+				t[#t + 1] = {
+					spec[1],
+					name = spec.name or nil,
+					event = "VeryLazy",
+					dependencies = spec.dependencies or nil,
+				}
+			end
 		end
 	end
 

@@ -16,19 +16,34 @@ create_cmd("Themes", function()
 	end
 
 	require("fzf-lua").fzf_exec(list, {
-		header = "<Cr>: Yank the colorscheme name.\n<Tab>: Load colorscheme.",
 		winopts = {
 			fullscreen = false,
 			border = "rounded",
 			title = " Available colorschemes ",
 		},
+		_headers = { "actions" },
 		actions = {
-			["enter"] = function(selected)
-				vim.fn.setreg("*", selected[1])
-			end,
-			["tab"] = function(selected)
-				pcall(vim.cmd.colorscheme, selected[1])
-			end,
+			["enter"] = {
+				fn = function(selected)
+					vim.fn.setreg("*", selected[1])
+				end,
+				header = "yank",
+			},
+			["tab"] = {
+				fn = function(selected)
+					local ok, _ = pcall(vim.cmd.colorscheme, selected[1])
+					if not ok then
+						for i, name in ipairs(list) do
+							if name == selected[1] then
+								pcall(vimu.colorscheme.list[i].config)
+								break
+							end
+						end
+					end
+				end,
+				header = "load",
+				reload = true,
+			},
 		},
 	})
 end, {})

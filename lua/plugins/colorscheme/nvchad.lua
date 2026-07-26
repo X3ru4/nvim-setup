@@ -8,10 +8,11 @@ package.preload["nvconfig"] = function()
 			-- Add integrations to this table to create corresponding caches for each integration per build.
 			integrations = {
 				-- All valid integration: https://github.com/NvChad/base46/tree/v3.0/lua/base46/integrations
-				"mini-tabline",
+				"alpha",
 				"blink-pair",
-				"leap",
 				"render-markdown",
+				"leap",
+				"mini-tabline",
 			},
 			changed_themes = {},
 			transparency = false,
@@ -34,9 +35,10 @@ return {
 		-- If you configure and run it again, the changes won't apply; you must use the command `:Lazy build nvchad`.
 		local opts = {
 			-- All valid themes https://github.com/NvChad/base46/tree/v3.0/lua/base46/themes press `gx` to open.
-			theme = "catppuccin",
+			theme = "blossom_light",
 			-- The integrations will be loaded.
 			_integrations = {
+				"alpha",
 				"blink",
 				"defaults",
 				"git",
@@ -81,6 +83,9 @@ return {
 				MiniIconsOrange = { fg = palette.base30.orange },
 				MiniIconsRed = { fg = palette.base30.red },
 				MiniIconsYellow = { fg = palette.base30.yellow },
+			},
+			extra = {
+				hl.modify("NormalFloat", { fg = palette.base30.white }),
 			},
 		})
 	end,

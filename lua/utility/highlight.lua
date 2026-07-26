@@ -167,7 +167,7 @@ end
 ---Create your highlight!
 ---@param ns string Namespace
 ---@param spec utility.highlight.advance_hl_spec Spection
----@return string
+---@return string|table
 function M.advance_hl(ns, spec)
 	local function create_key(style)
 		return type(style) == "table" and style.list and (style.list[style.key] or "") or ""
@@ -194,13 +194,15 @@ function M.advance_hl(ns, spec)
 			end
 		end
 
-		M.set(
-			ns,
-			vim.tbl_extend("keep", {
-				fg = pick_hl(spec.fg, "fg"),
-				bg = pick_hl(spec.bg, "bg"),
-			}, spec.gui or {})
-		)
+		local opts = 
+		vim.tbl_extend("keep", {
+			fg = pick_hl(spec.fg, "fg"),
+			bg = pick_hl(spec.bg, "bg"),
+		}, spec.gui or {})
+		if tab then
+			return opts
+		end
+		M.set( ns, opts)
 	end
 	return ns
 end

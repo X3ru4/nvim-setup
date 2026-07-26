@@ -1,81 +1,9 @@
 return {
 	"jake-stewart/multicursor.nvim",
 	branch = "1.0",
-	enabled = true,
-	keys = function()
-		local mc = require("multicursor-nvim")
-		local mode = { "n", "x" }
-		return {
-			{
-				mode = mode,
-				"<C-Up>",
-				function()
-					mc.lineAddCursor(-1)
-				end,
-			},
-			{
-				mode = mode,
-				"<C-Down>",
-				function()
-					mc.lineAddCursor(1)
-				end,
-			},
-			{
-				mode = mode,
-				"<leader><up>",
-				function()
-					mc.lineSkipCursor(-1)
-				end,
-			},
-			{
-				mode = mode,
-				"<leader><down>",
-				function()
-					mc.lineSkipCursor(1)
-				end,
-			},
-
-			-- Add or skip adding a new cursor by matching word/selection
-			{
-				mode = mode,
-				"<leader>n",
-				function()
-					mc.matchAddCursor(1)
-				end,
-			},
-			{
-				mode = mode,
-				"<leader>x",
-				function()
-					mc.matchSkipCursor(1)
-				end,
-			},
-			{
-				mode = mode,
-				"<leader>N",
-				function()
-					mc.matchAddCursor(-1)
-				end,
-			},
-			{
-				mode = mode,
-				"<leader>X",
-				mc.matchSkipCursor,
-			},
-			{
-				mode = mode,
-				"<leader>a",
-				mc.matchAllAddCursors,
-			},
-			{
-				mode = mode,
-				"<leader>j",
-				mc.addCursor,
-			},
-		}
-	end,
 	config = function()
 		local mc = require("multicursor-nvim")
+
 		mc.setup()
 
 		mc.addKeymapLayer(function(layerSet)
@@ -97,13 +25,86 @@ return {
 		end)
 
 		-- Customize how cursors look.
-		local hl = vim.api.nvim_set_hl
-		hl(0, "MultiCursorCursor", { link = "Cursor" })
-		hl(0, "MultiCursorVisual", { link = "Visual" })
-		hl(0, "MultiCursorSign", { link = "SignColumn" })
-		hl(0, "MultiCursorMatchPreview", { link = "Search" })
-		hl(0, "MultiCursorDisabledCursor", { reverse = true })
-		hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
-		hl(0, "MultiCursorDisabledSign", { link = "SignColumn" })
+		vimu.highlight.apply({
+			basic = {
+				MultiCursorCursor = { link = "Cursor" },
+				MultiCursorVisual = { link = "Visual" },
+				MultiCursorSign = { link = "SignColumn" },
+				MultiCursorMatchPreview = { link = "Search" },
+				MultiCursorDisabledCursor = { reverse = true },
+				MultiCursorDisabledVisual = { link = "Visual" },
+				MultiCursorDisabledSign = { link = "SignColumn" },
+			},
+		})
+
+		local mode = { "n", "x" }
+		vimu.keymap.set_list({
+			{
+				mode,
+				"<C-Up>",
+				function()
+					mc.lineAddCursor(-1)
+				end,
+			},
+			{
+				mode,
+				"<C-Down>",
+				function()
+					mc.lineAddCursor(1)
+				end,
+			},
+			{
+				mode,
+				"<leader><up>",
+				function()
+					mc.lineSkipCursor(-1)
+				end,
+			},
+			{
+				mode,
+				"<leader><down>",
+				function()
+					mc.lineSkipCursor(1)
+				end,
+			},
+
+			-- Add or skip adding a new cursor by matching word/selection
+			{
+				mode,
+				"<leader>n",
+				function()
+					mc.matchAddCursor(1)
+				end,
+			},
+			{
+				mode,
+				"<leader>x",
+				function()
+					mc.matchSkipCursor(1)
+				end,
+			},
+			{
+				mode,
+				"<leader>N",
+				function()
+					mc.matchAddCursor(-1)
+				end,
+			},
+			{
+				mode,
+				"<leader>X",
+				mc.matchSkipCursor,
+			},
+			{
+				mode,
+				"<leader>a",
+				mc.matchAllAddCursors,
+			},
+			{
+				mode,
+				"<leader>j",
+				mc.addCursor,
+			},
+		})
 	end,
 }

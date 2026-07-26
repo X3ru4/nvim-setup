@@ -12,6 +12,9 @@ hl.setup(function()
 	hl.set("Dark4", { fg = hl.blend(norm.bg, norm.fg, 0.6) })
 
 	local function create_modehl(name, ref, def)
+		if hl.hl_exist(name) then
+			return {}
+		end
 		if hl.hl_exist(ref) then
 			return { name, { link = ref } }
 		end
@@ -35,10 +38,10 @@ hl.setup(function()
 			create_modehl("ModeReplace", "MiniStatuslineModeReplace", "DiagnosticError"),
 			-- Modify default highlights.
 			hl.modify("Visual", { bold = true }),
-			hl.modify("FloatTitle", { bg = hl.getbg("NormalFloat") }),
-			hl.modify("FloatBorder", { bg = hl.getbg("NormalFloat") }),
+			-- hl.modify("FloatTitle", { bg = hl.getbg("NormalFloat") }),
+			hl.modify("FloatBorder", { bg = hl.getbg("NormalFloat"), cforce = true }),
 			-- function ()
-			-- 	return "Normal", {} -- name, opts
+			-- 	return "Abc", {} -- name, opts
 			-- end
 		},
 	})

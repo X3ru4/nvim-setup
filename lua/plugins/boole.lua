@@ -1,6 +1,5 @@
 return {
-	"nat-418/boole.nvim",
-	enabled = true,
+	"X3ru4/boole.nvim",
 	keys = {
 		"<C-a>",
 		"<C-x>",

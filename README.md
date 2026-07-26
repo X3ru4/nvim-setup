@@ -6,23 +6,22 @@
 - Language server protocol.
 - Completion.
 - Format.
+- Lint.
 - etc.
 
 ## Requirements
 
 - [Nerd font](https://www.nerdfonts.com/font-downloads)
-<details>
-    <summary><p>clang (For building parsers)</p></summary>
-    <p>Termux `pkg install clangd`</p>
-</details>
-- lua-language-server (Optional)
+- clang (For building parsers)
+- lua-language-server (Easy to configure)
 - treesitter
 - rust (Need to build blink.cmp)
 - python (Optional)
 - nodejs (Optional)
 - ripgrep (For fzf-lua)
 - fzf (For fzf-lua)
-- git (Clone the repo)
+- fd (For fzf-lua)
+- git
 
 ## Clone
 

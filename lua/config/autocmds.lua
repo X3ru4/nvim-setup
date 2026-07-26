@@ -37,7 +37,7 @@ autocmd("ColorScheme", {
 	end,
 })
 -- Setup highlights
-autocmd("VimEnter", {
+autocmd("UIEnter", {
 	group = groups.control,
 	once = true,
 	callback = function()

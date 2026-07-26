@@ -1,6 +1,5 @@
 return {
 	"Wansmer/sibling-swap.nvim",
-	enabled = true,
 	keys = {
 		"<leader>sh",
 		"<leader>sl",

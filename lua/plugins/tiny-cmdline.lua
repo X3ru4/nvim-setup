@@ -1,7 +1,6 @@
 return {
 	"rachartier/tiny-cmdline.nvim",
-	enabled = true,
-	event = "UiEnter",
+	event = "UIEnter",
 	priority = 1000,
 	config = function()
 		vim.o.cmdheight = 0

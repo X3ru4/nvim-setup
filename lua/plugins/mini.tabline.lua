@@ -1,8 +1,7 @@
 return {
 	"nvim-mini/mini.tabline",
-	enabled = true,
 	version = false,
-	event = { "BufReadPre", "BufNewFile" },
+	event = "VeryLazy",
 	opts = {
 		always_show = false,
 		tabpage_section = "left",

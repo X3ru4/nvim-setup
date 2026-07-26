@@ -116,7 +116,7 @@ return {
 			FzfLuaNormal = { link = "NormalFloat" },
 			FzfLuaBorder = { link = "FloatBorder" },
 			FzfLuaTitle = { link = "FloatTitle" },
-			FzfLuaCursorLine = { link = "Visual" },
+			FzfLuaCursorLine = { link = "CursorLine" },
 			FzfLuaTabMarker = { link = "Structure" },
 			FzfLuaHeaderBind = { link = "FzfLuaTabMarker" },
 			FzfLuaHeaderText = { link = "Define" },

@@ -1,7 +1,7 @@
 return {
 	"nvim-mini/mini.notify",
 	version = false,
-	event = "VimEnter",
+	event = "VeryLazy",
 	keys = {
 		{
 			"<C-h>",
@@ -53,8 +53,8 @@ return {
 		-- Use the 'msg' target.
 		ui2.cfg.msg.target = "msg"
 		-- HACK: Hide the default message UI.
-		ui2.cfg.msg.msg.height = 0.001
-		ui2.cfg.msg.msg.timeout = 0
+		ui2.cfg.msg.msg.height = 0.01
+		ui2.cfg.msg.msg.timeout = 0.0
 
 		local levels = {
 			emsg = vim.log.levels.ERROR, -- Error message
