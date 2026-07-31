@@ -1,39 +1,39 @@
 return {
-	"leath-dub/snipe.nvim",
+	'leath-dub/snipe.nvim',
 	keys = {
 		{
-			"gb",
+			'gb',
 			function()
-				require("snipe").open_buffer_menu()
+				require('snipe').open_buffer_menu()
 			end,
-			desc = "Open Snipe buffer menu",
+			desc = 'Open Snipe buffer menu',
 		},
 	},
 	opts = {
 		ui = {
-			position = "center",
-			text_align = "left",
+			position = 'center',
+			text_align = 'left',
 			buffer_format = {
 				function(buf)
 					local dir = vim.fs.basename(vim.fs.dirname(buf.name))
-					return dir .. "/", "SnipeDirname"
+					return dir .. '/', 'SnipeDirname'
 				end,
-				"filename",
+				'filename',
 				function(buf)
-					return " " .. buf.classifiers:gsub("%s+", ""), "WarningMsg"
+					return ' ' .. buf.classifiers:gsub('%s+', ''), 'WarningMsg'
 				end,
 			},
 
 			---@type vim.api.keyset.win_config
 			open_win_override = {
-				title = "› Snipe ‹",
-				border = "rounded",
+				title = '› Snipe ‹',
+				border = 'rounded',
 			},
 		},
 
 		navigate = {
 			---@type string|string[]
-			cancel_snipe = { "<esc>", "q" },
+			cancel_snipe = { '<esc>', 'q' },
 		},
 	},
 }

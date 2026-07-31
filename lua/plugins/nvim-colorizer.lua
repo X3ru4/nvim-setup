@@ -1,8 +1,8 @@
 return {
-	"catgoose/nvim-colorizer.lua",
-	cmd = "ColorizerToggle",
+	'catgoose/nvim-colorizer.lua',
+	cmd = 'ColorizerToggle',
 	keys = {
-		{ "<leader>cC", "<cmd>ColorizerToggle<cr>", desc = "ColorizerToggle" },
+		{ '<leader>cC', '<cmd>ColorizerToggle<cr>', desc = 'ColorizerToggle' },
 	},
 	opts = {
 		options = {
@@ -25,11 +25,11 @@ return {
 				},
 			},
 			display = {
-				mode = "virtualtext",
+				mode = 'virtualtext',
 				virtualtext = {
-					char = "",
-					position = "before",
-					hl_mode = "foreground",
+					char = '',
+					position = 'before',
+					hl_mode = 'foreground',
 				},
 			},
 		},

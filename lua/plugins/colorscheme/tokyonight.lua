@@ -1,8 +1,8 @@
 return {
-  "folke/tokyonight.nvim",
-  name = "tokyonight",
-  config = function ()
-    require("tokyonight").setup()
-    vim.cmd.colorscheme("tokyonight")
-  end,
+	'folke/tokyonight.nvim',
+	name = 'tokyonight',
+	config = function()
+		require('tokyonight').setup()
+		vim.cmd.colorscheme('tokyonight')
+	end,
 }

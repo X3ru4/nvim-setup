@@ -1,15 +1,15 @@
 return {
-	"nvim-mini/mini.diff",
+	'nvim-mini/mini.diff',
 	version = false,
-	event = { "BufReadPre", "BufNewFile" },
+	event = { 'BufReadPre', 'BufNewFile' },
 	opts = {
 		view = {
 			-- Visualization style. Possible values are 'sign' and 'number'.
 			---@type "sign"|"number"
-			style = "number",
+			style = 'number',
 
 			-- Signs used for hunks with 'sign' view
-			signs = { add = "", change = "", delete = "" },
+			signs = { add = '', change = '', delete = '' },
 			-- Priority of used visualization extmarks
 			priority = 199,
 		},
@@ -24,26 +24,26 @@ return {
 		-- Module mappings. Use `''` (empty string) to disable one.
 		mappings = {
 			-- Apply hunks inside a visual/operator region
-			apply = "gh",
+			apply = 'gh',
 
 			-- Reset hunks inside a visual/operator region
-			reset = "gH",
+			reset = 'gH',
 
 			-- Hunk range textobject to be used inside operator
 			-- Works also in Visual mode if mapping differs from apply and reset
-			textobject = "gh",
+			textobject = 'gh',
 
 			-- Go to hunk range in corresponding direction
-			goto_first = "[H",
-			goto_prev = "[h",
-			goto_next = "]h",
-			goto_last = "]H",
+			goto_first = '[H',
+			goto_prev = '[h',
+			goto_next = ']h',
+			goto_last = ']H',
 		},
 
 		-- Various options
 		options = {
 			-- Diff algorithm. See `:h vim.diff()`.
-			algorithm = "histogram",
+			algorithm = 'histogram',
 
 			-- Whether to use "indent heuristic". See `:h vim.diff()`.
 			indent_heuristic = true,

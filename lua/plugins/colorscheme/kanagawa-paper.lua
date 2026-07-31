@@ -1,8 +1,8 @@
 return {
-	"thesimonho/kanagawa-paper.nvim",
-	name = "kanagawa-paper",
+	'thesimonho/kanagawa-paper.nvim',
+	name = 'kanagawa-paper',
 	config = function()
-		require("kanagawa-paper").setup({
+		require('kanagawa-paper').setup({
 			transparent = false,
 			dim_inactive = false,
 			cache = true,
@@ -15,7 +15,7 @@ return {
 			},
 		})
 
-    vim.o.background = "light"
-		vim.cmd.colorscheme("kanagawa-paper")
+		vim.o.background = 'light'
+		vim.cmd.colorscheme('kanagawa-paper')
 	end,
 }

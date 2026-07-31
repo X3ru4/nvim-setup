@@ -5,14 +5,10 @@
 ---@field extra table|[string, table][]|utility.highlight.hl_list_fun[]|nil
 ---@field callback table|function[]|nil
 
----@class utility.highlight.advance_hl_style
----@field name string,
----@field list table,
----@field key string,
----@field type "fg"|"bg"|nil,
+---@alias utility.highlight.advance_hl_style { [1]: string, [2]: string|nil }|{ [1]: string|nil, list: [string, string], key: string, default_key: string }
 
 ---@class utility.highlight.advance_hl_spec
----@field default_hl string
+---@field default_hl string|nil
 ---@field fg utility.highlight.advance_hl_style|string|nil
 ---@field bg utility.highlight.advance_hl_style|string|nil
 ---@field gui vim.api.keyset.highlight|nil

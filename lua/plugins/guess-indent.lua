@@ -1,7 +1,7 @@
 return {
-	"nmac427/guess-indent.nvim",
-	event = "BufReadPre",
+	'nmac427/guess-indent.nvim',
+	event = 'BufReadPre',
 	config = function()
-		require("guess-indent").setup({})
+		require('guess-indent').setup({})
 	end,
 }

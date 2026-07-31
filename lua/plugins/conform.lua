@@ -1,22 +1,22 @@
 return {
-	"stevearc/conform.nvim",
-	cmd = { "ConformInfo" },
+	'stevearc/conform.nvim',
+	cmd = { 'ConformInfo' },
 	opts = {
 		formatters_by_ft = {
-			lua = { "stylua" },
-			cpp = { "clang-format" },
-			hpp = { "clang-format" },
-			c = { "clang-format" },
-			h = { "clang-format" },
-			json = { "prettier" },
-			markdown = { "prettier" },
-			python = { "ruff" },
-			rust = { "rustfmt" },
+			lua = { 'stylua' },
+			cpp = { 'clang-format' },
+			hpp = { 'clang-format' },
+			c = { 'clang-format' },
+			h = { 'clang-format' },
+			json = { 'prettier' },
+			markdown = { 'prettier' },
+			python = { 'ruff' },
+			rust = { 'rustfmt' },
 		},
 		formatters = {
 			ruff = {
-				command = "ruff",
-				args = { "format", "-" },
+				command = 'ruff',
+				args = { 'format', '-' },
 				stdin = true,
 			},
 			prettier = {
@@ -24,26 +24,26 @@ return {
 			},
 		},
 		default_format_opts = {
-			lsp_format = "fallback",
+			lsp_format = 'fallback',
 		},
 		-- Use the "*" filetype to run formatters on all filetypes.
-		["*"] = { "codespell" },
+		['*'] = { 'codespell' },
 		-- Use the "_" filetype to run formatters on filetypes that don't
 		-- have other formatters configured.
-		["_"] = { "trim_whitespace" },
+		['_'] = { 'trim_whitespace' },
 		format_on_save = false,
 	},
 	init = function()
-		vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+		vim.o.formatexpr = 'v:lua.require\'conform\'.formatexpr()'
 	end,
 	keys = {
 		{
-			"<leader>cf",
+			'<leader>cf',
 			function()
-				require("conform").format({ async = false, lsp_fallback = true })
+				require('conform').format({ async = false, lsp_fallback = true })
 			end,
-			desc = "Format code",
-			mode = { "x", "n", "v" },
+			desc = 'Format code',
+			mode = { 'x', 'n', 'v' },
 		},
 	},
 }

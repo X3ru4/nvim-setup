@@ -1,4 +1,4 @@
-# Neovim
+# nvim-setup
 
 - Simple Neovim setup.
 - Blazing fast and highly customizable.
@@ -11,17 +11,23 @@
 
 ## Requirements
 
-- [Nerd font](https://www.nerdfonts.com/font-downloads)
-- clang (For building parsers)
-- lua-language-server (Easy to configure)
-- treesitter
-- rust (Need to build blink.cmp)
-- python (Optional)
-- nodejs (Optional)
-- ripgrep (For fzf-lua)
-- fzf (For fzf-lua)
-- fd (For fzf-lua)
+### Mandatory
+
+- NVIM release v0.12.4
+- Nerd font
 - git
+- C compiler (for building parsers)
+- curl
+- tree-sitter
+- lua-language-server
+- ripgrep (for fzf-lua)
+- fzf (for fzf-lua)
+- fd (for fzf-lua)
+
+### Optional
+
+- npm
+- pip
 
 ## Clone
 

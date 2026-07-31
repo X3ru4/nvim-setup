@@ -1,18 +1,18 @@
 return {
-	"romus204/tree-sitter-manager.nvim",
-	event = "BufReadPre",
+	'romus204/tree-sitter-manager.nvim',
+	event = 'VeryLazy',
 	dependencies = {}, -- tree-sitter CLI must be installed system-wide
 	config = function()
-		require("tree-sitter-manager").setup({
+		require('tree-sitter-manager').setup({
 			-- list of parsers to install automatically
 			ensure_installed = {
-				"c",
-				"lua",
-				"vim",
-				"vimdoc",
-				"query",
-				"markdown",
-				"markdown_inline",
+				'c',
+				'lua',
+				'vim',
+				'vimdoc',
+				'query',
+				'markdown',
+				'markdown_inline',
 			},
 			auto_install = false,
 			nohighlight = {},

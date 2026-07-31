@@ -1,6 +1,6 @@
 return {
-	"stevearc/dressing.nvim",
-	event = "VeryLazy",
+	'stevearc/dressing.nvim',
+	event = 'VeryLazy',
 	opts = {
 		input = {
 			override = function(conf)
@@ -11,7 +11,7 @@ return {
 			border = nil,
 		},
 		select = {
-			backend = "fzf_lua",
+			backend = 'fzf_lua',
 		},
 	},
 }

@@ -66,7 +66,7 @@ end
 function M.separator(spec)
 	if not spec.id then
 		vim.notify("separator({ id = ? })")
-    spec.id = "nil"
+		spec.id = "nil"
 	end
 
 	local function section_fmt(section, id)
@@ -88,12 +88,10 @@ function M.separator(spec)
 		return ""
 	end
 
-	return table.concat({
-		section_fmt(spec.left, 1),
-		section_fmt(spec.middle, 2),
-		section_fmt(spec.right, 3),
-		M.hl_fmt(spec.default_hl),
-	})
+	return section_fmt(spec.left, 1)
+		.. section_fmt(spec.middle, 2)
+		.. section_fmt(spec.right, 3)
+		.. M.hl_fmt(spec.default_hl)
 end
 
 return M

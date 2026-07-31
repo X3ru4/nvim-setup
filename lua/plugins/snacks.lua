@@ -3,19 +3,19 @@ local ft = {
 	lua = true,
 }
 return {
-	"folke/snacks.nvim",
-	event = "VeryLazy",
+	'folke/snacks.nvim',
+	event = 'VeryLazy',
 	opts = {
 		indent = {
 			enabled = true,
 			chunk = {
 				enabled = true,
 				char = {
-					corner_top = "╭",
-					corner_bottom = "╰",
-					horizontal = "─",
-					vertical = "│",
-					arrow = "›",
+					corner_top = '╭',
+					corner_bottom = '╰',
+					horizontal = '─',
+					vertical = '│',
+					arrow = '›',
 				},
 			},
 			---@param buf number
@@ -23,7 +23,7 @@ return {
 			filter = function(buf, _)
 				return vim.g.snacks_indent ~= false
 					and vim.b[buf].snacks_indent ~= false
-					and vim.bo[buf].buftype == ""
+					and vim.bo[buf].buftype == ''
 					and ft[vim.bo[buf].filetype] ~= false
 			end,
 		},

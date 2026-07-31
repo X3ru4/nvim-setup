@@ -44,25 +44,10 @@ autocmd("UIEnter", {
 		vim.cmd("Loadhl")
 	end,
 })
-
-autocmd("BufReadPost", {
-	group = groups.control,
-	pattern = "*.material",
-	callback = function()
-		vim.bo.filetype = "jsonc"
-	end,
-})
-autocmd("BufReadPost", {
-	group = groups.control,
-	pattern = "*.molang",
-	callback = function()
-		vim.bo.filetype = "c"
-	end,
-})
-
+-- LSP
 autocmd("LspAttach", {
 	group = groups.control,
-	callback = function (ev)
+	callback = function(ev)
 		require("config.lsp").attach(ev)
-	end
+	end,
 })

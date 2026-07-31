@@ -1,35 +1,34 @@
 return {
-	"folke/persistence.nvim",
-	enabled = true,
+	'folke/persistence.nvim',
 	opts = {},
 	keys = {
 		{
-			"<leader>gs",
+			'<leader>ss',
 			function()
-				require("persistence").load()
+				require('persistence').load()
 			end,
-			desc = "Restore Session",
+			desc = 'Session restore',
 		},
 		{
-			"<leader>gS",
+			'<leader>sS',
 			function()
-				require("persistence").select()
+				require('persistence').select()
 			end,
-			desc = "Select Session",
+			desc = 'Session select',
 		},
 		{
-			"<leader>gl",
+			'<leader>se',
 			function()
-				require("persistence").load({ last = true })
+				require('persistence').load({ last = true })
 			end,
-			desc = "Restore Last Session",
+			desc = 'Session restore last ses',
 		},
 		{
-			"<leader>gd",
+			'<leader>sd',
 			function()
-				require("persistence").stop()
+				require('persistence').stop()
 			end,
-			desc = "Don't Save Current Session",
+			desc = 'Session skip',
 		},
 	},
 }

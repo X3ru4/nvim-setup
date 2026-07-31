@@ -1,26 +1,26 @@
 return {
-	"nvim-mini/mini.notify",
+	'nvim-mini/mini.notify',
 	version = false,
-	event = "VeryLazy",
+	event = 'UIEnter',
 	keys = {
 		{
-			"<C-h>",
+			'<C-h>',
 			function()
-				require("mini.notify").show_history()
+				require('mini.notify').show_history()
 			end,
 		},
 	},
 	config = function()
-		local notify_msg = ""
-		require("mini.notify").setup({
+		local notify_msg = ''
+		require('mini.notify').setup({
 			-- Content management
 			content = {
 				format = function(notif)
-					if notif.data.source == "lsp_progress" then
+					if notif.data.source == 'lsp_progress' then
 						return notif.msg
 					end
 					notify_msg = notif.msg
-					return string.format("%s: %s", notif.level, notif.msg)
+					return string.format('%s: %s', notif.level, notif.msg)
 				end,
 			},
 
@@ -33,9 +33,9 @@ return {
 				---@type vim.api.keyset.win_config|function
 				config = function()
 					return {
-						border = "rounded",
-						title = "› Notifications ‹",
-						title_pos = "center",
+						border = 'rounded',
+						title = '› Notifications ‹',
+						title_pos = 'center',
 						width = (notify_msg:len() < 17 and 17) or nil,
 					}
 				end,
@@ -47,11 +47,11 @@ return {
 		})
 
 		-- Hook neovim messages to `vim.notify`.
-		local ui2 = require("vim._core.ui2")
-		local ns = vim.api.nvim_create_namespace("MyUI2")
+		local ui2 = require('vim._core.ui2')
+		local ns = vim.api.nvim_create_namespace('MyUI2')
 
 		-- Use the 'msg' target.
-		ui2.cfg.msg.target = "msg"
+		ui2.cfg.msg.target = 'msg'
 		-- HACK: Hide the default message UI.
 		ui2.cfg.msg.msg.height = 0.01
 		ui2.cfg.msg.msg.timeout = 0.0
@@ -66,18 +66,18 @@ return {
 		}
 
 		vim.ui_attach(ns, { ext_messages = true }, function(event, ...)
-			if event == "msg_show" then
+			if event == 'msg_show' then
 				local kind, content = ...
 				if not content[1] or skip_kind[kind] then
 					return 0
 				end
 				if #content > 1 then
 					for _, c in ipairs(content) do
-						kind = c[2]:match("^.*(E)") == "E" and "emsg" or kind
+						kind = c[2]:match('^.*(E)') == 'E' and 'emsg' or kind
 						vim.notify(c[2], levels[kind] or nil)
 					end
 				else
-					kind = content[1][2]:match("^.*(E)") == "E" and "emsg" or kind
+					kind = content[1][2]:match('^.*(E)') == 'E' and 'emsg' or kind
 					vim.notify(content[1][2], levels[kind] or nil)
 				end
 				return 0

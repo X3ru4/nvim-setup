@@ -1,9 +1,7 @@
 return {
-	"smjonas/inc-rename.nvim",
-	opts = {
-		-- input_buffer_type = "dressing",
-	},
+	'smjonas/inc-rename.nvim',
 	keys = {
-		{ "grn", ":IncRename ", desc = "LSP Rename" },
+		{ 'grn', ':IncRename ', desc = 'LSP Rename' },
 	},
+	opts = {},
 }

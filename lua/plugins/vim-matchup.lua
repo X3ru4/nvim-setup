@@ -1,6 +1,6 @@
 return {
-	"andymass/vim-matchup",
-	event = { "BufReadPre", "BufNewFile" },
+	'andymass/vim-matchup',
+	event = { 'BufReadPre', 'BufNewFile' },
 	---@type matchup.Config
 	opts = {
 		text_obj = { enabled = 0 },
@@ -12,7 +12,7 @@ return {
 		matchparen = {
 			enabled = 1,
 			offscreen = {
-				method = "",
+				method = '',
 				syntax_hl = 0,
 			},
 		},

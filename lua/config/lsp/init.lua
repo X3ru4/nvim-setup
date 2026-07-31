@@ -22,6 +22,7 @@ vim.diagnostic.config({
 	},
 })
 
+-- Disable inlay hint
 vim.lsp.inlay_hint.enable(false)
 
 for name, config in require("utility.loader").load_file("lua/config/lsp") do
@@ -61,7 +62,7 @@ vimu.keymap.set_list({
 		{ "n", "x" },
 		"]e",
 		function()
-			vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = -1 })
+			vim.diagnostic.jump({ severity = vim.diagnostic.severity.ERROR, count = 1 })
 		end,
 		{ desc = "Goto next ERROR" },
 	},
@@ -69,7 +70,7 @@ vimu.keymap.set_list({
 		{ "n", "x" },
 		"]w",
 		function()
-			vim.diagnostic.jump({ severity = vim.diagnostic.severity.WARN, count = -1 })
+			vim.diagnostic.jump({ severity = vim.diagnostic.severity.WARN, count = 1 })
 		end,
 		{ desc = "Goto next WARN" },
 	},
@@ -77,7 +78,7 @@ vimu.keymap.set_list({
 		{ "n", "x" },
 		"]h",
 		function()
-			vim.diagnostic.jump({ severity = vim.diagnostic.severity.HINT, count = -1 })
+			vim.diagnostic.jump({ severity = vim.diagnostic.severity.HINT, count = 1 })
 		end,
 		{ desc = "Goto next HINT" },
 	},

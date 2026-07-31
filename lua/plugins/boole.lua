@@ -1,26 +1,15 @@
 return {
-	"X3ru4/boole.nvim",
-	keys = {
-		"<C-a>",
-		"<C-x>",
+	'X3ru4/boole.nvim',
+	keys = { '<C-a>', '<C-x>' },
+	opts = {
+		-- presets = { 'colors', 'dayweeks', 'months' },
+		mappings = {
+			increment = '<C-a>',
+			decrement = '<C-x>',
+		},
+		additions = {
+			{ 'true', 'false' },
+			{ '>=', '<=', '>', '<' },
+		},
 	},
-	config = function()
-		require("boole").setup({
-			mappings = {
-				increment = "<C-a>",
-				decrement = "<C-x>",
-			},
-			-- User defined loops
-			additions = {
-				{ "Foo", "Bar" },
-				{ "tic", "tac", "toe" },
-			},
-			allow_caps_additions = {
-				{ "enable", "disable" },
-				-- enable → disable
-				-- Enable → Disable
-				-- ENABLE → DISABLE
-			},
-		})
-	end,
 }

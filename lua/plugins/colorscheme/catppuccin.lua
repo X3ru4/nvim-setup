@@ -1,14 +1,14 @@
 return {
-	"catppuccin/nvim",
-	name = "catppuccin",
+	'catppuccin/nvim',
+	name = 'catppuccin',
 	config = function()
-		require("catppuccin").setup({
+		require('catppuccin').setup({
 			custom_highlights = function(colors)
 				return {
 					SnacksIndentScope = { fg = colors.lavender },
 				}
 			end,
 		})
-		vim.cmd.colorscheme("catppuccin-nvim")
+		vim.cmd.colorscheme('catppuccin-nvim')
 	end,
 }
