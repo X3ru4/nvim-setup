@@ -46,7 +46,6 @@ require("lazy").setup({
 	ui = {
 		border = vim.o.winborder,
 		backdrop = 100,
-		title = "› LAZY ‹",
 		icons = {
 			cmd = "󰆍",
 			config = "󰒓",
