@@ -25,17 +25,15 @@ return {
 				treesitter = {
 					enabled = false,
 				},
-				-- fullscreen = false,
+				fullscreen = true,
 			},
 			fzf_opts = {
 				['--pointer'] = '›',
 				['--gutter'] = ' ',
-				['--marker'] = '✓',
+				['--marker'] = '×',
+				['--ellipsis'] = '~',
 			},
 			fzf_colors = { true },
-			files = {
-					winopts = { fullscreen = true },
-			},
 			colorschemes = {
 				actions = {
 					['enter'] = function(selected, opts)
@@ -46,20 +44,17 @@ return {
 			registers = {
 				winopts = {
 					preview = { hidden = false },
-					fullscreen = true,
 				},
 			},
 			buffers = {
 				filename_only = true,
 				winopts = {
 					preview = { hidden = false },
-					fullscreen = true,
 				},
 			},
 			tabs = {
 				winopts = {
 					preview = { hidden = false },
-					fullscreen = true,
 				},
 			},
 			highlights = {
@@ -68,39 +63,31 @@ return {
 			diagnostics = {
 				winopts = {
 					preview = { hidden = false },
-					fullscreen = true,
 				},
 			},
 			oldfiles = {
 				cwd_only = true,
-				winopts = {
-					fullscreen = true,
-				},
 			},
 			grep = {
 				winopts = {
 					preview = { hidden = false },
-					fullscreen = true,
 				},
 			},
 			git = {
 				diff = {
 					winopts = {
 						preview = { hidden = false },
-						fullscreen = true,
 					},
 				},
 				hunks = {
 					winopts = {
 						preview = { hidden = false },
-						fullscreen = true,
 					},
 				},
 			},
 			quickfix = {
 				winopts = {
 					preview = { hidden = false },
-					fullscreen = true,
 				},
 			},
 		})
