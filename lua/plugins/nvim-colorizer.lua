@@ -1,5 +1,6 @@
 return {
 	'catgoose/nvim-colorizer.lua',
+	event = 'BufReadPost',
 	cmd = 'ColorizerToggle',
 	keys = {
 		{ '<leader>cC', '<cmd>ColorizerToggle<cr>', desc = 'ColorizerToggle' },
@@ -10,7 +11,7 @@ return {
 				css = false, -- preset: enables names, hex, rgb, hsl, oklch
 				css_fn = false,
 				tailwind = { enable = true },
-				names = { enable = false },
+				names = { enable = true },
 				rgb = { enable = false },
 				hsl = { enable = false },
 				oklch = { enable = false },
@@ -33,5 +34,8 @@ return {
 				},
 			},
 		},
+		-- filetypes = {
+		-- 	'mininotify-history',
+		-- },
 	},
 }
