@@ -55,6 +55,7 @@ opt.breakindent = true
 opt.foldenable = true
 opt.foldlevel = 99
 opt.foldmethod = "expr"
+-- Make it greater than 0 if you want to see the fold column.
 opt.foldcolumn = "0"
 
 -- Indent
@@ -121,9 +122,9 @@ opt.listchars = {
 
 -- Fillchars
 opt.fillchars = {
-	foldopen = "",
-	foldclose = "",
-	fold = "",
+	foldopen = "",
+	foldclose = "",
+	fold = " ",
 	foldsep = "│",
 	diff = "╱",
 	eob = " ",
