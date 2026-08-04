@@ -6,7 +6,6 @@ return {
 		return {
 			n_lines = 50,
 			custom_textobjects = {
-				t = { '<([%p%w]-)%f[^<%w][^<>]->.-</%1>', '^<.->().*()</[^/]->$' },
 				d = { '%f[%d]%d+' },
 				e = {
 					{
