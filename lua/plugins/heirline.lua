@@ -65,7 +65,8 @@ return {
 					t = 'Terminal',
 					R = 'Replace',
 					s = 'Select',
-					nt = 'Normal-Term',
+					nt = 'Normal-terminal',
+					no = 'Operator-pending',
 				},
 			},
 			{
@@ -155,7 +156,7 @@ return {
 				return vim.fn.reg_recording() ~= ''
 			end,
 			provider = function()
-				return '  [' .. vim.fn.reg_recording() .. ']'
+				return ' 󰻃 ⟨' .. vim.fn.reg_recording() .. '⟩'
 			end,
 			hl = 'Type',
 		}
@@ -201,7 +202,7 @@ return {
 				{ provider = '%=' },
 				search_count,
 				macro,
-				{ provider = ' %{mode() == \'i\' ? \'󰗧\' : \'󰇀\'} %l·%c ' },
+				{ provider = ' %{mode() == \'i\' ? \'󰗧\' : \'󰆾\'} %l·%c ' },
 			},
 		})
 	end,
