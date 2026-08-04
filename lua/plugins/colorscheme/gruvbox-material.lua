@@ -11,7 +11,7 @@ return {
 		-- Available values 'grey background'|"green background"|"blue background"|"red background"|"reverse"
 		vim.g.gruvbox_material_visual = 'green background'
 		-- Available values "material"|"mix"|"original"
-		vim.g.gruvbox_material_foreground = 'original'
+		vim.g.gruvbox_material_foreground = 'mix'
 		-- Available values "hard"|"medium"|"soft"
 		vim.g.gruvbox_material_background = 'soft'
 		vim.g.gruvbox_material_ui_contrast = 'high' -- "low"|"high"

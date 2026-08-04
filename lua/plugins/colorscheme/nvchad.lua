@@ -4,6 +4,7 @@ package.preload['nvconfig'] = function()
 	return {
 		base46 = {
 			theme = 'onedark',
+			transparency = false,
 			hl_add = {},
 			hl_override = {},
 			-- Add integrations to this table to create corresponding caches for each integration per build.
@@ -15,8 +16,8 @@ package.preload['nvconfig'] = function()
 				'leap',
 				'mini-tabline',
 			},
+			-- The following configurations are not required for setup but are essential.
 			changed_themes = {},
-			transparency = false,
 			theme_toggle = { 'onedark', 'one_light' },
 		},
 		ui = { cmp = {}, telescope = { style = 'borderless' }, statusline = { enabled = true, theme = 'default' } },
@@ -24,50 +25,53 @@ package.preload['nvconfig'] = function()
 	}
 end
 
+-- The integrations will be loaded.
+local integrations = {
+	'alpha',
+	'blink',
+	'defaults',
+	'git',
+	'lsp',
+	'mason',
+	'statusline',
+	'syntax',
+	'treesitter',
+	'mini-tabline',
+	'blink-pair',
+	'leap',
+	'render-markdown',
+}
+
+local function load(build)
+	if build then
+		require('base46').load_all_highlights()
+	end
+	for _, name in ipairs(integrations) do
+		dofile(vim.g.base46_cache .. name)
+	end
+	vim.g.colors_name = 'nvchad'
+end
+
 return {
 	'nvchad/base46',
 	name = 'nvchad',
 	dependencies = { 'nvim-lua/plenary.nvim' },
 	build = function()
-		require('base46').load_all_highlights()
+		load(true)
 	end,
 	config = function()
-		-- Override the default options.
-		-- If you configure and run it again, the changes won't apply; you must use the command `:Lazy build nvchad`.
-		local opts = {
-			-- All valid themes https://github.com/NvChad/base46/tree/v3.0/lua/base46/themes press `gx` to open.
-			theme = 'blossom_light',
-			transparency = true,
-		}
+		local config = require('nvconfig')
+		config.base46.theme = 'gruvbox_light'
+		config.base46.transparency = false
 
-		-- The integrations will be loaded.
-		local integrations = {
-			'alpha',
-			'blink',
-			'defaults',
-			'git',
-			'lsp',
-			'mason',
-			'statusline',
-			'syntax',
-			'treesitter',
-			'mini-tabline',
-			'blink-pair',
-			'leap',
-			'render-markdown',
-		}
+		local is_light = config.base46.theme:match('light')
 
-		require('nvconfig').base46 = vim.tbl_extend('force', require('nvconfig').base46, opts)
+		load()
 
-		for _, name in ipairs(integrations) do
-			dofile(vim.g.base46_cache .. name)
-		end
-
-		local palette = {
+		local colors = {
 			base16 = require('base46').get_theme_tb('base_16'),
 			base30 = require('base46').get_theme_tb('base_30'),
 		}
-
 		local hl = vimu.highlight
 		hl.apply({
 			basic = {
@@ -78,20 +82,42 @@ return {
 				ModeCommand = { link = 'St_CommandMode' },
 				ModeReplace = { link = 'St_ReplaceMode' },
 
-				NonText = { fg = palette.base30.one_bg3 },
+				NonText = { fg = colors.base30.one_bg3 },
+				FloatTitle = {
+					fg = is_light and colors.base30.black or colors.base30.white,
+					bg = colors.base30.blue,
+					bold = true,
+				},
+				FloatFooter = { link = 'FloatTitle' },
 
-				MiniIconsGrey = { fg = palette.base30.grey },
-				MiniIconsAzure = { fg = palette.base30.nord_blue },
-				MiniIconsPurple = { fg = palette.base30.purple },
-				MiniIconsGreen = { fg = palette.base30.green },
-				MiniIconsBlue = { fg = palette.base30.blue },
-				MiniIconsCyan = { fg = palette.base30.cyan },
-				MiniIconsOrange = { fg = palette.base30.orange },
-				MiniIconsRed = { fg = palette.base30.red },
-				MiniIconsYellow = { fg = palette.base30.yellow },
+				MiniIconsGrey = { fg = colors.base30.grey },
+				MiniIconsAzure = { fg = colors.base30.nord_blue },
+				MiniIconsPurple = { fg = colors.base30.purple },
+				MiniIconsGreen = { fg = colors.base30.green },
+				MiniIconsBlue = { fg = colors.base30.blue },
+				MiniIconsCyan = { fg = colors.base30.cyan },
+				MiniIconsOrange = { fg = colors.base30.orange },
+				MiniIconsRed = { fg = colors.base30.red },
+				MiniIconsYellow = { fg = colors.base30.yellow },
+
+				SnacksIndent = { fg = colors.base30.line },
+				SnacksIndentScope = { fg = colors.base30.grey },
 			},
 			extra = {
-				hl.modify('NormalFloat', { fg = palette.base30.white }),
+				hl.modify('NormalFloat', { fg = colors.base30.white }),
+
+				-- Syntax
+				hl.modify('Keyword', { italic = true }),
+				hl.modify('@keyword', { italic = true }),
+				hl.modify('@keyword.function', { italic = true }),
+				hl.modify('@keyword.operator', { italic = true }),
+				hl.modify('@keyword.conditional', { italic = true }),
+				hl.modify('@keyword.conditional.ternary', { italic = true }),
+				hl.modify('Function', { bold = true }),
+				hl.modify('@function', { bold = true }),
+				hl.modify('@function.call', { bold = true }),
+				hl.modify('@function.method', { bold = true }),
+				hl.modify('@function.method.call', { bold = true }),
 			},
 		})
 	end,
