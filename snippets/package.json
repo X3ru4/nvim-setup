@@ -2,7 +2,7 @@
   "name": "personal-snippets",
   "contributes": {
     "snippets": [
-      { "language": "jsonc", "path": "./molang.json" }
+      { "language": "json", "path": "./molang.json" }
     ]
   }
 }
