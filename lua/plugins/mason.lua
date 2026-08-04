@@ -1,6 +1,6 @@
 return {
 	'mason-org/mason.nvim',
-	cmd = 'Mason',
+	event = 'VeryLazy',
 	opts = {
 		ui = {
 			height = 0.8,
