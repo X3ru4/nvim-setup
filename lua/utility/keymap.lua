@@ -10,7 +10,7 @@ function M.set_list(list)
 	for _, opts in ipairs(list) do
 		local ok, err = pcall(M.set, unpack(opts))
 		if not ok then
-			vim.notify(err .. "\n" .. vim.inspect(opts), vim.log.levels.WARN)
+			vim.notify(err .. '\n' .. vim.inspect(opts), vim.log.levels.WARN)
 		end
 	end
 end
@@ -20,7 +20,7 @@ function M.del_list(list)
 	for _, opts in ipairs(list) do
 		local ok, err = pcall(M.del, unpack(opts))
 		if not ok then
-			vim.notify(err .. "\n" .. vim.inspect(opts), vim.log.levels.WARN)
+			vim.notify(err .. '\n' .. vim.inspect(opts), vim.log.levels.WARN)
 		end
 	end
 end

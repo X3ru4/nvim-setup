@@ -3,10 +3,12 @@ return {
 	event = 'UIEnter',
 	dependencies = { 'nvim-mini/mini.icons' },
 	config = function()
+		local separator = { '', '' }
+		local Space = { provider = ' ' }
+		local Align = { provider = '%=' }
 		local hl = vimu.highlight
-		local statusline = require('config.extra_options').statusline
 
-		local search_count = {
+		local Search_count = {
 			condition = function()
 				return vim.v.hlsearch ~= 0 and vim.o.cmdheight == 0
 			end,
@@ -18,33 +20,28 @@ return {
 			end,
 			provider = function(self)
 				if self.search then
-					local search = self.search
-					return string.format(' %d/%d', search.current, math.min(search.total, search.maxcount))
+					return ' ' .. self.search.current .. '/' .. math.min(self.search.total, self.search.maxcount)
 				end
-				return ''
 			end,
 			hl = 'WarningMsg',
 		}
 
-		local vim_mode = {
+		local ViMode = {
 			update = 'ModeChanged',
 			init = function(self)
-				self.mode = vim.api.nvim_get_mode().mode
-				self.hlsep = hl.advance_hl('HeirlineModeSep', {
-					fg = {
-						list = self.mode_color,
-						key = self.mode,
-						default_key = 't',
-						'bg',
-					},
-					bg = { 'Dark3', 'fg' },
+				self.current_mode = vim.api.nvim_get_mode().mode
+				self.current_modehl = self.mode_hl[self.current_mode] or 'ModeOther'
+				self.current_modehlsep = 'HeirlineModeSep' .. self.current_modehl
+				hl.set(self.current_modehlsep, {
+					fg = hl.getbg(self.current_modehl),
+					bg = hl.getfg('Dark3'),
 				})
 			end,
 			hl = function(self)
-				return self.mode_color[self.mode] or 'ModeOther'
+				return self.current_modehl
 			end,
 			static = {
-				mode_color = {
+				mode_hl = {
 					n = 'ModeNormal',
 					i = 'ModeInsert',
 					v = 'ModeVisual',
@@ -59,14 +56,14 @@ return {
 					n = 'Normal',
 					i = 'Insert',
 					v = 'Visual',
-					V = 'Visual-Line',
-					['\22'] = 'Visual-Block',
+					V = 'Visual-L',
+					['\22'] = 'Visual-B',
 					c = 'Command',
 					t = 'Terminal',
 					R = 'Replace',
 					s = 'Select',
 					nt = 'Normal-terminal',
-					no = 'Operator-pending',
+					no = 'O-pending',
 				},
 			},
 			{
@@ -74,24 +71,23 @@ return {
 			},
 			{
 				provider = function(self)
-					return (self.mode_name[self.mode] or self.mode) .. ' '
+					return (self.mode_name[self.current_mode] or self.current_mode) .. ' '
 				end,
-				hl = { bold = true },
 			},
 			{
-				provider = statusline.separator[1],
+				provider = separator[1],
 				hl = function(self)
-					return self.hlsep
+					return self.current_modehlsep
 				end,
 			},
 		}
 
-		local file_info = {
+		local FileInfo = {
 			update = { 'BufWinEnter', 'FileType', 'BufModifiedSet' },
 			init = function()
-				hl.advance_hl('HeirlineDark2', {
-					fg = { 'StatusLine' },
-					bg = { 'Dark2', 'fg' },
+				hl.set('HeirlineDark2', {
+					fg = hl.getfg('StatusLine'),
+					bg = hl.getfg('Dark2'),
 				})
 				hl.set('HeirlineMod', {
 					fg = hl.getfg('Changed'),
@@ -112,7 +108,7 @@ return {
 			end,
 			hl = 'HeirlineDark2',
 			{
-				provider = statusline.separator[1],
+				provider = separator[1],
 				hl = 'HeirlineDark3Sep',
 			},
 			{
@@ -145,12 +141,12 @@ return {
 			},
 			{
 				provider = function()
-					return '%*%#HeirlineDark2Sep#' .. statusline.separator[1]
+					return '%*%#HeirlineDark2Sep#' .. separator[1]
 				end,
 			},
 		}
 
-		local macro = {
+		local Macro = {
 			update = { 'RecordingEnter', 'RecordingLeave' },
 			condition = function()
 				return vim.fn.reg_recording() ~= ''
@@ -161,49 +157,71 @@ return {
 			hl = 'Type',
 		}
 
-		local diagnostic = {
-			update = { 'DiagnosticChanged' },
-			static = {
-				icons = require('config.icons').diagnostic,
-			},
+		local Diagnostic = {
+			update = { 'DiagnosticChanged', 'BufEnter' },
 			init = function(self)
-				local count = vim.diagnostic.count(0)
-
-				self.error = count[vim.diagnostic.severity.ERROR] or 0
-				self.warn = count[vim.diagnostic.severity.WARN] or 0
-				self.hint = count[vim.diagnostic.severity.HINT] or 0
-				self.info = count[vim.diagnostic.severity.INFO] or 0
-
-				self.diagnostic = {
-					{ count = self.error, icon = self.icons.Error, icon_hl = 'DiagnosticError' },
-					{ count = self.warn, icon = self.icons.Warn, icon_hl = 'DiagnosticWarn' },
-					{ count = self.hint, icon = self.icons.Hint, icon_hl = 'DiagnosticHint' },
-					{ count = self.info, icon = self.icons.Info, icon_hl = 'DiagnosticInfo' },
-				}
+				self.status = vim.diagnostic.status(0)
 			end,
-			provider = function(self)
-				local t = {}
-				for _, info in ipairs(self.diagnostic) do
-					if info.count > 0 then
-						t[#t + 1] = string.format('%s %%#%s#%s %%#StatusLine#', info.count, info.icon_hl, info.icon)
-					end
-				end
-
-				return table.concat(t)
-			end,
+			{
+				provider = function(self)
+					return self.status:gsub(':', ' ')
+				end,
+			},
+			{
+				provider = function(self)
+					return self.status
+						:gsub('(%s?%%#DiagnosticSignInfo#.-)%%##$', '')
+						:gsub('(%s?%%#DiagnosticSignHint#.-)%%##$', '')
+						:gsub(':', ' ')
+				end,
+			},
 		}
 
-		require('heirline').setup({
-			statusline = {
-				vim_mode,
-				file_info,
-				{ provider = ' ' },
-				diagnostic,
-				{ provider = '%=' },
-				search_count,
-				macro,
-				{ provider = ' %{mode() == \'i\' ? \'󰗧\' : \'󰆾\'} %l·%c ' },
+		local ActiveStl = {
+			{
+				flexible = 20,
+				{ ViMode, FileInfo },
+				{ ViMode },
+				false,
 			},
+			{
+				flexible = 5,
+				{
+					update = Diagnostic.update,
+					init = Diagnostic.init,
+					Space,
+					Diagnostic[1],
+				},
+				{
+					update = Diagnostic.update,
+					init = Diagnostic.init,
+					Space,
+					Diagnostic[2],
+				},
+				false,
+			},
+			Align,
+			{
+				flexible = 10,
+				Search_count,
+				false,
+			},
+			{
+				flexible = 15,
+				Macro,
+				false,
+			},
+			{
+				flexible = 3,
+				{ provider = ' %{mode() == \'i\' ? \'󰗧\' : \'󰆾\'} %l·%c ' },
+				{ provider = ' %l·%c ' },
+				false,
+			},
+		}
+		-- local InactiveStl = {} -- Uselesss
+
+		require('heirline').setup({
+			statusline = ActiveStl,
 		})
 	end,
 }

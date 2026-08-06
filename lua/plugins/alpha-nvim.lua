@@ -14,9 +14,9 @@ return {
 
 		-- Create your own on https://patorjk.com/software/taag/#p=display&f=ANSI+Compact&t=X3ru4
 		dashboard.section.header.val = {
-			'██  ██ ████▄ ▄▄▄▄  ▄▄ ▄▄ ██  ██',
-			' ████   ▄▄██ ██▄█▄ ██ ██ ▀█████',
-			'██  ██ ▄▄▄█▀ ██ ██ ▀███▀     ██',
+			'╷ ╷╭─╮╭─╮╷ ╷╷ ╷',
+			'╭┼╯╶─┤├┬╯│ │╰─┤',
+			'╵ ╵╰─╯╵╰╴╰─╯  ╵',
 		}
 		dashboard.section.buttons.val = {
 			button('e', '󰝒  New file', '<cmd>ene <CR>'),

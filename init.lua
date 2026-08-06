@@ -1,3 +1,3 @@
 vim.loader.enable()
-require("utility")
-require("config")
+require('utility')
+require('config')

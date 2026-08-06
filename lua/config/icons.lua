@@ -1,10 +1,10 @@
 local M = {}
 
 M.diagnostic = {
-	Error = "",
-	Warn = "",
-	Info = "",
-	Hint = "",
+	Error = '',
+	Warn = '',
+	Info = '',
+	Hint = '',
 }
 
 M.vim_log_level = {
@@ -12,8 +12,8 @@ M.vim_log_level = {
 	WARN = M.diagnostic.Warn,
 	ERROR = M.diagnostic.Error,
 	DEBUG = M.diagnostic.Hint,
-	TRACE = "T",
-	OFF = "O",
+	TRACE = 'T',
+	OFF = 'O',
 }
 
 return M

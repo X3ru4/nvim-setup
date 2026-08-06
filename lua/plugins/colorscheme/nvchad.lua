@@ -42,31 +42,23 @@ local integrations = {
 	'render-markdown',
 }
 
-local function load(build)
-	if build then
-		require('base46').load_all_highlights()
-	end
-	for _, name in ipairs(integrations) do
-		dofile(vim.g.base46_cache .. name)
-	end
-	vim.g.colors_name = 'nvchad'
-end
-
 return {
 	'nvchad/base46',
 	name = 'nvchad',
 	dependencies = { 'nvim-lua/plenary.nvim' },
 	build = function()
-		load(true)
+		require('base46').load_all_highlights()
 	end,
 	config = function()
 		local config = require('nvconfig')
+		-- If you change the configuration, you will be forced to rebuild `:Lazy build nvchad`
 		config.base46.theme = 'gruvbox_light'
 		config.base46.transparency = false
 
-		local is_light = config.base46.theme:match('light')
-
-		load()
+		for _, name in ipairs(integrations) do
+			dofile(vim.g.base46_cache .. name)
+		end
+		vim.g.colors_name = 'nvchad'
 
 		local colors = {
 			base16 = require('base46').get_theme_tb('base_16'),
@@ -82,9 +74,8 @@ return {
 				ModeCommand = { link = 'St_CommandMode' },
 				ModeReplace = { link = 'St_ReplaceMode' },
 
-				NonText = { fg = colors.base30.one_bg3 },
 				FloatTitle = {
-					fg = is_light and colors.base30.black or colors.base30.white,
+					fg = colors.base30.black,
 					bg = colors.base30.blue,
 					bold = true,
 				},

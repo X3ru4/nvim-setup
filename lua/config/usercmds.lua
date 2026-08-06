@@ -1,12 +1,12 @@
 local create_cmd = vim.api.nvim_create_user_command
 
-create_cmd("Loadhl", function()
-	dofile(vim.fn.stdpath("config") .. "/lua/config/highlights.lua")
+create_cmd('Loadhl', function()
+	dofile(vim.fn.stdpath('config') .. '/lua/config/highlights.lua')
 end, {})
 
-create_cmd("Themes", function()
-	if not vimu.loader.is_plugin_loaded("fzf-lua") then
-		vim.notify("This command is require fzf-lua plugin.", vim.log.levels.ERROR)
+create_cmd('Themes', function()
+	if not vimu.loader.is_plugin_loaded('fzf-lua') then
+		vim.notify('This command is require fzf-lua plugin.', vim.log.levels.ERROR)
 		return
 	end
 
@@ -15,21 +15,21 @@ create_cmd("Themes", function()
 		list[#list + 1] = spec.name or spec[1]
 	end
 
-	require("fzf-lua").fzf_exec(list, {
+	require('fzf-lua').fzf_exec(list, {
 		winopts = {
 			fullscreen = false,
-			border = "rounded",
-			title = " Available colorschemes ",
+			border = 'rounded',
+			title = ' Available colorschemes ',
 		},
-		_headers = { "actions" },
+		_headers = { 'actions' },
 		actions = {
-			["enter"] = {
+			['enter'] = {
 				fn = function(selected)
-					vim.fn.setreg("*", selected[1])
+					vim.fn.setreg('*', selected[1])
 				end,
-				header = "yank",
+				header = 'yank',
 			},
-			["tab"] = {
+			['tab'] = {
 				fn = function(selected)
 					local ok, _ = pcall(vim.cmd.colorscheme, selected[1])
 					if not ok then
@@ -41,7 +41,7 @@ create_cmd("Themes", function()
 						end
 					end
 				end,
-				header = "load",
+				header = 'load',
 				reload = true,
 			},
 		},

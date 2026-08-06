@@ -5,11 +5,11 @@ local M = {}
 ---@param noreq boolean|nil
 ---@return function|nil
 function M.load_file(path, noreq)
-	path = vim.fs.joinpath(vim.fn.stdpath("config"), path)
+	path = vim.fs.joinpath(vim.fn.stdpath('config'), path)
 	path = vim.fs.normalize(path)
-  noreq = noreq or false
+	noreq = noreq or false
 	local stat = vim.uv.fs_stat(path)
-	assert(stat and stat.type == "directory", ("Invalid directory: %s"):format(path))
+	assert(stat and stat.type == 'directory', ('Invalid directory: %s'):format(path))
 
 	local iter = vim.fs.dir(path)
 	return function()
@@ -19,20 +19,16 @@ function M.load_file(path, noreq)
 				return
 			end
 
-			if kind == "file" and name ~= "init.lua" and name:match("%.lua$") then
-        if noreq then
-          local file = vim.fs.joinpath(path, name)
-          return name, dofile(file)
-        else
-          local module = vim.fs
-            .joinpath(path, name)
-            :gsub("^.*/lua/", "")
-            :gsub("/init%.lua$", "")
-            :gsub("%.lua$", "")
-            :gsub("/", ".")
+			if kind == 'file' and name ~= 'init.lua' and name:match('%.lua$') then
+				if noreq then
+					local file = vim.fs.joinpath(path, name)
+					return name, dofile(file)
+				else
+					local module =
+						vim.fs.joinpath(path, name):gsub('^.*/lua/', ''):gsub('/init%.lua$', ''):gsub('%.lua$', ''):gsub('/', '.')
 
-          return name, require(module)
-        end
+					return name, require(module)
+				end
 			end
 		end
 	end
@@ -53,8 +49,8 @@ function M.reload(modname)
 end
 
 function M.is_plugin_loaded(name)
-  local plugin = require("lazy.core.config").plugins[name]
-  return plugin and plugin._.loaded ~= nil
+	local plugin = require('lazy.core.config').plugins[name]
+	return plugin and plugin._.loaded ~= nil
 end
 
 return M

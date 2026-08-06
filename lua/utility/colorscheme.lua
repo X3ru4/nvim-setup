@@ -1,11 +1,11 @@
 local M = {}
 M.list = {}
 
-M.default = "default"
+M.default = 'default'
 
 local function load_colorscheme()
 	local ok, err = pcall(function()
-		for _, spec in vimu.loader.load_file("lua/plugins/colorscheme") do
+		for _, spec in vimu.loader.load_file('lua/plugins/colorscheme') do
 			M.list[#M.list + 1] = spec
 		end
 	end)
@@ -30,7 +30,7 @@ function M.create_spec()
 				t[#t + 1] = {
 					spec[1],
 					name = spec.name or nil,
-					event = "VeryLazy",
+					event = 'VeryLazy',
 					dependencies = spec.dependencies or nil,
 				}
 			end

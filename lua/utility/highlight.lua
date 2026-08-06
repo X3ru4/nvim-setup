@@ -25,8 +25,6 @@ function M.clear_cache()
 	cache.get = {}
 end
 
-M.oget = vim.api.nvim_get_hl
-M.oset = vim.api.nvim_set_hl
 M.use_cache = false
 
 ---This is the default table used to load highlights when M.apply() is called.
@@ -72,7 +70,7 @@ end
 
 ---@param hl_list utility.highlight.highlights
 function M.insert(hl_list)
-	M.highlight = vim.tbl_deep_extend("force", M.highlight, hl_list)
+	M.highlight = vim.tbl_deep_extend('force', M.highlight, hl_list)
 	return M.highlight
 end
 
@@ -87,11 +85,14 @@ function M.modify(name, opts, append)
 	end
 
 	local base = M.get(name)
-	opts = type(opts) == "function" and opts(base) or opts
+	if type(opts) == 'function' then
+		opts = opts(base)
+	else
+		opts = vim.tbl_extend('force', base, opts)
+	end
 
-	local merged = vim.tbl_extend("force", base, opts)
-	M.highlight.basic[name] = append and merged or M.highlight.basic[name]
-	return { name, merged }
+	M.highlight.basic[name] = append and opts or M.highlight.basic[name]
+	return { name, opts }
 end
 
 ---Apply highlights from `hl_list`. If `hl_list` is empty (nil), apply the M.highlights table instead.
@@ -111,7 +112,7 @@ function M.apply(hl_list, use_cache)
 		end
 		if t.extra and t.extra ~= {} then
 			for _, val in ipairs(t.extra) do
-				if type(val) == "function" then
+				if type(val) == 'function' then
 					M.set(val())
 				else
 					if val[1] and val[2] then
@@ -163,42 +164,40 @@ end
 ---Create your highlight!
 ---@param ns string Namespace
 ---@param spec utility.highlight.advance_hl_spec Spection
+---@param get_opts boolean|nil Return the options instead of the highlight name.
 ---@return string|table
-function M.advance_hl(ns, spec)
+function M.advance_hl(ns, spec, get_opts)
 	local function create_key(style)
-		return type(style) == "table" and style.list and (style.list[style.key] or "") or ""
+		return type(style) == 'table' and style.list and (style.list[style.key] or '') or ''
 	end
 
 	ns = ns .. create_key(spec.fg) .. create_key(spec.bg)
 
 	if not cache.def[ns] then
-
 		local function pick_hl(style, key)
 			if not style then
 				return nil
 			end
-			if type(style) == "string" or type(style) == "number" then
+			if type(style) == 'string' or type(style) == 'number' then
 				return style
 			end
 
-			spec.default_hl = spec.default_hl or "Normal"
 			if style.list then
-				local group = style.list[style.key] or style.list[style.default_key] or spec.default_hl
+				local group = style.list[style.key] or style.list[style.default_key] or spec.default_hl or 'Normal'
 				return M.get(group)[style[1] or key]
 			elseif style[1] then
 				return M.get(style[1])[style[2] or key]
 			end
 		end
 
-		local opts = 
-		vim.tbl_extend("keep", {
-			fg = pick_hl(spec.fg, "fg"),
-			bg = pick_hl(spec.bg, "bg"),
+		local opts = vim.tbl_extend('keep', {
+			fg = pick_hl(spec.fg, 'fg'),
+			bg = pick_hl(spec.bg, 'bg'),
 		}, spec.gui or {})
-		if tab then
+		if get_opts then
 			return opts
 		end
-		M.set( ns, opts)
+		M.set(ns, opts)
 	end
 	return ns
 end
@@ -215,14 +214,14 @@ local function hex_to_rgb(hex)
 end
 
 local function rgb_to_hex(rgb)
-	return string.format("#%02x%02x%02x", rgb.r, rgb.g, rgb.b)
+	return string.format('#%02x%02x%02x', rgb.r, rgb.g, rgb.b)
 end
 
 function M.dec_to_hex(dec_color)
-	if type(dec_color) == "number" then
-		return string.format("#%06X", dec_color)
+	if type(dec_color) == 'number' then
+		return string.format('#%06X', dec_color)
 	end
-	vim.notify("Expected a number for dec_color, got " .. type(dec_color), vim.log.levels.WARN)
+	vim.notify('Expected a number for dec_color, got ' .. type(dec_color), vim.log.levels.WARN)
 	return nil
 end
 
@@ -233,12 +232,12 @@ end
 --- @return string|nil
 M.blend = function(foreground, background, alpha)
 	if not foreground or not background or not alpha then
-		vim.notify("blend() returned nil", vim.log.levels.ERROR)
+		vim.notify('blend() returned nil', vim.log.levels.ERROR)
 		return
 	end
 
-	foreground = type(foreground) == "number" and M.dec_to_hex(foreground) or foreground
-	background = type(background) == "number" and M.dec_to_hex(background) or background
+	foreground = type(foreground) == 'number' and M.dec_to_hex(foreground) or foreground
+	background = type(background) == 'number' and M.dec_to_hex(background) or background
 	local color1 = hex_to_rgb(foreground)
 	local color2 = hex_to_rgb(background)
 
