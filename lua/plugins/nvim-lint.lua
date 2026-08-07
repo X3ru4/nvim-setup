@@ -4,6 +4,7 @@ return {
 	config = function()
 		require('lint').linters_by_ft = {
 			markdown = { 'markdownlint' },
+			lua = { 'luacheck' },
 		}
 
 		vim.api.nvim_create_autocmd({ 'InsertLeave', 'BufWritePost' }, {
