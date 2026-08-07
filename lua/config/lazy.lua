@@ -28,7 +28,9 @@ require('lazy').setup({
 		-- install missing plugins on startup. This doesn't increase startup time.
 		missing = true,
 		-- try to load one of these colorschemes when starting an installation during startup
-		colorscheme = { vimu.colorscheme.default },
+		colorscheme = {
+			vimu.colorscheme.variant or vimu.colorscheme.default,
+		},
 	},
 	checker = { enabled = true },
 	defaults = {

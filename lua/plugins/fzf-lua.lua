@@ -3,6 +3,7 @@ return {
 	event = 'VeryLazy',
 	config = function()
 		require('fzf-lua').setup({
+			'telescope',
 			file_icon_padding = ' ',
 			defaults = {
 				prompt = '  ',
@@ -30,35 +31,49 @@ return {
 			fzf_opts = {
 				['--pointer'] = '›',
 				['--gutter'] = ' ',
-				['--marker'] = '×',
+				['--marker'] = '•',
 				['--ellipsis'] = '~',
 			},
 			fzf_colors = { true },
 			colorschemes = {
-				actions = {
-					['enter'] = function(selected, opts)
-						require('fzf-lua.actions').colorscheme(selected, opts)
-					end,
+				winopts = {
+					fullscreen = true,
+				},
+			},
+			awesome_colorschemes = {
+				winopts = {
+					fullscreen = true,
+				},
+			},
+			files = {
+				winopts = {
+					fullscreen = true,
 				},
 			},
 			registers = {
 				winopts = {
 					preview = { hidden = false },
+					fullscreen = true,
 				},
 			},
 			buffers = {
 				filename_only = true,
 				winopts = {
 					preview = { hidden = false },
+					fullscreen = true,
 				},
 			},
 			tabs = {
 				winopts = {
 					preview = { hidden = false },
+					fullscreen = true,
 				},
 			},
 			highlights = {
-				winopts = { preview = { hidden = false } },
+				winopts = {
+					preview = { hidden = false },
+					fullscreen = true,
+				},
 			},
 			diagnostics = {
 				winopts = {
@@ -67,27 +82,83 @@ return {
 			},
 			oldfiles = {
 				cwd_only = true,
+				winopts = {
+					fullscreen = true,
+				},
 			},
 			grep = {
 				winopts = {
 					preview = { hidden = false },
+					fullscreen = true,
 				},
 			},
 			git = {
+				files = {
+					winopts = {
+						fullscreen = true,
+					},
+				},
+				status = {
+					winopts = {
+						fullscreen = true,
+					},
+				},
+				commits = {
+					winopts = {
+						fullscreen = true,
+					},
+				},
+				bcommits = {
+					winopts = {
+						fullscreen = true,
+					},
+				},
+				blame = {
+					winopts = {
+						fullscreen = true,
+					},
+				},
+				branches = {
+					winopts = {
+						fullscreen = true,
+					},
+				},
+				tags = {
+					winopts = {
+						fullscreen = true,
+					},
+				},
+				stash = {
+					winopts = {
+						fullscreen = true,
+					},
+				},
 				diff = {
 					winopts = {
 						preview = { hidden = false },
+						fullscreen = true,
 					},
 				},
 				hunks = {
 					winopts = {
 						preview = { hidden = false },
+						fullscreen = true,
 					},
+				},
+				icons = {
+					['M'] = { icon = '*', color = 'yellow' },
+					['D'] = { icon = '-', color = 'red' },
+					['A'] = { icon = '+', color = 'green' },
+					['R'] = { icon = '~', color = 'yellow' },
+					['C'] = { icon = '@', color = 'yellow' },
+					['T'] = { icon = '!', color = 'magenta' },
+					['?'] = { icon = '?', color = 'magenta' },
 				},
 			},
 			quickfix = {
 				winopts = {
 					preview = { hidden = false },
+					fullscreen = true,
 				},
 			},
 		})
@@ -105,11 +176,17 @@ return {
 			{ 'n', '<leader>ff', fzf.files, { desc = 'FZF file CWD' } },
 			{
 				'n',
+				'<leader>fd',
+				function()
+					fzf.files({ cwd = vim.fn.expand('%:h') })
+				end,
+				{ desc = 'FZF config' },
+			},
+			{
+				'n',
 				'<leader>fc',
 				function()
-					fzf.files({
-						cwd = vim.fn.stdpath('config'),
-					})
+					fzf.files({ cwd = vim.fn.stdpath('config') })
 				end,
 				{ desc = 'FZF config' },
 			},

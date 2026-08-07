@@ -12,7 +12,6 @@ return {
 			return btn
 		end
 
-		-- Create your own on https://patorjk.com/software/taag/#p=display&f=ANSI+Compact&t=X3ru4
 		dashboard.section.header.val = {
 			'╷ ╷╭─╮╭─╮╷ ╷╷ ╷',
 			'╭┼╯╶─┤├┬╯│ │╰─┤',

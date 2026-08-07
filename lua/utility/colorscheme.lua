@@ -2,6 +2,7 @@ local M = {}
 M.list = {}
 
 M.default = 'default'
+M.variant = 'default'
 
 local function load_colorscheme()
 	local ok, err = pcall(function()

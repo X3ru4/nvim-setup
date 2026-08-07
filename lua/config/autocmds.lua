@@ -34,6 +34,7 @@ autocmd('ColorScheme', {
 	callback = function()
 		vimu.highlight.use_cache = false -- Stop using cache.
 		vim.cmd('Loadhl')
+		vim.cmd.redraw()
 	end,
 })
 -- Setup highlights

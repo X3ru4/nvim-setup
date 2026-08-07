@@ -2,5 +2,11 @@
     "completion.autoRequire": false,
     "diagnostics.disable": [
         "undefined-global"
+    ],
+    "diagnostics.globals": [
+        "vim",
+        "vimu",
+        "std",
+        "globals"
     ]
 }

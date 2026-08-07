@@ -56,7 +56,7 @@ return {
 			window = {
 				-- Floating window config
 				config = {
-					border = 'rounded',
+					border = nil,
 				},
 
 				-- Delay before showing clue window

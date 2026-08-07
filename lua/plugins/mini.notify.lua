@@ -33,7 +33,7 @@ return {
 				---@type vim.api.keyset.win_config|function
 				config = function()
 					return {
-						border = 'rounded',
+						border = nil,
 						title = '› Notifications ‹',
 						title_pos = 'center',
 						width = (notify_msg:len() < 17 and 17) or nil,
@@ -58,12 +58,16 @@ return {
 
 		local levels = {
 			emsg = vim.log.levels.ERROR, -- Error message
-			comfirm = vim.log.levels.INFO, -- Comfirm message
+			comfirm = vim.log.levels.TRACE, -- Comfirm message
 		}
 		local skip_kind = {
 			search_cmd = true,
 			search_count = true,
 		}
+
+		local function suitable_kind(msg)
+			return msg:find('^.-(E)') and 'emsg' or kind
+		end
 
 		vim.ui_attach(ns, { ext_messages = true }, function(event, ...)
 			if event == 'msg_show' then
@@ -73,12 +77,12 @@ return {
 				end
 				if #content > 1 then
 					for _, c in ipairs(content) do
-						kind = c[2]:match('^.*(E)') == 'E' and 'emsg' or kind
-						vim.notify(c[2], levels[kind] or nil)
+						kind = suitable_kind(c[2])
+						vim.notify(c[2], levels[kind])
 					end
 				else
-					kind = content[1][2]:match('^.*(E)') == 'E' and 'emsg' or kind
-					vim.notify(content[1][2], levels[kind] or nil)
+					kind = suitable_kind(content[1][2])
+					vim.notify(content[1][2], levels[kind])
 				end
 				return 0
 			end

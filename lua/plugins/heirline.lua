@@ -27,7 +27,13 @@ return {
 		}
 
 		local ViMode = {
-			update = 'ModeChanged',
+			update = {
+				'ModeChanged',
+				pattern = '*:*',
+				callback = vim.schedule_wrap(function()
+					vim.cmd.redrawstatus()
+				end),
+			},
 			init = function(self)
 				self.current_mode = vim.api.nvim_get_mode().mode
 				self.current_modehl = self.mode_hl[self.current_mode] or 'ModeOther'
@@ -62,7 +68,7 @@ return {
 					t = 'Terminal',
 					R = 'Replace',
 					s = 'Select',
-					nt = 'Normal-terminal',
+					nt = 'Normal-T',
 					no = 'O-pending',
 				},
 			},
@@ -218,10 +224,7 @@ return {
 				false,
 			},
 		}
-		-- local InactiveStl = {} -- Uselesss
 
-		require('heirline').setup({
-			statusline = ActiveStl,
-		})
+		require('heirline').setup({ statusline = ActiveStl })
 	end,
 }

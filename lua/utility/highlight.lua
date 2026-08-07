@@ -91,7 +91,10 @@ function M.modify(name, opts, append)
 		opts = vim.tbl_extend('force', base, opts)
 	end
 
-	M.highlight.basic[name] = append and opts or M.highlight.basic[name]
+	if append then
+		M.highlight.basic[name] = opts
+	end
+
 	return { name, opts }
 end
 
