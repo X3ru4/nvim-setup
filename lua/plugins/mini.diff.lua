@@ -1,7 +1,7 @@
 return {
 	'nvim-mini/mini.diff',
 	version = false,
-	event = { 'BufReadPre', 'BufNewFile' },
+	event = 'BufReadPost',
 	opts = {
 		view = {
 			-- Visualization style. Possible values are 'sign' and 'number'.

@@ -164,7 +164,7 @@ return {
 		})
 
 		local fzf = require('fzf-lua')
-		vimu.keymap.set_list({
+		require('utils.keymap').set_list({
 			{ 'n', '<leader>cs', fzf.spell_suggest, { desc = 'Spell suggest' } },
 			{ 'n', '<leader>cq', fzf.quickfix, { desc = 'Quickfix' } },
 			{ 'n', '<leader>cd', fzf.diagnostics_document, { desc = 'All diagnostics' } },
@@ -206,7 +206,7 @@ return {
 			{ 'n', '<leader>cl', fzf.lsp_document_symbols, { desc = 'LSP symbols' } },
 		})
 
-		local hl = vimu.highlight
+		local hl = require('utils.highlight')
 		local fzf_hl = {
 			FzfLuaNormal = { link = 'NormalFloat' },
 			FzfLuaBorder = { link = 'FloatBorder' },

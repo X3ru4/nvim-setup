@@ -68,7 +68,7 @@ return {
 		base46.load('gruvbox_light')
 
 		local colors = base46.theme_tables[base46.current_theme]
-		local hl = vimu.highlight
+		local hl = require('utils.highlight')
 		hl.apply({
 			basic = {
 				ModeOther = { link = 'St_ConfirmMode' },
@@ -85,18 +85,8 @@ return {
 				},
 				FloatFooter = { link = 'FloatTitle' },
 
-				MiniIconsGrey = { fg = colors.base_30.grey },
-				MiniIconsAzure = { fg = colors.base_30.nord_blue },
-				MiniIconsPurple = { fg = colors.base_30.purple },
-				MiniIconsGreen = { fg = colors.base_30.green },
-				MiniIconsBlue = { fg = colors.base_30.blue },
-				MiniIconsCyan = { fg = colors.base_30.cyan },
-				MiniIconsOrange = { fg = colors.base_30.orange },
-				MiniIconsRed = { fg = colors.base_30.red },
-				MiniIconsYellow = { fg = colors.base_30.yellow },
-
 				SnacksIndent = { fg = colors.base_30.line },
-				SnacksIndentScope = { fg = colors.base_30.grey },
+				SnacksIndentScope = { fg = colors.base_30.baby_pink },
 			},
 			extra = {
 				hl.modify('NormalFloat', { fg = colors.base_30.white }),

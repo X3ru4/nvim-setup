@@ -27,13 +27,14 @@ autocmd({ 'InsertEnter', 'WinLeave' }, {
 	end,
 })
 
+local highlight = require('utils.highlight')
 ---Control
 -- Load highlight configuration when changing colorscheme.
 autocmd('ColorScheme', {
 	group = groups.control,
 	callback = function()
-		vimu.highlight.use_cache = false -- Stop using cache.
-		vim.cmd('Loadhl')
+		highlight.use_cache = false -- Stop using cache.
+		vim.cmd.Loadhl()
 		vim.cmd.redraw()
 	end,
 })
@@ -42,7 +43,7 @@ autocmd('UIEnter', {
 	group = groups.control,
 	once = true,
 	callback = function()
-		vim.cmd('Loadhl')
+		vim.cmd.Loadhl()
 	end,
 })
 -- LSP

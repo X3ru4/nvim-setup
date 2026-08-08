@@ -1,7 +1,7 @@
 return {
 	'nvim-mini/mini.align',
 	version = false,
-	event = { 'BufReadPre', 'BufNewFile' },
+	keys = { 'ga', 'gA' },
 	-- Module mappings. Use `''` (empty string) to disable one.
 	opts = {
 		mappings = {

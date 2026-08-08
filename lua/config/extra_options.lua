@@ -1,9 +1,16 @@
 local M = {}
+local colorscheme = require('utils.colorscheme')
 
 -- Run `:Themes` command to see all available themes
 -- Add colorscheme in ~/.config/nvim/lua/plugins/colorscheme/ press `gf` to open
-vimu.colorscheme.default = 'base46'
-vimu.colorscheme.variant = 'base46-gruvbox_light'
+colorscheme.default = 'base46'
+colorscheme.variant = 'base46-gruvbox_light'
+colorscheme.install = {
+	-- '*' Uncomment on this line if you want to download all the colorschemes.
+	['catppuccin'] = true,
+	['gruvbox-material'] = false,
+	['onedark'] = false,
+}
 
 M.blinkcmp = {
 	menu = {

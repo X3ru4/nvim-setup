@@ -1,4 +1,5 @@
-vimu.keymap.set_list({
+local keymap = require('utils.keymap')
+keymap.set_list({
 	{ 'n', '<leader>gt', '<Cmd>terminal<Cr>i', { desc = 'Open terminal' } },
 
 	{ 'n', '<leader>re', '<Cmd>restart<Cr>', { desc = 'Restart Neovim' } },

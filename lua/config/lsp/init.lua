@@ -1,5 +1,6 @@
 local M = {}
-local icons = require('config.icons')
+local loader = require('utils.loader')
+local keymap	 = require('utils.keymap')
 
 vim.diagnostic.config({
 	virtual_text = {
@@ -11,10 +12,10 @@ vim.diagnostic.config({
 	update_in_insert = false,
 	signs = {
 		text = {
-			[vim.diagnostic.severity.ERROR] = icons.diagnostic.Error,
-			[vim.diagnostic.severity.WARN] = icons.diagnostic.Warn,
-			[vim.diagnostic.severity.INFO] = icons.diagnostic.Info,
-			[vim.diagnostic.severity.HINT] = icons.diagnostic.Hint,
+			[vim.diagnostic.severity.ERROR] = '',
+			[vim.diagnostic.severity.WARN] = '',
+			[vim.diagnostic.severity.INFO] = '',
+			[vim.diagnostic.severity.HINT] = '',
 		},
 	},
 })
@@ -22,7 +23,7 @@ vim.diagnostic.config({
 -- Disable inlay hint
 vim.lsp.inlay_hint.enable(false)
 
-for name, config in require('utility.loader').load_file('lua/config/lsp') do
+for name, config in loader.load_file('lua/config/lsp') do
 	if type(config) == 'table' and config.enabled ~= false then
 		local server = name:gsub('%.lua$', '')
 		vim.lsp.config(server, config)
@@ -30,7 +31,7 @@ for name, config in require('utility.loader').load_file('lua/config/lsp') do
 	end
 end
 
-vimu.keymap.set_list({
+keymap.set_list({
 	{
 		{ 'n', 'x' },
 		'[e',
@@ -105,7 +106,7 @@ vimu.keymap.set_list({
 	},
 })
 
-vimu.keymap.del_list({
+keymap.del_list({
 	{ { 'n', 'x' }, 'gra' }, -- "gra" (Normal and Visual mode) is mapped to vim.lsp.buf.code_action()
 	{ 'n', 'grx' }, -- "grx" is mapped to vim.lsp.codelens.run()
 })
@@ -113,9 +114,9 @@ vimu.keymap.del_list({
 -- This function will be run when LSP attach to buffer.
 function M.attach(ev)
 	-- Remove the default LSP signature keymap.
-	vimu.keymap.del('n', 'K', { buf = ev.buf })
+	keymap.del('n', 'K', { buf = ev.buf })
 
-	vimu.keymap.set_list({
+	keymap.set_list({
 		{ { 'n', 'x' }, '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action', buf = ev.buf } },
 		{
 			'n',

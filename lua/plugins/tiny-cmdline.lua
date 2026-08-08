@@ -24,8 +24,9 @@ return {
 			},
 		})
 
-		vimu.highlight.add_callback('tiny-cmdline', function()
-			vimu.highlight.set('TinyCmdlineNormal', { link = 'NormalFloat' })
+		local hl = require('utils.highlight')
+		hl.add_callback('tiny-cmdline', function()
+			hl.set('TinyCmdlineNormal', { link = 'NormalFloat' })
 		end)
 	end,
 }

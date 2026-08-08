@@ -7,7 +7,6 @@ local M = {}
 function M.load_file(path, noreq)
 	path = vim.fs.joinpath(vim.fn.stdpath('config'), path)
 	path = vim.fs.normalize(path)
-	noreq = noreq or false
 	local stat = vim.uv.fs_stat(path)
 	assert(stat and stat.type == 'directory', ('Invalid directory: %s'):format(path))
 

@@ -1,12 +1,11 @@
 return {
 	'rebelot/heirline.nvim',
 	event = 'UIEnter',
-	dependencies = { 'nvim-mini/mini.icons' },
 	config = function()
 		local separator = { '', '' }
 		local Space = { provider = ' ' }
 		local Align = { provider = '%=' }
-		local hl = vimu.highlight
+		local hl = require('utils.highlight')
 
 		local Search_count = {
 			condition = function()
@@ -119,7 +118,11 @@ return {
 			},
 			{
 				init = function(self)
-					self.icon, self.hl = MiniIcons.get('filetype', vim.bo.filetype)
+					if MiniIcons then
+						self.icon, self.hl = MiniIcons.get('filetype', vim.bo.filetype)
+					else
+						self.icon, self.hl = '', ''
+					end
 				end,
 				provider = function(self)
 					return ' ' .. self.icon .. ' '

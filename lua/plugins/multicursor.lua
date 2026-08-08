@@ -26,7 +26,7 @@ return {
 		end)
 
 		-- Customize how cursors look.
-		vimu.highlight.apply({
+		require('utils.highlight').apply({
 			basic = {
 				MultiCursorCursor = { link = 'Cursor' },
 				MultiCursorVisual = { link = 'Visual' },
@@ -39,7 +39,7 @@ return {
 		})
 
 		local mode = { 'n', 'x' }
-		vimu.keymap.set_list({
+		require('utils.keymap').set_list({
 			{
 				mode,
 				'<C-Up>',

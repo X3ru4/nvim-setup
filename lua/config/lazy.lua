@@ -17,19 +17,20 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
+local cs = require('utils.colorscheme')
 
 -- Setup lazy.nvim
 require('lazy').setup({
 	spec = {
 		{ import = 'plugins' },
-		vimu.colorscheme.create_spec(),
+		cs.create_spec(),
 	},
 	install = {
 		-- install missing plugins on startup. This doesn't increase startup time.
 		missing = true,
 		-- try to load one of these colorschemes when starting an installation during startup
 		colorscheme = {
-			vimu.colorscheme.variant or vimu.colorscheme.default,
+			cs.variant or cs.default,
 		},
 	},
 	checker = { enabled = true },
@@ -79,34 +80,21 @@ require('lazy').setup({
 	performance = {
 		rtp = {
 			disabled_plugins = {
-				'2html_plugin',
-				'tohtml',
-				'getscript',
-				'getscriptPlugin',
+				-- 'editorconfig',
+				'fzf',
 				'gzip',
-				'logipat',
-				'netrw',
-				'netrwPlugin',
-				'netrwSettings',
-				'netrwFileHandlers',
+				'man',
 				'matchit',
 				'matchparen',
-				'tar',
+				'net',
+				'netrwPlugin',
+				'osc52',
+				'rplugin',
+				'spellfile',
 				'tarPlugin',
-				'rrhelper',
-				'spellfile_plugin',
-				'vimball',
-				'vimballPlugin',
-				'zip',
 				'zipPlugin',
 				'tutor',
-				'rplugin',
-				-- "syntax",
-				'synmenu',
-				'optwin',
-				'compiler',
-				'bugreport',
-				-- "ftplugin",
+				'rpluginzipPlugin',
 			},
 		},
 	},

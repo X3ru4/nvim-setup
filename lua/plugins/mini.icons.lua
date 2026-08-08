@@ -1,5 +1,6 @@
 return {
 	'nvim-mini/mini.icons',
+	version = false,
 	event = 'VeryLazy',
 	opts = {
 		style = 'glyph',
@@ -8,20 +9,8 @@ return {
 		directory = {
 			Download = { glyph = '󰉍', hl = 'MiniIconsOrange' },
 			Movies = { glyph = '󰎁', hl = 'MiniIconsOrange' },
-			utility = { glyph = '󰴉', hl = 'MiniIconsYellow' },
-			config = { glyph = '󱁿', hl = 'MiniIconsGreen' },
-			plugins = { glyph = '󱋣', hl = 'MiniIconsYellow' },
 		},
-		file = {
-			['lazy.lua'] = { glyph = '󰒲', hl = 'MiniIconsBlue' },
-			['autocmds.lua'] = { glyph = '󰁨', hl = 'MiniIconsAzure' },
-			['usercmds.lua'] = { glyph = '󰘰', hl = 'MiniIconsAzure' },
-			['options.lua'] = { glyph = '󰒓', hl = 'MiniIconsOrange' },
-			['extra_options.lua'] = { glyph = '󰣖', hl = 'MiniIconsYellow' },
-			['highlights.lua'] = { glyph = '󰛨', hl = 'MiniIconsAzure' },
-			['keymaps.lua'] = { glyph = '󰌌', hl = 'MiniIconsAzure' },
-			['icons.lua'] = { glyph = '', hl = 'MiniIconsAzure' },
-		},
+		file = {},
 		filetype = {},
 		extension = {},
 		lsp = {},

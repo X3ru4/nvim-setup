@@ -1,6 +1,6 @@
 return {
 	url = 'https://codeberg.org/mfussenegger/nvim-lint.git',
-	event = 'BufReadPre',
+	event = 'BufReadPost',
 	config = function()
 		require('lint').linters_by_ft = {
 			markdown = { 'markdownlint' },

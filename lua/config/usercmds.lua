@@ -1,17 +1,19 @@
 local create_cmd = vim.api.nvim_create_user_command
+local colorscheme = require('utils.colorscheme')
+local loader = require('utils.loader')
 
 create_cmd('Loadhl', function()
 	dofile(vim.fn.stdpath('config') .. '/lua/config/highlights.lua')
 end, {})
 
 create_cmd('Themes', function()
-	if not vimu.loader.is_plugin_loaded('fzf-lua') then
+	if not loader.is_plugin_loaded('fzf-lua') then
 		vim.notify('This command is require fzf-lua plugin.', vim.log.levels.ERROR)
 		return
 	end
 
 	local list = {}
-	for _, spec in ipairs(vimu.colorscheme.list) do
+	for _, spec in ipairs(colorscheme.themes) do
 		list[#list + 1] = spec.name or spec[1]
 	end
 
@@ -35,7 +37,7 @@ create_cmd('Themes', function()
 					if not ok then
 						for i, name in ipairs(list) do
 							if name == selected[1] then
-								pcall(vimu.colorscheme.list[i].config)
+								pcall(colorscheme.themes[i].config)
 								break
 							end
 						end

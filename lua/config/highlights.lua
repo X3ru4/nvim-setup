@@ -1,4 +1,4 @@
-local hl = vimu.highlight
+local hl = require('utils.highlight')
 
 hl.setup(function()
 	local norm = {
@@ -12,13 +12,18 @@ hl.setup(function()
 	hl.set('Dark4', { fg = hl.blend(norm.bg, norm.fg, 0.6) })
 
 	local function create_modehl(name, ref, def)
-		if hl.hl_exist(name) then
-			return {}
-		end
 		if hl.hl_exist(ref) then
-			return { name, { link = ref } }
+			return { name, { link = ref, default = true } }
 		end
-		return { name, { fg = norm.bg, bg = hl.getfg(def), bold = true } }
+		return {
+			name,
+			{
+				default = true,
+				fg = norm.bg,
+				bg = hl.getfg(def),
+				bold = true,
+			},
+		}
 	end
 
 	hl.insert({
@@ -31,12 +36,12 @@ hl.setup(function()
 		-- This field is a special field used to set up highlights that require logic.
 		extra = {
 			-- Create highlights for the basic Vim/Nvim modes used in heirline.nvim.
-			create_modehl('ModeOther', 'MiniStatuslineModeOther', 'DiagnosticInfo'),
-			create_modehl('ModeNormal', 'MiniStatuslineModeNormal', 'DiagnosticInfo'),
-			create_modehl('ModeInsert', 'MiniStatuslineModeInsert', 'DiagnosticOk'),
-			create_modehl('ModeVisual', 'MiniStatuslineModeVisual', 'DiagnosticWarn'),
-			create_modehl('ModeCommand', 'MiniStatuslineModeCommand', 'DiagnosticError'),
-			create_modehl('ModeReplace', 'MiniStatuslineModeReplace', 'DiagnosticError'),
+			create_modehl('ModeOther', 'MiniStatuslineModeOther', 'DiagnosticSignInfo'),
+			create_modehl('ModeNormal', 'MiniStatuslineModeNormal', 'DiagnosticSignInfo'),
+			create_modehl('ModeInsert', 'MiniStatuslineModeInsert', 'DiagnosticSignOk'),
+			create_modehl('ModeVisual', 'MiniStatuslineModeVisual', 'DiagnosticSignWarn'),
+			create_modehl('ModeCommand', 'MiniStatuslineModeCommand', 'DiagnosticSignError'),
+			create_modehl('ModeReplace', 'MiniStatuslineModeReplace', 'DiagnosticSignError'),
 			-- Modify default highlights.
 			hl.modify('Visual', { bold = true }),
 			-- hl.modify("FloatTitle", { bg = hl.getbg("NormalFloat") }),

@@ -9,7 +9,7 @@ return {
 		})
 
 		vim.cmd.colorscheme('shale')
-		local hl = vimu.highlight
+		local hl = require('utils.highlight')
 		hl.insert({
 			extra = {
 				hl.modify('FloatBorder', { bg = hl.getbg('NormalFloat') }),
