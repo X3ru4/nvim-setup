@@ -1,12 +1,12 @@
 return {
 	'nvim-mini/mini.ai',
 	version = false,
-	event = { 'BufReadPre', 'BufNewFile' },
+	event = 'BufReadPost',
 	opts = function()
+		local MiniExtra = require('mini.extra')
 		return {
 			n_lines = 50,
 			custom_textobjects = {
-				d = { '%f[%d]%d+' },
 				e = {
 					{
 						'%u[%l%d]+%f[^%l%d]',
@@ -16,6 +16,8 @@ return {
 					},
 					'^().*()$',
 				},
+				d = MiniExtra.gen_ai_spec.number(),
+				i = MiniExtra.gen_ai_spec.indent()
 			},
 			mappings = {
 				-- Main textobject prefixes
