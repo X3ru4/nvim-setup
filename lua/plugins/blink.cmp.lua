@@ -51,21 +51,21 @@ return {
 					Constructor = '',
 
 					Field = '',
-					Variable = '󰫧',
+					Variable = '',
 					Property = '',
 
 					Class = '',
 					Interface = '',
 					Struct = '',
-					Module = '',
+					Module = '',
 
 					Unit = '',
-					Value = '',
+					Value = '',
 					Enum = '',
 					EnumMember = '',
 
 					Keyword = '',
-					Constant = '󰏿',
+					Constant = '',
 
 					Snippet = '󰒉',
 					Color = '',

@@ -94,6 +94,7 @@ return {
 				-- Syntax
 				hl.modify('Keyword', { italic = true }),
 				hl.modify('@keyword', { italic = true }),
+				hl.modify('@keyword.return', { italic = true }),
 				hl.modify('@keyword.function', { italic = true }),
 				hl.modify('@keyword.operator', { italic = true }),
 				hl.modify('@keyword.conditional', { italic = true }),

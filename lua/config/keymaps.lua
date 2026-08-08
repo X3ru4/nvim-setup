@@ -1,5 +1,8 @@
 local keymap = require('utils.keymap')
 keymap.set_list({
+	{ 'n', '<Home>', '0', { remap = true } },
+	{ 'n', '<End>', '$', { remap = true } },
+
 	{ 'n', '<leader>gt', '<Cmd>terminal<Cr>i', { desc = 'Open terminal' } },
 
 	{ 'n', '<leader>re', '<Cmd>restart<Cr>', { desc = 'Restart Neovim' } },
