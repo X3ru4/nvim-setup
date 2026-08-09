@@ -17,6 +17,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
+
 local cs = require('utils.colorscheme')
 
 -- Setup lazy.nvim

@@ -7,7 +7,7 @@ create_cmd('Loadhl', function()
 end, {})
 
 create_cmd('Themes', function()
-	if not loader.is_plugin_loaded('fzf-lua') then
+	if not loader.loaded_plugin('fzf-lua') then
 		vim.notify('This command is require fzf-lua plugin.', vim.log.levels.ERROR)
 		return
 	end

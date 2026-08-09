@@ -47,7 +47,7 @@ function M.reload(modname)
 	return require(modname)
 end
 
-function M.is_plugin_loaded(name)
+function M.loaded_plugin(name)
 	local plugin = require('lazy.core.config').plugins[name]
 	return plugin and plugin._.loaded ~= nil
 end
