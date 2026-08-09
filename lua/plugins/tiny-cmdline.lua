@@ -1,11 +1,12 @@
 return {
 	'rachartier/tiny-cmdline.nvim',
 	event = 'UIEnter',
-	priority = 1000,
-	config = function()
+	init = function()
+		require('vim._core.ui2').enable()
 		vim.o.cmdheight = 0
+	end,
+	config = function()
 		require('tiny-cmdline').setup({
-			on_reposition = require('tiny-cmdline').adapters.blink,
 			border = nil,
 			native_types = { '/', '?' },
 			title = {
