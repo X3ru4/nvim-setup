@@ -1,7 +1,7 @@
 return {
 	'nvim-mini/mini.notify',
-	version = false,
 	event = 'UIEnter',
+	version = false,
 	keys = {
 		{
 			'<C-h>',
@@ -11,16 +11,16 @@ return {
 		},
 	},
 	config = function()
-		local notify_msg = ''
-		require('mini.notify').setup({
+		local MiniNotify = require('mini.notify')
+
+		MiniNotify.setup({
 			-- Content management
 			content = {
 				format = function(notif)
 					if notif.data.source == 'lsp_progress' then
 						return notif.msg
 					end
-					notify_msg = notif.msg
-					return string.format('%s: %s', notif.level, notif.msg)
+					return notif.level .. ': ' .. notif.msg
 				end,
 			},
 
@@ -30,15 +30,11 @@ return {
 			-- Window options
 			window = {
 				-- Floating window config
-				---@type vim.api.keyset.win_config|function
-				config = function()
-					return {
-						border = nil,
-						title = '› Notifications ‹',
-						title_pos = 'center',
-						width = (notify_msg:len() < 17 and 17) or nil,
-					}
-				end,
+				config = {
+					border = nil,
+					title = '› Notifications ‹',
+					title_pos = 'center',
+				},
 
 				-- Maximum window width as share (between 0 and 1) of available columns
 				max_width_share = 0.382,
@@ -46,7 +42,13 @@ return {
 			},
 		})
 
-		-- Hook neovim messages to `vim.notify`.
+		vim.notify = MiniNotify.make_notify({
+			ERROR = { duration = 4000 },
+			WARN = { duration = 3000 },
+			INFO = { duration = 2000 },
+		})
+
+		-- Hook Neovim messages to `vim.notify`.
 		local ui2 = require('vim._core.ui2')
 		local ns = vim.api.nvim_create_namespace('MyUI2')
 
@@ -54,36 +56,37 @@ return {
 		ui2.cfg.msg.target = 'msg'
 		-- HACK: Hide the default message UI.
 		ui2.cfg.msg.msg.height = 0.01
-		ui2.cfg.msg.msg.timeout = 0.0
+		ui2.cfg.msg.msg.timeout = 0
 
-		local levels = {
-			emsg = vim.log.levels.ERROR, -- Error message
-			comfirm = vim.log.levels.TRACE, -- Comfirm message
+		local levels = vim.log.levels
+		local handlers = {
+			emsg = levels.ERROR, -- Error message
+			echoerr = levels.ERROR,
+			lua_error = levels.ERROR,
+			comfirm = levels.WARN, -- Comfirm message
 		}
-		local skip_kind = {
+		local exclude_kind = {
 			search_cmd = true,
 			search_count = true,
 		}
 
-		local function suitable_kind(msg)
-			return msg:find('^.-(E)') and 'emsg' or kind
-		end
-
 		vim.ui_attach(ns, { ext_messages = true }, function(event, ...)
 			if event == 'msg_show' then
 				local kind, content = ...
-				if not content[1] or skip_kind[kind] then
+
+				if not content[1] or exclude_kind[kind] then
+					return
+				end
+
+				if #content > 1 then
+					for i = 1, #content do
+						local chunk = content[i]
+						vim.notify(chunk[2], handlers[kind])
+					end
 					return 0
 				end
-				if #content > 1 then
-					for _, c in ipairs(content) do
-						kind = suitable_kind(c[2])
-						vim.notify(c[2], levels[kind])
-					end
-				else
-					kind = suitable_kind(content[1][2])
-					vim.notify(content[1][2], levels[kind])
-				end
+
+				vim.notify(content[1][2], handlers[kind])
 				return 0
 			end
 		end)
