@@ -10,11 +10,11 @@ return {
 		local has_fzf, fzf = pcall(require, 'fzf-lua')
 		local Oil = require('oil')
 
-		function Oil.get_oil_winbar()
+		function Oil.get_winbar()
 			local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
 			local dir = Oil.get_current_dir(bufnr)
 			if dir then
-				return '%#TabLineSel#' .. vim.fn.fnamemodify(dir, ':~')
+				return '%#Title#' .. vim.fn.fnamemodify(dir, ':~')
 			else
 				return vim.api.nvim_buf_get_name(0)
 			end
@@ -22,7 +22,7 @@ return {
 
 		Oil.setup({
 			win_options = {
-				winbar = '%!v:lua.require("oil").get_oil_winbar()',
+				winbar = '%!v:lua.require("oil").get_winbar()',
 			},
 			confirmation = {
 				border = nil,
@@ -41,7 +41,7 @@ return {
 				['-'] = false,
 				['<BS>'] = { 'actions.parent', mode = 'n' },
 				['.'] = { 'actions.toggle_hidden', mode = 'n' },
-				['<Esc>'] = { 'actions.close', mode = 'n' },
+				['<q>'] = { 'actions.close', mode = 'n' },
 				['gc'] = {
 					function()
 						vim.ui.input({ prompt = 'Search  ', default = './' }, function(input)
