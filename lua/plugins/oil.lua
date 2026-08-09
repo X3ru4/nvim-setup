@@ -1,55 +1,18 @@
 return {
 	'stevearc/oil.nvim',
 	cmd = 'Oil',
-	dependencies = {
-		{
-			enabled = true,
-			'malewicz1337/oil-git.nvim',
-			config = function()
-				require('oil-git').setup({
-					symbols = {
-						file = {
-							added = ' ',
-							modified = ' ',
-							renamed = ' ',
-							deleted = ' ',
-							copied = ' ',
-							conflict = ' ',
-							untracked = ' ',
-							ignored = ' ',
-						},
-						directory = {
-							added = ' ',
-							modified = ' ',
-							renamed = ' ',
-							deleted = ' ',
-							copied = ' ',
-							conflict = ' ',
-							untracked = ' ',
-							ignored = ' ',
-						},
-					},
-					highlights = {
-						OilGitAdded = { link = 'Added' },
-						OilGitModified = { link = 'Changed' },
-						OilGitRenamed = { link = 'Changed' },
-						OilGitDeleted = { link = 'Removed' },
-						OilGitCopied = { link = 'DiagnosticHint' },
-						OilGitConflict = { link = 'DiagnosticInfo' },
-						OilGitUntracked = { link = 'DiagnosticInfo' },
-						OilGitIgnored = { link = 'DiagnosticInfo' },
-					},
-				})
-			end,
-		},
+	keys = {
+		{ '<leader>e', '<cmd>Oil<cr>', desc = 'Open oil' },
+		{ '<leader>i', '<cmd>Oil .<cr>', desc = 'Open oil home' },
+		{ 'gf' },
 	},
 	config = function()
-		local fzf = require('fzf-lua')
-		local current_dir = require('oil').get_current_dir
+		local has_fzf, fzf = pcall(require, 'fzf-lua')
+		local Oil = require('oil')
 
-		function _G.get_oil_winbar()
+		function Oil.get_oil_winbar()
 			local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
-			local dir = require('oil').get_current_dir(bufnr)
+			local dir = Oil.get_current_dir(bufnr)
 			if dir then
 				return '%#TabLineSel#' .. vim.fn.fnamemodify(dir, ':~')
 			else
@@ -57,13 +20,15 @@ return {
 			end
 		end
 
-		require('oil').setup({
+		Oil.setup({
+			float = require('fzf-oil').float,
+			preview_win = require('fzf-oil').preview_win,
 			win_options = {
-				winbar = '%!v:lua.get_oil_winbar()',
+				winbar = '%!v:lua.require("oil").get_oil_winbar()',
 			},
-			preview_win = {
-				win_options = {},
-			},
+			-- preview_win = {
+			-- 	win_options = {},
+			-- },
 			confirmation = {
 				border = 'rounded',
 				win_options = {},
@@ -79,22 +44,6 @@ return {
 				['<C-h>'] = false,
 				['g.'] = false,
 				['-'] = false,
-				['<leader>ff'] = {
-					function()
-						fzf.files({
-							cwd = current_dir(0),
-						})
-					end,
-					mode = 'n',
-				},
-				['<leader>fg'] = {
-					function()
-						fzf.live_grep({
-							cwd = current_dir(0),
-						})
-					end,
-					mode = 'n',
-				},
 				['<bs>'] = { 'actions.parent', mode = 'n' },
 				['.'] = { 'actions.toggle_hidden', mode = 'n' },
 				['q'] = { 'actions.close', mode = 'n' },
@@ -118,6 +67,18 @@ return {
 					end,
 					mode = 'n',
 				},
+				['<leader>ff'] = has_fzf and {
+					function()
+						fzf.files({ cwd = Oil.get_current_dir(0) })
+					end,
+					mode = 'n',
+				},
+				['<leader>fg'] = has_fzf and {
+					function()
+						fzf.live_grep({ cwd = Oil.get_current_dir(0) })
+					end,
+					mode = 'n',
+				},
 			},
 			columns = {
 				-- "permissions",
@@ -127,9 +88,4 @@ return {
 			},
 		})
 	end,
-	keys = {
-		{ '<leader>e', '<cmd>Oil<cr>', desc = 'Open oil' },
-		{ '<leader>i', '<cmd>Oil .<cr>', desc = 'Open oil home' },
-		{ 'gf' },
-	},
 }
