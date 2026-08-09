@@ -1,4 +1,3 @@
-require('vim._core.ui2').enable()
 require('config.options')
 require('config.extra_options')
 require('config.lsp')
