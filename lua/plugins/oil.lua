@@ -39,9 +39,9 @@ return {
 				['<C-h>'] = false,
 				['g.'] = false,
 				['-'] = false,
-				['<BS>'] = { 'actions.parent', mode = 'n' },
 				['.'] = { 'actions.toggle_hidden', mode = 'n' },
-				['<q>'] = { 'actions.close', mode = 'n' },
+				['q'] = { 'actions.close', mode = 'n' },
+				['<BS>'] = { 'actions.parent', mode = 'n' },
 				['gc'] = {
 					function()
 						vim.ui.input({ prompt = 'Search  ', default = './' }, function(input)
