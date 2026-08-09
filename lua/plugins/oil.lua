@@ -24,15 +24,12 @@ return {
 			win_options = {
 				winbar = '%!v:lua.require("oil").get_oil_winbar()',
 			},
-			-- preview_win = {
-			-- 	win_options = {},
-			-- },
 			confirmation = {
-				border = 'rounded',
+				border = nil,
 				win_options = {},
 			},
 			progress = {
-				border = 'rounded',
+				border = nil,
 				win_options = {},
 			},
 			delete_to_trash = false,
@@ -42,9 +39,9 @@ return {
 				['<C-h>'] = false,
 				['g.'] = false,
 				['-'] = false,
-				['<bs>'] = { 'actions.parent', mode = 'n' },
+				['<BS>'] = { 'actions.parent', mode = 'n' },
 				['.'] = { 'actions.toggle_hidden', mode = 'n' },
-				['q'] = { 'actions.close', mode = 'n' },
+				['<Esc>'] = { 'actions.close', mode = 'n' },
 				['gc'] = {
 					function()
 						vim.ui.input({ prompt = 'Search  ', default = './' }, function(input)
