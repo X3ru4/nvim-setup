@@ -21,8 +21,6 @@ return {
 		end
 
 		Oil.setup({
-			float = require('fzf-oil').float,
-			preview_win = require('fzf-oil').preview_win,
 			win_options = {
 				winbar = '%!v:lua.require("oil").get_oil_winbar()',
 			},
