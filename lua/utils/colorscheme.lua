@@ -1,3 +1,5 @@
+---This util manages colorschemes.
+
 local M = {}
 local loader = require('utils.loader')
 M.themes = {}

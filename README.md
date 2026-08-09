@@ -13,14 +13,14 @@
 
 ### Mandatory
 
-- NVIM release v0.12.4
+- NVIM release v0.12 or newer
 - Nerd font
 - git
 - C compiler (for building parsers)
 - curl
 - tree-sitter
 - lua-language-server
-- ripgrep (for fzf-lua)
+- ripgrep
 - fzf (for fzf-lua)
 - fd (for fzf-lua)
 
