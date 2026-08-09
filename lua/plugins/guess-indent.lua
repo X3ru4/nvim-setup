@@ -1,7 +1,17 @@
 return {
 	'nmac427/guess-indent.nvim',
 	event = 'VeryLazy',
-	config = function()
-		require('guess-indent').setup({})
-	end,
+	opts = {
+		filetype_exclude = { -- A list of filetypes for which the auto command gets disabled
+			'netrw',
+			'tutor',
+			'help',
+			'checkhealth',
+			'oil',
+			'lazy',
+			'mason',
+			'snipe-menu',
+			'alpha',
+		},
+	},
 }
