@@ -14,7 +14,6 @@ return {
 			delete = 'md',
 			find = 'mf',
 			find_left = 'mF',
-			highlight = 'fh',
 			replace = 'mr',
 			suffix_last = 'l',
 			suffix_next = 'n',
