@@ -19,15 +19,19 @@
 - C compiler (for building parsers)
 - curl
 - tree-sitter
-- lua-language-server
 - ripgrep
+- cargo CLI (for building blink.pairs)
 - fzf (for fzf-lua)
 - fd (for fzf-lua)
 
 ### Optional
 
-- npm
 - pip
+- npm
+- stylua
+- luarocks
+- rust toolchain
+- lua-language-server
 
 ## Clone
 
