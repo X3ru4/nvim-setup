@@ -43,9 +43,9 @@ require('lazy').setup({
 		source = { 'lazy', 'packspec' },
 	},
 	dev = {
-		path = '~/dev/nvim',
+		path = '~/projects/nvim',
 	},
-	rocks = { enabled = true },
+	rocks = { enabled = false },
 	change_detection = { enabled = false },
 	ui = {
 		border = vim.o.winborder,
