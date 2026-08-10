@@ -13,26 +13,26 @@
 
 ### Mandatory
 
-- NVIM release v0.12 or newer
-- Nerd font
-- git
-- C compiler (for building parsers)
-- curl
-- tree-sitter
-- ripgrep (better grep utility)
-- cargo CLI (for building blink.pairs)
-- fzf version > 0.36 (for fzf-lua)
-- fd (better find utility)
+- **Neovim** release v0.12 or newer
+- **Nerd font**
+- **git**
+- **C compiler** (for building parsers)
+- **curl**
+- **tree-sitter CLI**
+- **ripgrep** (better grep utility)
+- **cargo CLI** (for building blink.pairs)
+- **fzf** version > 0.36 (for fzf-lua)
+- **fd** (better find utility)
 
 ### Optional
 
-- pip
-- npm
-- delta (syntax highlighted git pager for git status previews)
-- stylua (lua formater)
-- luarocks
-- rust toolchain
-- lua-language-server
+- **pip**
+- **npm**
+- **git-delta** (syntax highlighted git pager for git status previews)
+- **stylua** (lua formater)
+- **luarocks**
+- **rust toolchain**
+- **lua-language-server**
 
 ## Clone
 
