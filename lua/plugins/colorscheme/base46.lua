@@ -69,6 +69,7 @@ return {
 
 		local colors = base46.theme_tables[base46.current_theme]
 		local hl = require('utils.highlight')
+
 		hl.apply({
 			basic = {
 				ModeOther = { link = 'St_ConfirmMode' },
@@ -86,7 +87,7 @@ return {
 				FloatFooter = { link = 'FloatTitle' },
 
 				SnacksIndent = { fg = colors.base_30.line },
-				SnacksIndentScope = { fg = colors.base_30.baby_pink },
+				SnacksIndentScope = { fg = colors.base_30.teal },
 			},
 			extra = {
 				hl.modify('NormalFloat', { fg = colors.base_30.white }),
