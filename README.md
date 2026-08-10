@@ -19,16 +19,17 @@
 - C compiler (for building parsers)
 - curl
 - tree-sitter
-- ripgrep
+- ripgrep (better grep utility)
 - cargo CLI (for building blink.pairs)
-- fzf (for fzf-lua)
-- fd (for fzf-lua)
+- fzf version > 0.36 (for fzf-lua)
+- fd (better find utility)
 
 ### Optional
 
 - pip
 - npm
-- stylua
+- delta (syntax highlighted git pager for git status previews)
+- stylua (lua formater)
 - luarocks
 - rust toolchain
 - lua-language-server
