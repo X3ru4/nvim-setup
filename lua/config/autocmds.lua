@@ -47,6 +47,14 @@ autocmd('UIEnter', {
 	end,
 })
 -- LSP
+autocmd('User', {
+	group = groups.control,
+	pattern = 'VeryLazy',
+	once = true,
+	callback = function()
+		require('config.lsp').setup()
+	end,
+})
 autocmd('LspAttach', {
 	group = groups.control,
 	callback = function(ev)
