@@ -169,6 +169,7 @@ end
 ---@param spec utility.highlight.advance_hl_spec Spection
 ---@param get_opts boolean|nil Return the options instead of the highlight name.
 ---@return string|table
+---@deprecated
 function M.advance_hl(ns, spec, get_opts)
 	local function create_key(style)
 		return type(style) == 'table' and style.list and (style.list[style.key] or '') or ''

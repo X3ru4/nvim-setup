@@ -1,6 +1,6 @@
 return {
 	'romus204/tree-sitter-manager.nvim',
-	event = 'VeryLazy',
+  event = 'VeryLazy',
 	dependencies = {}, -- tree-sitter CLI must be installed system-wide
 	opts = {
 		-- list of parsers to install automatically

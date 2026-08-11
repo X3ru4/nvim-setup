@@ -1,7 +1,6 @@
 require('config.options')
 require('config.extra_options')
-require('config.lsp')
 require('config.lazy')
-require('config.autocmds')
 require('config.usercmds')
+require('config.autocmds')
 require('config.keymaps')

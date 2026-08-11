@@ -1,13 +1,12 @@
 local create_cmd = vim.api.nvim_create_user_command
 local colorscheme = require('utils.colorscheme')
-local loader = require('utils.loader')
 
 create_cmd('Loadhl', function()
 	dofile(vim.fn.stdpath('config') .. '/lua/config/highlights.lua')
 end, {})
 
 create_cmd('Themes', function()
-	if not loader.loaded_plugin('fzf-lua') then
+	if not package.loaded['fzf-lua'] then
 		vim.notify('This command is require fzf-lua plugin.', vim.log.levels.ERROR)
 		return
 	end

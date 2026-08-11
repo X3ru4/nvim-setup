@@ -164,47 +164,36 @@ return {
 		})
 
 		local fzf = require('fzf-lua')
-		require('utils.keymap').set_list({
-			{ 'n', '<leader>cs', fzf.spell_suggest, { desc = 'Spell suggest' } },
-			{ 'n', '<leader>cq', fzf.quickfix, { desc = 'Quickfix' } },
-			{ 'n', '<leader>cd', fzf.diagnostics_document, { desc = 'All diagnostics' } },
-			{ 'n', '<leader>cc', fzf.colorschemes, { desc = 'Change colorscheme' } },
-			{ 'n', '<leader>cgh', fzf.git_hunks, { desc = 'Git hunks' } },
-			{ 'n', '<leader>cgd', fzf.git_diff, { desc = 'Git diff' } },
-			{ 'n', '<leader>cgc', fzf.git_commits, { desc = 'Git commits' } },
-			{ 'n', '<leader>fr', fzf.registers, { desc = 'FZF register' } },
-			{ 'n', '<leader>ff', fzf.files, { desc = 'FZF file CWD' } },
-			{
-				'n',
-				'<leader>fd',
-				function()
-					fzf.files({ cwd = vim.fn.expand('%:h') })
-				end,
-				{ desc = 'FZF config' },
-			},
-			{
-				'n',
-				'<leader>fc',
-				function()
-					fzf.files({ cwd = vim.fn.stdpath('config') })
-				end,
-				{ desc = 'FZF config' },
-			},
+		local map = vim.keymap
+		map.set('n', '<leader>cs', fzf.spell_suggest, { desc = 'Spell suggest' })
+		map.set('n', '<leader>cq', fzf.quickfix, { desc = 'Quickfix' })
+		map.set('n', '<leader>cd', fzf.diagnostics_document, { desc = 'All diagnostics' })
+		map.set('n', '<leader>cc', fzf.colorschemes, { desc = 'Change colorscheme' })
+		map.set('n', '<leader>cgh', fzf.git_hunks, { desc = 'Git hunks' })
+		map.set('n', '<leader>cgd', fzf.git_diff, { desc = 'Git diff' })
+		map.set('n', '<leader>cgc', fzf.git_commits, { desc = 'Git commits' })
+		map.set('n', '<leader>fr', fzf.registers, { desc = 'FZF register' })
+		map.set('n', '<leader>ff', fzf.files, { desc = 'FZF file CWD' })
+		map.set('n', '<leader>fd', function()
+			fzf.files({ cwd = vim.fn.expand('%:h') })
+		end, { desc = 'FZF config' })
+		map.set('n', '<leader>fc', function()
+			fzf.files({ cwd = vim.fn.stdpath('config') })
+		end, { desc = 'FZF config' })
 
-			{ 'n', '<leader>fb', fzf.buffers, { desc = 'FZF buffers' } },
-			{ 'n', '<leader>ft', fzf.tabs, { desc = 'FZF tabs' } },
-			{ 'n', '<leader>fh', fzf.highlights, { desc = 'FZF highlights' } },
-			{ 'n', '<leader>fo', fzf.oldfiles, { desc = 'FZF old files' } },
-			{ 'n', '<leader>fT', fzf.filetypes, { desc = 'FZF filetypes' } },
-			{ 'n', '<leader>fg', fzf.live_grep, { desc = 'Live grep' } },
-			{ 'n', '<leader>fu', fzf.builtin, { desc = 'FZF built-in' } },
+		map.set('n', '<leader>fb', fzf.buffers, { desc = 'FZF buffers' })
+		map.set('n', '<leader>ft', fzf.tabs, { desc = 'FZF tabs' })
+		map.set('n', '<leader>fh', fzf.highlights, { desc = 'FZF highlights' })
+		map.set('n', '<leader>fo', fzf.oldfiles, { desc = 'FZF old files' })
+		map.set('n', '<leader>fT', fzf.filetypes, { desc = 'FZF filetypes' })
+		map.set('n', '<leader>fg', fzf.live_grep, { desc = 'Live grep' })
+		map.set('n', '<leader>fu', fzf.builtin, { desc = 'FZF built-in' })
 
-			{ 'n', 'grd', fzf.lsp_definitions, { desc = 'LSP Definitions' } },
-			{ 'n', 'gri', fzf.lsp_implementations, { desc = 'LSP Implementations' } },
-			{ 'n', 'grr', fzf.lsp_references, { desc = 'LSP References' } },
-			{ 'n', 'grt', fzf.lsp_typedefs, { desc = 'LSP Typedefs' } },
-			{ 'n', '<leader>cl', fzf.lsp_document_symbols, { desc = 'LSP symbols' } },
-		})
+		map.set('n', 'grd', fzf.lsp_definitions, { desc = 'LSP Definitions' })
+		map.set('n', 'gri', fzf.lsp_implementations, { desc = 'LSP Implementations' })
+		map.set('n', 'grr', fzf.lsp_references, { desc = 'LSP References' })
+		map.set('n', 'grt', fzf.lsp_typedefs, { desc = 'LSP Typedefs' })
+		map.set('n', '<leader>cl', fzf.lsp_document_symbols, { desc = 'LSP symbols' })
 
 		local hl = require('utils.highlight')
 		local fzf_hl = {
