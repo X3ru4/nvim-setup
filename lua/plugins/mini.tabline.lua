@@ -7,14 +7,11 @@ return {
 		tabpage_section = 'left',
 
 		format = function(bufnr, label)
-			local current_buf = vim.api.nvim_get_current_buf() == bufnr
-
-			return (current_buf and '› ' or ' ')
+			return ' '
 				.. require('mini.icons').get('file', label)
 				.. ' '
 				.. label
-				.. (vim.bo[bufnr].modified and ' 󰍳' or '')
-				.. (current_buf and ' ‹' or ' ')
+				.. (vim.bo[bufnr].modified and ' • ' or ' ')
 		end,
 	},
 }

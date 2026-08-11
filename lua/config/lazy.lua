@@ -54,7 +54,7 @@ require('lazy').setup({
 			cmd = '',
 			config = '',
 			debug = '',
-			event = '',
+			event = '',
 			favorite = '',
 			ft = '',
 			init = '',
