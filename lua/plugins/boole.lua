@@ -1,4 +1,4 @@
-return true
+return false
 		and {
 			'exp_boole.nvim',
 			-- enabled = false,

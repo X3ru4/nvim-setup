@@ -65,7 +65,7 @@ return {
 			},
 		})
 
-		base46.load('seoul256_light')
+		base46.load('gruvbox_light')
 
 		local colors = base46.theme_tables[base46.current_theme]
 		local hl = require('utils.highlight')
@@ -93,13 +93,13 @@ return {
 				hl.modify('NormalFloat', { fg = colors.base_30.white }),
 
 				-- Syntax
-				hl.modify('Keyword', { italic = true }),
-				hl.modify('@keyword', { italic = true }),
-				hl.modify('@keyword.return', { italic = true }),
-				hl.modify('@keyword.function', { italic = true }),
-				hl.modify('@keyword.operator', { italic = true }),
-				hl.modify('@keyword.conditional', { italic = true }),
-				hl.modify('@keyword.conditional.ternary', { italic = true }),
+				-- hl.modify('Keyword', { italic = true }),
+				-- hl.modify('@keyword', { italic = true }),
+				-- hl.modify('@keyword.return', { italic = true }),
+				-- hl.modify('@keyword.function', { italic = true }),
+				-- hl.modify('@keyword.operator', { italic = true }),
+				-- hl.modify('@keyword.conditional', { italic = true }),
+				-- hl.modify('@keyword.conditional.ternary', { italic = true }),
 				hl.modify('Function', { bold = true }),
 				hl.modify('@function', { bold = true }),
 				hl.modify('@function.call', { bold = true }),
