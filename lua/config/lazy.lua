@@ -55,7 +55,7 @@ require('lazy').setup({
 			config = '',
 			debug = '',
 			event = '',
-			favorite = '',
+			favorite = '',
 			ft = '',
 			init = '',
 			import = '󰋺',
@@ -67,7 +67,7 @@ require('lazy').setup({
 			runtime = '󰑮',
 			require = '󰢱',
 			source = '',
-			start = '',
+			start = '',
 			task = '󰄬',
 
 			list = {
