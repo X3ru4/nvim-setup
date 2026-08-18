@@ -9,8 +9,5 @@ return {
 			Download = { glyph = '󰉍', hl = 'MiniIconsOrange' },
 			Movies = { glyph = '󰎁', hl = 'MiniIconsOrange' },
 		},
-		lsp = {
-			snippet = { glyph = '󰒉' },
-		},
 	},
 }

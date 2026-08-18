@@ -91,7 +91,7 @@ require('lazy').setup({
 				'netrwPlugin',
 				'osc52',
 				'rplugin',
-				'spellfile',
+				-- 'spellfile',
 				'tarPlugin',
 				'zipPlugin',
 				'tutor',
