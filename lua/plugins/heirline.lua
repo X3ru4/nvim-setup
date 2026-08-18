@@ -56,18 +56,19 @@ return {
 					t = 'ModeOther',
 					R = 'ModeReplace',
 					s = 'ModeVisual',
+					no = 'ModeReplace',
 				},
 				mode_name = {
 					n = 'Normal',
 					i = 'Insert',
 					v = 'Visual',
-					V = 'Visual-L',
-					['\22'] = 'Visual-B',
+					V = 'V-Line',
+					['\22'] = 'V-Block',
 					c = 'Command',
 					t = 'Terminal',
 					R = 'Replace',
 					s = 'Select',
-					nt = 'Normal-T',
+					nt = 'N-Terminal',
 					no = 'O-pending',
 				},
 			},
@@ -136,14 +137,14 @@ return {
 				condition = function()
 					return vim.bo.modified
 				end,
-				provider = '󰏫 ',
+				provider = '',
 				hl = 'HeirlineMod',
 			},
 			{
 				condition = function()
 					return vim.bo.readonly or not vim.bo.modifiable
 				end,
-				provider = '󰈈 ',
+				provider = '󰌾 ',
 				hl = 'HeirlineRon',
 			},
 			{

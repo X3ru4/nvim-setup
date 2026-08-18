@@ -8,10 +8,10 @@ return {
 
 		format = function(bufnr, label)
 			return ' '
-				.. require('mini.icons').get('file', label)
+				.. (MiniIcons and MiniIcons.get('file', label) or '')
 				.. ' '
 				.. label
-				.. (vim.bo[bufnr].modified and ' • ' or ' ')
+				.. (vim.bo[bufnr].modified and '  ' or ' ')
 		end,
 	},
 }

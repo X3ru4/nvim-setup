@@ -2,10 +2,11 @@ return {
 	url = 'https://codeberg.org/andyg/leap.nvim',
 	event = 'VeryLazy',
 	config = function()
-		vim.keymap.set({ 'n', 'x', 'o' }, 's', '<Plug>(leap)')
-		vim.keymap.set('n', 'S', '<Plug>(leap-from-window)')
-		vim.keymap.set({ 'o' }, 'R', '<Plug>(leap-remote-line)')
-		vim.keymap.set({ 'x', 'o' }, 'an', function()
+		local map = vim.keymap.set
+		map({ 'n', 'x', 'o' }, 's', '<Plug>(leap)')
+		-- map('n', 'S', '<Plug>(leap-from-window)')
+		map({ 'o' }, 'R', '<Plug>(leap-remote-line)')
+		map({ 'x', 'o' }, 'an', function()
 			require('leap.treesitter').select({
 				opts = require('leap.user').with_traversal_keys('n', 'N'),
 			})
@@ -29,16 +30,16 @@ return {
 		local clever = require('leap.user').with_traversal_keys
 		local clever_f, clever_t = clever('f', 'F'), clever('t', 'T')
 
-		vim.keymap.set({ 'n', 'x', 'o' }, 'f', function()
+		map({ 'n', 'x', 'o' }, 'f', function()
 			ft({ opts = clever_f })
 		end)
-		vim.keymap.set({ 'n', 'x', 'o' }, 'F', function()
+		map({ 'n', 'x', 'o' }, 'F', function()
 			ft({ backward = true, opts = clever_f })
 		end)
-		vim.keymap.set({ 'n', 'x', 'o' }, 't', function()
+		map({ 'n', 'x', 'o' }, 't', function()
 			ft({ offset = -1, opts = clever_t })
 		end)
-		vim.keymap.set({ 'n', 'x', 'o' }, 'T', function()
+		map({ 'n', 'x', 'o' }, 'T', function()
 			ft({ backward = true, offset = 1, opts = clever_t })
 		end)
 	end,
