@@ -36,11 +36,5 @@ return {
 		map({ 'n', 'x', 'o' }, 'F', function()
 			ft({ backward = true, opts = clever_f })
 		end)
-		map({ 'n', 'x', 'o' }, 't', function()
-			ft({ offset = -1, opts = clever_t })
-		end)
-		map({ 'n', 'x', 'o' }, 'T', function()
-			ft({ backward = true, offset = 1, opts = clever_t })
-		end)
 	end,
 }

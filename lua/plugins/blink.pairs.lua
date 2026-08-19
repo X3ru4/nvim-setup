@@ -13,10 +13,8 @@ return {
 			enabled = true,
 			cmdline = true,
 			wrap = {
-				['<C-b>'] = 'motion',
-				['<C-r>b'] = 'motion_reverse',
-				['<C-l>'] = 'treesitter',
-				['<C-h>'] = 'treesitter_reverse',
+        ['<C-b>'] = 'motion',
+        ['<A-b>'] = 'motion_reverse',
 			},
 			pairs = {},
 		},
