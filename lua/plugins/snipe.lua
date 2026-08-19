@@ -26,8 +26,7 @@ return {
 
 			---@type vim.api.keyset.win_config
 			open_win_override = {
-				title = '› Snipe ‹',
-				border = 'rounded',
+				border = vim.o.winborder,
 			},
 		},
 

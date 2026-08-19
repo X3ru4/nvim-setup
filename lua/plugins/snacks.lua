@@ -15,7 +15,7 @@ return {
 					corner_bottom = '╰',
 					horizontal = '─',
 					vertical = '│',
-					arrow = '›',
+					arrow = '󰅂',
 				},
 			},
 			---@param buf number

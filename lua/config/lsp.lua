@@ -27,6 +27,7 @@ function M.setup()
 	lsp.enable({
 		'lua_ls',
 		'jsonls',
+		'zls',
 	})
 
 	map.set({ 'n', 'x' }, '-e', function()
