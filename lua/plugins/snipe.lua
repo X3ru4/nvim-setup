@@ -27,6 +27,7 @@ return {
 			---@type vim.api.keyset.win_config
 			open_win_override = {
 				border = vim.o.winborder,
+				title = ' Snipe ',
 			},
 		},
 

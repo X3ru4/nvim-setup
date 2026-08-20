@@ -1,7 +1,10 @@
 return {
 	'nvim-mini/mini.align',
 	version = false,
-	keys = { 'ga', 'gA' },
+	keys = {
+		{ mode = { 'n', 'x' }, 'ga' },
+		{ mode = { 'n', 'x' }, 'gA' },
+	},
 	-- Module mappings. Use `''` (empty string) to disable one.
 	opts = {
 		mappings = {
