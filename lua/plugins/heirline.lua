@@ -2,7 +2,7 @@ return {
 	'rebelot/heirline.nvim',
 	event = 'UIEnter',
 	config = function()
-		local separator = { '', '' }
+		local separator = { '', '' }
 		local Space = { provider = ' ' }
 		local Align = { provider = '%=' }
 		local hl = require('utils.highlight')
@@ -221,7 +221,7 @@ return {
 			},
 			{
 				flexible = 3,
-				{ provider = ' %{mode() == \'i\' ? \'󰗧\' : \'󰆾\'} %l·%c ' },
+				{ provider = ' %{mode() == \'i\' ? \'󰗧\' : \'󰁁\'} %l·%c ' },
 				{ provider = ' %l·%c ' },
 				false,
 			},

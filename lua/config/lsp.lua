@@ -26,8 +26,9 @@ function M.setup()
 	lsp.inlay_hint.enable(false)
 	lsp.enable({
 		'lua_ls',
-		'jsonls',
-		'zls',
+		'rust_analyzer',
+		-- 'jsonls',
+		-- 'zls',
 	})
 
 	map.set({ 'n', 'x' }, '-e', function()

@@ -32,8 +32,8 @@ return {
 				-- Floating window config
 				config = {
 					border = nil,
-					title = '› Notifications ‹',
-					title_pos = 'center',
+					title = ' Notifications ',
+					title_pos = 'right',
 				},
 
 				-- Maximum window width as share (between 0 and 1) of available columns
