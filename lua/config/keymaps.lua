@@ -1,7 +1,4 @@
 local map = vim.keymap
-map.set('n', '<Home>', '0', { remap = true })
-map.set('n', '<End>', '$', { remap = true })
-
 map.set('n', '<leader>gt', '<Cmd>terminal<Cr>i', { desc = 'Open terminal' })
 
 map.set('n', '<leader>re', '<Cmd>restart<Cr>', { desc = 'Restart Neovim' })

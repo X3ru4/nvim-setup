@@ -18,14 +18,14 @@ return {
 			'╵ ╵╰─╯╵╰╴╰─╯  ╵',
 		}
 		dashboard.section.buttons.val = {
-			button('e', '󰝒  New file', '<cmd>ene <CR>'),
-			button('f', '󰱼  Search files', [[<cmd>lua require('fzf-lua').files()<cr>]]),
-			button('o', '󱋡  Frecency/MRU', [[<cmd>lua require('fzf-lua').oldfiles()<cr>]]),
-			button('x', '󰥨  Explore', '<cmd>Oil <CR>'),
-			button('g', '󰺯  Grep', [[<cmd>lua require('fzf-lua').live_grep()<cr>]]),
-			button('c', '󰒓  Configs', [[<cmd>lua require('fzf-lua').files({ cwd = "~/.config/nvim", })<cr>]]),
-			button('r', '󰮳  Open last session', '<cmd>lua require(\'persistence\').load()<cr>'),
-			button('q', '󰈆  Quit', '<cmd>qa!<cr>'),
+			button('e', '  New file', '<Cmd>ene <CR>'),
+			button('f', '  Search files', '<Cmd>FzfLua files<Cr>'),
+			button('o', '  Frecency/MRU', '<Cmd>FzfLua oldfiles<Cr>'),
+			button('x', '  Explore', '<Cmd>Oil <CR>'),
+			button('g', '  Grep', '<Cmd>FzfLua live_grep<Cr>'),
+			button('c', '  Configs', '<Cmd>FzfLua files cwd=~/.config/nvim/<Cr>'),
+			button('r', '  Open last session', function() require('persistence').load() end),
+			button('q', '  Quit', '<Cmd>qa!<Cr>'),
 		}
 
 		require('alpha').setup(dashboard.config)
@@ -45,7 +45,7 @@ return {
 						.. (math.floor(stats.startuptime * 100) / 100)
 						.. 'ms',
 				}
-				vim.cmd('AlphaRedraw')
+				vim.cmd.AlphaRedraw()
 			end,
 		})
 	end,

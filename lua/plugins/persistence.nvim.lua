@@ -24,7 +24,7 @@ return {
 			desc = 'Session restore last ses',
 		},
 		{
-			'<leader>sd',
+			'<leader>sk',
 			function()
 				require('persistence').stop()
 			end,

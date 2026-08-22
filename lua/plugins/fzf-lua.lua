@@ -3,7 +3,7 @@ return {
 	event = 'VeryLazy',
 	config = function()
 		require('fzf-lua').setup({
-			'telescope',
+			ui_select = {},
 			file_icon_padding = ' ',
 			defaults = {
 				prompt = '  ',
@@ -21,12 +21,12 @@ return {
 					hidden = true,
 				},
 				height = 0.8,
-				width = 0.85,
+				width = 0.8,
 				backdrop = 100,
 				treesitter = {
 					enabled = false,
 				},
-				fullscreen = true,
+				fullscreen = false,
 			},
 			fzf_opts = {
 				['--pointer'] = '›',
@@ -37,7 +37,9 @@ return {
 			fzf_colors = { true },
 			colorschemes = {
 				winopts = {
-					fullscreen = true,
+					fullscreen = false,
+					width = 0.8,
+					height = 0.8,
 				},
 			},
 			awesome_colorschemes = {
@@ -176,7 +178,7 @@ return {
 		map.set('n', '<leader>ff', fzf.files, { desc = 'FZF file CWD' })
 		map.set('n', '<leader>fd', function()
 			fzf.files({ cwd = vim.fn.expand('%:h') })
-		end, { desc = 'FZF config' })
+		end, { desc = 'FZF current' })
 		map.set('n', '<leader>fc', function()
 			fzf.files({ cwd = vim.fn.stdpath('config') })
 		end, { desc = 'FZF config' })

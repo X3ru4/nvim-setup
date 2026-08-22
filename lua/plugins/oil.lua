@@ -4,20 +4,36 @@ return {
 	keys = {
 		{ '<leader>e', '<cmd>Oil<cr>', desc = 'Open oil' },
 		{ '<leader>i', '<cmd>Oil .<cr>', desc = 'Open oil home' },
-		{ 'gf' },
+		'gf',
 	},
 	config = function()
-		local has_fzf, fzf = pcall(require, 'fzf-lua')
+		local fzf = require('fzf-lua')
 		local Oil = require('oil')
 
 		function Oil.get_winbar()
-			local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
+			local bufnr = vim.api.nvim_get_current_buf()
 			local dir = Oil.get_current_dir(bufnr)
 			if dir then
-				return '%#Title#' .. vim.fn.fnamemodify(dir, ':~')
+				return '%#Function#' .. vim.fn.fnamemodify(dir, ':~')
 			else
-				return vim.api.nvim_buf_get_name(0)
+				return '%#Function#Unknown'
 			end
+		end
+
+		local function cwd_open()
+			vim.ui.input({ prompt = '  Open ', default = '' }, function(input)
+				if input then
+					Oil.open(input)
+				end
+			end)
+		end
+
+		local function root_open()
+			vim.ui.input({ prompt = '  Open ', default = '~/' }, function(input)
+				if input then
+					Oil.open(input)
+				end
+			end)
 		end
 
 		Oil.setup({
@@ -33,42 +49,36 @@ return {
 				win_options = {},
 			},
 			delete_to_trash = false,
-			use_default_keymaps = true,
+			use_default_keymaps = false,
 			keymaps = {
-				['<C-s>'] = false,
-				['<C-h>'] = false,
-				['g.'] = false,
-				['-'] = false,
-				['.'] = { 'actions.toggle_hidden', mode = 'n' },
-				['q'] = { 'actions.close', mode = 'n' },
+				['<C-j>'] = { 'actions.select', opts = { vertical = true } },
+				['<C-h>'] = { 'actions.select', opts = { horizontal = true } },
+				['<C-t>'] = { 'actions.select', opts = { tab = true } },
+				['<C-p>'] = 'actions.preview',
+				['<C-l>'] = 'actions.refresh',
+				['<CR>'] = 'actions.select',
 				['<BS>'] = { 'actions.parent', mode = 'n' },
+				['_'] = { 'actions.open_cwd', mode = 'n' },
+				['q'] = { 'actions.close', mode = 'n' },
+				['.'] = { 'actions.toggle_hidden', mode = 'n' },
+				['g?'] = { 'actions.show_help', mode = 'n' },
+        ["gs"] = { "actions.change_sort", mode = "n" },
+				['gx'] = 'actions.open_external',
 				['gc'] = {
-					function()
-						vim.ui.input({ prompt = 'Search  ', default = './' }, function(input)
-							if input then
-								vim.cmd('Oil ' .. input)
-							end
-						end)
-					end,
+					cwd_open,
 					mode = 'n',
 				},
 				['gf'] = {
-					function()
-						vim.ui.input({ prompt = 'Search  ', default = '~/' }, function(input)
-							if input then
-								vim.cmd('Oil ' .. input)
-							end
-						end)
-					end,
+					root_open,
 					mode = 'n',
 				},
-				['<leader>ff'] = has_fzf and {
+				['<leader>ff'] = {
 					function()
 						fzf.files({ cwd = Oil.get_current_dir(0) })
 					end,
 					mode = 'n',
 				},
-				['<leader>fg'] = has_fzf and {
+				['<leader>fg'] = {
 					function()
 						fzf.live_grep({ cwd = Oil.get_current_dir(0) })
 					end,

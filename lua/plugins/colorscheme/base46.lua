@@ -33,7 +33,7 @@ return {
 				whichkey = false,
 				alpha = true,
 				avante = false,
-				['blink-pair'] = false,
+				['blink-pair'] = true,
 				bufferline = false,
 				codeactionmenu = false,
 				dap = false,
