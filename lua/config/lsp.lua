@@ -27,8 +27,8 @@ function M.setup()
 	lsp.enable({
 		'lua_ls',
 		'rust_analyzer',
+		'zls',
 		-- 'jsonls',
-		-- 'zls',
 	})
 
 	map.set({ 'n', 'x' }, '-e', function()
