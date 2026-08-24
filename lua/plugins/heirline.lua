@@ -160,7 +160,7 @@ return {
 				return vim.fn.reg_recording() ~= ''
 			end,
 			provider = function()
-				return ' 󰻃 ⟨' .. vim.fn.reg_recording() .. '⟩'
+				return '  (' .. vim.fn.reg_recording() .. ')'
 			end,
 			hl = 'Type',
 		}

@@ -1,7 +1,7 @@
 {
   "alpha-nvim": { "branch": "main", "commit": "6c6a89d5b068b5251c8bdf0dd57bb921bcfeeb09" },
   "base46": { "branch": "v3.0", "commit": "83522e02c6c3b4ea901c4bffd9e0a5e0371c1fe6" },
-  "blink.cmp": { "branch": "main", "commit": "29580a066a593b4243c2525c0e78d822f40b3742" },
+  "blink.cmp": { "branch": "main", "commit": "d50cfb205c677143d1f036a4749e21c1c8c6bc85" },
   "blink.lib": { "branch": "main", "commit": "c8fdc12c8a2fab6cf786dd7141a283f8079f902b" },
   "blink.pairs": { "branch": "main", "commit": "aad9046bc4670dc91301cd62a6948feb36c55f4a" },
   "boole.nvim": { "branch": "main", "commit": "94749a86b4fddb58a33bfdbea7653a4f326a5bab" },
@@ -47,6 +47,6 @@
   "snacks.nvim": { "branch": "main", "commit": "882c996cf28183f4d63640de0b4c02ec886d01f2" },
   "snipe.nvim": { "branch": "main", "commit": "d2d196c335919767803f905d573ce66340e33ee6" },
   "tiny-cmdline.nvim": { "branch": "main", "commit": "e247d9ee4c980734f8f8bf616d31e0ab7c27485d" },
-  "tree-sitter-manager.nvim": { "branch": "main", "commit": "9dc4ffc4fb010e7abb976a92360c2c5a7d324c15" },
+  "tree-sitter-manager.nvim": { "branch": "main", "commit": "023590c8f068788a0513a4409bf37ff7f9d1deff" },
   "vim-caser": { "branch": "master", "commit": "203a504badb09a04186f88d29660fe16fb673f00" }
 }
