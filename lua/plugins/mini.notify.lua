@@ -33,7 +33,7 @@ return {
 				config = {
 					border = nil,
 					title = ' Notifications ',
-					title_pos = 'right',
+					title_pos = 'center',
 				},
 
 				-- Maximum window width as share (between 0 and 1) of available columns
