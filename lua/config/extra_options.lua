@@ -2,24 +2,21 @@ local M = {}
 local colorscheme = require('utils.colorscheme')
 
 -- Add colorscheme in ~/.config/nvim/lua/plugins/colorscheme/ press `gf` to open
-colorscheme.default = 'base46'
-colorscheme.variant = 'base46-gruvbox_light'
+colorscheme.default = 'ember'
+colorscheme.variant = 'ember-light'
 colorscheme.install = {
 	'base46',
-	'catppuccin',
-	'cendre',
-	-- 'gruvbox-material',
-	-- 'onedark',
+	'ember_theme', -- It is the file name
 }
 
 -- Quick configuration for blink.cmp
 M.blinkcmp = {
 	menu = {
-		border = nil,
+		border = 'none',
 	},
 	documentation = {
 		auto_show = false,
-		border = nil,
+		border = 'none',
 	},
 	appearance = {
 		use_nvimcmp_hl = false,
