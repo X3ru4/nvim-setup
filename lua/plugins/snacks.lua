@@ -2,9 +2,11 @@ local ft = {
 	markdown = false,
 	lua = true,
 }
+
+-- I only use the indent module =))
 return {
 	'folke/snacks.nvim',
-	event = 'VeryLazy',
+	event = { 'BufReadPost', 'BufNewFile' },
 	opts = {
 		indent = {
 			enabled = true,
