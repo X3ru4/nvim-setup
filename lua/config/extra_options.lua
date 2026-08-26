@@ -6,10 +6,10 @@ local colorscheme = require('utils.colorscheme')
 colorscheme.default = 'base46'
 colorscheme.variant = 'base46-gruvbox_light'
 colorscheme.install = {
-	-- '*', -- Uncomment on this line if you want to download all the colorschemes.
-	['catppuccin'] = true,
-	['gruvbox-material'] = false,
-	['onedark'] = false,
+	'base46',
+	'catppuccin',
+	-- 'gruvbox-material',
+	-- 'onedark',
 }
 
 M.blinkcmp = {
