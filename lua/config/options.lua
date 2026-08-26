@@ -12,7 +12,7 @@ opt.synmaxcol = 200
 
 -- UI
 opt.termguicolors = true
-opt.winborder = 'rounded'
+opt.winborder = 'solid'
 opt.winblend = 0
 opt.pumblend = 0
 opt.pumheight = 10
