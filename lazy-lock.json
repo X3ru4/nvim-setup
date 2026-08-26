@@ -6,6 +6,7 @@
   "blink.pairs": { "branch": "main", "commit": "aad9046bc4670dc91301cd62a6948feb36c55f4a" },
   "boole.nvim": { "branch": "main", "commit": "94749a86b4fddb58a33bfdbea7653a4f326a5bab" },
   "catppuccin": { "branch": "main", "commit": "edefef779ab08ce1a4a404713e3012b0d202bd35" },
+  "cendre": { "branch": "main", "commit": "c0e0a414b42dba889f16b3746839d7300dfb1c3f" },
   "conform.nvim": { "branch": "master", "commit": "016802de402556da54c36bd7359b441266b01cdd" },
   "faster.nvim": { "branch": "main", "commit": "6b7cb8b1a9628d4b87009c4849d510d1a3a14319" },
   "friendly-snippets": { "branch": "main", "commit": "6cd7280adead7f586db6fccbd15d2cac7e2188b9" },
