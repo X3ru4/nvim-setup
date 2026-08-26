@@ -31,7 +31,11 @@ hl.setup(function()
 		basic = {
 			-- All highlights are cached, so use `cforce = true` to ignore them.
 			-- Normal = { cforce = true, fg = "#ffee00", bg = "#3a3b2f" }
-			Yank = { link = 'Visual' },
+			Yank = {
+				fg = hl.getfg('Added'),
+				bg = hl.blend(hl.getfg('Added'), norm.bg, 0.2),
+				bold = true,
+			},
 		},
 		-- This field is a special field used to set up highlights that require logic.
 		extra = {

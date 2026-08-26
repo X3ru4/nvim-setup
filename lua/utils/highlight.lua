@@ -217,15 +217,14 @@ local function hex_to_rgb(hex)
 	}
 end
 
-local function rgb_to_hex(rgb)
-	return string.format('#%02x%02x%02x', rgb.r, rgb.g, rgb.b)
+local function rgb_to_hex(r, g, b)
+	return string.format('#%02x%02x%02x', r, g, b)
 end
 
 function M.dec_to_hex(dec_color)
 	if type(dec_color) == 'number' then
 		return string.format('#%06X', dec_color)
 	end
-	vim.notify('Expected a number for dec_color, got ' .. type(dec_color), vim.log.levels.WARN)
 	return nil
 end
 
@@ -254,7 +253,7 @@ M.blend = function(foreground, background, alpha)
 	r = math.max(0, math.min(255, r))
 	g = math.max(0, math.min(255, g))
 	b = math.max(0, math.min(255, b))
-	return rgb_to_hex({ r = r, g = g, b = b })
+	return rgb_to_hex(r, g, b)
 end
 
 ---@param name string
