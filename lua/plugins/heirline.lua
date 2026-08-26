@@ -57,6 +57,7 @@ return {
 					R = 'ModeReplace',
 					s = 'ModeVisual',
 					no = 'ModeReplace',
+					['!'] = 'ModeOther',
 				},
 				mode_name = {
 					n = 'Normal',
@@ -70,6 +71,7 @@ return {
 					s = 'Select',
 					nt = 'N-Terminal',
 					no = 'O-pending',
+					['!'] = 'Shell',
 				},
 			},
 			{
