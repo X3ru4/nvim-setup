@@ -16,9 +16,11 @@ return {
 				},
 			},
 			winopts = {
+				border = vim.o.winborder,
 				preview = {
 					wrap = true,
 					hidden = true,
+					border = vim.o.winborder,
 				},
 				height = 0.8,
 				width = 0.8,
@@ -202,7 +204,7 @@ return {
 			FzfLuaNormal = { link = 'NormalFloat' },
 			FzfLuaBorder = { link = 'FloatBorder' },
 			FzfLuaTitle = { link = 'FloatTitle' },
-			FzfLuaCursorLine = { fg = hl.getfg('Normal'), bg = hl.getbg('Visual') },
+			FzfLuaCursorLine = { bold = true, bg = hl.getbg('Normal') },
 			FzfLuaTabMarker = { link = 'Structure' },
 			FzfLuaHeaderBind = { link = 'FzfLuaTabMarker' },
 			FzfLuaHeaderText = { link = 'Define' },
@@ -217,6 +219,10 @@ return {
 			FzfLuaFzfHeader = { link = 'LineNr' },
 			FzfLuaFzfPrompt = { link = 'MoreMsg' },
 			FzfLuaFzfMatch = { fg = hl.getfg('Directory'), bold = true },
+
+			FzfLuaPreviewNormal = { link = 'Normal' },
+			FzfLuaPreviewBorder = { link = 'Normal' },
+			FzfLuaPreviewTitle = { bg = hl.getbg('Normal'), fg = hl.getfg('Title'), bold = true },
 		}
 		hl.add_callback('fzf-lua', function()
 			hl.apply({ basic = fzf_hl })
