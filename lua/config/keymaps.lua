@@ -6,7 +6,7 @@ map.set('n', '<leader>ro', '<Cmd>e!<Cr>', { desc = 'Re-open' })
 map.set('n', '<leader>rm', '<Cmd>!rm ~/.local/state/nvim/swap -rf<Cr>', { desc = 'Remove swap folder' })
 
 map.set('n', '<leader>co', '<Cmd>normal! gg=G\'\'<Cr>', { desc = 'Indent' })
-map.set('n', '<leader>cr', '<Cmd>silent! w | terminal make run<Cr>', { desc = 'Run code' })
+map.set('n', '<leader>cr', '<Cmd>silent! w | terminal make run<Cr>', { desc = 'make run' })
 map.set('n', '<leader>cw', '<Cmd>set wrap!<Cr>', { desc = 'Wrap' })
 map.set(
 	'n',
@@ -15,7 +15,6 @@ map.set(
 	{ desc = 'Toggle background' }
 )
 map.set({ 'n', 'x' }, '<leader>v', '<Cmd>norm gg0vG$h<Cr>', { desc = 'Select all' })
-map.set('i', '<C-a>', '<C-o>I', { desc = 'Move the cursor back to the first character' })
 map.set({ 'n', 'x' }, 'zh', 'zH', { desc = 'Horizontal scroll like "zH"' })
 map.set({ 'n', 'x' }, 'zl', 'zL', { desc = 'Horizontal scroll like "zL"' })
 map.set('n', '<S-h>', '<Cmd>bprevious<cr>')
