@@ -22,15 +22,6 @@ function M.setup()
 		},
 	})
 
-	-- Disable inlay hint
-	lsp.inlay_hint.enable(false)
-	lsp.enable({
-		'lua_ls',
-		'rust_analyzer',
-		'zls',
-		-- 'jsonls',
-	})
-
 	map.set({ 'n', 'x' }, '-e', function()
 		diagnostic.jump({ severity = diagnostic.severity.ERROR, count = -1 })
 	end, { desc = 'Goto previous ERROR' })
@@ -49,6 +40,16 @@ function M.setup()
 	map.set({ 'n', 'x' }, '+h', function()
 		diagnostic.jump({ severity = diagnostic.severity.HINT, count = 1 })
 	end, { desc = 'Goto next HINT' })
+
+	-- Disable inlay hint
+	lsp.inlay_hint.enable(false)
+	lsp.enable({
+		'lua_ls',
+		'rust_analyzer',
+		'zls',
+		-- 'jsonls',
+	})
+
 	map.set({ 'n', 'i' }, '<C-k>', function()
 		lsp.buf.signature_help({
 			border = 'rounded',

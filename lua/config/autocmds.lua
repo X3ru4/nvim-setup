@@ -34,7 +34,7 @@ autocmd('ColorScheme', {
 	group = groups.control,
 	callback = function()
 		highlight.use_cache = false -- Stop using cache.
-		vim.cmd.Loadhl()
+		vim.cmd.LoadHlConfig()
 		vim.cmd.redraw()
 	end,
 })
@@ -43,7 +43,7 @@ autocmd('UIEnter', {
 	group = groups.control,
 	once = true,
 	callback = function()
-		vim.cmd.Loadhl()
+		vim.cmd.LoadHlConfig()
 	end,
 })
 -- LSP
