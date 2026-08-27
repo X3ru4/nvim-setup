@@ -65,7 +65,7 @@ return {
 			},
 		})
 
-		base46.load('gruvbox_light')
+		base46.load((require('utils.colorscheme').variant or 'gruvchad'):gsub('base46%-', ''))
 
 		local colors = base46.theme_tables[base46.current_theme]
 		local hl = require('utils.highlight')
