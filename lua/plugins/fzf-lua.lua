@@ -96,6 +96,12 @@ return {
 					fullscreen = true,
 				},
 			},
+			lsp = {
+				symbols = {
+					locate = true,
+					symbol_style = 3,
+				},
+			},
 			git = {
 				files = {
 					winopts = {
@@ -139,7 +145,10 @@ return {
 				},
 				diff = {
 					winopts = {
-						preview = { hidden = false },
+						preview = {
+							hidden = false,
+							border = 'none',
+						},
 						fullscreen = true,
 					},
 				},

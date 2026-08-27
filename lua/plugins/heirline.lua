@@ -223,8 +223,9 @@ return {
 			},
 			{
 				flexible = 3,
-				{ provider = ' %{mode() == \'i\' ? \'󰗧\' : \'󰁁\'} %l·%c ' },
+				{ provider = ' %{mode() == \'i\' ? \'\' : \'\'} %l·%c ' },
 				{ provider = ' %l·%c ' },
+				{ provider = ' %l ' },
 				false,
 			},
 		}

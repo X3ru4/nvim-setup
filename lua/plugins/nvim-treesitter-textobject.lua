@@ -20,17 +20,17 @@ return {
 		local mode = { 'n', 'x', 'o' }
 		local ts_move = require('nvim-treesitter-textobjects.move')
 
-		map.set(mode, '+m', function()
+		map.set(mode, ']m', function()
 			ts_move.goto_next('@function.outer', 'textobjects')
 		end)
-		map.set(mode, '-m', function()
+		map.set(mode, '[m', function()
 			ts_move.goto_previous('@function.outer', 'textobjects')
 		end)
 
-		map.set(mode, '+d', function()
+		map.set(mode, ']d', function()
 			ts_move.goto_next('@conditional.outer', 'textobjects')
 		end)
-		map.set(mode, '-d', function()
+		map.set(mode, '[d', function()
 			ts_move.goto_previous('@conditional.outer', 'textobjects')
 		end)
 
