@@ -204,7 +204,7 @@ return {
 			FzfLuaNormal = { link = 'NormalFloat' },
 			FzfLuaBorder = { link = 'FloatBorder' },
 			FzfLuaTitle = { link = 'FloatTitle' },
-			FzfLuaCursorLine = { bold = true, bg = hl.getbg('Normal') },
+			FzfLuaCursorLine = { bold = true, bg = hl.getbg('CursorLine') },
 			FzfLuaTabMarker = { link = 'Structure' },
 			FzfLuaHeaderBind = { link = 'FzfLuaTabMarker' },
 			FzfLuaHeaderText = { link = 'Define' },
