@@ -1,6 +1,6 @@
 return {
 	'nvim-mini/mini.notify',
-	event = 'UIEnter',
+	event = 'VeryLazy',
 	version = false,
 	keys = {
 		{
@@ -47,48 +47,5 @@ return {
 			WARN = { duration = 3000 },
 			INFO = { duration = 2000 },
 		})
-
-		-- Hook Neovim messages to `vim.notify`.
-		local ui2 = require('vim._core.ui2')
-		local ns = vim.api.nvim_create_namespace('MyUI2')
-
-		-- Use the 'msg' target.
-		ui2.cfg.msg.target = 'msg'
-		-- HACK: Hide the default message UI.
-		ui2.cfg.msg.msg.height = 0.01
-		ui2.cfg.msg.msg.timeout = 0
-
-		local levels = vim.log.levels
-		local handlers = {
-			emsg = levels.ERROR, -- Error message
-			echoerr = levels.ERROR,
-			lua_error = levels.ERROR,
-			comfirm = levels.WARN, -- Comfirm message
-		}
-		local exclude_kind = {
-			search_cmd = true,
-			search_count = true,
-		}
-
-		vim.ui_attach(ns, { ext_messages = true }, function(event, ...)
-			if event == 'msg_show' then
-				local kind, content = ...
-
-				if not content[1] or exclude_kind[kind] then
-					return
-				end
-
-				if #content > 1 then
-					for i = 1, #content do
-						local chunk = content[i]
-						vim.notify(chunk[2], handlers[kind])
-					end
-					return 0
-				end
-
-				vim.notify(content[1][2], handlers[kind])
-				return 0
-			end
-		end)
 	end,
 }
