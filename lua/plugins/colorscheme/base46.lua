@@ -65,7 +65,12 @@ return {
 			},
 		})
 
-		base46.load((require('utils.colorscheme').variant or 'gruvchad'):gsub('base46%-', ''))
+		local variant = require('utils.colorscheme').variant
+		if variant and variant ~= 'default' then
+			base46.load(variant:gsub('^base46%-', ''))
+		else
+			base46.load('gruvchad')
+		end
 
 		local colors = base46.theme_tables[base46.current_theme]
 		local hl = require('utils.highlight')
