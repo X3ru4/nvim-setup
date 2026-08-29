@@ -13,38 +13,29 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 		os.exit(1)
 	end
 end
-
 vim.opt.rtp:prepend(lazypath)
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 
-local cs = require('utils.colorscheme')
+local colorscheme = require('utils.colorscheme')
 
 -- Setup lazy.nvim
 require('lazy').setup({
+	default = { lazy = true },
 	spec = {
 		{ import = 'plugins' },
-		cs.create_spec(),
+		colorscheme.create_spec(),
 	},
 	install = {
-		-- install missing plugins on startup. This doesn't increase startup time.
-		missing = true,
-		-- try to load one of these colorschemes when starting an installation during startup
 		colorscheme = {
-			cs.variant or cs.default,
+			colorscheme.variant or colorscheme.default,
 		},
-	},
-	checker = { enabled = true },
-	defaults = {
-		lazy = false,
-		version = false,
 	},
 	pkg = {
 		source = { 'lazy', 'packspec' },
 	},
-	dev = {
-		path = '~/projects/nvim',
-	},
+	dev = { path = '~/projects/nvim' },
 	rocks = { enabled = false },
 	change_detection = { enabled = false },
 	ui = {
@@ -54,26 +45,26 @@ require('lazy').setup({
 			cmd = '',
 			config = '',
 			debug = '',
-			event = '',
+			event = '',
 			favorite = '',
 			ft = '',
-			init = '',
+			init = '',
 			import = '󰋺',
 			keys = '󰥻',
 			lazy = '󰒲 ',
 			loaded = ' ',
 			not_loaded = ' ',
 			plugin = '',
-			runtime = '',
+			runtime = '',
 			require = '󰢱',
-			source = '󰓦',
-			start = '',
-			task = '󰄬',
+			source = '',
+			start = '',
+			task = '',
 
 			list = {
-				'•',
-				'›',
-				'»',
+				'',
+				'→',
+				'+',
 				'–',
 			},
 		},
