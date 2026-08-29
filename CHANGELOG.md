@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.0](https://github.com/X3ru4/nvim-setup/compare/v1.0.1...v1.1.0) (2026-08-29)
+
+
+### Features
+
+* **config:** enable lazy loading by default and simplify plugin setup ([f018fc2](https://github.com/X3ru4/nvim-setup/commit/f018fc2cb9b0dc0a7ef290f0254b18c8b35d4a4b))
+* **heirline:** update statusline icons and bold read‑only flag ([ccb9379](https://github.com/X3ru4/nvim-setup/commit/ccb937922bdff8f9ce20a03e94a5b9309a336566))
+
+
+### Bug Fixes
+
+* **mini.notify:** stop redirecting Neovim messages and lazy‑load on VeryLazy ([a016399](https://github.com/X3ru4/nvim-setup/commit/a016399ae60cf4ad3346e22a88f6a11a6f46af6e))
+* **tiny-cmdline:** enable UI2 after setting cmdheight to correct initialization order ([df6697f](https://github.com/X3ru4/nvim-setup/commit/df6697f2118fb4c8c4429edb5aa1337413e7981c))
+
 ## [1.0.1](https://github.com/X3ru4/nvim-setup/compare/v1.0.0...v1.0.1) (2026-08-29)
 
 
