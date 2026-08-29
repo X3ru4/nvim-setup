@@ -2,8 +2,8 @@ return {
 	'rachartier/tiny-cmdline.nvim',
 	event = 'UIEnter',
 	init = function()
-		require('vim._core.ui2').enable()
 		vim.o.cmdheight = 0
+		require('vim._core.ui2').enable()
 	end,
 	config = function()
 		require('tiny-cmdline').setup({
