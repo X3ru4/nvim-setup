@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/X3ru4/nvim-setup/compare/v1.0.0...v1.0.1) (2026-08-29)
+
+
+### Bug Fixes
+
+* **colorscheme:** fallback to gruvchad for nil/'default' variant, strip prefix only for explicit variants ([4a12236](https://github.com/X3ru4/nvim-setup/commit/4a12236b0b84d8ccb6b6944923ddc9bb1194537b))
+* **fzf-lua:** set foreground for FzfLuaCursorLine to improve visibility ([23e1b45](https://github.com/X3ru4/nvim-setup/commit/23e1b45e08b6a0f4ac2f3459f08cd83414d43735))
+
 ## 1.0.0 (2026-08-27)
 
 
