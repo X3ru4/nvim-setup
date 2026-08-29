@@ -1,10 +1,11 @@
 # nvim-setup
 
-- Simple Neovim setup.
+- ~~Simple Neovim setup.~~
 - Blazing fast and highly customizable.
 - Many useful features and plugins.
 - Language server protocol.
 - Completion.
+- Snippet.
 - Format.
 - Lint.
 - etc.
