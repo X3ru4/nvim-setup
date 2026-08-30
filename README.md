@@ -37,6 +37,8 @@
 - **rust toolchain**
 - **lua-language-server**
 
+For more details, use the command `:checkhealth`
+
 ## Clone
 
 ```bash
