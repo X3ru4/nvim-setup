@@ -123,7 +123,7 @@ return {
 					if MiniIcons then
 						self.icon, self.hl = MiniIcons.get('filetype', vim.bo.filetype)
 					else
-						self.icon, self.hl = '', ''
+						self.icon, self.hl = ' ', ''
 					end
 				end,
 				provider = function(self)
