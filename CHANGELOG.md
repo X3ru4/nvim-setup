@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/X3ru4/nvim-setup/compare/v1.1.0...v1.1.1) (2026-08-30)
+
+
+### Bug Fixes
+
+* use a space as placeholder icon when MiniIcons is unavailable ([e27f276](https://github.com/X3ru4/nvim-setup/commit/e27f276ec07c484cadbead2d857101cf21be6c08))
+
 ## [1.1.0](https://github.com/X3ru4/nvim-setup/compare/v1.0.1...v1.1.0) (2026-08-29)
 
 
