@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0](https://github.com/X3ru4/nvim-setup/compare/v1.1.1...v1.2.0) (2026-08-31)
+
+
+### Features
+
+* add fidget.nvim for LSP progress UI and remove mini.notify plugin ([9177649](https://github.com/X3ru4/nvim-setup/commit/9177649016edd9b8f91e739ad9062e9805ba5605))
+* **notify:** replace mini.notify with fidget.nvim for notifications and history shortcut ([cfbac58](https://github.com/X3ru4/nvim-setup/commit/cfbac5832ed012608136c0e72e0b30f912b1c963))
+
+
+### Bug Fixes
+
+* **boole:** remove invalid comparison operators from boolean completions ([059afdb](https://github.com/X3ru4/nvim-setup/commit/059afdb63366e28b73f737136d9bf3db29d12918))
+
 ## [1.1.1](https://github.com/X3ru4/nvim-setup/compare/v1.1.0...v1.1.1) (2026-08-30)
 
 
