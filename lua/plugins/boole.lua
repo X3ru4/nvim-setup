@@ -5,7 +5,6 @@ return {
 		presets = { 'colors', 'weekdays', 'months' },
 		additions = {
 			{ 'true', 'false' },
-			{ '>=', '<=' },
 		},
 	},
 }
