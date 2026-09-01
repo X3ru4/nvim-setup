@@ -16,6 +16,7 @@ return {
 		end,
 		dependencies = {
 			'saghen/blink.lib',
+			'timrydefalk/blink-cmp-emoji',
 			'rafamadriz/friendly-snippets',
 			'mini-nvim/mini.icons',
 		},
@@ -78,8 +79,11 @@ return {
 							components = {
 								kind_icon = {
 									text = function(ctx)
-										local kind_icon, _, _ = MiniIcons.get('lsp', ctx.kind)
-										return kind_icon
+										local kind_icon, _, is_default = MiniIcons.get('lsp', ctx.kind)
+										if is_default then
+											return ctx.kind_icon --.. ctx.icon_gap
+										end
+										return kind_icon --.. ctx.icon_gap
 									end,
 								},
 								label = {
@@ -94,7 +98,7 @@ return {
 					},
 				},
 				sources = {
-					default = { 'lsp', 'buffer', 'path', 'snippets' },
+					default = { 'emoji', 'lsp', 'buffer', 'path', 'snippets' },
 					per_filetype = {
 						lua = { inherit_defaults = true, 'lazydev' },
 					},
@@ -102,6 +106,16 @@ return {
 						lazydev = {
 							name = 'LazyDev',
 							module = 'lazydev.integrations.blink',
+						},
+						emoji = {
+							module = 'blink-cmp-emoji',
+							name = 'blink-cmp-emoji',
+							max_items = 10,
+							min_keyword_length = 1,
+							score_offset = 10,
+							opts = {
+								trigger = ':',
+							},
 						},
 						snippets = {
 							opts = {
