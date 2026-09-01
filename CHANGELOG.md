@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/X3ru4/nvim-setup/compare/v1.2.0...v1.3.0) (2026-09-01)
+
+
+### Features
+
+* **blink.cmp:** add emoji completion source with ':' trigger and fallback icon handling ([b3b4389](https://github.com/X3ru4/nvim-setup/commit/b3b438928d09b65df46c1ebfb1be6be71f5139fa))
+
 ## [1.2.0](https://github.com/X3ru4/nvim-setup/compare/v1.1.1...v1.2.0) (2026-08-31)
 
 
