@@ -1,18 +1,3 @@
----@alias utility.highlight.hl_list_fun fun():string, table
-
----@class utility.highlight.highlights
----@field basic table|table<string, table>|nil
----@field extra table|[string, table][]|utility.highlight.hl_list_fun[]|nil
----@field callback table|function[]|nil
-
----@alias utility.highlight.advance_hl_style { [1]: string, [2]: string|nil }|{ [1]: string|nil, list: [string, string], key: string, default_key: string }
-
----@class utility.highlight.advance_hl_spec
----@field default_hl string|nil
----@field fg utility.highlight.advance_hl_style|string|nil
----@field bg utility.highlight.advance_hl_style|string|nil
----@field gui vim.api.keyset.highlight|nil
-
 local cache = {
 	def = {},
 	get = {},
@@ -263,3 +248,18 @@ function M.hl_exist(name)
 end
 
 return M
+
+---@alias utility.highlight.hl_list_fun fun():string, table
+
+---@class utility.highlight.highlights
+---@field basic table|table<string, table>|nil
+---@field extra table|[string, table][]|utility.highlight.hl_list_fun[]|nil
+---@field callback table|function[]|nil
+
+---@alias utility.highlight.advance_hl_style { [1]: string, [2]: string|nil }|{ [1]: string|nil, list: [string, string], key: string, default_key: string }
+
+---@class utility.highlight.advance_hl_spec
+---@field default_hl string|nil
+---@field fg utility.highlight.advance_hl_style|string|nil
+---@field bg utility.highlight.advance_hl_style|string|nil
+---@field gui vim.api.keyset.highlight|nil
