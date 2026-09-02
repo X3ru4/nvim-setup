@@ -114,7 +114,7 @@ return {
 							min_keyword_length = 1,
 							score_offset = 10,
 							opts = {
-								trigger = ':',
+								trigger = ';;',
 							},
 						},
 						snippets = {

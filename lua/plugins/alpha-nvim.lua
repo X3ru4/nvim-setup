@@ -25,7 +25,7 @@ return {
 			button('g', '  Grep', '<Cmd>FzfLua live_grep<Cr>'),
 			button('c', '  Configs', '<Cmd>FzfLua files cwd=~/.config/nvim/<Cr>'),
 			button('r', '  Open last session', function() require('persistence').load() end),
-			button('q', '  Quit', '<Cmd>qa!<Cr>'),
+			button('q', '  Quit', '<Cmd>qa!<Cr>'),
 		}
 
 		require('alpha').setup(dashboard.config)
