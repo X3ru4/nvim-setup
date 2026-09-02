@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.4.0](https://github.com/X3ru4/nvim-setup/compare/v1.3.0...v1.4.0) (2026-09-02)
+
+
+### Features
+
+* **cmp,ui:** change snippet trigger to ';;' and update quit button icon ([f02e292](https://github.com/X3ru4/nvim-setup/commit/f02e292f083f6fb0ccb9832c6f154d2c77b77fe1))
+* **config:** update lazy status icon to sparkle emoji ([cb4f4c8](https://github.com/X3ru4/nvim-setup/commit/cb4f4c8b0b762d01d7c607e3d1357ee8f0ec99ba))
+
+
+### Bug Fixes
+
+* **config:** refresh lazy.nvim status and action icons ([da40c81](https://github.com/X3ru4/nvim-setup/commit/da40c819d62265588b0ce0361bbc033a096b2a5e))
+
 ## [1.3.0](https://github.com/X3ru4/nvim-setup/compare/v1.2.0...v1.3.0) (2026-09-01)
 
 
