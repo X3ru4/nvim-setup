@@ -189,7 +189,7 @@ return {
 		map.set('n', '<leader>ff', fzf.files, { desc = 'FZF file CWD' })
 		map.set('n', '<leader>fd', function()
 			fzf.files({ cwd = vim.fn.expand('%:h') })
-		end, { desc = 'FZF current' })
+		end, { desc = 'FZF parent' })
 		map.set('n', '<leader>fc', function()
 			fzf.files({ cwd = vim.fn.stdpath('config') })
 		end, { desc = 'FZF config' })
