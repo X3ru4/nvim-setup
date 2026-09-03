@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.0](https://github.com/X3ru4/nvim-setup/compare/v1.4.0...v1.5.0) (2026-09-03)
+
+
+### Features
+
+* **mini.tabline:** move tabpage_section default from left to right ([3b18c64](https://github.com/X3ru4/nvim-setup/commit/3b18c642313ce29f75f78d9105530cf0c7287d5f))
+* **statusline:** show LSP indicator and hide empty diagnostics in heirline statusline ([e4f968e](https://github.com/X3ru4/nvim-setup/commit/e4f968ea1a409a7d67f9a9149694a9c14e5a4a57))
+
 ## [1.4.0](https://github.com/X3ru4/nvim-setup/compare/v1.3.0...v1.4.0) (2026-09-02)
 
 
