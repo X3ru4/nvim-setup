@@ -4,7 +4,7 @@ return {
 	event = { 'BufReadPre', 'BufNewFile' },
 	opts = {
 		always_show = false,
-		tabpage_section = 'left',
+		tabpage_section = 'right',
 
 		format = function(bufnr, label)
 			return ' '
