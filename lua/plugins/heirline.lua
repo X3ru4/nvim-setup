@@ -25,6 +25,15 @@ return {
 			hl = 'WarningMsg',
 		}
 
+		local LSPActive = {
+			condition = function()
+				return next(vim.lsp.get_clients({ bufnr = 0 })) ~= nil
+			end,
+			update = { 'LspAttach', 'LspDetach' },
+			provider = '  [LSP]',
+			hl = hl.modify('DiagnosticSignInfo', { bold = true })[2],
+		}
+
 		local ViMode = {
 			update = {
 				'ModeChanged',
@@ -169,6 +178,9 @@ return {
 		}
 
 		local Diagnostic = {
+			condition = function()
+				return vim.diagnostic.count(0) ~= {}
+			end,
 			update = { 'DiagnosticChanged', 'BufEnter' },
 			init = function(self)
 				self.status = vim.diagnostic.status(0)
@@ -188,7 +200,7 @@ return {
 			},
 		}
 
-		local ActiveStl = {
+		local StatusLine = {
 			{
 				flexible = 20,
 				{ ViMode, FileInfo },
@@ -223,6 +235,11 @@ return {
 				false,
 			},
 			{
+				flexible = 2,
+				LSPActive,
+				false,
+			},
+			{
 				flexible = 3,
 				{ provider = ' %{mode() == \'i\' ? \'󰣈\' : \'\'} %l·%c ' },
 				{ provider = ' %l·%c ' },
@@ -231,6 +248,6 @@ return {
 			},
 		}
 
-		require('heirline').setup({ statusline = ActiveStl })
+		require('heirline').setup({ statusline = StatusLine })
 	end,
 }
