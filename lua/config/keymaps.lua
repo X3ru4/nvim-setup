@@ -17,14 +17,14 @@ map.set(
 map.set({ 'n', 'x' }, '<leader>v', '<Cmd>norm gg0vG$h<Cr>', { desc = 'Select all' })
 map.set({ 'n', 'x' }, 'zh', 'zH', { desc = 'Horizontal scroll like "zH"' })
 map.set({ 'n', 'x' }, 'zl', 'zL', { desc = 'Horizontal scroll like "zL"' })
-map.set('n', '<S-h>', '<Cmd>bprevious<cr>')
-map.set('n', '<S-l>', '<Cmd>bnext<cr>')
-map.set('n', '<leader>bd', '<Cmd>bdelete<cr>', { desc = 'Delete buffer' })
-map.set('n', '<leader>bb', '<Cmd>buffer #<cr>', { desc = 'Previous buffer' })
-map.set({ 'n', 'x', 'i' }, '<C-s>', '<Cmd>silent!w<cr><esc>', { desc = 'Save file', silent = true })
-map.set('n', '<leader>qa', '<Cmd>q!<cr>', { desc = 'Quit all' })
-map.set('n', '<leader>qq', '<Cmd>q<cr>', { desc = 'Quit' })
-map.set('n', '<leader>l', '<Cmd>Lazy<cr>', { desc = 'Lazy' })
+map.set('n', '<S-h>', '<Cmd>bprevious<Cr>')
+map.set('n', '<S-l>', '<Cmd>bnext<Cr>')
+map.set('n', '<leader>bd', '<Cmd>bdelete<Cr>', { desc = 'Delete buffer' })
+map.set('n', '<leader>bb', '<Cmd>buffer #<Cr>', { desc = 'Previous buffer' })
+map.set({ 'n', 'x', 'i' }, '<C-s>', '<Cmd>silent!w<Cr><esc>', { desc = 'Save file', silent = true })
+map.set('n', '<leader>qa', '<Cmd>q!<Cr>', { desc = 'Quit all' })
+map.set('n', '<leader>qq', '<Cmd>q<Cr>', { desc = 'Quit' })
+map.set('n', '<leader>l', '<Cmd>Lazy<Cr>', { desc = 'Lazy' })
 
 -- Better up/down
 map.set({ 'n', 'x' }, 'k', 'v:count == 0 ? \'gk\' : \'k\'', { desc = 'Up', expr = true, silent = true })
@@ -38,8 +38,8 @@ map.set('i', '.', '.<C-g>u')
 map.set('i', ';', ';<C-g>u')
 
 -- Commenting
-map.set('n', 'gco', 'o<esc>Vcx<esc><Cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Below' })
-map.set('n', 'gcO', 'O<esc>Vcx<esc><Cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Above' })
+map.set('n', 'gco', 'o<esc>Vcx<esc><Cmd>normal gcc<Cr>fxa<bs>', { desc = 'Add Comment Below' })
+map.set('n', 'gcO', 'O<esc>Vcx<esc><Cmd>normal gcc<Cr>fxa<bs>', { desc = 'Add Comment Above' })
 
 map.set({ 'i', 'n', 's' }, '<esc>', function()
 	vim.cmd('noh')
