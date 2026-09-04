@@ -48,7 +48,7 @@ return {
 				self.current_modehlsep = 'HeirlineModeSep' .. self.current_modehl
 				hl.set(self.current_modehlsep, {
 					fg = hl.getbg(self.current_modehl),
-					bg = hl.getfg('Dark3'),
+					bg = hl.alias.Black3,
 				})
 			end,
 			hl = function(self)
@@ -104,7 +104,7 @@ return {
 			init = function()
 				hl.set('HeirlineDark2', {
 					fg = hl.getfg('StatusLine'),
-					bg = hl.getfg('Dark2'),
+					bg = hl.alias.Black2,
 				})
 				hl.set('HeirlineMod', {
 					fg = hl.getfg('Changed'),
@@ -114,12 +114,12 @@ return {
 					bold = true,
 				})
 				hl.set('HeirlineDark2Sep', {
-					fg = hl.getfg('Dark2'),
+					fg = hl.alias.Black2,
 					bg = hl.getbg('StatusLine'),
 				})
 				hl.set('HeirlineDark3Sep', {
-					fg = hl.getfg('Dark3'),
-					bg = hl.getfg('Dark2'),
+					fg = hl.alias.Black3,
+					bg = hl.alias.Black2,
 				})
 			end,
 			hl = 'HeirlineDark2',

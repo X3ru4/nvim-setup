@@ -212,8 +212,8 @@ return {
 		local fzf_hl = {
 			FzfLuaNormal = { link = 'NormalFloat' },
 			FzfLuaBorder = { link = 'FloatBorder' },
-			FzfLuaTitle = { link = 'FloatTitle' },
-			FzfLuaCursorLine = { bold = true, fg = hl.getfg('Normal'), bg = hl.getbg('CursorLine') },
+			FzfLuaTitle = { fg = hl.alias.Black, bg = hl.getfg('Removed'), bold = true },
+			FzfLuaCursorLine = { bold = true, bg = hl.getbg('CursorLine') },
 			FzfLuaTabMarker = { link = 'Structure' },
 			FzfLuaHeaderBind = { link = 'FzfLuaTabMarker' },
 			FzfLuaHeaderText = { link = 'Define' },
@@ -231,7 +231,7 @@ return {
 
 			FzfLuaPreviewNormal = { link = 'Normal' },
 			FzfLuaPreviewBorder = { link = 'Normal' },
-			FzfLuaPreviewTitle = { bg = hl.getbg('Normal'), fg = hl.getfg('Title'), bold = true },
+			FzfLuaPreviewTitle = { fg = hl.alias.Black, bg = hl.getfg('Added'), bold = true },
 		}
 		hl.add_callback('fzf-lua', function()
 			hl.apply({ basic = fzf_hl })

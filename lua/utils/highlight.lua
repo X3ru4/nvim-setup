@@ -5,6 +5,8 @@ local cache = {
 
 local M = {}
 
+M.alias = {}
+
 function M.clear_cache()
 	cache.def = {}
 	cache.get = {}
@@ -29,6 +31,13 @@ function M.get(name)
 	else
 		return cache.get[name]
 	end
+end
+
+function M.get_color(alias)
+	if M.alias[alias] then
+		return M.alias[alias]
+	end
+	vim.notify(alias .. ' alias not found!', vim.log.levels.ERROR)
 end
 
 ---Like M.get but return the forground color

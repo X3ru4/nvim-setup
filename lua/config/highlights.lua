@@ -1,26 +1,25 @@
 local hl = require('utils.highlight')
 
 hl.setup(function()
-	local norm = {
-		fg = hl.getfg('Normal') or hl.getfg('Cursor'),
-		bg = hl.getbg('Normal') or hl.getbg('Cursor'),
-	}
+	-- These aliases are primarily used for heirline.nvim and fzf-lua
+	hl.alias.White = hl.getfg('Normal') or hl.getfg('Cursor')
+	hl.alias.Black = hl.getbg('Normal') or hl.getbg('Cursor')
 
-	hl.set('Dark1', { fg = hl.blend(norm.bg, norm.fg, 0.9) })
-	hl.set('Dark2', { fg = hl.blend(norm.bg, norm.fg, 0.8) })
-	hl.set('Dark3', { fg = hl.blend(norm.bg, norm.fg, 0.7) })
-	hl.set('Dark4', { fg = hl.blend(norm.bg, norm.fg, 0.6) })
+	hl.alias.Black1 = hl.blend(hl.alias.Black, hl.alias.White, 0.9)
+	hl.alias.Black2 = hl.blend(hl.alias.Black, hl.alias.White, 0.8)
+	hl.alias.Black3 = hl.blend(hl.alias.Black, hl.alias.White, 0.7)
+	hl.alias.Black4 = hl.blend(hl.alias.Black, hl.alias.White, 0.6)
 
-	local function create_modehl(name, ref, def)
-		if hl.hl_exist(ref) then
-			return { name, { link = ref, default = true } }
+	local function set_modehl(mode, hlname, fallback)
+		if hl.hl_exist(hlname) then
+			return { mode, { link = hlname, default = true } }
 		end
 		return {
-			name,
+			'Mode' ..	mode,
 			{
 				default = true,
-				fg = norm.bg,
-				bg = hl.getfg(def),
+				fg = hl.alias.Black,
+				bg = hl.getfg(fallback),
 				bold = true,
 			},
 		}
@@ -33,19 +32,19 @@ hl.setup(function()
 			-- Normal = { cforce = true, fg = "#ffee00", bg = "#3a3b2f" }
 			Yank = {
 				fg = hl.getfg('Added'),
-				bg = hl.blend(hl.getfg('Added'), norm.bg, 0.2),
+				bg = hl.blend(hl.getfg('Added'), hl.alias.Black, 0.2),
 				bold = true,
 			},
 		},
 		-- This field is a special field used to set up highlights that require logic.
 		extra = {
 			-- Create highlights for the basic Vim/Nvim modes used in heirline.nvim.
-			create_modehl('ModeOther', 'MiniStatuslineModeOther', 'DiagnosticSignInfo'),
-			create_modehl('ModeNormal', 'MiniStatuslineModeNormal', 'DiagnosticSignInfo'),
-			create_modehl('ModeInsert', 'MiniStatuslineModeInsert', 'DiagnosticSignOk'),
-			create_modehl('ModeVisual', 'MiniStatuslineModeVisual', 'DiagnosticSignWarn'),
-			create_modehl('ModeCommand', 'MiniStatuslineModeCommand', 'DiagnosticSignError'),
-			create_modehl('ModeReplace', 'MiniStatuslineModeReplace', 'DiagnosticSignError'),
+			set_modehl('Other', 'MiniStatuslineModeOther', 'DiagnosticSignInfo'),
+			set_modehl('Normal', 'MiniStatuslineModeNormal', 'DiagnosticSignInfo'),
+			set_modehl('Insert', 'MiniStatuslineModeInsert', 'DiagnosticSignOk'),
+			set_modehl('Visual', 'MiniStatuslineModeVisual', 'DiagnosticSignWarn'),
+			set_modehl('Command', 'MiniStatuslineModeCommand', 'DiagnosticSignError'),
+			set_modehl('Replace', 'MiniStatuslineModeReplace', 'DiagnosticSignError'),
 			-- Modify default highlights.
 			hl.modify('Visual', { bold = true }),
 			-- hl.modify("FloatTitle", { bg = hl.getbg("NormalFloat") }),
