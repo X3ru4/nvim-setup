@@ -14,6 +14,7 @@
 
 ### Mandatory
 
+- **A brain**
 - **Neovim** release v0.12 or newer
 - **Nerd font**
 - **git**
