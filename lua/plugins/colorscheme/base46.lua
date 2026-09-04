@@ -63,6 +63,10 @@ return {
 				trouble = false,
 				['vim-illuminate'] = false,
 			},
+			nvchad = {
+				---@type 'default'|'atom'|'atom_colored'|'flat_light'|'flat_dark'
+				cmp_style = 'flat_dark',
+			},
 		})
 
 		local variant = require('utils.colorscheme').variant

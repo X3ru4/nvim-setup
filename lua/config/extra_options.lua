@@ -6,17 +6,19 @@ colorscheme.default = 'base46'
 colorscheme.variant = 'base46-gruvbox_light'
 colorscheme.install = {
 	'base46',
-	'ember_theme', -- It is the file name
+	-- 'ember_theme', -- It is the file name
 }
 
 -- Quick configuration for blink.cmp
 M.blinkcmp = {
 	menu = {
-		border = nil,
+		border = 'none',
+    scrollbar = true,
 	},
 	documentation = {
-		auto_show = false,
-		border = nil,
+    auto_show = false,
+    border = 'none',
+    scrollbar = true,
 	},
 	appearance = {
 		use_nvimcmp_hl = false,

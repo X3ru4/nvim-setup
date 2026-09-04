@@ -22,7 +22,7 @@ return {
 		},
 		event = { 'InsertEnter', 'CmdlineEnter' },
 		config = function()
-			local blinkcmp = require('config.extra_options').blinkcmp
+			local cmp = require('config.extra_options').blinkcmp
 			local MiniIcons = require('mini.icons')
 
 			require('blink.cmp').setup({
@@ -50,7 +50,7 @@ return {
 					},
 				},
 				appearance = {
-					use_nvim_cmp_as_default = blinkcmp.appearance.use_nvimcmp_hl,
+					use_nvim_cmp_as_default = cmp.appearance.use_nvimcmp_hl,
 					nerd_font_variant = 'normal',
 				},
 				signature = { enabled = false },
@@ -58,22 +58,22 @@ return {
 					ghost_text = { enabled = false },
 					accept = { auto_brackets = { enabled = true } },
 					documentation = {
-						auto_show = blinkcmp.documentation.auto_show,
+						auto_show = cmp.documentation.auto_show,
 						auto_show_delay_ms = 500,
 						treesitter_highlighting = true,
 						window = {
-							scrollbar = false,
+							scrollbar = cmp.documentation.scrollbar or false,
 							min_width = 30,
 							max_width = 45,
 							max_height = 10,
-							border = blinkcmp.documentation.border,
+							border = cmp.documentation.border,
 						},
 					},
 					menu = {
-						scrollbar = false,
+						scrollbar = cmp.menu.scrollbar or false,
 						min_width = 4,
 						max_height = 8,
-						border = blinkcmp.menu.border,
+						border = cmp.menu.border,
 						draw = {
 							columns = { { 'kind_icon' }, { 'label', 'kind', gap = 1 } },
 							components = {
