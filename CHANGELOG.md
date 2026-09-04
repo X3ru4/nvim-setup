@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.6.0](https://github.com/X3ru4/nvim-setup/compare/v1.5.0...v1.6.0) (2026-09-04)
+
+
+### Features
+
+* enable blink.cmp borders & scrollbars, solid winborder, add cmp_style ([a269fc0](https://github.com/X3ru4/nvim-setup/commit/a269fc0dbb7f664a5fbf452b9348cea394874446))
+* **highlights:** add color alias system and use it in highlights ([7c51ca5](https://github.com/X3ru4/nvim-setup/commit/7c51ca5d273ad7100c04bb3aedccd1a6f858c82b))
+
+
+### Bug Fixes
+
+* correct explore button icon in alpha dashboard ([1160993](https://github.com/X3ru4/nvim-setup/commit/11609936519d11f78590da7ec5857b9ff03ed366))
+
 ## [1.5.0](https://github.com/X3ru4/nvim-setup/compare/v1.4.0...v1.5.0) (2026-09-03)
 
 
