@@ -233,8 +233,8 @@ return {
 			FzfLuaPreviewBorder = { link = 'Normal' },
 			FzfLuaPreviewTitle = { fg = hl.alias.Black, bg = hl.getfg('Added'), bold = true },
 		}
-		hl.add_callback('fzf-lua', function()
+		hl.add_hook('fzf-lua', function()
 			hl.apply({ basic = fzf_hl })
-		end)
+		end, true)
 	end,
 }

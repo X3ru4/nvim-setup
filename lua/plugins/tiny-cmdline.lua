@@ -24,7 +24,7 @@ return {
 		})
 
 		local hl = require('utils.highlight')
-		hl.add_callback('tiny-cmdline', function()
+		hl.add_hook('tiny-cmdline', function()
 			hl.set('TinyCmdlineNormal', { link = 'NormalFloat' })
 		end)
 	end,

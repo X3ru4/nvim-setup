@@ -6,12 +6,6 @@ local cache = {
 local M = {}
 
 M.alias = {}
-
-function M.clear_cache()
-	cache.def = {}
-	cache.get = {}
-end
-
 M.use_cache = false
 
 ---This is the default table used to load highlights when M.apply() is called.
@@ -20,6 +14,11 @@ M.highlight = {
 	extra = {},
 	callback = {},
 }
+
+function M.clear_cache()
+	cache.def = {}
+	cache.get = {}
+end
 
 ---Get the highlight but with the cache.
 ---@param name string
@@ -124,36 +123,50 @@ end
 ---This function use to callback your function when highlight is load or reload.
 ---@param id string
 ---@param callback function
----@param overide boolean|nil
-function M.add_callback(id, callback, overide)
-	if not overide and M.highlight.callback[id] then
+---@param init boolean|nil
+---@param condition function|boolean|nil
+function M.add_hook(id, callback, init, condition, on_color)
+	local cond = type(condition) == 'function' and condition() or condition
+	if (cond == nil and true or cond) and M.highlight.callback[id] then
 		M.highlight.callback[id]()
 		return
 	end
-	callback()
-	M.highlight.callback[id] = callback
-end
-
-function M.run_callbacks()
-	if M.highlight.callback and M.highlight.callback ~= {} then
-		for _, fn in pairs(M.highlight.callback) do
-			fn()
+	if init then
+		callback()
+		if on_color then
+			M.highlight.callback[id] = { callback }
+			return
 		end
 	end
+	M.highlight.callback[id] = callback
 end
 
 local started = false
 
+function M.run_hooks()
+	if M.highlight.callback and M.highlight.callback ~= {} then
+		for _, data in pairs(M.highlight.callback) do
+			if type(data) == 'function' then
+				data()
+			elseif type(data) == 'table' then
+				if started then
+					data[1]()
+				end
+			end
+		end
+	end
+end
+
 ---Setup
----@param fn function
-function M.setup(fn)
+---@param config function
+function M.setup(config)
 	if started then
 		M.highlight.basic = {}
 		M.highlight.extra = {}
 	end
-	fn()
+	config()
 	M.apply()
-	M.run_callbacks()
+	M.run_hooks()
 	M.use_cache = true
 	started = true
 end

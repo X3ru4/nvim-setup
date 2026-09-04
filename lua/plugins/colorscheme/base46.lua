@@ -11,7 +11,10 @@ return {
 			term_colors = true,
 			-- Enable transparent background.
 			transparency = false,
-
+			nvchad = {
+				---@type 'default'|'atom'|'atom_colored'|'flat_light'|'flat_dark'
+				cmp_style = 'default',
+			},
 			-- Contrary to NvChad, all integrations are enabled by default.
 			integrations = {
 				blankline = false,
@@ -63,10 +66,6 @@ return {
 				trouble = false,
 				['vim-illuminate'] = false,
 			},
-			nvchad = {
-				---@type 'default'|'atom'|'atom_colored'|'flat_light'|'flat_dark'
-				cmp_style = 'flat_dark',
-			},
 		})
 
 		local variant = require('utils.colorscheme').variant
@@ -79,45 +78,53 @@ return {
 		local colors = base46.theme_tables[base46.current_theme]
 		local hl = require('utils.highlight')
 
-		hl.apply({
-			basic = {
-				ModeOther = { link = 'St_ConfirmMode' },
-				ModeNormal = { link = 'St_NormalMode' },
-				ModeInsert = { link = 'St_InsertMode' },
-				ModeVisual = { link = 'St_VisualMode' },
-				ModeCommand = { link = 'St_CommandMode' },
-				ModeReplace = { link = 'St_ReplaceMode' },
+		local function is_base46()
+      local start = vim.g.colors_name:find('base46-', 0, true)
+			return start
+		end
 
-				FloatTitle = {
-					fg = colors.base_30.black,
-					bg = colors.base_30.blue,
-					bold = true,
+		-- It will load if you change the colorscheme.
+		hl.add_hook('base46', function()
+			hl.apply({
+				basic = {
+					ModeOther = { link = 'St_ConfirmMode' },
+					ModeNormal = { link = 'St_NormalMode' },
+					ModeInsert = { link = 'St_InsertMode' },
+					ModeVisual = { link = 'St_VisualMode' },
+					ModeCommand = { link = 'St_CommandMode' },
+					ModeReplace = { link = 'St_ReplaceMode' },
+
+					FloatTitle = {
+						fg = colors.base_30.black,
+						bg = colors.base_30.blue,
+						bold = true,
+					},
+					FloatFooter = { link = 'FloatTitle' },
+
+					SnacksIndent = { fg = colors.base_30.line },
+					SnacksIndentScope = { fg = colors.base_30.teal },
 				},
-				FloatFooter = { link = 'FloatTitle' },
+				extra = {
+					hl.modify('NormalFloat', { fg = colors.base_30.white }),
 
-				SnacksIndent = { fg = colors.base_30.line },
-				SnacksIndentScope = { fg = colors.base_30.teal },
-			},
-			extra = {
-				hl.modify('NormalFloat', { fg = colors.base_30.white }),
-
-				-- Syntax
-				hl.modify('Keyword', { italic = true }),
-				hl.modify('@keyword', { italic = true }),
-				hl.modify('@keyword.return', { italic = true }),
-				hl.modify('@keyword.function', { italic = true }),
-				hl.modify('@keyword.operator', { italic = true }),
-				hl.modify('@keyword.conditional', { italic = true }),
-				hl.modify('@keyword.conditional.ternary', { italic = true }),
-				hl.modify('Function', { bold = true }),
-				hl.modify('@function', { bold = true }),
-				hl.modify('@function.call', { bold = true }),
-				hl.modify('@function.method', { bold = true }),
-				hl.modify('@function.method.call', { bold = true }),
-				hl.modify('Type', { bold = true }),
-				hl.modify('Comment', { italic = true }),
-				hl.modify('@comment', { italic = true }),
-			},
-		})
+					-- Syntax
+					hl.modify('Keyword', { italic = true }),
+					hl.modify('@keyword', { italic = true }),
+					hl.modify('@keyword.return', { italic = true }),
+					hl.modify('@keyword.function', { italic = true }),
+					hl.modify('@keyword.operator', { italic = true }),
+					hl.modify('@keyword.conditional', { italic = true }),
+					hl.modify('@keyword.conditional.ternary', { italic = true }),
+					hl.modify('Function', { bold = true }),
+					hl.modify('@function', { bold = true }),
+					hl.modify('@function.call', { bold = true }),
+					hl.modify('@function.method', { bold = true }),
+					hl.modify('@function.method.call', { bold = true }),
+					hl.modify('Type', { bold = true }),
+					hl.modify('Comment', { italic = true }),
+					hl.modify('@comment', { italic = true }),
+				},
+			})
+		end, false, is_base46)
 	end,
 }

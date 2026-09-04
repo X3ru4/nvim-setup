@@ -31,7 +31,7 @@ return {
 			end,
 			update = { 'LspAttach', 'LspDetach' },
 			provider = '  [LSP]',
-			hl = hl.modify('DiagnosticSignInfo', { bold = true })[2],
+			hl = 'DiagnosticSignInfo',
 		}
 
 		local ViMode = {
