@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/X3ru4/nvim-setup/compare/v1.6.0...v1.7.0) (2026-09-05)
+
+
+### Features
+
+* **ui:** remove borders from blink.cmp, set zero gap, use flat_dark cmp style ([43a0653](https://github.com/X3ru4/nvim-setup/commit/43a065319f58f900eb5bd375163c258cea251baf))
+
 ## [1.6.0](https://github.com/X3ru4/nvim-setup/compare/v1.5.0...v1.6.0) (2026-09-04)
 
 
