@@ -13,7 +13,7 @@ return {
 			transparency = false,
 			nvchad = {
 				---@type 'default'|'atom'|'atom_colored'|'flat_light'|'flat_dark'
-				cmp_style = 'default',
+				cmp_style = 'flat_dark',
 			},
 			-- Contrary to NvChad, all integrations are enabled by default.
 			integrations = {

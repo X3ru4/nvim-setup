@@ -12,12 +12,12 @@ colorscheme.install = {
 -- Quick configuration for blink.cmp
 M.blinkcmp = {
 	menu = {
-		border = 'single',
+		border = 'none',
     scrollbar = true,
 	},
 	documentation = {
     auto_show = false,
-    border = 'single',
+    border = 'none',
     scrollbar = true,
 	},
 	appearance = {

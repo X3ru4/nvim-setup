@@ -75,15 +75,16 @@ return {
 						max_height = 8,
 						border = cmp.menu.border,
 						draw = {
+              gap = 0,
 							columns = { { 'kind_icon' }, { 'label', 'kind', gap = 1 } },
 							components = {
 								kind_icon = {
 									text = function(ctx)
 										local kind_icon, _, is_default = MiniIcons.get('lsp', ctx.kind)
 										if is_default then
-											return ctx.kind_icon --.. ctx.icon_gap
+											return ctx.kind_icon .. ctx.icon_gap
 										end
-										return kind_icon --.. ctx.icon_gap
+										return kind_icon .. ctx.icon_gap
 									end,
 								},
 								label = {
