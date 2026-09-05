@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/X3ru4/nvim-setup/compare/v1.7.0...v1.8.0) (2026-09-05)
+
+
+### Features
+
+* **config:** change default colorscheme variant to base46-gruvchad ([c661d91](https://github.com/X3ru4/nvim-setup/commit/c661d9147346cabbfa2ef3448b228bad9364a290))
+
 ## [1.7.0](https://github.com/X3ru4/nvim-setup/compare/v1.6.0...v1.7.0) (2026-09-05)
 
 
