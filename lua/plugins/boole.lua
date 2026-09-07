@@ -6,5 +6,8 @@ return {
 		additions = {
 			{ 'true', 'false' },
 		},
+		allow_caps_additions = {
+			{ 'light', 'dark' },
+		},
 	},
 }
