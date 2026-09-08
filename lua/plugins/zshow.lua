@@ -1,5 +1,5 @@
 return {
-	'sairyy/zshow.nvim',
+	src = 'https://gitlab.com/sairy/zshow.nvim',
 	lazy = false, -- no need for lazy loading
 	keys = {
 		{ '<leader>z', '<Cmd>ZShow<Cr>' },
