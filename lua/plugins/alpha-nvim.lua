@@ -34,7 +34,7 @@ return {
 
 		dashboard.section.footer.opts.positon = 'center'
 		dashboard.section.footer.val = {
-			'Welcome back, boss!'
+			'󰠥 Welcome back, boss!  '
 		}
 	end,
 }
