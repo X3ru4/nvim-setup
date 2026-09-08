@@ -1,7 +1,7 @@
 return {
 	'saghen/blink.pairs',
 	dependencies = 'saghen/blink.lib',
-	version = '*',
+	sem_version = '*',
 	build = function()
 		require('blink.pairs').build():pwait(60000)
 	end,

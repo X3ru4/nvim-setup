@@ -24,7 +24,6 @@ map.set('n', '<leader>bb', '<Cmd>buffer #<Cr>', { desc = 'Previous buffer' })
 map.set({ 'n', 'x', 'i' }, '<C-s>', '<Cmd>silent!w<Cr><esc>', { desc = 'Save file', silent = true })
 map.set('n', '<leader>qa', '<Cmd>q!<Cr>', { desc = 'Quit all' })
 map.set('n', '<leader>qq', '<Cmd>q<Cr>', { desc = 'Quit' })
-map.set('n', '<leader>l', '<Cmd>Lazy<Cr>', { desc = 'Lazy' })
 
 -- Better up/down
 map.set({ 'n', 'x' }, 'k', 'v:count == 0 ? \'gk\' : \'k\'', { desc = 'Up', expr = true, silent = true })

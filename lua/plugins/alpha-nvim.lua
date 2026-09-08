@@ -24,29 +24,17 @@ return {
 			button('x', '  Explore', '<Cmd>Oil <CR>'),
 			button('g', '  Grep', '<Cmd>FzfLua live_grep<Cr>'),
 			button('c', '  Configs', '<Cmd>FzfLua files cwd=~/.config/nvim/<Cr>'),
-			button('r', '  Open last session', function() require('persistence').load() end),
+			button('r', '  Open last session', function()
+				require('persistence').load()
+			end),
 			button('q', '  Quit', '<Cmd>qa!<Cr>'),
 		}
 
 		require('alpha').setup(dashboard.config)
 
-		local stats = require('lazy').stats()
-
 		dashboard.section.footer.opts.positon = 'center'
-		vim.api.nvim_create_autocmd('UIEnter', {
-			once = true,
-			callback = function()
-				dashboard.section.footer.val = {
-					'Loaded '
-						.. stats.loaded
-						.. '/'
-						.. stats.count
-						.. ' plugins in '
-						.. (math.floor(stats.startuptime * 100) / 100)
-						.. 'ms',
-				}
-				vim.cmd.AlphaRedraw()
-			end,
-		})
+		dashboard.section.footer.val = {
+			'Welcome back, boss!'
+		}
 	end,
 }

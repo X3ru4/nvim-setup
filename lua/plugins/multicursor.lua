@@ -1,6 +1,5 @@
 return {
 	'jake-stewart/multicursor.nvim',
-	branch = '1.0',
 	keys = {
 		{ mode = { 'n', 'x' }, '<leader>n' },
 		{ mode = { 'n', 'x' }, '<leader>N' },
