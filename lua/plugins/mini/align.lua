@@ -1,6 +1,6 @@
 return {
 	'nvim-mini/mini.align',
-	version = false,
+	version = 'stable',
 	keys = {
 		{ mode = { 'n', 'x' }, 'ga' },
 		{ mode = { 'n', 'x' }, 'gA' },

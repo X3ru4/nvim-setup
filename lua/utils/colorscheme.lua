@@ -9,7 +9,7 @@ M.install = {}
 
 local function load_colorscheme()
 	for _, name in ipairs(M.install) do
-		local module = 'plugins.colorscheme.' .. name
+		local module = 'plugins.theme.' .. name
 		local is_module, spec = pcall(require, module)
 		if is_module then
 			if spec then
@@ -28,12 +28,13 @@ function M.create_spec()
 
 	for _, spec in ipairs(M.themes) do
 		if spec.name == M.default or spec[1] == M.default then
+			spec.lazy = false
+			spec.priority = 1000
 			t[#t + 1] = spec
 		else
 			if spec and spec ~= {} then
 				t[#t + 1] = {
 					spec[1] or spec.url or spec.dir,
-					dev = spec.dev,
 					name = spec.name,
 					event = 'VeryLazy',
 					dependencies = spec.dependencies,

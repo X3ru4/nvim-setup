@@ -1,6 +1,6 @@
 return {
 	'nvim-mini/mini.extra',
-	version = false,
+	version = 'stable',
   event = 'VeryLazy',
   opts = {}
 }

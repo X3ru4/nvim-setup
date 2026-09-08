@@ -1,6 +1,6 @@
 return {
 	'nvim-mini/mini.hipatterns',
-	version = false,
+	version = 'stable',
 	event = 'VeryLazy',
 	opts = {
 		highlighters = {

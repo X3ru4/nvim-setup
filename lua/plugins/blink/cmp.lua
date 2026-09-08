@@ -18,7 +18,7 @@ return {
 			'saghen/blink.lib',
 			'timrydefalk/blink-cmp-emoji',
 			'rafamadriz/friendly-snippets',
-			'mini-nvim/mini.icons',
+			'nvim-mini/mini.icons',
 		},
 		event = { 'InsertEnter', 'CmdlineEnter' },
 		config = function()

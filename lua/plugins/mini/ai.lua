@@ -1,6 +1,6 @@
 return {
 	'nvim-mini/mini.ai',
-	version = false,
+	version = 'stable',
 	event = 'BufReadPost',
 	opts = function()
 		local MiniExtra = require('mini.extra')
