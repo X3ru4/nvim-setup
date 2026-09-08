@@ -20,7 +20,7 @@ local rtp_plugins = {
 }
 
 for _, plugin in ipairs(rtp_plugins) do
-  vim.g['loaded_' .. plugin] = 1
+	vim.g['loaded_' .. plugin] = 1
 end
 
 require('config.options')
