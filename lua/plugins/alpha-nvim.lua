@@ -13,9 +13,9 @@ return {
 		end
 
 		dashboard.section.header.val = {
-			'╷ ╷╭─╮╭─╮╷ ╷╷ ╷',
-			'╭┼╯╶─┤├┬╯│ │╰─┤',
-			'╵ ╵╰─╯╵╰╴╰─╯  ╵',
+			'███  ██ ▄▄▄▄▄  ▄▄▄  ▄▄ ▄▄ ▄▄ ▄▄   ▄▄',
+			'██ ▀▄██ ██▄▄  ██▀██ ██▄██ ██ ██▀▄▀██',
+			'██   ██ ██▄▄▄ ▀███▀  ▀█▀  ██ ██   ██',
 		}
 		dashboard.section.buttons.val = {
 			button('e', '  New file', '<Cmd>ene <CR>'),
@@ -34,7 +34,7 @@ return {
 
 		dashboard.section.footer.opts.positon = 'center'
 		dashboard.section.footer.val = {
-			'󰠥 Welcome back, boss!  '
+			'Simplicity is the Ultimate Sophistication.',
 		}
 	end,
 }
