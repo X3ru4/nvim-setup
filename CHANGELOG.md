@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.9.0](https://github.com/X3ru4/nvim-setup/compare/v1.8.0...v1.9.0) (2026-09-08)
+
+
+### Features
+
+* add icons to Alpha dashboard welcome message ([60030e9](https://github.com/X3ru4/nvim-setup/commit/60030e94e970b7ebaae8f1832169574e5f378ba4))
+* **themes:** add new theme specs and fix loading path to plugins.themes ([4bfd819](https://github.com/X3ru4/nvim-setup/commit/4bfd819318f452694f175aa6ead36365c7925977))
+
+
+### Bug Fixes
+
+* **blink/pairs:** replace deprecated sem_version with version using vim.version.range('*') ([3512584](https://github.com/X3ru4/nvim-setup/commit/3512584b380b06efcc0fab638aa7fd3db16861ce))
+
 ## [1.8.0](https://github.com/X3ru4/nvim-setup/compare/v1.7.0...v1.8.0) (2026-09-08)
 
 
