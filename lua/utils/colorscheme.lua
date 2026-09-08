@@ -9,12 +9,14 @@ M.install = {}
 
 local function load_colorscheme()
 	for _, name in ipairs(M.install) do
-		local module = 'plugins.theme.' .. name
+		local module = 'plugins.themes.' .. name
 		local is_module, spec = pcall(require, module)
 		if is_module then
 			if spec then
 				M.themes[#M.themes + 1] = spec
 			end
+		else
+			vim.notify('Module cannot be executed: ' .. module)
 		end
 	end
 end
