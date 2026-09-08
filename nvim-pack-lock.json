@@ -210,7 +210,7 @@
     },
     "zshow.nvim": {
       "rev": "fb2a7104fa339854cb45493942bb45bfd3bc4567",
-      "src": "https://github.com/sairyy/zshow.nvim"
+      "src": "https://gitlab.com/sairy/zshow.nvim"
     }
   }
 }
