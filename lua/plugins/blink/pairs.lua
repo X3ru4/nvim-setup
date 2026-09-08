@@ -1,7 +1,7 @@
 return {
 	'saghen/blink.pairs',
 	dependencies = 'saghen/blink.lib',
-	sem_version = '*',
+	version = vim.version.range('*'),
 	build = function()
 		require('blink.pairs').build():pwait(60000)
 	end,
