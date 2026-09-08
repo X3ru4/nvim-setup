@@ -1,4 +1,4 @@
-# nvim-setup/
+# nvim-setup
 
 <a href="https://dotfyle.com/X3ru4/nvim-setup"><img src="https://dotfyle.com/X3ru4/nvim-setup/badges/plugins?style=flat" /></a>
 <a href="https://dotfyle.com/X3ru4/nvim-setup"><img src="https://dotfyle.com/X3ru4/nvim-setup/badges/leaderkey?style=flat" /></a>
