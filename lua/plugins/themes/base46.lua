@@ -75,16 +75,16 @@ return {
 			base46.load('gruvchad')
 		end
 
-		local colors = base46.theme_tables[base46.current_theme]
 		local hl = require('utils.highlight')
-
 		local function is_base46()
-      local start = vim.g.colors_name:find('base46-', 0, true)
+			local start = vim.g.colors_name:find('base46-', 0, true)
 			return start
 		end
 
 		-- It will load if you change the colorscheme.
 		hl.add_hook('base46', function()
+			local colors = base46.theme_tables[base46.current_theme]
+
 			hl.apply({
 				basic = {
 					ModeOther = { link = 'St_ConfirmMode' },
