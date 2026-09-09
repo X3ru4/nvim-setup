@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.10.0](https://github.com/X3ru4/nvim-setup/compare/v1.9.0...v1.10.0) (2026-09-09)
+
+
+### Features
+
+* **blink:** add configurable ghost text support ([5082795](https://github.com/X3ru4/nvim-setup/commit/508279567bccbdb8bd019a8f34c79f12fbd3a38c))
+* **config:** add dev.path option to zpack setup for local development ([9e46aca](https://github.com/X3ru4/nvim-setup/commit/9e46aca0b9944f49af3efba9582cdf5743a8d149))
+* **plugins:** add smear-cursor.nvim plugin configuration ([2156698](https://github.com/X3ru4/nvim-setup/commit/2156698334cb6e5ad46ced385da0b4218f8fd265))
+
+
+### Bug Fixes
+
+* **autocmds:** stop unnecessary redraw after loading highlight config ([fad92be](https://github.com/X3ru4/nvim-setup/commit/fad92beba71e031699bd15a5a2c68ae3b6829099))
+
 ## [1.9.0](https://github.com/X3ru4/nvim-setup/compare/v1.8.0...v1.9.0) (2026-09-08)
 
 
