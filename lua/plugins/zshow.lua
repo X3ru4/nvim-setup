@@ -1,4 +1,5 @@
 return {
+	enabled = false,
 	src = 'https://gitlab.com/sairy/zshow.nvim',
 	lazy = false, -- no need for lazy loading
 	keys = {
