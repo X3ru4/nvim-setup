@@ -13,7 +13,7 @@
       "src": "https://github.com/timrydefalk/blink-cmp-emoji"
     },
     "blink.cmp": {
-      "rev": "49d39fda6350d7f789d1da1053e86c9e256f8108",
+      "rev": "f72465357ede7f8d899f34816d49408813c374c6",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.lib": {
@@ -42,7 +42,7 @@
       "src": "https://github.com/j-hui/fidget.nvim"
     },
     "friendly-snippets": {
-      "rev": "bb548e5ae4550a5e318b7e398a93b9af456b65e1",
+      "rev": "30bfd475adadfd4f286f86168831348dfd8aecdc",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
@@ -152,7 +152,7 @@
       "src": "https://codeberg.org/mfussenegger/nvim-lint.git"
     },
     "nvim-lspconfig": {
-      "rev": "da1aff0332774a0f60d52bf972e815dfc226f276",
+      "rev": "19576de1c1b6d1b5e231ea6ef9cba9a811c322bb",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter-textobjects": {
@@ -211,10 +211,6 @@
     "zpack.nvim": {
       "rev": "b9146b11e0485eb60e0bd76d70c6bb273d635915",
       "src": "https://github.com/zuqini/zpack.nvim"
-    },
-    "zshow.nvim": {
-      "rev": "fb2a7104fa339854cb45493942bb45bfd3bc4567",
-      "src": "https://gitlab.com/sairy/zshow.nvim"
     }
   }
 }
