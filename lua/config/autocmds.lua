@@ -35,7 +35,6 @@ autocmd('ColorScheme', {
 	callback = function()
 		highlight.use_cache = false -- Stop using cache.
 		vim.cmd.LoadHlConfig()
-		vim.cmd.redraw()
 	end,
 })
 -- Setup highlights
