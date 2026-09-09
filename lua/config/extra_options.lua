@@ -11,14 +11,15 @@ colorscheme.install = {
 
 -- Quick configuration for blink.cmp
 M.blinkcmp = {
+	ghost_text = true,
 	menu = {
 		border = 'none',
-    scrollbar = true,
+		scrollbar = true,
 	},
 	documentation = {
-    auto_show = false,
-    border = 'none',
-    scrollbar = true,
+		auto_show = false,
+		border = 'none',
+		scrollbar = true,
 	},
 	appearance = {
 		use_nvimcmp_hl = false,

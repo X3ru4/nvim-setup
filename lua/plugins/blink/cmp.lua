@@ -55,7 +55,7 @@ return {
 				},
 				signature = { enabled = false },
 				completion = {
-					ghost_text = { enabled = false },
+          ghost_text = { enabled = cmp.ghost_text or false },
 					accept = { auto_brackets = { enabled = true } },
 					documentation = {
 						auto_show = cmp.documentation.auto_show,
