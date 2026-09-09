@@ -12,4 +12,7 @@ require('zpack').setup({
 		confirm = false,
 		lazy = true,
 	},
+	dev = {
+		path = '~/projects/nvim'
+	}
 })
