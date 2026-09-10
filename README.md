@@ -1,8 +1,10 @@
-# nvim-setup
+<div align="center">
+    <a href="https://dotfyle.com/X3ru4/nvim-setup"><img src="https://dotfyle.com/X3ru4/nvim-setup/badges/plugin-manager?style=for-the-badge" /></a>
+    <a href="https://dotfyle.com/X3ru4/nvim-setup"><img src="https://dotfyle.com/X3ru4/nvim-setup/badges/plugins?style=for-the-badge" /></a>
+    <a href="https://dotfyle.com/X3ru4/nvim-setup"><img src="https://dotfyle.com/X3ru4/nvim-setup/badges/leaderkey?style=for-the-badge" /></a>
+</div>
 
-<a href="https://dotfyle.com/X3ru4/nvim-setup"><img src="https://dotfyle.com/X3ru4/nvim-setup/badges/plugins?style=for-the-badge" /></a>
-<a href="https://dotfyle.com/X3ru4/nvim-setup"><img src="https://dotfyle.com/X3ru4/nvim-setup/badges/leaderkey?style=for-the-badge" /></a>
-<a href="https://dotfyle.com/X3ru4/nvim-setup"><img src="https://dotfyle.com/X3ru4/nvim-setup/badges/plugin-manager?style=for-the-badge" /></a>
+# nvim-setup
 
 - ~~Simple Neovim setup.~~
 - Blazing fast and highly customizable.
