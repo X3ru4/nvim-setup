@@ -77,6 +77,10 @@
       "rev": "38af0ab56c6eb8757ee6006dd13ab79c2bc11a49",
       "src": "https://codeberg.org/andyg/leap.nvim"
     },
+    "log-highlight.nvim": {
+      "rev": "b2e00cfd41ca94338265a595f3f3f423d9f9322e",
+      "src": "https://github.com/fei6409/log-highlight.nvim"
+    },
     "mason-tool-installer.nvim": {
       "rev": "443f1ef8b5e6bf47045cb2217b6f748a223cf7dc",
       "src": "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim"
