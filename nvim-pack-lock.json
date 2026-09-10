@@ -13,7 +13,7 @@
       "src": "https://github.com/timrydefalk/blink-cmp-emoji"
     },
     "blink.cmp": {
-      "rev": "f72465357ede7f8d899f34816d49408813c374c6",
+      "rev": "f705c79404bad658dac6998e300cc6632f5b9f7f",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.lib": {
@@ -42,7 +42,7 @@
       "src": "https://github.com/j-hui/fidget.nvim"
     },
     "friendly-snippets": {
-      "rev": "30bfd475adadfd4f286f86168831348dfd8aecdc",
+      "rev": "a5a73e586521fe5c12d751ad81a0db67649a94ed",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
@@ -90,54 +90,44 @@
       "src": "https://github.com/monkoose/matchparen.nvim"
     },
     "mini.ai": {
-      "rev": "d73c36349aa7b0bab5f77ad71701a1d42211a1df",
-      "src": "https://github.com/nvim-mini/mini.ai",
-      "version": "'stable'"
+      "rev": "cb02c5444613475b7edf0c8dc98264c1c857aa6e",
+      "src": "https://github.com/nvim-mini/mini.ai"
     },
     "mini.align": {
-      "rev": "8cebe89d82f20e6d21b27346bcde4b4b6244a9f1",
-      "src": "https://github.com/nvim-mini/mini.align",
-      "version": "'stable'"
+      "rev": "77d7446b9f2452193f13ced9fb73a8b3aa4a4f4d",
+      "src": "https://github.com/nvim-mini/mini.align"
     },
     "mini.clue": {
-      "rev": "62e9e38c3dc4b7d429f1b6e28d96f96cdff71132",
-      "src": "https://github.com/nvim-mini/mini.clue",
-      "version": "'stable'"
+      "rev": "1c136d62729c8c3b0c2d91379bc37efac15d916e",
+      "src": "https://github.com/nvim-mini/mini.clue"
     },
     "mini.diff": {
-      "rev": "0743d26bd858ebe32efcf5c86a91a422a000f273",
-      "src": "https://github.com/nvim-mini/mini.diff",
-      "version": "'stable'"
-    },
-    "mini.extra": {
-      "rev": "e5ecf197f8954d002cb9e85b3715851e2c8d3cd5",
-      "src": "https://github.com/nvim-mini/mini.extra",
-      "version": "'stable'"
+      "rev": "626b8a5b93874c4d05ca25aedec56cfff0b378fb",
+      "src": "https://github.com/nvim-mini/mini.diff"
     },
     "mini.hipatterns": {
-      "rev": "607d604e650cdf21d71f863d040c496a1d0cb320",
-      "src": "https://github.com/nvim-mini/mini.hipatterns",
-      "version": "'stable'"
+      "rev": "7c840c71d6a91f53d734cab2b6fe2290d285ec3b",
+      "src": "https://github.com/nvim-mini/mini.hipatterns"
     },
     "mini.icons": {
-      "rev": "e56797f90192d81f1fda02e662fc3e8e3d775027",
-      "src": "https://github.com/nvim-mini/mini.icons",
-      "version": "'stable'"
+      "rev": "98faae31e9be1cc054ae63485e58ceb185efcad0",
+      "src": "https://github.com/nvim-mini/mini.icons"
+    },
+    "mini.indentscope": {
+      "rev": "92fbaf895f83c59575ec599df532b297ebf62b14",
+      "src": "https://github.com/nvim-mini/mini.indentscope"
     },
     "mini.move": {
-      "rev": "b9e452f9c83565a1520e14f7531632160f3b0170",
-      "src": "https://github.com/nvim-mini/mini.move",
-      "version": "'stable'"
+      "rev": "48fcaac289a19b8eff2fd5fe203267d478a8abdc",
+      "src": "https://github.com/nvim-mini/mini.move"
     },
     "mini.surround": {
-      "rev": "580e4cb98c5900d9fe743865fb5a5b2178b4ab18",
-      "src": "https://github.com/nvim-mini/mini.surround",
-      "version": "'stable'"
+      "rev": "8d5d0c5aa92449368ac251e85451d79d8f69d296",
+      "src": "https://github.com/nvim-mini/mini.surround"
     },
     "mini.tabline": {
-      "rev": "7e8584a06b86902c64227e4abd0c39ae74061101",
-      "src": "https://github.com/nvim-mini/mini.tabline",
-      "version": "'stable'"
+      "rev": "525b27e98de7cd2a6012d99f45b4fc10676e00e5",
+      "src": "https://github.com/nvim-mini/mini.tabline"
     },
     "multicursor.nvim": {
       "rev": "704b99f10a72cc05d370cfeb294ff83412a8ab55",
@@ -183,10 +173,6 @@
     "smart-paste.nvim": {
       "rev": "a81e5511adc6fc145a7a71b08819440fd059af34",
       "src": "https://github.com/nemanjamalesija/smart-paste.nvim"
-    },
-    "snacks.nvim": {
-      "rev": "882c996cf28183f4d63640de0b4c02ec886d01f2",
-      "src": "https://github.com/folke/snacks.nvim"
     },
     "snipe.nvim": {
       "rev": "d2d196c335919767803f905d573ce66340e33ee6",
