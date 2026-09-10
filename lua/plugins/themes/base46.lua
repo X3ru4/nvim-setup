@@ -101,8 +101,7 @@ return {
 					},
 					FloatFooter = { link = 'FloatTitle' },
 
-					SnacksIndent = { fg = colors.base_30.line },
-					SnacksIndentScope = { fg = colors.base_30.teal },
+					MiniIndentscopeSymbol = { fg = colors.base_30.teal },
 				},
 				extra = {
 					hl.modify('NormalFloat', { fg = colors.base_30.white }),

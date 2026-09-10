@@ -1,6 +1,5 @@
 return {
 	'nvim-mini/mini.surround',
-	version = 'stable',
 	keys = {
 		{ '<leader>sa', mode = { 'n', 'x', 'v' } },
 		{ '<leader>sr', mode = { 'n', 'x', 'v' } },

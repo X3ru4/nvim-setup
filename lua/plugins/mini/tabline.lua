@@ -1,6 +1,5 @@
 return {
 	'nvim-mini/mini.tabline',
-	version = 'stable',
 	event = { 'BufReadPre', 'BufNewFile' },
 	opts = {
 		always_show = false,

@@ -1,6 +1,5 @@
 return {
 	'nvim-mini/mini.icons',
-	version = 'stable',
 	event = 'VeryLazy',
 	opts = {
 		style = 'glyph',

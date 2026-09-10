@@ -1,7 +1,6 @@
 return {
 	'nvim-mini/mini.clue',
 	event = 'VeryLazy',
-	version = 'stable',
 	config = function()
 		require('mini.clue').setup({
 			triggers = {

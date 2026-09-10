@@ -1,6 +1,5 @@
 return {
 	'nvim-mini/mini.move',
-	version = 'stable',
 	keys = {
 		{ mode = { 'n', 'x' }, '<A-h>' },
 		{ mode = { 'n', 'x' }, '<A-j>' },

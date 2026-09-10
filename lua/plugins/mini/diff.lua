@@ -1,6 +1,5 @@
 return {
 	'nvim-mini/mini.diff',
-	version = 'stable',
 	event = 'BufReadPost',
 	opts = {
 		view = {
