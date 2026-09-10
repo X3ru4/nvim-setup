@@ -1,27 +1,28 @@
 vim.loader.enable()
 
 -- disable rtp plugins
-local rtp_plugins = {
-	-- 'editorconfig',
+local runtime_plugins = {
 	'fzf',
 	'gzip',
 	'man',
 	'matchit',
 	'matchparen',
-	'net',
-	'netrwPlugin',
-	'osc52',
-	'rplugin',
-	-- 'spellfile',
+	'nvim_net_plugin',
+	'netrw',
+	'remote_plugins',
 	'tarPlugin',
 	'zipPlugin',
-	'tutor',
+	'tutor_mode_plugin',
 	'rpluginzipPlugin',
 }
 
-for _, plugin in ipairs(rtp_plugins) do
-	vim.g['loaded_' .. plugin] = 1
+for _, var in ipairs(runtime_plugins) do
+	vim.g['loaded_' .. var] = 1
 end
+
+vim.g.termfeatures = {
+	osc52 = false,
+}
 
 require('config.options')
 require('config.extra_options')
