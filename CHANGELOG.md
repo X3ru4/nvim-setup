@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.0](https://github.com/X3ru4/nvim-setup/compare/v1.10.0...v1.11.0) (2026-09-10)
+
+
+### Features
+
+* **mini:** add indentscope plugin and replace MiniExtra number spec with regex in mini.ai ([d65b102](https://github.com/X3ru4/nvim-setup/commit/d65b102d126b942256e6a30f93999a1f7a572551))
+
 ## [1.10.0](https://github.com/X3ru4/nvim-setup/compare/v1.9.0...v1.10.0) (2026-09-09)
 
 
