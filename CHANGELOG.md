@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.12.0](https://github.com/X3ru4/nvim-setup/compare/v1.11.0...v1.12.0) (2026-09-10)
+
+
+### Features
+
+* **deps:** add log-highlight.nvim to nvim-pack-lock.json ([f31d2d0](https://github.com/X3ru4/nvim-setup/commit/f31d2d094b02e6a85aefb07247cfac0aa557f7c2))
+* **plugins:** add log-highlight.nvim plugin for *.log files ([2fe7968](https://github.com/X3ru4/nvim-setup/commit/2fe7968d103df9e38bcdcea52ce4ed9460cf8924))
+
+
+### Bug Fixes
+
+* update runtime plugin disabling and disable osc52 terminal feature ([d8fadfb](https://github.com/X3ru4/nvim-setup/commit/d8fadfba9d40a413b295e01aa1ef899162295aa4))
+
 ## [1.11.0](https://github.com/X3ru4/nvim-setup/compare/v1.10.0...v1.11.0) (2026-09-10)
 
 
