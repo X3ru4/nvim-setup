@@ -69,7 +69,7 @@ return {
 		})
 
 		local variant = require('utils.colorscheme').variant
-		if variant and variant ~= 'default' then
+		if variant then
 			base46.load(variant:gsub('^base46%-', ''))
 		else
 			base46.load('gruvchad')
@@ -87,12 +87,12 @@ return {
 
 			hl.apply({
 				basic = {
-					ModeOther = { link = 'St_ConfirmMode' },
-					ModeNormal = { link = 'St_NormalMode' },
-					ModeInsert = { link = 'St_InsertMode' },
-					ModeVisual = { link = 'St_VisualMode' },
-					ModeCommand = { link = 'St_CommandMode' },
-					ModeReplace = { link = 'St_ReplaceMode' },
+					ModeOther = { link = 'St_ConfirmMode', cforce = true },
+					ModeNormal = { link = 'St_NormalMode', cforce = true },
+					ModeInsert = { link = 'St_InsertMode', cforce = true },
+					ModeVisual = { link = 'St_VisualMode', cforce = true },
+					ModeCommand = { link = 'St_CommandMode', cforce = true },
+					ModeReplace = { link = 'St_ReplaceMode', cforce = true },
 
 					FloatTitle = {
 						fg = colors.base_30.black,

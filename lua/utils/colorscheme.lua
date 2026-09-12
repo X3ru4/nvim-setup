@@ -3,9 +3,9 @@
 local M = {}
 M.themes = {}
 
-M.default = 'default'
-M.variant = 'default'
 M.install = {}
+M.default = 'default'
+M.variant = nil
 
 local function load_colorscheme()
 	for _, name in ipairs(M.install) do
