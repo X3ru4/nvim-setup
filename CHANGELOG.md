@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.13.0](https://github.com/X3ru4/nvim-setup/compare/v1.12.0...v1.13.0) (2026-09-12)
+
+
+### Features
+
+* **plugins:** add mini.indentscope with delayed draw and custom symbol ([ebcd144](https://github.com/X3ru4/nvim-setup/commit/ebcd144399333f6062d521268ff512c80339ea71))
+* **treesitter-textobject:** add ]c/[c loop navigation keys and fix spacing ([69f05ae](https://github.com/X3ru4/nvim-setup/commit/69f05aeabf049c195d7abc7020ff82b167c712c0))
+
+
+### Bug Fixes
+
+* **heirline:** refresh LSP status on ColorScheme changes ([8a6a81c](https://github.com/X3ru4/nvim-setup/commit/8a6a81c5fdd84fdf7f5a3f66d79fab823cd64f7d))
+* load explicit colorscheme variant and force mode highlight links ([bd0ee93](https://github.com/X3ru4/nvim-setup/commit/bd0ee932eba6a71ffe6023ae92ecef1899b3c9f8))
+
 ## [1.12.0](https://github.com/X3ru4/nvim-setup/compare/v1.11.0...v1.12.0) (2026-09-10)
 
 
