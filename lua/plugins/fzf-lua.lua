@@ -47,7 +47,7 @@ return {
 				winopts = {
 					fullscreen = false,
 					width = 0.8,
-					height = 0.8,
+					height = 0.65,
 				},
 			},
 			awesome_colorschemes = {
