@@ -130,13 +130,7 @@ end
 ---@param id string
 ---@param callback function
 ---@param init boolean|nil
----@param condition function|boolean|nil
-function M.add_hook(id, callback, init, condition, on_color)
-	local cond = type(condition) == 'function' and condition() or condition
-	if (cond == nil and true or cond) and M.highlight.callback[id] then
-		M.highlight.callback[id]()
-		return
-	end
+function M.add_hook(id, callback, init, on_color)
 	if init then
 		callback()
 		if on_color then

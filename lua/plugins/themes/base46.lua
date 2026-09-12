@@ -72,7 +72,7 @@ return {
 		if variant then
 			base46.load(variant:gsub('^base46%-', ''))
 		else
-			base46.load('gruvchad')
+			base46.load('onedark')
 		end
 
 		local hl = require('utils.highlight')
@@ -83,6 +83,10 @@ return {
 
 		-- It will load if you change the colorscheme.
 		hl.add_hook('base46', function()
+			if not is_base46() then
+				return
+			end
+
 			local colors = base46.theme_tables[base46.current_theme]
 
 			hl.apply({
@@ -124,6 +128,6 @@ return {
 					hl.modify('@comment', { italic = true }),
 				},
 			})
-		end, false, is_base46)
+		end, false)
 	end,
 }
