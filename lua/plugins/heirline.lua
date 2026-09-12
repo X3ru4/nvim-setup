@@ -249,5 +249,16 @@ return {
 		}
 
 		require('heirline').setup({ statusline = StatusLine })
+
+		-- Fix the issue where the heirline doesn't reset the highlight when loading the first colorscheme
+		local first_colors
+		hl.add_hook('heirline', function()
+			if vim.g.colors_name == first_colors then
+				require('heirline.highlights').reset_highlights()
+			end
+			if not first_colors then
+				first_colors = vim.g.colors_name
+			end
+		end)
 	end,
 }
