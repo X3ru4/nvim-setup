@@ -16,14 +16,15 @@ return {
 			'███  ██ ▄▄▄▄▄  ▄▄▄  ▄▄ ▄▄ ▄▄ ▄▄   ▄▄',
 			'██ ▀▄██ ██▄▄  ██▀██ ██▄██ ██ ██▀▄▀██',
 			'██   ██ ██▄▄▄ ▀███▀  ▀█▀  ██ ██   ██',
+			'',
+			'Simplicity is the Ultimate Sophistication.',
 		}
+
 		dashboard.section.buttons.val = {
-			button('e', '  New file', '<Cmd>ene <CR>'),
+			button('n', '  New file', '<Cmd>ene<CR>'),
+			button('e', '  Explore', '<Cmd>Oil <CR>'),
 			button('f', '  Search files', '<Cmd>FzfLua files<Cr>'),
 			button('o', '  Frecency/MRU', '<Cmd>FzfLua oldfiles<Cr>'),
-			button('x', '  Explore', '<Cmd>Oil <CR>'),
-			button('g', '  Grep', '<Cmd>FzfLua live_grep<Cr>'),
-			button('c', '  Configs', '<Cmd>FzfLua files cwd=~/.config/nvim/<Cr>'),
 			button('r', '  Open last session', function()
 				require('persistence').load()
 			end),
@@ -31,10 +32,5 @@ return {
 		}
 
 		require('alpha').setup(dashboard.config)
-
-		dashboard.section.footer.opts.positon = 'center'
-		dashboard.section.footer.val = {
-			'Simplicity is the Ultimate Sophistication.',
-		}
 	end,
 }
