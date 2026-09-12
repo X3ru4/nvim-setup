@@ -29,7 +29,7 @@ return {
 			condition = function()
 				return next(vim.lsp.get_clients({ bufnr = 0 })) ~= nil
 			end,
-			update = { 'LspAttach', 'LspDetach' },
+			update = { 'LspAttach', 'LspDetach', 'ColorScheme' },
 			provider = '  [LSP]',
 			hl = 'DiagnosticSignInfo',
 		}
