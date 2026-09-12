@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.15.0](https://github.com/X3ru4/nvim-setup/compare/v1.14.0...v1.15.0) (2026-09-12)
+
+
+### Features
+
+* default colorscheme onedark; simplify highlight hook API ([f1424d0](https://github.com/X3ru4/nvim-setup/commit/f1424d0ee4e54f7127075e4f4f627a7908d5ba6f))
+* **fzf-lua:** add enter action to apply colorscheme; disable live preview ([8b4b968](https://github.com/X3ru4/nvim-setup/commit/8b4b968ef2b901712c4df8d095821e150c6d5f5d))
+* **fzf-lua:** lower default window height to 65% ([b1d2192](https://github.com/X3ru4/nvim-setup/commit/b1d21927147b0a56225cf948f27ca4f415581e26))
+
+
+### Bug Fixes
+
+* **heirline:** reset highlights when loading the first colorscheme ([ae60e6d](https://github.com/X3ru4/nvim-setup/commit/ae60e6d28c77dbd6f8258f22357d3ff3f47e3a7f))
+* remove rounded border from signature help and diagnostic float ([e580982](https://github.com/X3ru4/nvim-setup/commit/e5809828cadfdbba1c6be7ac07f5368877ed1760))
+
 ## [1.14.0](https://github.com/X3ru4/nvim-setup/compare/v1.13.0...v1.14.0) (2026-09-12)
 
 
