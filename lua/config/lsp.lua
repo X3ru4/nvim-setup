@@ -52,14 +52,12 @@ function M.setup()
 
 	map.set({ 'n', 'i' }, '<C-k>', function()
 		lsp.buf.signature_help({
-			border = 'rounded',
 			focus = false,
 			close_events = { 'BufWinLeave', 'CursorMoved', 'CursorMovedI', 'ModeChanged' },
 		})
 	end, { desc = 'Signature help' })
 	map.set({ 'n', 'i' }, '<C-l>', function()
 		diagnostic.open_float(nil, {
-			border = 'rounded',
 			focus = false,
 			close_events = { 'BufWinLeave', 'CursorMoved', 'CursorMovedI', 'ModeChanged' },
 		})
