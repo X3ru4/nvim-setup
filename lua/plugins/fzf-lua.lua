@@ -212,8 +212,7 @@ return {
 		local fzf_hl = {
 			FzfLuaNormal = { link = 'NormalFloat' },
 			FzfLuaBorder = { link = 'FloatBorder' },
-			FzfLuaTitle = { fg = hl.alias.Black, bg = hl.getfg('Removed'), bold = true },
-			FzfLuaCursorLine = { bold = true, bg = hl.getbg('CursorLine') },
+			FzfLuaTitleFlags = { link = 'CursorLine' },
 			FzfLuaTabMarker = { link = 'Structure' },
 			FzfLuaHeaderBind = { link = 'FzfLuaTabMarker' },
 			FzfLuaHeaderText = { link = 'Define' },
@@ -227,13 +226,16 @@ return {
 			FzfLuaFzfPointer = { link = 'Keyword' },
 			FzfLuaFzfHeader = { link = 'LineNr' },
 			FzfLuaFzfPrompt = { link = 'MoreMsg' },
-			FzfLuaFzfMatch = { fg = hl.getfg('Directory'), bold = true },
 
 			FzfLuaPreviewNormal = { link = 'Normal' },
 			FzfLuaPreviewBorder = { link = 'Normal' },
-			FzfLuaPreviewTitle = { fg = hl.alias.Black, bg = hl.getfg('Added'), bold = true },
 		}
 		hl.add_hook('fzf-lua', function()
+			fzf_hl.FzfLuaTitle = { fg = hl.alias.Black, bg = hl.getfg('Removed'), bold = true }
+			fzf_hl.FzfLuaFzfMatch = { fg = hl.getfg('Directory'), bold = true }
+			fzf_hl.FzfLuaCursorLine = { bold = true, bg = hl.getbg('CursorLine') }
+			fzf_hl.FzfLuaPreviewTitle = { fg = hl.alias.Black, bg = hl.getfg('Added'), bold = true }
+
 			hl.apply({ basic = fzf_hl })
 		end, true)
 	end,

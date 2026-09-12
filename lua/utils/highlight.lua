@@ -6,7 +6,7 @@ local cache = {
 local M = {}
 
 M.alias = {}
-M.use_cache = false
+M.use_cache = true
 
 ---This is the default table used to load highlights when M.apply() is called.
 M.highlight = {
@@ -93,25 +93,31 @@ end
 
 ---Apply highlights from `hl_list`. If `hl_list` is empty (nil), apply the M.highlights table instead.
 ---@param hl_list nil|utility.highlight.highlights
----@param use_cache boolean|nil
-function M.apply(hl_list, use_cache)
-	if not M.use_cache and not use_cache then
-		M.clear_cache()
-	end
-
+---@param no_cache boolean|nil
+function M.apply(hl_list, no_cache)
 	local t = (hl_list and hl_list ~= {}) and hl_list or M.highlight
 	if t then
 		if t.basic and t.basic ~= {} then
 			for name, opts in pairs(t.basic) do
+				if no_cache then
+					cache.def[name] = nil
+				end
 				M.set(name, opts)
 			end
 		end
 		if t.extra and t.extra ~= {} then
 			for _, val in ipairs(t.extra) do
 				if type(val) == 'function' then
-					M.set(val())
+					local name, opts = val()
+					if no_cache then
+						cache.def[name] = nil
+					end
+					M.set(name, opts)
 				else
 					if val[1] and val[2] then
+						if no_cache then
+							cache.def[val[1]] = nil
+						end
 						M.set(val[1], val[2])
 					end
 				end
@@ -164,53 +170,15 @@ function M.setup(config)
 		M.highlight.basic = {}
 		M.highlight.extra = {}
 	end
+
+	if not M.use_cache then
+		M.clear_cache()
+	end
+
 	config()
 	M.apply()
 	M.run_hooks()
-	M.use_cache = true
-	started = true
-end
-
----Create your highlight!
----@param ns string Namespace
----@param spec utility.highlight.advance_hl_spec Spection
----@param get_opts boolean|nil Return the options instead of the highlight name.
----@return string|table
----@deprecated
-function M.advance_hl(ns, spec, get_opts)
-	local function create_key(style)
-		return type(style) == 'table' and style.list and (style.list[style.key] or '') or ''
-	end
-
-	ns = ns .. create_key(spec.fg) .. create_key(spec.bg)
-
-	if not cache.def[ns] then
-		local function pick_hl(style, key)
-			if not style then
-				return nil
-			end
-			if type(style) == 'string' or type(style) == 'number' then
-				return style
-			end
-
-			if style.list then
-				local group = style.list[style.key] or style.list[style.default_key] or spec.default_hl or 'Normal'
-				return M.get(group)[style[1] or key]
-			elseif style[1] then
-				return M.get(style[1])[style[2] or key]
-			end
-		end
-
-		local opts = vim.tbl_extend('keep', {
-			fg = pick_hl(spec.fg, 'fg'),
-			bg = pick_hl(spec.bg, 'bg'),
-		}, spec.gui or {})
-		if get_opts then
-			return opts
-		end
-		M.set(ns, opts)
-	end
-	return ns
+	M.use_cache, started = true, true
 end
 
 local function hex_to_rgb(hex)
@@ -277,11 +245,3 @@ return M
 ---@field basic table|table<string, table>|nil
 ---@field extra table|[string, table][]|utility.highlight.hl_list_fun[]|nil
 ---@field callback table|function[]|nil
-
----@alias utility.highlight.advance_hl_style { [1]: string, [2]: string|nil }|{ [1]: string|nil, list: [string, string], key: string, default_key: string }
-
----@class utility.highlight.advance_hl_spec
----@field default_hl string|nil
----@field fg utility.highlight.advance_hl_style|string|nil
----@field bg utility.highlight.advance_hl_style|string|nil
----@field gui vim.api.keyset.highlight|nil

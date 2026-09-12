@@ -12,10 +12,10 @@ hl.setup(function()
 
 	local function set_modehl(mode, hlname, fallback)
 		if hl.hl_exist(hlname) then
-			return { mode, { link = hlname, default = true } }
+			return { 'Mode' .. mode, { link = hlname, default = true } }
 		end
 		return {
-			'Mode' ..	mode,
+			'Mode' .. mode,
 			{
 				default = true,
 				fg = hl.alias.Black,
