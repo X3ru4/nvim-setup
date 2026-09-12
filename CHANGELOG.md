@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.0](https://github.com/X3ru4/nvim-setup/compare/v1.13.0...v1.14.0) (2026-09-12)
+
+
+### Features
+
+* **dashboard:** move quote to header, update button shortcuts, and drop footer display ([4ed7abb](https://github.com/X3ru4/nvim-setup/commit/4ed7abbd0915c88cc0c77cad35d1782c6ce2622a))
+
 ## [1.13.0](https://github.com/X3ru4/nvim-setup/compare/v1.12.0...v1.13.0) (2026-09-12)
 
 
