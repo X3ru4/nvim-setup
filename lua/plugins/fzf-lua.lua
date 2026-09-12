@@ -38,6 +38,12 @@ return {
 			},
 			fzf_colors = { true },
 			colorschemes = {
+        live_preview = false,
+				actions = {
+					['enter'] = function (selection, _)
+						vim.cmd.colorscheme(selection[1])
+					end,
+				},
 				winopts = {
 					fullscreen = false,
 					width = 0.8,
