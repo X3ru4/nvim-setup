@@ -3,7 +3,15 @@ return {
 	event = 'VeryLazy',
 	config = function()
 		local fidget = require('fidget')
-		fidget.setup({})
+
+		fidget.setup({
+			progress = {
+				display = {
+					done_icon = '  ',
+					progress_icon = { 'moon' },
+				},
+			},
+		})
 		vim.notify = fidget.notify
 		vim.keymap.set('n', '<C-h>', fidget.notification.show_history, { desc = 'Show notification history' })
 	end,
