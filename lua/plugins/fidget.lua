@@ -7,8 +7,8 @@ return {
 		fidget.setup({
 			progress = {
 				display = {
-					done_icon = '  ',
-					progress_icon = { 'moon' },
+					done_icon = '✓',
+					progress_icon = { 'meter' },
 				},
 			},
 		})
