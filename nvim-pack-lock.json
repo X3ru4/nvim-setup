@@ -167,7 +167,7 @@
       "src": "https://github.com/folke/persistence.nvim"
     },
     "render-markdown.nvim": {
-      "rev": "4663eb3ecd538bd5062628fb6d95bbe6bdca78f6",
+      "rev": "ed10badef70cb762d742bc6682db2dc2381f5d22",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "sibling-swap.nvim": {
