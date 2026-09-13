@@ -16,41 +16,41 @@ return {
 			},
 		})
 
-		local map = vim.keymap
+		local map = vim.keymap.set
 		local mode = { 'n', 'x', 'o' }
 		local ts_move = require('nvim-treesitter-textobjects.move')
 
-    -- more at https://github.com/nvim-treesitter/nvim-treesitter-textobjects/blob/main/BUILTIN_TEXTOBJECTS.md 
-		map.set(mode, ']m', function()
+		-- more at https://github.com/nvim-treesitter/nvim-treesitter-textobjects/blob/main/BUILTIN_TEXTOBJECTS.md
+		map(mode, ']m', function()
 			ts_move.goto_next('@function.outer', 'textobjects')
 		end)
-		map.set(mode, '[m', function()
+		map(mode, '[m', function()
 			ts_move.goto_previous('@function.outer', 'textobjects')
 		end)
 
-		map.set(mode, ']c', function()
+		map(mode, ']c', function()
 			ts_move.goto_next('@loop.outer', 'textobjects')
 		end)
-		map.set(mode, '[c', function()
+		map(mode, '[c', function()
 			ts_move.goto_previous('@loop.outer', 'textobjects')
 		end)
 
-		map.set(mode, ']d', function()
+		map(mode, ']d', function()
 			ts_move.goto_next('@conditional.outer', 'textobjects')
 		end)
-		map.set(mode, '[d', function()
+		map(mode, '[d', function()
 			ts_move.goto_previous('@conditional.outer', 'textobjects')
 		end)
 
-		map.set(mode, '<PageUp>', function()
+		map(mode, '<PageUp>', function()
 			ts_move.goto_previous('@block.outer', 'textobjects')
 		end)
-		map.set(mode, '<PageDown>', function()
+		map(mode, '<PageDown>', function()
 			ts_move.goto_next('@block.outer', 'textobjects')
 		end)
 
 		local ts_repeat_move = require('nvim-treesitter-textobjects.repeatable_move')
-		map.set(mode, ';', ts_repeat_move.repeat_last_move_next)
-		map.set(mode, ',', ts_repeat_move.repeat_last_move_previous)
+		map(mode, ';', ts_repeat_move.repeat_last_move_next)
+		map(mode, ',', ts_repeat_move.repeat_last_move_previous)
 	end,
 }
