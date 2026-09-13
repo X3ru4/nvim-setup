@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.16.0](https://github.com/X3ru4/nvim-setup/compare/v1.15.0...v1.16.0) (2026-09-13)
+
+
+### Features
+
+* **fidget:** add custom progress and done icons to fidget notifications ([b90a68c](https://github.com/X3ru4/nvim-setup/commit/b90a68c6c93ca754ee03cec85290213b4f8c9ae3))
+* **theme:** bold current tabline entries and italicize modified current ([0a77423](https://github.com/X3ru4/nvim-setup/commit/0a774231d4f587379e90a222cc58a89d7c080fba))
+* update fidget icons for done and progress ([cb27db8](https://github.com/X3ru4/nvim-setup/commit/cb27db8fdc0dbb43fb3c7c6c7cea5f15b4dd8513))
+
+
+### Bug Fixes
+
+* **indentscope:** set draw delay to 0 for immediate visual feedback ([28bdf26](https://github.com/X3ru4/nvim-setup/commit/28bdf26ee040346ae8f040becb1c02491385f5a1))
+
 ## [1.15.0](https://github.com/X3ru4/nvim-setup/compare/v1.14.0...v1.15.0) (2026-09-12)
 
 
