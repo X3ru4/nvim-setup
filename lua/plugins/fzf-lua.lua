@@ -38,9 +38,9 @@ return {
 			},
 			fzf_colors = { true },
 			colorschemes = {
-        live_preview = false,
+				live_preview = false,
 				actions = {
-					['enter'] = function (selection, _)
+					['enter'] = function(selection, _)
 						vim.cmd.colorscheme(selection[1])
 					end,
 				},
