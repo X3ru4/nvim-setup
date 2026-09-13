@@ -110,6 +110,9 @@ return {
 				extra = {
 					hl.modify('NormalFloat', { fg = colors.base_30.white }),
 
+					hl.modify('MiniTablineCurrent', { bold = true }),
+					hl.modify('MiniTablineModifiedCurrent', { bold = true, italic = true }),
+
 					-- Syntax
 					hl.modify('Keyword', { italic = true }),
 					hl.modify('@keyword', { italic = true }),
