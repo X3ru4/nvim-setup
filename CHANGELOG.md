@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.17.0](https://github.com/X3ru4/nvim-setup/compare/v1.16.0...v1.17.0) (2026-09-14)
+
+
+### Features
+
+* **config:** set colorscheme variant to gruvchad and solid doc border ([ca470f1](https://github.com/X3ru4/nvim-setup/commit/ca470f1736dfe513f63e36368b31b60282900a92))
+
+
+### Bug Fixes
+
+* reset heirline highlights on colorscheme change and improve statusline icons ([a5a7d5f](https://github.com/X3ru4/nvim-setup/commit/a5a7d5f964ea9eb4ee60ace9083031fc5508646c))
+
 ## [1.16.0](https://github.com/X3ru4/nvim-setup/compare/v1.15.0...v1.16.0) (2026-09-13)
 
 
