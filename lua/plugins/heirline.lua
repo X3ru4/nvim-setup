@@ -30,7 +30,7 @@ return {
 				return next(vim.lsp.get_clients({ bufnr = 0 })) ~= nil
 			end,
 			update = { 'LspAttach', 'LspDetach', 'ColorScheme' },
-			provider = '  [LSP]',
+			provider = '  [LSP]',
 			hl = 'DiagnosticSignInfo',
 		}
 
@@ -241,7 +241,7 @@ return {
 			},
 			{
 				flexible = 3,
-				{ provider = ' %{mode() == \'i\' ? \'󰣈\' : \'\'} %l·%c ' },
+				{ provider = [[ %{ mode() ==# 'i' || mode() ==# 'c' ? '' : '' } %l·%c ]] },
 				{ provider = ' %l·%c ' },
 				{ provider = ' %l ' },
 				false,
@@ -250,14 +250,14 @@ return {
 
 		require('heirline').setup({ statusline = StatusLine })
 
-		-- Fix the issue where the heirline doesn't reset the highlight when loading the first colorscheme
-		local first_colors
+		-- Make sure heirline.nvim always resets the highlights when changing colorschemes
+		local loaded_colors
 		hl.add_hook('heirline', function()
-			if vim.g.colors_name == first_colors then
+			if loaded_colors then
 				require('heirline.highlights').reset_highlights()
 			end
-			if not first_colors then
-				first_colors = vim.g.colors_name
+			if not loaded_colors then
+				loaded_colors = true
 			end
 		end)
 	end,
