@@ -55,7 +55,7 @@ return {
 				},
 				signature = { enabled = false },
 				completion = {
-          ghost_text = { enabled = cmp.ghost_text or false },
+					ghost_text = { enabled = cmp.ghost_text or false },
 					accept = { auto_brackets = { enabled = true } },
 					documentation = {
 						auto_show = cmp.documentation.auto_show,
@@ -75,7 +75,7 @@ return {
 						max_height = 8,
 						border = cmp.menu.border,
 						draw = {
-              gap = 0,
+							gap = 0,
 							columns = { { 'kind_icon' }, { 'label', 'kind', gap = 1 } },
 							components = {
 								kind_icon = {
@@ -116,11 +116,6 @@ return {
 							score_offset = 10,
 							opts = {
 								trigger = ';;',
-							},
-						},
-						snippets = {
-							opts = {
-								friendly_snippets = true, -- ensure friendly-snippets is enabled
 							},
 						},
 					},
