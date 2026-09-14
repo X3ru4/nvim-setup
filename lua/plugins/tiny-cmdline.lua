@@ -17,7 +17,6 @@ return {
 					{ type = ':', pattern = '^%s*!', title = '  Shell ' },
 					{ type = ':', pattern = '^%s*he?l?p?%s+', title = '  Help ' },
 					{ type = ':', pattern = '^%s*color?s?c?h?e?m?e?%s+', title = '  Colorscheme ' },
-					{ type = ':', pattern = '^%s*IncRename%s+', title = '  Rename ' },
 					{ title = ' 󰍳 CmdLine ' },
 				},
 			},
