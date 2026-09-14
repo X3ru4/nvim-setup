@@ -21,7 +21,7 @@ return {
 		end
 
 		local function cwd_open()
-			vim.ui.input({ prompt = '  Open ', default = '' }, function(input)
+			vim.ui.input({ prompt = '  open ', default = '' }, function(input)
 				if input then
 					Oil.open(input)
 				end
@@ -29,7 +29,7 @@ return {
 		end
 
 		local function root_open()
-			vim.ui.input({ prompt = '  Open ', default = '~/' }, function(input)
+			vim.ui.input({ prompt = '  open ', default = '~/' }, function(input)
 				if input then
 					Oil.open(input)
 				end
