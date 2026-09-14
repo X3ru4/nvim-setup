@@ -65,10 +65,6 @@
       "rev": "06006b471890f19efeb199ffab5da49a2d624619",
       "src": "https://github.com/OXY2DEV/helpview.nvim"
     },
-    "inc-rename.nvim": {
-      "rev": "ddff8bd3eccedf043bd73f5bf89cf90d2d6d8105",
-      "src": "https://github.com/smjonas/inc-rename.nvim"
-    },
     "lazydev.nvim": {
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
       "src": "https://github.com/folke/lazydev.nvim"
@@ -167,7 +163,7 @@
       "src": "https://github.com/folke/persistence.nvim"
     },
     "render-markdown.nvim": {
-      "rev": "ed10badef70cb762d742bc6682db2dc2381f5d22",
+      "rev": "a778444a73080301a50c4a6f58c90d7e094dd59e",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "sibling-swap.nvim": {
@@ -183,7 +179,7 @@
       "src": "https://github.com/leath-dub/snipe.nvim"
     },
     "tiny-cmdline.nvim": {
-      "rev": "e247d9ee4c980734f8f8bf616d31e0ab7c27485d",
+      "rev": "d83700b48d8ff5625dbef4029af071db559544e5",
       "src": "https://github.com/rachartier/tiny-cmdline.nvim"
     },
     "tree-sitter-manager.nvim": {
