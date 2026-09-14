@@ -9,7 +9,7 @@ colorscheme.install = {
 
 -- I recommend using base46 because it has more integration support and looks nicer
 colorscheme.default = 'base46'
-colorscheme.variant = 'base46-gruvbox_light'
+colorscheme.variant = 'base46-gruvchad'
 
 -- Quick configuration for blink.cmp
 M.blinkcmp = {
@@ -20,7 +20,7 @@ M.blinkcmp = {
 	},
 	documentation = {
 		auto_show = false,
-		border = 'none',
+		border = 'solid',
 		scrollbar = true,
 	},
 	appearance = {
