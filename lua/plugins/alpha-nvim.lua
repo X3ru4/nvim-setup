@@ -24,10 +24,8 @@ return {
 			button('n', '  New file', '<Cmd>ene<CR>'),
 			button('e', '  Explore', '<Cmd>Oil <CR>'),
 			button('f', '  Search files', '<Cmd>FzfLua files<Cr>'),
-			button('o', '  Frecency/MRU', '<Cmd>FzfLua oldfiles<Cr>'),
-			button('r', '  Open last session', function()
-				require('persistence').load()
-			end),
+			button('o', '  Frecency/MRU', '<Cmd>FzfLua oldfiles<Cr>'),
+			button('r', '  Restore last session', require('persistence').load),
 			button('q', '  Quit', '<Cmd>qa!<Cr>'),
 		}
 
