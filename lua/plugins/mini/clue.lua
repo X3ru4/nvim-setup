@@ -2,7 +2,8 @@ return {
 	'nvim-mini/mini.clue',
 	event = 'VeryLazy',
 	config = function()
-		require('mini.clue').setup({
+		local MiniClue = require('mini.clue')
+		MiniClue.setup({
 			triggers = {
 				-- Leader triggers
 				{ mode = 'n', keys = '<Leader>' },
@@ -43,12 +44,12 @@ return {
 
 			clues = {
 				-- Enhance this by adding descriptions for <Leader> mapping groups
-				require('mini.clue').gen_clues.builtin_completion(),
-				require('mini.clue').gen_clues.g(),
-				require('mini.clue').gen_clues.marks(),
-				require('mini.clue').gen_clues.registers(),
-				require('mini.clue').gen_clues.windows(),
-				require('mini.clue').gen_clues.z(),
+				MiniClue.gen_clues.builtin_completion(),
+				MiniClue.gen_clues.g(),
+				MiniClue.gen_clues.marks(),
+				MiniClue.gen_clues.registers(),
+				MiniClue.gen_clues.windows(),
+				MiniClue.gen_clues.z(),
 			},
 
 			-- Clue window settings

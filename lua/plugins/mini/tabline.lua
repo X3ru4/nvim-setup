@@ -7,7 +7,7 @@ return {
 
 		format = function(bufnr, label)
 			return ' '
-				.. (MiniIcons and MiniIcons.get('file', label) or '')
+				.. (MiniIcons and MiniIcons.get('file', label) or '?')
 				.. ' '
 				.. label
 				.. (vim.bo[bufnr].modified and '  ' or ' ')
