@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.18.0](https://github.com/X3ru4/nvim-setup/compare/v1.17.0...v1.18.0) (2026-09-15)
+
+
+### Features
+
+* **config:** change default colorscheme variant to everforest ([8f76b2b](https://github.com/X3ru4/nvim-setup/commit/8f76b2bd76322c83c0949ca0c38ccb7e4af2b0bf))
+* **ui:** display '?' placeholder for unknown file icons and revert mini.icons to default config ([ac2fa33](https://github.com/X3ru4/nvim-setup/commit/ac2fa33c4fbdb1ebc4201ef236ebf8a4df7f8049))
+
+
+### Bug Fixes
+
+* **fzf-lua:** replace placeholder ellipsis with proper Unicode character for UI truncation ([5ee3a1f](https://github.com/X3ru4/nvim-setup/commit/5ee3a1fcb253815fbc8bb147bf79ac612c5ec914))
+* **heirline:** correctly show "Unknown" when filetype is empty using case‑sensitive comparison ([9013f47](https://github.com/X3ru4/nvim-setup/commit/9013f47abb51450bde6a3c767fa97d3eab25c534))
+* **heirline:** show correct icon for insert, command, and terminal modes ([d180afe](https://github.com/X3ru4/nvim-setup/commit/d180afe6e54e9a474cbc31a0ad1b09aa9853b86b))
+* **highlights:** use String color for Yank highlight and raise blend ([bf51cad](https://github.com/X3ru4/nvim-setup/commit/bf51cadcbc5bc15fe0c754b1bf12ff3680698cbb))
+* remove stray trailing quote from filetype provider ([984f1ed](https://github.com/X3ru4/nvim-setup/commit/984f1ed60c3337158fb3f0e0498ca0bd9a80647a))
+
 ## [1.17.0](https://github.com/X3ru4/nvim-setup/compare/v1.16.0...v1.17.0) (2026-09-14)
 
 
