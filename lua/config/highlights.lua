@@ -31,8 +31,8 @@ hl.setup(function()
 			-- All highlights are cached, so use `cforce = true` to ignore them.
 			-- Normal = { cforce = true, fg = "#ffee00", bg = "#3a3b2f" }
 			Yank = {
-				fg = hl.getfg('Added'),
-				bg = hl.blend(hl.getfg('Added'), hl.alias.Black, 0.2),
+				fg = hl.getfg('String'),
+				bg = hl.blend(hl.getfg('String'), hl.alias.Black, 0.25),
 				bold = true,
 			},
 		},
