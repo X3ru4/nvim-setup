@@ -34,7 +34,7 @@ return {
 				['--pointer'] = '›',
 				['--gutter'] = ' ',
 				['--marker'] = '•',
-				['--ellipsis'] = '~',
+				['--ellipsis'] = '…',
 			},
 			fzf_colors = { true },
 			colorschemes = {
