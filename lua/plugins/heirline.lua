@@ -143,7 +143,7 @@ return {
 				end,
 			},
 			{
-				provider = [[%{&filetype ==# '' ? 'Unknown' : toupper(&filetype[0]) . &filetype[1:]} ']],
+				provider = [[%{&filetype ==# '' ? 'Unknown' : toupper(&filetype[0]) . &filetype[1:]} ]],
 			},
 			{
 				condition = function()
