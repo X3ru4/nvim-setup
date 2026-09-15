@@ -9,7 +9,7 @@ colorscheme.install = {
 
 -- I recommend using base46 because it has more integration support and looks nicer
 colorscheme.default = 'base46'
-colorscheme.variant = 'base46-gruvchad'
+colorscheme.variant = 'base46-everforest'
 
 -- Quick configuration for blink.cmp
 M.blinkcmp = {
