@@ -11,8 +11,10 @@ return {
 					progress_icon = { 'meter' },
 				},
 			},
+			notification = {
+				override_vim_notify = true,
+			},
 		})
-		vim.notify = fidget.notify
 		vim.keymap.set('n', '<C-h>', fidget.notification.show_history, { desc = 'Show notification history' })
 	end,
 }
