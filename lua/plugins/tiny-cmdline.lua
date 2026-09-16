@@ -6,6 +6,7 @@ return {
 		require('vim._core.ui2').enable()
 	end,
 	config = function()
+		---@diagnostic disable-next-line: missing-fields
 		require('tiny-cmdline').setup({
 			border = nil,
 			native_types = { '/', '?' },
