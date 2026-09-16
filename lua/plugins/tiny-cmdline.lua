@@ -13,18 +13,20 @@ return {
 				enabled = true,
 				pos = 'center',
 				formats = {
-					{ type = ':', pattern = { '^%s*lua%s+', '^%s*lua%s*=', '^%s*=' }, title = ' 󰢱 Lua ' },
-					{ type = ':', pattern = '^%s*!', title = '  Shell ' },
-					{ type = ':', pattern = '^%s*he?l?p?%s+', title = '  Help ' },
+					{ type = ':', pattern = { '^%s*lua%s+', '^%s*lua%s*=', '^%s*=' }, title = '  Lua ' },
+					{ type = ':', pattern = '^%s*!', title = '  Shell ' },
+					{ type = ':', pattern = '^%s*he?l?p?%s+', title = '  Help ' },
 					{ type = ':', pattern = '^%s*color?s?c?h?e?m?e?%s+', title = '  Colorscheme ' },
-					{ title = ' 󰍳 CmdLine ' },
+					{ title = '  Cmdline ' },
 				},
 			},
 		})
 
 		local hl = require('utils.highlight')
 		hl.add_hook('tiny-cmdline', function()
-			hl.set('TinyCmdlineNormal', { link = 'NormalFloat' })
+			hl.set('TinyCmdlineNormal', { link = 'Pmenu' })
+			hl.set('TinyCmdlineTitle', { link = 'PmenuSel' })
+			hl.set('TinyCmdlineBorder', { link = 'Pmenu' })
 		end)
 	end,
 }
