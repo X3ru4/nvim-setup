@@ -18,7 +18,7 @@ return {
 					{ type = ':', pattern = '^%s*!', title = '  Shell ' },
 					{ type = ':', pattern = '^%s*he?l?p?%s+', title = '  Help ' },
 					{ type = ':', pattern = '^%s*color?s?c?h?e?m?e?%s+', title = ' 󱥚 Colorscheme ' },
-					{ title = '  Cmdline ' },
+					{ title = '  Cmdline ' },
 				},
 			},
 		})
@@ -26,7 +26,7 @@ return {
 		local hl = require('utils.highlight')
 		hl.add_hook('tiny-cmdline', function()
 			hl.set('TinyCmdlineNormal', { link = 'Pmenu' })
-			hl.set('TinyCmdlineTitle', { link = 'PmenuSel' })
+			hl.set('TinyCmdlineTitle', { fg = hl.alias.Black, bg = hl.getfg('Function') })
 			hl.set('TinyCmdlineBorder', { link = 'Pmenu' })
 		end)
 	end,
