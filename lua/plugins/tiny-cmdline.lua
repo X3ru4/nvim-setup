@@ -16,8 +16,8 @@ return {
 					{ type = ':', pattern = { '^%s*lua%s+', '^%s*lua%s*=', '^%s*=' }, title = '  Lua ' },
 					{ type = ':', pattern = '^%s*!', title = '  Shell ' },
 					{ type = ':', pattern = '^%s*he?l?p?%s+', title = '  Help ' },
-					{ type = ':', pattern = '^%s*color?s?c?h?e?m?e?%s+', title = '  Colorscheme ' },
-					{ title = '  Cmdline ' },
+					{ type = ':', pattern = '^%s*color?s?c?h?e?m?e?%s+', title = ' 󱥚 Colorscheme ' },
+					{ title = '  Cmdline ' },
 				},
 			},
 		})
