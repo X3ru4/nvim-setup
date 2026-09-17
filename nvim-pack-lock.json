@@ -46,7 +46,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "05e44d38de0a79c11fba5f7bf8138791b1dbdd1e",
+      "rev": "02bc882f208f3481aa959dbbee8ce5edad2fd8b2",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "fzf-nerdfont.nvim": {
@@ -151,7 +151,7 @@
       "version": "'main'"
     },
     "oil-git.nvim": {
-      "rev": "bc25e507061f3e1b4e05f0fcda8c0ac81811d8bc",
+      "rev": "8eac25d26386d663cee62aada79a79bd831ed7eb",
       "src": "https://github.com/malewicz1337/oil-git.nvim"
     },
     "oil.nvim": {
