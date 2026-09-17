@@ -149,7 +149,7 @@ return {
 				end,
 			},
 			{
-				provider = [[%{&filetype ==# '' ? 'Unknown' : toupper(&filetype[0]) . &filetype[1:]} ]],
+				provider = [[%{empty(&ft) ? 'Unknown' : substitute(&ft, '^.', '\u&', '')} ]],
 			},
 			{
 				condition = function()
