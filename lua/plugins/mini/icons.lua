@@ -1,5 +1,5 @@
 return {
 	'nvim-mini/mini.icons',
-	event = 'VeryLazy',
+	lazy = false,
 	config = true,
 }
