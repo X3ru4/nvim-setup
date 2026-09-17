@@ -8,7 +8,15 @@ return {
 			progress = {
 				display = {
 					done_icon = '✓',
-					progress_icon = { 'meter' },
+					progress_icon = {
+						{
+							'󰸵',
+							'󰸸',
+							'󰸷',
+							'󰸴',
+						},
+						period = 0.5,
+					},
 				},
 			},
 			notification = {
