@@ -67,6 +67,9 @@ return {
 					s = 'ModeVisual',
 					no = 'ModeReplace',
 					['!'] = 'ModeOther',
+					niI = 'ModeInsert',
+					niR = 'ModeReplace',
+					niV = 'ModeReplace',
 				},
 				mode_name = {
 					n = 'Normal',
@@ -81,6 +84,9 @@ return {
 					nt = 'N-Terminal',
 					no = 'O-pending',
 					['!'] = 'Shell',
+					niI = 'N-Insert',
+					niR = 'N-Replace',
+					niV = 'N-Virtual',
 				},
 			},
 			{
