@@ -106,6 +106,10 @@ return {
 				symbols = {
 					locate = true,
 					symbol_style = 3,
+					winopts = {
+						preview = { hidden = false },
+						fullscreen = true,
+					},
 				},
 			},
 			git = {
