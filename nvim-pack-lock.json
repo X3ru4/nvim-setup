@@ -70,7 +70,7 @@
       "src": "https://github.com/folke/lazydev.nvim"
     },
     "leap.nvim": {
-      "rev": "38af0ab56c6eb8757ee6006dd13ab79c2bc11a49",
+      "rev": "32bde2e932417e8a065f039f00f0cebdd0da4710",
       "src": "https://codeberg.org/andyg/leap.nvim"
     },
     "log-highlight.nvim": {
@@ -169,10 +169,6 @@
     "sibling-swap.nvim": {
       "rev": "ae5aef7e62faf16228d570757e97ca92bf49f849",
       "src": "https://github.com/Wansmer/sibling-swap.nvim"
-    },
-    "smart-paste.nvim": {
-      "rev": "a81e5511adc6fc145a7a71b08819440fd059af34",
-      "src": "https://github.com/nemanjamalesija/smart-paste.nvim"
     },
     "snipe.nvim": {
       "rev": "d2d196c335919767803f905d573ce66340e33ee6",
