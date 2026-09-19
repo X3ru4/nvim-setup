@@ -1,5 +1,4 @@
 {
   "completion.autoRequire": false,
-  "diagnostics.disable": ["undefined-global"],
-  "diagnostics.globals": ["vim", "std", "globals"]
+  "diagnostics.disable": ["undefined-global"]
 }
