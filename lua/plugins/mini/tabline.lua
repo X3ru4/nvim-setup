@@ -1,6 +1,6 @@
 return {
 	'nvim-mini/mini.tabline',
-	event = { 'BufReadPre', 'BufNewFile' },
+	event = { 'BufReadPre', 'BufNewFile', 'TabNew', 'TabEnter' },
 	opts = {
 		always_show = false,
 		tabpage_section = 'right',
