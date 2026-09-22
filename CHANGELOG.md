@@ -1,5 +1,31 @@
 # Changelog
 
+## [1.19.0](https://github.com/X3ru4/nvim-setup/compare/v1.18.0...v1.19.0) (2026-09-22)
+
+
+### Features
+
+* add BlinkIndent and BlinkIndentScope for indent indicators ([4105bf9](https://github.com/X3ru4/nvim-setup/commit/4105bf9e8d74d9ebf842f07ce669c49748125f78))
+* **alpha-nvim:** prompt for new file name in dashboard button ([4055539](https://github.com/X3ru4/nvim-setup/commit/40555393e4e1cdca7b9f5469c02cfeb28618141d))
+* **blink.indent:** add &lt;leader&gt;ci keybinding to toggle indent guides ([56effd3](https://github.com/X3ru4/nvim-setup/commit/56effd3ec6afc481163e208d1ab7f405a94bc1e4))
+* **config:** change default colorscheme variant to base46-gruvchad ([0ae862c](https://github.com/X3ru4/nvim-setup/commit/0ae862c4d6a30d37ea20969d63af2406642cf5d9))
+* **fidget:** use animated progress icons with rotation period ([756c1f9](https://github.com/X3ru4/nvim-setup/commit/756c1f979109ad67794735b44a5f7a716008b7f6))
+* **fzf-lua:** enable preview and fullscreen for symbols picker ([8fb4cc5](https://github.com/X3ru4/nvim-setup/commit/8fb4cc551353b33a6fb12bc3e5f8ba4634c67ce8))
+* **heirline:** add support for niI/niR/niV mode mappings and names ([c066d60](https://github.com/X3ru4/nvim-setup/commit/c066d60566aed902662470785a2d2c8f31d6282c))
+* **indentation:** replace Mini IndentScope with BlinkIndent for clearer indentation visuals. ([43cf2ad](https://github.com/X3ru4/nvim-setup/commit/43cf2adef8d6d5c0ea84fd08ae8ac535bb0f4d0b))
+* **mini.tabline:** load plugin on TabNew and TabEnter events ([339fae5](https://github.com/X3ru4/nvim-setup/commit/339fae5d077cde173d4e3489822b484ff47245f9))
+* **tiny-cmdline:** add checkhealth command to command line plugin ([60d44c8](https://github.com/X3ru4/nvim-setup/commit/60d44c8d116c445a176a89650875697138756ed4))
+* **tiny-cmdline:** update icons for colorscheme and cmdline entries ([fff89cf](https://github.com/X3ru4/nvim-setup/commit/fff89cf7e1514b4968067f0cdb4b11a3b26e737e))
+* **ui:** update tiny-cmdline icon and title highlight ([c749fb0](https://github.com/X3ru4/nvim-setup/commit/c749fb0a3060d24c43883c58dd14179d6d5f952f))
+* update tiny-cmdline icons and highlight links ([ae75930](https://github.com/X3ru4/nvim-setup/commit/ae7593073c8416727cd559595a8f4e06c7c08be1))
+
+
+### Bug Fixes
+
+* **diagnostics:** remove unnecessary global definitions from Lua config ([134bbbd](https://github.com/X3ru4/nvim-setup/commit/134bbbd6b937c5b03d9022933baaa2721f35b528))
+* **fidget:** automatically override vim.notify via fidget.setup configuration ([6ea8e7e](https://github.com/X3ru4/nvim-setup/commit/6ea8e7ea17b84c213cee05f541d6df597713bda9))
+* **plugins:** load mini.icons eagerly instead of lazily ([2b9e055](https://github.com/X3ru4/nvim-setup/commit/2b9e0552489737e772462e820ce3177ea2a7dc06))
+
 ## [1.18.0](https://github.com/X3ru4/nvim-setup/compare/v1.17.0...v1.18.0) (2026-09-15)
 
 
