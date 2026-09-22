@@ -13,8 +13,12 @@
       "src": "https://github.com/timrydefalk/blink-cmp-emoji"
     },
     "blink.cmp": {
-      "rev": "473c928d8b9b5b3f638cd085a01899972cf205c6",
+      "rev": "8219b58f1c11a2fb1644d3c7116c509fa8348ec0",
       "src": "https://github.com/saghen/blink.cmp"
+    },
+    "blink.indent": {
+      "rev": "2e9c9768affeaf3a48b2dc329eb59763012f79f6",
+      "src": "https://github.com/saghen/blink.indent"
     },
     "blink.lib": {
       "rev": "fd9a48ebbe6ec30d5dfcc5b42c243941ccdca1aa",
@@ -46,7 +50,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "02bc882f208f3481aa959dbbee8ce5edad2fd8b2",
+      "rev": "13bb178a299f7493dd64427a58e61904c4b58ecb",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "fzf-nerdfont.nvim": {
@@ -90,7 +94,7 @@
       "src": "https://github.com/monkoose/matchparen.nvim"
     },
     "mini.ai": {
-      "rev": "cb02c5444613475b7edf0c8dc98264c1c857aa6e",
+      "rev": "6c39ae7b11abe479fbe1bc81bf00ac6bca7afa07",
       "src": "https://github.com/nvim-mini/mini.ai"
     },
     "mini.align": {
@@ -112,10 +116,6 @@
     "mini.icons": {
       "rev": "98faae31e9be1cc054ae63485e58ceb185efcad0",
       "src": "https://github.com/nvim-mini/mini.icons"
-    },
-    "mini.indentscope": {
-      "rev": "92fbaf895f83c59575ec599df532b297ebf62b14",
-      "src": "https://github.com/nvim-mini/mini.indentscope"
     },
     "mini.move": {
       "rev": "48fcaac289a19b8eff2fd5fe203267d478a8abdc",
@@ -179,7 +179,7 @@
       "src": "https://github.com/rachartier/tiny-cmdline.nvim"
     },
     "tree-sitter-manager.nvim": {
-      "rev": "1425eacb78bfee34face0fe06a8384ac3c4d9c8e",
+      "rev": "c59cb96f62db1c41830c2bb6c32fa72ffd701105",
       "src": "https://github.com/romus204/tree-sitter-manager.nvim"
     },
     "vim-caser": {
@@ -187,7 +187,7 @@
       "src": "https://github.com/ofer987/vim-caser"
     },
     "zpack.nvim": {
-      "rev": "b9146b11e0485eb60e0bd76d70c6bb273d635915",
+      "rev": "892385ac2010bce457772cb628af04a560d927ca",
       "src": "https://github.com/zuqini/zpack.nvim"
     }
   }
