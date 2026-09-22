@@ -70,15 +70,14 @@ return {
 
 		local variant = require('utils.colorscheme').variant
 		if variant then
-			base46.load(variant:gsub('^base46%-', ''))
+			base46.load(variant:sub(8))
 		else
 			base46.load('onedark')
 		end
 
 		local hl = require('utils.highlight')
 		local function is_base46()
-			local start = vim.g.colors_name:find('base46-', 0, true)
-			return start
+			return vim.g.colors_name:sub(1, 7) == 'base46-'
 		end
 
 		-- It will load if you change the colorscheme.
