@@ -11,6 +11,9 @@ colorscheme.install = {
 colorscheme.default = 'base46'
 colorscheme.variant = 'base46-gruvchad'
 
+---@type 'mini.indentscope'|'blink.indent'
+vim.g.plugin_indent = 'blink.indent'
+
 -- Quick configuration for blink.cmp
 M.blinkcmp = {
 	ghost_text = true,
