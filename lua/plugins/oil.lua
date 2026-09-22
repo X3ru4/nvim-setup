@@ -20,16 +20,37 @@ return {
 			end
 		end
 
-		local function cwd_open()
-			vim.ui.input({ prompt = '  open ', default = '' }, function(input)
+		local prompt = ' Open: '
+		local special_dir = {
+			termux = '~/.termux/',
+			fish = '~/.config/fish/',
+			plugin = '~/.local/share/nvim/site/pack/core/opt/',
+		}
+
+		local function advance_open()
+			vim.ui.input({ prompt = prompt, default = '' }, function(input)
 				if input then
-					Oil.open(input)
+					if input:sub(1, 1) == '@' then
+						local dir = special_dir[input:sub(2)]
+						if dir then
+							Oil.open(dir)
+						else
+							local ok, stdpath = pcall(vim.fn.stdpath, input:sub(2))
+							if ok and type(stdpath) == 'string' then
+								Oil.open(stdpath)
+							else
+								vim.notify('What?', vim.log.levels.WARN, { title = 'oil.nvim' })
+							end
+						end
+					else
+						Oil.open(input)
+					end
 				end
 			end)
 		end
 
 		local function root_open()
-			vim.ui.input({ prompt = '  open ', default = '~/' }, function(input)
+			vim.ui.input({ prompt = prompt, default = '~/' }, function(input)
 				if input then
 					Oil.open(input)
 				end
@@ -62,10 +83,10 @@ return {
 				['q'] = { 'actions.close', mode = 'n' },
 				['.'] = { 'actions.toggle_hidden', mode = 'n' },
 				['g?'] = { 'actions.show_help', mode = 'n' },
-        ["gs"] = { "actions.change_sort", mode = "n" },
+				['gs'] = { 'actions.change_sort', mode = 'n' },
 				['gx'] = 'actions.open_external',
-				['gc'] = {
-					cwd_open,
+				['gw'] = {
+					advance_open,
 					mode = 'n',
 				},
 				['gf'] = {
