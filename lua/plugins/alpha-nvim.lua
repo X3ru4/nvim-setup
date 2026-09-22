@@ -20,8 +20,16 @@ return {
 			'Simplicity is the Ultimate Sophistication.',
 		}
 
+		local function new_file()
+			vim.ui.input({ prompt = ' New file: ' }, function (input)
+				if input then
+					vim.cmd.edit(input)
+				end
+			end)
+		end
+
 		dashboard.section.buttons.val = {
-			button('n', '  New file', '<Cmd>ene<CR>'),
+			button('n', '  New file', new_file),
 			button('e', '  Explore', '<Cmd>Oil <CR>'),
 			button('f', '  Search files', '<Cmd>FzfLua files<Cr>'),
 			button('o', '  Frecency/MRU', '<Cmd>FzfLua oldfiles<Cr>'),
