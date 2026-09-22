@@ -105,7 +105,8 @@ return {
 					},
 					FloatFooter = { link = 'FloatTitle' },
 
-					MiniIndentscopeSymbol = { fg = colors.base_30.teal },
+					BlinkIndent = { fg = colors.base_30.line, bold = true },
+					BlinkIndentScope = { fg = colors.base_30.teal, bold = true },
 				},
 				extra = {
 					hl.modify('NormalFloat', { fg = colors.base_30.white }),
