@@ -1,9 +1,15 @@
 return {
 	'nvim-mini/mini.indentscope',
-  enabled = vim.g.plugin_indent == 'mini.indentscope',
+	cond = vim.g.plugin_indent == 'mini.indentscope',
 	event = 'BufReadPost',
 	opts = {
-		draw = { delay = 0 },
-		symbol = '│',
+		draw = {
+			delay = 0,
+			-- disable animation
+			-- animation = function()
+			-- 	return 0
+			-- end,
+		},
+		symbol = '▎', -- │
 	},
 }

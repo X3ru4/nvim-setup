@@ -1,6 +1,6 @@
 return {
 	'saghen/blink.indent',
-	enabled = vim.g.plugin_indent == 'blink.indent',
+	cond = vim.g.plugin_indent == 'blink.indent',
 	event = 'BufReadPost',
 	keys = {
 		{
@@ -11,8 +11,6 @@ return {
 			desc = 'Toggle indent guides',
 		},
 	},
-	--- @module 'blink.indent'
-	--- @type blink.indent.Config
 	opts = {
 		-- thin: ▏, bold: ▎
 		static = {
