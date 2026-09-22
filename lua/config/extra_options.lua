@@ -1,4 +1,3 @@
-local M = {}
 local colorscheme = require('utils.colorscheme')
 
 -- Add colorscheme in ~/.config/nvim/lua/plugins/themes/ press `gf` to open
@@ -15,7 +14,7 @@ colorscheme.variant = 'base46-gruvchad'
 vim.g.plugin_indent = 'mini'
 
 -- Quick configuration for blink.cmp
-M.blinkcmp = {
+vim.g.blinkcmp = {
 	ghost_text = true,
 	menu = {
 		border = 'none',
@@ -30,5 +29,3 @@ M.blinkcmp = {
 		use_nvimcmp_hl = false,
 	},
 }
-
-return M

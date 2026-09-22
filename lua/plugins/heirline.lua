@@ -1,4 +1,5 @@
 return {
+	-- uses mini.icons
 	'rebelot/heirline.nvim',
 	event = 'UIEnter',
 	config = function()
@@ -135,11 +136,7 @@ return {
 			},
 			{
 				init = function(self)
-					if MiniIcons then
-						self.icon, self.hl = MiniIcons.get('filetype', vim.bo.filetype)
-					else
-						self.icon, self.hl = ' ', ''
-					end
+					self.icon, self.hl = MiniIcons.get('filetype', vim.bo.filetype)
 				end,
 				provider = function(self)
 					return ' ' .. self.icon .. ' '

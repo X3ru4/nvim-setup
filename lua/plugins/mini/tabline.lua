@@ -1,4 +1,5 @@
 return {
+		-- uses mini.icons
 	'nvim-mini/mini.tabline',
 	event = { 'BufReadPre', 'BufNewFile', 'TabNew', 'TabEnter' },
 	opts = {
@@ -6,11 +7,7 @@ return {
 		tabpage_section = 'right',
 
 		format = function(bufnr, label)
-			return ' '
-				.. (MiniIcons and MiniIcons.get('file', label) or '?')
-				.. ' '
-				.. label
-				.. (vim.bo[bufnr].modified and '  ' or ' ')
+			return ' ' .. MiniIcons.get('file', label) .. ' ' .. label .. (vim.bo[bufnr].modified and '  ' or ' ')
 		end,
 	},
 }

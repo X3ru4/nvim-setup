@@ -9,7 +9,7 @@ return {
 		},
 	},
 	{
-		-- Using blink.cmp v2
+		-- uses mini.icons
 		'saghen/blink.cmp',
 		build = function()
 			require('blink.cmp').build():pwait()
@@ -18,12 +18,10 @@ return {
 			'saghen/blink.lib',
 			'timrydefalk/blink-cmp-emoji',
 			'rafamadriz/friendly-snippets',
-			'nvim-mini/mini.icons',
 		},
 		event = { 'InsertEnter', 'CmdlineEnter' },
 		config = function()
-			local cmp = require('config.extra_options').blinkcmp
-			local MiniIcons = require('mini.icons')
+			local cmp = vim.g.blinkcmp
 
 			require('blink.cmp').setup({
 				keymap = {
