@@ -1,6 +1,6 @@
 return {
 	'saghen/blink.indent',
-	cond = vim.g.plugin_indent == 'blink.indent',
+	cond = vim.g.plugin_indent == 'blink',
 	event = 'BufReadPost',
 	keys = {
 		{
