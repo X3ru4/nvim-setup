@@ -31,15 +31,16 @@ return {
 			vim.ui.input({ prompt = prompt, default = '' }, function(input)
 				if input then
 					if input:sub(1, 1) == '@' then
-						local dir = special_dir[input:sub(2)]
+						local what = input:sub(2)
+						local dir = special_dir[what]
 						if dir then
 							Oil.open(dir)
 						else
-							local ok, stdpath = pcall(vim.fn.stdpath, input:sub(2))
+							local ok, stdpath = pcall(vim.fn.stdpath, what)
 							if ok and type(stdpath) == 'string' then
 								Oil.open(stdpath)
 							else
-								vim.notify('What?', vim.log.levels.WARN, { title = 'oil.nvim' })
+								vim.notify('Where "' .. what .. '"?' , vim.log.levels.INFO, { title = 'oil.nvim' })
 							end
 						end
 					else
