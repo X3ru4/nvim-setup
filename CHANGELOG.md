@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.20.0](https://github.com/X3ru4/nvim-setup/compare/v1.19.0...v1.20.0) (2026-09-22)
+
+
+### Features
+
+* add vim.g.plugin_indent to toggle blink.indent or mini.indentscope indentation support ([c104191](https://github.com/X3ru4/nvim-setup/commit/c104191992cc112a797a2b4bdeee4df5a55c79eb))
+* **oil:** add @ syntax for quick opening of special directories and stdpath shortcuts ([7f1fbfa](https://github.com/X3ru4/nvim-setup/commit/7f1fbfa5fe97186ef50e88b7cc891e30bd54864e))
+
 ## [1.19.0](https://github.com/X3ru4/nvim-setup/compare/v1.18.0...v1.19.0) (2026-09-22)
 
 
