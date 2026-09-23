@@ -7,7 +7,7 @@ return {
 		'gf',
 	},
 	config = function()
-		local fzf = require('fzf-lua')
+		local Fzf = require('fzf-lua')
 		local Oil = require('oil')
 
 		function Oil.get_winbar()
@@ -23,6 +23,7 @@ return {
 		local prompt = ' Open: '
 		local special_dir = {
 			termux = '~/.termux/',
+			storage = '~/storage/',
 			fish = '~/.config/fish/',
 			plugin = '~/.local/share/nvim/site/pack/core/opt/',
 		}
@@ -40,7 +41,7 @@ return {
 							if ok and type(stdpath) == 'string' then
 								Oil.open(stdpath)
 							else
-								vim.notify('Where "' .. what .. '"?' , vim.log.levels.INFO, { title = 'oil.nvim', icon = '󰏇 ' })
+								vim.notify('Where "' .. what .. '"?', vim.log.levels.INFO, { title = 'oil.nvim', icon = '󰏇 ' })
 							end
 						end
 					else
@@ -96,13 +97,13 @@ return {
 				},
 				['<leader>ff'] = {
 					function()
-						fzf.files({ cwd = Oil.get_current_dir(0) })
+						Fzf.files({ cwd = Oil.get_current_dir(0) })
 					end,
 					mode = 'n',
 				},
 				['<leader>fg'] = {
 					function()
-						fzf.live_grep({ cwd = Oil.get_current_dir(0) })
+						Fzf.live_grep({ cwd = Oil.get_current_dir(0) })
 					end,
 					mode = 'n',
 				},
