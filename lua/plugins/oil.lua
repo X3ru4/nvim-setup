@@ -40,7 +40,7 @@ return {
 							if ok and type(stdpath) == 'string' then
 								Oil.open(stdpath)
 							else
-								vim.notify('Where "' .. what .. '"?' , vim.log.levels.INFO, { title = 'oil.nvim' })
+								vim.notify('Where "' .. what .. '"?' , vim.log.levels.INFO, { title = 'oil.nvim', icon = '󰏇 ' })
 							end
 						end
 					else

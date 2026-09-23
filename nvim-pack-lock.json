@@ -114,7 +114,7 @@
       "src": "https://github.com/nvim-mini/mini.hipatterns"
     },
     "mini.icons": {
-      "rev": "98faae31e9be1cc054ae63485e58ceb185efcad0",
+      "rev": "f642e3ba8c12afbc8f32f6d77ef6597eac56786f",
       "src": "https://github.com/nvim-mini/mini.icons"
     },
     "mini.indentscope": {
@@ -126,7 +126,7 @@
       "src": "https://github.com/nvim-mini/mini.move"
     },
     "mini.surround": {
-      "rev": "8d5d0c5aa92449368ac251e85451d79d8f69d296",
+      "rev": "33a2ebe5df8eb4751828fcba133e18ed0fbbdfab",
       "src": "https://github.com/nvim-mini/mini.surround"
     },
     "mini.tabline": {

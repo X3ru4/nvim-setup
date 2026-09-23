@@ -14,7 +14,7 @@ function M.setup()
 		update_in_insert = false,
 		signs = {
 			text = {
-				[diagnostic.severity.ERROR] = '',
+				[diagnostic.severity.ERROR] = '',
 				[diagnostic.severity.WARN] = '',
 				[diagnostic.severity.INFO] = '',
 				[diagnostic.severity.HINT] = '󰛨',
