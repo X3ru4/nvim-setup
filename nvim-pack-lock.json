@@ -93,6 +93,10 @@
       "rev": "75398158ea5a4cee4f0cbbeefdbf8fb1c3343e28",
       "src": "https://github.com/monkoose/matchparen.nvim"
     },
+    "mini-git": {
+      "rev": "cf5aaa83be51d0419aeb0a2060fc4ec13ea22b74",
+      "src": "https://github.com/nvim-mini/mini-git"
+    },
     "mini.ai": {
       "rev": "6c39ae7b11abe479fbe1bc81bf00ac6bca7afa07",
       "src": "https://github.com/nvim-mini/mini.ai"
