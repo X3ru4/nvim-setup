@@ -1,12 +1,11 @@
 local map = vim.keymap
-map.set('n', '<leader>gt', '<Cmd>terminal<Cr>i', { desc = 'Open terminal' })
 
 map.set('n', '<leader>re', '<Cmd>restart<Cr>', { desc = 'Restart Neovim' })
 map.set('n', '<leader>ro', '<Cmd>e!<Cr>', { desc = 'Re-open' })
 map.set('n', '<leader>rm', '<Cmd>!rm ~/.local/state/nvim/swap -rf<Cr>', { desc = 'Remove swap folder' })
 
-map.set('n', '<leader>co', '<Cmd>normal! gg=G\'\'<Cr>', { desc = 'Indent' })
 map.set('n', '<leader>cr', '<Cmd>silent! w | terminal make run<Cr>', { desc = 'make run' })
+map.set('n', '<leader>ct', '<Cmd>terminal<Cr>i', { desc = 'Open terminal' })
 map.set('n', '<leader>cw', '<Cmd>set wrap!<Cr>', { desc = 'Wrap' })
 map.set(
 	'n',
