@@ -7,13 +7,13 @@ local runtime_plugins = {
 	'man',
 	'matchit',
 	'matchparen',
-	'nvim_net_plugin',
 	'netrw',
+	'nvim_net_plugin',
 	'remote_plugins',
-	'tarPlugin',
-	'zipPlugin',
-	'tutor_mode_plugin',
 	'rpluginzipPlugin',
+	'tarPlugin',
+	'tutor_mode_plugin',
+	'zipPlugin',
 }
 
 for _, var in ipairs(runtime_plugins) do
