@@ -10,7 +10,7 @@ map.set('n', '<leader>cw', '<Cmd>set wrap!<Cr>', { desc = 'Wrap' })
 map.set(
 	'n',
 	'<leader>cb',
-	'<Cmd>let &background=&background == \'dark\' ? \'light\' : \'dark\'<Cr>',
+	[[<Cmd>let &background=&background ==# 'dark' ? 'light' : 'dark'<Cr>]],
 	{ desc = 'Toggle background' }
 )
 map.set({ 'n', 'x' }, '<leader>v', '<Cmd>norm gg0vG$h<Cr>', { desc = 'Select all' })
