@@ -172,7 +172,7 @@ return {
 		local Macro = {
 			update = { 'RecordingEnter', 'RecordingLeave' },
 			condition = function()
-				return vim.fn.reg_recording() ~= ''
+				return #vim.fn.reg_recording() > 0
 			end,
 			provider = function()
 				return '  (' .. vim.fn.reg_recording() .. ')'
@@ -181,8 +181,8 @@ return {
 		}
 
 		local Diagnostic = {
-			condition = function()
-				return vim.diagnostic.count(0) ~= {}
+			condition = function(self)
+				return #self.status > 0
 			end,
 			update = { 'DiagnosticChanged', 'BufEnter' },
 			init = function(self)
