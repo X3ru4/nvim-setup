@@ -1,7 +1,7 @@
 return {
-		-- uses mini.icons
+	-- uses mini.icons
 	'nvim-mini/mini.tabline',
-	event = { 'BufReadPre', 'BufNewFile', 'TabNew', 'TabEnter' },
+	event = { 'BufNewFile', 'BufReadPre', 'TabEnter' },
 	opts = {
 		always_show = false,
 		tabpage_section = 'right',
