@@ -21,20 +21,25 @@ return {
 		}
 
 		local function new_file()
-			vim.ui.input({ prompt = ' New file: ' }, function (input)
+			vim.ui.input({ prompt = ' New file: ' }, function(input)
 				if input then
-					vim.cmd.edit(input)
+					input = vim.trim(input)
+					if #input > 0 then
+						vim.cmd.edit(input)
+					else
+						vim.cmd.enew()
+					end
 				end
 			end)
 		end
 
 		dashboard.section.buttons.val = {
 			button('n', '  New file', new_file),
-			button('e', '  Explore', '<Cmd>Oil <CR>'),
+			button('e', '  Explore', '<Cmd>Oil<Cr>'),
 			button('f', '  Search files', '<Cmd>FzfLua files<Cr>'),
 			button('o', '  Frecency/MRU', '<Cmd>FzfLua oldfiles<Cr>'),
 			button('r', '  Restore last session', require('persistence').load),
-			button('q', '  Quit', '<Cmd>qa!<Cr>'),
+			button('q', '  Quit', '<Cmd>qa<Cr>'),
 		}
 
 		require('alpha').setup(dashboard.config)
