@@ -29,7 +29,7 @@ hl.setup(function()
 		-- This table is used to set up simple highlighting.
 		[1] = {
 			-- All highlights are cached, so use `cforce = true` to ignore them.
-			-- Normal = { cforce = true, fg = "#ffee00", bg = "#3a3b2f" }
+			-- Normal = { cforce = true, fg = '#ffee00', bg = '#3a3b2f' },
 			Yank = {
 				fg = hl.getbg('IncSearch'),
 				bg = hl.blend(hl.getbg('IncSearch'), hl.alias.Black, 0.3),
@@ -47,10 +47,10 @@ hl.setup(function()
 			set_modehl('Replace', 'MiniStatuslineModeReplace', 'DiagnosticSignError'),
 			-- Modify default highlights.
 			hl.modify('Visual', { bold = true }),
-			-- hl.modify("FloatTitle", { bg = hl.getbg("NormalFloat") }),
+			-- hl.modify('FloatTitle', { bg = hl.getbg('NormalFloat') }),
 			hl.modify('FloatBorder', { bg = hl.getbg('NormalFloat'), cforce = true }),
 			-- function ()
-			-- 	return "Abc", {} -- name, opts
+			-- 	return 'Abc', {} -- name, opts
 			-- end
 		},
 	})
