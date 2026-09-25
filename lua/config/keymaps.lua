@@ -20,7 +20,7 @@ map.set('n', '<S-h>', '<Cmd>bprevious<Cr>')
 map.set('n', '<S-l>', '<Cmd>bnext<Cr>')
 map.set('n', '<leader>bd', '<Cmd>bdelete<Cr>', { desc = 'Delete buffer' })
 map.set('n', '<leader>bb', '<Cmd>buffer #<Cr>', { desc = 'Previous buffer' })
-map.set({ 'n', 'x', 'i' }, '<C-s>', '<Cmd>silent!w<Cr><esc>', { desc = 'Save file', silent = true })
+map.set({ 'n', 'x', 'i' }, '<C-s>', '<Cmd>silent!w<Cr><ESC>', { desc = 'Save file', silent = true })
 map.set('n', '<leader>qa', '<Cmd>q!<Cr>', { desc = 'Quit all' })
 map.set('n', '<leader>qq', '<Cmd>q<Cr>', { desc = 'Quit' })
 
@@ -36,10 +36,10 @@ map.set('i', '.', '.<C-g>u')
 map.set('i', ';', ';<C-g>u')
 
 -- Commenting
-map.set('n', 'gco', 'o<esc>Vcx<esc><Cmd>normal gcc<Cr>fxa<bs>', { desc = 'Add Comment Below' })
-map.set('n', 'gcO', 'O<esc>Vcx<esc><Cmd>normal gcc<Cr>fxa<bs>', { desc = 'Add Comment Above' })
+map.set('n', 'gco', 'o<ESC>Vcx<esc><Cmd>normal gcc<Cr>fxa<bs>', { desc = 'Add Comment Below' })
+map.set('n', 'gcO', 'O<ESC>Vcx<esc><Cmd>normal gcc<Cr>fxa<bs>', { desc = 'Add Comment Above' })
 
-map.set({ 'i', 'n', 's' }, '<esc>', function()
+map.set({ 'i', 'n', 's' }, '<ESC>', function()
 	vim.cmd('noh')
-	return '<esc>'
+	return '<ESC>'
 end, { expr = true, desc = 'Escape and Clear hlsearch' })
