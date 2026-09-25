@@ -224,6 +224,7 @@ return {
 			FzfLuaBorder = { link = 'FloatBorder' },
 			FzfLuaTitleFlags = { link = 'CursorLine' },
 			FzfLuaTabMarker = { link = 'Structure' },
+			FzfLuaTabTitle = { link = 'Title' },
 			FzfLuaHeaderBind = { link = 'FzfLuaTabMarker' },
 			FzfLuaHeaderText = { link = 'Define' },
 			FzfLuaBufFlagCur = { link = 'Typedef' },
