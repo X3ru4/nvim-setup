@@ -10,7 +10,10 @@ function M.setup()
 			suffix = '',
 		},
 		underline = true,
-		float = { source = 'if_many' },
+		float = {
+			source = 'if_many',
+			header = '',
+		},
 		update_in_insert = false,
 		signs = {
 			text = {
@@ -52,14 +55,16 @@ function M.setup()
 
 	map.set({ 'n', 'i' }, '<C-k>', function()
 		lsp.buf.signature_help({
-			focus = false,
 			close_events = { 'BufWinLeave', 'CursorMoved', 'CursorMovedI', 'ModeChanged' },
+			title = '  Signature help ',
+			title_pos = 'center',
 		})
 	end, { desc = 'Signature help' })
-	map.set({ 'n', 'i' }, '<C-l>', function()
+	map.set({ 'n', 'i' }, '<C-j>', function()
 		diagnostic.open_float(nil, {
-			focus = false,
 			close_events = { 'BufWinLeave', 'CursorMoved', 'CursorMovedI', 'ModeChanged' },
+			title = '  Diagnostics ',
+			title_pos = 'center',
 		})
 	end, { desc = 'Open diagnostic float' })
 
