@@ -26,8 +26,8 @@ hl.setup(function()
 	end
 
 	hl.insert({
-		-- This field is used to set up simple highlighting.
-		basic = {
+		-- This table is used to set up simple highlighting.
+		[1] = {
 			-- All highlights are cached, so use `cforce = true` to ignore them.
 			-- Normal = { cforce = true, fg = "#ffee00", bg = "#3a3b2f" }
 			Yank = {
@@ -36,8 +36,8 @@ hl.setup(function()
 				bold = true,
 			},
 		},
-		-- This field is a special field used to set up highlights that require logic.
-		extra = {
+		-- This table is a special table used to set up highlights that require logic.
+		[2] = {
 			-- Create highlights for the basic Vim/Nvim modes used in heirline.nvim.
 			set_modehl('Other', 'MiniStatuslineModeOther', 'DiagnosticSignInfo'),
 			set_modehl('Normal', 'MiniStatuslineModeNormal', 'DiagnosticSignInfo'),

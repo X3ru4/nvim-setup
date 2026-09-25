@@ -9,9 +9,9 @@ M.alias = {}
 M.use_cache = true
 
 ---This is the default table used to load highlights when M.apply() is called.
-M.highlight = {
-	basic = {},
-	extra = {},
+M.data = {
+	[1] = {}, -- simple highlight config
+	[2] = {}, -- advance highlight config
 	callback = {},
 }
 
@@ -63,8 +63,8 @@ end
 
 ---@param hl_list utility.highlight.highlights
 function M.insert(hl_list)
-	M.highlight = vim.tbl_deep_extend('force', M.highlight, hl_list)
-	return M.highlight
+	M.data = vim.tbl_deep_extend('force', M.data, hl_list)
+	return M.data
 end
 
 ---Modify highlight.
@@ -85,7 +85,7 @@ function M.modify(name, opts, append)
 	end
 
 	if append then
-		M.highlight.basic[name] = opts
+		M.data[1][name] = opts
 	end
 
 	return { name, opts }
@@ -95,18 +95,18 @@ end
 ---@param hl_list nil|utility.highlight.highlights
 ---@param no_cache boolean|nil
 function M.apply(hl_list, no_cache)
-	local t = (hl_list and hl_list ~= {}) and hl_list or M.highlight
-	if t then
-		if t.basic and t.basic ~= {} then
-			for name, opts in pairs(t.basic) do
+	local data = (hl_list and hl_list ~= {}) and hl_list or M.data
+	if data then
+		if data[1] and data[1] ~= {} then
+			for name, opts in pairs(data[1]) do
 				if no_cache then
 					cache.def[name] = nil
 				end
 				M.set(name, opts)
 			end
 		end
-		if t.extra and t.extra ~= {} then
-			for _, val in ipairs(t.extra) do
+		if data[2] and data[2] ~= {} then
+			for _, val in ipairs(data[2]) do
 				if type(val) == 'function' then
 					local name, opts = val()
 					if no_cache then
@@ -134,18 +134,18 @@ function M.add_hook(id, callback, init, on_color)
 	if init then
 		callback()
 		if on_color then
-			M.highlight.callback[id] = { callback }
+			M.data.callback[id] = { callback }
 			return
 		end
 	end
-	M.highlight.callback[id] = callback
+	M.data.callback[id] = callback
 end
 
 local started = false
 
 function M.run_hooks()
-	if M.highlight.callback and M.highlight.callback ~= {} then
-		for _, data in pairs(M.highlight.callback) do
+	if M.data.callback and M.data.callback ~= {} then
+		for _, data in pairs(M.data.callback) do
 			if type(data) == 'function' then
 				data()
 			elseif type(data) == 'table' then
@@ -161,8 +161,8 @@ end
 ---@param config function
 function M.setup(config)
 	if started then
-		M.highlight.basic = {}
-		M.highlight.extra = {}
+		M.data[1] = {}
+		M.data[2] = {}
 	end
 
 	if not M.use_cache then

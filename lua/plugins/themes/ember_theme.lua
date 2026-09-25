@@ -18,7 +18,7 @@ return {
 		local palette = require('ember.palette').get(require('ember').config.variant)
 
 		hl.apply({
-			basic = {
+			{
 				MiniIconsGrey = { fg = palette.base4 },
 				MiniIconsAzure = { fg = palette.steel },
 				MiniIconsPurple = { fg = palette.mauve },
@@ -33,7 +33,7 @@ return {
 				LazyButton = { bg = palette.base1 },
 				SnacksIndentScope = { fg = palette.sage },
 			},
-			extra = {
+			{
 				hl.modify('MiniNotifyNormal', { bg = palette.bg_alt }),
 				hl.modify('MiniNotifyBorder', { bg = palette.bg_alt }),
 				hl.modify('MiniNotifyTitle', { bg = palette.bg_alt, bold = true }),

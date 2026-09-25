@@ -89,7 +89,7 @@ return {
 			local colors = base46.theme_tables[base46.current_theme]
 
 			hl.apply({
-				basic = {
+				{
 					ModeOther = { link = 'St_ConfirmMode', cforce = true },
 					ModeNormal = { link = 'St_NormalMode', cforce = true },
 					ModeInsert = { link = 'St_InsertMode', cforce = true },
@@ -108,7 +108,7 @@ return {
 					BlinkIndentScope = { fg = colors.base_30.teal, bold = true },
 					MiniIndentscopeSymbol = { fg = colors.base_30.teal, bold = true },
 				},
-				extra = {
+				{
 					hl.modify('NormalFloat', { fg = colors.base_30.white }),
 
 					hl.modify('MiniTablineCurrent', { bold = true }),

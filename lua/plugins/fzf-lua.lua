@@ -247,7 +247,7 @@ return {
 			fzf_hl.FzfLuaCursorLine = { bold = true, bg = hl.getbg('CursorLine') }
 			fzf_hl.FzfLuaPreviewTitle = { fg = hl.alias.Black, bg = hl.getfg('Added'), bold = true }
 
-			hl.apply({ basic = fzf_hl })
+			hl.apply({ fzf_hl })
 		end, true)
 	end,
 }
