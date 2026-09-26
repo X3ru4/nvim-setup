@@ -4,9 +4,10 @@ return {
 	opts = {
 		presets = { 'colors', 'weekdays', 'months' },
 		additions = {
-			{ 'true', 'false' },
+			{ 'continue', 'break' },
 		},
 		allow_caps_additions = {
+			{ 'true', 'false' },
 			{ 'light', 'dark' },
 		},
 	},
