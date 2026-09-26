@@ -29,18 +29,14 @@ function M.create_spec()
 	local t = {}
 
 	for _, spec in ipairs(M.themes) do
-		if spec.name == M.default or spec[1] == M.default then
-			spec.lazy = false
-			spec.priority = 1000
-			t[#t + 1] = spec
-		else
-			if spec and spec ~= {} then
-				t[#t + 1] = {
-					spec[1] or spec.url or spec.dir,
-					name = spec.name,
-					event = 'VeryLazy',
-					dependencies = spec.dependencies,
-				}
+		if spec[1] or spec.url then
+			if spec.name == M.default or spec[1] == M.default or spec.url == M.default then
+				spec.lazy = false
+				spec.priority = 1000
+				t[#t + 1] = spec
+			else
+				spec.lazy = true
+				t[#t + 1] = spec
 			end
 		end
 	end
