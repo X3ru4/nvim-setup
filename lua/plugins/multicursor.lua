@@ -33,15 +33,13 @@ return {
 
 		-- Customize how cursors look.
 		require('utils.highlight').apply({
-			basic = {
-				MultiCursorCursor = { link = 'Cursor' },
-				MultiCursorVisual = { link = 'Visual' },
-				MultiCursorSign = { link = 'SignColumn' },
-				MultiCursorMatchPreview = { link = 'Search' },
-				MultiCursorDisabledCursor = { reverse = true },
-				MultiCursorDisabledVisual = { link = 'Visual' },
-				MultiCursorDisabledSign = { link = 'SignColumn' },
-			},
+			MultiCursorCursor = { link = 'Cursor' },
+			MultiCursorVisual = { link = 'Visual' },
+			MultiCursorSign = { link = 'SignColumn' },
+			MultiCursorMatchPreview = { link = 'Search' },
+			MultiCursorDisabledCursor = { reverse = true },
+			MultiCursorDisabledVisual = { link = 'Visual' },
+			MultiCursorDisabledSign = { link = 'SignColumn' },
 		})
 
 		local mode = { 'n', 'x' }

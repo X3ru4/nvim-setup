@@ -10,8 +10,9 @@ M.use_cache = true
 
 ---This is the default table used to load highlights when M.apply() is called.
 M.data = {
-	{}, -- simple highlight config
-	__callback = {},
+	{},
+	__callbacks = {},
+	__next_time = {},
 }
 
 function M.clear_cache()
@@ -50,7 +51,7 @@ end
 ---Like the vim.api.nvim_set_hl() but with the cache.
 ---@param name string
 ---@param opts vim.api.keyset.highlight|table
----@param force boolean|nil
+---@param force boolean?
 function M.set(name, opts, force)
 	if (force or opts.cforce) or not cache.def[name] then
 		opts.cforce = nil
@@ -69,7 +70,7 @@ end
 ---Modify highlight.
 ---@param name string The highlight name
 ---@param opts vim.api.keyset.highlight|fun(base:vim.api.keyset.get_hl_info):table
----@param append boolean|nil If true, it will be added to the M.highlight table.
+---@param append boolean? If true, it will be added to the M.highlight table.
 ---@return [string, table]
 function M.modify(name, opts, append)
 	if not M.hl_exist(name) then
@@ -92,7 +93,7 @@ end
 
 ---Apply highlights from `hl_list`. If `hl_list` is empty (nil), apply the M.highlights table instead.
 ---@param hl_list nil|utility.highlight.highlights
----@param no_cache boolean|nil
+---@param no_cache boolean?
 function M.apply(hl_list, no_cache)
 	local data = (hl_list and hl_list ~= {}) and hl_list or M.data[1]
 	if data then
@@ -127,29 +128,30 @@ end
 ---This function use to callback your function when highlight is load or reload.
 ---@param id string
 ---@param callback function
----@param init boolean|nil
-function M.add_hook(id, callback, init, on_color)
+---@param next_time boolean?
+---@param init boolean?
+function M.add_hook(id, callback, next_time, init)
 	if init then
 		callback()
-		if on_color then
-			M.data.__callback[id] = { callback }
-			return
-		end
 	end
-	M.data.__callback[id] = callback
+
+	if next_time then
+		M.data.__next_time[id] = true
+	end
+	M.data.__callbacks[id] = callback
 end
 
 local started = false
 
 function M.run_hooks()
-	if M.data.__callback and M.data.__callback ~= {} then
-		for _, data in pairs(M.data.__callback) do
-			if type(data) == 'function' then
-				data()
-			elseif type(data) == 'table' then
+	if M.data.__callbacks and M.data.__callbacks ~= {} then
+		for id, callback in pairs(M.data.__callbacks) do
+			if M.data.__next_time[id] then
 				if started then
-					data[1]()
+					callback()
 				end
+			else
+				callback()
 			end
 		end
 	end
@@ -199,7 +201,7 @@ end
 --- @param foreground string|number
 --- @param background string|number
 --- @param alpha number
---- @return string|nil
+--- @return string?
 M.blend = function(foreground, background, alpha)
 	if not foreground or not background or not alpha then
 		vim.notify('blend() returned nil', vim.log.levels.ERROR)

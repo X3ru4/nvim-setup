@@ -254,14 +254,8 @@ return {
 		require('heirline').setup({ statusline = StatusLine })
 
 		-- Make sure heirline.nvim always resets the highlights when changing colorschemes
-		local loaded_colors
 		hl.add_hook('heirline', function()
-			if loaded_colors then
-				require('heirline.highlights').reset_highlights()
-			end
-			if not loaded_colors then
-				loaded_colors = true
-			end
-		end)
+			require('heirline.highlights').reset_highlights()
+		end, true)
 	end,
 }
