@@ -244,7 +244,7 @@ return {
 			},
 			{
 				flexible = 3,
-				{ provider = [[ %{ mode() =~# '^[ict]$' ? '' : '' } %l·%c ]] },
+				{ provider = [[ %{ mode() =~# '^[ict]$' ? '' : '' } %l∙%c ]] },
 				{ provider = ' %l·%c ' },
 				{ provider = ' %l ' },
 				false,
