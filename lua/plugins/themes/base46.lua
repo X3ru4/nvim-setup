@@ -89,48 +89,45 @@ return {
 			local colors = base46.theme_tables[base46.current_theme]
 
 			hl.apply({
-				{
-					ModeOther = { link = 'St_ConfirmMode', cforce = true },
-					ModeNormal = { link = 'St_NormalMode', cforce = true },
-					ModeInsert = { link = 'St_InsertMode', cforce = true },
-					ModeVisual = { link = 'St_VisualMode', cforce = true },
-					ModeCommand = { link = 'St_CommandMode', cforce = true },
-					ModeReplace = { link = 'St_ReplaceMode', cforce = true },
+				ModeOther = { link = 'St_ConfirmMode', cforce = true },
+				ModeNormal = { link = 'St_NormalMode', cforce = true },
+				ModeInsert = { link = 'St_InsertMode', cforce = true },
+				ModeVisual = { link = 'St_VisualMode', cforce = true },
+				ModeCommand = { link = 'St_CommandMode', cforce = true },
+				ModeReplace = { link = 'St_ReplaceMode', cforce = true },
 
-					FloatTitle = {
-						fg = colors.base_30.black,
-						bg = colors.base_30.blue,
-						bold = true,
-					},
-					FloatFooter = { link = 'FloatTitle' },
-
-					BlinkIndent = { fg = colors.base_30.line, bold = true },
-					BlinkIndentScope = { fg = colors.base_30.teal, bold = true },
-					MiniIndentscopeSymbol = { fg = colors.base_30.teal, bold = true },
+				FloatTitle = {
+					fg = colors.base_30.black,
+					bg = colors.base_30.blue,
+					bold = true,
 				},
-				{
-					hl.modify('NormalFloat', { fg = colors.base_30.white }),
+				FloatFooter = { link = 'FloatTitle' },
 
-					hl.modify('MiniTablineCurrent', { bold = true }),
-					hl.modify('MiniTablineModifiedCurrent', { bold = true, italic = true }),
+				BlinkIndent = { fg = colors.base_30.line, bold = true },
+				BlinkIndentScope = { fg = colors.base_30.teal, bold = true },
+				MiniIndentscopeSymbol = { fg = colors.base_30.teal, bold = true },
 
-					-- Syntax
-					hl.modify('Keyword', { italic = true }),
-					hl.modify('@keyword', { italic = true }),
-					hl.modify('@keyword.return', { italic = true }),
-					hl.modify('@keyword.function', { italic = true }),
-					hl.modify('@keyword.operator', { italic = true }),
-					hl.modify('@keyword.conditional', { italic = true }),
-					hl.modify('@keyword.conditional.ternary', { italic = true }),
-					hl.modify('Function', { bold = true }),
-					hl.modify('@function', { bold = true }),
-					hl.modify('@function.call', { bold = true }),
-					hl.modify('@function.method', { bold = true }),
-					hl.modify('@function.method.call', { bold = true }),
-					hl.modify('Type', { bold = true }),
-					hl.modify('Comment', { italic = true }),
-					hl.modify('@comment', { italic = true }),
-				},
+				hl.modify('NormalFloat', { fg = colors.base_30.white }),
+
+				hl.modify('MiniTablineCurrent', { bold = true }),
+				hl.modify('MiniTablineModifiedCurrent', { bold = true, italic = true }),
+
+				-- Syntax
+				hl.modify('Keyword', { italic = true }),
+				hl.modify('@keyword', { italic = true }),
+				hl.modify('@keyword.return', { italic = true }),
+				hl.modify('@keyword.function', { italic = true }),
+				hl.modify('@keyword.operator', { italic = true }),
+				hl.modify('@keyword.conditional', { italic = true }),
+				hl.modify('@keyword.conditional.ternary', { italic = true }),
+				hl.modify('Function', { bold = true }),
+				hl.modify('@function', { bold = true }),
+				hl.modify('@function.call', { bold = true }),
+				hl.modify('@function.method', { bold = true }),
+				hl.modify('@function.method.call', { bold = true }),
+				hl.modify('Type', { bold = true }),
+				hl.modify('Comment', { italic = true }),
+				hl.modify('@comment', { italic = true }),
 			})
 		end, false)
 	end,

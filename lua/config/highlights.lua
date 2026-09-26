@@ -26,32 +26,26 @@ hl.setup(function()
 	end
 
 	hl.insert({
-		-- This table is used to set up simple highlighting.
-		[1] = {
-			-- All highlights are cached, so use `cforce = true` to ignore them.
-			-- Normal = { cforce = true, fg = '#ffee00', bg = '#3a3b2f' },
-			Yank = {
-				fg = hl.getbg('IncSearch'),
-				bg = hl.blend(hl.getbg('IncSearch'), hl.alias.Black, 0.3),
-				bold = true,
-			},
+		-- All highlights are cached, so use `cforce = true` to ignore them.
+		-- Normal = { cforce = true, fg = '#ffee00', bg = '#3a3b2f' },
+		Yank = {
+			fg = hl.getbg('IncSearch'),
+			bg = hl.blend(hl.getbg('IncSearch'), hl.alias.Black, 0.3),
+			bold = true,
 		},
-		-- This table is a special table used to set up highlights that require logic.
-		[2] = {
-			-- Create highlights for the basic Vim/Nvim modes used in heirline.nvim.
-			set_modehl('Other', 'MiniStatuslineModeOther', 'DiagnosticSignInfo'),
-			set_modehl('Normal', 'MiniStatuslineModeNormal', 'DiagnosticSignInfo'),
-			set_modehl('Insert', 'MiniStatuslineModeInsert', 'DiagnosticSignOk'),
-			set_modehl('Visual', 'MiniStatuslineModeVisual', 'DiagnosticSignWarn'),
-			set_modehl('Command', 'MiniStatuslineModeCommand', 'DiagnosticSignError'),
-			set_modehl('Replace', 'MiniStatuslineModeReplace', 'DiagnosticSignError'),
-			-- Modify default highlights.
-			hl.modify('Visual', { bold = true }),
-			-- hl.modify('FloatTitle', { bg = hl.getbg('NormalFloat') }),
-			hl.modify('FloatBorder', { bg = hl.getbg('NormalFloat'), cforce = true }),
-			-- function ()
-			-- 	return 'Abc', {} -- name, opts
-			-- end
-		},
+		-- Create highlights for the basic Vim/Nvim modes used in heirline.nvim.
+		set_modehl('Other', 'MiniStatuslineModeOther', 'DiagnosticSignInfo'),
+		set_modehl('Normal', 'MiniStatuslineModeNormal', 'DiagnosticSignInfo'),
+		set_modehl('Insert', 'MiniStatuslineModeInsert', 'DiagnosticSignOk'),
+		set_modehl('Visual', 'MiniStatuslineModeVisual', 'DiagnosticSignWarn'),
+		set_modehl('Command', 'MiniStatuslineModeCommand', 'DiagnosticSignError'),
+		set_modehl('Replace', 'MiniStatuslineModeReplace', 'DiagnosticSignError'),
+		-- Modify default highlights.
+		hl.modify('Visual', { bold = true }),
+		-- hl.modify('FloatTitle', { bg = hl.getbg('NormalFloat') }),
+		hl.modify('FloatBorder', { bg = hl.getbg('NormalFloat'), cforce = true }),
+		-- function ()
+		-- 	return 'Abc', {} -- name, opts
+		-- end
 	})
 end)

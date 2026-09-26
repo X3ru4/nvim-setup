@@ -18,28 +18,24 @@ return {
 		local palette = require('ember.palette').get(require('ember').config.variant)
 
 		hl.apply({
-			{
-				MiniIconsGrey = { fg = palette.base4 },
-				MiniIconsAzure = { fg = palette.steel },
-				MiniIconsPurple = { fg = palette.mauve },
-				MiniIconsGreen = { fg = palette.olive },
-				MiniIconsBlue = { fg = palette.steel },
-				MiniIconsCyan = { fg = palette.steel },
-				MiniIconsOrange = { fg = palette.orange },
-				MiniIconsRed = { fg = palette.coral },
-				MiniIconsYellow = { fg = palette.gold },
-				MiniTablineFill = { bg = palette.bg },
+			MiniIconsGrey = { fg = palette.base4 },
+			MiniIconsAzure = { fg = palette.steel },
+			MiniIconsPurple = { fg = palette.mauve },
+			MiniIconsGreen = { fg = palette.olive },
+			MiniIconsBlue = { fg = palette.steel },
+			MiniIconsCyan = { fg = palette.steel },
+			MiniIconsOrange = { fg = palette.orange },
+			MiniIconsRed = { fg = palette.coral },
+			MiniIconsYellow = { fg = palette.gold },
+			MiniTablineFill = { bg = palette.bg },
 
-				LazyButton = { bg = palette.base1 },
-				SnacksIndentScope = { fg = palette.sage },
-			},
-			{
-				hl.modify('MiniNotifyNormal', { bg = palette.bg_alt }),
-				hl.modify('MiniNotifyBorder', { bg = palette.bg_alt }),
-				hl.modify('MiniNotifyTitle', { bg = palette.bg_alt, bold = true }),
+			LazyButton = { bg = palette.base1 },
+			SnacksIndentScope = { fg = palette.sage },
+			hl.modify('MiniNotifyNormal', { bg = palette.bg_alt }),
+			hl.modify('MiniNotifyBorder', { bg = palette.bg_alt }),
+			hl.modify('MiniNotifyTitle', { bg = palette.bg_alt, bold = true }),
 
-				hl.modify('FloatTitle', { fg = palette.coral, bg = palette.base0 }),
-			},
+			hl.modify('FloatTitle', { fg = palette.coral, bg = palette.base0 }),
 		})
 	end,
 }
