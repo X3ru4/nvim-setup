@@ -11,7 +11,7 @@ colorscheme.default = 'base46'
 colorscheme.variant = 'base46-gruvchad'
 
 ---@type 'blink'|'mini'
-vim.g.plugin_indent = 'mini'
+vim.g.indent_guide = 'mini'
 
 -- Quick configuration for blink.cmp
 vim.g.blinkcmp = {

@@ -1,6 +1,6 @@
 return {
 	'nvim-mini/mini.indentscope',
-	cond = vim.g.plugin_indent == 'mini',
+	cond = vim.g.indent_guide == 'mini',
 	event = 'BufReadPost',
 	opts = {
 		draw = {
