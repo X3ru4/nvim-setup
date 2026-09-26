@@ -10,9 +10,8 @@ M.use_cache = true
 
 ---This is the default table used to load highlights when M.apply() is called.
 M.data = {
-	[1] = {}, -- simple highlight config
-	[2] = {}, -- advance highlight config
-	callback = {},
+	{}, -- simple highlight config
+	__callback = {},
 }
 
 function M.clear_cache()
@@ -63,8 +62,8 @@ end
 
 ---@param hl_list utility.highlight.highlights
 function M.insert(hl_list)
-	M.data = vim.tbl_deep_extend('force', M.data, hl_list)
-	return M.data
+	M.data[1] = vim.tbl_deep_extend('force', M.data[1], hl_list)
+	return M.data[1]
 end
 
 ---Modify highlight.
@@ -95,31 +94,30 @@ end
 ---@param hl_list nil|utility.highlight.highlights
 ---@param no_cache boolean|nil
 function M.apply(hl_list, no_cache)
-	local data = (hl_list and hl_list ~= {}) and hl_list or M.data
+	local data = (hl_list and hl_list ~= {}) and hl_list or M.data[1]
 	if data then
-		if data[1] and data[1] ~= {} then
-			for name, opts in pairs(data[1]) do
-				if no_cache then
-					cache.def[name] = nil
-				end
-				M.set(name, opts)
-			end
-		end
-		if data[2] and data[2] ~= {} then
-			for _, val in ipairs(data[2]) do
-				if type(val) == 'function' then
-					local name, opts = val()
+		if data and data ~= {} then
+			for name, opts in pairs(data) do
+				if type(name) == 'number' then
+					if type(opts) == 'function' then
+						local hl, hl_opts = opts()
+						if no_cache then
+							cache.def[hl] = nil
+						end
+						M.set(hl, hl_opts)
+					else
+						if opts[1] and opts[2] then
+							if no_cache then
+								cache.def[opts[1]] = nil
+							end
+							M.set(opts[1], opts[2])
+						end
+					end
+				else
 					if no_cache then
 						cache.def[name] = nil
 					end
 					M.set(name, opts)
-				else
-					if val[1] and val[2] then
-						if no_cache then
-							cache.def[val[1]] = nil
-						end
-						M.set(val[1], val[2])
-					end
 				end
 			end
 		end
@@ -134,18 +132,18 @@ function M.add_hook(id, callback, init, on_color)
 	if init then
 		callback()
 		if on_color then
-			M.data.callback[id] = { callback }
+			M.data.__callback[id] = { callback }
 			return
 		end
 	end
-	M.data.callback[id] = callback
+	M.data.__callback[id] = callback
 end
 
 local started = false
 
 function M.run_hooks()
-	if M.data.callback and M.data.callback ~= {} then
-		for _, data in pairs(M.data.callback) do
+	if M.data.__callback and M.data.__callback ~= {} then
+		for _, data in pairs(M.data.__callback) do
 			if type(data) == 'function' then
 				data()
 			elseif type(data) == 'table' then
