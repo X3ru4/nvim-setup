@@ -115,7 +115,7 @@ opt.listchars = {
 	leadmultispace = '  ',
 	extends = '›',
 	precedes = '‹',
-	space = '·',
+	space = ' ',
 	trail = '•',
 	nbsp = '␣',
 }
