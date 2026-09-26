@@ -13,7 +13,8 @@ return {
 			dark_variant = 'ember', -- used by `ember-auto` when background = "dark"
 			light_variant = 'ember-light',
 		})
-		require('ember').load('ember-auto')
+
+		vim.cmd.colorscheme('ember-auto')
 		local hl = require('utils.highlight')
 		local palette = require('ember.palette').get(require('ember').config.variant)
 
