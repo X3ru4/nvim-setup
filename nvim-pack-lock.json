@@ -50,7 +50,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "13bb178a299f7493dd64427a58e61904c4b58ecb",
+      "rev": "78b85d2a522b1e6a2d154216b3e532a1df1ad6d7",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "fzf-nerdfont.nvim": {
@@ -195,7 +195,7 @@
       "src": "https://github.com/ofer987/vim-caser"
     },
     "zpack.nvim": {
-      "rev": "56baaa88736d8841eb596080c092690189a4f659",
+      "rev": "ec09994ca68fc36bad89a7782c5e6b244b154e10",
       "src": "https://github.com/zuqini/zpack.nvim"
     }
   }
