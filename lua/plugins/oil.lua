@@ -21,7 +21,7 @@ return {
 		end
 
 		local prompt = ' Open: '
-		local special_dir = {
+		local alias = {
 			termux = '~/.termux/',
 			storage = '~/storage/',
 			fish = '~/.config/fish/',
@@ -33,7 +33,7 @@ return {
 				if input then
 					if input:sub(1, 1) == '@' then
 						local what = input:sub(2)
-						local dir = special_dir[what]
+						local dir = alias[what]
 						if dir then
 							Oil.open(dir)
 						else
