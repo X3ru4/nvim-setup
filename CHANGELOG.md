@@ -1,5 +1,30 @@
 # Changelog
 
+## [1.21.0](https://github.com/X3ru4/nvim-setup/compare/v1.20.0...v1.21.0) (2026-09-27)
+
+
+### Features
+
+* add MiniDiff overlay toggle and MiniGit keybindings ([db4b986](https://github.com/X3ru4/nvim-setup/commit/db4b9867a3e721d155a2dc45edc1878045b0a682))
+* **base46:** add MiniIndentscopeSymbol highlight group to theme configuration ([8412dcb](https://github.com/X3ru4/nvim-setup/commit/8412dcb445a6714ca426301a90fe0a5a2c131408))
+* **blink:** change default indent guide characters to thinner '▏' and add indent_at_cursor option ([614e3ba](https://github.com/X3ru4/nvim-setup/commit/614e3ba2dd10278cdfb71c4ee90989bb3f7f2b77))
+* **boole.nvim:** add cycle `continue` and `break` ([1de84ba](https://github.com/X3ru4/nvim-setup/commit/1de84baddb540f2fe46a7c288e0fef3077566cfa))
+* enable indent guides at cursor by default ([2cfe3d1](https://github.com/X3ru4/nvim-setup/commit/2cfe3d17704e5d09dd61c32b01520bbf7600e7b5))
+* **fzf-lua:** `FzfLuaTabTitle` highlight support ([31196e1](https://github.com/X3ru4/nvim-setup/commit/31196e16822a610625cbe7240788b6987bb8098b))
+* **indent:** enable blink indent guide with custom characters and styling ([e075503](https://github.com/X3ru4/nvim-setup/commit/e0755032b63708950cccd83fcac6a5624a64a96b))
+* **lsp:** add title to signature help keymap and diagnostic float keymap ([3b36d40](https://github.com/X3ru4/nvim-setup/commit/3b36d40af016d31483e17a91721cdabb5f373430))
+* **mini.indentscope:** add keybinding to toggle indent guides ([0fceb73](https://github.com/X3ru4/nvim-setup/commit/0fceb73bf86ae3f705b0c2f728acb85eca68bdea))
+* **oil:** add storage path to special_dir mapping ([6472067](https://github.com/X3ru4/nvim-setup/commit/6472067301af058414e6363b10499df77e0a7954))
+* switch default indent plugin to mini.indentscope with bold symbol ([f0f8c88](https://github.com/X3ru4/nvim-setup/commit/f0f8c881d15def63f7ce415bbab9b26bc89439c5))
+* **usercmds:** add bang to LoadHlConfig to disable highlight cache ([0d7f569](https://github.com/X3ru4/nvim-setup/commit/0d7f569085c62142a889bae614a6267a6234c6a3))
+
+
+### Bug Fixes
+
+* correct macro detection and diagnostic condition in heirline statusline ([eadbff8](https://github.com/X3ru4/nvim-setup/commit/eadbff83c8b4600d1b078a784854c3a9e822c689))
+* correct new file behavior and clean up dashboard button commands ([e56c919](https://github.com/X3ru4/nvim-setup/commit/e56c919a47e9f3fec93c1265c6b051be1aa1871b))
+* **oil:** improve @&lt;name&gt; handling and error message ([db57ced](https://github.com/X3ru4/nvim-setup/commit/db57ced7352f82462fc9e27623c655b2530bf047))
+
 ## [1.20.0](https://github.com/X3ru4/nvim-setup/compare/v1.19.0...v1.20.0) (2026-09-22)
 
 
