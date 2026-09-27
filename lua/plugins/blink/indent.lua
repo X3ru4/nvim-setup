@@ -11,8 +11,6 @@ return {
 			desc = 'Toggle indent guides',
 		},
 	},
-	---@module 'blink.indent'
-	---@type blink.indent.Config
 	opts = {
 		-- thin: ▏, bold: ▎
 		static = {
@@ -20,7 +18,7 @@ return {
 		},
 		scope = {
 			char = '▏',
-			indent_at_cursor = false,
+			indent_at_cursor = true,
 			highlights = { 'BlinkIndentScope' },
 		},
 	},
