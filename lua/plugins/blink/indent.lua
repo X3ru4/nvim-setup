@@ -14,10 +14,10 @@ return {
 	opts = {
 		-- thin: ▏, bold: ▎
 		static = {
-			char = '▎',
+			char = '│',
 		},
 		scope = {
-			char = '▎',
+			char = '┆',
 			highlights = { 'BlinkIndentScope' },
 		},
 	},
