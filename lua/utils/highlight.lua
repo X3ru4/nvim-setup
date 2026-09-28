@@ -10,7 +10,7 @@ M.use_cache = true
 
 ---This is the default table used to load highlights when M.apply() is called.
 M.data = {
-	{},
+	[1] = {},
 	__callbacks = {},
 	__next_time = {},
 }
@@ -162,7 +162,6 @@ end
 function M.setup(config)
 	if started then
 		M.data[1] = {}
-		M.data[2] = {}
 	end
 
 	if not M.use_cache then

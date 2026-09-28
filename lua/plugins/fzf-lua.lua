@@ -248,6 +248,6 @@ return {
 			fzf_hl.FzfLuaPreviewTitle = { fg = hl.alias.Black, bg = hl.getfg('Added'), bold = true }
 
 			hl.apply(fzf_hl)
-		end, true)
+		end, nil, true)
 	end,
 }
