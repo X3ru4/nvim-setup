@@ -196,11 +196,11 @@ function M.dec_to_hex(dec_color)
 	return nil
 end
 
---- Blends colors with an alpha value
---- @param foreground string|number
---- @param background string|number
---- @param alpha number
---- @return string?
+---Blends colors with an alpha value
+---@param foreground string|number
+---@param background string|number
+---@param alpha number
+---@return string?
 M.blend = function(foreground, background, alpha)
 	if not foreground or not background or not alpha then
 		vim.notify('blend() returned nil', vim.log.levels.ERROR)
