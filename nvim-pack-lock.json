@@ -183,7 +183,7 @@
       "src": "https://github.com/rachartier/tiny-cmdline.nvim"
     },
     "tree-sitter-manager.nvim": {
-      "rev": "c59cb96f62db1c41830c2bb6c32fa72ffd701105",
+      "rev": "d93782393d7d4b48ddbdbcb0fdff6f8cb8d7043a",
       "src": "https://github.com/romus204/tree-sitter-manager.nvim"
     },
     "vim-caser": {
