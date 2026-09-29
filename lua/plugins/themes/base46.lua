@@ -105,7 +105,7 @@ return {
 
 				BlinkIndent = { fg = colors.base_30.line },
 				BlinkIndentScope = { fg = colors.base_30.grey },
-				MiniIndentscopeSymbol = { fg = colors.base_30.teal, bold = true },
+				MiniIndentscopeSymbol = { fg = colors.base_30.teal },
 
 				hl.modify('NormalFloat', { fg = colors.base_30.white }),
 
