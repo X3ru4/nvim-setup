@@ -117,8 +117,7 @@ return {
 					fg = hl.getfg('Changed'),
 				})
 				hl.set('HeirlineRon', {
-					fg = hl.getfg('Removed'),
-					bold = true,
+					fg = hl.getfg('Constant'),
 				})
 				hl.set('HeirlineDark2Sep', {
 					fg = hl.alias.Black2,
@@ -152,14 +151,14 @@ return {
 				condition = function()
 					return vim.bo.modified
 				end,
-				provider = ' ',
+				provider = '◉ ',
 				hl = 'HeirlineMod',
 			},
 			{
 				condition = function()
 					return vim.bo.readonly or not vim.bo.modifiable
 				end,
-				provider = ' ',
+				provider = ' ',
 				hl = 'HeirlineRon',
 			},
 			{

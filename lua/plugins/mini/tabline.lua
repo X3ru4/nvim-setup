@@ -7,7 +7,10 @@ return {
 		tabpage_section = 'right',
 
 		format = function(bufnr, label)
-			return ' ' .. MiniIcons.get('file', label) .. ' ' .. label .. (vim.bo[bufnr].modified and '  ' or ' ')
-		end,
+			return ' '
+			  .. MiniIcons.get('file', label)
+				.. ' '
+				.. label
+				.. (vim.bo[bufnr].modified and ' ◉ ' or ' ') end,
 	},
 }
