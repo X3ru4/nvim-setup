@@ -81,7 +81,10 @@ return {
 			},
 			highlights = {
 				winopts = {
-					preview = { hidden = false },
+					preview = {
+						hidden = false,
+						title = false,
+					},
 					fullscreen = true,
 				},
 			},
