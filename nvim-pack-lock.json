@@ -69,6 +69,10 @@
       "rev": "06006b471890f19efeb199ffab5da49a2d624619",
       "src": "https://github.com/OXY2DEV/helpview.nvim"
     },
+    "hlchunk.nvim": {
+      "rev": "4ddc056e4ca45f1c7dc6aa21935df710b263b1aa",
+      "src": "https://github.com/shellRaining/hlchunk.nvim"
+    },
     "lazydev.nvim": {
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
       "src": "https://github.com/folke/lazydev.nvim"
