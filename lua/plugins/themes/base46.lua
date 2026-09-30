@@ -87,6 +87,16 @@ return {
 			end
 
 			local colors = base46.theme_tables[base46.current_theme]
+			hl.alias.Black = colors.base_30.black
+			hl.alias.White = colors.base_30.white
+			hl.alias.Red = colors.base_30.red
+			hl.alias.Orange = colors.base_30.orange
+			hl.alias.Yellow = colors.base_30.yellow
+			hl.alias.Green = colors.base_30.green
+			hl.alias.Blue = colors.base_30.blue
+			hl.alias.Cyan = colors.base_30.cyan
+			hl.alias.Purple = colors.base_30.purple
+			hl.alias.Line = colors.base_30.line
 
 			hl.apply({
 				ModeOther = { link = 'St_ConfirmMode', cforce = true },
@@ -103,14 +113,16 @@ return {
 				},
 				FloatFooter = { link = 'FloatTitle' },
 
+				-- blink.indent
 				BlinkIndent = { fg = colors.base_30.line },
+				-- mini.indentscope
 				BlinkIndentScope = { fg = colors.base_30.grey },
 				MiniIndentscopeSymbol = { fg = colors.base_30.teal },
 
-				hl.modify('NormalFloat', { fg = colors.base_30.white }),
-
 				hl.modify('MiniTablineCurrent', { bold = true }),
 				hl.modify('MiniTablineModifiedCurrent', { bold = true, italic = true }),
+
+				hl.modify('NormalFloat', { fg = colors.base_30.white }),
 
 				-- Syntax
 				hl.modify('Keyword', { italic = true }),
@@ -129,6 +141,6 @@ return {
 				hl.modify('Comment', { italic = true }),
 				hl.modify('@comment', { italic = true }),
 			})
-		end, false)
+		end)
 	end,
 }
