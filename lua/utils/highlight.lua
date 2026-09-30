@@ -32,11 +32,31 @@ function M.get(name)
 	end
 end
 
-function M.get_color(alias)
-	if M.alias[alias] then
-		return M.alias[alias]
+---Get alias value
+---@param name string
+---@param fallback string? fallback highlight when alias not found Ex: 'PmenuSel bg' to return PmenuSel background color
+---@param notify boolean?
+---@return string|number?
+function M.get_alias(name, fallback, notify)
+	if M.alias[name] then
+		return M.alias[name]
+	else
+		if notify then
+			vim.notify(name .. ' alias not found!', vim.log.levels.ERROR)
+		end
+		if fallback then
+			local hl = vim.split(fallback, ' ', { plain = true })
+			return M.get(hl[1])[hl[2]]
+		end
 	end
-	vim.notify(alias .. ' alias not found!', vim.log.levels.ERROR)
+end
+
+function M.set_alias(name, value, default)
+	if default and M.alias[name] then
+		return
+	end
+
+	M.alias[name] = value
 end
 
 ---Like M.get but return the forground color

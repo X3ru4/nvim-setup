@@ -3,7 +3,7 @@ local hl = require('utils.highlight')
 hl.setup(function()
 	-- These aliases are primarily used for heirline.nvim and fzf-lua
 	hl.set_alias('White', hl.getfg('Normal') or hl.getfg('@text'), true)
-	hl.set_alias('Black', hl.getbg('Normal') or hl.getbg('Cursor'), true)
+	hl.set_alias('Black', hl.getbg('Normal') or hl.getfg('Cursor'), true)
 
 	hl.set_alias('Black1', hl.blend(hl.alias.Black, hl.alias.White, 0.9), true)
 	hl.set_alias('Black2', hl.blend(hl.alias.Black, hl.alias.White, 0.8), true)
