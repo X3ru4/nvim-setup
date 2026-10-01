@@ -27,6 +27,5 @@ vim.g.termfeatures = {
 require('config.options')
 require('config.extra_options')
 require('config.zpack')
-require('config.usercmds')
-require('config.autocmds')
+require('config.commands')
 require('config.keymaps')
