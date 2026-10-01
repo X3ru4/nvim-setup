@@ -1,5 +1,5 @@
 return {
-	'X3ru4/hlchunk.nvim',
+	'shellRaining/hlchunk.nvim',
 	cond = vim.g.indent_guide == 'hlchunk',
 	event = { 'BufReadPre', 'BufNewFile' },
 	config = function()

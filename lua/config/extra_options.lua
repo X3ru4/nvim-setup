@@ -10,7 +10,7 @@ colorscheme.install = {
 colorscheme.default = 'base46'
 colorscheme.variant = 'base46-gruvbox_light'
 
----@type 'blink'|'mini'|'hlchunk'
+---@type 'blink'|'mini'|'hlchunk'|any
 vim.g.indent_guide = 'hlchunk'
 
 -- Quick configuration for blink.cmp
