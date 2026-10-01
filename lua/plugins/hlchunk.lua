@@ -3,9 +3,17 @@ return {
 	cond = vim.g.indent_guide == 'hlchunk',
 	event = { 'BufReadPre', 'BufNewFile' },
 	config = function()
+		local hl = require('utils.highlight')
+
 		---@type HlChunk.UserChunkConf
 		local chunk = {
 			enable = true,
+			style = function()
+				return {
+					hl.to_hex(hl.get_alias('Cyan', 'Function fg')),
+					hl.to_hex(hl.get_alias('Red', 'ErrorMsg fg')),
+				}
+			end,
 			textobject = 'ic',
 			use_treesitter = true,
 			-- animation related
@@ -13,16 +21,14 @@ return {
 			delay = 0, -- disable animation
 		}
 		---@type HlChunk.UserIndentConf
-		local indent = { enable = true }
+		local indent = {
+			enable = true,
+			style = function()
+				return hl.to_hex(hl.get_alias('Line', 'NonText fg'))
+			end,
+		}
 
 		require('hlchunk.mods.chunk')(chunk):enable()
 		require('hlchunk.mods.indent')(indent):enable()
-
-		local hl = require('utils.highlight')
-		hl.add_hook('hlchunk', function()
-			hl.set('HLChunk1', { fg = hl.get_alias('Cyan', 'Function fg') })
-			hl.set('HLChunk2', { fg = hl.get_alias('Red', 'ErrorMsg fg') })
-			hl.set('HLIndent1', { fg = hl.get_alias('Line', 'NonText fg') })
-		end, nil, true)
 	end,
 }

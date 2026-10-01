@@ -34,9 +34,9 @@ end
 
 ---Get alias value
 ---@param name string
----@param fallback string? fallback highlight when alias not found Ex: 'PmenuSel bg' to return PmenuSel background color
----@param notify boolean?
----@return string|number?
+---@param fallback string?
+---@param notify string?
+---@return string|number|nil
 function M.get_alias(name, fallback, notify)
 	if M.alias[name] then
 		return M.alias[name]
@@ -209,11 +209,8 @@ local function rgb_to_hex(r, g, b)
 	return string.format('#%02x%02x%02x', r, g, b)
 end
 
-function M.dec_to_hex(dec_color)
-	if type(dec_color) == 'number' then
-		return string.format('#%06X', dec_color)
-	end
-	return nil
+function M.to_hex(dec)
+	return type(dec) == 'number' and string.format('#%06X', dec) or dec
 end
 
 ---Blends colors with an alpha value
@@ -227,8 +224,8 @@ M.blend = function(foreground, background, alpha)
 		return
 	end
 
-	foreground = type(foreground) == 'number' and M.dec_to_hex(foreground) or foreground
-	background = type(background) == 'number' and M.dec_to_hex(background) or background
+	foreground = type(foreground) == 'number' and M.to_hex(foreground) or foreground
+	background = type(background) == 'number' and M.to_hex(background) or background
 	local color1 = hex_to_rgb(foreground)
 	local color2 = hex_to_rgb(background)
 
