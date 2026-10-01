@@ -35,15 +35,11 @@ end
 ---Get alias value
 ---@param name string
 ---@param fallback string?
----@param notify string?
 ---@return string|number|nil
-function M.get_alias(name, fallback, notify)
+function M.get_alias(name, fallback)
 	if M.alias[name] then
 		return M.alias[name]
 	else
-		if notify then
-			vim.notify(name .. ' alias not found!', vim.log.levels.ERROR)
-		end
 		if fallback then
 			local hl = vim.split(fallback, ' ', { plain = true })
 			return M.get(hl[1])[hl[2]]
@@ -116,30 +112,28 @@ end
 ---@param no_cache boolean?
 function M.apply(hl_list, no_cache)
 	local data = (hl_list and hl_list ~= {}) and hl_list or M.data[1]
-	if data then
-		if data and data ~= {} then
-			for name, opts in pairs(data) do
-				if type(name) == 'number' then
-					if type(opts) == 'function' then
-						local hl, hl_opts = opts()
-						if no_cache then
-							cache.def[hl] = nil
-						end
-						M.set(hl, hl_opts)
-					else
-						if opts[1] and opts[2] then
-							if no_cache then
-								cache.def[opts[1]] = nil
-							end
-							M.set(opts[1], opts[2])
-						end
-					end
-				else
+	if data and data ~= {} then
+		for name, opts in pairs(data) do
+			if type(name) == 'number' then
+				if type(opts) == 'function' then
+					local hl, hl_opts = opts()
 					if no_cache then
-						cache.def[name] = nil
+						cache.def[hl] = nil
 					end
-					M.set(name, opts)
+					M.set(hl, hl_opts)
+				else
+					if opts[1] and opts[2] then
+						if no_cache then
+							cache.def[opts[1]] = nil
+						end
+						M.set(opts[1], opts[2])
+					end
 				end
+			else
+				if no_cache then
+					cache.def[name] = nil
+				end
+				M.set(name, opts)
 			end
 		end
 	end
