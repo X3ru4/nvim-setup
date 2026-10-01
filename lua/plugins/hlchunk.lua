@@ -17,7 +17,7 @@ return {
 			textobject = 'ic',
 			use_treesitter = true,
 			-- animation related
-			duration = 300, -- duration of the animation
+			duration = 250, -- duration of the animation
 			delay = 0, -- disable animation
 		}
 		---@type HlChunk.UserIndentConf
