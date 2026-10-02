@@ -1,7 +1,7 @@
 vim.loader.enable()
 
--- disable rtp plugins
-local runtime_plugins = {
+-- disable runtimepath plugins
+local rtp_plugins = {
 	'fzf',
 	'gzip',
 	'man',
@@ -16,8 +16,8 @@ local runtime_plugins = {
 	'zipPlugin',
 }
 
-for _, var in ipairs(runtime_plugins) do
-	vim.g['loaded_' .. var] = 1
+for _, name in ipairs(rtp_plugins) do
+	vim.g['loaded_' .. name] = 1
 end
 
 vim.g.termfeatures = {
