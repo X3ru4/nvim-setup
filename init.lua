@@ -26,6 +26,10 @@ vim.g.termfeatures = {
 
 require('config.options')
 require('config.options-extra')
-require('config.zpack')
+
+--[[Hello]] --------------------------|
+--[[X3ru4]] require('config.zpack') --|
+--[[NvimS]] --------------------------|
+
 require('config.commands')
 require('config.keymaps')
