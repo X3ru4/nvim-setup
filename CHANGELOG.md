@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.22.0](https://github.com/X3ru4/nvim-setup/compare/v1.21.0...v1.22.0) (2026-10-02)
+
+
+### Features
+
+* add options-extra config module for colorscheme and UI settings ([9da6252](https://github.com/X3ru4/nvim-setup/commit/9da6252fcfd9d5609cb0f1f974f0641c5da1a80f))
+* **config:** add hlchunk indent guide option and color aliases to base46 theme ([c6d8da7](https://github.com/X3ru4/nvim-setup/commit/c6d8da79fd544f8f3ee080e776d31c3d6379c9b8))
+* **config:** change default indent guide to mini ([2dc0a7d](https://github.com/X3ru4/nvim-setup/commit/2dc0a7d0bc9312f06860a1770639a5c760ef20ef))
+* **hlchunk:** add error_sign option to disable error sign ([5706c93](https://github.com/X3ru4/nvim-setup/commit/5706c93594d3a32412a2b3abe25c444ad0932cf1))
+* **mini.indentscope:** add try_as_border option for border detection ([f444ad6](https://github.com/X3ru4/nvim-setup/commit/f444ad64433965dc0862e5a6450747d5c30c2ab1))
+* **plugins:** add hlchunk.nvim and refactor highlight alias setup ([bfb9905](https://github.com/X3ru4/nvim-setup/commit/bfb990505ad300a0b4d4b0bd8d163d8a4720c029))
+* **ui:** add ui_style setting to control window borders and completion appearance ([e9fbce7](https://github.com/X3ru4/nvim-setup/commit/e9fbce70a0688ba92adba2711ba580c56f8f4a0a))
+
+
+### Bug Fixes
+
+* **fzf-lua:** fzf-lua highlight not loadded ([12a9750](https://github.com/X3ru4/nvim-setup/commit/12a9750ad61e6b3961966ec234f2ddb199b95364))
+* **fzf-lua:** hide preview title in highlights ([e7601f3](https://github.com/X3ru4/nvim-setup/commit/e7601f3f3fffc6eb7f9bd6e6520e497df7eb383a))
+
 ## [1.21.0](https://github.com/X3ru4/nvim-setup/compare/v1.20.0...v1.21.0) (2026-09-27)
 
 
