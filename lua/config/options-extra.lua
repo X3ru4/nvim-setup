@@ -11,7 +11,7 @@ colorscheme.default = 'base46'
 colorscheme.variant = 'base46-gruvbox_light'
 
 ---@type 'blink'|'mini'|'hlchunk'|any
-vim.g.indent_guide = 'hlchunk'
+vim.g.indent_guide = 'mini'
 ---@type 'flat'|'rounded'|'square'|any
 vim.g.ui_style = 'flat'
 ---@type 'default'|'atom'|'atom_colored'|'flat_light'|'flat_dark'|nil|false
