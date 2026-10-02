@@ -16,6 +16,7 @@ return {
 			end,
 			textobject = 'ic',
 			use_treesitter = true,
+			error_sign = false,
 			-- animation related
 			-- duration = 250, -- duration of the animation
 			delay = 0, -- disable animation
