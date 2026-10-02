@@ -24,12 +24,14 @@ vim.g.termfeatures = {
 	osc52 = false,
 }
 
-require('config.options')
-require('config.options-extra')
-
+---------------Modules----------------|
+require('config.options')           --|
+require('config.options-extra')     --|
+--                                  --|
 --[[Hello]] --------------------------|
 --[[X3ru4]] require('config.zpack') --|
 --[[NvimS]] --------------------------|
-
-require('config.commands')
-require('config.keymaps')
+--                                  --|
+require('config.commands')          --|
+require('config.keymaps')           --|
+--------------------------------------|
