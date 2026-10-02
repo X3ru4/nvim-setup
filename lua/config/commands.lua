@@ -15,7 +15,7 @@ local group = vim.api.nvim_create_augroup('MyAuGroup', { clear = true })
 autocmd('TextYankPost', {
 	group = group,
 	callback = function()
-		vim.hl.on_yank({ higroup = 'Yank', timeout = 150, priority = 10000 })
+		vim.hl.on_yank({ higroup = 'Yank', timeout = 150 })
 	end,
 })
 autocmd({ 'InsertLeave', 'WinEnter' }, {
@@ -31,13 +31,11 @@ autocmd({ 'InsertEnter', 'WinLeave' }, {
 	end,
 })
 
-local highlight = require('utils.highlight')
 -- Load highlight configuration when changing colorscheme.
 autocmd('ColorScheme', {
 	group = group,
 	callback = function()
-		highlight.use_cache = false -- Stop using cache.
-		vim.cmd.LoadHlConfig()
+		vim.cmd.LoadHlConfig({ bang = true })
 	end,
 })
 -- Setup highlights
