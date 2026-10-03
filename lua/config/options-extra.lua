@@ -13,9 +13,9 @@ colorscheme.variant = 'base46-gruvbox_light'
 ---@type 'blink'|'mini'|'hlchunk'|any
 vim.g.indent_guide = 'mini'
 ---@type 'flat'|'rounded'|'square'|any
-vim.g.ui_style = 'flat'
+vim.g.ui_style = 'rounded'
 ---@type 'default'|'atom'|'atom_colored'|'flat_light'|'flat_dark'|nil|false
-vim.g.base46_cmp_style = 'flat_dark'
+vim.g.base46_cmp_style = 'flat_dark' -- Only works with `base46` colorscheme
 
 -- Quick configuration for blink.cmp
 local blinkcmp = {
