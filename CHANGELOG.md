@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.23.0](https://github.com/X3ru4/nvim-setup/compare/v1.22.0...v1.23.0) (2026-10-03)
+
+
+### Features
+
+* **oil:** swap key mappings for opening oil home and oil ([758707d](https://github.com/X3ru4/nvim-setup/commit/758707de88ccaa9b586606fe491c83050b3ea031))
+
 ## [1.22.0](https://github.com/X3ru4/nvim-setup/compare/v1.21.0...v1.22.0) (2026-10-02)
 
 
