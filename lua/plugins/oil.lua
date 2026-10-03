@@ -2,8 +2,8 @@ return {
 	'stevearc/oil.nvim',
 	cmd = 'Oil',
 	keys = {
-		{ '<leader>e', '<cmd>Oil<cr>', desc = 'Open oil' },
-		{ '<leader>i', '<cmd>Oil .<cr>', desc = 'Open oil home' },
+		{ '<leader>e', '<cmd>Oil<cr>', desc = 'Open oil home' },
+		{ '<leader>E', '<cmd>Oil .<cr>', desc = 'Open oil' },
 		'gf',
 	},
 	config = function()
