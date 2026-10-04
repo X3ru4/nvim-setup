@@ -30,13 +30,13 @@ return {
 				},
 				fullscreen = false,
 			},
+			fzf_colors = { true },
 			fzf_opts = {
 				['--pointer'] = '›',
 				['--gutter'] = ' ',
 				['--marker'] = '•',
 				['--ellipsis'] = '…',
 			},
-			fzf_colors = true,
 			colorschemes = {
 				live_preview = false,
 				actions = {
