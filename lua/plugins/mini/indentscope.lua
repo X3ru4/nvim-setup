@@ -25,7 +25,7 @@ return {
 			-- its body.
 			try_as_border = false,
 		},
-    -- thin: ▏, bold: ▎, middle: │
+		-- thin: ▏, bold: ▎, middle: │
 		symbol = '▏',
 	},
 }
