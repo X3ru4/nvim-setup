@@ -27,7 +27,7 @@ return {
 		local hl = require('utils.highlight')
 		hl.add_hook('tiny-cmdline', function()
 			hl.set('TinyCmdlineNormal', { link = 'Pmenu' })
-			hl.set('TinyCmdlineTitle', { fg = hl.alias.Black, bg = hl.getfg('Function'), bold = vim.g.ui_style ~= 'flat' })
+			hl.set('TinyCmdlineTitle', { fg = hl.alias.Black, bg = hl.getfg('Function') })
 			hl.set('TinyCmdlineBorder', { fg = hl.getfg('FloatBorder'), bg = hl.getbg('Pmenu') })
 		end)
 	end,

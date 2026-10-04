@@ -109,7 +109,6 @@ return {
 				FloatTitle = {
 					fg = colors.base_30.black,
 					bg = colors.base_30.blue,
-					bold = true,
 				},
 				FloatFooter = { link = 'FloatTitle' },
 
