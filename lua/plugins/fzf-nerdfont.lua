@@ -5,7 +5,7 @@ return {
 	dependencies = { 'ibhagwan/fzf-lua' },
 	cmd = 'FzfNerdfont',
 	keys = {
-		{ '<leader>fi', '<CMD>FzfNerdfont<CR>', desc = 'Open fzf nerd font picker' },
+		{ '<leader>fi', '<CMD>FzfNerdfont<CR>', desc = 'FZF open nerdfont picker' },
 	},
 	opts = {
 		prompt = 'Select Icon: ',
