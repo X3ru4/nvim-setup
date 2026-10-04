@@ -36,7 +36,7 @@ return {
 				['--marker'] = '•',
 				['--ellipsis'] = '…',
 			},
-			fzf_colors = { true },
+			fzf_colors = true,
 			colorschemes = {
 				live_preview = false,
 				actions = {
