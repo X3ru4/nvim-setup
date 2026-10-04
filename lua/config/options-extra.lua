@@ -22,7 +22,7 @@ local blinkcmp = {
 	ghost_text = true,
 	menu = {
 		border = 'none',
-		scrollbar = true,
+		scrollbar = false,
 	},
 	documentation = {
 		auto_show = false,
