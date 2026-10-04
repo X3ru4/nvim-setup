@@ -25,6 +25,6 @@ return {
 			-- its body.
 			try_as_border = true,
 		},
-		symbol = '│', -- │
+		symbol = '▏', -- │
 	},
 }
