@@ -218,7 +218,7 @@ return {
 		map.set('n', 'gri', fzf.lsp_implementations, { desc = 'LSP Implementations' })
 		map.set('n', 'grr', fzf.lsp_references, { desc = 'LSP References' })
 		map.set('n', 'grt', fzf.lsp_typedefs, { desc = 'LSP Typedefs' })
-		map.set('n', 'grs', fzf.lsp_document_symbols, { desc = 'LSP symbols' })
+		map.set('n', 'grs', fzf.lsp_document_symbols, { desc = 'LSP Document symbols' })
 
 		local hl = require('utils.highlight')
 		local fzf_hl = {

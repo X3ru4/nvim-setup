@@ -53,6 +53,8 @@ function M.setup()
 		-- 'jsonls',
 	})
 
+	map.set('n', 'grn', vim.lsp.buf.rename, { desc = 'LSP Rename' })
+
 	map.set({ 'n', 'i' }, '<C-k>', function()
 		lsp.buf.signature_help({
 			close_events = { 'BufWinLeave', 'CursorMoved', 'CursorMovedI', 'ModeChanged' },
