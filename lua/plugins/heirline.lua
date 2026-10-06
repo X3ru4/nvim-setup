@@ -8,7 +8,7 @@ return {
 		local Align = { provider = '%=' }
 		local hl = require('utils.highlight')
 
-		local Search_count = {
+		local SearchCount = {
 			condition = function()
 				return vim.v.hlsearch ~= 0 and vim.o.cmdheight == 0
 			end,
@@ -228,7 +228,7 @@ return {
 			Align,
 			{
 				flexible = 10,
-				Search_count,
+				SearchCount,
 				false,
 			},
 			{
