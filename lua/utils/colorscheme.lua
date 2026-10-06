@@ -13,12 +13,17 @@ local function load_colorscheme()
 		local is_module, spec = pcall(require, module)
 		if is_module then
 			if spec then
+				spec.module_name = name
 				M.themes[#M.themes + 1] = spec
 			end
 		else
 			vim.notify('Module cannot be executed: ' .. module)
 		end
 	end
+end
+
+local function is_default(spec)
+	return spec.name == M.default or spec.module_name == M.default or spec[1] == M.default or spec.url == M.default
 end
 
 function M.create_spec()
@@ -30,7 +35,7 @@ function M.create_spec()
 
 	for _, spec in ipairs(M.themes) do
 		if spec[1] or spec.url then
-			if spec.name == M.default or spec[1] == M.default or spec.url == M.default then
+			if is_default(spec) then
 				spec.lazy = false
 				spec.priority = 1000
 				t[#t + 1] = spec
