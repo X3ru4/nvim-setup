@@ -72,7 +72,7 @@ return {
 		if variant then
 			base46.load(variant:sub(8))
 		else
-			base46.load('onedark')
+			base46.load('gruvchad')
 		end
 
 		local hl = require('utils.highlight')
@@ -116,7 +116,7 @@ return {
 				BlinkIndent = { fg = colors.base_30.line },
 				-- mini.indentscope
 				BlinkIndentScope = { fg = colors.base_30.grey },
-				MiniIndentscopeSymbol = { fg = colors.base_30.teal },
+				MiniIndentscopeSymbol = { fg = colors.base_30.teal, bold = true },
 
 				hl.modify('MiniTablineCurrent', { bold = true }),
 				hl.modify('MiniTablineModifiedCurrent', { bold = true, italic = true }),
