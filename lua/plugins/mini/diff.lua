@@ -17,7 +17,8 @@ return {
 			style = 'number',
 
 			-- Signs used for hunks with 'sign' view
-			signs = { add = '', change = '', delete = '' },
+			-- signs = { add = '', change = '', delete = '' },
+			signs = { add = '▎', change = '▎', delete = '▎' },
 		},
 	},
 }
