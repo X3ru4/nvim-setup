@@ -30,7 +30,7 @@
       "version": ">=0.0.0"
     },
     "boole.nvim": {
-      "rev": "5ba02ec1de2d987a26b24c72253040efffaf79f0",
+      "rev": "75a594de20866089332b75baa57615e700797829",
       "src": "https://github.com/X3ru4/boole.nvim"
     },
     "conform.nvim": {
