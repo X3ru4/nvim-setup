@@ -76,9 +76,6 @@ end
 
 -- This function will be run when LSP attach to buffer.
 function M.attach(ev)
-	-- Remove the default LSP signature keymap.
-	map.del('n', 'K', { buf = ev.buf })
-
 	map.set({ 'n', 'x' }, '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code action', buf = ev.buf })
 	map.set('n', '<leader>ch', function()
 		vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
