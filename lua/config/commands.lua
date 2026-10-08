@@ -78,7 +78,7 @@ usercmd('GenTermuxColor', function(opts)
 		local color = vim.g['terminal_color_' .. i]
 
 		if color then
-			lines[#lines + 1] = base16:format(i, color)
+			lines[#lines + 1] = base16:format(i, color:upper())
 		end
 	end
 
@@ -89,7 +89,7 @@ usercmd('GenTermuxColor', function(opts)
 	}
 
 	vim.iter(keys):each(function(k, v)
-		lines[#lines + 1] = key:format(k, v)
+		lines[#lines + 1] = key:format(k, v:upper())
 	end)
 
 	local file = io.open(filename, 'w')
