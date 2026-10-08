@@ -1,15 +1,6 @@
-local usercmd = vim.api.nvim_create_user_command
-local conf_path = vim.fn.stdpath('config')
-
-usercmd('LoadHlConfig', function(opts)
-	if opts.bang then
-		require('utils.highlight').use_cache = false
-	end
-	vim.cmd.luafile(conf_path .. '/lua/config/highlights.lua')
-end, { bang = true })
-
 local autocmd = vim.api.nvim_create_autocmd
 local group = vim.api.nvim_create_augroup('MyAuGroup', { clear = true })
+local hl = require('utils.highlight')
 
 -- Highlight on yank.
 autocmd('TextYankPost', {
@@ -61,3 +52,49 @@ autocmd('LspAttach', {
 		require('config.lsp').attach(ev)
 	end,
 })
+
+local usercmd = vim.api.nvim_create_user_command
+local conf_path = vim.fn.stdpath('config')
+
+usercmd('LoadHlConfig', function(opts)
+	if opts.bang then
+		hl.use_cache = false
+	end
+	vim.cmd.luafile(conf_path .. '/lua/config/highlights.lua')
+end, { bang = true, desc = 'Load hightlighs config' })
+
+usercmd('GenTermuxColor', function(opts)
+	if not opts.bang and not vim.env.TERMUX_VERSION then
+		vim.notify('This command is for Termux only; please use `!` at the end of the command to skip.')
+		return
+	end
+
+	local filename = vim.fs.abspath('~/.termux/colors.properties')
+	local colors = {
+		'# These colors are created using Colorscheme Neovim: ' .. vim.g.colors_name,
+		'foreground=' .. hl.to_hex(hl.getfg('Normal')),
+		'background=' .. hl.to_hex(hl.getbg('Normal')),
+		'cursor=' .. hl.to_hex(hl.getbg('Cursor')),
+	}
+
+	for i = 0, 15 do
+		local color = vim.g['terminal_color_' .. i]
+
+		if color then
+			colors[#colors + 1] = string.format('color%d=%s', i, color)
+		end
+	end
+
+	local file = io.open(filename, 'w')
+	if file then
+		file:write(table.concat(colors, '\n'))
+		file:close()
+		vim.system({ 'termux-reload-settings' }, { text = true }, function(out)
+			if out.code ~= 0 then
+				vim.notify(out.stderr)
+			end
+		end)
+	else
+		vim.notify('Write ' .. filename .. ' failled!', vim.log.levels.ERROR)
+	end
+end, { bang = true, desc = 'Transferring Neovim terminal color scheme to Termux' })
