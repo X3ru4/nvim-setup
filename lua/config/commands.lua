@@ -72,8 +72,9 @@ usercmd('GenTermuxColor', function(opts)
 	local filename = vim.fs.abspath('~/.termux/colors.properties')
 	local base16 = 'color%d=%s' -- base16 colors format
 	local key = '%s=%s' -- keys format
-	local lines = { '# These colors are created using Colorscheme Neovim: ' .. vim.g.colors_name }
+	local lines = { '# Transferred from colorscheme ' .. vim.g.colors_name .. ' in Neovim' }
 
+	lines[#lines + 1] = '\n### Base16 colors'
 	for i = 0, 15 do
 		local color = vim.g['terminal_color_' .. i]
 
@@ -88,6 +89,7 @@ usercmd('GenTermuxColor', function(opts)
 		cursor = hl.to_hex(hl.getbg('Cursor')),
 	}
 
+	lines[#lines + 1] = '\n### I don\'t know, huhu 😢'
 	vim.iter(keys):each(function(k, v)
 		lines[#lines + 1] = key:format(k, v:upper())
 	end)
@@ -96,6 +98,7 @@ usercmd('GenTermuxColor', function(opts)
 	if file then
 		file:write(table.concat(lines, '\n'))
 		file:close()
+		vim.cmd.edit(filename)
 		vim.system({ 'termux-reload-settings' }, { text = true }, function(out)
 			if out.code ~= 0 then
 				vim.notify(out.stderr)
@@ -104,4 +107,4 @@ usercmd('GenTermuxColor', function(opts)
 	else
 		vim.notify('Open ' .. filename .. ' failed!', vim.log.levels.ERROR)
 	end
-end, { bang = true, desc = 'Transferring Neovim terminal color scheme to Termux' })
+end, { bang = true, desc = 'Transferring Neovim terminal colorscheme to Termux' })
