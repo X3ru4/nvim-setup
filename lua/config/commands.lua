@@ -95,6 +95,6 @@ usercmd('GenTermuxColor', function(opts)
 			end
 		end)
 	else
-		vim.notify('Write ' .. filename .. ' failled!', vim.log.levels.ERROR)
+		vim.notify('Open ' .. filename .. ' failed!', vim.log.levels.ERROR)
 	end
 end, { bang = true, desc = 'Transferring Neovim terminal color scheme to Termux' })
