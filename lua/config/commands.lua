@@ -70,24 +70,31 @@ usercmd('GenTermuxColor', function(opts)
 	end
 
 	local filename = vim.fs.abspath('~/.termux/colors.properties')
-	local colors = {
-		'# These colors are created using Colorscheme Neovim: ' .. vim.g.colors_name,
-		'foreground=' .. hl.to_hex(hl.getfg('Normal')),
-		'background=' .. hl.to_hex(hl.getbg('Normal')),
-		'cursor=' .. hl.to_hex(hl.getbg('Cursor')),
-	}
+	local base16 = 'color%d=%s' -- base16 colors format
+	local key = '%s=%s' -- keys format
+	local lines = { '# These colors are created using Colorscheme Neovim: ' .. vim.g.colors_name }
 
 	for i = 0, 15 do
 		local color = vim.g['terminal_color_' .. i]
 
 		if color then
-			colors[#colors + 1] = string.format('color%d=%s', i, color)
+			lines[#lines + 1] = base16:format(i, color)
 		end
 	end
 
+	local keys = {
+		foreground = hl.to_hex(hl.getfg('Normal')),
+		background = hl.to_hex(hl.getbg('Normal')),
+		cursor = hl.to_hex(hl.getbg('Cursor')),
+	}
+
+	vim.iter(keys):each(function(k, v)
+		lines[#lines + 1] = key:format(k, v)
+	end)
+
 	local file = io.open(filename, 'w')
 	if file then
-		file:write(table.concat(colors, '\n'))
+		file:write(table.concat(lines, '\n'))
 		file:close()
 		vim.system({ 'termux-reload-settings' }, { text = true }, function(out)
 			if out.code ~= 0 then
