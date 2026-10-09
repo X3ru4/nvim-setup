@@ -3,6 +3,19 @@ local lsp = vim.lsp
 local diagnostic = vim.diagnostic
 local map = vim.keymap
 
+local signs = {
+	[diagnostic.severity.ERROR] = '',
+	[diagnostic.severity.WARN] = '',
+	[diagnostic.severity.INFO] = '',
+	[diagnostic.severity.HINT] = '󱠂',
+}
+local signs_hl = {
+	[diagnostic.severity.ERROR] = 'DiagnosticSignError',
+	[diagnostic.severity.WARN] = 'DiagnosticSignWarn',
+	[diagnostic.severity.INFO] = 'DiagnosticSignInfo',
+	[diagnostic.severity.HINT] = 'DiagnosticSignHint',
+}
+
 function M.setup()
 	diagnostic.config({
 		virtual_text = {
@@ -13,15 +26,13 @@ function M.setup()
 		float = {
 			source = 'if_many',
 			header = '',
+			prefix = function(opts)
+				return ' ' .. signs[opts.severity] .. ' ', signs_hl[opts.severity]
+			end,
 		},
 		update_in_insert = false,
 		signs = {
-			text = {
-				[diagnostic.severity.ERROR] = '',
-				[diagnostic.severity.WARN] = '',
-				[diagnostic.severity.INFO] = '',
-				[diagnostic.severity.HINT] = '󰛨',
-			},
+			text = signs,
 		},
 	})
 
@@ -55,16 +66,24 @@ function M.setup()
 
 	map.set('n', 'grn', vim.lsp.buf.rename, { desc = 'LSP Rename' })
 
+	local close_events = { 'BufWinLeave', 'CursorMoved', 'CursorMovedI', 'ModeChanged' }
 	map.set({ 'n', 'i' }, '<C-k>', function()
 		lsp.buf.signature_help({
-			close_events = { 'BufWinLeave', 'CursorMoved', 'CursorMovedI', 'ModeChanged' },
+			close_events = close_events,
 			title = '  Signature help ',
 			title_pos = 'center',
 		})
 	end, { desc = 'Signature help' })
-	map.set({ 'n', 'i' }, '<C-j>', function()
+	map.set('n', 'K', function()
+		lsp.buf.hover({
+			close_events = close_events,
+			title = '  Hover ',
+			title_pos = 'center',
+		})
+	end, { desc = 'Signature help' })
+	map.set('n', 'L', function()
 		diagnostic.open_float(nil, {
-			close_events = { 'BufWinLeave', 'CursorMoved', 'CursorMovedI', 'ModeChanged' },
+			close_events = close_events,
 			title = '  Diagnostics ',
 			title_pos = 'center',
 		})
