@@ -34,11 +34,11 @@ hl.setup(function()
 			bold = true,
 		},
 		-- Create highlights for the basic Vim/Nvim modes used in heirline.nvim.
-		set_modehl('Other', 'MiniStatuslineModeOther', 'DiagnosticSignInfo'),
+		set_modehl('Other', 'MiniStatuslineModeOther', 'Function'),
 		set_modehl('Normal', 'MiniStatuslineModeNormal', 'DiagnosticSignInfo'),
-		set_modehl('Insert', 'MiniStatuslineModeInsert', 'DiagnosticSignOk'),
+		set_modehl('Insert', 'MiniStatuslineModeInsert', 'Added'),
 		set_modehl('Visual', 'MiniStatuslineModeVisual', 'DiagnosticSignWarn'),
-		set_modehl('Command', 'MiniStatuslineModeCommand', 'DiagnosticSignError'),
+		set_modehl('Command', 'MiniStatuslineModeCommand', 'Removed'),
 		set_modehl('Replace', 'MiniStatuslineModeReplace', 'DiagnosticSignError'),
 		-- Modify default highlights.
 		hl.modify('Visual', { bold = true }),
