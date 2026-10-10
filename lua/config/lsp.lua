@@ -77,7 +77,7 @@ function M.setup()
 	map.set('n', 'K', function()
 		lsp.buf.hover({
 			close_events = close_events,
-			title = '  Hover ',
+			title = '  Info ',
 			title_pos = 'center',
 		})
 	end, { desc = 'Signature help' })
