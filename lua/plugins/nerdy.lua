@@ -15,6 +15,7 @@ return {
 
 		vim.keymap.set('n', '<leader>fi', function()
 			require('fzf-lua').fzf_exec(items, {
+				prompt = 'Icon: ',
 				fzf_opts = { ['--multi'] = true },
 				winopts = { title = '  Nerdy Icons ' },
 				actions = copy_to_clipboard and {
@@ -35,6 +36,6 @@ return {
 					return newline, col
 				end or nil,
 			})
-		end)
+		end, { desc = 'FZF Nerdy Icons' })
 	end,
 }
