@@ -34,8 +34,6 @@
 
 ### Optional
 
-- **jq CLI** (for fzf-nerdfont)
-- **GNU make** (for fzf-nerdfont)
 - **pip**
 - **npm**
 - **git-delta** (syntax highlighted git pager for git status previews)
