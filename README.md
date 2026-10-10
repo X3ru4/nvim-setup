@@ -20,7 +20,6 @@
 
 ### Mandatory
 
-- **A brain**
 - **Neovim** release v0.12 or newer
 - **Nerd font**
 - **git**
@@ -28,7 +27,7 @@
 - **curl**
 - **tree-sitter CLI**
 - **ripgrep** (better grep utility)
-- **cargo CLI** (for building blink.pairs)
+- **cargo CLI** (for building blink.pairs, ...)
 - **fzf** version > 0.36 (for fzf-lua)
 - **fd** (better find utility)
 
