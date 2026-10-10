@@ -81,7 +81,7 @@ function M.setup()
 			title_pos = 'center',
 		})
 	end, { desc = 'Signature help' })
-	map.set('n', 'L', function()
+	map.set('n', '<C-j>', function()
 		diagnostic.open_float(nil, {
 			close_events = close_events,
 			title = '  Diagnostics ',
