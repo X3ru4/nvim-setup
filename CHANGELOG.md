@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.23.0](https://github.com/X3ru4/nvim-setup/compare/v1.22.0...v1.23.0) (2026-10-10)
+
+
+### Features
+
+* add diagnostic signs, custom float prefixes, and new hover/diagnostics key mappings. ([d937e47](https://github.com/X3ru4/nvim-setup/commit/d937e4794e7629ac13103ddbb7208f0473f02845))
+* **boole:** add maximum_loop option to infinite loop detection ([308c71e](https://github.com/X3ru4/nvim-setup/commit/308c71ec149c94b187985593dff2e42c8fb66e22))
+* **commands:** add GenTermuxColor and refactor LoadHlConfig for better usability ([264b93c](https://github.com/X3ru4/nvim-setup/commit/264b93cef6a1747edf0727d9e617540ececc98ec))
+* **config:** add new ui_style 'combine' with custom border configuration ([33673da](https://github.com/X3ru4/nvim-setup/commit/33673da065e4766fe7a26fbb59f055c44e05fa17))
+* **config:** update mode highlight icons to use Function, Added, and Removed instead of DiagnosticSignInfo/Ok/Error ([8bae348](https://github.com/X3ru4/nvim-setup/commit/8bae34806bb9f4f7e0c4f3a94a81537ff0bc73af))
+* **diff:** use simple block sign for all diff hunks ([e6ff701](https://github.com/X3ru4/nvim-setup/commit/e6ff701bb0d163b04cf1909d557248d0eef76dc2))
+* **lsp:** add LSP rename mapping and clarify document symbols description ([6e0c714](https://github.com/X3ru4/nvim-setup/commit/6e0c7143d5f4a1933651b867df7d0c11081f6152))
+* **nerdy:** add prompt to Nerdy icons picker ([cfd28e1](https://github.com/X3ru4/nvim-setup/commit/cfd28e16da0cb82c7665632423036315a040bdca))
+* **oil:** swap key mappings for opening oil home and oil ([758707d](https://github.com/X3ru4/nvim-setup/commit/758707de88ccaa9b586606fe491c83050b3ea031))
+* **pack:** add nerdy.nvim and update several plugin revisions ([095df50](https://github.com/X3ru4/nvim-setup/commit/095df50c501235aa62d67a7f3a30d2996c26e80c))
+* **plugins:** add nerdy.nvim for selecting nerd icons via fzf ([0670475](https://github.com/X3ru4/nvim-setup/commit/06704753efa75ec62134ca5ab1117b19e11cc38c))
+* **theme:** switch default to gruvchad and bold MiniIndentscopeSymbol ([aa01e2d](https://github.com/X3ru4/nvim-setup/commit/aa01e2d5dcbbc0ae9b4fff57bd3f6546a1903031))
+
+
+### Bug Fixes
+
+* **colorscheme:** add module_name to theme spec and fix default theme detection ([0b87d5b](https://github.com/X3ru4/nvim-setup/commit/0b87d5b30a46584fd6ae6228c796f82ffb646f66))
+* **commands:** correct typo in GenTermuxColor error message. ([049cfa2](https://github.com/X3ru4/nvim-setup/commit/049cfa2a7d0258b1fa1cf00cddcf9203997419a5))
+
 ## [1.22.0](https://github.com/X3ru4/nvim-setup/compare/v1.21.0...v1.22.0) (2026-10-02)
 
 
