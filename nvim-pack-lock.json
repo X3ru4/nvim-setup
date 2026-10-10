@@ -50,12 +50,8 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "ed0e0ead1789ee349cbf025900931fb402b1e05e",
+      "rev": "48d7c3db291a2c7c1825905c227a6bc81c83b837",
       "src": "https://github.com/ibhagwan/fzf-lua"
-    },
-    "fzf-nerdfont.nvim": {
-      "rev": "642164f28a74e45e0607df5006f9086c0914e117",
-      "src": "https://github.com/stephansama/fzf-nerdfont.nvim"
     },
     "guess-indent.nvim": {
       "rev": "84a4987ff36798c2fc1169cbaff67960aed9776f",
@@ -90,7 +86,7 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "matchparen.nvim": {
-      "rev": "38e9cf93220adf34991c4602ca94d279687659fd",
+      "rev": "7a0928f528db7a01807ea32d50d0e4425d629188",
       "src": "https://github.com/monkoose/matchparen.nvim"
     },
     "mini-git": {
@@ -106,7 +102,7 @@
       "src": "https://github.com/nvim-mini/mini.align"
     },
     "mini.clue": {
-      "rev": "02bde369582d2dd9af3195cde70310733856b79a",
+      "rev": "75e803eef5ca2be91e6c6030930e9f8723f2caae",
       "src": "https://github.com/nvim-mini/mini.clue"
     },
     "mini.diff": {
@@ -141,6 +137,10 @@
       "rev": "704b99f10a72cc05d370cfeb294ff83412a8ab55",
       "src": "https://github.com/jake-stewart/multicursor.nvim"
     },
+    "nerdy.nvim": {
+      "rev": "313260b2dd2054b6fc7327fe70f3e0aa06aa7cb8",
+      "src": "https://github.com/2kabhishek/nerdy.nvim"
+    },
     "nvim-colorizer.lua": {
       "rev": "72a05f62c52241bc7441c820eb53946f92b2e6a4",
       "src": "https://github.com/catgoose/nvim-colorizer.lua"
@@ -150,7 +150,7 @@
       "src": "https://codeberg.org/mfussenegger/nvim-lint.git"
     },
     "nvim-lspconfig": {
-      "rev": "db68de3575fff9dd9bb78b34c8371759ed35fe34",
+      "rev": "c59fc922f718fa055f69f5f3bc888f23211571eb",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter-textobjects": {
