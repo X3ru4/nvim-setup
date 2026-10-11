@@ -86,7 +86,7 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "matchparen.nvim": {
-      "rev": "7a0928f528db7a01807ea32d50d0e4425d629188",
+      "rev": "39ff27e3c14a250d77f9437d836090d6190675a1",
       "src": "https://github.com/monkoose/matchparen.nvim"
     },
     "mini-git": {
