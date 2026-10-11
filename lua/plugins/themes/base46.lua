@@ -114,8 +114,8 @@ return {
 
 				-- blink.indent
 				BlinkIndent = { fg = colors.base_30.line },
+				BlinkIndentScope = { fg = colors.base_30.teal },
 				-- mini.indentscope
-				BlinkIndentScope = { fg = colors.base_30.grey },
 				MiniIndentscopeSymbol = { fg = colors.base_30.teal },
 
 				hl.modify('MiniTablineCurrent', { bold = true }),
