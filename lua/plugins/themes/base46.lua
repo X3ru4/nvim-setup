@@ -99,12 +99,12 @@ return {
 			hl.alias.Line = colors.base_30.line
 
 			hl.apply({
-				ModeOther = { link = 'St_ConfirmMode', cforce = true },
-				ModeNormal = { link = 'St_NormalMode', cforce = true },
-				ModeInsert = { link = 'St_InsertMode', cforce = true },
-				ModeVisual = { link = 'St_VisualMode', cforce = true },
-				ModeCommand = { link = 'St_CommandMode', cforce = true },
-				ModeReplace = { link = 'St_ReplaceMode', cforce = true },
+				ModeOther = { link = 'St_ConfirmMode', _force = true },
+				ModeNormal = { link = 'St_NormalMode', _force = true },
+				ModeInsert = { link = 'St_InsertMode', _force = true },
+				ModeVisual = { link = 'St_VisualMode', _force = true },
+				ModeCommand = { link = 'St_CommandMode', _force = true },
+				ModeReplace = { link = 'St_ReplaceMode', _force = true },
 
 				FloatTitle = {
 					fg = colors.base_30.black,

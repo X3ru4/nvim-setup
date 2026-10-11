@@ -69,8 +69,8 @@ end
 ---@param opts vim.api.keyset.highlight|table
 ---@param force boolean?
 function M.set(name, opts, force)
-	if (force or opts.cforce) or not cache.def[name] then
-		opts.cforce = nil
+	if (force or opts._force) or not cache.def[name] then
+		opts._force = nil
 		vim.api.nvim_set_hl(0, name, opts)
 		cache.get[name] = nil
 		cache.def[name] = true
