@@ -19,7 +19,8 @@ return {
 					{ type = ':', pattern = '^%s*he?l?p?%s+', title = '  Help ' },
 					{ type = ':', pattern = '^%s*color?s?c?h?e?m?e?%s+', title = ' 󱥚 Colorscheme ' },
 					{ type = ':', pattern = '^%s*chec?k?h?e?a?l?t?h?%s+', title = '  Checkhealth ' },
-					{ title = '  Cmdline ' },
+					{ type = '@', title = '  Input ' },
+					{ title = '  Cmdline ' },
 				},
 			},
 		})
