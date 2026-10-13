@@ -80,7 +80,7 @@ return {
 			return vim.g.colors_name:sub(1, 7) == 'base46-'
 		end
 
-		-- It will load if you change the colorscheme.
+		-- It will be applied when the `UIEnter` or `Colorscheme` event is triggered.
 		hl.add_hook('base46', function()
 			if not is_base46() then
 				return
@@ -117,11 +117,14 @@ return {
 				BlinkIndentScope = { fg = colors.base_30.teal },
 				-- mini.indentscope
 				MiniIndentscopeSymbol = { fg = colors.base_30.teal },
-
+				-- mini.diff
+				MiniDiffOverChange = {
+					fg = colors.base_30.yellow,
+					bg = hl.blend(colors.base_30.yellow, colors.base_30.black, 0.2),
+				},
+				-- mini.tabline
 				hl.modify('MiniTablineCurrent', { bold = true }),
 				hl.modify('MiniTablineModifiedCurrent', { bold = true, italic = true }),
-
-				hl.modify('NormalFloat', { fg = colors.base_30.white }),
 
 				-- Syntax
 				hl.modify('Keyword', { italic = true }),
@@ -139,6 +142,9 @@ return {
 				hl.modify('Type', { bold = true }),
 				hl.modify('Comment', { italic = true }),
 				hl.modify('@comment', { italic = true }),
+
+				-- Default
+				hl.modify('NormalFloat', { fg = colors.base_30.white }),
 			})
 		end)
 	end,
