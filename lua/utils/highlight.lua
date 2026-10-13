@@ -22,13 +22,16 @@ end
 
 ---Get the highlight but with the cache.
 ---@param name string
+---@param ns_id number?
 ---@return vim.api.keyset.get_hl_info|table
-function M.get(name)
-	if not cache.get[name] then
-		cache.get[name] = vim.api.nvim_get_hl(0, { name = name, link = false })
-		return cache.get[name]
+function M.get(name, ns_id)
+	local _ns_id = ns_id or 'global'
+	cache.get[_ns_id] = cache.get[_ns_id] or {}
+	if not cache.get[_ns_id][name] then
+		cache.get[_ns_id][name] = vim.api.nvim_get_hl(ns_id or 0, { name = name, link = false })
+		return cache.get[_ns_id][name]
 	else
-		return cache.get[name]
+		return cache.get[_ns_id][name]
 	end
 end
 
@@ -66,20 +69,28 @@ end
 
 ---Like the vim.api.nvim_set_hl() but with the cache.
 ---@param name string
----@param opts vim.api.keyset.highlight|table
+---@param opts vim.api.keyset.highlight|table|{ _force: boolean?, ns_id: number? }
 ---@param force boolean?
 function M.set(name, opts, force)
-	if (force or opts._force) or not cache.def[name] then
+	local ns_id = opts.ns_id or 'global'
+	cache.def[ns_id] = cache.def[ns_id] or {}
+	if (force or opts._force) or not cache.def[ns_id][name] then
 		opts._force = nil
-		vim.api.nvim_set_hl(0, name, opts)
-		cache.get[name] = nil
-		cache.def[name] = true
+		opts.ns_id = nil
+		cache.get[ns_id] = cache.get[ns_id] or {}
+		vim.api.nvim_set_hl(opts.ns_id or 0, name, opts)
+		cache.get[ns_id][name] = nil
+		cache.def[ns_id][name] = true
 	end
 end
 
 ---@param hl_list utility.highlight.highlights
-function M.insert(hl_list)
-	M.data[1] = vim.tbl_deep_extend('force', M.data[1], hl_list)
+---@param behavior 'error'|'keep'|'force'? Decides what to do if a key is found in more than one map:
+---      - 'error': raise an error
+---      - 'force': use value from the rightmost map
+---      - 'keep':  use value from the leftmost map
+function M.insert(hl_list, behavior)
+	M.data[1] = vim.tbl_deep_extend(behavior or 'force', M.data[1], hl_list)
 	return M.data[1]
 end
 
@@ -172,7 +183,7 @@ function M.run_hooks()
 end
 
 ---Setup
----@param config function
+---@param config function|table
 function M.setup(config)
 	if started then
 		M.data[1] = {}
@@ -182,7 +193,12 @@ function M.setup(config)
 		M.clear_cache()
 	end
 
-	config()
+	if type(config) == 'function' then
+		config(M.data[1])
+	else
+		M.insert(config)
+	end
+
 	M.apply()
 	M.run_hooks()
 	M.use_cache, started = true, true
