@@ -86,7 +86,7 @@ end
 ---Modify highlight.
 ---@param name string The highlight name
 ---@param opts vim.api.keyset.highlight|fun(base:vim.api.keyset.get_hl_info):table
----@param append boolean? If true, it will be added to the M.highlight table.
+---@param append boolean? If true, it will be added to the M.data[1] table.
 ---@return [string, table]
 function M.modify(name, opts, append)
 	if not M.hl_exist(name) then
@@ -107,7 +107,7 @@ function M.modify(name, opts, append)
 	return { name, opts }
 end
 
----Apply highlights from `hl_list`. If `hl_list` is empty (nil), apply the M.highlights table instead.
+---Apply highlights from `hl_list`. If `hl_list` is empty (nil), apply the M.data[1] table instead.
 ---@param hl_list nil|utility.highlight.highlights
 ---@param no_cache boolean?
 function M.apply(hl_list, no_cache)
@@ -188,23 +188,30 @@ function M.setup(config)
 	M.use_cache, started = true, true
 end
 
-local function hex_to_rgb(hex)
-	if hex:byte(1) == 35 then -- #
-		hex = hex:sub(2)
-	end
-	return {
-		r = tonumber(hex:sub(1, 2), 16),
-		g = tonumber(hex:sub(3, 4), 16),
-		b = tonumber(hex:sub(5, 6), 16),
-	}
+---Convert numerical color codes to hexadecimal color codes.
+function M.to_hex(dec)
+	return type(dec) == 'number' and string.format('#%06X', dec) or dec
 end
 
 local function rgb_to_hex(r, g, b)
 	return string.format('#%02x%02x%02x', r, g, b)
 end
 
-function M.to_hex(dec)
-	return type(dec) == 'number' and string.format('#%06X', dec) or dec
+---@param hex string|number
+---@return { r: number, g: number, b: number }
+local function hex_to_rgb(hex)
+	if type(hex) == 'string' then
+		if hex:byte(1) == 35 then -- #
+			hex = hex:sub(2)
+		end
+	else
+		hex = M.to_hex(hex)
+	end
+	return {
+		r = tonumber(hex:sub(1, 2), 16),
+		g = tonumber(hex:sub(3, 4), 16),
+		b = tonumber(hex:sub(5, 6), 16),
+	}
 end
 
 ---Blends colors with an alpha value
@@ -220,13 +227,13 @@ M.blend = function(foreground, background, alpha)
 
 	foreground = type(foreground) == 'number' and M.to_hex(foreground) or foreground
 	background = type(background) == 'number' and M.to_hex(background) or background
-	local color1 = hex_to_rgb(foreground)
-	local color2 = hex_to_rgb(background)
+	local fg = hex_to_rgb(foreground)
+	local bg = hex_to_rgb(background)
 
-	-- Alpha blend formula: blended = alpha * color1 + (1 - alpha) * color2
-	local r = math.floor(alpha * color1.r + (1 - alpha) * color2.r + 0.5)
-	local g = math.floor(alpha * color1.g + (1 - alpha) * color2.g + 0.5)
-	local b = math.floor(alpha * color1.b + (1 - alpha) * color2.b + 0.5)
+	-- Alpha blend formula: blended = alpha * fg + (1 - alpha) * bg
+	local r = math.floor(alpha * fg.r + (1 - alpha) * bg.r + 0.5)
+	local g = math.floor(alpha * fg.g + (1 - alpha) * bg.g + 0.5)
+	local b = math.floor(alpha * fg.b + (1 - alpha) * bg.b + 0.5)
 
 	-- Clamp values between 0 and 255
 	r = math.max(0, math.min(255, r))
