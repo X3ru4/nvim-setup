@@ -3,10 +3,10 @@ return {
 	'rebelot/heirline.nvim',
 	event = 'UIEnter',
 	config = function()
+		local hl = require('utils.highlight')
 		local separator = { '', '' }
 		local Space = { provider = ' ' }
 		local Align = { provider = '%=' }
-		local hl = require('utils.highlight')
 
 		local SearchCount = {
 			condition = function()

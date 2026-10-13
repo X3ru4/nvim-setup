@@ -1,29 +1,29 @@
 local hl = require('utils.highlight')
 
+local function set_modehl(mode, hlname, fallback)
+	if hl.hl_exist(hlname) then
+		return { 'Mode' .. mode, { link = hlname, default = true } }
+	end
+	return {
+		'Mode' .. mode,
+		{
+			default = true,
+			fg = hl.alias.Black,
+			bg = hl.getfg(fallback),
+			bold = true,
+		},
+	}
+end
+
 hl.setup(function()
 	-- These aliases are primarily used for heirline.nvim and fzf-lua
 	hl.alias.White = hl.getfg('Normal') or hl.getfg('@text')
-	hl.alias.Black = hl.getbg('Normal') or hl.getfg('Cursor')
+	hl.alias.Black = hl.getbg('Normal') or hl.getbg('StatusLine')
 
 	hl.alias.Black1 = hl.blend(hl.alias.Black, hl.alias.White, 0.9)
 	hl.alias.Black2 = hl.blend(hl.alias.Black, hl.alias.White, 0.8)
 	hl.alias.Black3 = hl.blend(hl.alias.Black, hl.alias.White, 0.7)
 	hl.alias.Black4 = hl.blend(hl.alias.Black, hl.alias.White, 0.6)
-
-	local function set_modehl(mode, hlname, fallback)
-		if hl.hl_exist(hlname) then
-			return { 'Mode' .. mode, { link = hlname, default = true } }
-		end
-		return {
-			'Mode' .. mode,
-			{
-				default = true,
-				fg = hl.alias.Black,
-				bg = hl.getfg(fallback),
-				bold = true,
-			},
-		}
-	end
 
 	hl.insert({
 		-- All highlights are cached, so use `_force = true` to ignore them.
