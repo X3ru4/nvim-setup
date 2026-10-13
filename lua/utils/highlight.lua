@@ -3,6 +3,18 @@ local cache = {
 	get = {},
 }
 
+local function ensure_def(ns_id)
+	if not cache.def[ns_id] then
+		cache.def[ns_id] = {}
+	end
+end
+
+local function ensure_get(ns_id)
+	if not cache.get[ns_id] then
+		cache.get[ns_id] = {}
+	end
+end
+
 local M = {}
 
 M.alias = {}
@@ -25,13 +37,13 @@ end
 ---@param ns_id number?
 ---@return vim.api.keyset.get_hl_info|table
 function M.get(name, ns_id)
-	local _ns_id = ns_id or 'global'
-	cache.get[_ns_id] = cache.get[_ns_id] or {}
-	if not cache.get[_ns_id][name] then
-		cache.get[_ns_id][name] = vim.api.nvim_get_hl(ns_id or 0, { name = name, link = false })
-		return cache.get[_ns_id][name]
+	ns_id = ns_id or 0
+	ensure_get(ns_id)
+	if not cache.get[ns_id][name] then
+		cache.get[ns_id][name] = vim.api.nvim_get_hl(ns_id, { name = name, link = false })
+		return cache.get[ns_id][name]
 	else
-		return cache.get[_ns_id][name]
+		return cache.get[ns_id][name]
 	end
 end
 
@@ -72,13 +84,13 @@ end
 ---@param opts vim.api.keyset.highlight|table|{ _force: boolean?, ns_id: number? }
 ---@param force boolean?
 function M.set(name, opts, force)
-	local ns_id = opts.ns_id or 'global'
-	cache.def[ns_id] = cache.def[ns_id] or {}
+	local ns_id = opts.ns_id or 0
+	ensure_get(ns_id)
+	ensure_def(ns_id)
 	if (force or opts._force) or not cache.def[ns_id][name] then
 		opts._force = nil
 		opts.ns_id = nil
-		cache.get[ns_id] = cache.get[ns_id] or {}
-		vim.api.nvim_set_hl(opts.ns_id or 0, name, opts)
+		vim.api.nvim_set_hl(ns_id, name, opts)
 		cache.get[ns_id][name] = nil
 		cache.def[ns_id][name] = true
 	end
