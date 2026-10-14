@@ -30,16 +30,23 @@ return {
 		format_on_save = false,
 	},
 	init = function()
-		vim.o.formatexpr = 'v:lua.require\'conform\'.formatexpr()'
+		vim.o.formatexpr = [[v:lua.require'conform'.formatexpr()]]
 	end,
 	keys = {
 		{
 			'<leader>cf',
 			function()
-				require('conform').format({ async = true, lsp_fallback = true })
+				require('conform').format({ async = true, lsp_fallback = true }, function(err, _)
+					if not err then
+						local mode = vim.api.nvim_get_mode().mode
+						if vim.startswith(mode:lower(), 'v') then
+							vim.api.nvim_feedkeys(vim.keycode('<Esc>'), 'nx', false)
+						end
+					end
+				end)
 			end,
 			desc = 'Format code',
-			mode = { 'x', 'n', 'v' },
+			mode = { 'n', 'x' },
 		},
 	},
 }
