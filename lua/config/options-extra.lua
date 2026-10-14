@@ -8,7 +8,7 @@ colorscheme.install = {
 
 -- I recommend using base46 because it has more integration support and looks nicer
 colorscheme.default = 'base46'
-colorscheme.variant = 'base46-gruvbox_light'
+colorscheme.variant = 'base46-everforest'
 
 ---@type 'blink'|'mini'|'hlchunk'|any
 vim.g.indent_guide = 'mini'
