@@ -1,6 +1,6 @@
 local hl = require('utils.highlight')
 
-local function set_modehl(mode, link, fallback)
+local function set_hl_mode(mode, link, fallback)
 	if hl.hl_exist(link) then
 		return { 'Mode' .. mode, { link = link, default = true } }
 	end
@@ -34,12 +34,12 @@ hl.setup(function()
 			bold = false,
 		},
 		-- Create highlights for the basic Vim/Nvim modes used in heirline.nvim.
-		set_modehl('Other', 'MiniStatuslineModeOther', 'Function'),
-		set_modehl('Normal', 'MiniStatuslineModeNormal', 'DiagnosticSignInfo'),
-		set_modehl('Insert', 'MiniStatuslineModeInsert', 'Added'),
-		set_modehl('Visual', 'MiniStatuslineModeVisual', 'DiagnosticSignWarn'),
-		set_modehl('Command', 'MiniStatuslineModeCommand', 'Removed'),
-		set_modehl('Replace', 'MiniStatuslineModeReplace', 'DiagnosticSignError'),
+		set_hl_mode('Other', 'MiniStatuslineModeOther', 'Function'),
+		set_hl_mode('Normal', 'MiniStatuslineModeNormal', 'DiagnosticSignInfo'),
+		set_hl_mode('Insert', 'MiniStatuslineModeInsert', 'Added'),
+		set_hl_mode('Visual', 'MiniStatuslineModeVisual', 'DiagnosticSignWarn'),
+		set_hl_mode('Command', 'MiniStatuslineModeCommand', 'Removed'),
+		set_hl_mode('Replace', 'MiniStatuslineModeReplace', 'DiagnosticSignError'),
 		-- Modify default highlights.
 		hl.modify('Visual', { bold = false }),
 		-- hl.modify('FloatTitle', { bg = hl.getbg('NormalFloat') }),
