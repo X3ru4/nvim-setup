@@ -21,7 +21,7 @@ return {
 		},
 		event = { 'InsertEnter', 'CmdlineEnter' },
 		config = function()
-			local extra = opt_extra.blinkcmp
+			local extra = nve.blinkcmp
 
 			require('blink.cmp').setup({
 				keymap = {

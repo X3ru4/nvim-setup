@@ -1,6 +1,6 @@
 return {
 	'saghen/blink.indent',
-	cond = opt_extra.indent_guide == 'blink',
+	cond = nve.indent_guide == 'blink',
 	event = 'BufReadPost',
 	keys = {
 		{
@@ -15,10 +15,10 @@ return {
 	---@type blink.indent.Config
 	opts = {
 		static = {
-			char = opt_extra.indent_guide_char,
+			char = nve.indent_guide_char,
 		},
 		scope = {
-			char = opt_extra.indent_guide_char,
+			char = nve.indent_guide_char,
 			indent_at_cursor = true,
 			highlights = { 'BlinkIndentScope' },
 		},

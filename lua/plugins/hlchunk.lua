@@ -1,6 +1,6 @@
 return {
 	'shellRaining/hlchunk.nvim',
-	cond = opt_extra.indent_guide == 'hlchunk',
+	cond = nve.indent_guide == 'hlchunk',
 	event = { 'BufReadPre', 'BufNewFile' },
 	config = function()
 		local hl = require('utils.highlight')
