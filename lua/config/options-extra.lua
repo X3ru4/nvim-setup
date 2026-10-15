@@ -39,36 +39,36 @@ local blinkcmp = {
 ---@type [string, function]
 local ui_styles = {
 	flat = function()
-		vim.opt.winborder = 'solid'
-		blinkcmp.menu.border = 'none'
+		vim.opt.winborder             = 'solid'
+		blinkcmp.menu.border          = 'none'
 		blinkcmp.documentation.border = 'solid'
-		vim.g.base46_cmp_style = 'flat_dark'
+		vim.g.base46_cmp_style        = 'flat_dark'
 	end,
 	rounded = function()
-		vim.opt.winborder = 'rounded'
-		blinkcmp.menu.border = 'rounded'
+		vim.opt.winborder             = 'rounded'
+		blinkcmp.menu.border          = 'rounded'
 		blinkcmp.documentation.border = 'rounded'
-		vim.g.base46_cmp_style = 'default'
+		vim.g.base46_cmp_style        = 'default'
 	end,
 	square = function()
-		vim.opt.winborder = 'single'
-		blinkcmp.menu.border = 'single'
+		vim.opt.winborder             = 'single'
+		blinkcmp.menu.border          = 'single'
 		blinkcmp.documentation.border = 'single'
-		vim.g.base46_cmp_style = 'default'
+		vim.g.base46_cmp_style        = 'default'
 	end,
 	combine = function()
-		vim.opt.winborder = 'rounded'
-		blinkcmp.menu.border = 'none'
+		vim.opt.winborder             = 'rounded'
+		blinkcmp.menu.border          = 'none'
 		blinkcmp.documentation.border = 'solid'
-		vim.g.base46_cmp_style = 'flat_dark'
+		vim.g.base46_cmp_style        = 'flat_dark'
 	end,
 }
 
 local ig_chars = {
-	thin = '▏',
-	thick = '▎',
-	middle = '│',
-	dashed = '┆',
+	thin    = '▏',
+	thick   = '▎',
+	middle  = '│',
+	dashed  = '┆',
 	dashed2 = '┊',
 }
 
