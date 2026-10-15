@@ -31,7 +31,7 @@ hl.setup(function()
 		Yank = {
 			fg = hl.getbg('IncSearch'),
 			bg = hl.blend(hl.getbg('IncSearch'), hl.alias.Black, 0.3),
-			bold = true,
+			bold = false,
 		},
 		-- Create highlights for the basic Vim/Nvim modes used in heirline.nvim.
 		set_modehl('Other', 'MiniStatuslineModeOther', 'Function'),
@@ -41,7 +41,7 @@ hl.setup(function()
 		set_modehl('Command', 'MiniStatuslineModeCommand', 'Removed'),
 		set_modehl('Replace', 'MiniStatuslineModeReplace', 'DiagnosticSignError'),
 		-- Modify default highlights.
-		hl.modify('Visual', { bold = true }),
+		hl.modify('Visual', { bold = false }),
 		-- hl.modify('FloatTitle', { bg = hl.getbg('NormalFloat') }),
 		hl.modify('FloatBorder', { bg = hl.getbg('NormalFloat'), _force = true }),
 		-- function ()
