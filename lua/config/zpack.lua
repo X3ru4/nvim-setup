@@ -9,7 +9,7 @@ vim.g.maplocalleader = '\\'
 -- automatically import specs from `./lua/plugins/`
 require('zpack').setup({
 	defaults = {
-		confirm = false,
+		confirm = true,
 		lazy = true,
 	},
 	dev = {
