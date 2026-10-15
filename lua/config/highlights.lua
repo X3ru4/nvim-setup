@@ -1,8 +1,8 @@
 local hl = require('utils.highlight')
 
-local function set_modehl(mode, hlname, fallback)
-	if hl.hl_exist(hlname) then
-		return { 'Mode' .. mode, { link = hlname, default = true } }
+local function set_modehl(mode, link, fallback)
+	if hl.hl_exist(link) then
+		return { 'Mode' .. mode, { link = link, default = true } }
 	end
 	return {
 		'Mode' .. mode,
