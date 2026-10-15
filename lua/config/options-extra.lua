@@ -1,3 +1,4 @@
+_G.opt_extra = {}
 local colorscheme = require('utils.colorscheme')
 
 -- Add colorscheme in ~/.config/nvim/lua/plugins/themes/ press `gf` to open
@@ -11,13 +12,13 @@ colorscheme.default = 'base46'
 colorscheme.variant = 'base46-gruvbox_light'
 
 ---@type 'blink'|'mini'|'hlchunk'|any
-vim.g.indent_guide = 'blink'
+opt_extra.indent_guide = 'blink'
 ---@type 'thin'|'thick'|'middle'|'dashed'|'dashed2'|any
-vim.g.indent_guide_style = 'thin'
+opt_extra.indent_guide_style = 'thin'
 ---@type 'flat'|'rounded'|'square'|'combine'|any
-vim.g.ui_style = 'combine'
+opt_extra.ui_style = 'combine'
 ---@type 'default'|'atom'|'atom_colored'|'flat_light'|'flat_dark'|nil|false
-vim.g.base46_cmp_style = 'flat_dark' -- Only works with `base46` colorscheme
+opt_extra.base46_cmp_style = 'flat_dark' -- Only works with `base46` colorscheme
 
 -- Quick configuration for blink.cmp
 local blinkcmp = {
@@ -39,42 +40,42 @@ local blinkcmp = {
 ---@type [string, function]
 local ui_styles = {
 	flat = function()
-		vim.opt.winborder             = 'solid'
-		blinkcmp.menu.border          = 'none'
+		vim.opt.winborder = 'solid'
+		blinkcmp.menu.border = 'none'
 		blinkcmp.documentation.border = 'solid'
-		vim.g.base46_cmp_style        = 'flat_dark'
+		opt_extra.base46_cmp_style = 'flat_dark'
 	end,
 	rounded = function()
-		vim.opt.winborder             = 'rounded'
-		blinkcmp.menu.border          = 'rounded'
+		vim.opt.winborder = 'rounded'
+		blinkcmp.menu.border = 'rounded'
 		blinkcmp.documentation.border = 'rounded'
-		vim.g.base46_cmp_style        = 'default'
+		opt_extra.base46_cmp_style = 'default'
 	end,
 	square = function()
-		vim.opt.winborder             = 'single'
-		blinkcmp.menu.border          = 'single'
+		vim.opt.winborder = 'single'
+		blinkcmp.menu.border = 'single'
 		blinkcmp.documentation.border = 'single'
-		vim.g.base46_cmp_style        = 'default'
+		opt_extra.base46_cmp_style = 'default'
 	end,
 	combine = function()
-		vim.opt.winborder             = 'rounded'
-		blinkcmp.menu.border          = 'none'
+		vim.opt.winborder = 'rounded'
+		blinkcmp.menu.border = 'none'
 		blinkcmp.documentation.border = 'solid'
-		vim.g.base46_cmp_style        = 'flat_dark'
+		opt_extra.base46_cmp_style = 'flat_dark'
 	end,
 }
 
 local ig_chars = {
-	thin    = '▏',
-	thick   = '▎',
-	middle  = '│',
-	dashed  = '┆',
+	thin = '▏',
+	thick = '▎',
+	middle = '│',
+	dashed = '┆',
 	dashed2 = '┊',
 }
 
-if ui_styles[vim.g.ui_style] then
-	ui_styles[vim.g.ui_style]()
+if ui_styles[opt_extra.ui_style] then
+	ui_styles[opt_extra.ui_style]()
 end
 
-vim.g.blinkcmp = blinkcmp
-vim.g.indent_guide_char = ig_chars[vim.g.indent_guide_style] or '│'
+opt_extra.blinkcmp = blinkcmp
+opt_extra.indent_guide_char = ig_chars[opt_extra.indent_guide_style] or '│'

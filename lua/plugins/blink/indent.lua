@@ -1,6 +1,6 @@
 return {
 	'saghen/blink.indent',
-	cond = vim.g.indent_guide == 'blink',
+	cond = opt_extra.indent_guide == 'blink',
 	event = 'BufReadPost',
 	keys = {
 		{
@@ -15,10 +15,10 @@ return {
 	---@type blink.indent.Config
 	opts = {
 		static = {
-			char = vim.g.indent_guide_char,
+			char = opt_extra.indent_guide_char,
 		},
 		scope = {
-			char = vim.g.indent_guide_char,
+			char = opt_extra.indent_guide_char,
 			indent_at_cursor = true,
 			highlights = { 'BlinkIndentScope' },
 		},

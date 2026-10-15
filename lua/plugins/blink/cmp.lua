@@ -21,7 +21,7 @@ return {
 		},
 		event = { 'InsertEnter', 'CmdlineEnter' },
 		config = function()
-			local cmp = vim.g.blinkcmp
+			local extra = opt_extra.blinkcmp
 
 			require('blink.cmp').setup({
 				keymap = {
@@ -48,30 +48,30 @@ return {
 					},
 				},
 				appearance = {
-					use_nvim_cmp_as_default = cmp.appearance.use_nvimcmp_hl,
+					use_nvim_cmp_as_default = extra.appearance.use_nvimcmp_hl,
 					nerd_font_variant = 'normal',
 				},
 				signature = { enabled = false },
 				completion = {
-					ghost_text = { enabled = cmp.ghost_text or false },
+					ghost_text = { enabled = extra.ghost_text or false },
 					accept = { auto_brackets = { enabled = true } },
 					documentation = {
-						auto_show = cmp.documentation.auto_show,
+						auto_show = extra.documentation.auto_show,
 						auto_show_delay_ms = 500,
 						treesitter_highlighting = true,
 						window = {
-							scrollbar = cmp.documentation.scrollbar or false,
+							scrollbar = extra.documentation.scrollbar or false,
 							min_width = 30,
 							max_width = 45,
 							max_height = 10,
-							border = cmp.documentation.border,
+							border = extra.documentation.border,
 						},
 					},
 					menu = {
-						scrollbar = cmp.menu.scrollbar or false,
+						scrollbar = extra.menu.scrollbar or false,
 						min_width = 4,
 						max_height = 8,
-						border = cmp.menu.border,
+						border = extra.menu.border,
 						draw = {
 							gap = 0,
 							columns = { { 'kind_icon' }, { 'label', 'kind', gap = 1 } },
