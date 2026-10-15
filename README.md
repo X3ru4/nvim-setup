@@ -21,7 +21,6 @@
 ### Mandatory
 
 - **Neovim** release v0.12 or newer
-- **Nerd font**
 - **git**
 - **C compiler** (for building parsers)
 - **curl**
@@ -32,6 +31,16 @@
 - **fd** (better find utility)
 
 ### Optional
+
+- **Nerd font** recommended for a better experience
+  - In the `lua/config/options-extra.lua` file, set this configuration to false if you are not using Nerd fonts.
+
+```lua
+ _G.nve = {
+    has_nerdfont = false,
+    -- ...
+}
+```
 
 - **pip**
 - **npm**
