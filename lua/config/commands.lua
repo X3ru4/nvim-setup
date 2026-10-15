@@ -89,7 +89,7 @@ usercmd('GenTermuxColor', function(opts)
 		cursor = hl.to_hex(hl.getbg('Cursor')),
 	}
 
-	lines[#lines + 1] = '\n### I don\'t know, huhu 😢'
+	lines[#lines + 1] = ''
 	vim.iter(keys):each(function(k, v)
 		lines[#lines + 1] = key:format(k, v:upper())
 	end)
