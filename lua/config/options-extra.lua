@@ -8,10 +8,12 @@ colorscheme.install = {
 
 -- I recommend using base46 because it has more integration support and looks nicer
 colorscheme.default = 'base46'
-colorscheme.variant = 'base46-everforest'
+colorscheme.variant = 'base46-gruvbox_light'
 
 ---@type 'blink'|'mini'|'hlchunk'|any
-vim.g.indent_guide = 'mini'
+vim.g.indent_guide = 'blink'
+---@type 'thin'|'thick'|'middle'|'dashed'|'dashed2'|any
+vim.g.indent_guide_style = 'thin'
 ---@type 'flat'|'rounded'|'square'|'combine'|any
 vim.g.ui_style = 'combine'
 ---@type 'default'|'atom'|'atom_colored'|'flat_light'|'flat_dark'|nil|false
@@ -62,8 +64,17 @@ local ui_styles = {
 	end,
 }
 
+local ig_chars = {
+	thin = '▏',
+	thick = '▎',
+	middle = '│',
+	dashed = '┆',
+	dashed2 = '┊',
+}
+
 if ui_styles[vim.g.ui_style] then
 	ui_styles[vim.g.ui_style]()
 end
 
 vim.g.blinkcmp = blinkcmp
+vim.g.indent_guide_char = ig_chars[vim.g.indent_guide_style] or '│'
