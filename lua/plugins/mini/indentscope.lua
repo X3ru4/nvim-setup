@@ -25,7 +25,6 @@ return {
 			-- its body.
 			try_as_border = false,
 		},
-		-- thin: ▏, bold: ▎, middle: │
-		symbol = '▏',
+		symbol = vim.g.indent_guide_char,
 	},
 }

@@ -11,15 +11,14 @@ return {
 			desc = 'Toggle indent guides',
 		},
 	},
-	---@module 'blink.indent'
+	---@moduwle 'blink.indent'
 	---@type blink.indent.Config
 	opts = {
-		-- thin: ▏, bold: ▎
 		static = {
-			char = '▏',
+			char = vim.g.indent_guide_char,
 		},
 		scope = {
-			char = '▏',
+			char = vim.g.indent_guide_char,
 			indent_at_cursor = true,
 			highlights = { 'BlinkIndentScope' },
 		},
