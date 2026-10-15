@@ -33,14 +33,17 @@
 ### Optional
 
 - **Nerd font** recommended for a better experience
-  - In the `lua/config/options-extra.lua` file, set this configuration to false if you are not using Nerd fonts.
 
-```lua
- _G.nve = {
-    has_nerdfont = false,
-    -- ...
-}
-```
+  > [!IMPORTANT]
+  > Set `has_nerdfont` to false in the `lua.config.options-extra` module
+  > if you are not using Nerd Font.
+
+  ```lua
+  _G.nve = {
+      has_nerdfont = false,
+      -- ...
+  }
+  ```
 
 - **pip**
 - **npm**
