@@ -1,5 +1,7 @@
 return {
 	'nvim-mini/mini.icons',
 	lazy = false,
-	config = true,
+	opts = {
+		style = nve.has_nerdfont and 'glyph' or 'ascii',
+	},
 }
