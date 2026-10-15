@@ -2,12 +2,13 @@ local M = {}
 local lsp = vim.lsp
 local diagnostic = vim.diagnostic
 local map = vim.keymap
+local has_nerdfont = nve.has_nerdfont
 
 local signs = {
-	[diagnostic.severity.ERROR] = '',
-	[diagnostic.severity.WARN] = '',
-	[diagnostic.severity.INFO] = '',
-	[diagnostic.severity.HINT] = '󱠂',
+	[diagnostic.severity.ERROR] = has_nerdfont and '' or 'E',
+	[diagnostic.severity.WARN] = has_nerdfont and '' or 'W',
+	[diagnostic.severity.INFO] = has_nerdfont and '' or 'I',
+	[diagnostic.severity.HINT] = has_nerdfont and '󱠂' or 'H',
 }
 local signs_hl = {
 	[diagnostic.severity.ERROR] = 'DiagnosticSignError',
@@ -19,7 +20,7 @@ local signs_hl = {
 function M.setup()
 	diagnostic.config({
 		virtual_text = {
-			prefix = '',
+			prefix = '●',
 			suffix = '',
 		},
 		underline = true,
