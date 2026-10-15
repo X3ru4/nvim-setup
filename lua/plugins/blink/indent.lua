@@ -11,7 +11,7 @@ return {
 			desc = 'Toggle indent guides',
 		},
 	},
-	---@moduwle 'blink.indent'
+	---@module 'blink.indent'
 	---@type blink.indent.Config
 	opts = {
 		static = {
