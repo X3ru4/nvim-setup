@@ -2,19 +2,31 @@ local M = {}
 local lsp = vim.lsp
 local diagnostic = vim.diagnostic
 local map = vim.keymap
-local has_nerdfont = vime.has_nerdfont
+local has_nf = vime.has_nerdfont
+
+local lsp_enable = {
+	'lua_ls',
+	'rust_analyzer',
+	'zls',
+	-- 'jsonls',
+}
 
 local signs = {
-	[diagnostic.severity.ERROR] = has_nerdfont and '' or 'E',
-	[diagnostic.severity.WARN] = has_nerdfont and '' or 'W',
-	[diagnostic.severity.INFO] = has_nerdfont and '' or 'I',
-	[diagnostic.severity.HINT] = has_nerdfont and '󱠂' or 'H',
+	[diagnostic.severity.ERROR] = has_nf and '' or 'E',
+	[diagnostic.severity.WARN] = has_nf and '' or 'W',
+	[diagnostic.severity.INFO] = has_nf and '' or 'I',
+	[diagnostic.severity.HINT] = has_nf and '󱠂' or 'H',
 }
 local signs_hl = {
 	[diagnostic.severity.ERROR] = 'DiagnosticSignError',
 	[diagnostic.severity.WARN] = 'DiagnosticSignWarn',
 	[diagnostic.severity.INFO] = 'DiagnosticSignInfo',
 	[diagnostic.severity.HINT] = 'DiagnosticSignHint',
+}
+local title = {
+	signature = has_nf and '  Signature help ' or ' Signature help ',
+	hover = has_nf and '  Info ' or ' Info ',
+	diagnostic = has_nf and '  Diagnostics ' or ' Diagnostics ',
 }
 
 function M.setup()
@@ -58,12 +70,7 @@ function M.setup()
 
 	-- Disable inlay hint
 	lsp.inlay_hint.enable(false)
-	lsp.enable({
-		'lua_ls',
-		'rust_analyzer',
-		'zls',
-		-- 'jsonls',
-	})
+	lsp.enable(lsp_enable)
 
 	map.set('n', 'grn', vim.lsp.buf.rename, { desc = 'LSP Rename' })
 
@@ -71,21 +78,21 @@ function M.setup()
 	map.set({ 'n', 'i' }, '<C-k>', function()
 		lsp.buf.signature_help({
 			close_events = close_events,
-			title = '  Signature help ',
+			title = title.signature,
 			title_pos = 'center',
 		})
 	end, { desc = 'Signature help' })
 	map.set('n', 'K', function()
 		lsp.buf.hover({
 			close_events = close_events,
-			title = '  Info ',
+			title = title.hover,
 			title_pos = 'center',
 		})
 	end, { desc = 'Signature help' })
 	map.set('n', '<C-j>', function()
 		diagnostic.open_float(nil, {
 			close_events = close_events,
-			title = '  Diagnostics ',
+			title = title.diagnostic,
 			title_pos = 'center',
 		})
 	end, { desc = 'Open diagnostic float' })
