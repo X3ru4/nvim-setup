@@ -1,4 +1,5 @@
 vim.loader.enable()
+
 _G.nve = {}
 
 -- disable runtimepath plugins
