@@ -66,7 +66,7 @@
 > If you are not using a Nerd Font, set `has_nerdfont` to `false` in the `lua.config.options-extra` module:
 
 ```lua
-_G.nve = {
+_G.vime = {
     has_nerdfont = false,
     -- ...
 }
