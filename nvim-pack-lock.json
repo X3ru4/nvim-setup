@@ -13,7 +13,7 @@
       "src": "https://github.com/timrydefalk/blink-cmp-emoji"
     },
     "blink.cmp": {
-      "rev": "8219b58f1c11a2fb1644d3c7116c509fa8348ec0",
+      "rev": "10198f904da1e7f77aeb0368414f871568c0d898",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.indent": {
@@ -50,7 +50,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "ce788d5acb83628c66f6639920ec0f36576646d7",
+      "rev": "9405672f62767695d5f20db171336f7f4911ce86",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "guess-indent.nvim": {
@@ -134,7 +134,7 @@
       "src": "https://github.com/nvim-mini/mini.tabline"
     },
     "multicursor.nvim": {
-      "rev": "704b99f10a72cc05d370cfeb294ff83412a8ab55",
+      "rev": "c574bfc1f7e63dfea3e64b8453c9f7c660127238",
       "src": "https://github.com/jake-stewart/multicursor.nvim"
     },
     "nerdy.nvim": {
@@ -187,7 +187,7 @@
       "src": "https://github.com/rachartier/tiny-cmdline.nvim"
     },
     "tree-sitter-manager.nvim": {
-      "rev": "d93782393d7d4b48ddbdbcb0fdff6f8cb8d7043a",
+      "rev": "27cf9c8a3767b070c22f31e92451006ee2e43540",
       "src": "https://github.com/romus204/tree-sitter-manager.nvim"
     },
     "vim-caser": {
