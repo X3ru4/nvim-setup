@@ -26,12 +26,39 @@ return {
 			hl = 'WarningMsg',
 		}
 
+		local MiniSearchCount = {
+			condition = function()
+				return vim.v.hlsearch ~= 0 and vim.o.cmdheight == 0
+			end,
+			init = function(self)
+				local ok, search = pcall(vim.fn.searchcount)
+				if ok and search.total then
+					self.search = search
+				end
+			end,
+			provider = function(self)
+				if self.search then
+					return self.search.current .. '/' .. math.min(self.search.total, self.search.maxcount)
+				end
+			end,
+			hl = 'WarningMsg',
+		}
+
 		local LSPActive = {
 			condition = function()
 				return next(vim.lsp.get_clients({ bufnr = 0 })) ~= nil
 			end,
 			update = { 'LspAttach', 'LspDetach', 'ColorScheme' },
 			provider = '  [LSP]',
+			hl = 'DiagnosticSignInfo',
+		}
+
+		local MiniLSPActive = {
+			condition = function()
+				return next(vim.lsp.get_clients({ bufnr = 0 })) ~= nil
+			end,
+			update = { 'LspAttach', 'LspDetach', 'ColorScheme' },
+			provider = ' [LSP]',
 			hl = 'DiagnosticSignInfo',
 		}
 
@@ -106,6 +133,63 @@ return {
 			},
 		}
 
+		local MiniViMode = {
+			update = {
+				'ModeChanged',
+				pattern = '*:*',
+				callback = vim.schedule_wrap(function()
+					vim.cmd.redrawstatus()
+				end),
+			},
+			init = function(self)
+				self.current_mode = vim.api.nvim_get_mode().mode
+				self.current_modehl = self.mode_hl[self.current_mode] or 'ModeOther'
+			end,
+			hl = function(self)
+				return self.current_modehl
+			end,
+			static = {
+				mode_hl = {
+					n = 'ModeNormal',
+					i = 'ModeInsert',
+					v = 'ModeVisual',
+					V = 'ModeVisual',
+					['\22'] = 'ModeVisual',
+					c = 'ModeCommand',
+					t = 'ModeOther',
+					R = 'ModeReplace',
+					s = 'ModeVisual',
+					no = 'ModeReplace',
+					['!'] = 'ModeOther',
+					niI = 'ModeInsert',
+					niR = 'ModeReplace',
+					niV = 'ModeReplace',
+				},
+				mode_name = {
+					n = 'Normal',
+					i = 'Insert',
+					v = 'Visual',
+					V = 'V-Line',
+					['\22'] = 'V-Block',
+					c = 'Command',
+					t = 'Terminal',
+					R = 'Replace',
+					s = 'Select',
+					nt = 'N-Terminal',
+					no = 'O-pending',
+					['!'] = 'Shell',
+					niI = 'N-Insert',
+					niR = 'N-Replace',
+					niV = 'N-Virtual',
+				},
+			},
+			{
+				provider = function(self)
+					return ' ' .. (self.mode_name[self.current_mode] or self.current_mode) .. ' '
+				end,
+			},
+		}
+
 		local FileInfo = {
 			update = { 'BufWinEnter', 'FileType', 'BufModifiedSet' },
 			init = function()
@@ -168,6 +252,47 @@ return {
 			},
 		}
 
+		local MiniFileInfo = {
+			update = { 'BufWinEnter', 'BufModifiedSet' },
+			init = function()
+				hl.set('HeirlineFileInfo', {
+					fg = hl.getfg('StatusLine'),
+					bg = hl.alias.Black2,
+				})
+				hl.set('HeirlineMod', {
+					fg = hl.getfg('Changed'),
+				})
+				hl.set('HeirlineRon', {
+					fg = hl.getfg('Constant'),
+				})
+			end,
+			hl = 'HeirlineFileInfo',
+			{
+				provider = function()
+					local file = vim.fn.expand('%:t')
+					if file ~= '' then
+						return ' ' .. file .. ' '
+					else
+						return ' ' .. vim.bo.filetype .. ' '
+					end
+				end,
+			},
+			{
+				condition = function()
+					return vim.bo.modified
+				end,
+				provider = '[M] ',
+				hl = 'HeirlineMod',
+			},
+			{
+				condition = function()
+					return vim.bo.readonly or not vim.bo.modifiable
+				end,
+				provider = '[RO] ',
+				hl = 'HeirlineRon',
+			},
+		}
+
 		local Macro = {
 			update = { 'RecordingEnter', 'RecordingLeave' },
 			condition = function()
@@ -175,6 +300,17 @@ return {
 			end,
 			provider = function()
 				return '  (' .. vim.fn.reg_recording() .. ')'
+			end,
+			hl = 'Type',
+		}
+
+		local MiniMacro = {
+			update = { 'RecordingEnter', 'RecordingLeave' },
+			condition = function()
+				return #vim.fn.reg_recording() > 0
+			end,
+			provider = function()
+				return ' [' .. vim.fn.reg_recording() .. ']'
 			end,
 			hl = 'Type',
 		}
@@ -200,9 +336,21 @@ return {
 						:gsub(':', ' ')
 				end,
 			},
+			{
+				provider = function(self)
+					return self.status
+				end,
+			},
+			{
+				provider = function(self)
+					return self.status
+						:gsub('(%s?%%#DiagnosticSignInfo#.-)%%##$', '')
+						:gsub('(%s?%%#DiagnosticSignHint#.-)%%##$', '')
+				end,
+			},
 		}
 
-		local StatusLine = {
+		local NfStatusLine = {
 			{
 				flexible = 20,
 				{ ViMode, FileInfo },
@@ -250,7 +398,54 @@ return {
 			},
 		}
 
-		require('heirline').setup({ statusline = StatusLine })
+		local MiniStatusLine = {
+			{
+				flexible = 20,
+				{ MiniViMode, MiniFileInfo },
+				{ MiniViMode },
+				false,
+			},
+			{
+				flexible = 5,
+				{
+					update = Diagnostic.update,
+					init = Diagnostic.init,
+					Space,
+					Diagnostic[3],
+				},
+				{
+					update = Diagnostic.update,
+					init = Diagnostic.init,
+					Space,
+					Diagnostic[4],
+				},
+				false,
+			},
+			Align,
+			{
+				flexible = 10,
+				MiniSearchCount,
+				false,
+			},
+			{
+				flexible = 15,
+				MiniMacro,
+				false,
+			},
+			{
+				flexible = 2,
+				MiniLSPActive,
+				false,
+			},
+			{
+				flexible = 3,
+				{ provider = ' %l·%c ' },
+				{ provider = ' %l ' },
+				false,
+			},
+		}
+
+		require('heirline').setup({ statusline = nve.has_nerdfont and NfStatusLine or MiniStatusLine })
 
 		-- Make sure heirline.nvim always resets the highlights when changing colorschemes
 		hl.add_hook('heirline', require('heirline.highlights').reset_highlights, true)

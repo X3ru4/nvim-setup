@@ -26,10 +26,10 @@ return {
 				},
 			},
 			display = {
-				mode = 'virtualtext',
+				mode = nve.has_nerdfont and 'virtualtext' or 'background',
 				virtualtext = {
 					char = '',
-					position = 'before',
+					position = 'after',
 					hl_mode = 'foreground',
 				},
 			},

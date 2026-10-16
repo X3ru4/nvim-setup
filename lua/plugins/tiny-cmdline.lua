@@ -6,6 +6,23 @@ return {
 		require('vim._core.ui2').enable()
 	end,
 	config = function()
+		local formats = {
+			{ type = ':', pattern = { '^%s*lua%s+', '^%s*lua%s*=', '^%s*=' }, title = '  Lua ' },
+			{ type = ':', pattern = '^%s*!', title = '  Shell ' },
+			{ type = ':', pattern = '^%s*he?l?p?%s+', title = '  Help ' },
+			{ type = ':', pattern = '^%s*color?s?c?h?e?m?e?%s+', title = ' 󱥚 Colorscheme ' },
+			{ type = ':', pattern = '^%s*chec?k?h?e?a?l?t?h?%s+', title = '  Checkhealth ' },
+			{ type = '@', title = '  Input ' },
+			{ title = '  Cmdline ' },
+		}
+
+		-- only take the text part (%w+)
+		if not nve.has_nerdfont then
+			for _, v in ipairs(formats) do
+				v.title = ' ' .. v.title:match('%w+') .. ' '
+			end
+		end
+
 		---@diagnostic disable-next-line: missing-fields
 		require('tiny-cmdline').setup({
 			border = nil,
@@ -13,15 +30,7 @@ return {
 			title = {
 				enabled = true,
 				pos = 'center',
-				formats = {
-					{ type = ':', pattern = { '^%s*lua%s+', '^%s*lua%s*=', '^%s*=' }, title = '  Lua ' },
-					{ type = ':', pattern = '^%s*!', title = '  Shell ' },
-					{ type = ':', pattern = '^%s*he?l?p?%s+', title = '  Help ' },
-					{ type = ':', pattern = '^%s*color?s?c?h?e?m?e?%s+', title = ' 󱥚 Colorscheme ' },
-					{ type = ':', pattern = '^%s*chec?k?h?e?a?l?t?h?%s+', title = '  Checkhealth ' },
-					{ type = '@', title = '  Input ' },
-					{ title = '  Cmdline ' },
-				},
+				formats = formats,
 			},
 		})
 
