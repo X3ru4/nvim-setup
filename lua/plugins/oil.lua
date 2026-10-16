@@ -9,7 +9,7 @@ return {
 	config = function()
 		local Fzf = require('fzf-lua')
 		local Oil = require('oil')
-		local columns = nve.has_nerdfont and {
+		local columns = vime.has_nerdfont and {
 			-- 'permissions',
 			'size',
 			'icon',
@@ -26,7 +26,7 @@ return {
 			end
 		end
 
-		local prompt = nve.has_nerdfont and ' Open: ' or 'Open: '
+		local prompt = vime.has_nerdfont and ' Open: ' or 'Open: '
 		local alias = {
 			termux = '~/.termux/',
 			storage = '~/storage/',

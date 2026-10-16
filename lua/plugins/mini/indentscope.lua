@@ -1,6 +1,6 @@
 return {
 	'nvim-mini/mini.indentscope',
-	cond = nve.indent_guide == 'mini',
+	cond = vime.indent_guide == 'mini',
 	event = 'BufReadPost',
 	keys = {
 		{
@@ -25,6 +25,6 @@ return {
 			-- its body.
 			try_as_border = false,
 		},
-		symbol = nve.indent_guide_char,
+		symbol = vime.indent_guide_char,
 	},
 }

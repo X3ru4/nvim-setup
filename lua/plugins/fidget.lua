@@ -8,7 +8,7 @@ return {
 			progress = {
 				display = {
 					done_icon = '✓',
-					progress_icon = nve.has_nerdfont and { { '󰸵', '󰸸', '󰸷', '󰸴' }, period = 0.5 } or nil,
+					progress_icon = vime.has_nerdfont and { { '󰸵', '󰸸', '󰸷', '󰸴' }, period = 0.5 } or nil,
 				},
 			},
 			notification = {

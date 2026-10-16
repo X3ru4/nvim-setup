@@ -2,7 +2,7 @@ local M = {}
 local lsp = vim.lsp
 local diagnostic = vim.diagnostic
 local map = vim.keymap
-local has_nerdfont = nve.has_nerdfont
+local has_nerdfont = vime.has_nerdfont
 
 local signs = {
 	[diagnostic.severity.ERROR] = has_nerdfont and '' or 'E',

@@ -10,8 +10,8 @@ colorscheme.install = {
 colorscheme.default = 'base46'
 colorscheme.variant = 'base46-gruvbox_light'
 
----NvimExtra
-_G.nve = {
+---VimExtra
+_G.vime = {
 	---@type boolean
 	has_nerdfont = true, -- This helps identify if you're using Nerdfont; otherwise, it will use the glyphs that the font supports.
 	---@type 'blink'|'mini'|'hlchunk'|any
@@ -40,7 +40,7 @@ _G.nve = {
 	},
 }
 
-local blinkcmp = nve.blinkcmp
+local blinkcmp = vime.blinkcmp
 
 ---@type [string, function]
 local ui_styles = {
@@ -48,25 +48,25 @@ local ui_styles = {
 		vim.opt.winborder = 'solid'
 		blinkcmp.menu.border = 'none'
 		blinkcmp.documentation.border = 'solid'
-		nve.base46_cmp_style = 'flat_dark'
+		vime.base46_cmp_style = 'flat_dark'
 	end,
 	rounded = function()
 		vim.opt.winborder = 'rounded'
 		blinkcmp.menu.border = 'rounded'
 		blinkcmp.documentation.border = 'rounded'
-		nve.base46_cmp_style = 'default'
+		vime.base46_cmp_style = 'default'
 	end,
 	square = function()
 		vim.opt.winborder = 'single'
 		blinkcmp.menu.border = 'single'
 		blinkcmp.documentation.border = 'single'
-		nve.base46_cmp_style = 'default'
+		vime.base46_cmp_style = 'default'
 	end,
 	combine = function()
 		vim.opt.winborder = 'rounded'
 		blinkcmp.menu.border = 'none'
 		blinkcmp.documentation.border = 'solid'
-		nve.base46_cmp_style = 'flat_dark'
+		vime.base46_cmp_style = 'flat_dark'
 	end,
 }
 
@@ -78,8 +78,8 @@ local ig_chars = {
 	dashed2 = '┊',
 }
 
-if ui_styles[nve.ui_style] then
-	ui_styles[nve.ui_style]()
+if ui_styles[vime.ui_style] then
+	ui_styles[vime.ui_style]()
 end
 
-nve.indent_guide_char = ig_chars[nve.indent_guide_style] or '│'
+vime.indent_guide_char = ig_chars[vime.indent_guide_style] or '│'

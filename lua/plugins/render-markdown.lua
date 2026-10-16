@@ -1,6 +1,6 @@
 return {
 	'MeanderingProgrammer/render-markdown.nvim',
-	cond = nve.has_nerdfont,
+	cond = vime.has_nerdfont,
 	ft = 'markdown',
 	cmd = 'RenderMarkdown',
 	---@module 'render-markdown'

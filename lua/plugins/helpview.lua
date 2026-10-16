@@ -1,6 +1,6 @@
 return {
 	'OXY2DEV/helpview.nvim',
-	cond = nve.has_nerdfont,
+	cond = vime.has_nerdfont,
 	ft = 'help',
 	opt = {
 		preview = {

@@ -1,6 +1,6 @@
 vim.loader.enable()
-
-_G.nve = {}
+---@type table
+_G.vime = {}
 
 -- disable runtimepath plugins
 local rtp_plugins = {

@@ -26,7 +26,7 @@ return {
 				},
 			},
 			display = {
-				mode = nve.has_nerdfont and 'virtualtext' or 'background',
+				mode = vime.has_nerdfont and 'virtualtext' or 'background',
 				virtualtext = {
 					char = '',
 					position = 'after',

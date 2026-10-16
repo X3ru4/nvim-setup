@@ -445,7 +445,7 @@ return {
 			},
 		}
 
-		require('heirline').setup({ statusline = nve.has_nerdfont and NfStatusLine or MiniStatusLine })
+		require('heirline').setup({ statusline = vime.has_nerdfont and NfStatusLine or MiniStatusLine })
 
 		-- Make sure heirline.nvim always resets the highlights when changing colorschemes
 		hl.add_hook('heirline', require('heirline.highlights').reset_highlights, true)

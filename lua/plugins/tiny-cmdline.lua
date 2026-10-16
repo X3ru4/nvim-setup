@@ -17,7 +17,7 @@ return {
 		}
 
 		-- only take the text part (%w+)
-		if not nve.has_nerdfont then
+		if not vime.has_nerdfont then
 			for _, v in ipairs(formats) do
 				v.title = ' ' .. v.title:match('%w+') .. ' '
 			end
