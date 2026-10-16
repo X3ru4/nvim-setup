@@ -191,7 +191,7 @@ return {
 		}
 
 		local FileInfo = {
-			update = { 'BufWinEnter', 'FileType', 'BufModifiedSet' },
+			update = { 'BufWinEnter', 'BufModifiedSet' },
 			init = function()
 				hl.set('HeirlineDark2', {
 					fg = hl.getfg('StatusLine'),
@@ -229,7 +229,14 @@ return {
 				end,
 			},
 			{
-				provider = [[%{empty(&ft) ? 'Unknown' : substitute(&ft, '^.', '\u&', '')} ]],
+				provider = function()
+					local file = vim.fn.expand('%:t')
+					if file ~= '' then
+						return file .. ' '
+					else
+						return vim.bo.filetype .. ' '
+					end
+				end,
 			},
 			{
 				condition = function()
