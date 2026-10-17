@@ -16,24 +16,7 @@
   A blazing-fast, feature-rich, and highly customizable Neovim configuration.
 </p>
 
-<p align="center">
-  <a href="#features">Features</a> ·
-  <a href="#requirements">Requirements</a> ·
-  <a href="#installation">Installation</a>
-</p>
-
 ---
-
-## Features
-
-- ⚡ **Fast** — Designed for a responsive editing experience.
-- 🎨 **Customizable** — Adapt the configuration to your workflow.
-- 🔌 **Plugins** — Includes a collection of useful plugins.
-- 🧠 **LSP** — Language Server Protocol support.
-- 💡 **Completion** — Code completion.
-- 🧩 **Snippets** — Code snippet support.
-- 🛠️ **Formatting** — Code formatting tools.
-- 🔍 **Linting** — Code diagnostics and linting.
 
 ## Requirements
 
@@ -61,16 +44,6 @@
 - **LuaRocks** — Lua package management.
 - **Rust toolchain** — Rust development tools.
 - **lua-language-server** — Lua language support.
-
-> [!IMPORTANT]
-> If you are not using a Nerd Font, set `has_nerdfont` to `false` in the `lua.config.options-extra` module:
-
-```lua
-_G.vime = {
-    has_nerdfont = false,
-    -- ...
-}
-```
 
 ## Installation
 

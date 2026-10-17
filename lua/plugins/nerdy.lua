@@ -1,6 +1,5 @@
 return {
 	'2kabhishek/nerdy.nvim',
-	cond = vime.has_nerdfont,
 	event = 'VeryLazy',
 	config = function()
 		local copy_to_clipboard = false

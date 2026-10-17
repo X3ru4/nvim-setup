@@ -5,12 +5,6 @@ return {
 		local fidget = require('fidget')
 
 		fidget.setup({
-			progress = {
-				display = {
-					done_icon = '✓',
-					progress_icon = vime.has_nerdfont and { { '󰸵', '󰸸', '󰸷', '󰸴' }, period = 0.5 } or nil,
-				},
-			},
 			notification = {
 				override_vim_notify = true,
 			},

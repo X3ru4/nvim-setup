@@ -7,9 +7,9 @@ return {
 			border = nil,
 			backdrop = 100,
 			icons = {
-				package_installed = vime.has_nerdfont and ' ' or nil,
-				package_pending = vime.has_nerdfont and ' ' or nil,
-				package_uninstalled = vime.has_nerdfont and ' ' or nil,
+				package_installed = ' ',
+				package_pending = ' ',
+				package_uninstalled = ' ',
 			},
 		},
 	},

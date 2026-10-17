@@ -9,11 +9,6 @@ return {
 			local btn = dashboard.button(sc, txt, keybind, keybind_opts)
 			local width = vim.api.nvim_win_get_width(0)
 			btn.opts.width = math.min(width - 6, 40)
-			if not vime.has_nerdfont then
-				btn.opts.cursor = 0
-				local start_word = txt:find('%w')
-				btn.val = txt:sub(start_word)
-			end
 			return btn
 		end
 
@@ -25,9 +20,8 @@ return {
 			'Simplicity is the Ultimate Sophistication.',
 		}
 
-		local prompt = vime.has_nerdfont and ' New file: ' or 'New file:'
 		local function new_file()
-			vim.ui.input({ prompt = prompt }, function(input)
+			vim.ui.input({ prompt = ' New file: ' }, function(input)
 				if input then
 					input = vim.trim(input)
 					if #input > 0 then

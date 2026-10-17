@@ -9,12 +9,6 @@ return {
 	config = function()
 		local Fzf = require('fzf-lua')
 		local Oil = require('oil')
-		local columns = vime.has_nerdfont and {
-			-- 'permissions',
-			'size',
-			'icon',
-			-- 'mtime',
-		}
 
 		function Oil.get_winbar()
 			local bufnr = vim.api.nvim_get_current_buf()
@@ -26,7 +20,7 @@ return {
 			end
 		end
 
-		local prompt = vime.has_nerdfont and ' Open: ' or 'Open: '
+		local prompt = ' Open: '
 		local alias = {
 			termux = '~/.termux/',
 			storage = '~/storage/',
@@ -114,7 +108,12 @@ return {
 					mode = 'n',
 				},
 			},
-			columns = columns or { 'size' },
+			columns = {
+				-- 'permissions',
+				'size',
+				'icon',
+				-- 'mtime',
+			},
 		})
 	end,
 }

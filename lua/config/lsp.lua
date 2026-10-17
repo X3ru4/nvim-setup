@@ -2,7 +2,6 @@ local M = {}
 local lsp = vim.lsp
 local diagnostic = vim.diagnostic
 local map = vim.keymap
-local has_nf = vime.has_nerdfont
 
 local lsp_enable = {
 	'lua_ls',
@@ -12,21 +11,16 @@ local lsp_enable = {
 }
 
 local signs = {
-	[diagnostic.severity.ERROR] = has_nf and '' or 'E',
-	[diagnostic.severity.WARN] = has_nf and '' or 'W',
-	[diagnostic.severity.INFO] = has_nf and '' or 'I',
-	[diagnostic.severity.HINT] = has_nf and '󱠂' or 'H',
+	[diagnostic.severity.ERROR] = '',
+	[diagnostic.severity.WARN] = '',
+	[diagnostic.severity.INFO] = '',
+	[diagnostic.severity.HINT] = '󱠂',
 }
 local signs_hl = {
 	[diagnostic.severity.ERROR] = 'DiagnosticSignError',
 	[diagnostic.severity.WARN] = 'DiagnosticSignWarn',
 	[diagnostic.severity.INFO] = 'DiagnosticSignInfo',
 	[diagnostic.severity.HINT] = 'DiagnosticSignHint',
-}
-local title = {
-	signature = has_nf and '  Signature help ' or ' Signature help ',
-	hover = has_nf and '  Info ' or ' Info ',
-	diagnostic = has_nf and '  Diagnostics ' or ' Diagnostics ',
 }
 
 function M.setup()
@@ -78,21 +72,21 @@ function M.setup()
 	map.set({ 'n', 'i' }, '<C-k>', function()
 		lsp.buf.signature_help({
 			close_events = close_events,
-			title = title.signature,
+			title = '  Signature help ',
 			title_pos = 'center',
 		})
 	end, { desc = 'Signature help' })
 	map.set('n', 'K', function()
 		lsp.buf.hover({
 			close_events = close_events,
-			title = title.hover,
+			title = '  Info ',
 			title_pos = 'center',
 		})
 	end, { desc = 'Signature help' })
 	map.set('n', '<C-j>', function()
 		diagnostic.open_float(nil, {
 			close_events = close_events,
-			title = title.diagnostic,
+			title = '  Diagnostics ',
 			title_pos = 'center',
 		})
 	end, { desc = 'Open diagnostic float' })
