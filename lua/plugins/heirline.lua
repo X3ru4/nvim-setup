@@ -106,7 +106,7 @@ return {
 
 		local FileInfo = {
 			update = { 'BufWinEnter', 'BufModifiedSet' },
-			init = function(self)
+			init = function()
 				hl.set('HeirlineDark2', {
 					fg = hl.getfg('StatusLine'),
 					bg = hl.alias.Black2,
