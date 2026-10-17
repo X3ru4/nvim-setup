@@ -12,8 +12,6 @@ colorscheme.variant = 'base46-gruvbox_light'
 
 ---VimExtra
 _G.vime = {
-	---@type boolean
-	has_nerdfont = true, -- This helps identify if you're using Nerdfont; otherwise, it will use the glyphs that the font supports.
 	---@type 'blink'|'mini'|'hlchunk'|any
 	indent_guide = 'blink',
 	---@type 'thin'|'thick'|'middle'|'dashed'|'dashed2'|any
@@ -25,17 +23,18 @@ _G.vime = {
 	-- Quick configuration for blink.cmp
 	blinkcmp = {
 		ghost_text = true,
+		appearance = {
+			use_nvimcmp_hl = false,
+		},
 		menu = {
 			border = 'none',
+			icon_gap = 1,
 			scrollbar = false,
 		},
 		documentation = {
 			auto_show = false,
 			border = 'solid',
 			scrollbar = true,
-		},
-		appearance = {
-			use_nvimcmp_hl = false,
 		},
 	},
 }
@@ -47,6 +46,7 @@ local ui_styles = {
 	flat = function()
 		vim.opt.winborder = 'solid'
 		blinkcmp.menu.border = 'none'
+		blinkcmp.menu.scrollbar = true
 		blinkcmp.documentation.border = 'solid'
 		vime.base46_cmp_style = 'flat_dark'
 	end,
@@ -65,6 +65,7 @@ local ui_styles = {
 	combine = function()
 		vim.opt.winborder = 'rounded'
 		blinkcmp.menu.border = 'none'
+		blinkcmp.menu.scrollbar = true
 		blinkcmp.documentation.border = 'solid'
 		vime.base46_cmp_style = 'flat_dark'
 	end,
