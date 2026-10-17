@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.24.0](https://github.com/X3ru4/nvim-setup/compare/v1.23.0...v1.24.0) (2026-10-17)
+
+
+### Features
+
+* add blinkcmp appearance options and icon_gap, clean up vime config ([b3c47c5](https://github.com/X3ru4/nvim-setup/commit/b3c47c58ab75fba3b478212ee0a229756d06e95d))
+* **ALL:** add configuration without using Nerdfont ([6f0dde6](https://github.com/X3ru4/nvim-setup/commit/6f0dde67089566c491abb04718e0cf6b0e646857))
+* **blink, mini:** use vim.g.indent_guide_char instead in mini.indentscope and blink.indent configuration ([9b6eaa2](https://github.com/X3ru4/nvim-setup/commit/9b6eaa23ce9c9227cb6d60bb54e73b51d7cfae4c))
+* **cmp:** allow configurable icon gap in the completion menu (default to 1) ([97e249a](https://github.com/X3ru4/nvim-setup/commit/97e249a5b3971474eba216610717f47d178c863d))
+* **keymaps:** add &lt;leader&gt;bf to focus buffer by closing others ([d4beea1](https://github.com/X3ru4/nvim-setup/commit/d4beea1dbcde6f9cb8f70fa713f00a01ebcb93d2))
+* **lsp:** fallback diagnostic icons and update virtual text prefix ([d0939bc](https://github.com/X3ru4/nvim-setup/commit/d0939bc3932d96ec9030f566a2582bbeaf3352ec))
+* **mini.icons:** auto-select icon style based on nerdfont support ([6b91b41](https://github.com/X3ru4/nvim-setup/commit/6b91b41a985588b6594c03442d96ba7b00bd3232))
+* **options-extra:** add vim.g.indent_guide_style option with 5 char styles ([23b0a30](https://github.com/X3ru4/nvim-setup/commit/23b0a30cad9850a1a98ef9e476595f9d71a23768))
+* **statusline:** display current file name in statusline instead of file type ([acc7600](https://github.com/X3ru4/nvim-setup/commit/acc7600ea1553e73e44a75f0da3cb6d997018095))
+* **statusline:** replace modified symbol and simplify separator provider ([979066f](https://github.com/X3ru4/nvim-setup/commit/979066f4b5dd52b2ddf75f370bba208676543373))
+
+
+### Bug Fixes
+
+* **base46:** use nve.base46_cmp_style for cmp_style in theme configuration ([29e928f](https://github.com/X3ru4/nvim-setup/commit/29e928f21cf322ed70ed9d3e474b3bd665100e09))
+* **zpack:** enable default confirmation prompt ([017b792](https://github.com/X3ru4/nvim-setup/commit/017b7924f10a9b29521f5e2dbc9a2caf40132230))
+
 ## [1.23.0](https://github.com/X3ru4/nvim-setup/compare/v1.22.0...v1.23.0) (2026-10-14)
 
 
