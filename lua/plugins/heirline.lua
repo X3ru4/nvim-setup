@@ -113,20 +113,13 @@ return {
 					fg = hl.getfg('StatusLine'),
 					bg = hl.alias.Black2,
 				})
-				hl.set('HeirlineMod', {
-					fg = hl.getfg('Changed'),
-				})
-				hl.set('HeirlineRon', {
-					fg = hl.getfg('Constant'),
-				})
 				hl.set('HeirlineDark2Sep', {
 					fg = hl.alias.Black2,
 					bg = hl.getbg('StatusLine'),
 				})
-				hl.set('HeirlineDark3Sep', {
-					fg = hl.alias.Black3,
-					bg = hl.alias.Black2,
-				})
+				hl.set('HeirlineDark3Sep', { fg = hl.alias.Black3 })
+				hl.set('HeirlineMod', { fg = hl.getfg('Changed') })
+				hl.set('HeirlineRon', { fg = hl.getfg('Constant') })
 			end,
 			hl = 'HeirlineDark2',
 			{
@@ -158,7 +151,7 @@ return {
 				condition = function()
 					return vim.bo.modified
 				end,
-				provider = '◉ ',
+				provider = '󱇧 ',
 				hl = 'HeirlineMod',
 			},
 			{
@@ -169,9 +162,8 @@ return {
 				hl = 'HeirlineRon',
 			},
 			{
-				provider = function()
-					return '%*%#HeirlineDark2Sep#' .. separator[1]
-				end,
+				provider = separator[1],
+				hl = 'HeirlineDark2Sep',
 			},
 		}
 
