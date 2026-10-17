@@ -46,11 +46,6 @@ return {
 			init = function(self)
 				self.current_mode = vim.api.nvim_get_mode().mode
 				self.current_modehl = self.mode_hl[self.current_mode] or 'ModeOther'
-				self.current_modehlsep = 'HeirlineModeSep' .. self.current_modehl
-				hl.set(self.current_modehlsep, {
-					fg = hl.getbg(self.current_modehl),
-					bg = hl.alias.Black3,
-				})
 			end,
 			hl = function(self)
 				return self.current_modehl
@@ -101,14 +96,17 @@ return {
 			{
 				provider = separator[1],
 				hl = function(self)
-					return self.current_modehlsep
+					return {
+						fg = hl.getbg(self.current_modehl),
+						bg = hl.alias.Black3,
+					}
 				end,
 			},
 		}
 
 		local FileInfo = {
 			update = { 'BufWinEnter', 'BufModifiedSet' },
-			init = function()
+			init = function(self)
 				hl.set('HeirlineDark2', {
 					fg = hl.getfg('StatusLine'),
 					bg = hl.alias.Black2,
@@ -151,7 +149,7 @@ return {
 				condition = function()
 					return vim.bo.modified
 				end,
-				provider = '󱇧 ',
+				provider = '◉ ',
 				hl = 'HeirlineMod',
 			},
 			{
