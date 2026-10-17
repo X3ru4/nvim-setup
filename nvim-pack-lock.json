@@ -50,7 +50,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "9405672f62767695d5f20db171336f7f4911ce86",
+      "rev": "c67fadd9a24230417267e4f9068227e093c0be2b",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "guess-indent.nvim": {
@@ -133,10 +133,6 @@
       "rev": "3dd8686c15e3cfb1bfbc4abfecf699326f1de4c0",
       "src": "https://github.com/nvim-mini/mini.tabline"
     },
-    "multicursor.nvim": {
-      "rev": "c574bfc1f7e63dfea3e64b8453c9f7c660127238",
-      "src": "https://github.com/jake-stewart/multicursor.nvim"
-    },
     "nerdy.nvim": {
       "rev": "313260b2dd2054b6fc7327fe70f3e0aa06aa7cb8",
       "src": "https://github.com/2kabhishek/nerdy.nvim"
@@ -150,7 +146,7 @@
       "src": "https://codeberg.org/mfussenegger/nvim-lint.git"
     },
     "nvim-lspconfig": {
-      "rev": "ac062d0d01c019c0dbdb798968f3e5d8b35c3853",
+      "rev": "45a3a444b710511c39abca3b60bb6e23a21e3de5",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter-textobjects": {
