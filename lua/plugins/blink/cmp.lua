@@ -73,7 +73,7 @@ return {
 						max_height = 8,
 						border = extra.menu.border,
 						draw = {
-							gap = 0,
+							gap = extra.menu.icon_gap or 1,
 							columns = { { 'kind_icon' }, { 'label', 'kind', gap = 1 } },
 							components = {
 								kind_icon = {
