@@ -210,7 +210,6 @@ return {
 		map.set('n', '<leader>ft', fzf.tabs, { desc = 'FZF Tabs' })
 		map.set('n', '<leader>fh', fzf.highlights, { desc = 'FZF Highlights' })
 		map.set('n', '<leader>fo', fzf.oldfiles, { desc = 'FZF Old files' })
-		map.set('n', '<leader>fT', fzf.filetypes, { desc = 'FZF Filetypes' })
 		map.set('n', '<leader>fg', fzf.live_grep, { desc = 'FZF Live grep' })
 		map.set('n', '<leader>fu', fzf.builtin, { desc = 'FZF Built-in' })
 

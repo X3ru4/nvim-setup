@@ -5,7 +5,6 @@ map.set('n', '<leader>ro', '<Cmd>e!<Cr>', { desc = 'Re-open' })
 map.set('n', '<leader>rm', '<Cmd>!rm ~/.local/state/nvim/swap -rf<Cr>', { desc = 'Remove swap folder' })
 
 map.set('n', '<leader>cr', '<Cmd>silent! w | terminal make run<Cr>', { desc = 'make run' })
-map.set('n', '<leader>ct', '<Cmd>terminal<Cr>i', { desc = 'Open terminal' })
 map.set('n', '<leader>cw', '<Cmd>set wrap!<Cr>', { desc = 'Wrap' })
 map.set(
 	'n',
