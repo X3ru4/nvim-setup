@@ -13,7 +13,7 @@
       "src": "https://github.com/timrydefalk/blink-cmp-emoji"
     },
     "blink.cmp": {
-      "rev": "10198f904da1e7f77aeb0368414f871568c0d898",
+      "rev": "b72ed05dd452690181837d484984144a64709f17",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.indent": {
@@ -50,7 +50,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "c67fadd9a24230417267e4f9068227e093c0be2b",
+      "rev": "348df165f1773dd08c5d710add3fd0db6d421e6a",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "guess-indent.nvim": {
@@ -90,7 +90,7 @@
       "src": "https://github.com/monkoose/matchparen.nvim"
     },
     "mini-git": {
-      "rev": "a23986f9fd4f72f48d80001c7f13fe392cc164a1",
+      "rev": "35d9a918721c533490f1ae9268a4f0b7c840e1f4",
       "src": "https://github.com/nvim-mini/mini-git"
     },
     "mini.ai": {
@@ -98,27 +98,27 @@
       "src": "https://github.com/nvim-mini/mini.ai"
     },
     "mini.align": {
-      "rev": "34efb28993933ba1bded1890ca81821bc1dfd258",
+      "rev": "b4b402d0455e022b878c30971e02e0d7780e6d9e",
       "src": "https://github.com/nvim-mini/mini.align"
     },
     "mini.clue": {
-      "rev": "149236aed07cf15266dbaf2736452ad6b0dced47",
+      "rev": "ca0bab69c0a2612d33d72dac5d8aac93d459f7da",
       "src": "https://github.com/nvim-mini/mini.clue"
     },
     "mini.diff": {
-      "rev": "ce542d15eacf068f81f5e516da7d486db808c559",
+      "rev": "47ab8cf21c62cfd952008f2b9e79417c98173ec1",
       "src": "https://github.com/nvim-mini/mini.diff"
     },
     "mini.hipatterns": {
-      "rev": "8e18b4970f21be0db157104786d2be43058cdd44",
+      "rev": "247c0173579a29af60f25f00671a75c57090be9c",
       "src": "https://github.com/nvim-mini/mini.hipatterns"
     },
     "mini.icons": {
-      "rev": "f916635dc5ae2f479fbb9ab8184bb9444b62e86c",
+      "rev": "9e4c1645ce2b78afd6191b6be2c38bc0f998dd48",
       "src": "https://github.com/nvim-mini/mini.icons"
     },
     "mini.indentscope": {
-      "rev": "14eecb1cf33d1db35b8ac665b1aab4d3c9b47fe3",
+      "rev": "f75e6e4d560641cbb42e97182819af0175bdfe0e",
       "src": "https://github.com/nvim-mini/mini.indentscope"
     },
     "mini.move": {
@@ -178,12 +178,16 @@
       "rev": "d2d196c335919767803f905d573ce66340e33ee6",
       "src": "https://github.com/leath-dub/snipe.nvim"
     },
+    "terminil.nvim": {
+      "rev": "a5653f3e52b1e25e6c7cb4660348bdfc4c25c152",
+      "src": "https://github.com/X3ru4/terminil.nvim"
+    },
     "tiny-cmdline.nvim": {
       "rev": "d83700b48d8ff5625dbef4029af071db559544e5",
       "src": "https://github.com/rachartier/tiny-cmdline.nvim"
     },
     "tree-sitter-manager.nvim": {
-      "rev": "27cf9c8a3767b070c22f31e92451006ee2e43540",
+      "rev": "e99a8d5abf935cc193cc71600a2ad6a5b61b1aa0",
       "src": "https://github.com/romus204/tree-sitter-manager.nvim"
     },
     "vim-caser": {
