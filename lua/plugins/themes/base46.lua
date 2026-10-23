@@ -20,7 +20,7 @@ return {
 				['blink-pair'] = true,
 				['git-conflict'] = false,
 				['mini-icons'] = true,
-				['mini-tabline'] = true,
+				['mini-tabline'] = false,
 				['render-markdown'] = true,
 				['snacks-dashboard'] = false,
 				['tiny-inline-diagnostic'] = false,
@@ -111,6 +111,19 @@ return {
 					bg = colors.base_30.blue,
 				},
 				FloatFooter = { link = 'FloatTitle' },
+				TabLine = {
+					fg = colors.base_30.white,
+					bg = colors.base_30.black,
+				},
+				TabLineSel = {
+					fg = colors.base_30.white,
+					bg = colors.base_30.black,
+					underline = true,
+				},
+				TabLineFill = {
+					fg = colors.base_30.light_grey,
+					bg = colors.base_30.black2,
+				},
 
 				-- blink.indent
 				BlinkIndent = { fg = colors.base_30.line },

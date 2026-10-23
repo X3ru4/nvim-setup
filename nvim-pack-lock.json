@@ -5,7 +5,7 @@
       "src": "https://github.com/goolord/alpha-nvim"
     },
     "base46": {
-      "rev": "83522e02c6c3b4ea901c4bffd9e0a5e0371c1fe6",
+      "rev": "ebb5478e038c3f43e453acec3a210a20da10a82b",
       "src": "https://github.com/AvengeMedia/base46"
     },
     "blink-cmp-emoji": {
@@ -102,7 +102,7 @@
       "src": "https://github.com/nvim-mini/mini.align"
     },
     "mini.clue": {
-      "rev": "ca0bab69c0a2612d33d72dac5d8aac93d459f7da",
+      "rev": "79974f485028a3212f5a3f23b0095f8d0ae6f494",
       "src": "https://github.com/nvim-mini/mini.clue"
     },
     "mini.diff": {
@@ -129,13 +129,13 @@
       "rev": "59ce0acf79e1d930756ef3a7cb4c2369560cf548",
       "src": "https://github.com/nvim-mini/mini.surround"
     },
-    "mini.tabline": {
-      "rev": "3dd8686c15e3cfb1bfbc4abfecf699326f1de4c0",
-      "src": "https://github.com/nvim-mini/mini.tabline"
-    },
     "nerdy.nvim": {
       "rev": "313260b2dd2054b6fc7327fe70f3e0aa06aa7cb8",
       "src": "https://github.com/2kabhishek/nerdy.nvim"
+    },
+    "nvim-cokeline": {
+      "rev": "854849e6b853a6ee1f17d62c80ae37435cfb0a3e",
+      "src": "https://github.com/willothy/nvim-cokeline"
     },
     "nvim-colorizer.lua": {
       "rev": "72a05f62c52241bc7441c820eb53946f92b2e6a4",
@@ -179,7 +179,7 @@
       "src": "https://github.com/leath-dub/snipe.nvim"
     },
     "terminil.nvim": {
-      "rev": "859338781d80a1ec68f61db05c0aca69d99e6886",
+      "rev": "7b3d518979690519ddfbd72ab31b91477a7fa463",
       "src": "https://github.com/X3ru4/terminil.nvim"
     },
     "tiny-cmdline.nvim": {
