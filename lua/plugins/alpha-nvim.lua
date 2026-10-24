@@ -35,11 +35,11 @@ return {
 
 		dashboard.section.buttons.val = {
 			button('n', '  New file', new_file),
-			button('e', '  Explore', '<Cmd>Oil<Cr>'),
-			button('f', '  Search files', '<Cmd>FzfLua files<Cr>'),
-			button('o', '  Frecency/MRU', '<Cmd>FzfLua oldfiles<Cr>'),
+			button('e', '  Explore', '<cmd>Oil<cr>'),
+			button('f', '  Search files', '<cmd>FzfLua files<cr>'),
+			button('o', '  Frecency/MRU', '<cmd>FzfLua oldfiles<cr>'),
 			button('r', '  Restore last session', require('persistence').load),
-			button('q', '  Quit', '<Cmd>qa<Cr>'),
+			button('q', '  Quit', '<cmd>qa<cr>'),
 		}
 
 		require('alpha').setup(dashboard.config)

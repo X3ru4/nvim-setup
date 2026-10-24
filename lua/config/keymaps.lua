@@ -1,45 +1,49 @@
-local map = vim.keymap
+local set = vim.keymap.set
 
-map.set('n', '<leader>re', '<Cmd>restart<Cr>', { desc = 'Restart Neovim' })
-map.set('n', '<leader>ro', '<Cmd>e!<Cr>', { desc = 'Re-open' })
-map.set('n', '<leader>rm', '<Cmd>!rm ~/.local/state/nvim/swap -rf<Cr>', { desc = 'Remove swap folder' })
+set('n', '<leader>re', '<cmd>restart<cr>', { desc = 'Restart Neovim' })
+set('n', '<leader>ro', '<cmd>e!<cr>', { desc = 'Re-open' })
+set('n', '<leader>rm', '<cmd>!rm ~/.local/state/nvim/swap -rf<cr>', { desc = 'Remove swap folder' })
 
-map.set('n', '<leader>cr', '<Cmd>silent! w | terminal make run<Cr>', { desc = 'make run' })
-map.set('n', '<leader>cw', '<Cmd>set wrap!<Cr>', { desc = 'Wrap' })
-map.set(
+set('n', '<leader>cr', '<cmd>silent! w | terminal make run<cr>', { desc = 'make run' })
+set('n', '<leader>cw', '<cmd>set wrap!<cr>', { desc = 'Wrap' })
+set(
 	'n',
 	'<leader>cb',
-	[[<Cmd>let &background=&background ==# 'dark' ? 'light' : 'dark'<Cr>]],
+	[[<cmd>let &background=&background ==# 'dark' ? 'light' : 'dark'<cr>]],
 	{ desc = 'Toggle background' }
 )
-map.set({ 'n', 'x' }, '<leader>v', '<Cmd>norm gg0vG$h<Cr>', { desc = 'Select all' })
-map.set({ 'n', 'x' }, 'zh', 'zH', { desc = 'Horizontal scroll like "zH"' })
-map.set({ 'n', 'x' }, 'zl', 'zL', { desc = 'Horizontal scroll like "zL"' })
-map.set('n', '<S-h>', '<Cmd>bprevious<Cr>')
-map.set('n', '<S-l>', '<Cmd>bnext<Cr>')
-map.set('n', '<leader>bd', '<Cmd>bdelete<Cr>', { desc = 'Delete buffer' })
-map.set('n', '<leader>bb', '<Cmd>buffer #<Cr>', { desc = 'Previous buffer' })
-map.set('n', '<leader>bf', '<Cmd>silent! %bd!|e#|bd#<Cr>', { desc = 'Focus buffer' })
-map.set({ 'n', 'x', 'i' }, '<C-s>', '<Cmd>silent!w<Cr><ESC>', { desc = 'Save file', silent = true })
-map.set('n', '<leader>qa', '<Cmd>q!<Cr>', { desc = 'Quit all' })
-map.set('n', '<leader>qq', '<Cmd>q<Cr>', { desc = 'Quit' })
+set({ 'n', 'x' }, '<leader>v', '<cmd>norm gg0vG$h<cr>', { desc = 'Select all' })
+set({ 'n', 'x' }, 'zh', 'zH', { desc = 'Horizontal scroll like "zH"' })
+set({ 'n', 'x' }, 'zl', 'zL', { desc = 'Horizontal scroll like "zL"' })
+set('n', '<leader>tt', '<cmd>tabnew<cr>', { desc = 'New	tab' })
+set('n', '<leader>th', '<cmd>tabprevious<cr>', { desc = 'Previous tab' })
+set('n', '<leader>tl', '<cmd>tabnext<cr>', { desc = 'Next tab' })
+set('n', '<leader>tc', '<cmd>tabclose<cr>', { desc = 'Close tab' })
+set('n', '<S-h>', '<cmd>bprevious<cr>')
+set('n', '<S-l>', '<cmd>bnext<cr>')
+set('n', '<leader>bd', '<cmd>bdelete<cr>', { desc = 'Delete buffer' })
+set('n', '<leader>bb', '<cmd>buffer #<cr>', { desc = 'Previous buffer' })
+set('n', '<leader>bf', '<cmd>silent! %bd!|e#|bd#<cr>', { desc = 'Focus buffer' })
+set({ 'n', 'x', 'i' }, '<C-s>', '<cmd>silent!w<cr><ESC>', { desc = 'Save file', silent = true })
+set('n', '<leader>qa', '<cmd>q!<cr>', { desc = 'Quit all' })
+set('n', '<leader>qq', '<cmd>q<cr>', { desc = 'Quit' })
 
 -- Better up/down
-map.set({ 'n', 'x' }, 'k', 'v:count == 0 ? \'gk\' : \'k\'', { desc = 'Up', expr = true, silent = true })
-map.set({ 'n', 'x' }, 'j', 'v:count == 0 ? \'gj\' : \'j\'', { desc = 'Down', expr = true, silent = true })
-map.set({ 'n', 'x' }, '<Up>', 'v:count == 0 ? \'gk\' : \'k\'', { desc = 'Up', expr = true, silent = true })
-map.set({ 'n', 'x' }, '<Down>', 'v:count == 0 ? \'gj\' : \'j\'', { desc = 'Down', expr = true, silent = true })
+set({ 'n', 'x' }, 'k', 'v:count == 0 ? \'gk\' : \'k\'', { desc = 'Up', expr = true, silent = true })
+set({ 'n', 'x' }, 'j', 'v:count == 0 ? \'gj\' : \'j\'', { desc = 'Down', expr = true, silent = true })
+set({ 'n', 'x' }, '<Up>', 'v:count == 0 ? \'gk\' : \'k\'', { desc = 'Up', expr = true, silent = true })
+set({ 'n', 'x' }, '<Down>', 'v:count == 0 ? \'gj\' : \'j\'', { desc = 'Down', expr = true, silent = true })
 
 -- Undo point
-map.set('i', ',', ',<C-g>u')
-map.set('i', '.', '.<C-g>u')
-map.set('i', ';', ';<C-g>u')
+set('i', ',', ',<C-g>u')
+set('i', '.', '.<C-g>u')
+set('i', ';', ';<C-g>u')
 
 -- Commenting
-map.set('n', 'gco', 'o<ESC>Vcx<esc><Cmd>normal gcc<Cr>fxa<bs>', { desc = 'Add Comment Below' })
-map.set('n', 'gcO', 'O<ESC>Vcx<esc><Cmd>normal gcc<Cr>fxa<bs>', { desc = 'Add Comment Above' })
+set('n', 'gco', 'o<ESC>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Below' })
+set('n', 'gcO', 'O<ESC>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Above' })
 
-map.set({ 'i', 'n', 's' }, '<ESC>', function()
+set({ 'i', 'n', 's' }, '<ESC>', function()
 	vim.cmd('noh')
 	return '<ESC>'
 end, { expr = true, desc = 'Escape and Clear hlsearch' })
