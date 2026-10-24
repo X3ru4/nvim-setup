@@ -179,7 +179,7 @@
       "src": "https://github.com/leath-dub/snipe.nvim"
     },
     "terminil.nvim": {
-      "rev": "096ecf4f6608418bfba4d55daa97deafcdcc1ab4",
+      "rev": "967f0e6abd86282f8c75ec5eefa2adb082e6f15f",
       "src": "https://github.com/X3ru4/terminil.nvim"
     },
     "tiny-cmdline.nvim": {
