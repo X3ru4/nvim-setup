@@ -25,10 +25,10 @@ set('n', '<leader>qa', '<cmd>q!<cr>', { desc = 'Quit all' })
 set('n', '<leader>qq', '<cmd>q<cr>', { desc = 'Quit' })
 
 -- Better up/down
-set({ 'n', 'x' }, 'k', 'v:count == 0 ? \'gk\' : \'k\'', { desc = 'Up', expr = true, silent = true })
-set({ 'n', 'x' }, 'j', 'v:count == 0 ? \'gj\' : \'j\'', { desc = 'Down', expr = true, silent = true })
-set({ 'n', 'x' }, '<Up>', 'v:count == 0 ? \'gk\' : \'k\'', { desc = 'Up', expr = true, silent = true })
-set({ 'n', 'x' }, '<Down>', 'v:count == 0 ? \'gj\' : \'j\'', { desc = 'Down', expr = true, silent = true })
+set({ 'n', 'x' }, 'k', [[v:count == 0 ? 'gk' : 'k']], { desc = 'Up', expr = true, silent = true })
+set({ 'n', 'x' }, 'j', [['v:count == 0 ? 'gj' : 'j']], { desc = 'Down', expr = true, silent = true })
+set({ 'n', 'x' }, '<Up>', [['v:count == 0 ? 'gk' : 'k']], { desc = 'Up', expr = true, silent = true })
+set({ 'n', 'x' }, '<Down>', [['v:count == 0 ? 'gj' : 'j']], { desc = 'Down', expr = true, silent = true })
 
 -- Undo point
 set('i', ',', ',<C-g>u')
