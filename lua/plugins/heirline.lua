@@ -1,1 +1,255 @@
+return {
+	-- uses mini.icons
+	'rebelot/heirline.nvim',
+	event = 'UIEnter',
+	config = function()
+		local hl = require('utils.highlight')
+		local separator = { '', '' }
+		local Space = { provider = ' ' }
+		local Align = { provider = '%=' }
 
+		local SearchCount = {
+			condition = function()
+				return vim.v.hlsearch ~= 0 and vim.o.cmdheight == 0
+			end,
+			init = function(self)
+				local ok, search = pcall(vim.fn.searchcount)
+				if ok and search.total then
+					self.search = search
+				end
+			end,
+			provider = function(self)
+				if self.search then
+					return ' ' .. self.search.current .. '/' .. math.min(self.search.total, self.search.maxcount)
+				end
+			end,
+			hl = 'WarningMsg',
+		}
+
+		local LSPActive = {
+			condition = function()
+				return next(vim.lsp.get_clients({ bufnr = 0 })) ~= nil
+			end,
+			update = { 'LspAttach', 'LspDetach', 'ColorScheme' },
+			provider = '  [LSP]',
+			hl = 'DiagnosticSignInfo',
+		}
+
+		local ViMode = {
+			update = {
+				'ModeChanged',
+				pattern = '*:*',
+				callback = vim.schedule_wrap(function()
+					vim.cmd.redrawstatus()
+				end),
+			},
+			init = function(self)
+				self.current_mode = vim.api.nvim_get_mode().mode
+				self.current_modehl = self.mode_hl[self.current_mode] or 'ModeOther'
+			end,
+			hl = function(self)
+				return self.current_modehl
+			end,
+			static = {
+				mode_hl = {
+					n = 'ModeNormal',
+					i = 'ModeInsert',
+					v = 'ModeVisual',
+					V = 'ModeVisual',
+					['\22'] = 'ModeVisual',
+					c = 'ModeCommand',
+					t = 'ModeOther',
+					R = 'ModeReplace',
+					s = 'ModeVisual',
+					no = 'ModeReplace',
+					['!'] = 'ModeOther',
+					niI = 'ModeInsert',
+					niR = 'ModeReplace',
+					niV = 'ModeReplace',
+				},
+				mode_name = {
+					n = 'Normal',
+					i = 'Insert',
+					v = 'Visual',
+					V = 'V-Line',
+					['\22'] = 'V-Block',
+					c = 'Command',
+					t = 'Terminal',
+					R = 'Replace',
+					s = 'Select',
+					nt = 'N-Terminal',
+					no = 'O-pending',
+					['!'] = 'Shell',
+					niI = 'N-Insert',
+					niR = 'N-Replace',
+					niV = 'N-Virtual',
+				},
+			},
+			{
+				provider = ' 󰍳 ', -- CREEPER!!
+			},
+			{
+				provider = function(self)
+					return (self.mode_name[self.current_mode] or self.current_mode) .. ' '
+				end,
+			},
+			{
+				provider = separator[1],
+				hl = function(self)
+					return {
+						fg = hl.getbg(self.current_modehl),
+						bg = hl.alias.Black3,
+					}
+				end,
+			},
+		}
+
+		local FileInfo = {
+			update = { 'BufWinEnter', 'BufModifiedSet' },
+			init = function()
+				hl.set('HeirlineDark2', {
+					fg = hl.getfg('StatusLine'),
+					bg = hl.alias.Black2,
+				})
+				hl.set('HeirlineDark2Sep', {
+					fg = hl.alias.Black2,
+					bg = hl.getbg('StatusLine'),
+				})
+				hl.set('HeirlineDark3Sep', { fg = hl.alias.Black3 })
+				hl.set('HeirlineMod', { fg = hl.getfg('Changed') })
+				hl.set('HeirlineRon', { fg = hl.getfg('Constant') })
+			end,
+			hl = 'HeirlineDark2',
+			{
+				provider = separator[1],
+				hl = 'HeirlineDark3Sep',
+			},
+			{
+				init = function(self)
+					self.icon, self.hl = MiniIcons.get('filetype', vim.bo.filetype)
+				end,
+				provider = function(self)
+					return ' ' .. self.icon .. ' '
+				end,
+				hl = function(self)
+					return self.hl
+				end,
+			},
+			{
+				provider = function()
+					local file = vim.fn.expand('%:t')
+					if file ~= '' then
+						return file .. ' '
+					else
+						return vim.bo.filetype .. ' '
+					end
+				end,
+			},
+			{
+				condition = function()
+					return vim.bo.modified
+				end,
+				provider = '◉ ',
+				hl = 'HeirlineMod',
+			},
+			{
+				condition = function()
+					return vim.bo.readonly or not vim.bo.modifiable
+				end,
+				provider = ' ',
+				hl = 'HeirlineRon',
+			},
+			{
+				provider = separator[1],
+				hl = 'HeirlineDark2Sep',
+			},
+		}
+
+		local Macro = {
+			update = { 'RecordingEnter', 'RecordingLeave' },
+			condition = function()
+				return #vim.fn.reg_recording() > 0
+			end,
+			provider = function()
+				return '  (' .. vim.fn.reg_recording() .. ')'
+			end,
+			hl = 'Type',
+		}
+
+		local Diagnostic = {
+			condition = function(self)
+				return #self.status > 0
+			end,
+			update = { 'DiagnosticChanged', 'BufEnter' },
+			init = function(self)
+				self.status = vim.diagnostic.status(0)
+			end,
+			{
+				provider = function(self)
+					return self.status:gsub(':', ' ')
+				end,
+			},
+			{
+				provider = function(self)
+					return self.status
+						:gsub('(%s?%%#DiagnosticSignInfo#.-)%%##$', '')
+						:gsub('(%s?%%#DiagnosticSignHint#.-)%%##$', '')
+						:gsub(':', ' ')
+				end,
+			},
+		}
+
+		local StatusLine = {
+			{
+				flexible = 20,
+				{ ViMode, FileInfo },
+				{ ViMode },
+				false,
+			},
+			{
+				flexible = 5,
+				{
+					update = Diagnostic.update,
+					init = Diagnostic.init,
+					Space,
+					Diagnostic[1],
+				},
+				{
+					update = Diagnostic.update,
+					init = Diagnostic.init,
+					Space,
+					Diagnostic[2],
+				},
+				false,
+			},
+			Align,
+			{
+				flexible = 10,
+				SearchCount,
+				false,
+			},
+			{
+				flexible = 15,
+				Macro,
+				false,
+			},
+			{
+				flexible = 2,
+				LSPActive,
+				false,
+			},
+			{
+				flexible = 3,
+				{ provider = [[ %{ mode() =~# '^[ict]$' ? '' : '' } %l·%c ]] },
+				{ provider = ' %l·%c ' },
+				{ provider = ' %l ' },
+				false,
+			},
+		}
+
+		require('heirline').setup({ statusline = StatusLine })
+
+		-- Make sure heirline.nvim always resets the highlights when changing colorschemes
+		hl.add_hook('heirline', require('heirline.highlights').reset_highlights, true)
+	end,
+}

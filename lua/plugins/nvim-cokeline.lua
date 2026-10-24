@@ -109,9 +109,6 @@ return {
 					bold = function(buffer)
 						return buffer.is_focused or buffer.is_modified
 					end,
-					italic = function(buffer)
-						return buffer.is_focused
-					end,
 				},
 				{
 					text = '✘',
