@@ -29,7 +29,7 @@ return {
 		}
 
 		local function advance_open()
-			vim.ui.input({ prompt = prompt, default = '' }, function(input)
+			vim.ui.input({ prompt = prompt, completion = 'file' }, function(input)
 				if input then
 					if input:sub(1, 1) == '@' then
 						local what = input:sub(2)
@@ -51,8 +51,8 @@ return {
 			end)
 		end
 
-		local function root_open()
-			vim.ui.input({ prompt = prompt, default = '~/' }, function(input)
+		local function home_open()
+			vim.ui.input({ prompt = prompt, completion = 'file', default = '~/' }, function(input)
 				if input then
 					Oil.open(input)
 				end
@@ -92,7 +92,7 @@ return {
 					mode = 'n',
 				},
 				['gf'] = {
-					root_open,
+					home_open,
 					mode = 'n',
 				},
 				['<leader>ff'] = {
