@@ -13,6 +13,7 @@ return {
 		vim.keymap.set('n', '<leader>bh', '<Plug>(cokeline-switch-prev)', { desc = 'Switch pre' })
 		vim.keymap.set('n', '<leader>bl', '<Plug>(cokeline-switch-next)', { desc = 'Switch next' })
 
+		local buf_icons = {}
 		require('cokeline').setup({
 			default_hl = {
 				fg = function(buffer)
@@ -70,17 +71,26 @@ return {
 						return (buffer.index ~= 1) and '▏' or ''
 					end,
 					fg = function()
-						return get_hex('Normal', 'fg')
+						return get_hex('Comment', 'fg')
 					end,
 				},
 				{
 					text = function(buffer)
-						local icon, _ = MiniIcons.get('file', buffer.filename)
-						return (is_picking_focus() or is_picking_close()) and buffer.pick_letter .. ' ' or icon .. ' '
+						if is_picking_focus() or is_picking_close() then
+							return buffer.pick_letter .. ' '
+						else
+							if not buf_icons[buffer.number] then
+								local icon, hl = MiniIcons.get('file', buffer.filename)
+								buf_icons[buffer.number] = {
+									icon = icon,
+									color = get_hex(hl, 'fg'),
+								}
+							end
+							return buf_icons[buffer.number].icon .. ' '
+						end
 					end,
 					fg = function(buffer)
-						local _, hl = MiniIcons.get('file', buffer.filename)
-						return (is_picking_focus() and yellow) or (is_picking_close() and red) or get_hex(hl, 'fg')
+						return (is_picking_focus() and yellow) or (is_picking_close() and red) or buf_icons[buffer.number].color
 					end,
 					italic = function()
 						return (is_picking_focus() or is_picking_close())
@@ -93,7 +103,13 @@ return {
 					text = function(buffer)
 						return buffer.filename .. ' '
 					end,
+					fg = function(buffer)
+						return buffer.is_modified and get_hex('Changed', 'fg') or nil
+					end,
 					bold = function(buffer)
+						return buffer.is_focused or buffer.is_modified
+					end,
+					italic = function(buffer)
 						return buffer.is_focused
 					end,
 				},
@@ -102,14 +118,28 @@ return {
 					on_click = function(_, _, _, _, buffer)
 						buffer:delete()
 					end,
-					fg = function()
-						return get_hex('ErrorMsg', 'fg')
+					fg = function(buffer)
+						return (buffer.is_focused or buffer.buf_hovered) and get_hex('ErrorMsg', 'fg') or get_hex('Normal', 'fg')
 					end,
 				},
 				{
 					text = ' ',
 				},
 			},
+		})
+
+		local group = vim.api.nvim_create_augroup('cokacola', { clear = true })
+		vim.api.nvim_create_autocmd('ColorScheme', {
+			group = group,
+			callback = function()
+				buf_icons = {}
+			end,
+		})
+		vim.api.nvim_create_autocmd('BufDelete', {
+			group = group,
+			callback = function(ev)
+				buf_icons[ev.buf] = nil
+			end,
 		})
 	end,
 }
