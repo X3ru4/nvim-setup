@@ -20,15 +20,15 @@ set('n', '<S-l>', '<cmd>bnext<cr>')
 set('n', '<leader>bd', '<cmd>bdelete<cr>', { desc = 'Delete buffer' })
 set('n', '<leader>bb', '<cmd>buffer #<cr>', { desc = 'Previous buffer' })
 set('n', '<leader>bf', '<cmd>silent! %bd!|e#|bd#<cr>', { desc = 'Focus buffer' })
-set({ 'n', 'x', 'i' }, '<C-s>', '<cmd>silent!w<cr><ESC>', { desc = 'Save file', silent = true })
+set({ 'n', 'x', 'i' }, '<C-s>', '<cmd>silent!w<cr>', { desc = 'Save file', silent = true })
 set('n', '<leader>qa', '<cmd>q!<cr>', { desc = 'Quit all' })
 set('n', '<leader>qq', '<cmd>q<cr>', { desc = 'Quit' })
 
 -- Better up/down
 set({ 'n', 'x' }, 'k', [[v:count == 0 ? 'gk' : 'k']], { desc = 'Up', expr = true, silent = true })
 set({ 'n', 'x' }, 'j', [['v:count == 0 ? 'gj' : 'j']], { desc = 'Down', expr = true, silent = true })
-set({ 'n', 'x' }, '<Up>', [['v:count == 0 ? 'gk' : 'k']], { desc = 'Up', expr = true, silent = true })
-set({ 'n', 'x' }, '<Down>', [['v:count == 0 ? 'gj' : 'j']], { desc = 'Down', expr = true, silent = true })
+set({ 'n', 'x' }, '<Up>', [[v:count == 0 ? 'gk' : 'k']], { desc = 'Up', expr = true, silent = true })
+set({ 'n', 'x' }, '<Down>', [[v:count == 0 ? 'gj' : 'j']], { desc = 'Down', expr = true, silent = true })
 
 -- Undo point
 set('i', ',', ',<C-g>u')
@@ -36,10 +36,10 @@ set('i', '.', '.<C-g>u')
 set('i', ';', ';<C-g>u')
 
 -- Commenting
-set('n', 'gco', 'o<ESC>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Below' })
-set('n', 'gcO', 'O<ESC>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Above' })
+set('n', 'gco', 'o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Below' })
+set('n', 'gcO', 'O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Comment Above' })
 
-set({ 'i', 'n', 's' }, '<ESC>', function()
-	vim.cmd('noh')
-	return '<ESC>'
+set({ 'i', 'n', 's' }, '<esc>', function()
+	vim.cmd.nohlsearch()
+	return '<esc>'
 end, { expr = true, desc = 'Escape and Clear hlsearch' })
