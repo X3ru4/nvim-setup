@@ -84,7 +84,7 @@ return {
 									color = get_hex(hl, 'fg'),
 								}
 							end
-							return buf_icons[buffer.number].icon .. ' '
+							return (vim.bo[buffer.number].buftype == 'terminal' and '󰆍' or buf_icons[buffer.number].icon) .. ' '
 						end
 					end,
 					fg = function(buffer)

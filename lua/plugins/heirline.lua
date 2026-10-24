@@ -129,7 +129,7 @@ return {
 					self.icon, self.hl = MiniIcons.get('filetype', vim.bo.filetype)
 				end,
 				provider = function(self)
-					return ' ' .. self.icon .. ' '
+					return ' ' .. (vim.bo.buftype == 'terminal' and '󰆍' or self.icon) .. ' '
 				end,
 				hl = function(self)
 					return self.hl
