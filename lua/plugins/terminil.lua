@@ -3,7 +3,6 @@ return {
 	event = 'VeryLazy',
 	config = function()
 		local terminil = require('terminil')
-		local helper = terminil.helper
 		terminil.setup({
 			term_opts = {
 				shell = 'fish',
