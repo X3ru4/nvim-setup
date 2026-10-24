@@ -114,7 +114,7 @@ return {
 						buffer:delete()
 					end,
 					fg = function(buffer)
-						return (buffer.is_focused or buffer.buf_hovered) and get_hex('ErrorMsg', 'fg') or get_hex('Normal', 'fg')
+						return (buffer.is_focused or buffer.buf_hovered) and get_hex('ErrorMsg', 'fg') or nil
 					end,
 				},
 				{
