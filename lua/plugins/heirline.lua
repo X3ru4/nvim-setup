@@ -4,7 +4,7 @@ return {
 	event = 'UIEnter',
 	config = function()
 		local hl = require('utils.highlight')
-		local separator = { '', '' }
+		local separator = { '', '' }
 		local Space = { provider = ' ' }
 		local Align = { provider = '%=' }
 
@@ -144,6 +144,7 @@ return {
 						return vim.bo.filetype .. ' '
 					end
 				end,
+				hl = { italic = true },
 			},
 			{
 				condition = function()

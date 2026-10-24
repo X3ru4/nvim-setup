@@ -15,6 +15,8 @@ return {
 
 		local buf_icons = {}
 		require('cokeline').setup({
+			history = { enabled = false },
+			mappings = { disable_mouse = true },
 			default_hl = {
 				fg = function(buffer)
 					return buffer.is_focused and get_hex('TabLine', 'fg') or get_hex('TabLineFill', 'fg')
@@ -22,10 +24,6 @@ return {
 				bg = function(buffer)
 					return buffer.is_focused and get_hex('TabLine', 'bg') or get_hex('TabLineFill', 'bg')
 				end,
-			},
-			history = { enabled = false },
-			mappings = {
-				disable_mouse = true,
 			},
 			tabs = {
 				placement = 'right',
