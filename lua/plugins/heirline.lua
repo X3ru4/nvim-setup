@@ -105,7 +105,7 @@ return {
 		}
 
 		local FileInfo = {
-			update = { 'BufWinEnter', 'BufModifiedSet' },
+			update = { 'BufWinEnter', 'BufModifiedSet', 'ColorScheme' },
 			init = function()
 				hl.set('HeirlineDark2', {
 					fg = hl.getfg('StatusLine'),
