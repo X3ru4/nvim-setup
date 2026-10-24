@@ -20,7 +20,7 @@ set('n', '<S-l>', '<cmd>bnext<cr>')
 set('n', '<leader>bd', '<cmd>bdelete<cr>', { desc = 'Delete buffer' })
 set('n', '<leader>bb', '<cmd>buffer #<cr>', { desc = 'Previous buffer' })
 set('n', '<leader>bf', '<cmd>silent! %bd!|e#|bd#<cr>', { desc = 'Focus buffer' })
-set({ 'n', 'x', 'i' }, '<C-s>', '<cmd>silent!w<cr>', { desc = 'Save file', silent = true })
+set({ 'n', 'x', 'i' }, '<C-s>', '<cmd>silent!w<cr><esc>', { desc = 'Save file', silent = true })
 set('n', '<leader>qa', '<cmd>q!<cr>', { desc = 'Quit all' })
 set('n', '<leader>qq', '<cmd>q<cr>', { desc = 'Quit' })
 
