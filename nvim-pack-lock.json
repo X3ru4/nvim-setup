@@ -50,7 +50,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "507dfc85551ff2d9293ec215f10f19395252aada",
+      "rev": "5b88d6f0af7fcb41d4a8bb340bf70d7e3824ee9d",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "guess-indent.nvim": {
@@ -179,7 +179,7 @@
       "src": "https://github.com/leath-dub/snipe.nvim"
     },
     "terminil.nvim": {
-      "rev": "967f0e6abd86282f8c75ec5eefa2adb082e6f15f",
+      "rev": "5ac56a7b6085e8cd54914c103c64ba5217ae97de",
       "src": "https://github.com/X3ru4/terminil.nvim"
     },
     "tiny-cmdline.nvim": {
