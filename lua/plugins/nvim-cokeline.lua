@@ -1,6 +1,5 @@
 return {
 	'willothy/nvim-cokeline',
-
 	event = { 'BufNewFile', 'BufReadPre' },
 	config = function()
 		local is_picking_focus = require('cokeline.mappings').is_picking_focus

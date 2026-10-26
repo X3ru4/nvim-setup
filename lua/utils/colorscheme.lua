@@ -2,7 +2,9 @@
 
 local M = {}
 
+---@type string[]
 M.install = {}
+---@type table[]
 M.installed_themes = {}
 M.default = 'default'
 M.variant = nil
@@ -26,6 +28,7 @@ local function is_default(spec)
 	return spec.name == M.default or spec.module_name == M.default or spec[1] == M.default or spec.url == M.default
 end
 
+---@return table[]
 function M.create_spec()
 	read_modules()
 	if next(M.installed_themes) == nil then
