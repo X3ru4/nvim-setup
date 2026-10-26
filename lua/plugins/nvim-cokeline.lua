@@ -1,5 +1,6 @@
 return {
 	'willothy/nvim-cokeline',
+
 	event = { 'BufNewFile', 'BufReadPre' },
 	config = function()
 		local is_picking_focus = require('cokeline.mappings').is_picking_focus
@@ -8,10 +9,8 @@ return {
 		local red = vim.g.terminal_color_1
 		local yellow = vim.g.terminal_color_3
 
-		vim.keymap.set('n', '<leader>bg', '<Plug>(cokeline-pick-focus)', { desc = 'Picker focus buffer' })
+		vim.keymap.set('n', '<leader>bf', '<Plug>(cokeline-pick-focus)', { desc = 'Picker focus buffer' })
 		vim.keymap.set('n', '<leader>bc', '<Plug>(cokeline-pick-close)', { desc = 'Picker close buffer' })
-		vim.keymap.set('n', '<leader>bh', '<Plug>(cokeline-switch-prev)', { desc = 'Switch pre' })
-		vim.keymap.set('n', '<leader>bl', '<Plug>(cokeline-switch-next)', { desc = 'Switch next' })
 
 		local buf_icons = {}
 		require('cokeline').setup({
@@ -24,39 +23,6 @@ return {
 				bg = function(buffer)
 					return buffer.is_focused and get_hex('TabLine', 'bg') or get_hex('TabLineFill', 'bg')
 				end,
-			},
-			tabs = {
-				placement = 'right',
-				components = {
-					{
-						text = function(tabpage)
-							if #vim.api.nvim_list_tabpages() == 1 then
-								return ''
-							end
-							return (not tabpage.is_first) and '▏' or ' '
-						end,
-						fg = function()
-							return get_hex('Normal', 'fg')
-						end,
-						bg = function(tabpage)
-							return tabpage.is_active and get_hex('Added', 'fg') or get_hex('Normal', 'bg')
-						end,
-					},
-					{
-						text = function(tabpage)
-							if #vim.api.nvim_list_tabpages() == 1 then
-								return ''
-							end
-							return tabpage.number .. ' '
-						end,
-						fg = function(tabpage)
-							return tabpage.is_active and get_hex('Search', 'fg') or get_hex('Normal', 'fg')
-						end,
-						bg = function(tabpage)
-							return tabpage.is_active and get_hex('Added', 'fg') or get_hex('TabLine', 'bg')
-						end,
-					},
-				},
 			},
 			components = {
 				{
@@ -90,9 +56,6 @@ return {
 					fg = function(buffer)
 						return (is_picking_focus() and yellow) or (is_picking_close() and red) or buf_icons[buffer.number].color
 					end,
-					italic = function()
-						return (is_picking_focus() or is_picking_close())
-					end,
 					bold = function()
 						return (is_picking_focus() or is_picking_close())
 					end,
@@ -119,6 +82,39 @@ return {
 				},
 				{
 					text = ' ',
+				},
+			},
+			tabs = {
+				placement = 'right',
+				components = {
+					{
+						text = function(tabpage)
+							if #vim.api.nvim_list_tabpages() == 1 then
+								return ''
+							end
+							return (not tabpage.is_first) and '▏' or ' '
+						end,
+						fg = function()
+							return get_hex('Normal', 'fg')
+						end,
+						bg = function(tabpage)
+							return tabpage.is_active and get_hex('Added', 'fg') or get_hex('Normal', 'bg')
+						end,
+					},
+					{
+						text = function(tabpage)
+							if #vim.api.nvim_list_tabpages() == 1 then
+								return ''
+							end
+							return tabpage.number .. ' '
+						end,
+						fg = function(tabpage)
+							return tabpage.is_active and get_hex('Search', 'fg') or get_hex('Normal', 'fg')
+						end,
+						bg = function(tabpage)
+							return tabpage.is_active and get_hex('Added', 'fg') or get_hex('TabLine', 'bg')
+						end,
+					},
 				},
 			},
 		})
