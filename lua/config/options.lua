@@ -32,13 +32,6 @@ opt.cursorline = true
 opt.cursorcolumn = false
 opt.scrolloff = 4
 opt.sidescrolloff = 8
-opt.guicursor = {
-	'n-c:block-Cursor',
-	'v:block-Cursor',
-	'i-ci-ve:ver25-Cursor',
-	'r-cr:hor20-Cursor',
-	'o:hor50-Cursor',
-}
 
 -- Window & Split
 opt.splitbelow = true
@@ -92,20 +85,12 @@ opt.sessionoptions = {
 -- Editing
 opt.virtualedit = 'block'
 opt.jumpoptions = 'view'
-opt.formatoptions = 'jcrq'
-
--- Completion
-opt.wildmode = 'longest:full,full'
-
--- Spell
-opt.spell = false
-opt.spelllang = { 'en' }
 
 -- Status column
 opt.signcolumn = 'yes'
 
 -- Clipboard
-opt.clipboard = vim.env.SSH_TTY and '' or 'unnamedplus'
+opt.clipboard:append('unnamedplus')
 
 -- List
 opt.list = true
@@ -115,7 +100,7 @@ opt.listchars = {
 	leadmultispace = '  ',
 	extends = '›',
 	precedes = '‹',
-  space = '·',
+	space = '·',
 	trail = '•',
 	nbsp = '␣',
 }
@@ -129,11 +114,3 @@ opt.fillchars = {
 	diff = '╱',
 	eob = ' ',
 }
-
--- Messages
-opt.shortmess:append({
-	W = true,
-	I = true,
-	c = true,
-	C = true,
-})
