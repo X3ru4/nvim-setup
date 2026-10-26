@@ -1,20 +1,20 @@
 ---This util manages colorschemes.
 
 local M = {}
-M.themes = {}
 
 M.install = {}
+M.installed_themes = {}
 M.default = 'default'
 M.variant = nil
 
-local function load_colorscheme()
+local function read_modules()
 	for _, name in ipairs(M.install) do
 		local module = 'plugins.themes.' .. name
 		local is_module, spec = pcall(require, module)
 		if is_module then
 			if spec then
 				spec.module_name = name
-				M.themes[#M.themes + 1] = spec
+				table.insert(M.installed_themes, spec)
 			end
 		else
 			vim.notify('Module cannot be executed: ' .. module)
@@ -27,26 +27,25 @@ local function is_default(spec)
 end
 
 function M.create_spec()
-	load_colorscheme()
-	if M.themes == {} then
+	read_modules()
+	if next(M.installed_themes) == nil then
 		return {}
 	end
-	local t = {}
+	local specs = {}
 
-	for _, spec in ipairs(M.themes) do
+	for _, spec in ipairs(M.installed_themes) do
 		if spec[1] or spec.url then
 			if is_default(spec) then
 				spec.lazy = false
 				spec.priority = 1000
-				t[#t + 1] = spec
 			else
 				spec.lazy = true
-				t[#t + 1] = spec
 			end
+			specs[#specs + 1] = spec
 		end
 	end
 
-	return t
+	return specs
 end
 
 return M
