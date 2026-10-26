@@ -5,23 +5,21 @@ return {
 	config = function()
 		local is_picking_focus = require('cokeline.mappings').is_picking_focus
 		local is_picking_close = require('cokeline.mappings').is_picking_close
-		local get_hex = require('cokeline.hlgroups').get_hl_attr
+		local get_color = require('cokeline.hlgroups').get_hl_attr
+		local list_tabpages = vim.api.nvim_list_tabpages
 		local red = vim.g.terminal_color_1
 		local yellow = vim.g.terminal_color_3
-
-		vim.keymap.set('n', '<leader>bf', '<Plug>(cokeline-pick-focus)', { desc = 'Picker focus buffer' })
-		vim.keymap.set('n', '<leader>bc', '<Plug>(cokeline-pick-close)', { desc = 'Picker close buffer' })
-
 		local buf_icons = {}
+
 		require('cokeline').setup({
 			history = { enabled = false },
 			mappings = { disable_mouse = true },
 			default_hl = {
 				fg = function(buffer)
-					return buffer.is_focused and get_hex('TabLine', 'fg') or get_hex('TabLineFill', 'fg')
+					return buffer.is_focused and get_color('TabLine', 'fg') or get_color('TabLineFill', 'fg')
 				end,
 				bg = function(buffer)
-					return buffer.is_focused and get_hex('TabLine', 'bg') or get_hex('TabLineFill', 'bg')
+					return buffer.is_focused and get_color('TabLine', 'bg') or get_color('TabLineFill', 'bg')
 				end,
 			},
 			components = {
@@ -35,7 +33,7 @@ return {
 						return (buffer.index ~= 1) and '▏' or ''
 					end,
 					fg = function()
-						return get_hex('Comment', 'fg')
+						return get_color('Comment', 'fg')
 					end,
 				},
 				{
@@ -47,7 +45,7 @@ return {
 								local icon, hl = MiniIcons.get('file', buffer.filename)
 								buf_icons[buffer.number] = {
 									icon = icon,
-									color = get_hex(hl, 'fg'),
+									color = get_color(hl, 'fg'),
 								}
 							end
 							return (vim.bo[buffer.number].buftype == 'terminal' and '󰆍' or buf_icons[buffer.number].icon) .. ' '
@@ -71,19 +69,25 @@ return {
 						return buffer.filename .. ' '
 					end,
 					fg = function(buffer)
-						return buffer.is_modified and get_hex('Changed', 'fg') or nil
+						if buffer.is_modified then
+							return get_color('Changed', 'fg')
+						end
+						return buffer.buf_hovered and get_color('Normal', 'fg') or nil
 					end,
 					bold = function(buffer)
 						return buffer.is_focused or buffer.is_modified
 					end,
 				},
 				{
-					text = '✘',
+					text = '󰅖',
 					on_click = function(_, _, _, _, buffer)
 						buffer:delete()
 					end,
 					fg = function(buffer)
-						return (buffer.is_focused or buffer.buf_hovered) and get_hex('ErrorMsg', 'fg') or nil
+						return (buffer.is_focused or buffer.buf_hovered) and get_color('ErrorMsg', 'fg') or nil
+					end,
+					bold = function(buffer)
+						return buffer.is_hovered
 					end,
 				},
 				{
@@ -95,35 +99,38 @@ return {
 				components = {
 					{
 						text = function(tabpage)
-							if #vim.api.nvim_list_tabpages() == 1 then
+							if #list_tabpages() == 1 then
 								return ''
 							end
 							return (not tabpage.is_first) and '▏' or ' '
 						end,
 						fg = function()
-							return get_hex('Normal', 'fg')
+							return get_color('Normal', 'fg')
 						end,
 						bg = function(tabpage)
-							return tabpage.is_active and get_hex('Added', 'fg') or get_hex('Normal', 'bg')
+							return tabpage.is_active and get_color('Added', 'fg') or get_color('Normal', 'bg')
 						end,
 					},
 					{
 						text = function(tabpage)
-							if #vim.api.nvim_list_tabpages() == 1 then
+							if #list_tabpages() == 1 then
 								return ''
 							end
 							return tabpage.number .. ' '
 						end,
 						fg = function(tabpage)
-							return tabpage.is_active and get_hex('Search', 'fg') or get_hex('Normal', 'fg')
+							return tabpage.is_active and get_color('Search', 'fg') or get_color('Normal', 'fg')
 						end,
 						bg = function(tabpage)
-							return tabpage.is_active and get_hex('Added', 'fg') or get_hex('TabLine', 'bg')
+							return tabpage.is_active and get_color('Added', 'fg') or get_color('TabLine', 'bg')
 						end,
 					},
 				},
 			},
 		})
+
+		vim.keymap.set('n', '<leader>bf', '<Plug>(cokeline-pick-focus)', { desc = 'Picker focus buffer' })
+		vim.keymap.set('n', '<leader>bc', '<Plug>(cokeline-pick-close)', { desc = 'Picker close buffer' })
 
 		local group = vim.api.nvim_create_augroup('cokacola', { clear = true })
 		vim.api.nvim_create_autocmd('ColorScheme', {
