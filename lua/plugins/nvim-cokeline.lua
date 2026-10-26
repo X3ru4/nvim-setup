@@ -64,7 +64,7 @@ return {
 					text = function(buffer)
 						return buffer.unique_prefix
 					end,
-					underline =true,
+					underline = true,
 				},
 				{
 					text = function(buffer)
