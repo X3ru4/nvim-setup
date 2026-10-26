@@ -62,6 +62,12 @@ return {
 				},
 				{
 					text = function(buffer)
+						return buffer.unique_prefix
+					end,
+					underline =true,
+				},
+				{
+					text = function(buffer)
 						return buffer.filename .. ' '
 					end,
 					fg = function(buffer)
