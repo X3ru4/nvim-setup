@@ -144,7 +144,6 @@ return {
 						return vim.bo.filetype .. ' '
 					end
 				end,
-				hl = { italic = true },
 			},
 			{
 				condition = function()
