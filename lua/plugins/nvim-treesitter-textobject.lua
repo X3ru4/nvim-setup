@@ -28,17 +28,17 @@ return {
 			ts_move.goto_previous('@function.outer', 'textobjects')
 		end)
 
-		map(mode, ']c', function()
+		map(mode, ']d', function()
 			ts_move.goto_next('@loop.outer', 'textobjects')
 		end)
-		map(mode, '[c', function()
+		map(mode, '[d', function()
 			ts_move.goto_previous('@loop.outer', 'textobjects')
 		end)
 
-		map(mode, ']d', function()
+		map(mode, ']c', function()
 			ts_move.goto_next('@conditional.outer', 'textobjects')
 		end)
-		map(mode, '[d', function()
+		map(mode, '[c', function()
 			ts_move.goto_previous('@conditional.outer', 'textobjects')
 		end)
 
@@ -52,5 +52,19 @@ return {
 		local ts_repeat_move = require('nvim-treesitter-textobjects.repeatable_move')
 		map(mode, ';', ts_repeat_move.repeat_last_move_next)
 		map(mode, ',', ts_repeat_move.repeat_last_move_previous)
+
+		local ts_select = require('nvim-treesitter-textobjects.select')
+		map({ 'x', 'o' }, 'am', function()
+			ts_select.select_textobject('@function.outer', 'textobjects')
+		end)
+		map({ 'x', 'o' }, 'im', function()
+			ts_select.select_textobject('@function.inner', 'textobjects')
+		end)
+		map({ 'x', 'o' }, 'ad', function()
+			ts_select.select_textobject('@loop.outer', 'textobjects')
+		end)
+		map({ 'x', 'o' }, 'id', function()
+			ts_select.select_textobject('@loop.inner', 'textobjects')
+		end)
 	end,
 }
