@@ -4,16 +4,17 @@ return {
 	config = function()
 		local copy_to_clipboard = false
 		local register = '+'
-
-		local icons = require('nerdy.icons')
 		local items = {}
 
-		for i = 1, #icons do
-			local data = icons[i]
-			table.insert(items, data.name .. ': ' .. data.char)
-		end
-
 		vim.keymap.set('n', '<leader>fi', function()
+			if #items == 0 then
+				local icons = require('nerdy.icons')
+				for i = 1, #icons do
+					local data = icons[i]
+					table.insert(items, data.name .. ': ' .. data.char)
+				end
+			end
+
 			require('fzf-lua').fzf_exec(items, {
 				prompt = 'Icon: ',
 				fzf_opts = { ['--multi'] = true },
