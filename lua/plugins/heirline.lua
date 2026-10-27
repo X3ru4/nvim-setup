@@ -4,7 +4,7 @@ return {
 	event = 'UIEnter',
 	config = function()
 		local hl = require('utils.highlight')
-		local separator = { '', '' }
+		local separator = { '', '' }
 		local Space = { provider = ' ' }
 		local Align = { provider = '%=' }
 
@@ -31,7 +31,7 @@ return {
 				return next(vim.lsp.get_clients({ bufnr = 0 })) ~= nil
 			end,
 			update = { 'LspAttach', 'LspDetach', 'ColorScheme' },
-			provider = '  [LSP]',
+			provider = '  LSP',
 			hl = 'DiagnosticSignInfo',
 		}
 
@@ -171,7 +171,7 @@ return {
 				return #vim.fn.reg_recording() > 0
 			end,
 			provider = function()
-				return '  (' .. vim.fn.reg_recording() .. ')'
+				return ' @' .. vim.fn.reg_recording()
 			end,
 			hl = 'Type',
 		}
@@ -195,6 +195,34 @@ return {
 						:gsub('(%s?%%#DiagnosticSignInfo#.-)%%##$', '')
 						:gsub('(%s?%%#DiagnosticSignHint#.-)%%##$', '')
 						:gsub(':', ' ')
+				end,
+			},
+		}
+
+		local ParentFolder = {
+			update = { 'BufWinEnter', 'ColorScheme' },
+			hl = 'HeirlineDark2',
+			{
+				provider = ' ' .. separator[2],
+				hl = function()
+					return {
+						fg = hl.getfg('Removed'),
+						bg = hl.getbg('StatusLine'),
+					}
+				end,
+			},
+			{
+				provider = '󰉋 ',
+				hl = function()
+					return {
+						fg = hl.alias.Black,
+						bg = hl.getfg('Removed'),
+					}
+				end,
+			},
+			{
+				provider = function()
+					return ' ' .. vim.fn.expand('%:h:t') .. ' '
 				end,
 			},
 		}
@@ -240,9 +268,7 @@ return {
 			},
 			{
 				flexible = 3,
-				{ provider = [[ %{ mode() =~# '^[ict]$' ? '' : '' } %l·%c ]] },
-				{ provider = ' %l·%c ' },
-				{ provider = ' %l ' },
+				ParentFolder,
 				false,
 			},
 		}
