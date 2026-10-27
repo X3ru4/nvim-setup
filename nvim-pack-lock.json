@@ -13,7 +13,7 @@
       "src": "https://github.com/timrydefalk/blink-cmp-emoji"
     },
     "blink.cmp": {
-      "rev": "f50d952de478b554d89bcca058691a69cb5681dd",
+      "rev": "1e4cb39b9200950dca1cbc4d630c60c16eb8e7e4",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.indent": {
@@ -183,7 +183,7 @@
       "src": "https://github.com/X3ru4/terminil.nvim"
     },
     "tiny-cmdline.nvim": {
-      "rev": "d83700b48d8ff5625dbef4029af071db559544e5",
+      "rev": "ac9c6557c66da6308eb523643df8778f3cbe652f",
       "src": "https://github.com/rachartier/tiny-cmdline.nvim"
     },
     "tree-sitter-manager.nvim": {
