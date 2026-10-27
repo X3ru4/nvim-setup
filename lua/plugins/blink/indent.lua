@@ -15,6 +15,7 @@ return {
 	---@type blink.indent.Config
 	opts = {
 		static = {
+			-- whitespace_char = ' ',
 			char = vime.indent_guide_char,
 		},
 		scope = {
