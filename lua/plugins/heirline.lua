@@ -220,7 +220,7 @@ return {
 			},
 			{
 				provider = function()
-					local folder = vim.fn.expand('%:h:t')
+					local folder = vim.fn.expand('%:p:h:t')
 					return ' ' .. (folder == '' and 'Unknown' or folder) .. ' '
 				end,
 				hl = 'HeirlineDark2',
