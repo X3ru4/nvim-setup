@@ -201,13 +201,11 @@ return {
 
 		local ParentFolder = {
 			update = { 'BufWinEnter', 'ColorScheme' },
-			hl = 'HeirlineDark2',
 			{
 				provider = ' ' .. separator[2],
 				hl = function()
 					return {
 						fg = hl.getfg('Removed'),
-						bg = hl.getbg('StatusLine'),
 					}
 				end,
 			},
@@ -222,8 +220,10 @@ return {
 			},
 			{
 				provider = function()
-					return ' ' .. vim.fn.expand('%:h:t') .. ' '
+					local folder = vim.fn.expand('%:h:t')
+					return ' ' .. (folder == '' and 'Unknown' or folder) .. ' '
 				end,
+				hl = 'HeirlineDark2',
 			},
 		}
 
