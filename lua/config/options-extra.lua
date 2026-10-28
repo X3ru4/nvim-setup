@@ -15,7 +15,7 @@ _G.vime = {
 	---@type 'blink'|'mini'|'hlchunk'|any
 	indent_guide = 'mini',
 	---@type 'thin'|'thick'|'middle'|'dashed'|'dashed2'|any
-	indent_guide_style = 'middle',
+	indent_guide_char = 'middle',
 	---@type 'flat'|'rounded'|'square'|'combine'|any
 	ui_style = 'combine',
 	---@type 'default'|'atom'|'atom_colored'|'flat_light'|'flat_dark'|nil|false
@@ -83,4 +83,4 @@ if ui_styles[vime.ui_style] then
 	ui_styles[vime.ui_style]()
 end
 
-vime.indent_guide_char = ig_chars[vime.indent_guide_style] or '│'
+vime.indent_guide_char = ig_chars[vime.indent_guide_char] or '│'
