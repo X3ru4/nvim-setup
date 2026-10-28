@@ -13,9 +13,9 @@ colorscheme.variant = 'base46-gruvbox_light'
 ---VimExtra
 _G.vime = {
 	---@type 'blink'|'mini'|'hlchunk'|any
-	indent_guide = 'blink',
+	indent_guide = 'mini',
 	---@type 'thin'|'thick'|'middle'|'dashed'|'dashed2'|any
-	indent_guide_style = 'thin',
+	indent_guide_style = 'middle',
 	---@type 'flat'|'rounded'|'square'|'combine'|any
 	ui_style = 'combine',
 	---@type 'default'|'atom'|'atom_colored'|'flat_light'|'flat_dark'|nil|false
