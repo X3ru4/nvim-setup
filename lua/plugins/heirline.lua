@@ -4,7 +4,7 @@ return {
 	event = 'UIEnter',
 	config = function()
 		local hl = require('utils.highlight')
-		local separator = { '', '' }
+		local separator = { '', '' }
 		local Space = { provider = ' ' }
 		local Align = { provider = '%=' }
 
@@ -227,6 +227,14 @@ return {
 			},
 		}
 
+		local CursorPos = {
+			flexible = 3,
+			{ provider = [[ %{ mode() =~# '^[ict]$' ? '' : '' } %l·%c ]] },
+			{ provider = ' %l·%c ' },
+			{ provider = ' %l ' },
+			false,
+		}
+
 		local StatusLine = {
 			{
 				flexible = 20,
@@ -266,11 +274,7 @@ return {
 				LSPActive,
 				false,
 			},
-			{
-				flexible = 3,
-				ParentFolder,
-				false,
-			},
+			CursorPos,
 		}
 
 		require('heirline').setup({ statusline = StatusLine })
