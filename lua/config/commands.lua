@@ -37,21 +37,6 @@ autocmd('UIEnter', {
 		vim.cmd.LoadHlConfig()
 	end,
 })
--- LSP
-autocmd('User', {
-	group = group,
-	pattern = 'VeryLazy',
-	once = true,
-	callback = function()
-		require('config.lsp').setup()
-	end,
-})
-autocmd('LspAttach', {
-	group = group,
-	callback = function(ev)
-		require('config.lsp').attach(ev)
-	end,
-})
 
 local usercmd = vim.api.nvim_create_user_command
 local conf_path = vim.fn.stdpath('config')
