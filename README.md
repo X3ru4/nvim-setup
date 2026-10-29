@@ -24,7 +24,7 @@
 
 | Dependency                                                    | Purpose                       |
 | ------------------------------------------------------------- | ----------------------------- |
-| [Neovim](https://github.com/neovim/neovim)                    | Version 0.12 or newer         |
+| [Neovim](https://github.com/neovim/neovim)                    | Version 0.13 or newer         |
 | [Git](https://git-scm.com/)                                   | Version control               |
 | C compiler                                                    | Build parsers                 |
 | [curl](https://curl.se/)                                      | Transfer resources            |
