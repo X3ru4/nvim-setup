@@ -2,13 +2,21 @@ local autocmd = vim.api.nvim_create_autocmd
 local group = vim.api.nvim_create_augroup('MyAuGroup', { clear = true })
 local hl = require('utils.highlight')
 
--- Highlight on yank.
+-- Highlight on yank
 autocmd('TextYankPost', {
 	group = group,
 	callback = function()
-		vim.hl.on_yank({ higroup = 'Yank', timeout = 150 })
+		vim.hl.hl_op({ higroup = 'Yank' })
 	end,
 })
+-- Highlight on paste
+autocmd('TextPutPost', {
+	group = group,
+	callback = function()
+		vim.hl.hl_op({ higroup = 'Paste' })
+	end,
+})
+
 autocmd({ 'InsertLeave', 'WinEnter' }, {
 	group = group,
 	callback = function()

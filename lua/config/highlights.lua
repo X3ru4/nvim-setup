@@ -29,9 +29,10 @@ hl.setup(function()
 		-- All highlights are cached, so use `_force = true` to ignore them.
 		-- Normal = { _force = true, fg = '#ffee00', bg = '#3a3b2f' },
 		Yank = {
-			fg = hl.getbg('IncSearch'),
-			bg = hl.blend(hl.getbg('IncSearch'), hl.alias.Black, 0.3),
-			bold = false,
+			bg = hl.blend(hl.getbg('IncSearch'), hl.alias.Black, 0.25),
+		},
+		Paste = {
+			bg = hl.blend(hl.getfg('Added'), hl.alias.Black, 0.25),
 		},
 		-- Create highlights for the basic Vim/Nvim modes used in heirline.nvim.
 		set_hl_mode('Other', 'MiniStatuslineModeOther', 'Function'),
