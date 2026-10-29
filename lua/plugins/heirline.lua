@@ -104,9 +104,24 @@ return {
 			},
 		}
 
+		local update_fi = true
+		vim.api.nvim_create_autocmd('OptionSet', {
+			pattern = 'modified',
+			callback = function()
+				update_fi = true
+			end,
+		})
+		vim.api.nvim_create_autocmd({ 'BufWinEnter', 'ColorScheme' }, {
+			callback = function()
+				update_fi = true
+			end,
+		})
 		local FileInfo = {
-			update = { 'BufWinEnter', 'BufModifiedSet', 'ColorScheme' },
+			update = function()
+				return update_fi
+			end,
 			init = function()
+				update_fi = false
 				hl.set('HeirlineDark2', {
 					fg = hl.getfg('StatusLine'),
 					bg = hl.alias.Black2,
