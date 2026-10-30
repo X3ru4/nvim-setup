@@ -1,77 +1,75 @@
-local opt = vim.opt
-
 -- Security
-opt.exrc = true
-opt.secure = true
+vim.opt.exrc = true
+vim.opt.secure = true
 
 -- Performance
-opt.updatetime = 250
-opt.timeoutlen = 300
-opt.ttimeoutlen = 10
-opt.synmaxcol = 200
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
+vim.opt.ttimeoutlen = 10
+vim.opt.synmaxcol = 200
 
 -- UI
-opt.termguicolors = true
-opt.winborder = 'solid'
-opt.winblend = 0
-opt.pumblend = 0
-opt.pumheight = 10
-opt.cmdheight = 1
-opt.laststatus = 3
-opt.ruler = false
-opt.showmode = false
-opt.confirm = true
-opt.mouse = 'a'
+vim.opt.termguicolors = true
+vim.opt.winborder = 'solid'
+vim.opt.winblend = 0
+vim.opt.pumblend = 0
+vim.opt.pumheight = 10
+vim.opt.cmdheight = 1
+vim.opt.laststatus = 3
+vim.opt.ruler = false
+vim.opt.showmode = false
+vim.opt.confirm = true
+vim.opt.mouse = 'a'
 
 -- Line numbers
-opt.number = true
-opt.relativenumber = true
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- Cursor
-opt.cursorline = true
-opt.cursorcolumn = false
-opt.scrolloff = 4
-opt.sidescrolloff = 8
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = false
+vim.opt.scrolloff = 4
+vim.opt.sidescrolloff = 8
 
 -- Window & Split
-opt.splitbelow = true
-opt.splitright = true
-opt.splitkeep = 'screen'
-opt.winminwidth = 5
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.splitkeep = 'screen'
+vim.opt.winminwidth = 5
 
 -- Wrap
-opt.wrap = false
-opt.linebreak = true
-opt.breakindent = true
+vim.opt.wrap = false
+vim.opt.linebreak = true
+vim.opt.breakindent = true
 
 -- Fold
-opt.foldenable = true
-opt.foldlevel = 99
-opt.foldmethod = 'expr'
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+vim.opt.foldmethod = 'expr'
 -- Make it greater than 0 if you want to see the fold column.
-opt.foldcolumn = '0'
+vim.opt.foldcolumn = '0'
 
 -- Indent
-opt.expandtab = true
-opt.shiftwidth = 2
-opt.tabstop = 2
-opt.shiftwidth = 2
-opt.softtabstop = -1
-opt.smartindent = true
-opt.shiftround = true
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = -1
+vim.opt.smartindent = true
+vim.opt.shiftround = true
 
 -- Search
-opt.ignorecase = true
-opt.smartcase = true
-opt.grepprg = 'rg --vimgrep'
-opt.grepformat = '%f:%l:%c:%m'
-opt.inccommand = 'nosplit'
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.grepprg = 'rg --vimgrep'
+vim.opt.grepformat = '%f:%l:%c:%m'
+vim.opt.inccommand = 'nosplit'
 
 -- File
-opt.autowrite = true
-opt.undofile = true
-opt.undolevels = 10000
-opt.sessionoptions = {
+vim.opt.autowrite = true
+vim.opt.undofile = true
+vim.opt.undolevels = 10000
+vim.opt.sessionoptions = {
 	'buffers',
 	'curdir',
 	'tabpages',
@@ -83,18 +81,18 @@ opt.sessionoptions = {
 }
 
 -- Editing
-opt.virtualedit = 'block'
-opt.jumpoptions = 'view'
+vim.opt.virtualedit = 'block'
+vim.opt.jumpoptions = 'view'
 
 -- Status column
-opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'yes'
 
 -- Clipboard
-opt.clipboard:append('unnamedplus')
+vim.opt.clipboard:append('unnamedplus')
 
 -- List
-opt.list = true
-opt.listchars = {
+vim.opt.list = true
+vim.opt.listchars = {
 	eol = ' ',
 	tab = '  ',
 	leadmultispace = '  ',
@@ -106,7 +104,7 @@ opt.listchars = {
 }
 
 -- Fillchars
-opt.fillchars = {
+vim.opt.fillchars = {
 	foldopen = '',
 	foldclose = '',
 	fold = ' ',
