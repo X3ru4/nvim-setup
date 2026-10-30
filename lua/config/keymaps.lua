@@ -42,4 +42,4 @@ set('n', 'gcO', 'O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>', { desc = 'Add Commen
 set({ 'i', 'n', 's' }, '<esc>', function()
 	vim.cmd.nohlsearch()
 	return '<esc>'
-end, { expr = true, desc = 'Escape and Clear hlsearch' })
+end, { expr = true, desc = 'Escape and clear hlsearch' })
