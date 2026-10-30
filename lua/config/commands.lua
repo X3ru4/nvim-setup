@@ -53,7 +53,7 @@ usercmd('LoadHlConfig', function(opts)
 	if opts.bang then
 		hl.use_cache = false
 	end
-	vim.cmd.luafile(conf_path .. '/lua/config/highlights.lua')
+	dofile(conf_path .. '/lua/config/highlights.lua')
 end, { bang = true, desc = 'Load hightlighs config' })
 
 usercmd('GenTermuxColor', function(opts)
