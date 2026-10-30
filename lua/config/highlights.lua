@@ -34,6 +34,7 @@ hl.setup(function()
 		Paste = {
 			bg = hl.blend(hl.getfg('Added'), hl.alias.Black, 0.25),
 		},
+		MCursor = { link = 'Cursor' },
 		-- Create highlights for the basic Vim/Nvim modes used in heirline.nvim.
 		set_hl_mode('Other', 'MiniStatuslineModeOther', 'Function'),
 		set_hl_mode('Normal', 'MiniStatuslineModeNormal', 'DiagnosticSignInfo'),
