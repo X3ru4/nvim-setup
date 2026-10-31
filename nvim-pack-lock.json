@@ -13,7 +13,7 @@
       "src": "https://github.com/timrydefalk/blink-cmp-emoji"
     },
     "blink.cmp": {
-      "rev": "74ebcf9a2daffd3d2eaaf13fa384c5caf337056e",
+      "rev": "d4318ec75309a37e09757de0f16faa67bf22b890",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.indent": {
@@ -142,7 +142,7 @@
       "src": "https://codeberg.org/mfussenegger/nvim-lint.git"
     },
     "nvim-lspconfig": {
-      "rev": "4b2b045b8ceb035f5c8bc9cab19b95706bfa6a19",
+      "rev": "460bb34e7be114f1fda7815781696bc701e60f83",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter-textobjects": {
@@ -191,7 +191,7 @@
       "src": "https://github.com/ofer987/vim-caser"
     },
     "zpack.nvim": {
-      "rev": "3bd8cdf22f7582d2a336f774d00f0ceaf0e3f7c0",
+      "rev": "871104e76ba75706b2e6ceadb4950f6b4481dc71",
       "src": "https://github.com/zuqini/zpack.nvim"
     }
   }
