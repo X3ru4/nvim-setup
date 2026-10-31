@@ -61,18 +61,15 @@ return {
 						treesitter_highlighting = true,
 						window = {
 							scrollbar = extra.documentation.scrollbar or false,
-							min_width = 30,
-							max_width = 45,
-							max_height = 10,
 							border = extra.documentation.border,
 						},
 					},
 					menu = {
-						scrollbar = extra.menu.scrollbar or false,
-						min_width = 4,
 						max_height = 8,
+						scrollbar = extra.menu.scrollbar or false,
 						border = extra.menu.border,
 						draw = {
+							padding = 1,
 							gap = extra.menu.icon_gap or 1,
 							columns = { { 'kind_icon' }, { 'label', 'kind', gap = 1 } },
 							components = {
