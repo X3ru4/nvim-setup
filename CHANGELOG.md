@@ -1,5 +1,52 @@
 # Changelog
 
+## [1.24.0](https://github.com/X3ru4/nvim-setup/compare/v1.23.0...v1.24.0) (2026-10-31)
+
+
+### Features
+
+* add &lt;leader&gt;N multi‑cursor mapping and Ctrl‑up/down navigation ([7be18b2](https://github.com/X3ru4/nvim-setup/commit/7be18b2a64eb43deab80adda6157b54a398b66a2))
+* add blinkcmp appearance options and icon_gap, clean up vime config ([b3c47c5](https://github.com/X3ru4/nvim-setup/commit/b3c47c58ab75fba3b478212ee0a229756d06e95d))
+* add multicursor support with &lt;leader&gt;n and arrow key navigation ([8ec8094](https://github.com/X3ru4/nvim-setup/commit/8ec80947bc7d5babf86dc2a81e98b005bcdc1534))
+* add paste highlight and adjust yank highlight ([0f36c3c](https://github.com/X3ru4/nvim-setup/commit/0f36c3ccd6cc3ff9f7410d6350ada87fcfb30c69))
+* **ALL:** add configuration without using Nerdfont ([6f0dde6](https://github.com/X3ru4/nvim-setup/commit/6f0dde67089566c491abb04718e0cf6b0e646857))
+* **blink, mini:** use vim.g.indent_guide_char instead in mini.indentscope and blink.indent configuration ([9b6eaa2](https://github.com/X3ru4/nvim-setup/commit/9b6eaa23ce9c9227cb6d60bb54e73b51d7cfae4c))
+* **cmp:** allow configurable icon gap in the completion menu (default to 1) ([97e249a](https://github.com/X3ru4/nvim-setup/commit/97e249a5b3971474eba216610717f47d178c863d))
+* **keymaps:** add &lt;leader&gt;bf to focus buffer by closing others ([d4beea1](https://github.com/X3ru4/nvim-setup/commit/d4beea1dbcde6f9cb8f70fa713f00a01ebcb93d2))
+* **keymaps:** add escape after Ctrl+s to exit insert mode to improve workflow usage ([310ee61](https://github.com/X3ru4/nvim-setup/commit/310ee610dcbe5b5d15e2e3a1ffb395164ff1c556))
+* **keymaps:** add tab navigation shortcuts (tt, th, tl, tc) ([61b4d87](https://github.com/X3ru4/nvim-setup/commit/61b4d87d52ead336f5a1876ded310d2d387a4d6a))
+* **l like this:** i like this ([19de160](https://github.com/X3ru4/nvim-setup/commit/19de16036bdcb88698b6fb85294d2e0cfa2f3bab))
+* **lsp:** fallback diagnostic icons and update virtual text prefix ([d0939bc](https://github.com/X3ru4/nvim-setup/commit/d0939bc3932d96ec9030f566a2582bbeaf3352ec))
+* **mini.icons:** auto-select icon style based on nerdfont support ([6b91b41](https://github.com/X3ru4/nvim-setup/commit/6b91b41a985588b6594c03442d96ba7b00bd3232))
+* **nvim-treesitter-textobject:** correct loop/conditional navigation keys and add textobject shortcuts ([56ebb90](https://github.com/X3ru4/nvim-setup/commit/56ebb903ba5e7beda30a1e4fa6d620f30af2cf6a))
+* **oil:** add completion option to vim.ui.input() ([68cfba2](https://github.com/X3ru4/nvim-setup/commit/68cfba29be37ffa57042ea5d3064b1913a874d75))
+* **options-extra:** add vim.g.indent_guide_style option with 5 char styles ([23b0a30](https://github.com/X3ru4/nvim-setup/commit/23b0a30cad9850a1a98ef9e476595f9d71a23768))
+* **options-extra:** change indent_guide to blink ([11f7788](https://github.com/X3ru4/nvim-setup/commit/11f778898b0066b1abf34ececd080210559d51be))
+* **options-extra:** set indentation guide to mini and style to middle ([740beb7](https://github.com/X3ru4/nvim-setup/commit/740beb73bfffa143dbae1c64fa6f5861444a1346))
+* **plugins:** add terminil.nvim plugin with lazy load configuration ([4fce738](https://github.com/X3ru4/nvim-setup/commit/4fce7387cae4046d1296d5e8966b9ee2ea96753f))
+* show 'Unknown' for empty parent folder and update highlight ([7d4643b](https://github.com/X3ru4/nvim-setup/commit/7d4643bbb1345ff04afb57cbdb009955c9aa267a))
+* show terminal icon for terminal buffers in statusline ([7f4e73d](https://github.com/X3ru4/nvim-setup/commit/7f4e73db61ac576a1af46450de6ddc0e010152f4))
+* **statusline:** display current file name in statusline instead of file type ([acc7600](https://github.com/X3ru4/nvim-setup/commit/acc7600ea1553e73e44a75f0da3cb6d997018095))
+* **statusline:** display cursor position with mode icon and update separators; remove helpview ([5e74d81](https://github.com/X3ru4/nvim-setup/commit/5e74d8137bd478b31ac5b74b8c3439da5a497ead))
+* **statusline:** replace modified symbol and simplify separator provider ([979066f](https://github.com/X3ru4/nvim-setup/commit/979066f4b5dd52b2ddf75f370bba208676543373))
+* **statusline:** show parent folder in the status line. ([f7df94a](https://github.com/X3ru4/nvim-setup/commit/f7df94aaf9596ef24eab4dade2bb028b4bb99780))
+* **tree-sitter-manager:** add nerdfont, min_width, min_height options and remove nohighlight ([eea5c80](https://github.com/X3ru4/nvim-setup/commit/eea5c808723fe3a58bd5ecbf8a9b3ce153415209))
+* **ui:** display unique buffer prefixes with underline in nvim‑cokeline ([2010396](https://github.com/X3ru4/nvim-setup/commit/20103966dd4012d6f915b242d750c774fb97a419))
+
+
+### Bug Fixes
+
+* &lt;leader&gt;n/N mapping now performs search and clears highlights atomically ([7682d4b](https://github.com/X3ru4/nvim-setup/commit/7682d4b509cefe52a2b41769dd83cee5cda64c4e))
+* **base46:** use nve.base46_cmp_style for cmp_style in theme configuration ([29e928f](https://github.com/X3ru4/nvim-setup/commit/29e928f21cf322ed70ed9d3e474b3bd665100e09))
+* **heirline:** update FileInfo on ColorScheme changes ([a4c7466](https://github.com/X3ru4/nvim-setup/commit/a4c7466b4efb8f8fb329a7c93f4e0b3f7f75afa5))
+* **heirline:** use absolute path to show correct folder name in statusline ([ef804b8](https://github.com/X3ru4/nvim-setup/commit/ef804b80265e0dfe18d44157165dbb330493f252))
+* **keymaps:** correct up/down movement mapping strings to avoid escape issues ([bfd2d10](https://github.com/X3ru4/nvim-setup/commit/bfd2d1023ba8155a98da83b6872986dfa8ad55fa))
+* **keymaps:** trailing error in `j` keymap ([13a8b7e](https://github.com/X3ru4/nvim-setup/commit/13a8b7e6f78cf49dcecc91ca612084e540f31887))
+* **line:** line ([f89d0d4](https://github.com/X3ru4/nvim-setup/commit/f89d0d47f5f7446161b76d159d108c5021157c98))
+* **nvim-cokeline, keymap:** close button will use default color instead ([d87e25d](https://github.com/X3ru4/nvim-setup/commit/d87e25dd16c5d882b7428d7871b362f9d832ce69))
+* Use dofile instead of vim.cmd.luafile in LoadHlConfig command to load highlights configuration. ([727ac53](https://github.com/X3ru4/nvim-setup/commit/727ac5352544e40d37074e296d1f8dc857a55b73))
+* **zpack:** enable default confirmation prompt ([017b792](https://github.com/X3ru4/nvim-setup/commit/017b7924f10a9b29521f5e2dbc9a2caf40132230))
+
 ## [1.23.0](https://github.com/X3ru4/nvim-setup/compare/v1.22.0...v1.23.0) (2026-10-14)
 
 
