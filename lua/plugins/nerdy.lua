@@ -7,7 +7,7 @@ return {
 		local items = {}
 
 		vim.keymap.set('n', '<leader>fi', function()
-			if #items == 0 then
+			if next(items) == nil then
 				local icons = require('nerdy.icons')
 				for i = 1, #icons do
 					local data = icons[i]
