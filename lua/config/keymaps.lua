@@ -47,13 +47,23 @@ end, { expr = true, desc = 'Escape and clear hlsearch' })
 -- Multicursor
 local mcursor = require('vim._core.mcursor')
 set({ 'n', 'x' }, '<leader>n', function()
+	local last_reg = vim.fn.getreg('/')
+	vim.cmd('normal! *N')
 	vim.schedule(function()
-		local last_reg = vim.fn.getreg('/')
-		vim.cmd('normal! *N1Qnq=')
+		vim.cmd('normal! 1Qnq=')
 		vim.cmd.nohlsearch()
 		vim.fn.setreg('/', last_reg)
 	end)
-end, { desc = 'Add new cursor' })
+end)
+set({ 'n', 'x' }, '<leader>N', function()
+	local last_reg = vim.fn.getreg('/')
+	vim.cmd('normal! *N')
+	vim.schedule(function()
+		vim.cmd('normal! 1QNq=')
+		vim.cmd.nohlsearch()
+		vim.fn.setreg('/', last_reg)
+	end)
+end)
 set('n', '<left>', function()
 	if mcursor.active() then
 		return '[C'
@@ -66,3 +76,13 @@ set('n', '<right>', function()
 	end
 	return '<right>'
 end, { expr = true })
+set('n', '<C-down>', function()
+	for _ = 1, vim.v.count1 do
+		vim.cmd('normal! Qj')
+	end
+end)
+set('n', '<C-up>', function()
+	for _ = 1, vim.v.count1 do
+		vim.cmd('normal! Qk')
+	end
+end)
