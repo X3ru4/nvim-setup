@@ -87,17 +87,19 @@ usercmd('GenTermuxColor', function(opts)
 		lines[#lines + 1] = key:format(k, v:upper())
 	end)
 
-	local file = io.open(filename, 'w')
-	if file then
-		file:write(table.concat(lines, '\n'))
-		file:close()
-		vim.cmd.edit(filename)
-		vim.system({ 'termux-reload-settings' }, { text = true }, function(out)
-			if out.code ~= 0 then
-				vim.notify(out.stderr)
-			end
-		end)
-	else
-		vim.notify('Open ' .. filename .. ' failed!', vim.log.levels.ERROR)
-	end
+	vim.async.run(function()
+		local file = io.open(filename, 'w')
+		if file then
+			file:write(table.concat(lines, '\n'))
+			file:close()
+			vim.cmd.edit(filename)
+			vim.system({ 'termux-reload-settings' }, { text = true }, function(out)
+				if out.code ~= 0 then
+					vim.notify(out.stderr)
+				end
+			end)
+		else
+			vim.notify('Open ' .. filename .. ' failed!', vim.log.levels.ERROR)
+		end
+	end)
 end, { bang = true, desc = 'Transferring Neovim terminal colorscheme to Termux' })
