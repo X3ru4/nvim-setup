@@ -138,11 +138,11 @@
       "src": "https://github.com/catgoose/nvim-colorizer.lua"
     },
     "nvim-lint": {
-      "rev": "f6230a5c06ba59e6059c14637f1dbe29a7978b9b",
+      "rev": "52107ce2076a27a285af781248e2c59bad817cd0",
       "src": "https://codeberg.org/mfussenegger/nvim-lint.git"
     },
     "nvim-lspconfig": {
-      "rev": "4feaba4d3980032b3f62f3ba5df4de27fdf59cfd",
+      "rev": "4b2b045b8ceb035f5c8bc9cab19b95706bfa6a19",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-treesitter-textobjects": {
@@ -191,7 +191,7 @@
       "src": "https://github.com/ofer987/vim-caser"
     },
     "zpack.nvim": {
-      "rev": "ec09994ca68fc36bad89a7782c5e6b244b154e10",
+      "rev": "3bd8cdf22f7582d2a336f774d00f0ceaf0e3f7c0",
       "src": "https://github.com/zuqini/zpack.nvim"
     }
   }
