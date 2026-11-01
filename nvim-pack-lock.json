@@ -41,10 +41,6 @@
       "rev": "6b7cb8b1a9628d4b87009c4849d510d1a3a14319",
       "src": "https://github.com/pteroctopus/faster.nvim"
     },
-    "fidget.nvim": {
-      "rev": "9e0201673e08e997e7cf52afca5565c70bd117f3",
-      "src": "https://github.com/j-hui/fidget.nvim"
-    },
     "friendly-snippets": {
       "rev": "b2ea5c41a150ba72fb656eedb4ed0a86d138d945",
       "src": "https://github.com/rafamadriz/friendly-snippets"
