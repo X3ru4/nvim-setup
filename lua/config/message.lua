@@ -18,10 +18,12 @@ vim.ui_attach(ns, { ext_messages = true }, function(event)
 	if event ~= 'msg_show' then
 		return
 	end
-	api.nvim_win_set_config(ui2.wins.msg, {
-		border = { '', '', '', ' ', '', '', '', ' ' },
-	})
-	api.nvim_set_option_value('winhighlight', 'NormalFloat:StatusLine', { win = ui2.wins.msg })
+	vim.schedule(function()
+		api.nvim_win_set_config(ui2.wins.msg, {
+			border = { '', '', '', ' ', '', '', '', ' ' },
+		})
+		api.nvim_set_option_value('winhighlight', 'NormalFloat:StatusLine', { win = ui2.wins.msg })
+	end)
 end)
 
 local echo_id
