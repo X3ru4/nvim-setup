@@ -1,0 +1,68 @@
+local ui2 = require('vim._core.ui2')
+local api = vim.api
+
+ui2.enable({
+	msg = {
+		targets = 'msg',
+		msg = {
+			height = 20,
+		},
+	},
+})
+
+vim.keymap.set('n', '<leader>mm', ui2.msg.msg_clear, { desc = 'Clear message window' })
+vim.keymap.set('n', '<leader>mh', '<cmd>message<cr>', { desc = 'Open message history' })
+
+local ns = api.nvim_create_namespace('MyMsgUI')
+vim.ui_attach(ns, { ext_messages = true }, function(event)
+	if event ~= 'msg_show' then
+		return
+	end
+	api.nvim_win_set_config(ui2.wins.msg, {
+		border = { '', '', '', ' ', '', '', '', ' ' },
+	})
+	api.nvim_set_option_value('winhighlight', 'NormalFloat:StatusLine', { win = ui2.wins.msg })
+end)
+
+local echo_id
+api.nvim_create_autocmd('LspProgress', {
+	callback = function(ev)
+		local value = ev.data.params.value
+
+		if not value then
+			return
+		end
+
+		local client = vim.lsp.get_client_by_id(ev.data.client_id).name
+		local kind = value.kind
+		local message = value.message
+		local percent = value.percentage
+		local status = 'running'
+		local title = value.title
+
+		if kind == 'begin' then
+			message = 'Loading…'
+		end
+
+		if kind == 'end' then
+			message = 'Done ✓'
+			percent = 100
+			status = 'success'
+		end
+
+		local chunks = {
+			{ client, 'Function' }, -- { '<msg>', '<highlight>' }
+			{ ': ' },
+			{ title .. ' ' },
+			{ percent .. '% ', 'Statement' },
+			{ message, kind == 'end' and 'Added' or 'Changed' },
+		}
+
+		echo_id = api.nvim_echo(chunks, false, {
+			id = echo_id,
+			kind = 'progress',
+			source = 'lsp-progress',
+			status = status,
+		})
+	end,
+})

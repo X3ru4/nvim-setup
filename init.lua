@@ -24,9 +24,12 @@ vim.g.termfeatures = {
 	osc52 = false,
 }
 
-require('vim._core.ui2').enable()
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
+
 require('config.options')
 require('config.options-extra')
+require('config.message')
 require('config.zpack')
 require('config.commands')
 require('config.keymaps')
