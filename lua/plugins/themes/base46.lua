@@ -158,6 +158,8 @@ return {
 
 				-- Default
 				hl.modify('NormalFloat', { fg = colors.base_30.white }),
+				hl.modify('ErrorMsg', { bg = 'None' }),
+				hl.modify('OkMsg', { fg = colors.base_30.vibrant_green }),
 			})
 		end)
 	end,
