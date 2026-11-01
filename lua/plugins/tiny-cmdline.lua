@@ -3,7 +3,6 @@ return {
 	event = 'UIEnter',
 	init = function()
 		vim.o.cmdheight = 0
-		require('vim._core.ui2').enable()
 	end,
 	config = function()
 		---@diagnostic disable-next-line: missing-fields

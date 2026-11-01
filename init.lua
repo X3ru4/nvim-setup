@@ -24,6 +24,7 @@ vim.g.termfeatures = {
 	osc52 = false,
 }
 
+require('vim._core.ui2').enable()
 require('config.options')
 require('config.options-extra')
 require('config.zpack')
