@@ -2,7 +2,7 @@ local ui2 = require('vim._core.ui2')
 local api = vim.api
 
 ui2.cfg.msg.targets.default = 'msg'
-ui2.cfg.msg.msg.height = 15
+ui2.cfg.msg.msg.height = 0.4
 
 vim.keymap.set('n', 'mm', ui2.msg.msg_clear, { desc = 'Hide messages' })
 
