@@ -2,8 +2,9 @@ return {
 	'willothy/nvim-cokeline',
 	event = { 'BufNewFile', 'BufReadPre' },
 	config = function()
-		local is_picking_focus = require('cokeline.mappings').is_picking_focus
-		local is_picking_close = require('cokeline.mappings').is_picking_close
+		local mappings = require('cokeline.mappings')
+		local is_picking_focus = mappings.is_picking_focus
+		local is_picking_close = mappings.is_picking_close
 		local get_color = require('cokeline.hlgroups').get_hl_attr
 		local list_tabpages = vim.api.nvim_list_tabpages
 		local red = vim.g.terminal_color_1
@@ -128,8 +129,18 @@ return {
 			},
 		})
 
-		vim.keymap.set('n', '<leader>bf', '<Plug>(cokeline-pick-focus)', { desc = 'Picker focus buffer' })
-		vim.keymap.set('n', '<leader>bc', '<Plug>(cokeline-pick-close)', { desc = 'Picker close buffer' })
+		vim.keymap.set('n', '<leader>bf', function()
+			mappings.pick('focus')
+		end, { desc = 'Picker focus buffer' })
+		vim.keymap.set('n', '<leader>bc', function()
+			mappings.pick('close-multiple')
+		end, { desc = 'Picker close buffer' })
+		vim.keymap.set('n', '<S-h>', function()
+			mappings.by_step('focus', -1)
+		end)
+		vim.keymap.set('n', '<S-l>', function()
+			mappings.by_step('focus', 1)
+		end)
 
 		local group = vim.api.nvim_create_augroup('cokacola', { clear = true })
 		vim.api.nvim_create_autocmd('ColorScheme', {
