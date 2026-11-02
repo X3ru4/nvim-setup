@@ -13,7 +13,7 @@
       "src": "https://github.com/timrydefalk/blink-cmp-emoji"
     },
     "blink.cmp": {
-      "rev": "d4318ec75309a37e09757de0f16faa67bf22b890",
+      "rev": "eece1c590dc575d489589c95499ec3acbf004e42",
       "src": "https://github.com/saghen/blink.cmp"
     },
     "blink.indent": {
@@ -46,7 +46,7 @@
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
     "fzf-lua": {
-      "rev": "5b88d6f0af7fcb41d4a8bb340bf70d7e3824ee9d",
+      "rev": "07fce8ac8dffba4e11f1cbe5490d730a2cc5ec7a",
       "src": "https://github.com/ibhagwan/fzf-lua"
     },
     "guess-indent.nvim": {
