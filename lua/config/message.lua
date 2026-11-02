@@ -1,21 +1,13 @@
 local ui2 = require('vim._core.ui2')
 local api = vim.api
 
-ui2.enable({
-	msg = {
-		targets = 'msg',
-		msg = {
-			height = 20,
-		},
-	},
-})
-
-vim.keymap.set('n', '<leader>mm', ui2.msg.msg_clear, { desc = 'Clear message window' })
-vim.keymap.set('n', '<leader>mh', '<cmd>message<cr>', { desc = 'Open message history' })
+ui2.cfg.msg.targets.progress = 'msg'
+ui2.cfg.msg.msg.height = 15
 
 local ns = api.nvim_create_namespace('MyMsgUI')
-vim.ui_attach(ns, { ext_messages = true }, function(event)
-	if event ~= 'msg_show' then
+vim.ui_attach(ns, { ext_messages = true }, function(event, ...)
+	local kind = ...
+	if event ~= 'msg_show' and kind == 'progress' then
 		return
 	end
 	vim.schedule(function()
