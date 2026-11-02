@@ -1,13 +1,12 @@
 local ui2 = require('vim._core.ui2')
 local api = vim.api
 
-ui2.cfg.msg.targets.progress = 'msg'
+ui2.cfg.msg.targets.default = 'msg'
 ui2.cfg.msg.msg.height = 15
 
 local ns = api.nvim_create_namespace('MyMsgUI')
-vim.ui_attach(ns, { ext_messages = true }, function(event, ...)
-	local kind = ...
-	if event ~= 'msg_show' and kind == 'progress' then
+vim.ui_attach(ns, { ext_messages = true }, function(event)
+	if event ~= 'msg_show' then
 		return
 	end
 	vim.schedule(function()
