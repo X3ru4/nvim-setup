@@ -1,4 +1,1 @@
-return {
-	'neovim/nvim-lspconfig',
-	event = 'VeryLazy',
-}
+return { 'neovim/nvim-lspconfig' }
