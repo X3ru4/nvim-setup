@@ -4,6 +4,8 @@ local api = vim.api
 ui2.cfg.msg.targets.default = 'msg'
 ui2.cfg.msg.msg.height = 15
 
+vim.keymap.set('n', 'mm', ui2.msg.msg_clear, { desc = 'Hide messages' })
+
 local ns = api.nvim_create_namespace('MyMsgUI')
 vim.ui_attach(ns, { ext_messages = true }, function(event)
 	if event ~= 'msg_show' then
@@ -19,6 +21,7 @@ end)
 
 local echo_id
 api.nvim_create_autocmd('LspProgress', {
+	group = ui2.augroup,
 	callback = function(ev)
 		local value = ev.data.params.value
 
