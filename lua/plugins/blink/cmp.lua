@@ -17,6 +17,7 @@ return {
 		dependencies = {
 			'saghen/blink.lib',
 			'timrydefalk/blink-cmp-emoji',
+			'Kaiser-Yang/blink-cmp-git',
 			'rafamadriz/friendly-snippets',
 		},
 		event = { 'InsertEnter', 'CmdlineEnter' },
@@ -94,7 +95,7 @@ return {
 					},
 				},
 				sources = {
-					default = { 'emoji', 'lsp', 'buffer', 'path', 'snippets' },
+					default = { 'git', 'emoji', 'lsp', 'buffer', 'path', 'snippets' },
 					per_filetype = {
 						lua = { inherit_defaults = true, 'lazydev' },
 					},
@@ -111,6 +112,13 @@ return {
 							score_offset = 10,
 							opts = {
 								trigger = ';;',
+							},
+						},
+						git = {
+							module = 'blink-cmp-git',
+							name = 'Git',
+							opts = {
+								-- options for the blink-cmp-git
 							},
 						},
 					},
