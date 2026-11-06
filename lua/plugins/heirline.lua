@@ -111,7 +111,7 @@ return {
 				update_fi = true
 			end,
 		})
-		vim.api.nvim_create_autocmd({ 'BufWinEnter', 'BufReadPre', 'ColorScheme' }, {
+		vim.api.nvim_create_autocmd({ 'BufWinEnter', 'TabEnter', 'ColorScheme' }, {
 			callback = function()
 				update_fi = true
 			end,
