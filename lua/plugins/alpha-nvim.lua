@@ -4,12 +4,29 @@ return {
 	dependencies = { 'folke/persistence.nvim' },
 	config = function()
 		local dashboard = require('alpha.themes.dashboard')
-		-- Modify the button width.
-		local button = function(sc, txt, keybind, keybind_opts)
-			local btn = dashboard.button(sc, txt, keybind, keybind_opts)
+
+		local function button(sc, txt, keybind, keybind_opts)
 			local width = vim.api.nvim_win_get_width(0)
-			btn.opts.width = math.min(width - 6, 40)
-			return btn
+			return {
+				type = 'button',
+				val = txt,
+				opts = {
+					position = 'center',
+					shortcut = sc,
+					cursor = 3,
+					width = math.min(width - 6, 40),
+					align_shortcut = 'right',
+					hl_shortcut = 'Keyword',
+					keymap = { '', sc, keybind, keybind_opts },
+				},
+				on_press = function()
+					if type(keybind) == 'function' then
+						keybind()
+					else
+						vim.api.nvim_feedkeys(vim.keycode(keybind), 'nx', false)
+					end
+				end,
+			}
 		end
 
 		dashboard.section.header.val = {
