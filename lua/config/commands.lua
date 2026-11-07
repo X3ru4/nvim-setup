@@ -2,48 +2,42 @@ local autocmd = vim.api.nvim_create_autocmd
 local group = vim.api.nvim_create_augroup('MyAuGroup', { clear = true })
 local hl = require('utils.highlight')
 
--- Highlight on yank
 autocmd('TextYankPost', {
 	group = group,
 	callback = function()
 		vim.hl.hl_op({ higroup = 'Yank' })
 	end,
+	desc = 'Highlight on yank',
 })
--- Highlight on paste
 autocmd('TextPutPost', {
 	group = group,
 	callback = function()
 		vim.hl.hl_op({ higroup = 'Paste' })
 	end,
+	desc = 'Highlight on paste',
 })
 
-autocmd({ 'InsertLeave', 'WinEnter' }, {
+autocmd({ 'InsertEnter', 'InsertLeave' }, {
 	group = group,
-	callback = function()
-		vim.o.cursorline = true
-	end,
-})
-autocmd({ 'InsertEnter', 'WinLeave' }, {
-	group = group,
-	callback = function()
-		vim.o.cursorline = false
+	callback = function(ev)
+		vim.wo.cursorline = ev.event == 'InsertLeave'
 	end,
 })
 
--- Load highlight configuration when changing colorscheme.
 autocmd('ColorScheme', {
 	group = group,
 	callback = function()
 		vim.cmd.LoadHlConfig({ bang = true })
 	end,
+	desc = 'Load highlight configuration when changing colorscheme',
 })
--- Setup highlights
 autocmd('UIEnter', {
 	group = group,
 	once = true,
 	callback = function()
 		vim.cmd.LoadHlConfig()
 	end,
+	desc = 'Setup highlights'
 })
 
 local usercmd = vim.api.nvim_create_user_command
