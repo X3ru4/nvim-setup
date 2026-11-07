@@ -249,7 +249,7 @@ end
 ---@return string?
 M.blend = function(foreground, background, alpha)
 	if not foreground or not background or not alpha then
-		vim.notify('blend() returned nil', vim.log.levels.ERROR)
+		vim.notify('M.blend(): Color blending failed', vim.log.levels.ERROR)
 		return
 	end
 
