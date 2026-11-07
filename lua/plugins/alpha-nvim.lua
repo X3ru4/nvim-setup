@@ -6,19 +6,19 @@ return {
 		local dashboard = require('alpha.themes.dashboard')
 
 		local function button(sc, txt, keybind, keybind_opts)
-			local width = vim.api.nvim_win_get_width(0)
+			local opts = {
+				position = 'center',
+				shortcut = sc,
+				cursor = 3,
+				width = math.min(vim.api.nvim_win_get_width(0) - 6, 40),
+				align_shortcut = 'right',
+				hl_shortcut = 'Keyword',
+				keymap = { '', sc, keybind, keybind_opts },
+			}
 			return {
 				type = 'button',
 				val = txt,
-				opts = {
-					position = 'center',
-					shortcut = sc,
-					cursor = 3,
-					width = math.min(width - 6, 40),
-					align_shortcut = 'right',
-					hl_shortcut = 'Keyword',
-					keymap = { '', sc, keybind, keybind_opts },
-				},
+				opts = opts,
 				on_press = function()
 					if type(keybind) == 'function' then
 						keybind()
