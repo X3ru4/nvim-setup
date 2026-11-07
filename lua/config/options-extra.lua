@@ -13,11 +13,11 @@ colorscheme.variant = 'base46-gruvbox_light'
 ---VimExtra
 _G.vime = {
 	---@type 'blink'|'mini'|'hlchunk'|any
-	indent_guide = 'blink',
+	indent_guide = 'mini',
 	---@type 'thin'|'thick'|'middle'|'dashed'|'dashed2'|any
 	indent_guide_char = 'thin',
-	---@type 'flat'|'rounded'|'square'|'combine'|any
-	ui_style = 'combine',
+	---@type 'flat'|'rounded'|'square'|'custom'|any
+	ui_style = 'custom',
 	---@type 'default'|'atom'|'atom_colored'|'flat_light'|'flat_dark'|nil|false
 	base46_cmp_style = 'flat_dark', -- Only works with `base46` colorscheme
 	-- Quick configuration for blink.cmp
@@ -62,7 +62,7 @@ local ui_styles = {
 		blinkcmp.documentation.border = 'single'
 		vime.base46_cmp_style = 'default'
 	end,
-	combine = function()
+	custom = function()
 		vim.opt.winborder = 'rounded'
 		blinkcmp.menu.border = 'none'
 		blinkcmp.menu.scrollbar = true
