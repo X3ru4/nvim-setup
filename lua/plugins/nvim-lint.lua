@@ -8,11 +8,9 @@ return {
 			-- lua = { 'luacheck' },
 		}
 
-		vim.api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI' }, {
+		vim.api.nvim_create_autocmd({ 'TextChanged', 'InsertLeave' }, {
 			callback = function()
-				vim.async.run(function()
-					lint.try_lint()
-				end)
+				lint.try_lint()
 			end,
 		})
 	end,
