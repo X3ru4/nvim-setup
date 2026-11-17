@@ -107,7 +107,7 @@ return {
 			},
 			lsp = {
 				symbols = {
-					locate = true,
+					locate = false,
 					symbol_style = 3,
 					winopts = {
 						preview = { hidden = false },
