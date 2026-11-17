@@ -7,8 +7,9 @@ ui2.cfg.msg.msg.height = 0.4
 vim.keymap.set('n', 'mm', ui2.msg.msg_clear, { desc = 'Hide messages' })
 
 local ns = api.nvim_create_namespace('MyMsgUI')
+local configured = false
 vim.ui_attach(ns, { ext_messages = true }, function(event)
-	if event ~= 'msg_show' then
+	if event ~= 'msg_show' or configured then
 		return
 	end
 	vim.schedule(function()
@@ -16,6 +17,7 @@ vim.ui_attach(ns, { ext_messages = true }, function(event)
 			border = { '', '', '', ' ', '', '', '', ' ' },
 		})
 		api.nvim_set_option_value('winhighlight', 'NormalFloat:StatusLine', { win = ui2.wins.msg })
+		configured = true
 	end)
 end)
 
@@ -60,5 +62,10 @@ api.nvim_create_autocmd('LspProgress', {
 			source = 'lsp-progress',
 			status = status,
 		})
+
+		api.nvim_win_set_config(ui2.wins.msg, {
+			border = { '', '', '', ' ', '', '', '', ' ' },
+		})
+		api.nvim_set_option_value('winhighlight', 'NormalFloat:StatusLine', { win = ui2.wins.msg })
 	end,
 })
