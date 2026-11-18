@@ -6,7 +6,6 @@ ui2.cfg.msg.msg.height = 0.4
 
 vim.keymap.set('n', 'mm', ui2.msg.msg_clear, { desc = 'Hide messages' })
 
-local configured = false
 local ns = api.nvim_create_namespace('MyMsgUI')
 vim.ui_attach(ns, { ext_messages = true }, function(event)
 	if event ~= 'msg_show' or configured then
@@ -16,8 +15,7 @@ vim.ui_attach(ns, { ext_messages = true }, function(event)
 		api.nvim_win_set_config(ui2.wins.msg, {
 			border = { '', '', '', ' ', '', '', '', ' ' },
 		})
-		api.nvim_set_option_value('winhighlight', 'NormalFloat:StatusLine', { win = ui2.wins.msg })
-		configured = true
+		api.nvim_set_option_value('winhighlight', 'NormalFloat:StatusLine,FloatBorder:StatusLine', { win = ui2.wins.msg })
 	end)
 end)
 
