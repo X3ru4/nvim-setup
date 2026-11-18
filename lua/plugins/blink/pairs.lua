@@ -12,10 +12,8 @@ return {
 				enabled = true,
 				cmdline = true,
 				wrap = {
-					['<C-b>'] = false,
-					['<C-S-b>'] = false,
-					['<C-m>'] = 'motion',
-					['<C-S-m>'] = 'motion_reverse',
+					['<C-b>'] = 'motion',
+					['<C-S-b>'] = 'motion_reverse',
 				},
 				pairs = {},
 			},

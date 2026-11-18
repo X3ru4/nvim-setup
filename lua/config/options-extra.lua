@@ -15,7 +15,7 @@ _G.vime = {
 	---@type 'blink'|'mini'|'hlchunk'|any
 	indent_guide = 'mini',
 	---@type 'thin'|'thick'|'middle'|'dashed'|'dashed2'|any
-	indent_guide_char = 'thin',
+	indent_guide_char = 'middle',
 	---@type 'flat'|'rounded'|'square'|'custom'|any
 	ui_style = 'custom',
 	---@type 'default'|'atom'|'atom_colored'|'flat_light'|'flat_dark'|nil|false
