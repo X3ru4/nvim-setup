@@ -29,8 +29,8 @@ vim.g.maplocalleader = '\\'
 
 require('vim._core.ui2').enable({ enable = true })
 require('config.options')
-require('config.options-extra')
 require('config.messages')
+vim.opt.statusline = [[%{%v:lua.require('config.statusline')()%}]]
 require('config.zpack')
 require('config.commands')
 require('config.keymaps')

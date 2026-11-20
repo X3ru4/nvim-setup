@@ -10,7 +10,7 @@ vim.opt.synmaxcol = 200
 
 -- UI
 vim.opt.termguicolors = true
-vim.opt.winborder = 'solid'
+vim.opt.winborder = 'rounded'
 vim.opt.winblend = 0
 vim.opt.pumblend = 0
 vim.opt.pumheight = 10

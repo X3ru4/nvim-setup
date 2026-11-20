@@ -1,6 +1,6 @@
 return {
 	'saghen/blink.indent',
-	cond = vime.indent_guide == 'blink',
+	cond = false,
 	event = 'BufReadPost',
 	keys = {
 		{
@@ -16,10 +16,10 @@ return {
 	opts = {
 		static = {
 			-- whitespace_char = ' ',
-			char = vime.indent_guide_char,
+			char = '▏',
 		},
 		scope = {
-			char = vime.indent_guide_char,
+			char = '▏',
 			indent_at_cursor = true,
 			highlights = { 'BlinkIndentScope' },
 		},

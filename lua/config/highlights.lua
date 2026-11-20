@@ -1,20 +1,5 @@
 local hl = require('utils.highlight')
 
-local function set_hl_mode(mode, link, fallback)
-	if hl.hl_exist(link) then
-		return { 'Mode' .. mode, { link = link, default = true } }
-	end
-	return {
-		'Mode' .. mode,
-		{
-			default = true,
-			fg = hl.alias.Black,
-			bg = hl.getfg(fallback),
-			bold = true,
-		},
-	}
-end
-
 hl.setup(function()
 	-- These aliases are primarily used for heirline.nvim and fzf-lua
 	hl.alias.White = hl.getfg('Normal') or hl.getfg('@text')
@@ -35,13 +20,6 @@ hl.setup(function()
 			bg = hl.blend(hl.getfg('Added'), hl.alias.Black, 0.3),
 		},
 		MCursor = { link = 'Cursor' },
-		-- Create highlights for the basic Vim/Nvim modes used in heirline.nvim.
-		set_hl_mode('Other', 'MiniStatuslineModeOther', 'Function'),
-		set_hl_mode('Normal', 'MiniStatuslineModeNormal', 'DiagnosticSignInfo'),
-		set_hl_mode('Insert', 'MiniStatuslineModeInsert', 'Added'),
-		set_hl_mode('Visual', 'MiniStatuslineModeVisual', 'DiagnosticSignWarn'),
-		set_hl_mode('Command', 'MiniStatuslineModeCommand', 'Removed'),
-		set_hl_mode('Replace', 'MiniStatuslineModeReplace', 'DiagnosticSignError'),
 		-- Modify default highlights.
 		hl.modify('Visual', { bold = false }),
 		-- hl.modify('FloatTitle', { bg = hl.getbg('NormalFloat') }),

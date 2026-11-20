@@ -1,6 +1,6 @@
 return {
 	'shellRaining/hlchunk.nvim',
-	cond = vime.indent_guide == 'hlchunk',
+	cond = false,
 	event = { 'BufReadPre', 'BufNewFile' },
 	config = function()
 		local hl = require('utils.highlight')

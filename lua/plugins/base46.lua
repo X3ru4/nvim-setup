@@ -1,6 +1,7 @@
 return {
 	'AvengeMedia/base46',
 	name = 'base46',
+	lazy = false,
 	config = function()
 		local base46 = require('base46')
 		base46.setup({
@@ -13,7 +14,7 @@ return {
 			transparency = false,
 			nvchad = {
 				---@type 'default'|'atom'|'atom_colored'|'flat_light'|'flat_dark'
-				cmp_style = vime.base46_cmp_style or 'flat_dark',
+				cmp_style = 'flat_dark',
 			},
 			-- Contrary to NvChad, all integrations are enabled by default.
 			integrations = {
@@ -68,12 +69,7 @@ return {
 			},
 		})
 
-		local variant = require('utils.colorscheme').variant
-		if variant then
-			base46.load(variant:sub(8))
-		else
-			base46.load('gruvchad')
-		end
+		base46.load('gruvbox_light')
 
 		local hl = require('utils.highlight')
 		local function is_base46()
@@ -99,13 +95,6 @@ return {
 			hl.alias.Line = colors.base_30.line
 
 			hl.apply({
-				ModeOther = { link = 'St_ConfirmMode', _force = true },
-				ModeNormal = { link = 'St_NormalMode', _force = true },
-				ModeInsert = { link = 'St_InsertMode', _force = true },
-				ModeVisual = { link = 'St_VisualMode', _force = true },
-				ModeCommand = { link = 'St_CommandMode', _force = true },
-				ModeReplace = { link = 'St_ReplaceMode', _force = true },
-
 				FloatTitle = {
 					fg = colors.base_30.black,
 					bg = colors.base_30.blue,
