@@ -73,17 +73,17 @@ local function StatusLine()
 	local line = ''
 	line = table.concat({
 		ViMode(),
-		hltext('MyStlB2', ' %<' .. (vim.bo.buftype == '' and '%t' or '%y')),
+		hltext('MyStlB1', ' %<' .. (vim.bo.buftype == '' and '%t' or '%y')),
 		hltext('MyStlMod', '%m'),
 		hltext('MyStlRO', vim.bo.filetype == 'help' and '%h' or '%r'),
 		' %* ',
 		vim.diagnostic.status(0):gsub(':', ' '),
 		'%=',
-		hltext('MyStlB2', '▏'),
+		hltext('MyStlB1', '▏'),
 		LspActive(),
 		Macro(),
 		Search(),
-		hltext('MyStlB2', '%P '),
+		hltext('MyStlB1', '%P '),
 	})
 	return line
 end
@@ -104,7 +104,7 @@ hl.add_hook('StatusLine', function()
 	end
 
 	local Black1 = hl.get_alias('Black1', 'StatusLine bg')
-	hl.set('MyStlB2', { bg = Black1 })
+	hl.set('MyStlB1', { bg = Black1 })
 	hl.set('MyStlMacro', { fg = hl.getfg('Type'), bg = Black1 })
 	hl.set('MyStlMod', { fg = hl.getfg('Changed'), bg = Black1, bold = true })
 	hl.set('MyStlRO', { fg = hl.getfg('Constant'), bg = Black1, bold = true })
