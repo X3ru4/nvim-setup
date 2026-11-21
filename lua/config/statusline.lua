@@ -1,10 +1,6 @@
 local api = vim.api
 local hl = require('utils.highlight')
 
-local function hltext(hi, text)
-	return '%#' .. hi .. '#' .. text
-end
-
 local modes = {
 	n = 'Normal',
 	i = 'Insert',
@@ -43,12 +39,12 @@ local mode_hls = {
 
 local function ViMode()
 	local mode = api.nvim_get_mode().mode
-	return hltext(mode_hls[mode] or 'MyStlModeOther', ' 󰍳 ' .. (modes[mode] or mode) .. '▕%*')
+	return '%#' .. (mode_hls[mode] or 'MyStlModeOther') .. '# 󰍳 ' .. (modes[mode] or mode) .. '▕%*'
 end
 
 local function LspActive()
 	if next(vim.lsp.get_clients({ bufnr = 0 })) then
-		return hltext('MyStlLsp', ' LSP ')
+		return '%#MyStlLsp# LSP '
 	end
 	return ''
 end
@@ -56,7 +52,7 @@ end
 local function Macro()
 	local reg = vim.fn.reg_recording()
 	if reg ~= '' then
-		return hltext('MyStlMacro', '@' .. reg .. ' ')
+		return '%#MyStlMacro#@' .. reg .. ' '
 	end
 	return ''
 end
@@ -64,7 +60,7 @@ end
 local function Search()
 	if vim.v.hlsearch ~= 0 then
 		local count = vim.fn.searchcount()
-		return hltext('MyStlSearch', count.current .. '/' .. count.total .. ' ')
+		return '%#MyStlSearch#' .. count.current .. '/' .. count.total .. ' '
 	end
 	return ''
 end
@@ -72,17 +68,18 @@ end
 local function StatusLine()
 	return table.concat({
 		ViMode(),
-		hltext('MyStlB1', ' %<' .. ((vim.bo.buftype == '' or vim.bo.buftype == 'terminal') and '%t' or '%y')),
-		hltext('MyStlMod', '%m'),
-		hltext('MyStlRO', vim.bo.filetype == 'help' and '%h' or '%r'),
+		'%#MyStlB1# %<',
+		(vim.bo.buftype == '' or vim.bo.buftype == 'terminal') and '%t' or '%y',
+		'%#MyStlMod#%m',
+		'%#MyStlRO#',
+		vim.bo.filetype == 'help' and '%h' or '%r',
 		' %* ',
 		vim.diagnostic.status(0):gsub(':', ' '),
-		'%=',
-		hltext('MyStlB1', '▏'),
+		' %=%#MyStlB1#▏',
 		LspActive(),
 		Macro(),
 		Search(),
-		hltext('MyStlB1', '%l:%c '),
+		'%#MyStlB1#%l:%c ',
 	})
 end
 
