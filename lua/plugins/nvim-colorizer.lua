@@ -2,9 +2,6 @@ return {
 	'catgoose/nvim-colorizer.lua',
 	event = 'BufReadPost',
 	cmd = 'ColorizerToggle',
-	keys = {
-		{ '<leader>cC', '<cmd>ColorizerToggle<cr>', desc = 'ColorizerToggle' },
-	},
 	opts = {
 		options = {
 			parsers = {
