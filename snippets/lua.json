@@ -5,9 +5,9 @@
       "local count = 1000",
       "local start_time = vim.uv.hrtime()",
       "for _ = 1, count do",
-      "  ${1:code}",
+      "\t$0",
       "end",
-      "vim.print((vim.uv.hrtime() - start_time) / 1000000 / count)$0"
+      "vim.print((vim.uv.hrtime() - start_time) / 1000000 / count)"
     ]
   }
 }
