@@ -43,12 +43,12 @@ local mode_hls = {
 
 local function ViMode()
 	local mode = api.nvim_get_mode().mode
-	return hltext(mode_hls[mode] or 'MyStlModeOther', ' 󰍳 ' .. (modes[mode] or mode) .. ' %*')
+	return hltext(mode_hls[mode] or 'MyStlModeOther', ' 󰍳 ' .. (modes[mode] or mode) .. '▕%*')
 end
 
 local function LspActive()
 	if next(vim.lsp.get_clients({ bufnr = 0 })) then
-		return hltext('Added', '  LSP %*')
+		return hltext('MyStlLsp', ' LSP ')
 	end
 	return ''
 end
@@ -79,8 +79,8 @@ local function StatusLine()
 		' %* ',
 		vim.diagnostic.status(0):gsub(':', ' '),
 		'%=',
+		hltext('MyStlB2', '▏'),
 		LspActive(),
-		hltext('MyStlB2', ' '),
 		Macro(),
 		Search(),
 		hltext('MyStlB2', '%P '),
@@ -103,12 +103,13 @@ hl.add_hook('StatusLine', function()
 		hl.set('MyStlMode' .. name, { fg = hl.get_alias('Black', 'Normal bg'), bg = hl.getfg(hi), bold = true })
 	end
 
-	local Black2 = hl.get_alias('Black1', 'StatusLine bg')
-	hl.set('MyStlB2', { bg = Black2 })
-	hl.set('MyStlMacro', { fg = hl.getfg('Type'), bg = Black2 })
-	hl.set('MyStlMod', { fg = hl.getfg('Changed'), bg = Black2, bold = true })
-	hl.set('MyStlRO', { fg = hl.getfg('Constant'), bg = Black2, bold = true })
-	hl.set('MyStlSearch', { fg = hl.getfg('SpecialChar'), bg = Black2 })
+	local Black1 = hl.get_alias('Black1', 'StatusLine bg')
+	hl.set('MyStlB2', { bg = Black1 })
+	hl.set('MyStlMacro', { fg = hl.getfg('Type'), bg = Black1 })
+	hl.set('MyStlMod', { fg = hl.getfg('Changed'), bg = Black1, bold = true })
+	hl.set('MyStlRO', { fg = hl.getfg('Constant'), bg = Black1, bold = true })
+	hl.set('MyStlSearch', { fg = hl.getfg('SpecialChar'), bg = Black1 })
+	hl.set('MyStlLsp', { fg = hl.getfg('Added'), bg = Black1 })
 end, nil, true)
 
 local augroup = api.nvim_create_augroup('MyStlAucmd', { clear = true })
