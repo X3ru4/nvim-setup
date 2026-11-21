@@ -70,10 +70,9 @@ local function Search()
 end
 
 local function StatusLine()
-	local line = ''
-	line = table.concat({
+	return table.concat({
 		ViMode(),
-		hltext('MyStlB1', ' %<' .. (vim.bo.buftype == '' and '%t' or '%y')),
+		hltext('MyStlB1', ' %<' .. ((vim.bo.buftype == '' or vim.bo.buftype == 'terminal') and '%t' or '%y')),
 		hltext('MyStlMod', '%m'),
 		hltext('MyStlRO', vim.bo.filetype == 'help' and '%h' or '%r'),
 		' %* ',
@@ -83,9 +82,8 @@ local function StatusLine()
 		LspActive(),
 		Macro(),
 		Search(),
-		hltext('MyStlB1', '%P '),
+		hltext('MyStlB1', '%l:%c '),
 	})
-	return line
 end
 
 hl.add_hook('StatusLine', function()
