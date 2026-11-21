@@ -17,6 +17,7 @@ local modes = {
 	niI = 'N-Insert',
 	niR = 'N-Replace',
 	niV = 'N-Virtual',
+	['r?'] = 'Confirm'
 }
 
 local mode_hls = {
