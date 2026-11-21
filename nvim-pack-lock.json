@@ -78,43 +78,43 @@
       "src": "https://github.com/monkoose/matchparen.nvim"
     },
     "mini-git": {
-      "rev": "f1fbf05c28be1b11008033a0644b71d107bed03d",
+      "rev": "894d6cdf6c3a5d4c41e0983a7aa3918664be2665",
       "src": "https://github.com/nvim-mini/mini-git"
     },
     "mini.ai": {
-      "rev": "c2e6e88a9de01b5aec5c3cffee1277b9ac8a6d69",
+      "rev": "813d10a43d5d4eda4816e6a27eb6bf6250f75ea8",
       "src": "https://github.com/nvim-mini/mini.ai"
     },
     "mini.align": {
-      "rev": "7b52efc663139c498e5aa7de1dd54cdafa6a5ee0",
+      "rev": "b66a8300762ba0ec34236c995f6d45031f9d089c",
       "src": "https://github.com/nvim-mini/mini.align"
     },
     "mini.clue": {
-      "rev": "c8f246f080d4a7907990199151464978b43c9406",
+      "rev": "7e27c1661b3d562e780ab06c996a3934034f5859",
       "src": "https://github.com/nvim-mini/mini.clue"
     },
     "mini.diff": {
-      "rev": "91d6ce4b7f400439fe761f01a58280f2c0f99c01",
+      "rev": "f527407247245d121ca65d539d7a8a3686938915",
       "src": "https://github.com/nvim-mini/mini.diff"
     },
     "mini.hipatterns": {
-      "rev": "7a79e5f000beb530ade0fa9faec70f01469dbcb3",
+      "rev": "012ae1f3070ad47973d09c730091be2ee4bef09c",
       "src": "https://github.com/nvim-mini/mini.hipatterns"
     },
     "mini.icons": {
-      "rev": "fc90b3925a2a68282be06e28cfe0cbb366c75dad",
+      "rev": "5d58117d176c133f4cb5585ec8cb3450881c89a0",
       "src": "https://github.com/nvim-mini/mini.icons"
     },
     "mini.indentscope": {
-      "rev": "cd434e2273750160e81511192f8801d838a506c8",
+      "rev": "9cc15a46d5082ee75b921b6be8c1f7784da7eea9",
       "src": "https://github.com/nvim-mini/mini.indentscope"
     },
     "mini.move": {
-      "rev": "24d9bb2af6b6f747205fb5da0ec51a7d621077d7",
+      "rev": "640f7e3524e4d749d4dcaf1b462d974c3d38bd73",
       "src": "https://github.com/nvim-mini/mini.move"
     },
     "mini.surround": {
-      "rev": "c17f9e2b2d685376b8ae7bb2cd8bb51dc7cd6d98",
+      "rev": "77f376bdebb3440ad13bc40b48062b29bccb7577",
       "src": "https://github.com/nvim-mini/mini.surround"
     },
     "nerdy.nvim": {
@@ -163,7 +163,7 @@
       "src": "https://github.com/Wansmer/sibling-swap.nvim"
     },
     "terminil.nvim": {
-      "rev": "177cb924c5e9c96a25805e6452b5c5a92da61175",
+      "rev": "76c074305a4b1b88c62a16bddb3fbf9615deffc9",
       "src": "https://github.com/X3ru4/terminil.nvim"
     },
     "tiny-cmdline.nvim": {

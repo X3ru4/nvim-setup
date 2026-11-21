@@ -17,7 +17,7 @@ local modes = {
 	niI = 'N-Insert',
 	niR = 'N-Replace',
 	niV = 'N-Virtual',
-	['r?'] = 'Confirm'
+	['r?'] = 'Confirm',
 }
 
 local mode_hls = {
@@ -110,8 +110,8 @@ end, nil, true)
 
 local augroup = api.nvim_create_augroup('MyStlAucmd', { clear = true })
 api.nvim_create_autocmd('ModeChanged', {
-	pattern = '*:*',
 	group = augroup,
+	pattern = '*:*',
 	command = 'redrawstatus',
 })
 
