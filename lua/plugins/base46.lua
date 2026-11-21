@@ -2,7 +2,7 @@ return {
 	'AvengeMedia/base46',
 	name = 'base46',
 	lazy = false,
-	config = function()
+	config = function(plugin)
 		local base46 = require('base46')
 		base46.setup({
 			-- Each theme has a `type` field set to dark or light.
@@ -150,6 +150,30 @@ return {
 				hl.modify('ErrorMsg', { bg = 'None' }),
 				hl.modify('OkMsg', { fg = colors.base_30.vibrant_green }),
 			})
+		end)
+		vim.async.run(function()
+			local themes = {}
+			for name, _ in vim.fs.dir(plugin.dir .. '/lua/base46/themes') do
+				table.insert(themes, name:sub(1, name:find('.', 1, true) - 1))
+			end
+			local ok, fzf = pcall(require, 'fzf-lua')
+
+			if not ok then
+				return
+			end
+
+			vim.keymap.set('n', '<leader>cc', function()
+				fzf.fzf_exec(themes, {
+					prompt = 'Theme: ',
+					winopts = { title = ' 󱥚 Base46-Themes ' },
+					actions = {
+						['enter'] = function(selected)
+							base46.load(selected[1])
+							vim.api.nvim_exec_autocmds('ColorScheme')
+						end,
+					},
+				})
+			end)
 		end)
 	end,
 }

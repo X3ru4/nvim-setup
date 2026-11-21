@@ -194,7 +194,7 @@ return {
 		map.set('n', '<leader>cs', fzf.spell_suggest, { desc = 'Spell suggest' })
 		map.set('n', '<leader>cq', fzf.quickfix, { desc = 'Quickfix' })
 		map.set('n', '<leader>cd', fzf.diagnostics_document, { desc = 'Show diagnostics' })
-		map.set('n', '<leader>cc', fzf.colorschemes, { desc = 'Change colorscheme' })
+		map.set('n', '<leader>cC', fzf.colorschemes, { desc = 'Change colorscheme' })
 		map.set('n', '<leader>cgh', fzf.git_hunks, { desc = 'Git hunks' })
 		map.set('n', '<leader>cgd', fzf.git_diff, { desc = 'Git diff' })
 		map.set('n', '<leader>cgc', fzf.git_commits, { desc = 'Git commits' })
