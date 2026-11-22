@@ -273,7 +273,7 @@ end
 ---@param name string
 ---@return boolean
 function M.hl_exist(name)
-	return not vim.tbl_isempty(M.get(name))
+	return not next(M.get(name))
 end
 
 return M
