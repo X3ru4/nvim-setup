@@ -2,78 +2,14 @@ return {
 	'AvengeMedia/base46',
 	name = 'base46',
 	lazy = false,
-	config = function(plugin)
+	config = function(plugin, opts)
 		local base46 = require('base46')
-		base46.setup({
-			-- Each theme has a `type` field set to dark or light.
-			-- If this is true, vim.o.background will be updated accordingly when a theme is loaded.
-			set_background = true,
-			-- If this is true, the 16 colors of neovim's terminal will be set accordingly when a theme is loaded.
-			term_colors = true,
-			-- Enable transparent background.
-			transparency = false,
-			nvchad = {
-				---@type 'default'|'atom'|'atom_colored'|'flat_light'|'flat_dark'
-				cmp_style = 'flat_dark',
-			},
-			-- Contrary to NvChad, all integrations are enabled by default.
-			integrations = {
-				['blink-pair'] = true,
-				['git-conflict'] = false,
-				['mini-icons'] = true,
-				['mini-tabline'] = false,
-				['render-markdown'] = true,
-				['snacks-dashboard'] = false,
-				['tiny-inline-diagnostic'] = false,
-				['vim-illuminate'] = false,
-				alpha = true,
-				avante = false,
-				blankline = false,
-				blink = true,
-				bufferline = false,
-				cmp = false,
-				codeactionmenu = false,
-				dap = false,
-				defaults = true,
-				devicons = false,
-				diffview = false,
-				edgy = false,
-				flash = false,
-				git = true,
-				gitsigns = false,
-				grug_far = false,
-				hop = false,
-				leap = true,
-				lsp = true,
-				lspsaga = false,
-				markview = false,
-				mason = true,
-				navic = false,
-				neogit = false,
-				neotest = false,
-				notify = false,
-				nvcheatsheet = false,
-				nvimtree = false,
-				nvshades = false,
-				orgmode = false,
-				rainbowdelimiters = false,
-				semantic_tokens = false,
-				statusline = true,
-				syntax = true,
-				tbline = false,
-				telescope = false,
-				todo = true,
-				treesitter = true,
-				trouble = false,
-				whichkey = false,
-			},
-		})
-
-		base46.load('ayu_mirage')
+		base46.setup(opts)
+		base46.load('gruvbox_light')
 
 		local hl = require('utils.highlight')
 		local function is_base46()
-			return vim.g.colors_name:sub(1, 7) == 'base46-'
+			return vim.g.colors_name:find('base46-', 1, true)
 		end
 
 		-- It will be applied when the `UIEnter` or `Colorscheme` event is triggered.
@@ -173,4 +109,68 @@ return {
 			})
 		end)
 	end,
+	opts = {
+		-- Each theme has a `type` field set to dark or light.
+		-- If this is true, vim.o.background will be updated accordingly when a theme is loaded.
+		set_background = true,
+		-- If this is true, the 16 colors of neovim's terminal will be set accordingly when a theme is loaded.
+		term_colors = true,
+		-- Enable transparent background.
+		transparency = false,
+		nvchad = {
+			---@type 'default'|'atom'|'atom_colored'|'flat_light'|'flat_dark'
+			cmp_style = 'flat_dark',
+		},
+		-- Contrary to NvChad, all integrations are enabled by default.
+		integrations = {
+			['blink-pair'] = true,
+			['git-conflict'] = false,
+			['mini-icons'] = true,
+			['mini-tabline'] = false,
+			['render-markdown'] = true,
+			['snacks-dashboard'] = false,
+			['tiny-inline-diagnostic'] = false,
+			['vim-illuminate'] = false,
+			alpha = true,
+			avante = false,
+			blankline = false,
+			blink = true,
+			bufferline = false,
+			cmp = false,
+			codeactionmenu = false,
+			dap = false,
+			defaults = true,
+			devicons = false,
+			diffview = false,
+			edgy = false,
+			flash = false,
+			git = true,
+			gitsigns = false,
+			grug_far = false,
+			hop = false,
+			leap = true,
+			lsp = true,
+			lspsaga = false,
+			markview = false,
+			mason = true,
+			navic = false,
+			neogit = false,
+			neotest = false,
+			notify = false,
+			nvcheatsheet = false,
+			nvimtree = false,
+			nvshades = false,
+			orgmode = false,
+			rainbowdelimiters = false,
+			semantic_tokens = false,
+			statusline = true,
+			syntax = true,
+			tbline = false,
+			telescope = false,
+			todo = true,
+			treesitter = true,
+			trouble = false,
+			whichkey = false,
+		},
+	},
 }
