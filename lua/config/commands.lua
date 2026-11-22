@@ -89,7 +89,7 @@ usercmd('GenTermuxColor', function(opts)
 			vim.cmd.edit(filename)
 			vim.system({ 'termux-reload-settings' }, { text = true }, function(out)
 				if out.code ~= 0 then
-					vim.notify(out.stderr)
+					error(out.stderr)
 				end
 			end)
 		else
