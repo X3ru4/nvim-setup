@@ -69,7 +69,7 @@ return {
 			},
 		})
 
-		base46.load('gruvbox_light')
+		base46.load('ayu_mirage')
 
 		local hl = require('utils.highlight')
 		local function is_base46()
