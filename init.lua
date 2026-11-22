@@ -1,5 +1,4 @@
 vim.loader.enable()
-require('vim._core.ui2').enable({ enable = true })
 
 -- disable runtimepath plugins
 local rtp_plugins = {
@@ -21,14 +20,12 @@ for _, name in ipairs(rtp_plugins) do
 	vim.g['loaded_' .. name] = 1
 end
 
-vim.g.termfeatures = {
-	osc52 = false,
-}
-
+vim.g.termfeatures = { osc52 = false }
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
 vim.opt.statusline = [[%{%v:lua.require('config.statusline')()%}]]
 
+require('vim._core.ui2').enable({ enable = true })
 require('config.options')
 require('config.zpack')
 require('config.keymaps')
