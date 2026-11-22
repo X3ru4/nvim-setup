@@ -23,6 +23,7 @@ M.use_cache = true
 ---This is the default table used to load highlights when M.apply() is called.
 M.data = {
 	[1] = {},
+	---@type [string, function]
 	__callbacks = {},
 	__next_time = {},
 }
