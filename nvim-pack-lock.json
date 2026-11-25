@@ -166,10 +166,6 @@
       "rev": "76c074305a4b1b88c62a16bddb3fbf9615deffc9",
       "src": "https://github.com/X3ru4/terminil.nvim"
     },
-    "tiny-cmdline.nvim": {
-      "rev": "b6bb66ee46421b7965cbc961c9fae89310a87bd1",
-      "src": "https://github.com/rachartier/tiny-cmdline.nvim"
-    },
     "tree-sitter-manager.nvim": {
       "rev": "05c2328f1ffd84f1944f9ff9aeb0d5032c6e5c1e",
       "src": "https://github.com/romus204/tree-sitter-manager.nvim"
