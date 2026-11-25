@@ -20,7 +20,7 @@ return {
 			end
 		end
 
-		local prompt = ' Open:'
+		local prompt = ' Open: '
 		local alias = {
 			termux = '~/.termux/',
 			storage = '~/storage/',

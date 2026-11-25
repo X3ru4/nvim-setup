@@ -7,8 +7,7 @@ local function close(win)
 	vim.cmd.stopinsert()
 end
 
-local win = 0
-
+local win
 ---@param opts? vim.ui.input.Opts Additional options. See |input()|
 ---@param on_confirm fun(input?: string)
 ---               Called once the user confirms or abort the input.
@@ -22,17 +21,20 @@ vim.ui.input = function(opts, on_confirm)
 	local buf = api.nvim_create_buf(false, true)
 	local width = math.ceil(vim.o.columns * 0.6)
 	win = api.nvim_open_win(buf, true, {
-		relative = 'editor',
-		title = ' ' .. vim.trim(opts.prompt) .. ' ',
-		title_pos = 'center',
+		relative = 'cursor',
+		title = ' 󰌌 Input ',
+		title_pos = 'left',
 		width = width,
 		height = 1,
-		row = math.floor((vim.o.lines - 3) / 2),
-		col = math.floor((vim.o.columns - width) / 2),
+		row = 1,
+		col = 0,
 		style = 'minimal',
 	})
-	vim.wo[win].wrap = true
 	vim.cmd.startinsert()
+
+	vim.wo[win].statuscolumn = '%#Title#' .. (opts.prompt or '> ') .. '%*'
+	vim.wo[win].winfixbuf = true
+	vim.wo[win].wrap = true
 
 	if opts.default then
 		api.nvim_buf_set_lines(buf, 0, -1, false, { opts.default })
@@ -45,7 +47,7 @@ vim.ui.input = function(opts, on_confirm)
 		on_confirm(nil)
 	end, { buf = buf })
 	map({ 'n', 'i' }, '<cr>', function()
-		local input = table.concat(api.nvim_buf_get_lines(buf, 0, -1, false))
+		local input = api.nvim_buf_get_lines(buf, 0, -1, false)[1]
 		close(win)
 		on_confirm(input)
 	end, { buf = buf })
@@ -53,14 +55,14 @@ end
 
 api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI' }, {
 	callback = function(ev)
-		if ev.win ~= win then
+		if win ~= ev.win then
 			return
 		end
-		api.nvim_win_set_config(ev.win, {
-			height = api.nvim_win_text_height(ev.win, {
-				start_row = 0,
-				end_row = 0,
-			}).all,
-		})
+		local statuscol_width = vim.fn.strdisplaywidth(vim.wo[ev.win].statuscolumn:match('%%#Title#(.*)%%'))
+		local line_width = statuscol_width + vim.fn.strdisplaywidth(api.nvim_buf_get_lines(ev.buf, 0, 1, false)[1])
+		local width = api.nvim_win_get_width(ev.win)
+		if line_width >= width then
+			api.nvim_win_resize(ev.win, width + 1, -1)
+		end
 	end,
 })

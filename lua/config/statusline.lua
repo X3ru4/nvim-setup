@@ -40,12 +40,12 @@ local mode_hls = {
 
 local function ViMode()
 	local mode = api.nvim_get_mode().mode
-	return '%#' .. (mode_hls[mode] or 'MyStlModeOther') .. '# 󰍳 ' .. (modes[mode] or mode) .. '▕%*'
+	return '%#' .. (mode_hls[mode] or 'MyStlModeOther') .. '# ' .. (modes[mode] or mode) .. '▕%*'
 end
 
 local function LspActive()
 	if next(vim.lsp.get_clients({ bufnr = 0 })) then
-		return '%#MyStlLsp# LSP '
+		return '%#MyStlLsp#[LSP] '
 	end
 	return ''
 end
