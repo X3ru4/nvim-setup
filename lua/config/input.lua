@@ -1,4 +1,6 @@
 local api = vim.api
+local augroup = api.nvim_create_augroup('MyInput', { clear = true })
+local min_width = 0.6
 
 local function close(win)
 	if api.nvim_win_is_valid(win) then
@@ -19,7 +21,7 @@ vim.ui.input = function(opts, on_confirm)
 	opts = opts or {}
 
 	local buf = api.nvim_create_buf(false, true)
-	local width = math.ceil(vim.o.columns * 0.6)
+	local width = math.ceil(vim.o.columns * min_width)
 	win = api.nvim_open_win(buf, true, {
 		relative = 'cursor',
 		title = ' 󰌌 Input ',
@@ -54,6 +56,7 @@ vim.ui.input = function(opts, on_confirm)
 end
 
 api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI' }, {
+	group = augroup,
 	callback = function(ev)
 		if win ~= ev.win then
 			return
@@ -64,7 +67,7 @@ api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI' }, {
 		if line_width >= width then
 			api.nvim_win_resize(ev.win, width + 1, -1)
 		else
-			api.nvim_win_resize(ev.win, math.max(math.ceil(vim.o.columns * 0.6), line_width + 1), -1)
+			api.nvim_win_resize(ev.win, math.max(math.ceil(vim.o.columns * min_width), line_width + 1), -1)
 		end
 	end,
 })
