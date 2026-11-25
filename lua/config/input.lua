@@ -63,6 +63,8 @@ api.nvim_create_autocmd({ 'TextChanged', 'TextChangedI' }, {
 		local width = api.nvim_win_get_width(ev.win)
 		if line_width >= width then
 			api.nvim_win_resize(ev.win, width + 1, -1)
+		else
+			api.nvim_win_resize(ev.win, math.max(math.ceil(vim.o.columns * 0.6), line_width + 1), -1)
 		end
 	end,
 })
