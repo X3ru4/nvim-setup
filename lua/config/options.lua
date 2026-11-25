@@ -14,7 +14,6 @@ vim.opt.winborder = 'rounded'
 vim.opt.winblend = 0
 vim.opt.pumblend = 0
 vim.opt.pumheight = 10
-vim.opt.cmdheight = 1
 vim.opt.laststatus = 3
 vim.opt.ruler = false
 vim.opt.showmode = false

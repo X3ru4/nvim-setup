@@ -2,7 +2,7 @@ local ui2 = require('vim._core.ui2')
 local api = vim.api
 
 ui2.cfg.msg.targets.default = 'msg'
-ui2.cfg.msg.msg.height = 0.4
+ui2.cfg.msg.msg.height = 0.35
 
 vim.keymap.set('n', 'mm', ui2.msg.msg_clear, { desc = 'Hide messages' })
 
@@ -31,13 +31,13 @@ api.nvim_create_autocmd('LspProgress', {
 
 		local client = vim.lsp.get_client_by_id(ev.data.client_id).name
 		local kind = value.kind
-		local message = value.message
-		local percent = value.percentage
+		local message = value.message or ''
+		local percent = value.percentage or 0
 		local status = 'running'
 		local title = value.title
 
 		if kind == 'begin' then
-			message = 'Loading…'
+			message = 'Starting…'
 		end
 
 		if kind == 'end' then
@@ -60,10 +60,5 @@ api.nvim_create_autocmd('LspProgress', {
 			source = 'lsp-progress',
 			status = status,
 		})
-
-		api.nvim_win_set_config(ui2.wins.msg, {
-			border = { '', '', '', ' ', '', '', '', ' ' },
-		})
-		api.nvim_set_option_value('winhighlight', 'NormalFloat:StatusLine', { win = ui2.wins.msg })
 	end,
 })

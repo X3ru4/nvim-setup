@@ -27,9 +27,10 @@ vim.opt.statusline = [[%{%v:lua.require('config.statusline')()%}]]
 
 require('vim._core.ui2').enable({ enable = true })
 require('config.options')
+require('config.input')
+require('config.messages')
 require('config.zpack')
 require('config.keymaps')
 require('config.autocmds')
 require('config.usercmds')
-require('config.messages')
 require('config.lsp')
