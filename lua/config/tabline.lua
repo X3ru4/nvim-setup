@@ -150,7 +150,7 @@ hl.add_hook(function()
 	hl.set('TabLineCurrentBuffer', { fg = hl.getfg('TabLine'), bg = hl.getbg('TabLineSel'), bold = true })
 	hl.set('TabLineBufferModified', { fg = hl.getfg('Changed'), bg = fill.bg })
 	hl.set('TabLineBuffer', { fg = fill.fg, bg = fill.bg })
-	hl.set('TabLineCurrentTab', { fg = hl.getfg('Added'), reverse = true })
+	hl.set('TabLineCurrentTab', { fg = hl.getfg('Added'), bold = true, reverse = true })
 	hl.set('TabLineTab', { link = 'Normal' })
 end, true)
 
