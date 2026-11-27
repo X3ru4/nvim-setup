@@ -48,3 +48,12 @@ autocmd('CmdlineLeave', {
 	group = augroup,
 	command = 'set cmdheight=0',
 })
+
+autocmd({ 'BufNewFile', 'BufReadPre', 'TabNew' }, {
+	group = augroup,
+	once = true,
+	callback = function()
+		vim.opt.tabline = [[%{%v:lua.require('config.tabline')()%}]]
+		vim.opt.showtabline = 2
+	end,
+})

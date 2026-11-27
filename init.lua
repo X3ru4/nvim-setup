@@ -34,13 +34,3 @@ require('config.keymaps')
 require('config.autocmds')
 require('config.usercmds')
 require('config.lsp')
-
-local augroup = vim.api.nvim_create_augroup('MyModule', { clear = true })
-vim.api.nvim_create_autocmd({ 'BufNewFile', 'BufReadPre', 'TabNew' }, {
-	group = augroup,
-	once = true,
-	callback = function()
-		vim.opt.tabline = [[%{%v:lua.require('config.tabline')()%}]]
-		vim.opt.showtabline = 2
-	end,
-})
