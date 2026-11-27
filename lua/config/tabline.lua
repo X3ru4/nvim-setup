@@ -106,9 +106,11 @@ local function Tabs()
 	for _, tab in ipairs(tabs) do
 		TabsCache = table.concat({
 			TabsCache,
-			'%#',
+      '%#',
+      tab == current_tab and 'TabLineTabSepCurrent' or 'TabLineTabSep',
+			'#▏%#',
 			tab == current_tab and 'TabLineCurrentTab' or 'TabLineTab',
-			'#▏' .. tab,
+			'#' .. tab,
 			' ',
 		})
 		TabsLength = TabsLength + #(' ' .. tab .. ' ')
@@ -146,12 +148,15 @@ api.nvim_create_autocmd({ 'TabNew', 'TabClosed', 'TabEnter', 'TabMoved' }, {
 local hl = require('utils.highlight')
 hl.add_hook(function()
 	local fill = hl.get('TabLineFill')
+	local tabline = hl.get('TabLine')
 	hl.set('TabLineCurrentBufferModified', { fg = hl.getfg('Changed'), bg = hl.getbg('TabLineSel'), bold = true })
-	hl.set('TabLineCurrentBuffer', { fg = hl.getfg('TabLine'), bg = hl.getbg('TabLineSel'), bold = true })
+	hl.set('TabLineCurrentBuffer', { fg = tabline.fg, bg = hl.getbg('TabLineSel'), bold = true })
 	hl.set('TabLineBufferModified', { fg = hl.getfg('Changed'), bg = fill.bg })
 	hl.set('TabLineBuffer', { fg = fill.fg, bg = fill.bg })
 	hl.set('TabLineCurrentTab', { fg = hl.getfg('Added'), bold = true, reverse = true })
 	hl.set('TabLineTab', { link = 'Normal' })
+	hl.set('TabLineTabSepCurrent', { fg = tabline.fg, bg = hl.getfg('Added') })
+	hl.set('TabLineTabSep', { fg = tabline.fg, bg = hl.getbg('Normal') })
 end, true)
 
 return TabLine
