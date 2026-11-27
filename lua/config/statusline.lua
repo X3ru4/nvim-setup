@@ -96,7 +96,7 @@ hl.add_hook(function()
 	}
 
 	for name, hi in pairs(mode_colors) do
-		hl.set('MyStlMode' .. name, { fg = hl.get_var('Black', 'Normal bg'), bg = hl.getfg(hi), bold = true })
+		hl.set('MyStlMode' .. name, { fg = hl.getfg(hi), bold = true, reverse = true })
 	end
 
 	local Black1 = hl.get_var('Black1', 'StatusLine bg')
