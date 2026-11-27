@@ -7,7 +7,7 @@
       "for _ = 1, count do",
       "\t$0",
       "end",
-      "vim.print((vim.uv.hrtime() - start_time) / 1000000 / count)"
+      "vim.print('Time: ', (vim.uv.hrtime() - start_time) / 1000000 / count, 'ms')"
     ]
   }
 }
