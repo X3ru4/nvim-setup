@@ -40,9 +40,9 @@ local function MakeBufferLine()
 	if not BlUpdate then
 		return BlCache
 	end
+	local bufdata = get_bufdata()
 	local contexts = {}
-	local current_idx
-	for idx, chunk in ipairs(get_bufdata()) do
+	for idx, chunk in ipairs(bufdata) do
 		local context = table.concat({
 			' ',
 			chunk.unique or '',
@@ -54,20 +54,21 @@ local function MakeBufferLine()
 		if chunk.current then
 			BlCurrentContext = context
 			BlCurrentContextIdx = idx
-			current_idx = idx
 		end
 	end
 
 	local line = table.concat(contexts)
 	local start_pos = (line:find(BlCurrentContext, 1, true) or 1) + 1
 	local width = vim.o.columns - TabsLength
-	local visible_pos = #line - width
-	local truncatable = start_pos < visible_pos
+	local truncatable = start_pos < #line - width
 	local length = 0
 	BlCache = ''
 
 	for idx, context in ipairs(contexts) do
-		local hl = '%#' .. ((current_idx and current_idx == idx) and 'TabLineSel' or 'TabLineFill') .. '#'
+		local modified = vim.bo[bufdata[idx].buf].modified
+		local current_hl = modified and 'TabLineCurrentBufferModified' or 'TabLineCurrentBuffer'
+		local visible_hl = modified and 'TabLineBufferModified' or 'TabLineBuffer'
+		local hl = '%#' .. (bufdata[idx].current and current_hl or visible_hl) .. '#'
 		if truncatable then
 			if idx >= BlCurrentContextIdx then
 				length = length + #context
@@ -83,7 +84,7 @@ local function MakeBufferLine()
 		end
 	end
 
-	BlCache = BlCache .. '%#TabLineFill#'
+	BlCache = BlCache .. '%*'
 	BlUpdate = false
 	return BlCache
 end
@@ -106,7 +107,7 @@ local function Tabs()
 		TabsCache = table.concat({
 			TabsCache,
 			'%#',
-			tab == current_tab and 'TabLineSel' or 'TabLineFill',
+			tab == current_tab and 'TabLineCurrentTab' or 'TabLineTab',
 			'#▏' .. tab,
 			' ',
 		})
@@ -141,5 +142,16 @@ api.nvim_create_autocmd({ 'TabNew', 'TabClosed', 'TabEnter', 'TabMoved' }, {
 		TabsUpdate = true
 	end,
 })
+
+local hl = require('utils.highlight')
+hl.add_hook(function()
+	local fill = hl.get('TabLineFill')
+	hl.set('TabLineCurrentBufferModified', { fg = hl.getfg('Changed'), bg = hl.getbg('TabLineSel'), bold = true })
+	hl.set('TabLineCurrentBuffer', { fg = hl.getfg('TabLine'), bg = hl.getbg('TabLineSel'), bold = true })
+	hl.set('TabLineBufferModified', { fg = hl.getfg('Changed'), bg = fill.bg })
+	hl.set('TabLineBuffer', { fg = fill.fg, bg = fill.bg })
+	hl.set('TabLineCurrentTab', { fg = hl.getfg('Added'), reverse = true })
+	hl.set('TabLineTab', { link = 'Normal' })
+end, true)
 
 return TabLine
