@@ -26,7 +26,7 @@ autocmd({ 'InsertEnter', 'InsertLeave' }, {
 autocmd('ColorScheme', {
 	group = augroup,
 	callback = function()
-		vim.cmd.LoadHlConfig({ bang = true })
+		dofile(vim.fn.stdpath('config') .. '/lua/config/highlights.lua')
 	end,
 	desc = 'Load highlight configuration when changing colorscheme',
 })
@@ -34,7 +34,7 @@ autocmd('UIEnter', {
 	group = augroup,
 	once = true,
 	callback = function()
-		vim.cmd.LoadHlConfig()
+		dofile(vim.fn.stdpath('config') .. '/lua/config/highlights.lua')
 	end,
 	desc = 'Setup highlights',
 })

@@ -242,11 +242,11 @@ return {
 			FzfLuaPreviewNormal = { link = 'Normal' },
 			FzfLuaPreviewBorder = { link = 'Normal' },
 		}
-		hl.add_hook('fzf-lua', function()
-			fzf_hl.FzfLuaTitle = { fg = hl.alias.Black, bg = hl.getfg('Removed') }
+		hl.add_hook(function()
+			fzf_hl.FzfLuaTitle = { fg = hl.variables.Black, bg = hl.getfg('Removed') }
 			fzf_hl.FzfLuaFzfMatch = { fg = hl.getfg('Directory'), bold = true }
 			fzf_hl.FzfLuaCursorLine = { bg = hl.getbg('CursorLine'), bold = true }
-			fzf_hl.FzfLuaPreviewTitle = { fg = hl.alias.Black, bg = hl.getfg('Added') }
+			fzf_hl.FzfLuaPreviewTitle = { fg = hl.variables.Black, bg = hl.getfg('Added') }
 
 			hl.apply(fzf_hl)
 		end)

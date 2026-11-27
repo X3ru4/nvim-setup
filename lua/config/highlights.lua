@@ -1,31 +1,25 @@
 local hl = require('utils.highlight')
 
-hl.setup(function()
-	-- These aliases are primarily used for heirline.nvim and fzf-lua
-	hl.alias.White = hl.getfg('Normal') or hl.getfg('@text')
-	hl.alias.Black = hl.getbg('Normal') or hl.getbg('StatusLine')
+-- These aliases are primarily used for heirline.nvim and fzf-lua
+hl.variables.White = hl.getfg('Normal') or hl.getfg('@text')
+hl.variables.Black = hl.getbg('Normal') or hl.getbg('StatusLine')
 
-	hl.alias.Black1 = hl.blend(hl.alias.Black, hl.alias.White, 0.9)
-	hl.alias.Black2 = hl.blend(hl.alias.Black, hl.alias.White, 0.8)
-	hl.alias.Black3 = hl.blend(hl.alias.Black, hl.alias.White, 0.7)
-	hl.alias.Black4 = hl.blend(hl.alias.Black, hl.alias.White, 0.6)
+hl.variables.Black1 = hl.blend(hl.variables.Black, hl.variables.White, 0.9)
+hl.variables.Black2 = hl.blend(hl.variables.Black, hl.variables.White, 0.8)
+hl.variables.Black3 = hl.blend(hl.variables.Black, hl.variables.White, 0.7)
+hl.variables.Black4 = hl.blend(hl.variables.Black, hl.variables.White, 0.6)
 
-	hl.insert({
-		-- All highlights are cached, so use `_force = true` to ignore them.
-		-- Normal = { _force = true, fg = '#ffee00', bg = '#3a3b2f' },
-		Yank = {
-			bg = hl.blend(hl.getfg('Constant'), hl.alias.Black, 0.25),
-		},
-		Paste = {
-			bg = hl.blend(hl.getfg('Added'), hl.alias.Black, 0.3),
-		},
-		MCursor = { link = 'Cursor' },
-		-- Modify default highlights.
-		hl.modify('Visual', { bold = false }),
-		-- hl.modify('FloatTitle', { bg = hl.getbg('NormalFloat') }),
-		hl.modify('FloatBorder', { bg = hl.getbg('NormalFloat'), _force = true }),
-		-- function ()
-		-- 	return 'Abc', {} -- name, opts
-		-- end
-	})
-end)
+hl.apply({
+	Yank = {
+		bg = hl.blend(hl.getfg('Constant'), hl.variables.Black, 0.25),
+	},
+	Paste = {
+		bg = hl.blend(hl.getfg('Added'), hl.variables.Black, 0.3),
+	},
+	MCursor = { link = 'Cursor' },
+
+	-- Modify default highlights.
+	hl.modify('Visual', { bold = false }),
+	hl.modify('FloatBorder', { bg = hl.getbg('NormalFloat') }),
+})
+hl.run_hooks()

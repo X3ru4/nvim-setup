@@ -13,23 +13,12 @@ return {
 		end
 
 		-- It will be applied when the `UIEnter` or `Colorscheme` event is triggered.
-		hl.add_hook('base46', function()
+		hl.add_hook(function()
 			if not is_base46() then
 				return
 			end
 
 			local colors = base46.theme_tables[base46.current_theme]
-			hl.alias.Black = colors.base_30.black
-			hl.alias.White = colors.base_30.white
-			hl.alias.Red = colors.base_30.red
-			hl.alias.Orange = colors.base_30.orange
-			hl.alias.Yellow = colors.base_30.yellow
-			hl.alias.Green = colors.base_30.green
-			hl.alias.Blue = colors.base_30.blue
-			hl.alias.Cyan = colors.base_30.cyan
-			hl.alias.Purple = colors.base_30.purple
-			hl.alias.Line = colors.base_30.line
-
 			hl.apply({
 				FloatTitle = {
 					fg = colors.base_30.black,

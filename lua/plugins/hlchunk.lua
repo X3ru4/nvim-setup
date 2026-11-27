@@ -10,8 +10,8 @@ return {
 			enable = true,
 			style = function()
 				return {
-					hl.to_hex(hl.get_alias('Cyan', 'Function fg')),
-					hl.to_hex(hl.get_alias('Red', 'ErrorMsg fg')),
+					hl.to_hex(hl.get_var('Cyan', 'Function fg')),
+					hl.to_hex(hl.get_var('Red', 'ErrorMsg fg')),
 				}
 			end,
 			textobject = 'ic',
@@ -25,7 +25,7 @@ return {
 		local indent = {
 			enable = true,
 			style = function()
-				return hl.to_hex(hl.get_alias('Line', 'NonText fg'))
+				return hl.to_hex(hl.get_var('Line', 'NonText fg'))
 			end,
 		}
 

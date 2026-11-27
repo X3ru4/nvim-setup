@@ -84,7 +84,7 @@ local function StatusLine()
 	})
 end
 
-hl.add_hook('StatusLine', function()
+hl.add_hook(function()
 	local mode_colors = {
 		Normal = 'Added',
 		Insert = 'Keyword',
@@ -96,17 +96,17 @@ hl.add_hook('StatusLine', function()
 	}
 
 	for name, hi in pairs(mode_colors) do
-		hl.set('MyStlMode' .. name, { fg = hl.get_alias('Black', 'Normal bg'), bg = hl.getfg(hi), bold = true })
+		hl.set('MyStlMode' .. name, { fg = hl.get_var('Black', 'Normal bg'), bg = hl.getfg(hi), bold = true })
 	end
 
-	local Black1 = hl.get_alias('Black1', 'StatusLine bg')
+	local Black1 = hl.get_var('Black1', 'StatusLine bg')
 	hl.set('MyStlB1', { bg = Black1 })
 	hl.set('MyStlMacro', { fg = hl.getfg('Type'), bg = Black1 })
 	hl.set('MyStlMod', { fg = hl.getfg('Changed'), bg = Black1, bold = true })
 	hl.set('MyStlRO', { fg = hl.getfg('Constant'), bg = Black1, bold = true })
 	hl.set('MyStlSearch', { fg = hl.getfg('SpecialChar'), bg = Black1 })
 	hl.set('MyStlLsp', { fg = hl.getfg('Added'), bg = Black1 })
-end, nil, true)
+end, true)
 
 local augroup = api.nvim_create_augroup('MyStlAucmd', { clear = true })
 api.nvim_create_autocmd('ModeChanged', {

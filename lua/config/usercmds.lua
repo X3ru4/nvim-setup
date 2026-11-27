@@ -1,13 +1,5 @@
 local hl = require('utils.highlight')
 local usercmd = vim.api.nvim_create_user_command
-local conf_path = vim.fn.stdpath('config')
-
-usercmd('LoadHlConfig', function(opts)
-	if opts.bang then
-		hl.use_cache = false
-	end
-	dofile(conf_path .. '/lua/config/highlights.lua')
-end, { bang = true, desc = 'Load hightlighs config' })
 
 usercmd('GenTermuxColor', function(opts)
 	if not opts.bang and not vim.env.TERMUX_VERSION then
