@@ -41,7 +41,7 @@ local function MakeBufferLine()
 		return BlCache
 	end
 	local contexts = {}
-	local current_buf = false
+	local current_idx
 	for idx, chunk in ipairs(get_bufdata()) do
 		local context = table.concat({
 			' ',
@@ -54,12 +54,12 @@ local function MakeBufferLine()
 		if chunk.current then
 			BlCurrentContext = context
 			BlCurrentContextIdx = idx
-			current_buf = true
+			current_idx = idx
 		end
 	end
 
 	local line = table.concat(contexts)
-	local start_pos = (line:find(BlCurrentContext, 1, true)) + 1
+	local start_pos = (line:find(BlCurrentContext, 1, true) or 1) + 1
 	local width = vim.o.columns - TabsLength
 	local visible_pos = #line - width
 	local truncatable = start_pos < visible_pos
@@ -67,22 +67,19 @@ local function MakeBufferLine()
 	BlCache = ''
 
 	for idx, context in ipairs(contexts) do
+		local hl = '%#' .. ((current_idx and current_idx == idx) and 'TabLineSel' or 'TabLineFill') .. '#'
 		if truncatable then
 			if idx >= BlCurrentContextIdx then
 				length = length + #context
 				if length < width then
-					BlCache = BlCache .. '%#' .. (current_buf and 'TabLineSel' or 'TabLineFill') .. '#' .. context
+					BlCache = BlCache .. hl .. context
 				else
-					BlCache = BlCache
-						.. '%#'
-						.. (current_buf and 'TabLineSel' or 'TabLineFill')
-						.. '#'
-						.. context:sub(1, #context - (length - width))
+					BlCache = BlCache .. hl .. context:sub(1, #context - (length - width))
 					break
 				end
 			end
 		else
-			BlCache = BlCache .. '%#' .. (current_buf and 'TabLineSel' or 'TabLineFill') .. '#' .. context
+			BlCache = BlCache .. hl .. context
 		end
 	end
 
