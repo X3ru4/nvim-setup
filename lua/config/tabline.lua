@@ -9,21 +9,27 @@ end
 local function get_bufdata()
 	local current_buf = api.nvim_get_current_buf()
 	local data = {}
-	for idx, buf in ipairs(list_buf()) do
+	for _, buf in ipairs(list_buf()) do
 		local bufname = api.nvim_buf_get_name(buf)
-		data[idx] = {
+		table.insert(data, {
 			buf = buf,
 			current = buf == current_buf,
 			name = bufname,
 			tail = bufname ~= '' and vim.fn.fnamemodify(bufname, ':t') or '[No Name]',
-		}
+			head = vim.fn.fnamemodify(bufname, ':h:t'),
+		})
 	end
 	for idx1, chunk1 in ipairs(data) do
-		if not data[idx1].unique then
+		if not data[idx1].unique and chunk1.name ~= '' then
 			for idx2, chunk2 in ipairs(data) do
 				if idx1 ~= idx2 and not data[idx2].unique and chunk1.tail == chunk2.tail then
-					data[idx1].unique = vim.fn.fnamemodify(chunk1.name, ':h:t') .. '/'
-					data[idx2].unique = vim.fn.fnamemodify(chunk2.name, ':h:t') .. '/'
+					if chunk1.head == chunk2.head then
+						data[idx1].unique = vim.fn.pathshorten(vim.fn.fnamemodify(chunk1.name, ':~:h')) .. '/'
+						data[idx2].unique = vim.fn.pathshorten(vim.fn.fnamemodify(chunk2.name, ':~:h')) .. '/'
+					else
+						data[idx1].unique = chunk1.head .. '/'
+						data[idx2].unique = chunk2.head .. '/'
+					end
 				end
 			end
 		end
@@ -32,7 +38,6 @@ local function get_bufdata()
 end
 
 local TabsLength = 0
-local BlCurrentContext = ''
 local BlCurrentContextIdx = 1
 local BlUpdate = true
 local BlCache = ''
@@ -42,6 +47,7 @@ local function MakeBufferLine()
 	end
 	local bufdata = get_bufdata()
 	local contexts = {}
+	local cumul_length, start_pos = 0, 0
 	for idx, chunk in ipairs(bufdata) do
 		local context = table.concat({
 			' ',
@@ -50,26 +56,26 @@ local function MakeBufferLine()
 			vim.bo[chunk.buf].modified and '[+]' or '',
 			' ',
 		})
-		table.insert(contexts, context)
+		contexts[idx] = context
 		if chunk.current then
-			BlCurrentContext = context
 			BlCurrentContextIdx = idx
+			start_pos = cumul_length + 1
 		end
+		cumul_length = cumul_length + #context
 	end
 
 	local line = table.concat(contexts)
-	local start_pos = (line:find(BlCurrentContext, 1, true) or 1) + 1
 	local width = vim.o.columns - TabsLength
-	local truncatable = start_pos < #line - width
-	local length = 0
+	local truncated = start_pos < #line - width
 	BlCache = ''
 
+	local length = 0
 	for idx, context in ipairs(contexts) do
 		local modified = vim.bo[bufdata[idx].buf].modified
-		local current_hl = modified and 'TabLineCurrentBufferModified' or 'TabLineCurrentBuffer'
-		local visible_hl = modified and 'TabLineBufferModified' or 'TabLineBuffer'
-		local hl = '%#' .. (bufdata[idx].current and current_hl or visible_hl) .. '#'
-		if truncatable then
+		local primary_hl = bufdata[idx].current and 'TabLineBufferCurrent' or 'TabLineBuffer'
+		local accent_hl = bufdata[idx].current and 'TabLineBufferCurrentModified' or 'TabLineBufferModified'
+		local hl = '%#' .. primary_hl .. '#' .. (modified and '%$' .. accent_hl .. '$' or '')
+		if truncated then
 			if idx >= BlCurrentContextIdx then
 				length = length + #context
 				if length < width then
@@ -104,16 +110,21 @@ local function Tabs()
 	TabsCache = ''
 	TabsLength = 0
 	for _, tab in ipairs(tabs) do
+		local tabnr = api.nvim_tabpage_get_number(tab)
+		local tabnr_str = tostring(tabnr)
 		TabsCache = table.concat({
 			TabsCache,
-      '%#',
-      tab == current_tab and 'TabLineTabSepCurrent' or 'TabLineTabSep',
-			'#▏%#',
-			tab == current_tab and 'TabLineCurrentTab' or 'TabLineTab',
-			'#' .. tab,
-			' ',
+			'%',
+			tabnr_str,
+			'T',
+			'%#',
+			tab == current_tab and 'TabLineTabCurrent' or 'TabLineTab',
+			'#',
+			tab ~= current_tab and '%$TabLineTabSep$▏' or ' ',
+			tabnr_str,
+			' %T',
 		})
-		TabsLength = TabsLength + #(' ' .. tab .. ' ')
+		TabsLength = TabsLength + #tostring(tab) + 2
 	end
 	TabsCache = TabsCache .. '%*'
 	return TabsCache
@@ -123,7 +134,7 @@ local function TabLine()
 	return MakeBufferLine() .. '%=' .. Tabs()
 end
 
-local augroup = api.nvim_create_augroup('MyTabLine', { clear = true })
+local augroup = api.nvim_create_augroup('TabLineAG', { clear = true })
 api.nvim_create_autocmd({ 'BufEnter', 'BufLeave' }, {
 	group = augroup,
 	callback = function()
@@ -149,14 +160,13 @@ local hl = require('utils.highlight')
 hl.add_hook(function()
 	local fill = hl.get('TabLineFill')
 	local tabline = hl.get('TabLine')
-	hl.set('TabLineCurrentBufferModified', { fg = hl.getfg('Changed'), bg = hl.getbg('TabLineSel'), bold = true })
-	hl.set('TabLineCurrentBuffer', { fg = tabline.fg, bg = hl.getbg('TabLineSel'), bold = true })
-	hl.set('TabLineBufferModified', { fg = hl.getfg('Changed'), bg = fill.bg })
 	hl.set('TabLineBuffer', { fg = fill.fg, bg = fill.bg })
-	hl.set('TabLineCurrentTab', { fg = hl.getfg('Added'), bold = true, reverse = true })
+	hl.set('TabLineBufferCurrent', { fg = tabline.fg, bg = hl.getbg('TabLineSel') })
+	hl.set('TabLineBufferModified', { fg = hl.getfg('Changed') })
+	hl.set('TabLineBufferCurrentModified', { fg = hl.getfg('Changed'), bg = hl.getbg() })
 	hl.set('TabLineTab', { link = 'Normal' })
-	hl.set('TabLineTabSepCurrent', { fg = tabline.fg, bg = hl.getfg('Added') })
-	hl.set('TabLineTabSep', { fg = tabline.fg, bg = hl.getbg('Normal') })
+	hl.set('TabLineTabCurrent', { fg = hl.getfg('Added'), bold = true, reverse = true })
+	hl.set('TabLineTabSep', { fg = tabline.fg })
 end, true)
 
 return TabLine
