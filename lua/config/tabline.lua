@@ -41,7 +41,7 @@ local TabsLength = 0
 local BlCurrentContextIdx = 1
 local BlUpdate = true
 local BlCache = ''
-local function MakeBufferLine()
+local function Buffers()
 	if not BlUpdate then
 		return BlCache
 	end
@@ -131,7 +131,7 @@ local function Tabs()
 end
 
 local function TabLine()
-	return MakeBufferLine() .. '%=' .. Tabs()
+	return Buffers() .. '%=' .. Tabs()
 end
 
 local augroup = api.nvim_create_augroup('TabLineAG', { clear = true })
