@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.25.0](https://github.com/X3ru4/nvim-setup/compare/v1.24.0...v1.25.0) (2026-11-28)
+
+
+### Features
+
+* improve tabline formatting with unique head paths and better truncation and highlights ([6623c06](https://github.com/X3ru4/nvim-setup/commit/6623c063c73764efee3ef8e77b5bfa392b76d8ce))
+
+
+### Bug Fixes
+
+* Fix &lt;leader&gt;qa keymap to quit all without force ([ae55886](https://github.com/X3ru4/nvim-setup/commit/ae55886eeb02ca2f2f0474b774553849ad8a53a8))
+
 ## [1.24.0](https://github.com/X3ru4/nvim-setup/compare/v1.23.0...v1.24.0) (2026-11-27)
 
 
