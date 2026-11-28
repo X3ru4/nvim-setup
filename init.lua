@@ -23,7 +23,7 @@ end
 vim.g.termfeatures = { osc52 = false }
 vim.g.mapleader = ' '
 vim.g.maplocalleader = '\\'
-vim.opt.statusline = [[%{%v:lua.require('config.statusline')()%}]]
+vim.opt.statusline = [[%!v:lua.require('config.statusline')()]]
 
 require('vim._core.ui2').enable({ enable = true })
 require('config.options')
