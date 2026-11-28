@@ -21,31 +21,31 @@ local modes = {
 }
 
 local mode_hls = {
-	n = 'MyStlModeNormal',
-	i = 'MyStlModeInsert',
-	v = 'MyStlModeVisual',
-	V = 'MyStlModeVisual',
-	['\22'] = 'MyStlModeVisual',
-	c = 'MyStlModeCommand',
-	t = 'MyStlModeOther',
-	R = 'MyStlModeReplace',
-	s = 'MyStlModeOther',
-	nt = 'MyStlModeNormal',
-	no = 'MyStlModeOperator',
-	['!'] = 'MyStlModeOther',
-	niI = 'MyStlModeNormal',
-	niR = 'MyStlModeNormal',
-	niV = 'MyStlModeNormal',
+	n = 'StatusLineModeNormal',
+	i = 'StatusLineModeInsert',
+	v = 'StatusLineModeVisual',
+	V = 'StatusLineModeVisual',
+	['\22'] = 'StatusLineModeVisual',
+	c = 'StatusLineModeCommand',
+	t = 'StatusLineModeOther',
+	R = 'StatusLineModeReplace',
+	s = 'StatusLineModeOther',
+	nt = 'StatusLineModeNormal',
+	no = 'StatusLineModeOperator',
+	['!'] = 'StatusLineModeOther',
+	niI = 'StatusLineModeNormal',
+	niR = 'StatusLineModeNormal',
+	niV = 'StatusLineModeNormal',
 }
 
 local function ViMode()
 	local mode = api.nvim_get_mode().mode
-	return '%#' .. (mode_hls[mode] or 'MyStlModeOther') .. '# ' .. (modes[mode] or mode) .. '▕%*'
+	return '%#' .. (mode_hls[mode] or 'StatusLineModeOther') .. '# ' .. (modes[mode] or mode) .. '▕%*'
 end
 
 local function LspActive()
 	if next(vim.lsp.get_clients({ bufnr = 0 })) then
-		return '%#MyStlLsp#[LSP] '
+		return '%$StatusLineLsp$[LSP] '
 	end
 	return ''
 end
@@ -53,7 +53,7 @@ end
 local function Macro()
 	local reg = vim.fn.reg_recording()
 	if reg ~= '' then
-		return '%#MyStlMacro#@' .. reg .. ' '
+		return '%$StatusLineMacro$@' .. reg .. ' '
 	end
 	return ''
 end
@@ -61,7 +61,7 @@ end
 local function Search()
 	if vim.v.hlsearch ~= 0 then
 		local count = vim.fn.searchcount()
-		return '%#MyStlSearch#' .. count.current .. '/' .. count.total .. ' '
+		return '%$StatusLineSearch$' .. count.current .. '/' .. count.total .. ' '
 	end
 	return ''
 end
@@ -69,18 +69,18 @@ end
 local function StatusLine()
 	return table.concat({
 		ViMode(),
-		'%#MyStlB1# %<',
+		'%#StatusLineB1# %<',
 		(vim.bo.buftype == '' or vim.bo.buftype == 'terminal') and '%t' or '%y',
-		'%#MyStlMod#%m',
-		'%#MyStlRO#',
+		'%$StatusLineMod$%m',
+		'%$StatusLineRO$',
 		vim.bo.filetype == 'help' and '%h' or '%r',
 		' %* ',
 		vim.diagnostic.status(0):gsub(':', ' '),
-		' %=%#MyStlB1#▏',
+		' %=%#StatusLineB1#▏%#(',
 		LspActive(),
 		Macro(),
 		Search(),
-		'%#MyStlB1#%l:%c ',
+		'%#)%l:%c ',
 	})
 end
 
@@ -96,19 +96,20 @@ hl.add_hook(function()
 	}
 
 	for name, hi in pairs(mode_colors) do
-		hl.set('MyStlMode' .. name, { fg = hl.getfg(hi), bold = true, reverse = true })
+		hl.set('StatusLineMode' .. name, { fg = hl.getfg(hi), bold = true, reverse = true })
 	end
 
-	local Black1 = hl.get_var('Black1', 'StatusLine bg')
-	hl.set('MyStlB1', { bg = Black1 })
-	hl.set('MyStlMacro', { fg = hl.getfg('Type'), bg = Black1 })
-	hl.set('MyStlMod', { fg = hl.getfg('Changed'), bg = Black1, bold = true })
-	hl.set('MyStlRO', { fg = hl.getfg('Constant'), bg = Black1, bold = true })
-	hl.set('MyStlSearch', { fg = hl.getfg('SpecialChar'), bg = Black1 })
-	hl.set('MyStlLsp', { fg = hl.getfg('Added'), bg = Black1 })
+	hl.set('StatusLineB1', { bg = hl.get_var('Black1', 'StatusLine bg') })
+	hl.set('StatusLineMacro', { fg = hl.getfg('Type') })
+	hl.set('StatusLineMacro', { fg = hl.getfg('Type') })
+	hl.set('StatusLineMod', { fg = hl.getfg('Changed'), bold = true })
+	hl.set('StatusLineRO', { fg = hl.getfg('Constant'), bold = true })
+	hl.set('StatusLineSearch', { fg = hl.getfg('SpecialChar') })
+	hl.set('StatusLineLsp', { fg = hl.getfg('Added') })
+	hl.set('StatusLineLsp', { fg = hl.getfg('Added') })
 end, true)
 
-local augroup = api.nvim_create_augroup('MyStlAucmd', { clear = true })
+local augroup = api.nvim_create_augroup('StatusLineAG', { clear = true })
 api.nvim_create_autocmd('ModeChanged', {
 	group = augroup,
 	pattern = '*:*',
